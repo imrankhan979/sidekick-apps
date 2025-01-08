@@ -727,8 +727,8 @@ h3 .icon-arrow,
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .svg-wrapper > svg {
@@ -745,7 +745,6 @@ summary {
 
 summary .icon-caret {
   position: absolute;
-  right: -20px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -2400,12 +2399,8 @@ input[type='checkbox'] {
 }
 .snazzy-header:hover{
   background-color: white;
-  border-radius: 0;
 }
-.snazzy-header observed-height{
-  display: block;
-  margin-bottom: calc(var(--observed-height)* -1);
-}
+
 .snazzy-header .header-inner {
   grid-template-columns: 2fr 1fr 2fr;
   gap: 10px 45px;
@@ -2422,7 +2417,7 @@ input[type='checkbox'] {
 .snazzy-header:hover .header-inner .menu-icon svg path{
   fill: #000;
 }
-.snazzy-header .header-inner .list-menu > li > * { 
+.snazzy-header .header-inner .menu-lg.list-menu > li > * { 
   padding: 10px 20px;
   display: flex;
   color: #000;
@@ -2476,7 +2471,8 @@ input[type='checkbox'] {
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
+  word-break: break-word;
 }
 .snazzy-header .header-inner .header-icons-group{
   gap: 48px;
@@ -2484,13 +2480,22 @@ input[type='checkbox'] {
 .snazzy-header .header-inner .header-icons{
  gap: 16px;
 }
-.snazzy-header .header-heading-logo-wrapper.has-second-logo  .header-heading-logo-two{
+/* .snazzy-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
   display: none;
 }
-.snazzy-header:hover .header-heading-logo-wrapper.has-second-logo  .header-heading-logo{
+.snazzy-header:hover .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
   display: none;
 }
-.snazzy-header:hover .header-heading-logo-wrapper.has-second-logo  .header-heading-logo-two{
+.snazzy-header:hover .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
+  display: block;
+} */
+ .snazzy-header.overlay-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
+  display: none;
+ }
+ .snazzy-header.overlay-header:hover .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
+  display: none;
+}
+.snazzy-header.overlay-header:hover .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
   display: block;
 }
 .snazzy-header .header-country-language{
@@ -2520,15 +2525,21 @@ input[type='checkbox'] {
   }
 }
 
-.snazzy-header  header-menu-drawer .menu-drawer-header-wrapper{
+.snazzy-header header-menu-drawer .menu-drawer-header-wrapper{
   padding-bottom: 48px;
 }
-.snazzy-header  .menu-drawer-header{
+.snazzy-header .menu-drawer-header{
   grid-template-columns: 24px 60px 1fr;
   gap: 24px;
   padding: 24px 0;
 }
-
+.snazzy-header .menu-drawer-header .header-heading-logo-wrapper {
+  max-height: 24px;
+}
+.snazzy-header .menu-drawer-header .header-heading-logo-wrapper img{
+  height: 100%;
+  width: unset;
+}
 
 
 
@@ -2551,8 +2562,9 @@ input[type='checkbox'] {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 72px 24px 52px 24px;
+  padding: 48px 24px 48px 24px;
   transition: transform .4s ease-in-out;
+  overflow-y: auto;
 }
 .snazzy-header header-menu-drawer .menu-opening  .drawer-menu{
   transform: translateX(0);
@@ -2570,20 +2582,25 @@ input[type='checkbox'] {
 .snazzy-header header-menu-drawer .header-icons .header-cart{
   gap: 6px;
 }
-.snazzy-header header-menu-drawer .menu-drawer__menu > li{
-  padding: 32px 0;
+.snazzy-header header-menu-drawer .main-menu-item-list > li{
+  padding: 24px 0;
 }
-.snazzy-header header-menu-drawer .menu-drawer__menu > li:first-child{
+.snazzy-header header-menu-drawer .main-menu-item-list > li:first-child{
   padding-top: 0;
 }
-.snazzy-header header-menu-drawer .menu-drawer__menu > li:last-child{
-  padding-bottom: 0;
-}
-.snazzy-header header-menu-drawer .menu-drawer__menu > li:not(:last-child){
+.snazzy-header header-menu-drawer .main-menu-item-list > li:not(:last-child){
   border-bottom: 1px solid #DDDDDD;
 }
-
-
+.snazzy-header header-menu-drawer .main-menu-item-list > li details summary .icon-caret{
+  transform: translateY(-50%) rotate(-90deg);
+}
+.snazzy-header .header-inner header-menu-drawer .list-menu > li > *{
+  padding-left: 0;
+  padding-right: 0;
+}
+.snazzy-header .header-inner header-menu-drawer .menu-drawer-footer{
+  padding-top: 20px;
+}
 
 
 /* Main Header Layout */

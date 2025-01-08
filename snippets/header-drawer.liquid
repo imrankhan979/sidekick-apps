@@ -6,15 +6,16 @@
 {% endcomment %}
 
 <header-menu-drawer>
-  <details id="Details-menu-drawer-container" class="menu-drawer-container">
-    <summary
-      class="header__icon--menu header__icon--summary"
+  <div id="menu-drawer-container" class="menu-drawer-container">
+    <div
+      class="header-menu-icon"
+      id="header-menu-icon"
       aria-label="menu-icon"
     >
       <span class="flex">
         {{- 'icon-menu.svg' | inline_asset_content -}}
       </span>
-    </summary>
+    </div>
     <div id="drawer-menu" class="drawer-menu color-{{ section.settings.menu_color_scheme }}">
       <div class="menu-drawer-header-wrapper">
         <div class="menu-drawer-header grid align-items-center">
@@ -25,14 +26,13 @@
           </button>
           <div class="logo">
             <a href="{{ routes.root_url }}" class="header-heading-link flex">
-                          {%- if settings.logo != blank or settings.logo-two != blank -%}
+                          {%- if settings.logo != blank -%}
                           <div class="header-heading-logo-wrapper flex">
                               {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
                               {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                               {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
                               {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-                              {% if settings.logo_two != blank %}
-                                  {{ settings.logo_two | image_url: width: 600 | image_tag:
+                                  {{ settings.logo | image_url: width: 600 | image_tag:
                                   class: 'header-heading-logo-two',
                                   widths: widths,
                                   height: logo_height,
@@ -41,8 +41,6 @@
                                   sizes: sizes,
                                   preload: true
                                   }}
-                                  
-                              {% endif %}
                           </div>
                           {%- else -%}
                           <span class="h2">{{ shop.name }}</span>
@@ -100,20 +98,17 @@
       </div>
       <div class="menu-drawer__inner-container menu-drawer-nav">
         <div class="menu-drawer__navigation-container">
-          <nav class="menu-drawer__navigation">
-            <ul class="menu-drawer__menu has-submenu" role="list">
+          <nav class="menu-drawer-navigation">
+            <ul class="menu-drawer__menu has-submenu main-menu-item-list" role="list">
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
-                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                    <details id="menu-drawer-menu-item-{{ forloop.index }}">
                       <summary
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item {% if link.child_active %}menu-item-active{% endif %}"
                       >
                         {{ link.title | escape }}
-                        <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span>
                         <span class="svg-wrapper">
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </span>
@@ -126,7 +121,7 @@
                         <div class="menu-drawer__inner-submenu">
                           <button class="menu-drawer__close-button" aria-expanded="true">
                             <span class="svg-wrapper">
-                              {{- 'icon-arrow.svg' | inline_asset_content -}}
+                              {{- 'icon-caret.svg' | inline_asset_content -}}
                             </span>
                             {{ link.title | escape }}
                           </button>
@@ -145,36 +140,25 @@
                                     {{ childlink.title | escape }}
                                   </a>
                                 {%- else -%}
-                                  <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
-                                    <summary
-                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                                  <div id="third-level-menu">
+                                    <div
+                                      id="third-level-menu-btn"
                                       class="menu-drawer__menu-item  list-menu__item"
                                     >
                                       {{ childlink.title | escape }}
                                       <span class="svg-wrapper">
-                                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                                      </span>
-                                      <span class="svg-wrapper">
                                         {{- 'icon-caret.svg' | inline_asset_content -}}
                                       </span>
-                                    </summary>
+                                    </div>
                                     <div
                                       id="childlink-{{ childlink.handle | escape }}"
-                                      class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                                      class=""
                                     >
-                                      <button
-                                        class="menu-drawer__close-button"
-                                        aria-expanded="true"
-                                      >
-                                        <span class="svg-wrapper">
-                                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                                        </span>
-                                        {{ childlink.title | escape }}
-                                      </button>
                                       <ul
-                                        class="menu-drawer__menu list-menu"
+                                        class=""
                                         role="list"
                                         tabindex="-1"
+                                        id="third-level-menu-list"
                                       >
                                         {%- for grandchildlink in childlink.links -%}
                                           <li>
@@ -192,7 +176,7 @@
                                         {%- endfor -%}
                                       </ul>
                                     </div>
-                                  </details>
+                                  </div>
                                 {%- endif -%}
                               </li>
                             {%- endfor -%}
@@ -219,7 +203,7 @@
         </div>
       </div>
       <div class="menu-drawer-footer">
-        <div class="menu-drawer__utility-links">
+        <div class="menu-drawer-footer-inner">
           {%- if localization.available_countries or localization.available_languages -%}
             <div class="menu-drawer__localization header-localization">
               {%- if localization.available_countries and localization.available_countries.size > 1 -%}
@@ -344,5 +328,5 @@
         </div>
       </div>
     </div>
-  </details>
+  </div>
 </header-menu-drawer>

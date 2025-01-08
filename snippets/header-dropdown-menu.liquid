@@ -6,12 +6,11 @@
 {% endcomment %}
 <nav class="header-menu">
 {% render 'header-drawer' %}
-  <ul class="list-menu flex align-items-center wrap md-none" role="list">
+  <ul class="menu-lg list-menu flex align-items-center wrap md-none" role="list">
     {%- for link in section.settings.menu.links -%}
       <li>
         {%- if link.links != blank -%}
           <div class="has-sub-menu main-menu-has-sub-menu">
-            <div id="Details-HeaderMenu-{{ forloop.index }}">
               <div
                 id="HeaderMenu-{{ link.handle }}"
                 class="header-menu-item"
@@ -77,7 +76,6 @@
                   </li>
                 {%- endfor -%}
               </ul>
-            </div>
           </div>
         {%- else -%}
           <a

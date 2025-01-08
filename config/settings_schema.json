@@ -18,7 +18,8 @@
       {
         "type": "image_picker",
         "id": "logo_two",
-        "label": "t:settings_schema.logo.settings.logo_image_two.label"
+        "label": "t:settings_schema.logo.settings.logo_image_two.label",
+        "info": "This logo will be displayed when the overlay header is active."
       },
       {
         "type": "range",
@@ -45,55 +46,138 @@
         "type": "color_scheme_group",
         "id": "color_schemes",
         "definition": [
-          {
-            "type": "color",
-            "id": "background",
-            "label": "t:settings_schema.colors.settings.background.label",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color_background",
-            "id": "background_gradient",
-            "label": "t:settings_schema.colors.settings.background_gradient.label",
-            "info": "t:settings_schema.colors.settings.background_gradient.info"
-          },
-          {
-            "type": "color",
-            "id": "text",
-            "label": "t:settings_schema.colors.settings.text.label",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "button",
-            "label": "t:settings_schema.colors.settings.button_background.label",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "button_label",
-            "label": "t:settings_schema.colors.settings.button_label.label",
-            "default": "#FFFFFF"
-          },
-          {
-            "type": "color",
-            "id": "secondary_button_label",
-            "label": "t:settings_schema.colors.settings.secondary_button_label.label",
-            "default": "#121212"
-          },
-          {
-            "type": "color",
-            "id": "shadow",
-            "label": "t:settings_schema.colors.settings.shadow.label",
-            "default": "#121212"
-          }
+                    {
+                      "type": "header",
+                      "content": "Text"
+                    },
+                    {
+                      "type": "color",
+                      "id": "text",
+                      "label": "Primary"
+                    },
+                    {
+                      "type": "color",
+                      "id": "secondary_text",
+                      "label": "Secondary"
+                    },
+                    {
+                      "type": "header",
+                      "content": "Background"
+                    },
+                    {
+                      "type": "color",
+                      "id": "background",
+                      "label": "Primary"
+                    },
+               
+                    {
+                      "type": "color",
+                      "id": "secondary_background",
+                      "label": "Secondary"
+                    },
+                    {
+                      "type": "header",
+                      "content": "Highlight"
+                    },
+                    {
+                      "type": "color",
+                      "id": "highlight_text",
+                      "label": "Highlight text"
+                    },
+                    {
+                      "type": "header",
+                      "content": "Primary button"
+                    },
+                    {
+                      "type": "color",
+                      "id": "button",
+                      "label": "Background"
+                    },
+                    {
+                      "type": "color",
+                      "id": "button_label",
+                      "label": "Label"
+                    },
+                    {
+                      "type": "color",
+                      "id": "button_hover",
+                      "label": "Background hover"
+                    },
+                    {
+                      "type": "color",
+                      "id": "button_label_hover",
+                      "label": "Label hover"
+                    },
+                    {
+                      "type": "header",
+                      "content": "Secondary button"
+                    },
+                    {
+                      "type": "color",
+                      "id": "secondary_button",
+                      "label": "Background"
+                    },
+                    {
+                      "type": "color",
+                      "id": "secondary_button_label",
+                      "label": "Label"
+                    },
+                    {
+                      "type": "color",
+                      "id": "secondary_button_hover",
+                      "label": "Background hover"
+                    },
+                    {
+                      "type": "color",
+                      "id": "secondary_button_label_hover",
+                      "label": "Label hover"
+                    }
+          // {
+          //   "type": "color",
+          //   "id": "background",
+          //   "label": "t:settings_schema.colors.settings.background.label",
+          //   "default": "#FFFFFF"
+          // },
+          // {
+          //   "type": "color_background",
+          //   "id": "background_gradient",
+          //   "label": "t:settings_schema.colors.settings.background_gradient.label",
+          //   "info": "t:settings_schema.colors.settings.background_gradient.info"
+          // },
+          // {
+          //   "type": "color",
+          //   "id": "text",
+          //   "label": "t:settings_schema.colors.settings.text.label",
+          //   "default": "#121212"
+          // },
+          // {
+          //   "type": "color",
+          //   "id": "button",
+          //   "label": "t:settings_schema.colors.settings.button_background.label",
+          //   "default": "#121212"
+          // },
+          // {
+          //   "type": "color",
+          //   "id": "button_label",
+          //   "label": "t:settings_schema.colors.settings.button_label.label",
+          //   "default": "#FFFFFF"
+          // },
+          // {
+          //   "type": "color",
+          //   "id": "secondary_button_label",
+          //   "label": "t:settings_schema.colors.settings.secondary_button_label.label",
+          //   "default": "#121212"
+          // },
+          // {
+          //   "type": "color",
+          //   "id": "shadow",
+          //   "label": "t:settings_schema.colors.settings.shadow.label",
+          //   "default": "#121212"
+          // }
         ],
         "role": {
           "text": "text",
-          "background": {
-            "solid": "background",
-            "gradient": "background_gradient"
-          },
+          "background": "background",
           "links": "secondary_button_label",
           "icons": "text",
           "primary_button": "button",

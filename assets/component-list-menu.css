@@ -35,9 +35,12 @@ font-size: 18px;
 line-height: 28px;
 white-space: nowrap;
 color: #000;
+display: flex;
+align-items: center;
+justify-content: space-between;
 } 
 .snazzy-header .has-sub-menu .header__submenu li:not(:last-child){
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 .snazzy-header .header-inner .list-menu .has-sub-menu{
 position: relative;

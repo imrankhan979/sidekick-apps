@@ -4,20 +4,26 @@
     .snazzy-header .header-inner{
         padding: {{ section.settings.padding_top}}px 0 {{ section.settings.padding_bottom}}px 0;
     }
+    {%- if section.settings.enable_overlay_header == true -%}
+        .snazzy-header observed-height{
+            display: block;
+            margin-bottom: calc(var(--observed-height)* -1);
+        }
+    {%- endif -%}
 {% endstyle %}
-<header class="snazzy-header rounded-top-corner header-wrapper">
+<header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %}">
     <div class="page-width">
         <observed-height>
             <div class="header-inner grid align-items-center">
                     {% comment %} Menu {% endcomment %}
-                    {% render  'header-dropdown-menu'%}
+                        {% render  'header-dropdown-menu'%}
                     {% comment %} Logo {% endcomment %}
                         {%- if request.page_type == 'index' -%}
                             <h1 class="header-heading">
                         {%- endif -%}
                         <a href="{{ routes.root_url }}" class="header-heading-link flex justify-content-center">
                             {%- if settings.logo != blank or settings.logo-two != blank -%}
-                            <div class="header-heading-logo-wrapper flex {% if settings.logo_two %}has-second-logo{% endif %}">
+                            <div class="header-heading-logo-wrapper flex {% if settings.logo_two and section.settings.enable_overlay_header == true %}has-second-logo{% endif %}">
                                 {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
                                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                                 {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
@@ -33,7 +39,7 @@
                                     preload: true
                                 }}
                                {% endif %}
-                                {% if settings.logo_two != blank %}
+                                {% if settings.logo_two != blank and section.settings.enable_overlay_header == true %}
                                     {{ settings.logo_two | image_url: width: 600 | image_tag:
                                     class: 'header-heading-logo-two',
                                     widths: widths,
@@ -226,6 +232,12 @@
           "id": "menu",
           "default": "main-menu",
           "label": "t:sections.header.settings.menu.label"
+        },
+        {
+        "type": "checkbox",
+        "id": "enable_overlay_header",
+        "default": true,
+        "label": "Overlay header"
         },
         {
           "type": "header",

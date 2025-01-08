@@ -1365,3 +1365,78 @@ document.querySelectorAll('[id^="Details-"]').forEach((detailsElement) => {
 //   }
 // });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const menuIcon = document.getElementById("header-menu-icon");
+  const menuDrawer = document.getElementById("menu-drawer-container");
+  const closeBtn = document.getElementById("drawer-menu-close-btn");
+  const body = document.getElementById("body")
+  if (menuIcon && menuDrawer) {
+      // Toggle 'menu-opening' class when menu icon is clicked
+      menuIcon.addEventListener("click", function () {
+          menuDrawer.classList.toggle("menu-opening");
+          body.classList.toggle("overflow-hidden")
+      });
+  }
+  if (closeBtn && menuDrawer) {
+      // Remove 'menu-opening' class when close button is clicked
+      closeBtn.addEventListener("click", function () {
+          menuDrawer.classList.remove("menu-opening");
+          body.classList.remove("overflow-hidden")
+      });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.getElementById("third-level-menu-btn");
+  const menuList = document.getElementById("third-level-menu-list");
+
+  if (menuBtn && menuList) {
+      menuBtn.addEventListener("click", function () {
+          if (menuList.style.height === "0px" || menuList.style.height === "") {
+              // Expand: Set the height to the natural scrollHeight
+              menuList.style.height = menuList.scrollHeight + "px";
+              menuList.style.opacity = 1;
+              this.classList.add('menu-open')
+          } else {
+              // Collapse: Reset the height to 0
+              menuList.style.height = "0";
+              this.classList.remove('menu-open')
+              menuList.style.opacity = 0;
+          }
+      });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const disclosureButtons = document.querySelectorAll(".menu-drawer-footer .disclosure__button");
+  const listWrappers = document.querySelectorAll(".menu-drawer-footer .disclosure__list-wrapper");
+
+  disclosureButtons.forEach((button, index) => {
+      const listWrapper = listWrappers[index];
+
+      if (listWrapper) {
+          // Toggle the 'open' class for the corresponding list wrapper
+          button.addEventListener("click", function (event) {
+              event.stopPropagation(); // Prevent the event from reaching the document
+              const isOpen = listWrapper.classList.contains("open");
+
+              // Close all list wrappers
+              listWrappers.forEach(wrapper => wrapper.classList.remove("open"));
+
+              // Toggle the clicked list wrapper
+              if (!isOpen) {
+                  listWrapper.classList.add("open");
+              }
+              this.classList.toggle('active')
+          });
+      }
+  });
+
+  // Close all list wrappers when clicking anywhere else
+  document.addEventListener("click", function () {
+    disclosureButtons.forEach((button) => button.classList.remove("active"))
+      listWrappers.forEach(wrapper => wrapper.classList.remove("open")); 
+  });
+});

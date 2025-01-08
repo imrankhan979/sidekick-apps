@@ -1,7 +1,7 @@
 .localization-form{
   position: relative;
 }
-.disclosure__list-wrapper{
+.header-icons-group .disclosure__list-wrapper{
   position: absolute;
   top: 100%;
   left: 50%;
@@ -51,9 +51,53 @@ line-height: 24px;
 color: #000000;
 text-transform: uppercase;
 font-family:  var(--font-family-body);
+display: flex;
+align-items: center;
+gap: 8px;
 }
-.disclosure:hover .disclosure__list-wrapper{
+.disclosure__button .icon-caret{
+  transition: .3s;
+}
+.disclosure__button.active .icon-caret{
+  transform: rotate(180deg);
+}
+.header-icons-group .disclosure:hover .disclosure__list-wrapper{
   visibility: visible;
   opacity: 1;
   transform: translate3d(-50%, 0px, 0);
+}
+.menu-drawer-footer .disclosure__list-wrapper{
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  max-height: 0;
+  border: 1px solid #ddd;
+  border-radius: 24px;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  max-height: 200px;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: .3s;
+}
+.menu-drawer-footer .disclosure__list-wrapper ul{
+padding: 24px;
+}
+.menu-drawer-footer .disclosure__list-wrapper.open{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+
+}
+.menu-drawer-footer .disclosure{
+  background: transparent;
+}
+.menu-drawer-footer .disclosure__button{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
