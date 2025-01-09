@@ -982,15 +982,16 @@
       "name": "Footer",
       "blocks": {
         "link_list": {
-          "name": "Menu",
+          "name": "Navigation menu",
           "settings": {
             "heading": {
-              "label": "Heading",
-              "default": "Quick links"
+              "label": "Title",
+              "default": "Navigation menu",
+              "info" : "If left blank, the menu title will be used."
             },
             "menu": {
               "label": "Menu",
-              "info": "Displays only top-level menu items."
+              "info": "Choose a menu to display as navigation menu."
             }
           }
         },
@@ -1070,9 +1071,16 @@
           "content": "Policy links",
           "info": "To add store policies, go to your [policy settings](/admin/settings/legal)."
         },
+        "header__10": {
+          "content": "Copyright"
+        },
         "show_policy": {
           "label": "Show policy links"
         },
+        "show_copyright": {
+          "label": "Show copyright"
+        },
+
         "margin_top": {
           "label": "Top margin"
         },
@@ -1082,6 +1090,10 @@
         },
         "enable_follow_on_shop": {
           "label": "Enable Follow on Shop"
+        },
+        "additional_copyright_text":{
+          "label": "Additional Copyright Text",
+          "default": "ALL RIGHTS RESERVED"
         }
       }
     },

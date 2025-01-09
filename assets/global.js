@@ -1440,3 +1440,78 @@ document.addEventListener("DOMContentLoaded", function () {
       listWrappers.forEach(wrapper => wrapper.classList.remove("open")); 
   });
 });
+
+
+
+
+class ResponsiveDropdownMenu extends HTMLElement {
+  constructor() {
+    super();
+    this.menuBtn = null;
+    this.menuList = null;
+    this.resizeListener = null;
+  }
+
+  connectedCallback() {
+    // Find elements by class name
+    this.menuBtn = this.querySelector('.menu-btn');
+    this.menuList = this.querySelector('.menu-list');
+
+    if (this.menuBtn && this.menuList) {
+      this.resizeListener = this.handleResize.bind(this);
+      window.addEventListener('resize', this.resizeListener); // Listen to screen size changes
+      this.handleResize(); // Check screen size initially
+    }
+  }
+
+  handleResize() {
+    if (window.innerWidth <= 767) {
+      this.enableDropdown();
+    } else {
+      this.disableDropdown();
+    }
+  }
+
+  enableDropdown() {
+    this.menuBtn.addEventListener('click', this.toggleMenu.bind(this));
+    // Reset styles for desktop view
+    this.menuList.style.height = '0';
+    this.menuList.style.opacity = '0';
+    this.menuBtn.classList.remove('menu-list-open');
+  }
+
+  disableDropdown() {
+    this.menuBtn.removeEventListener('click', this.toggleMenu.bind(this));
+    // Ensure menu is visible in desktop view
+    this.menuList.style.height = 'auto';
+    this.menuList.style.opacity = '1';
+    this.menuBtn.classList.remove('menu-list-open');
+  }
+
+  toggleMenu() {
+    if (this.menuList.style.height === '0px' || this.menuList.style.height === '') {
+      // Expand: Set the height to the natural scrollHeight
+      this.menuList.style.height = this.menuList.scrollHeight + 'px';
+      this.menuList.style.opacity = '1';
+      this.menuBtn.classList.add('menu-list-open');
+    } else {
+      // Collapse: Reset the height to 0
+      this.menuList.style.height = '0';
+      this.menuBtn.classList.remove('menu-list-open');
+      this.menuList.style.opacity = '0';
+    }
+  }
+
+  disconnectedCallback() {
+    // Cleanup event listeners
+    if (this.menuBtn) {
+      this.menuBtn.removeEventListener('click', this.toggleMenu.bind(this));
+    }
+    if (this.resizeListener) {
+      window.removeEventListener('resize', this.resizeListener);
+    }
+  }
+}
+
+// Define the custom element
+customElements.define('responsive-dropdown-menu', ResponsiveDropdownMenu);

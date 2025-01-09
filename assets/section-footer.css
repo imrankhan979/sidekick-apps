@@ -1,6 +1,16 @@
 .footer .footer-top-content .footer-top-content-inner{
   display: grid;
   grid-template-columns: 70% 30%;
+  gap: 80px 30px;
+}
+@media (max-width: 991px) {
+  .footer .footer-top-content .footer-top-content-inner{
+    grid-template-columns: 1fr;
+  }
+}
+.footer .footer-top-content .footer-top-content-inner .footer-top-left{
+  display: grid;
+  gap: 108px;
 }
 .footer .footer-newsletter .newsletter-heading{
   font-family: var(--font-family-heading);
@@ -38,4 +48,65 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+.footer .footer-top-content .footer-navigation-link-wrapper{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 80px;
+}
+
+.footer .footer-top-content .footer-navigation-links-title {
+  font-family: var(--font-family-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+@media (max-width: 767px) {
+  .footer .footer-navigation-links-list{
+    height: 0; overflow: hidden; opacity: 0; transition: height 0.3s ease, opacity 0.3s ease;
+  }
+  .footer .footer-top-content .footer-navigation-links-title{
+    margin-bottom: 0;
+  }
+  .footer .footer-top-content .footer-navigation-link-wrapper{
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+.footer .footer-top-content .footer-navigation-links-list li a {
+  font-family: var(--font-family-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+.footer .footer-top-content .footer-navigation-links-list li:not(:last-child){
+  margin-bottom: 22px;
+}
+.footer .footer-top-right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 80px;
+}
+.footer .footer-copyright-inner .policies{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footer .footer-copyright-inner .copyright-content{
+  font-family: var(--font-family-heading);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #000;
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-word;
 }
