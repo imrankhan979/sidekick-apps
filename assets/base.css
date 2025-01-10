@@ -104,6 +104,9 @@ img{
   max-width: 100%;
   height: auto;
 }
+.uppercase{
+  text-transform: uppercase;
+}
 .flex{
   display: flex;
 }
@@ -159,13 +162,13 @@ img{
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 24px;
 }
 @media (max-width: 991px) {
   .md-none{
     display: none;
   } 
-}
+} 
 .rounded-top-corner{
   border-radius: 64px 64px 0 0;
 }

@@ -5,31 +5,34 @@
   .footer {
     margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
   }
-
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
   @media screen and (min-width: 750px) {
     .footer {
       margin-top: {{ section.settings.margin_top }}px;
     }
-
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
   }
 {%- endstyle -%}
 
-<footer class="footer rounded-top-corner color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+<footer class="footer rounded-top-corner color-{{ section.settings.color_scheme }}">
   <div class="footer-inner">
     <div class="footer-top-content page-width">
-        <div class="footer-top-content-inner">
+
+        {%- assign newsletter = false -%} 
+        {%- assign logo = false -%}
+        {%- for block in section.blocks -%} 
+          {%- if block.type == 'newsletter' -%}
+            {%- assign newsletter = true -%}
+          {%- elsif block.type == 'logo' -%}
+            {%- assign logo = true -%}
+          {%- elsif block.type == 'nav_links' -%}
+            {%- assign nav_links = true -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <div class="footer-top-content-inner{% if newsletter or logo %} has-left-blocks{% else %} no-left-blocks{% endif %}">
+
           <div class="footer-top-left">
             {%- for block in section.blocks -%}
             {%- case block.type -%}
-              {%- when '@app' -%}
+              {%- when '@app' -%} 
                 {% render block %}
               {%- when 'newsletter' -%}
                 <div class="footer-newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -38,7 +41,7 @@
                   {% endif %} {{ block.shopify_attributes }}>
                     <div class="newsletter">
                       {%- if block.settings.newsletter_heading != blank -%}
-                        <h6 class="newsletter-heading">{{ block.settings.newsletter_heading }}</h6>
+                        <h6 class="newsletter-heading uppercase">{{ block.settings.newsletter_heading }}</h6>
                       {%- endif -%}
                       {%- form 'customer', id: 'ContactFooter', class: 'footer-newsletter newsletter-form' -%}
                         <input type="hidden" name="contact[tags]" value="newsletter">
@@ -123,13 +126,14 @@
 
           {%- endfor -%}
           </div>
-          <div class="footer-top-right">
+          <div class="footer-top-right{% if nav_links %} space-between{% else %} justify-content-end {% endif %}">
+            {%- if nav_links -%}
             <div class="footer-navigation-link-wrapper">
               {%- for block in section.blocks -%}
                 {%- case block.type -%}
                 {%- when '@app' -%}
                   {% render block %}
-                    {%- when 'quick_links' -%}
+                    {%- when 'nav_links' -%}
                       <div class="footer-navigation-links {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                         {{ block.shopify_attributes }}
                         {% if settings.animations_reveal_on_scroll %}
@@ -139,7 +143,7 @@
                         {% assign menu_title = block.settings.menu.title %}
                         {% assign display_title = block.settings.title | default: menu_title %}
                         <responsive-dropdown-menu>
-                        <h3 class="footer-navigation-links-title menu-btn">{{ display_title }}</h3>
+                        <h3 class="footer-navigation-links-title uppercase menu-btn">{{ display_title }}</h3>
                         <ul class="footer-navigation-links-list menu-list">
                           {% for link in block.settings.menu.links %}
                             <li>
@@ -152,6 +156,7 @@
                   {%- endcase -%}
               {%- endfor -%}
             </div>
+            {%- endif -%}
             {%- if section.settings.show_copyright == true or section.settings.show_policy == true -%}
             
             <div class="footer-copyright {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -160,17 +165,23 @@
                   {% endif %}>
               <div class="footer-copyright-inner">
                 {%- if section.settings.show_copyright -%}
-                  <div class="copyright-content"
-                    ><span>{{ shop.name | link_to: routes.root_url -}}</span> &copy; {{ 'now' | date: '%Y' }}. {%- if section.settings.additional_copyright_text != blank -%}<span class="additional-copyright-text"> {{ section.settings.additional_copyright_text }}</span>{%- endif -%}
+                  <div class="copyright-content uppercase flex wrap">
+                  {{ shop.name | link_to: routes.root_url }} &copy; {{ 'now' | date: '%Y' }}. {% if section.settings.additional_copyright_text != blank %} {{ section.settings.additional_copyright_text }}{% endif %}
                   </div>  
                 {%- endif -%}
+
+                {%- if section.settings.copyright_bottom_text -%}
+                  <div class="copyright-bottom-text">
+                    <p>{{ section.settings.copyright_bottom_text }}</p> 
+                  </div>
+                {%- endif -%} 
 
                 {%- if section.settings.show_policy -%}
                   <ul class="policies">
                     {%- for policy in shop.policies -%}
                       {%- if policy != blank -%}
                         <li>
-                          <div class="copyright__content"
+                          <div class="policy-page"
                             ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></div
                           >
                         </li>
@@ -182,6 +193,25 @@
               </div>
           </div>
         {%- endif -%}
+        </div>
+    </div>
+    <div class="footer-bottom-content page-width {% if section.settings.payment_enable != true %}md-none{% endif %}">
+        <div class="footer-bottom-content-inner flex space-between wrap {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if settings.animations_reveal_on_scroll %}data-cascade{% endif %}>
+          {%- if section.settings.payment_enable -%}
+            <div class="footer-payment">
+              <ul class="list list-payment flex align-items-center" role="list">
+                {%- for type in shop.enabled_payment_types -%}
+                  <li class="list-payment-item">
+                    {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+
+          <button class="back-to-top uppercase flex align-items-center">
+            BACK TO TOP <span class="flex center"> {{- 'icon-caret.svg' | inline_asset_content -}} </span>
+          </button>
         </div>
     </div>
   </div>
@@ -197,7 +227,7 @@
     },
     {
       "name": "t:sections.footer.blocks.link_list.name",
-      "type": "quick_links",
+      "type": "nav_links",
       "settings": [
         {
           "type": "link_list",
@@ -272,6 +302,12 @@
       "default": "t:sections.footer.settings.additional_copyright_text.default"
     },
     {
+      "type": "richtext",
+      "id": "copyright_bottom_text",
+      "label": "t:sections.footer.settings.copyright_bottom_text.label",
+      "default": "t:sections.footer.settings.copyright_bottom_text.default"
+    },
+    {
       "type": "header",
       "content": "t:sections.footer.settings.header__8.content",
       "info": "t:sections.footer.settings.header__8.info"
@@ -300,35 +336,11 @@
       "type": "range",
       "id": "margin_top",
       "min": 0,
-      "max": 100,
-      "step": 4,
+      "max": 120,
+      "step": 5,
       "unit": "px",
       "label": "t:sections.footer.settings.margin_top.label",
       "default": 0
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
     }
   ]
 }

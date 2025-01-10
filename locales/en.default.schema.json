@@ -1092,8 +1092,12 @@
           "label": "Enable Follow on Shop"
         },
         "additional_copyright_text":{
-          "label": "Additional Copyright Text",
+          "label": "Additional copyright text",
           "default": "ALL RIGHTS RESERVED"
+        },
+        "copyright_bottom_text":{
+          "label": "Extra text under copyright",
+          "default": "This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels"
         }
       }
     },

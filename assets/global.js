@@ -1465,7 +1465,7 @@ class ResponsiveDropdownMenu extends HTMLElement {
   }
 
   handleResize() {
-    if (window.innerWidth <= 767) {
+    if (window.innerWidth <= 991) {
       this.enableDropdown();
     } else {
       this.disableDropdown();
