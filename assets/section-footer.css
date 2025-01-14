@@ -13,7 +13,7 @@
 }
 .footer .footer-top-content .footer-top-content-inner.has-left-blocks{
   gap: 80px;
-  grid-template-columns: 5fr 2fr;
+  grid-template-columns: 8fr 4fr;
 }
  @media (max-width: 1400px) {
   .footer .footer-top-content .footer-top-content-inner.has-left-blocks{

@@ -1,0 +1,387 @@
+{{ 'product-bundle.css' | asset_url | stylesheet_tag }}
+
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+}
+
+@media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+}
+{%- endstyle -%}
+
+<div class="bundle-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="bundle-container-inner grid">
+        <!-- Left Section: Product List -->
+        <div id="product-list" class="bundle-products grid">
+        
+          {% for product in section.settings.collection.products %}
+          <div 
+            class="product" 
+            data-id="{{ product.id }}" 
+            data-title="{{ product.title }}"
+            data-price="{{ product.price | money_without_currency }}"
+          >
+          {% render 'bundle-product-card',
+          card_product: product,
+          image_shape: section.settings.image_shape,
+          show_secondary_image: section.settings.show_secondary_image,
+          show_vendor: section.settings.show_vendor,
+          show_rating: section.settings.show_rating,
+          section_id: section.id,
+        %}
+      
+            {% comment %} {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" style="width: 100%; height: auto; margin-bottom: 10px;">
+            {% else %}
+            <div style="width: 100%; height: 200px; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+              <span>No Image Available</span>
+            </div>
+            {% endif %}
+      
+       
+            <h3>{{ product.title }}</h3>
+            <p>Price: {{ product.price | money }}</p>
+         
+            {% if product.variants.size > 1 %}
+            <label for="variant-{{ product.id }}">Choose Variant:</label>
+            <select id="variant-{{ product.id }}" class="variant-select">
+              {% for variant in product.variants %}
+              <option value="{{ variant.id }}">{{ variant.title }}</option>
+              {% endfor %}
+            </select>
+            {% endif %}
+      
+            <button class="add-to-bundle" style="background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer;">Add to Bundle</button> {% endcomment %}
+          </div>
+          {% endfor %}
+        </div>
+        <!-- Right Section: Bundle List -->
+        <div id="bundle-list">
+          <div class="bundle-list-inner">
+            <div class="bundle-list-header">
+              <h5>BUNDLE CART</h5>
+              <p>Add at least 3 items to get 30% OFF</p>
+              <div id="item-range" class="item-range"></div>
+            </div>
+            <div class="bundle-list-body no-scrollbar">
+              <ul id="bundle-items">
+                <!-- JavaScript will dynamically populate this list -->
+              </ul>
+            </div>
+            <div class="bundle-list-footer">
+              <div class="bundle-list-footer-inner">
+                <div class="bundle-total-price flex space-between align-items-center"><span>SUBTOTAL</span><span id="bundle-total">$00.00</span></div>
+              <button class="add-to-cart">ADD TO CART</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const BUNDLE_LIMIT = 3;
+
+  function updateItemRange() {
+    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+    const itemRangeValue = (currentBundle.length / BUNDLE_LIMIT) * 100;
+    
+    // Get the #item-range div and update its --item-range CSS variable
+    const itemRangeDiv = document.getElementById('item-range');
+    itemRangeDiv.style.setProperty('--item-range', `${itemRangeValue}%`);
+  }
+
+  // Initial load of the page
+  updateItemRange();
+
+  const buttons = document.querySelectorAll('.add-to-bundle')
+  // Add to Bundle button handler
+  document.querySelectorAll('.add-to-bundle').forEach((button) => {
+    button.addEventListener('click', function () {
+      if (this.getAttribute('data-disabled') === 'true') {
+      return; // Prevent action if button is marked as disabled
+    }
+    
+      const productElem = this.closest('.product');
+      const productId = productElem.dataset.id;
+      const productTitle = productElem.dataset.title;
+      const productPrice = parseFloat(productElem.dataset.price);
+      const productImage = productElem.querySelector('img') ? productElem.querySelector('img').src : null;
+      const variantSelect = productElem.querySelector('.variant-select');
+      const variantId = variantSelect ? variantSelect.value : null;
+      const quantityInput = productElem.querySelector('.quantity-input');
+      const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
+
+      // Create bundle item object
+      const bundleItem = {
+        id: productId,
+        title: productTitle,
+        price: productPrice,
+        image: productImage,
+        variant: variantId,
+        quantity: quantity,
+      };
+
+      // Add to localStorage
+      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+      currentBundle.push(bundleItem);
+      localStorage.setItem('bundleList', JSON.stringify(currentBundle));
+
+      this.disabled = true;
+
+      updateItemRange();
+      // Update Bundle List
+      updateBundleList();
+    });
+  });
+
+  // Remove Item from Bundle List
+  function removeItemFromBundle(itemId) {
+    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+    const updatedBundle = currentBundle.filter((item) => item.id !== itemId);
+    localStorage.setItem('bundleList', JSON.stringify(updatedBundle));
+
+    buttons.forEach((button) => {
+      const productElem = button.closest('.product');
+      if (productElem.dataset.id === itemId) {
+        button.disabled = false;
+      }
+    });
+
+    updateItemRange();
+    updateBundleList();
+  }
+
+  // Update quantity in the Bundle List
+  function updateQuantity(itemId, quantity) {
+    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+    const itemIndex = currentBundle.findIndex((item) => item.id === itemId);
+    if (itemIndex !== -1) {
+      currentBundle[itemIndex].quantity = quantity;
+      localStorage.setItem('bundleList', JSON.stringify(currentBundle));
+      updateBundleList();
+    }
+  }
+
+  // Calculate the total price of the bundle
+  function calculateTotalPrice() {
+    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+    let totalPrice = 0;
+    currentBundle.forEach((item) => {
+      totalPrice += item.quantity * item.price;
+    });
+    return totalPrice;
+  }
+
+// Update Bundle List UI
+function updateBundleList() {
+  const bundleListElem = document.getElementById('bundle-items');
+  bundleListElem.innerHTML = ''; // Clear the list
+  const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+
+  currentBundle.forEach((item) => {
+    const listItemHTML = `
+      <li class="flex">
+        <img class="item-thumb" src="${item.image}" alt="${item.title}">
+        <div class="item-product-info">
+          <h5>${item.title}</h5>
+          <p>Price: $${item.price.toFixed(2)}</p>
+          <div class="item-info-bottom flex align-items-center">
+            <div class="item-info-btns">
+              <button class="minus-btn">-</button>
+              <input type="text" class="quantity-input" value="${item.quantity}">
+              <button class="plus-btn">+</button>
+            </div>
+              <button class="remove-btn">Remove</button>
+          </div>
+        </div>
+      </li>
+    `;
+
+    bundleListElem.insertAdjacentHTML('beforeend', listItemHTML);
+
+    // Add event listeners for quantity and remove buttons
+    const listItem = bundleListElem.lastElementChild;
+    const minusButton = listItem.querySelector('.minus-btn');
+    const plusButton = listItem.querySelector('.plus-btn');
+    const quantityInput = listItem.querySelector('.quantity-input');
+    const removeButton = listItem.querySelector('.remove-btn');
+
+    minusButton.addEventListener('click', function () {
+      if (item.quantity > 1) {
+        item.quantity--;
+        updateQuantity(item.id, item.quantity);
+      }
+    });
+
+    plusButton.addEventListener('click', function () {
+      item.quantity++;
+      updateQuantity(item.id, item.quantity);
+    });
+
+    quantityInput.addEventListener('change', function () {
+      const newQuantity = parseInt(quantityInput.value, 10);
+      if (!isNaN(newQuantity) && newQuantity > 0) {
+        updateQuantity(item.id, newQuantity);
+      }
+    });
+
+    removeButton.addEventListener('click', function () {
+      removeItemFromBundle(item.id);
+    });
+  });
+
+    // Add placeholders if needed
+    const placeholdersNeeded = BUNDLE_LIMIT - currentBundle.length;
+    for (let i = 0; i < placeholdersNeeded; i++) {
+      const placeholderHTML = `
+        <li class="flex align-items-center">
+          <div class="item-thumb placeholder">
+              <span class="activity"></span>
+          </div>
+          <div class="item-product-info">
+            <div class="placeholder">
+              <span class="activity"></span>
+            </div>
+            <div class="placeholder">
+              <span class="activity"></span>
+            </div>
+          </div>
+      </li>
+      `;
+      bundleListElem.insertAdjacentHTML('beforeend', placeholderHTML);
+    }
+
+  // Disable all "Add to Bundle" buttons if limit is reached
+  const addButtons = document.querySelectorAll('.add-to-bundle');
+  addButtons.forEach((button) => {
+    const productElem = button.closest('.product');
+    const productId = productElem.dataset.id;
+
+    // Disable the button if the limit is reached or if the product is already in the bundle
+    if (currentBundle.length >= BUNDLE_LIMIT || currentBundle.some(item => item.id === productId)) {
+      button.classList.add('disabled'); // Add a visual "disabled" style
+      button.setAttribute('data-disabled', 'true'); // Custom attribute to track the disabled state
+    } else {
+      button.classList.remove('disabled'); // Remove the visual "disabled" style
+      button.removeAttribute('data-disabled'); // Remove the custom attribute
+    }
+  });
+
+
+  // Update Total Price of the Bundle
+  const totalPrice = calculateTotalPrice();
+  const totalPriceElem = document.getElementById('bundle-total');
+  totalPriceElem.textContent = `$${totalPrice.toFixed(2)}`;
+}
+
+
+  // Initial Load
+  updateBundleList();
+});
+
+</script>
+
+
+
+
+{% schema %}
+    {
+      "name": "Product bundle",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "scheme-1"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Chose collection"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.featured-collection.settings.header.content"
+        },
+        {
+          "type": "select",
+          "id": "image_ratio",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+            },
+            {
+              "value": "portrait",
+              "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+            }
+          ],
+          "default": "portrait",
+          "label": "t:sections.featured-collection.settings.image_ratio.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_secondary_image",
+          "default": false,
+          "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "default": false,
+          "label": "t:sections.featured-collection.settings.show_vendor.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "default": false,
+          "label": "t:sections.featured-collection.settings.show_rating.label",
+          "info": "t:sections.featured-collection.settings.show_rating.info"
+        },
+        {
+            "type": "header",
+            "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 120,
+            "step": 5,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_top",
+            "default": 120
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 120,
+            "step": 5,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_bottom",
+            "default": 120
+        }
+      ],
+      "presets": [
+        {
+            "name": "Product bundle"
+        }
+      ]
+    }
+    {% endschema %}
+    

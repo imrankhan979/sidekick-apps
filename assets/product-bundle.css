@@ -1,0 +1,196 @@
+.bundle-section .bundle-container-inner{
+  gap: 64px 24px;
+  grid-template-columns: 3fr 1fr;
+}
+.bundle-section .bundle-container-inner .bundle-products{
+  grid-template-columns: repeat(3, 1fr);
+  gap: 64px 24px;
+
+}
+.bundle-section #bundle-list .bundle-list-inner{
+  max-height: 760px;
+  border-radius: 24px;
+  background: #151515;
+  padding: 48px 24px;
+  position: sticky;
+  top: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.bundle-section #bundle-list .bundle-list-inner .bundle-list-body {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+.bundle-section #bundle-list .bundle-list-header {
+  padding-bottom: 48px;
+}
+.bundle-section #bundle-list .bundle-list-header h5{
+  font-family: var(--font-family-heading);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+.bundle-section #bundle-list .bundle-list-header p{
+  font-family: var(--font-family-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px; 
+  letter-spacing: -0.01em;
+  color: #BBBBBB;
+  margin-top: 24px;
+}
+.bundle-section #bundle-list .bundle-list-header .item-range{
+  width: 100%;
+  height: 8px;
+  background: #333333;
+  border-radius: 10px;
+  position: relative;
+  margin-top: 32px;
+}
+.bundle-section #bundle-list .bundle-list-header .item-range:after{
+  content: "";
+  position: absolute;
+  width: var(--item-range);
+  height: 100%;
+  border-radius: 10px;
+  background: #fff;
+  transition: .3s;
+}
+.bundle-section #bundle-list .bundle-list-footer{
+  padding-top: 48px;
+}
+.bundle-section #bundle-list .bundle-list-footer-inner{
+  border-top: 1px solid #333333;
+  padding-top: 24px;
+}
+.bundle-section #bundle-list .bundle-total-price{
+  color: #fff;
+  font-family: var(--font-family-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  gap: 30px;
+}
+.bundle-section #bundle-list .add-to-cart{
+  background: #333333;
+  padding: 16px 28px 16px 28px;
+  color: #BBBBBB;
+  border-radius: 10px;
+  width: 100%;
+  font-family: var(--font-family-heading);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+}
+.bundle-section #bundle-items li{
+  gap: 24px;
+}
+.bundle-section #bundle-items li:not(:last-child){
+  margin-bottom: 48px;
+}
+.bundle-section #bundle-items .item-thumb{
+  max-width: 130px;
+  width: 100%;
+  border-radius: 12px;
+}
+.bundle-section #bundle-items .item-thumb.placeholder{
+  height: 172px;
+  background: #333333;
+  overflow: hidden;
+  position: relative;
+}
+.bundle-section #bundle-items .item-product-info .placeholder{
+  width: 122px;
+  height: 24px;
+  border-radius: 100px;
+  background: #333333;
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.bundle-section #bundle-items .item-product-info .placeholder:nth-child(2){
+  width: 56px;
+  margin-top: 16px;
+}
+.bundle-section #bundle-items .item-product-info h5{
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #fff;
+}
+.bundle-section #bundle-items .item-product-info p{
+  margin-top: 24px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #808080;
+}
+.bundle-section #bundle-items .item-info-bottom{
+  margin-top: 24px;
+}
+.bundle-section #bundle-items .item-info-btns{
+  width: 121px;
+  height: 40px;
+  border-radius: 10px;
+  background: #333333;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  color: #fff;
+}
+.bundle-section #bundle-items .item-info-btns button{
+  font-family: var(--font-family-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #fff;
+}
+.bundle-section #bundle-items .quantity-input{
+  width: 100%;
+  background: transparent;
+  appearance: none;
+  text-align: center;
+  border: none;
+  font-family: var(--font-family-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #fff;
+}
+.bundle-section #bundle-items .item-info-bottom{
+  gap: 24px;
+}
+.bundle-section #bundle-items .item-info-bottom .remove-btn{
+  font-family: var(--font-family-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration-line: underline;
+  color: #BBBBBB;
+  text-underline-offset: 3px;
+}
+
+.activity{
+  position: absolute;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  width: 100px;
+  background: linear-gradient(90deg, #333, #f4f4f4, #333);
+  animation: gradient 1.5s linear infinite ;
+  opacity: .07;
+}
+
+@keyframes gradient {
+  form {
+    left: -100%;
+  }
+  
+  to {
+    left: 100%;
+  }
+}
