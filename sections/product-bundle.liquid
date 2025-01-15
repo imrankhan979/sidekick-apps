@@ -66,8 +66,8 @@
         <div id="bundle-list">
           <div class="bundle-list-inner">
             <div class="bundle-list-header">
-              <h5>BUNDLE CART</h5>
-              <p>Add at least 3 items to get 30% OFF</p>
+              <h5>{{ section.settings.bundle_cart_heading }}</h5>
+              <p>{{ section.settings.bundle_cart_subheading }}</p>
               <div id="item-range" class="item-range"></div>
             </div>
             <div class="bundle-list-body no-scrollbar">
@@ -194,14 +194,15 @@ function updateBundleList() {
         <img class="item-thumb" src="${item.image}" alt="${item.title}">
         <div class="item-product-info">
           <h5>${item.title}</h5>
-          <p>Price: $${item.price.toFixed(2)}</p>
+          <p>
+          $${item.price.toFixed(2)}</p>
           <div class="item-info-bottom flex align-items-center">
-            <div class="item-info-btns">
+            <div class="item-info-btns grid">
               <button class="minus-btn">-</button>
               <input type="text" class="quantity-input" value="${item.quantity}">
               <button class="plus-btn">+</button>
             </div>
-              <button class="remove-btn">Remove</button>
+              <button class="remove-btn btn-line">Remove</button>
           </div>
         </div>
       </li>
@@ -342,7 +343,7 @@ function updateBundleList() {
         {
           "type": "checkbox",
           "id": "show_vendor",
-          "default": false,
+          "default": true,
           "label": "t:sections.featured-collection.settings.show_vendor.label"
         },
         {
@@ -351,6 +352,22 @@ function updateBundleList() {
           "default": false,
           "label": "t:sections.featured-collection.settings.show_rating.label",
           "info": "t:sections.featured-collection.settings.show_rating.info"
+        },
+        {
+            "type": "header",
+            "content": "Bundle cart"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "bundle_cart_heading",
+          "label": "Bundle cart heading",
+          "default": "BUNDLE CART"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "bundle_cart_subheading",
+          "label": "Bundle cart subheading",
+          "default": "Add at least 3 items to get 30% OFF"
         },
         {
             "type": "header",

@@ -52,8 +52,8 @@
        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
      >
        {%- if card_product.featured_media -%}
-         <div class="card__media">
-           <div class="media media--transparent media--hover-effect">
+         <div class="card-media">
+           <div class="media--transparent media--hover-effect">
              {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
              <img
                srcset="
@@ -111,7 +111,7 @@
         {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
           <span
             id="Badge-{{ section_id }}-{{ card_product.id }}"
-            class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+            class="badge flex center badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
           >
             {{- 'products.product.on_sale' | t -}}
           </span>
@@ -120,6 +120,9 @@
      </div>
      <div class="card__content">
        <div class="card__information">
+        {%- if show_vendor -%}
+          <div class="card_vendor">{{ card_product.vendor }}</div>
+        {%- endif -%}
          <h3
            class="card__heading"
            {% if card_product.featured_media %}
@@ -135,66 +138,112 @@
              {{ card_product.title | escape }}
            </a>
          </h3>
-         <div class="card-information">
-           {%- if show_vendor -%}
-             <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-             <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
-           {%- endif -%}
+         
+         {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
+          {% liquid
+            assign rating_decimal = 0
+            assign decimal = card_product.metafields.reviews.rating.value.rating | modulo: 1
+            if decimal >= 0.3 and decimal <= 0.7
+              assign rating_decimal = 0.5
+            elsif decimal > 0.7
+              assign rating_decimal = 1
+            endif
+          %}
+          <div
+            class="rating"
+            role="img"
+            aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: card_product.metafields.reviews.rating.value, rating_max: card_product.metafields.reviews.rating.value.scale_max }}"
+          >
+            <span
+              aria-hidden="true"
+              class="rating-star"
+              style="--rating: {{ card_product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ card_product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+            ></span>
+          </div>
+          <p class="rating-text caption">
+            <span aria-hidden="true">
+              {{- card_product.metafields.reviews.rating.value }} /
+              {{ card_product.metafields.reviews.rating.value.scale_max -}}
+            </span>
+          </p>
+          <p class="rating-count caption">
+            <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
+            <span class="visually-hidden">
+              {{- card_product.metafields.reviews.rating_count }}
+              {{ 'accessibility.total_reviews' | t -}}
+            </span>
+          </p>
+        {%- endif -%}
 
-           <span class="caption-large light">{{ block.settings.description | escape }}</span>
+        {% render 'price', product: card_product, price_class: '' %}
 
-           {%- if show_rating and card_product.metafields.reviews.rating.value != blank -%}
-             {% liquid
-               assign rating_decimal = 0
-               assign decimal = card_product.metafields.reviews.rating.value.rating | modulo: 1
-               if decimal >= 0.3 and decimal <= 0.7
-                 assign rating_decimal = 0.5
-               elsif decimal > 0.7
-                 assign rating_decimal = 1
-               endif
-             %}
-             <div
-               class="rating"
-               role="img"
-               aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: card_product.metafields.reviews.rating.value, rating_max: card_product.metafields.reviews.rating.value.scale_max }}"
-             >
-               <span
-                 aria-hidden="true"
-                 class="rating-star"
-                 style="--rating: {{ card_product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ card_product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
-               ></span>
-             </div>
-             <p class="rating-text caption">
-               <span aria-hidden="true">
-                 {{- card_product.metafields.reviews.rating.value }} /
-                 {{ card_product.metafields.reviews.rating.value.scale_max -}}
-               </span>
-             </p>
-             <p class="rating-count caption">
-               <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
-               <span class="visually-hidden">
-                 {{- card_product.metafields.reviews.rating_count }}
-                 {{ 'accessibility.total_reviews' | t -}}
-               </span>
-             </p>
-           {%- endif -%}
-
-           {% render 'price', product: card_product, price_class: '' %}
-           {%- if card_product.quantity_price_breaks_configured? -%}
-             {% if card_product.variants.size == 1 %}
-               {% liquid
-                 assign quantity_rule = card_product.selected_or_first_available_variant.quantity_rule
-                 assign has_qty_rules = false
-                 if quantity_rule.increment > 1 or quantity_rule.min > 1 or quantity_rule.max != null
-                   assign has_qty_rules = true
-                 endif
-               %}
-             {% endif %}
-           {%- endif -%}
-         </div>
-       </div>
-       {% if card_product.available %}
+        
+        </div>
         {% if card_product.variants.size > 1 %}
+        <div class="product-variants">
+          {% for option in card_product.options_with_values %}
+            <div class="product-option">
+                <strong>{{ option.name }}</strong>
+        
+                {% if option.name == 'Size' %}
+                    <!-- Render Size as Radio Buttons -->
+                    <div class="product-size">
+                        {% for value in option.values %}
+                            {% assign variant_available = false %}
+                            {% for variant in card_product.variants %}
+                                {% if variant.available and variant.option1 == value %}
+                                    {% assign variant_available = true %}
+                                {% endif %}
+                            {% endfor %}
+        
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="options[{{ option.name }}]" 
+                                    value="{{ value }}" 
+                                    class="size-option"
+                                    data-size="{{ value }}"
+                                    {% if forloop.first %}checked{% endif %}
+                                    {% if variant_available == false %}disabled{% endif %}>
+                                {{ value }} 
+                            </label>
+                        {% endfor %}
+                    </div>
+        
+                {% elsif option.name == 'Color' %}
+                    <!-- Render Color as Radio Buttons -->
+                    <div class="product-colors">
+                        {% for value in option.values %}
+                            {% assign variant_available = false %}
+                            {% for variant in card_product.variants %}
+                                {% if variant.available and variant.option2 == value %}
+                                    {% assign variant_available = true %}
+                                {% endif %}
+                            {% endfor %}
+        
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    name="options[{{ option.name }}]" 
+                                    value="{{ value }}" 
+                                    class="color-option"
+                                    data-color="{{ value }}"
+                                    {% if forloop.first %}checked{% endif %}
+                                    {% if variant_available == false %}disabled{% endif %}>
+                                {{ value }} 
+                            </label>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        
+        
+      
+        </div>
+      {% endif %}
+       {% if card_product.available %}
+        {% if card_product.variants.size > 1 %} 
           <button class="add-to-bundle" data-available="true">Choose Variant</button>
         {% else %}
           <button class="add-to-bundle" data-available="true">Add to Bundle</button>
@@ -203,7 +252,7 @@
         <button class="add-to-bundle" data-available="false" disabled>Sold Out</button>
       {% endif %}
       
-     </div>
+     </div> 
    </div>
  </div>
 {%- else -%}
@@ -258,3 +307,68 @@
    </div>
  </div>
 {%- endif -%}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sizeInputs = document.querySelectorAll('.size-option');
+    const colorInputs = document.querySelectorAll('.color-option');
+
+    // Function to update the availability based on selected size and color
+    function updateAvailability() {
+        const selectedSize = document.querySelector('.size-option:checked')?.getAttribute('data-size');
+        const selectedColor = document.querySelector('.color-option:checked')?.getAttribute('data-color');
+
+        sizeInputs.forEach(sizeInput => {
+            const sizeValue = sizeInput.getAttribute('data-size');
+            let sizeAvailable = false;
+
+            colorInputs.forEach(colorInput => {
+                const colorValue = colorInput.getAttribute('data-color');
+
+                // Check for variant matching size and color
+                const matchingVariant = window.productVariants.find(variant =>
+                    variant.option1 === sizeValue &&
+                    variant.option2 === colorValue &&
+                    variant.available
+                );
+
+                if (matchingVariant) sizeAvailable = true;
+            });
+
+            sizeInput.disabled = !sizeAvailable;
+        });
+
+        colorInputs.forEach(colorInput => {
+            const colorValue = colorInput.getAttribute('data-color');
+            let colorAvailable = false;
+
+            sizeInputs.forEach(sizeInput => {
+                const sizeValue = sizeInput.getAttribute('data-size');
+
+                // Check for variant matching color and size
+                const matchingVariant = window.productVariants.find(variant =>
+                    variant.option1 === sizeValue &&
+                    variant.option2 === colorValue &&
+                    variant.available
+                );
+
+                if (matchingVariant) colorAvailable = true;
+            });
+
+            colorInput.disabled = !colorAvailable;
+        });
+    }
+
+    // Listen for changes in size and color inputs
+    sizeInputs.forEach(input => input.addEventListener('change', updateAvailability));
+    colorInputs.forEach(input => input.addEventListener('change', updateAvailability));
+
+    // Initialize productVariants array with data from Liquid
+    window.productVariants = {{ card_product.variants | json }};
+
+    // Run the availability update on page load
+    updateAvailability();
+});
+
+</script>
