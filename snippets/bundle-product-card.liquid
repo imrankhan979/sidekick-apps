@@ -181,7 +181,7 @@
         </div>
         {% if card_product.variants.size > 1 %}
         <div class="product-variants">
-          {% for option in card_product.options_with_values %}
+          {% comment %} {% for option in card_product.options_with_values %}
             <div class="product-option">
                 <strong>{{ option.name }}</strong>
         
@@ -236,9 +236,9 @@
                     </div>
                 {% endif %}
             </div>
-        {% endfor %}
+        {% endfor %} {% endcomment %}
         
-        
+        {% render 'product-variant-picker', product: card_product, product_form_id: product_form_id %}
       
         </div>
       {% endif %}

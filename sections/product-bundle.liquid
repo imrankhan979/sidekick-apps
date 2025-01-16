@@ -1,6 +1,30 @@
 {{ 'product-bundle.css' | asset_url | stylesheet_tag }}
 
 
+
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+
+
+
+{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{% unless product.has_only_default_variant %}
+  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+{% endunless %}
+{%- if product.quantity_price_breaks_configured? -%}
+  {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+{%- endif -%} 
+
+
 {%- style -%}
   .section-{{ section.id }}-padding {
   padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -28,37 +52,118 @@
             data-title="{{ product.title }}"
             data-price="{{ product.price | money_without_currency }}"
           >
-          {% render 'bundle-product-card',
+
+            <product-info
+            data-section="{{ section.id }}"
+            data-product-id="{{ product.id }}"
+            data-update-url="false"
+            data-url="{{ product.url }}"
+            >
+          {% comment %} {% render 'bundle-product-card',
           card_product: product,
           image_shape: section.settings.image_shape,
           show_secondary_image: section.settings.show_secondary_image,
           show_vendor: section.settings.show_vendor,
           show_rating: section.settings.show_rating,
           section_id: section.id,
-        %}
-      
-            {% comment %} {% if product.featured_image %}
-              <img src="{{ product.featured_image | img_url: '200x200' }}" alt="{{ product.title }}" style="width: 100%; height: auto; margin-bottom: 10px;">
-            {% else %}
-            <div style="width: 100%; height: 200px; background: #f5f5f5; display: flex; align-items: center; justify-content: center;">
-              <span>No Image Available</span>
-            </div>
-            {% endif %}
-      
-       
-            <h3>{{ product.title }}</h3>
-            <p>Price: {{ product.price | money }}</p>
-         
-            {% if product.variants.size > 1 %}
-            <label for="variant-{{ product.id }}">Choose Variant:</label>
-            <select id="variant-{{ product.id }}" class="variant-select">
-              {% for variant in product.variants %}
-              <option value="{{ variant.id }}">{{ variant.title }}</option>
-              {% endfor %}
-            </select>
-            {% endif %}
-      
-            <button class="add-to-bundle" style="background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer;">Add to Bundle</button> {% endcomment %}
+        %} {% endcomment %}
+        <div class="product__info-wrapper {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <section
+            id="ProductInfo-{{ section.id }}"
+            class="product__info-container"
+          >
+            {%- assign product_form_id = 'product-form-' | append: section.id -%}
+  
+                  <div class="product__title">
+                    <h1>{{ product.title | escape }}</h1>
+                    <a href="{{ product.url }}" class="product__title">
+                      <h2 class="h1">
+                        {{ product.title | escape }}
+                      </h2>
+                    </a>
+                  </div>
+               
+                  <div id="price-{{ section.id }}" role="status">
+                    {%- render 'price',
+                      product: product,
+                      use_variant: true,
+                      show_badges: true,
+                      price_class: 'price--large'
+                    -%}
+                  </div>
+
+                  {%- if product.quantity_price_breaks_configured? -%}
+                    <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                      <span>{{ 'products.product.volume_pricing.note' | t }}</span>
+                    </div>
+                  {%- endif -%}
+                  <div>
+                    {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
+                    {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      {{ form | payment_terms }}
+                    {%- endform -%}
+                  </div>
+               
+                  {% render 'product-variant-picker-for-card', product: product, product_form_id: product_form_id %}
+               
+                  {%- render 'buy-buttons',
+                    product: product,
+                    product_form_id: product_form_id,
+                    section_id: section.id,
+                    show_pickup_availability: true
+                  -%}
+               
+                  {%- if product.metafields.reviews.rating.value != blank -%}
+                    <div class="rating-wrapper">
+                      {% liquid
+                        assign rating_decimal = 0
+                        assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+                        if decimal >= 0.3 and decimal <= 0.7
+                          assign rating_decimal = 0.5
+                        elsif decimal > 0.7
+                          assign rating_decimal = 1
+                        endif
+                      %}
+                      <div
+                        class="rating"
+                        role="img"
+                        aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: product.metafields.reviews.rating.value, rating_max: product.metafields.reviews.rating.value.scale_max }}"
+                      >
+                        <span
+                          aria-hidden="true"
+                          class="rating-star"
+                          style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
+                        ></span>
+                      </div>
+                      <p class="rating-text caption">
+                        <span aria-hidden="true">
+                          {{- product.metafields.reviews.rating.value }} /
+                          {{ product.metafields.reviews.rating.value.scale_max -}}
+                        </span>
+                      </p>
+                      <p class="rating-count caption">
+                        <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
+                        <span class="visually-hidden">
+                          {{- product.metafields.reviews.rating_count }}
+                          {{ 'accessibility.total_reviews' | t -}}
+                        </span>
+                      </p>
+                    </div>
+                  {%- endif -%}
+            <a href="{{ product.url }}" class="link product__view-details animate-arrow">
+              {{ 'products.product.view_full_details' | t }}
+              {{- 'icon-arrow.svg' | inline_asset_content -}}
+            </a>
+          </section>
+        </div>
+
+
+
+
+        </product-info>
+
+
           </div>
           {% endfor %}
         </div>
@@ -87,208 +192,214 @@
   </div>
 </div>
 
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script type="application/ld+json">
+{{ product | structured_data }}
+</script>
+
+
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const BUNDLE_LIMIT = 3;
+  document.addEventListener('DOMContentLoaded', function () {
+    const BUNDLE_LIMIT = 3;
 
-  function updateItemRange() {
-    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-    const itemRangeValue = (currentBundle.length / BUNDLE_LIMIT) * 100;
-    
-    // Get the #item-range div and update its --item-range CSS variable
-    const itemRangeDiv = document.getElementById('item-range');
-    itemRangeDiv.style.setProperty('--item-range', `${itemRangeValue}%`);
-  }
-
-  // Initial load of the page
-  updateItemRange();
-
-  const buttons = document.querySelectorAll('.add-to-bundle')
-  // Add to Bundle button handler
-  document.querySelectorAll('.add-to-bundle').forEach((button) => {
-    button.addEventListener('click', function () {
-      if (this.getAttribute('data-disabled') === 'true') {
-      return; // Prevent action if button is marked as disabled
-    }
-    
-      const productElem = this.closest('.product');
-      const productId = productElem.dataset.id;
-      const productTitle = productElem.dataset.title;
-      const productPrice = parseFloat(productElem.dataset.price);
-      const productImage = productElem.querySelector('img') ? productElem.querySelector('img').src : null;
-      const variantSelect = productElem.querySelector('.variant-select');
-      const variantId = variantSelect ? variantSelect.value : null;
-      const quantityInput = productElem.querySelector('.quantity-input');
-      const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
-
-      // Create bundle item object
-      const bundleItem = {
-        id: productId,
-        title: productTitle,
-        price: productPrice,
-        image: productImage,
-        variant: variantId,
-        quantity: quantity,
-      };
-
-      // Add to localStorage
+    function updateItemRange() {
       const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      currentBundle.push(bundleItem);
-      localStorage.setItem('bundleList', JSON.stringify(currentBundle));
+      const itemRangeValue = (currentBundle.length / BUNDLE_LIMIT) * 100;
+      
+      // Get the #item-range div and update its --item-range CSS variable
+      const itemRangeDiv = document.getElementById('item-range');
+      itemRangeDiv.style.setProperty('--item-range', `${itemRangeValue}%`);
+    }
 
-      this.disabled = true;
+    // Initial load of the page
+    updateItemRange();
+
+    const buttons = document.querySelectorAll('.add-to-bundle')
+    // Add to Bundle button handler
+    document.querySelectorAll('.add-to-bundle').forEach((button) => {
+      button.addEventListener('click', function () {
+        if (this.getAttribute('data-disabled') === 'true') {
+        return; // Prevent action if button is marked as disabled
+      }
+      
+        const productElem = this.closest('.product');
+        const productId = productElem.dataset.id;
+        const productTitle = productElem.dataset.title;
+        const productPrice = parseFloat(productElem.dataset.price);
+        const productImage = productElem.querySelector('img') ? productElem.querySelector('img').src : null;
+        const variantSelect = productElem.querySelector('.variant-select');
+        const variantId = variantSelect ? variantSelect.value : null;
+        const quantityInput = productElem.querySelector('.quantity-input');
+        const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
+
+        // Create bundle item object
+        const bundleItem = {
+          id: productId,
+          title: productTitle,
+          price: productPrice,
+          image: productImage,
+          variant: variantId,
+          quantity: quantity,
+        };
+
+        // Add to localStorage
+        const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+        currentBundle.push(bundleItem);
+        localStorage.setItem('bundleList', JSON.stringify(currentBundle));
+
+        this.disabled = true;
+
+        updateItemRange();
+        // Update Bundle List
+        updateBundleList();
+      });
+    });
+
+    // Remove Item from Bundle List
+    function removeItemFromBundle(itemId) {
+      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+      const updatedBundle = currentBundle.filter((item) => item.id !== itemId);
+      localStorage.setItem('bundleList', JSON.stringify(updatedBundle));
+
+      buttons.forEach((button) => {
+        const productElem = button.closest('.product');
+        if (productElem.dataset.id === itemId) {
+          button.disabled = false;
+        }
+      });
 
       updateItemRange();
-      // Update Bundle List
-      updateBundleList();
-    });
-  });
-
-  // Remove Item from Bundle List
-  function removeItemFromBundle(itemId) {
-    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-    const updatedBundle = currentBundle.filter((item) => item.id !== itemId);
-    localStorage.setItem('bundleList', JSON.stringify(updatedBundle));
-
-    buttons.forEach((button) => {
-      const productElem = button.closest('.product');
-      if (productElem.dataset.id === itemId) {
-        button.disabled = false;
-      }
-    });
-
-    updateItemRange();
-    updateBundleList();
-  }
-
-  // Update quantity in the Bundle List
-  function updateQuantity(itemId, quantity) {
-    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-    const itemIndex = currentBundle.findIndex((item) => item.id === itemId);
-    if (itemIndex !== -1) {
-      currentBundle[itemIndex].quantity = quantity;
-      localStorage.setItem('bundleList', JSON.stringify(currentBundle));
       updateBundleList();
     }
-  }
 
-  // Calculate the total price of the bundle
-  function calculateTotalPrice() {
+    // Update quantity in the Bundle List
+    function updateQuantity(itemId, quantity) {
+      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+      const itemIndex = currentBundle.findIndex((item) => item.id === itemId);
+      if (itemIndex !== -1) {
+        currentBundle[itemIndex].quantity = quantity;
+        localStorage.setItem('bundleList', JSON.stringify(currentBundle));
+        updateBundleList();
+      }
+    }
+
+    // Calculate the total price of the bundle
+    function calculateTotalPrice() {
+      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
+      let totalPrice = 0;
+      currentBundle.forEach((item) => {
+        totalPrice += item.quantity * item.price;
+      });
+      return totalPrice;
+    }
+
+  // Update Bundle List UI
+  function updateBundleList() {
+    const bundleListElem = document.getElementById('bundle-items');
+    bundleListElem.innerHTML = ''; // Clear the list
     const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-    let totalPrice = 0;
+
     currentBundle.forEach((item) => {
-      totalPrice += item.quantity * item.price;
+      const listItemHTML = `
+        <li class="flex">
+          <img class="item-thumb" src="${item.image}" alt="${item.title}">
+          <div class="item-product-info">
+            <h5>${item.title}</h5>
+            <p>
+            $${item.price.toFixed(2)}</p>
+            <div class="item-info-bottom flex align-items-center">
+              <div class="item-info-btns grid">
+                <button class="minus-btn">-</button>
+                <input type="text" class="quantity-input" value="${item.quantity}">
+                <button class="plus-btn">+</button>
+              </div>
+                <button class="remove-btn btn-line">Remove</button>
+            </div>
+          </div>
+        </li>
+      `;
+
+      bundleListElem.insertAdjacentHTML('beforeend', listItemHTML);
+
+      // Add event listeners for quantity and remove buttons
+      const listItem = bundleListElem.lastElementChild;
+      const minusButton = listItem.querySelector('.minus-btn');
+      const plusButton = listItem.querySelector('.plus-btn');
+      const quantityInput = listItem.querySelector('.quantity-input');
+      const removeButton = listItem.querySelector('.remove-btn');
+
+      minusButton.addEventListener('click', function () {
+        if (item.quantity > 1) {
+          item.quantity--;
+          updateQuantity(item.id, item.quantity);
+        }
+      });
+
+      plusButton.addEventListener('click', function () {
+        item.quantity++;
+        updateQuantity(item.id, item.quantity);
+      });
+
+      quantityInput.addEventListener('change', function () {
+        const newQuantity = parseInt(quantityInput.value, 10);
+        if (!isNaN(newQuantity) && newQuantity > 0) {
+          updateQuantity(item.id, newQuantity);
+        }
+      });
+
+      removeButton.addEventListener('click', function () {
+        removeItemFromBundle(item.id);
+      });
     });
-    return totalPrice;
+
+      // Add placeholders if needed
+      const placeholdersNeeded = BUNDLE_LIMIT - currentBundle.length;
+      for (let i = 0; i < placeholdersNeeded; i++) {
+        const placeholderHTML = `
+          <li class="flex align-items-center">
+            <div class="item-thumb placeholder">
+                <span class="activity"></span>
+            </div>
+            <div class="item-product-info">
+              <div class="placeholder">
+                <span class="activity"></span>
+              </div>
+              <div class="placeholder">
+                <span class="activity"></span>
+              </div>
+            </div>
+        </li>
+        `;
+        bundleListElem.insertAdjacentHTML('beforeend', placeholderHTML);
+      }
+
+    // Disable all "Add to Bundle" buttons if limit is reached
+    const addButtons = document.querySelectorAll('.add-to-bundle');
+    addButtons.forEach((button) => {
+      const productElem = button.closest('.product');
+      const productId = productElem.dataset.id;
+
+      // Disable the button if the limit is reached or if the product is already in the bundle
+      if (currentBundle.length >= BUNDLE_LIMIT || currentBundle.some(item => item.id === productId)) {
+        button.classList.add('disabled'); // Add a visual "disabled" style
+        button.setAttribute('data-disabled', 'true'); // Custom attribute to track the disabled state
+      } else {
+        button.classList.remove('disabled'); // Remove the visual "disabled" style
+        button.removeAttribute('data-disabled'); // Remove the custom attribute
+      }
+    });
+
+
+    // Update Total Price of the Bundle
+    const totalPrice = calculateTotalPrice();
+    const totalPriceElem = document.getElementById('bundle-total');
+    totalPriceElem.textContent = `$${totalPrice.toFixed(2)}`;
   }
 
-// Update Bundle List UI
-function updateBundleList() {
-  const bundleListElem = document.getElementById('bundle-items');
-  bundleListElem.innerHTML = ''; // Clear the list
-  const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
 
-  currentBundle.forEach((item) => {
-    const listItemHTML = `
-      <li class="flex">
-        <img class="item-thumb" src="${item.image}" alt="${item.title}">
-        <div class="item-product-info">
-          <h5>${item.title}</h5>
-          <p>
-          $${item.price.toFixed(2)}</p>
-          <div class="item-info-bottom flex align-items-center">
-            <div class="item-info-btns grid">
-              <button class="minus-btn">-</button>
-              <input type="text" class="quantity-input" value="${item.quantity}">
-              <button class="plus-btn">+</button>
-            </div>
-              <button class="remove-btn btn-line">Remove</button>
-          </div>
-        </div>
-      </li>
-    `;
-
-    bundleListElem.insertAdjacentHTML('beforeend', listItemHTML);
-
-    // Add event listeners for quantity and remove buttons
-    const listItem = bundleListElem.lastElementChild;
-    const minusButton = listItem.querySelector('.minus-btn');
-    const plusButton = listItem.querySelector('.plus-btn');
-    const quantityInput = listItem.querySelector('.quantity-input');
-    const removeButton = listItem.querySelector('.remove-btn');
-
-    minusButton.addEventListener('click', function () {
-      if (item.quantity > 1) {
-        item.quantity--;
-        updateQuantity(item.id, item.quantity);
-      }
-    });
-
-    plusButton.addEventListener('click', function () {
-      item.quantity++;
-      updateQuantity(item.id, item.quantity);
-    });
-
-    quantityInput.addEventListener('change', function () {
-      const newQuantity = parseInt(quantityInput.value, 10);
-      if (!isNaN(newQuantity) && newQuantity > 0) {
-        updateQuantity(item.id, newQuantity);
-      }
-    });
-
-    removeButton.addEventListener('click', function () {
-      removeItemFromBundle(item.id);
-    });
+    // Initial Load
+    updateBundleList();
   });
-
-    // Add placeholders if needed
-    const placeholdersNeeded = BUNDLE_LIMIT - currentBundle.length;
-    for (let i = 0; i < placeholdersNeeded; i++) {
-      const placeholderHTML = `
-        <li class="flex align-items-center">
-          <div class="item-thumb placeholder">
-              <span class="activity"></span>
-          </div>
-          <div class="item-product-info">
-            <div class="placeholder">
-              <span class="activity"></span>
-            </div>
-            <div class="placeholder">
-              <span class="activity"></span>
-            </div>
-          </div>
-      </li>
-      `;
-      bundleListElem.insertAdjacentHTML('beforeend', placeholderHTML);
-    }
-
-  // Disable all "Add to Bundle" buttons if limit is reached
-  const addButtons = document.querySelectorAll('.add-to-bundle');
-  addButtons.forEach((button) => {
-    const productElem = button.closest('.product');
-    const productId = productElem.dataset.id;
-
-    // Disable the button if the limit is reached or if the product is already in the bundle
-    if (currentBundle.length >= BUNDLE_LIMIT || currentBundle.some(item => item.id === productId)) {
-      button.classList.add('disabled'); // Add a visual "disabled" style
-      button.setAttribute('data-disabled', 'true'); // Custom attribute to track the disabled state
-    } else {
-      button.classList.remove('disabled'); // Remove the visual "disabled" style
-      button.removeAttribute('data-disabled'); // Remove the custom attribute
-    }
-  });
-
-
-  // Update Total Price of the Bundle
-  const totalPrice = calculateTotalPrice();
-  const totalPriceElem = document.getElementById('bundle-total');
-  totalPriceElem.textContent = `$${totalPrice.toFixed(2)}`;
-}
-
-
-  // Initial Load
-  updateBundleList();
-});
 
 </script>
 
@@ -352,6 +463,43 @@ function updateBundleList() {
           "default": false,
           "label": "t:sections.featured-collection.settings.show_rating.label",
           "info": "t:sections.featured-collection.settings.show_rating.info"
+        },
+        {
+          "type": "select",
+          "id": "picker_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__1.label"
+            },
+            {
+              "value": "button",
+              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            }
+          ],
+          "default": "button",
+          "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.label"
+        },
+        {
+          "id": "swatch_shape",
+          "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.label",
+          "type": "select",
+          "info": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.info",
+          "options": [
+            {
+              "value": "circle",
+              "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.options__1.label"
+            },
+            {
+              "value": "square",
+              "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.options__2.label"
+            },
+            {
+              "value": "none",
+              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label"
+            }
+          ],
+          "default": "circle"
         },
         {
             "type": "header",
