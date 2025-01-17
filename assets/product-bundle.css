@@ -105,7 +105,7 @@
   position: relative;
 }
 .bundle-section #bundle-items .item-product-info .placeholder{
-  width: 122px;
+  width: 122px; 
   height: 24px;
   border-radius: 100px;
   background: #333333;
@@ -252,9 +252,8 @@ s.price-item--regular{
 .price-item--last{
   color: #FF3E3E;
 }
-.card .product-variants{
+.card__content .product-variants{
   margin-top: 36px;
-  padding-top: 36px;
   border-top: 1px solid #DDDDDD;
 }
 .add-to-bundle{
@@ -268,9 +267,31 @@ s.price-item--regular{
   line-height: 28px;
   text-align: center;
   margin-top: 36px;
+  text-transform: uppercase;
 }
-.add-to-bundle.disabled{
+.add-to-bundle.disabled, .add-to-bundle[disabled="disabled"]{
   border-color: #F6F6F6;
    background: #F6F6F6;
     color: #BBBBBB;
+}
+.card__content .form__label{
+font-family: var(--font-family-body);
+font-size: 20px;
+font-weight: 400; 
+line-height: 20px;
+letter-spacing: -0.01em;
+margin-bottom: 16px;
+text-transform: uppercase;
+}
+.card__content .form__label [data-selected-value]{
+text-transform: capitalize;
+color: #000;
+}
+.card__content .product-form__input{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.card__content .product-form__input.product-form__input--swatch{
+  gap: 16px;
 }
