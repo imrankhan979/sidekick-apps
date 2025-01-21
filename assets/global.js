@@ -1515,3 +1515,63 @@ class ResponsiveDropdownMenu extends HTMLElement {
 
 // Define the custom element
 customElements.define('responsive-dropdown-menu', ResponsiveDropdownMenu);
+
+
+
+
+
+// flickity
+document.addEventListener('DOMContentLoaded', () => {
+  if (!customElements.get("items-carousel")) {
+      customElements.define("items-carousel", class extends HTMLElement {
+          constructor() { super(); }
+          connectedCallback() {
+              this.theCarousel = this.querySelector('.items-carousel-selector');
+              const flickityData = this.theCarousel.getAttribute("data-flickity");
+              const flickityOptions = flickityData ? JSON.parse(flickityData) : {};
+              this.initialize(flickityOptions);
+          }
+          reHap() {
+              if (this.flickity && this.flickity.cells && this.flickity.selectedElements) {
+                  if (this.flickity.selectedElements.length >= this.flickity.cells.length) {
+                      this.flickity.options.draggable = false;
+                  } else {
+                      this.flickity.options.draggable = true;
+                  }
+                  this.flickity.updateDraggable();
+                  this.flickity.resize();
+              }
+          }
+          initialize(options) {
+              if (this.theCarousel && this.theCarousel.offsetParent !== null) {
+                  const defaultOptions = { /* ... your default options ... */ };
+                  const mergedOptions = { ...defaultOptions, ...options };
+                  this.flickity = new Flickity(this.theCarousel, mergedOptions);
+                  this.theCarousel.style.display = "block";
+
+                  this.flickity.on('ready', () => { this.reHap(); });
+
+                  window.addEventListener('resize', () => {
+                      requestAnimationFrame(() => { this.reHap(); });
+                  });
+
+                  Shopify.designMode && this.addEventListener("shopify:block:select", event => {
+                      if (this.flickity) {
+                          this.flickity.destroy();
+                          this.flickity = null;
+                      }
+                      this.initialize(JSON.parse(this.theCarousel.getAttribute("data-flickity") || '{}'));
+                      const slideIndex = [...event.target.parentElement.childNodes].indexOf(event.target);
+                      setTimeout(() => {
+                          if(this.flickity) this.flickity.select(slideIndex, true);
+                      }, 200);
+                  });
+                  Shopify.designMode && this.addEventListener("shopify:block:deselect", () => {
+                      if (this.flickity) this.flickity.playPlayer();
+                  });
+                  this.flickity.on("change", index => { /* ... your change event listener ... */ });
+              }
+          }
+      });
+  }
+});

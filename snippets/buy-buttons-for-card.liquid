@@ -74,7 +74,7 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="add-to-bundle 0"
+            class="add-to-bundl product-card-btn"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
@@ -101,7 +101,7 @@
         <button
           type="submit"
           name="add"
-          class="add-to-bundle"
+          class="add-to-bundl product-card-btn"
           disabled
         >
           {{ 'products.product.sold_out' | t }}

@@ -15,6 +15,10 @@
   <div class="section-{{ section.id }}-padding">
     {{ section.settings.custom_liquid }}
   </div>
+
+  <div>
+    {% content_for "blocks" %}
+  </div>
 </div>
 
 {% schema %}
@@ -22,6 +26,14 @@
   "name": "t:sections.custom-liquid.name",
   "tag": "section",
   "class": "section",
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
   "settings": [
     {
       "type": "liquid",

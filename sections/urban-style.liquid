@@ -1,0 +1,158 @@
+{{ 'urban-style.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="sds-redefine-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="redefine_wrapper">
+      <div class="redefine_title">
+        <h2 class="title">{{ section.settings.main_heading }}</h2>
+      </div>
+      <div class="redefine_item">
+        <div class="redefine_images">
+          {%- if section.settings.main_image != blank -%}
+            {%- capture sizes -%}
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
+              (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
+            {%- endcapture -%}
+            {{
+              section.settings.main_image | image_url: width: 1500 | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500' }}
+          {%- else -%}
+            {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if section.settings.shape_image_one != blank -%}
+            <div class="shapes-1">
+              {{ section.settings.shape_image_one | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        <div class="redefine_content">
+          <h3 class="title">{{ section.settings.sub_heading }}</h3>
+          <div class="desc">
+            <p>{{ section.settings.paragraph_one }}</p>
+            <p>{{ section.settings.paragraph_two }}</p>
+          </div>
+          <div class="redefine_button">
+            <a class="text-btn" href="{{ section.settings.button_link }}">{{ section.settings.button_text }} <span><i class="fa-sharp fa-solid fa-angle-right"></i></span></a>
+          </div>
+
+          {%- if section.settings.shape_image_two != blank -%}
+            <div class="shapes-2">
+              {{ section.settings.shape_image_two | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.shape_image_three != blank -%}
+            <div class="shapes-3">
+              {{ section.settings.shape_image_three | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if section.settings.bg_images != blank -%}
+        <div class="bg_images">
+          {{ section.settings.bg_images | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Urban style section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main heading",
+      "default": "Redefine your urban style"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    { 
+      "type": "image_picker",
+      "id": "shape_image_one",
+      "label": "Shape image one"
+    },
+    {
+      "type": "image_picker",
+      "id": "shape_image_two",
+      "label": "Shape image two"
+    },
+    {
+      "type": "image_picker",
+      "id": "shape_image_three",
+      "label": "Shape image three"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Subheading",
+      "default": "Dapper is more than just clothes. We're a movement. A culture"
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_one",
+      "label": "Paragraph one",
+      "default": "We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+    },
+    {
+      "type": "textarea",
+      "id": "paragraph_two",
+      "label": "Paragraph two",
+      "default": "We're pushing the boundaries of urban fashion, blending bold designs with refined essentials. Join us in redefining the streets."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "section_color_scheme",
+      "label": "Color scheme",
+      "default": "default",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "dark", "label": "Dark" },
+        { "value": "light", "label": "Light" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Urban style section",
+      "category": "Custom sections"
+    }
+  ]
+}
+{% endschema %}

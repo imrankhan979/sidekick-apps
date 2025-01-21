@@ -169,11 +169,31 @@ if (!customElements.get('product-info')) {
           this.updateOptionValues(html);
           this.updateURL(productUrl, variant?.id);
           this.updateVariantInputs(variant?.id);
-
+          console.log(variant)
           if (!variant) {
             this.setUnavailable();
             return;
           }
+          // for bundle 
+          const productBtn = this.querySelector('.add-to-bundle');
+          if (productBtn) {
+              productBtn.setAttribute('data-id', variant.id);
+              productBtn.setAttribute('data-price', variant.price);
+              const productOptions = window.productOptions || []; 
+              const optionsString = productOptions
+                  .map((optionName, index) => {
+                      const optionValue = variant[`option${index + 1}`]; 
+                      return optionValue ? `${optionName}: ${optionValue}` : null;
+                  })
+                  .filter(Boolean) 
+                  .join(', '); 
+          
+              if (optionsString) {
+                  productBtn.setAttribute('data-option', optionsString);
+              }
+          }
+          
+          
 
           this.updateMedia(html, variant?.featured_media?.id);
 

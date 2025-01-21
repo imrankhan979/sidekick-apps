@@ -256,7 +256,7 @@ s.price-item--regular{
   margin-top: 36px;
   border-top: 1px solid #DDDDDD;
 }
-.add-to-bundle{
+.product-card-btn{
   width: 100%;
   height: 56px;
   border-radius: 10px;
@@ -273,6 +273,7 @@ s.price-item--regular{
   border-color: #F6F6F6;
    background: #F6F6F6;
     color: #BBBBBB;
+    
 }
 .card__content .form__label{
 font-family: var(--font-family-body);
