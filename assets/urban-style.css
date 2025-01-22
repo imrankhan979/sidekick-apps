@@ -1,29 +1,12 @@
-.sds-redefine-section {
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-  @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .sds-redefine-section {
-      padding-top: 100px;
-      padding-bottom: 100px;
-    }
-  }
-  @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
-    .sds-redefine-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-  }
-  
   .redefine_wrapper {
     position: relative;
-    background-color: var(--sds-color-theme-primary);
     border-radius: 64px;
-    padding: 120px 70px 165px;
+    padding: 0 70px;
     overflow: hidden;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    z-index: 1;
   }
   
   .redefine_wrapper .bg_images {
@@ -38,6 +21,7 @@
   .redefine_wrapper .bg_images img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
   }
   
   .redefine_wrapper .redefine_title {
@@ -53,7 +37,7 @@
     text-transform: uppercase;
     margin-bottom: 0;
     letter-spacing: -0.01em;
-    color: #000000;
+    color:  var(--color-foreground);
     line-height: 1;
   }
   @media only screen and (min-width: 1400px) and (max-width: 1600px), only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -139,10 +123,7 @@
     position: relative;
     max-width: 500px;
     width: 100%;
-    -webkit-transform: rotate(-5deg);
-        -ms-transform: rotate(-5deg);
-            transform: rotate(-5deg);
-    border: 15px solid #ffffff;
+    border: 15px solid rgba(var(--color-background), 1);
   }
   .redefine_item .redefine_images .shapes-1 {
     position: absolute;
@@ -155,22 +136,22 @@
     position: relative;
     max-width: 560px;
     width: 100%;
-    background-color: #ffffff;
+    background-color: rgba(var(--color-background), 1);
     padding: 120px 64px;
-    -webkit-transform: rotate(5deg);
-        -ms-transform: rotate(5deg);
-            transform: rotate(5deg);
+    margin-bottom: 45px;
+  }
+  .redefine_item .redefine_content .redefine_content_inner > * + * {
+            margin-top: 50px;
   }
   .redefine_item .redefine_content .title {
     text-transform: uppercase;
     letter-spacing: -0.02em;
-    color: #000000;
-    margin-bottom: 50px;
+    color: rgb(var(--color-foreground));
   }
   .redefine_item .redefine_content .desc {
     font-size: 20px;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: rgb(var(--color-foreground));
     line-height: 1.4;
   }
   .redefine_item .redefine_content .desc p {
@@ -178,9 +159,6 @@
   }
   .redefine_item .redefine_content .desc p:last-child {
     margin-bottom: 0;
-  }
-  .redefine_item .redefine_content .redefine_button {
-    margin-top: 45px;
   }
   .redefine_item .redefine_content .shapes-2 {
     max-width: 225px;
@@ -305,7 +283,7 @@
     .redefine_item .redefine_content .title {
       text-transform: uppercase;
       letter-spacing: -0.02em;
-      color: #000000;
+      color: rgb(var(--color-foreground));
       font-size: 30px;
       margin-bottom: 35px;
       line-height: 44px;
@@ -330,7 +308,7 @@
     }
     .redefine_item .redefine_images .shapes-1 {
       top: 20px;
-      left: -15%;
+      inset-inline-start: -15%;
       max-width: 145px;
     }
     .redefine_item .redefine_content {
@@ -372,18 +350,22 @@
     }
     .redefine_item .redefine_images {
       max-width: 225px;
-      border: 7px solid #ffffff;
+      border: 7px solid rgb(var(--color-background));
       left: -22px;
     }
     .redefine_item .redefine_images .shapes-1 {
       top: -25px;
       left: -10%;
       max-width: 94px;
-    }
+    } 
     .redefine_item .redefine_content {
       max-width: 280px;
       padding: 48px 24px;
       margin-top: -75px;
+      margin-bottom: 10px;
+    }
+    .redefine_item .redefine_content.no_redefine_images {
+      margin-top: 0;
     }
     .redefine_item .redefine_content .title {
       max-width: 230px;
@@ -417,4 +399,40 @@
     .redefine_item .redefine_content .redefine_button {
       margin-top: 36px;
     }
+  }
+
+
+  .text-btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-column-gap: 12px;
+       -moz-column-gap: 12px;
+            column-gap: 12px;
+    font-family: var(--font-family-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(var(--color-button-text));
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .text-btn span {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: rgb(var(--color-button-text));
+    border-radius: 50%;
+  }
+  .text-btn span svg{
+    transform: rotate(-90deg);
+  }
+  .text-btn span svg path{
+    fill: rgb(var(--color-button))
   }
