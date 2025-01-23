@@ -1,0 +1,30 @@
+<div class="{{ block.settings.group_class_name }} color-{{ block.settings.section_color_scheme }}">
+    {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+    {
+        "name": "Group",
+        "class": "block-group",
+        "blocks": [ { "type": "@theme"}],
+        "settings": [
+            {
+            "type": "color_scheme",
+            "id": "section_color_scheme",
+            "label": "t:sections.all.colors.label",
+            "default": "scheme-1"
+            },
+            {
+                "type": "text",
+                "id": "group_class_name",
+                "label": "Class name",
+                "default": "redefine_content "
+            }
+        ],
+        "presets": [
+            {
+                "name": "Group"
+            }
+        ]
+    }
+{% endschema %}

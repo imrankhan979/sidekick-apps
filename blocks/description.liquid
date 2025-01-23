@@ -1,0 +1,20 @@
+<div class="desc" {{ block.shopify_attributes }}>{{ block.settings.description }}</div>
+
+{% schema %}
+    {
+        "name": "Description",
+        "settings": [
+            {
+                    "type": "richtext",
+                    "id": "description",
+                    "label": "Description",
+                   "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Description"
+            }
+        ]
+    }
+{% endschema %} 

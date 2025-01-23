@@ -1,0 +1,176 @@
+{{ 'urban-style.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+{%- endstyle -%}
+
+<section class="sds-redefine-section color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="redefine_wrapper section-{{ section.id }}-padding">
+      <div class="redefine_title">
+        <h2 class="title uppercase">{{ section.settings.main_heading }}</h2>
+      </div>
+      <div class="redefine_item flex wrap center w-full">
+            {% content_for 'blocks' %}
+      </div>
+      {%- if section.settings.bg_image != blank -%}
+        <div class="bg_images">
+          {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Urban style section block",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Heading",
+      "default": "Redefine your urban style"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Shape images"
+    },
+    {
+        "type": "image_picker",
+        "id": "shape_image_one",
+        "label": "Shape image one"
+    },
+    {
+        "type": "image_picker",
+        "id": "shape_image_two",
+        "label": "Shape image two"
+    },
+    {
+        "type": "image_picker",
+        "id": "shape_image_three",
+        "label": "Shape image three"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    }
+  ],
+  "blocks": [
+    // {
+    //   "type": "redefine_images",
+    //   "name": "Image",
+    //    "limit": 1,
+    //   "settings": [
+    //     {
+    //       "type": "image_picker",
+    //       "id": "main_image",
+    //       "label": "Image"
+    //     },
+      
+    //     {
+    //       "type": "range",
+    //       "id": "card_image_rotation",
+    //       "min": -45,
+    //       "max": 45,
+    //       "step": 1,
+    //       "unit": "°",
+    //       "label": "Item rotation",
+    //       "default": 5
+    //     }
+    //   ]
+    // },
+    // {
+    //   "type": "redefine_content",
+    //   "name": "Text content",
+    //    "limit": 1,
+    //   "settings": [
+    //     {
+    //       "type": "text",
+    //       "id": "sub_heading",
+    //       "label": "Title",
+    //       "default": "Dapper is more than just clothes. We're a movement. A culture"
+    //     },
+    //     {
+    //       "type": "richtext",
+    //       "id": "paragraph_one",
+    //       "label": "Text",
+    //       "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+    //     },
+    //     {
+    //       "type": "text",
+    //       "id": "button_text",
+    //       "label": "Button text",
+    //       "default": "Learn More"
+    //     },
+    //     {
+    //       "type": "url",
+    //       "id": "button_link",
+    //       "label": "Button link"
+    //     },
+  
+    //     {
+    //       "type": "range",
+    //       "id": "card_content_rotation",
+    //       "min": -45,
+    //       "max": 45,
+    //       "step": 1,
+    //       "unit": "°",
+    //       "label": "Item rotation",
+    //       "default": -5
+    //     }
+    //   ]
+    // }
+    {
+        "type": "@theme"
+    }
+  ],
+"presets": [
+  {
+    "name": "Urban style section block"
+  }
+]
+}
+{% endschema %}
