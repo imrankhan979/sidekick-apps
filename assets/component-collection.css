@@ -1,0 +1,56 @@
+.collection-section {
+    padding-top: 120px;
+  }
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .collection-section {
+      padding-top: 100px;
+    }
+  }
+  
+  .collection_wrapper {
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    column-gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .collection_item a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2px solid transparent;
+    border-radius: 200px;
+    padding: 52px 40px 64px;
+    min-height: 385px;
+    height: 100%;
+    transition: all 0.4s ease-in-out 0s;
+  }
+  .collection_item a:hover {
+    border-color: #000000;
+  }
+  .collection_item a .title {
+    position: relative;
+    text-transform: uppercase;
+    margin-top: auto;
+    margin-bottom: 0;
+    z-index: 1;
+  }
+  .collection_item a .title::before {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #000000;
+    width: 100%;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+  }
+  .collection_item a:hover .title::before {
+    transform-origin: left;
+    transform: scaleX(1);
+  }
