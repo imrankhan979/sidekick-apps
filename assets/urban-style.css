@@ -34,7 +34,6 @@
   .redefine_wrapper .redefine_title .title {
     font-size: 144px;
     text-align: center;
-    text-transform: uppercase;
     margin-bottom: 0;
     letter-spacing: -0.01em;
     color:  var(--color-foreground);
@@ -102,20 +101,8 @@
   }
   
   .redefine_item {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-column-gap: 8px;
-       -moz-column-gap: 8px;
-            column-gap: 8px;
+    column-gap: 8px;
     max-width: 1167px;
-    width: 100%;
-    justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
     margin-left: auto;
     margin-right: auto;
   }
@@ -136,19 +123,20 @@
     position: relative;
     max-width: 560px;
     width: 100%;
-    background-color: rgba(var(--color-background), 1);
     padding: 120px 64px;
     margin-bottom: 45px;
+    background: rgb(var(--color-background));
   }
   .redefine_item .redefine_content .redefine_content_inner > * + * {
             margin-top: 50px;
   }
-  .redefine_item .redefine_content .title {
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: rgb(var(--color-foreground));
+  @media (max-width: 991px) {
+    .redefine_item .redefine_content .redefine_content_inner > * + * {
+      margin-top: 36px;
+}
   }
-  .redefine_item .redefine_content .desc {
+ 
+  .redefine_item  .desc {
     font-size: 20px;
     letter-spacing: -0.01em;
     color: rgb(var(--color-foreground));
@@ -177,8 +165,6 @@
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .redefine_item .redefine_content .title {
       font-size: 35px;
-      margin-bottom: 40px;
-      line-height: 46px;
     }
   }
   @media only screen and (min-width: 1601px) and (max-width: 1770px) {
@@ -281,12 +267,9 @@
       padding: 60px 30px;
     }
     .redefine_item .redefine_content .title {
-      text-transform: uppercase;
       letter-spacing: -0.02em;
       color: rgb(var(--color-foreground));
       font-size: 30px;
-      margin-bottom: 35px;
-      line-height: 44px;
   }
     .redefine_item .redefine_content .shapes-2 {
       max-width: 120px;
@@ -318,8 +301,6 @@
     }
     .redefine_item .redefine_content .title {
       font-size: 25px;
-      line-height: 40px;
-      margin-bottom: 25px;
     }
     .redefine_item .redefine_content .desc {
       font-size: 18px;
@@ -336,9 +317,7 @@
       max-width: 130px;
       bottom: -13%;
       left: 50%;
-      -webkit-transform: translateX(-50%);
-          -ms-transform: translateX(-50%);
-              transform: translateX(-50%);
+      transform: translateX(-50%);
     }
     .redefine_item .redefine_content .redefine_button {
       margin-top: 35px;
@@ -373,11 +352,9 @@
       font-size: 20px;
       margin-bottom: 20px;
       letter-spacing: -0.01em;
-      line-height: 28px;
     }
     .redefine_item .redefine_content .desc {
       font-size: 14px;
-      letter-spacing: initial;
       line-height: 20px;
     }
     .redefine_item .redefine_content .desc p {
@@ -392,47 +369,10 @@
       max-width: 114px;
       bottom: -13%;
       left: 50%;
-      -webkit-transform: translateX(-50%);
-          -ms-transform: translateX(-50%);
-              transform: translateX(-50%);
+      transform: translateX(-50%);
     }
     .redefine_item .redefine_content .redefine_button {
       margin-top: 36px;
     }
   }
 
-
-  .text-btn {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-column-gap: 12px;
-       -moz-column-gap: 12px;
-            column-gap: 12px;
-    font-family: var(--font-family-heading);
-    font-size: 16px;
-    font-weight: 700;
-    color: rgb(var(--color-button-text));
-    text-transform: uppercase;
-    line-height: 1;
-  }
-  .text-btn span {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    background-color: rgb(var(--color-button-text));
-    border-radius: 50%;
-  }
-  .text-btn span svg{
-    transform: rotate(-90deg);
-  }
-  .text-btn span svg path{
-    fill: rgb(var(--color-button))
-  }

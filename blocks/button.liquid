@@ -1,0 +1,25 @@
+<a class="text-btn" href="{{ block.settings.button_link }}" {{ block.shopify_attributes }}>{{ block.settings.button_text }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
+
+{% schema %}
+    {
+        "name": "Button",
+        "settings": [
+            {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button label",
+            "default": "Learn More"
+            },
+            {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Button"
+            }
+        ]
+    }
+{% endschema %} 
