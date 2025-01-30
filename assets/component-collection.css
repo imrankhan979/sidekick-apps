@@ -1,0 +1,164 @@
+/**----------------------------------------
+START: Collection CSS
+----------------------------------------*/
+.collection-section {
+  position: relative;
+  z-index: 1;
+  padding-top: 120px;
+  margin-top: -60px;
+  border-radius: 64px 64px 0px 0px;
+}
+
+.collection_wrapper {
+  display: grid;
+  column-gap: 16px;
+  row-gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  scrollbar-color: rgb(var(--color-foreground));
+  scrollbar-width: thin;
+  border-radius: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+@media only screen and (max-width: 992px) {
+  .collection_wrapper {
+    display: flex;
+  }
+  .collection_wrapper .collection_item {
+    flex: 1;
+  }
+  
+}
+.collection_item a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid transparent;
+  border-radius: 200px;
+  padding: 52px 40px 64px;
+  max-width: 280px;
+  min-height: 385px;
+  height: 100%;
+  transition: all 0.4s ease-in-out 0s;
+}
+.collection_wrapper .collection_item a {
+  overflow: hidden;
+}
+.collection_item a:hover {
+  border-color: rgb(var(--color-foreground));
+}
+
+.collection_item a .title {
+  display: block;
+  position: relative;
+  text-transform: uppercase;
+  margin-top: 36px;
+  margin-bottom: 0;
+  z-index: 1;
+  text-align: center;
+}
+.collection_item a .title::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgb(var(--color-foreground));
+  width: 100%;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.collection_item a:hover .title::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .collection_wrapper .collection_item a {
+    padding: 50px 20px;
+    min-height: 315px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .collection-section {
+    padding-top: 100px;
+  }
+
+  .collection_wrapper .collection_item a {
+    padding: 40px 20px;
+    min-height: 265px;
+  }
+
+  .collection_wrapper .collection_item a .title {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .collection-section {
+    padding-top: 80px;
+  }
+
+  .collection_wrapper .collection_item a .title {
+    font-size: 22px;
+  }
+
+  .collection_wrapper .collection_item a {
+    padding: 50px 25px;
+    min-height: 345px;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .collection-section {
+    padding-top: 80px;
+  }
+
+
+  .collection_item a {
+    padding: 40px 20px;
+    min-height: 365px;
+  }
+
+  .collection_wrapper .collection_item a .title {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 575px) {
+  .collection-section {
+    padding-top: 80px;
+  }
+
+  .collection_wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    padding-bottom: 25px;
+    scrollbar-color: rgb(var(--color-foreground));
+    scrollbar-width: thin;
+    border-radius: 10px;
+  }
+
+  .collection_item a {
+    border-radius: 100px;
+    padding: 20px 15px;
+    width: 180px;
+    min-height: 224px;
+  }
+
+  .collection_wrapper .collection_item a .title {
+    font-size: 20px;
+  }
+}
+
+/* !END: Collection CSS *
+
+/**----------------------------------------
+START: Redefine CSS

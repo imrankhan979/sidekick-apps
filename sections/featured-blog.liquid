@@ -1,250 +1,159 @@
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
-{{ 'section-featured-blog.css' | asset_url | stylesheet_tag }}
+{{ 'component-blog.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
+  .blog-section-inner-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+} 
+@media screen and (min-width: 991px) {
+.blog-section-inner {
+    grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr); 
+}
+}
 
   @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
+    .blog-section-inner-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px; 
     }
   }
-{%- endstyle -%}
+{%- endstyle -%} 
 
 {%- liquid
-  assign posts_displayed = section.settings.blog.articles_count
-  if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 4
-    assign posts_exceed_limit = true
-    assign posts_displayed = section.settings.post_limit
-  endif
+assign posts_displayed = section.settings.blog.articles_count
+if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 6
+  assign posts_exceed_limit = true
+  assign posts_displayed = section.settings.post_limit
+endif
 -%}
-<div class="blog color-{{ section.settings.color_scheme }} gradient{% if section.settings.heading == blank %} no-heading{% endif %}">
-  <div class="page-width-desktop isolate{% if posts_displayed < 3 %} page-width-tablet{% endif %} section-{{ section.id }}-padding">
-    {%- unless section.settings.heading == blank -%}
-      <div class="title-wrapper-with-link{% if posts_displayed > 2 %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
-        <h2
-          id="SectionHeading-{{ section.id }}"
-          class="blog__title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-          {% endif %}
-        >
-          {{ section.settings.heading }}
-        </h2>
+<div class="color-{{ section.settings.color_scheme }}"> 
+<div class="page-width isolate{% if posts_displayed < 3 %} page-width-tablet{% endif %} section-{{ section.id }}-padding">
+<div class="blog-section-inner-{{ section.id }}-padding">
+<div class="blog-section-inner">
 
-        {%- if section.settings.blog != blank
-          and section.settings.show_view_all
-          and section.settings.post_limit < section.settings.blog.articles_count
-        -%}
-          <a
-            href="{{ section.settings.blog.url }}"
-            class="link underlined-link large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          >
-            {{ 'sections.featured_blog.view_all' | t }}
-          </a>
-        {%- endif -%}
-      </div>
-    {%- endunless -%}
+{%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+  {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
 
-    <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-      <ul
-        id="Slider-{{ section.id }}"
-        class="blog__posts articles-wrapper contains-card contains-card--article{% if settings.blog_card_style == 'standard' %} contains-card--standard{% endif %} grid grid--peek grid--2-col-tablet grid--{{ section.settings.columns_desktop }}-col-desktop slider {% if posts_displayed > 2 %}slider--tablet{% else %}slider--mobile{% endif %}"
-        role="list"
-      >
-        {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
-          {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
-            <li
-              id="Slide-{{ section.id }}-{{ forloop.index }}"
-              class="blog__post grid__item article slider__slide slider__slide--full-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ forloop.index }};"
-              {% endif %}
-            >
-              {% render 'article-card',
-                blog: section.settings.blog,
-                article: article,
-                media_aspect_ratio: 1.66,
-                show_image: section.settings.show_image,
-                show_date: section.settings.show_date,
-                show_author: section.settings.show_author,
-                show_excerpt: true
-              %}
-            </li>
-          {%- endfor -%}
-        {%- else -%}
-          {% for i in (1..section.settings.post_limit) -%}
-            {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
-            {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
-            <li
-              id="Slide-{{ section.id }}-{{ forloop.index }}"
-              class="blog__post grid__item article slider__slide slider__slide--full-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings.animations_reveal_on_scroll %}
-                data-cascade
-                style="--animation-order: {{ forloop.index }};"
-              {% endif %}
-            >
-              <div class="article-card-wrapper card-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-                <div
-                  class="
-                    card article-card card--{{ settings.blog_card_style }}
-                    {% if settings.blog_card_style == 'card' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}
-                    {% if section.settings.show_image %} card--media{% else %} card--text{% endif %}
-                  "
-                  style=" {% if settings.blog_card_style == 'standard' %} --ratio-percent: 100%;{% elsif settings.blog_card_style == 'card' %} --ratio-percent: 0%;{% endif %}"
-                >
-                  <div
-                    class="card__inner{% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %} ratio"
-                    style="--ratio-percent: 80%;"
-                  >
-                    {%- if section.settings.show_image == true -%}
-                      <div class="article-card__image-wrapper card__media">
-                        <div class="article-card__image media">
-                          {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
-                        </div>
-                      </div>
-                    {%- endif -%}
-                    <div class="card__content">
-                      <div class="card__information">
-                        <h3 class="card__heading h2">
-                          {{ 'sections.featured_blog.onboarding_title' | t }}
-                        </h3>
-                        <p class="article-card__excerpt rte-width">
-                          {{ 'sections.featured_blog.onboarding_content' | t }}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card__content">
-                    <div class="card__information">
-                      <h3 class="card__heading h2">
-                        {{ 'sections.featured_blog.onboarding_title' | t }}
-                      </h3>
-                      <p class="article-card__excerpt rte-width">
-                        {{ 'sections.featured_blog.onboarding_content' | t }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-          {%- endfor -%}
-        {%- endif -%}
-      </ul>
-      {%- if posts_exceed_limit -%}
-        <div class="slider-buttons{% if section.settings.post_limit < 3 %} medium-hide{% endif %}{% if section.settings.post_limit < 2 %} small-hide{% endif %}">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
-            <span aria-hidden="true"> / </span>
-            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.settings.post_limit }}</span>
-          </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
-            <span class="svg-wrapper">
-              {{- 'icon-caret.svg' | inline_asset_content -}}
-            </span>
-          </button>
-        </div>
-      {%- endif -%}
-    </slider-component>
-
-    {%- if section.settings.show_view_all and section.settings.post_limit < section.settings.blog.articles_count -%}
-      <div
-        class="blog__view-all center small-hide medium-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-        {% if settings.animations_reveal_on_scroll %}
-          data-cascade
-        {% endif %}
-      >
-        <a
-          href="{{ section.settings.blog.url }}"
-          id="ViewAll-{{ section.id }}"
-          class="blog__button button"
-          aria-labelledby="ViewAll-{{ section.id }} SectionHeading-{{ section.id }}"
-        >
-          {{ 'sections.featured_blog.view_all' | t }}
-        </a>
+    <div class="blog-bundle-list">
+  <div class="blog_bundle_cart_item">
+    {%- if section.settings.show_image == true -%}
+      <div class="blog_inner_image_section">
+           <div class="blog_item_img">
+            <img
+                srcset="
+                  {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+                  {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {{ article.image.src | image_url }} {{ article.image.src.width }}w
+                "
+                src="{{ article.image.src | image_url: width: 533 }}"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                alt="{{ article.image.src.alt | escape }}"
+                {% unless lazy_load == false %}
+                  loading="lazy"
+                {% endunless %}
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+              >
+           </div>
       </div>
     {%- endif -%}
+      <div class="blog_inner_content">
+          <div class="blog_meta_section">
+            {%- if section.settings.show_author == true or section.settings.tags == true or section.settings.show_date == true -%}
+              <ul>
+                {%- if section.settings.show_author == true and article.author -%}
+                  <li>{{ article.author | upcase }}</li>
+                {% endif %}
+                {%- if section.settings.show_tags == true -%}
+                {% if article.tags.size > 0 %}
+                  {% for tag in article.tags %}
+                  <li>
+                  <span class="blog-tag">{{ tag | upcase }}</span>{% unless forloop %}, {% endunless %}
+                </li>
+              {% endfor %}
+                {% endif %}
+                {% endif %}
+                  {%- if section.settings.show_date == true and article.published_at -%}
+                    <li>{{ article.published_at | date: "%b %d, %Y" | upcase }}</li>
+                  {%- endif -%}
+              </ul>
+            {%- endif -%}
+          </div>
+          <h3 class="blog_main_header">
+            <a href="{{ article.url }}">{{ article.title | upcase }}</a>
+          </h3>
+      </div>
   </div>
 </div>
+  {%- endfor -%}
+{%- else -%}
+  {% for i in (1..section.settings.post_limit) -%}
+    {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
+    {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
 
+<div class="blog-bundle-list">
+  <div class="blog_bundle_cart_item">
+    {%- if section.settings.show_image == true -%}
+      <div class="blog_inner_image_section">
+           <div class="blog_item_img">
+            {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
+           </div>
+      </div>
+    {%- endif -%}
+      <div class="blog_inner_content">
+          <h3 class="blog_main_header">
+            {{ 'sections.featured_blog.onboarding_title' | t }}
+          </h3>
+      </div>
+  </div>
+</div>
+{%- endfor -%}
+{%- endif -%}
+</div>
+{%- if section.settings.show_view_all and section.settings.post_limit < section.settings.blog.articles_count -%}
+<div class="blog_view-all-button"><a href="{{ section.settings.blog.url }}">EXPLORE MORE <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a></div>
+{% endif %}
+</div>
+  </div>
+   </div>
 {% schema %}
 {
-  "name": "t:sections.featured-blog.name",
+  "name": "Blog Post",
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
-  },
+  }, 
   "settings": [
     {
       "type": "inline_richtext",
       "id": "heading",
-      "default": "t:sections.featured-blog.settings.heading.default",
-      "label": "t:sections.featured-blog.settings.heading.label"
+      "default": "Blog Post",
+      "label": "Heading"
     },
     {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
-        }
-      ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
     },
     {
       "type": "blog",
       "id": "blog",
-      "label": "t:sections.featured-blog.settings.blog.label"
+      "label": "Select Blog"
     },
     {
       "type": "range",
       "id": "post_limit",
-      "min": 2,
-      "max": 4,
+      "min": 3,
+      "max": 6,
       "step": 1,
       "default": 3,
-      "label": "t:sections.featured-blog.settings.post_limit.label"
+      "label": "Post Limit"
     },
     {
       "type": "range",
@@ -253,68 +162,66 @@
       "max": 4,
       "step": 1,
       "default": 3,
-      "label": "t:sections.featured-blog.settings.columns_desktop.label"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
+      "label": "Desktop Columns"
     },
     {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
-      "label": "t:sections.featured-blog.settings.show_image.label",
-      "info": "t:sections.featured-blog.settings.show_image.info"
+      "label": "Show Featured Image"
     },
     {
       "type": "checkbox",
       "id": "show_date",
       "default": true,
-      "label": "t:sections.featured-blog.settings.show_date.label"
+      "label": "Show Date"
     },
     {
       "type": "checkbox",
       "id": "show_author",
       "default": false,
-      "label": "t:sections.featured-blog.settings.show_author.label"
+      "label": "Show Author"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "default": true,
+      "label": "Show Tags"
     },
     {
       "type": "checkbox",
       "id": "show_view_all",
       "default": true,
-      "label": "t:sections.featured-blog.settings.show_view_all.label"
+      "label": "Show View All"
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "Padding Section"
     },
     {
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Top Padding",
       "default": 36
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding Bottom",
       "default": 36
     }
   ],
   "presets": [
     {
-      "name": "t:sections.featured-blog.presets.name"
+      "name": "Blog Post"
     }
   ]
 }
