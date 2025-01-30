@@ -4,10 +4,10 @@
   .blog-section-inner-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-}
+} 
 @media screen and (min-width: 991px) {
 .blog-section-inner {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+    grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr); 
 }
 }
 
