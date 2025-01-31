@@ -1,0 +1,101 @@
+.snzz-video-section {
+    width: 100%;
+    overflow: hidden;
+    border-top-left-radius: 64px;
+    border-top-right-radius: 64px;
+  }
+  .snzz-video-inner {
+    position: relative;
+  }
+  .snzz-video-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .snzz-video-img img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    
+  }
+  
+  .snzz-video-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--color-background));
+    z-index: 1;
+  }
+  .snzz-inner-content h3 {
+    color: rgb(var(--color-foreground));
+  }
+  .snzz-inner-content {
+    text-align: center;
+    color: rgb(var(--color-foreground));
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .snzz-inner-content > * + *{
+    margin-top: 20px;
+  }
+  @media (max-width: 768px) and (min-width: 574px) {
+    .snzz-video-section {
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+    } 
+    .snzz-inner-content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .snzz-inner-content h3 {
+      font-size: 30px; 
+      line-height: 35px;
+    }
+  
+    .snzz-inner-content .sub-heading {
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 400;
+    }
+  
+    .snzz-video-img img {
+      height: 100%; 
+      object-fit: cover;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    
+    .snzz-video-section {
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+    } 
+  
+    .snzz-inner-content h3 {
+      font-size: 20px; 
+      line-height: 25px;
+    }
+    .snzz-inner-content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .snzz-inner-content .sub-heading {
+      font-size: 14px; 
+      line-height: 18px;
+      font-weight: 400;
+    }
+  }
