@@ -1,0 +1,140 @@
+
+{%- style -%}
+    .block-{{ block.id }}-padding {
+      padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+  
+    @media screen and (min-width: 750px) {
+      .block-{{ block.id }}-padding {
+        padding-top: {{ block.settings.padding_top }}px;
+        padding-bottom: {{ block.settings.padding_bottom }}px;
+      }
+    }
+    .block-{{ block.id }}-margin {
+      margin-top: {{ block.settings.margin_top | times: 0.75 | round: 0 }}px;
+      margin-bottom: {{ block.settings.margin_bottom | times: 0.75 | round: 0 }}px;
+    }
+  
+    @media screen and (min-width: 750px) {
+      .block-{{ block.id }}-margin {
+        margin-top: {{ block.settings.margin_top }}px;
+        margin-bottom: {{ block.settings.margin_bottom }}px;    
+      }
+    }
+  {%- endstyle -%}
+
+<div class="{{ block.settings.group_class_name }} color-{{ block.settings.section_color_scheme }} block-{{ block.id }}-padding block-{{ block.id }}-margin {% if block.settings.inner_gap %}inner-gap{% endif %} {{ block.settings.position_type }}" style="transform: rotate({{ block.settings.card_rotation }}deg) ">
+    {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+    {
+        "name": "Group",
+        "class": "block-group",
+        "blocks": [ { "type": "@theme"}],
+        "settings": [
+            {
+            "type": "color_scheme",
+            "id": "section_color_scheme",
+            "label": "t:sections.all.colors.label",
+            "default": "scheme-1"
+            },
+            {
+                "type": "text",
+                "id": "group_class_name",
+                "label": "Class name",
+                "default": "redefine_content "
+            },
+            {
+                "type": "select",
+                "id": "position_type",
+                "label": "Position type",
+                "default": "static",
+                "options": [
+                  { "value": "static", "label": "Static" },
+                  { "value": "relative", "label": "Relative" }
+                ]
+              },
+            {
+                "type": "checkbox",
+                "id": "inner_gap",
+                "label": "Inside elements gap ",
+                "default": true
+            },
+            {
+              "type": "range",
+              "id": "max_width",
+              "min": 0,
+              "max": 100,
+              "step": 1,
+              "unit": "%",
+              "label": "Desktop max width",
+              "default": 40
+            },
+            {
+              "type": "range",
+              "id": "card_rotation",
+              "min": -45,
+              "max": 45,
+              "step": 1,
+              "unit": "°",
+              "label": "Item rotation",
+              "default": 0
+            },
+            {
+                "type": "header",
+                "content": "t:sections.all.padding.section_padding_heading"
+                },
+                {
+                "type": "range",
+                "id": "padding_top",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "label": "t:sections.all.padding.padding_top",
+                "default": 0
+                },
+                {
+                "type": "range",
+                "id": "padding_bottom",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "label": "t:sections.all.padding.padding_bottom",
+                "default": 0
+                },
+                {
+                    "type": "header",
+                    "content": "t:sections.all.margin.section_margin_heading"
+                    },
+                    {
+                    "type": "range",
+                    "id": "margin_top",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "px",
+                    "label": "t:sections.all.margin.margin_top",
+                    "default": 0
+                    },
+                    {
+                    "type": "range",
+                    "id": "margin_bottom",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "px",
+                    "label": "t:sections.all.margin.margin_bottom",
+                    "default": 0
+                    }
+        ],
+        "presets": [
+            {
+                "name": "Group"
+            }
+        ]
+    }
+{% endschema %}

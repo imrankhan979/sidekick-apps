@@ -1,0 +1,75 @@
+{% stylesheet %}
+    .position-{{ block.id }}-top{
+        top: {{ block.settings.top_offset }}%;
+    }
+    .position-{{ block.id }}-left{
+        left: {{ block.settings.left_offset }}%;
+    }
+{% endstylesheet %}
+<img 
+  src="{{ block.settings.image | image_url: width: 1500 }}" 
+  srcset="{{ block.settings.image | image_url: width: 165 }} 165w, 
+          {{ block.settings.image | image_url: width: 360 }} 360w, 
+          {{ block.settings.image | image_url: width: 535 }} 535w, 
+          {{ block.settings.image | image_url: width: 750 }} 750w, 
+          {{ block.settings.image | image_url: width: 1070 }} 1070w, 
+          {{ block.settings.image | image_url: width: 1500 }} 1500w" 
+        class="{{ block.settings.position_type }} position-{{ block.id }}-left position-{{ block.id }}-top" 
+        width="1500" 
+        height="556" 
+        loading="lazy" 
+        style="top: {{ block.settings.top_offset }}%;  left: {{ block.settings.left_offset }}%;">
+{% schema %}
+    {
+        "name": "Image",
+        "settings": [
+            {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+            },
+            {
+                "type": "select",
+                "id": "position_type",
+                "label": "Position type",
+                "default": "static",
+                "options": [
+                    { "value": "static", "label": "Static" },
+                    { "value": "relative", "label": "Relative" },
+                    { "value": "absolute", "label": "Absolute" }
+                ]
+            },
+            {
+                "type": "range",
+                "id": "top_offset",
+                "label": "Top offset",
+                "default": 0,
+                "min": -100,
+                "max": 100,
+                "step": 2,
+                "unit": "%"
+                },
+                {
+                "type": "range",
+                "id": "left_offset",
+                "label": "Left offset",
+                "default": 0,
+                "min": -100,
+                "max": 100,
+                "step": 2,
+                "unit": "%"
+                },
+                {
+                "type": "number",
+                "id": "z_index",
+                "label": "Z-index",
+                "default": 0
+                }
+        ],
+        "presets": [
+            {
+                "name": "Image"
+            }
+        ]
+    }
+{% endschema %}

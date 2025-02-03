@@ -1,0 +1,26 @@
+<h3 class="theme_block_heading {% if block.settings.uppercase %}uppercase{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h3>
+
+{% schema %}
+    {
+        "name": "Heading",
+        "settings": [
+            {
+                    "type": "textarea",
+                    "id": "heading",
+                    "label": "Heading",
+                    "default": "Heading text"
+            },
+            {
+                "type": "checkbox",
+                "id": "uppercase",
+                "label": "Make heading uppercase",
+                "default": true
+            }
+        ],
+        "presets": [
+            {
+                "name": "Heading"
+            }
+        ]
+    }
+{% endschema %}
