@@ -66,7 +66,7 @@ text-align: center;
 @media (max-width: 1600px) {
   .collection_item .item_inner {
     border-radius: 100px;
-    padding: 20px 15px;
+    padding: 38px 15px 20px;
     width: 180px;
     min-height: 224px;
   }
