@@ -1,0 +1,150 @@
+{{ 'component-video.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .id-{{ section.id }} .snzz-video-img::before{
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+{%- endstyle -%}
+
+<!---- All Collection Section --->
+<section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
+    <div class="page-wigth">
+       <div class="snzz-video-inner">
+        {%- if section.settings.bg_image != blank or section.settings.bg_video != blank -%}
+            <div class="snzz-video-img ">
+                {%- if section.settings.bg_image -%}
+                    {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+               {%- elsif section.settings.bg_video -%}
+                    {{ section.settings.bg_video | video_tag: image_size: '1500x', autoplay: true, controls: true, muted: true, loop: true }}
+                {%- endif -%}
+            </div>
+          {%- endif -%}
+          <div class="snzz-inner-content uppercase section-{{ section.id }}-padding">
+            {%- for block in section.blocks -%} 
+              {% case block.type %}
+              {% when 'redefine_titlecontent' %}
+            {%- if block.settings.main_heading != blank -%}
+             <h3>{{ block.settings.main_heading | upcase }}</h3>
+            {%- endif -%}
+            {% when 'redefine_subtilecontent' %}
+             {%- if block.settings.sub_heading != blank -%}
+             <span class="sub-heading flex uppercase">{{ block.settings.sub_heading }}</span>
+            {%- endif -%}
+          {% endcase %}
+       {%- endfor -%}
+          </div>           
+       </div>
+    </div>
+ </section>
+ <!---- All Collection Section --->
+
+{% schema %}
+{
+  "name": "Video Section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image"
+    },
+    {
+        "type": "video",
+        "id": "bg_video",
+        "label": "Background Video"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Overlay Opacity",
+      "default": 70
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 352
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 352
+    }
+  ],
+  "blocks": [
+    {
+      "type": "redefine_titlecontent",
+      "name": "Title content",
+       "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "main_heading",
+          "label": "Title",
+          "default": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+        }
+      ]
+    },
+    {
+      "type": "redefine_subtilecontent",
+      "name": "Sub Heading content",
+       "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "sub_heading",
+          "label": "Sub Heading",
+          "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+        }
+      ]
+    }
+  ],
+"presets": [
+  {
+    "name": "Video Section",
+    "blocks": [
+      {
+        "type": "redefine_titlecontent",
+        "settings": {}
+      },
+      {
+        "type": "redefine_subtilecontent",
+        "settings": {}
+      }
+    ]
+  }
+]
+}
+{% endschema %}
