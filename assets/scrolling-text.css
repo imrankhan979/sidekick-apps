@@ -1,0 +1,127 @@
+  .marquee-section .marquee_slider {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #000000;
+  }
+  
+  .marquee-section .marquee_sm_slider {
+    display: none;
+  }
+  
+  .marquee-section .marquee_slider .marquee_wrapper {
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    position: relative;
+    animation: slide-har var(--scroll-duration) linear infinite;
+  }
+  
+  .marquee_item .marquee_title {
+    padding-right: 60px;
+    padding-left: 45px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .marquee_item .marquee_title::before {
+    position: absolute;
+    content: "";
+    width: 12px;
+    height: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    background: #000000;
+    border-radius: 50%;
+  }
+  
+  .marquee_item .marquee_title .title {
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  
+  @keyframes slide-har {
+    0% {
+      transform: translateX(0%);
+    }
+  
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .marquee_item .marquee_title .title {
+      font-size: 36px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .marquee_item .marquee_title .title {
+      font-size: 30px;
+    }
+  
+    .marquee_item .marquee_title {
+      padding-right: 35px;
+      padding-left: 25px;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .marquee_item .marquee_title .title {
+      font-size: 26px;
+    }
+  
+    .marquee_item .marquee_title {
+      padding-right: 35px;
+      padding-left: 25px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .marquee-section .page-width {
+      border-top: none;
+      border-bottom: none;
+      padding-bottom: 35px;
+    }
+  
+    .marquee-section .flickity-page-dots {
+      bottom: -80px;
+    }
+  
+    .marquee-section .marquee_slider {
+      display: none;
+    }
+  
+    .marquee_item .marquee_title .title {
+      font-size: 24px;
+    }
+  
+    .marquee-section .marquee_sm_slider {
+      display: block;
+      border-top: 2px solid #000000;
+      border-bottom: 2px solid #000000;
+      padding: 43px 0;
+    }
+  
+    .marquee_item .marquee_title::before {
+      display: none;
+    }
+  
+    .marquee_item {
+      width: 100%;
+    }
+  
+    .marquee_item .marquee_title {
+      padding-right: 0;
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+  
