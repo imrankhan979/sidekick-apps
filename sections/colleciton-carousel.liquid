@@ -1,0 +1,149 @@
+{{ 'component-collection-carousel.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+
+ <!-- start: Collection Section -->
+ <section class="collection-carousel-section section-{{ section.id }}-padding">
+    <div class="page-width">
+        <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
+          {%- for block in section.blocks -%}
+            {%- assign collection = block.settings.collection -%}
+            <div class="collection_carousel_item">
+                <div class="collection_carousel_images">
+                    <a href="{{ collection.url }}">
+                      {%- if block.settings.collection_image != blank -%}
+                        {{ block.settings.collection_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                        {%- else -%}
+                        {{ block.settings.collection_select.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                      {%- endif -%}
+                    </a>
+                </div>
+                <div class="collection_carousel_content">
+                    <span class="subTitle">Featured collection</span>
+                    <div class="collection_carousel_text">
+                        <h2 class="display-1"><a href="{{ collection.url }}">{{ collection.title }}</a></h2>
+                        <span class="sub-title">{{ collection.products_count }} Items</span>
+                    </div>
+                    <div class="collection_carousel_button">
+                        <a class="collection_carousel_btn" href="{{ collection.url }}">
+                            Shop Now
+                            <span>
+                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.70697 11.707L7.41397 5.99997L1.70697 0.292969L0.292969 1.70697L4.58597 5.99997L0.292969 10.293L1.70697 11.707Z" fill="white"></path>
+                                </svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+ <!-- end: Collection Section -->
+
+{% schema %}
+{
+  "name": "Collection Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "testimonial_heading",
+      "label": "Testimonial Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 352
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 352
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "collection_image",
+          "label": "Collection Image"
+        },
+        {
+          "type": "text",
+          "id": "client_review_title",
+          "label": "Review Title",
+          "default": "Elevated Streetwear"
+        },
+        {
+          "type": "richtext",
+          "id": "client_review_text",
+          "label": "Review Text",
+          "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "client_image",
+          "label": "Client Image"
+        },
+        {
+        "type": "collection",
+        "id": "collection_select",
+        "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "client_name",
+          "label": "Client Name",
+          "default": "Anya Petrova"
+        },
+        {
+          "type": "text",
+          "id": "client_location",
+          "label": "Client Location",
+          "default": "Paris, France"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Carousel"
+    }
+  ]
+}
+{% endschema %}
