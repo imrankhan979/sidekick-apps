@@ -1,0 +1,389 @@
+/**----------------------------------------
+START: Collection carousel CSS
+----------------------------------------*/
+.collection-carousel-section {
+    padding-bottom: 120px;
+  }
+  
+  .collection-carousel-section .page-width {
+    margin-left: calc((100% - 1810px) / 2);
+    width: auto;
+    min-width: auto;
+    max-width: inherit;
+    padding-right: 0;
+  }
+  
+  .collection-carousel-section .flickity-button {
+    background: #ffffff;
+    color: #000000;
+  }
+  
+  .collection-carousel-section .flickity-prev-next-button {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .collection-carousel-section .flickity-button:disabled {
+    pointer-events: initial;
+  }
+  
+  .collection-carousel-section .flickity-prev-next-button .flickity-button-icon {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+  }
+  
+  .collection-carousel-section .flickity-prev-next-button.previous {
+    left: 16px;
+  }
+  
+  .collection-carousel-section .flickity-prev-next-button.next {
+    right: 80px;
+  }
+  
+  .collection_carousel_item {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 64px;
+    align-items: center;
+    background: #F88E24;
+    border-radius: 40px;
+    margin: 0 12px;
+    width: 70%;
+    height: 868px;
+    overflow: hidden;
+  }
+  
+  .collection_carousel_item:first-child {
+    margin-left: 0;
+  }
+  
+  .collection_carousel_item:last-child {
+    margin-right: 0;
+  }
+  
+  .collection_carousel_item:nth-child(2) {
+    background: #399965;
+  }
+  
+  .collection_carousel_item .collection_carousel_images {
+    max-width: 640px;
+    width: 100%;
+  }
+  
+  .collection_carousel_item .collection_carousel_images a {
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .collection_carousel_item .collection_carousel_images a img {
+    width: 100%;
+    border-radius: 40px 0px 0px 40px;
+  }
+  
+  .collection_carousel_item .collection_carousel_content {
+    max-width: 512px;
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .collection_carousel_item .collection_carousel_content .subTitle {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid #ffffff;
+    border-radius: 100px;
+    padding: 13px 16px 11px;
+    line-height: 1;
+  }
+  
+  .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+    margin-top: 150px;
+  }
+  
+  .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  
+  .collection_carousel_item .collection_carousel_content .collection_carousel_text .sub-title {
+    display: block;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+  
+  .collection_carousel_button {
+    margin-top: 152px;
+  }
+  
+  .collection_carousel_button .collection_carousel_btn {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    color: #ffffff;
+    font-family: var(--sds-ff-heading);
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  
+  .collection_carousel_button .collection_carousel_btn span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #ffffff;
+    border-radius: 50%;
+  }
+  
+  .collection_carousel_button .collection_carousel_btn span svg path {
+    fill: #000000;
+  }
+  
+  @media only screen and (min-width: 1600px) and (max-width: 1770px) {
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 1600px) / 2);
+    }
+  
+    .collection_carousel_item {
+      width: 78%;
+    }
+  }
+  
+  @media only screen and (min-width: 1400px) and (max-width: 1599px) {
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 1400px) / 2);
+    }
+  
+    .collection_carousel_item .collection_carousel_images {
+      max-width: 535px;
+    }
+  
+    .collection_carousel_item {
+      flex-wrap: nowrap;
+      column-gap: 35px;
+      height: 610px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 80px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+      margin-top: 95px;
+    }
+  
+    .collection_carousel_button {
+      margin-top: 100px;
+    }
+  }
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 1200px) / 2);
+    }
+  
+    .collection_carousel_item {
+      flex-wrap: nowrap;
+      column-gap: 35px;
+      height: 515px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 65px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+      margin-top: 95px;
+    }
+  
+    .collection_carousel_button {
+      margin-top: 85px;
+    }
+  }
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .collection-carousel-section {
+      padding-bottom: 100px;
+    }
+  
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 992px) / 2);
+    }
+  
+    .collection-carousel-section .flickity-prev-next-button {
+      width: 56px;
+      height: 56px;
+    }
+  
+    .collection_carousel_item {
+      flex-wrap: nowrap;
+      column-gap: 15px;
+      height: 425px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 50px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+      margin-top: 65px;
+    }
+  
+    .collection_carousel_button {
+      margin-top: 65px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .collection-carousel-section {
+      padding-bottom: 80px;
+    }
+  
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 768px) / 2);
+    }
+  
+    .collection-carousel-section .flickity-prev-next-button {
+      width: 56px;
+      height: 56px;
+    }
+  
+    .collection_carousel_item {
+      flex-wrap: nowrap;
+      column-gap: 15px;
+      height: 320px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 40px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+      margin-top: 35px;
+    }
+  
+    .collection_carousel_button {
+      margin-top: 35px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .subTitle {
+      font-size: 12px;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .collection-carousel-section {
+      padding-bottom: 80px;
+    }
+  
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 576px) / 2);
+    }
+  
+    .collection-carousel-section .flickity-prev-next-button {
+      width: 50px;
+      height: 50px;
+    }
+  
+    .collection_carousel_item {
+      height: auto;
+      border-radius: 24px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 25px;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+      margin-top: 30px;
+    }
+  
+    .collection_carousel_button {
+      margin-top: 25px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .subTitle {
+      font-size: 12px;
+    }
+  
+    .collection_carousel_item .collection_carousel_images a img {
+      border-radius: 24px 24px 0px 0px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .collection-carousel-section {
+      padding-bottom: 80px;
+    }
+  
+    .collection-carousel-section .page-width {
+      margin-left: calc((100% - 375px) / 2);
+    }
+  
+    .collection-carousel-section .flickity-prev-next-button {
+      width: 45px;
+      height: 45px;
+    }
+  
+    .collection-carousel-section .flickity-prev-next-button.next {
+      right: 25px;
+    }
+  
+    .collection_carousel_item {
+      height: auto;
+      border-radius: 24px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content {
+      padding: 22px 16px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 20px;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
+      margin-top: 24px;
+    }
+  
+    .collection_carousel_button {
+      display: none;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .subTitle {
+      font-size: 12px;
+      padding: 10px 12px 8px;
+    }
+  
+    .collection_carousel_item .collection_carousel_images a img {
+      height: 240px;
+      object-fit: cover;
+      border-radius: 24px 24px 0px 0px;
+    }
+  
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .sub-title {
+      font-size: 14px;
+      letter-spacing: initial;
+    }
+  }
+  
+  /* !END: Collection carousel CSS *
