@@ -33,7 +33,7 @@
         {% for i in (1..repeat_count) %} 
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
-              <div class="marquee_item">
+              <div class="marquee_item" {{ block.shopify_attributes }}>
                 <div class="marquee_title">
                   <h3 class="title">{{ block.settings.title }}</h3>
                 </div>
@@ -45,7 +45,7 @@
         {% for i in (1..repeat_count) %} 
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
-              <div class="marquee_item">
+              <div class="marquee_item" {{ block.shopify_attributes }}>
                 <div class="marquee_title">
                   <h3 class="title">{{ block.settings.title }}</h3>
                 </div>
@@ -67,7 +67,7 @@
         {% for i in (1..repeat_count) %} 
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
-              <div class="marquee_item">
+              <div class="marquee_item" {{ block.shopify_attributes }}>
                 <div class="marquee_title">
                   <h3 class="title">{{ block.settings.title }}</h3>
                 </div>
@@ -79,7 +79,7 @@
         {% for i in (1..repeat_count) %}
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
-              <div class="marquee_item">
+              <div class="marquee_item" {{ block.shopify_attributes }}>
                 <div class="marquee_title">
                   <h3 class="title">{{ block.settings.title }}</h3>
                 </div>
@@ -95,7 +95,7 @@
           <div class="scroll_text_carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'>
             {% for block in section.blocks %}
               {% if block.type == 'marquee_item' %}
-                <div class="marquee_item">
+                <div class="marquee_item" {{ block.shopify_attributes }}>
                   <div class="marquee_title">
                     <h3 class="title">{{ block.settings.title }}</h3>
                   </div>
