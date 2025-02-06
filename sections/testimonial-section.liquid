@@ -12,6 +12,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  .testimonial-item{
+    width: calc((100% / {{section.settings.columns_desktop}}));
+  }
+  
 {%- endstyle -%}
 
 <!-- start: Testimonial Section -->
@@ -22,7 +26,7 @@
     </div>
     <div class="testimonial_erap">
       <items-carousel> 
-      <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false }'>
+      <div class="carousel items-carousel-selector" data-flickity='{ "freeScroll": false, "contain": true, "prevNextButtons": true, "pageDots": false }'>
         {%- for block in section.blocks -%} 
         <div class="testimonial-item" {{ block.shopify_attributes }}>
             {%- if block.settings.testimonial_image != blank -%}
@@ -80,16 +84,25 @@
   "name": "Testimonial Section",
   "settings": [
     {
-      "type": "text",
-      "id": "testimonial_heading",
-      "label": "Testimonial Heading",
-      "default": "Customer Reviews"
-    },
-    {
       "type": "color_scheme",
       "id": "section_color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
     },
     {
       "type": "range",
@@ -120,41 +133,41 @@
         {
           "type": "image_picker",
           "id": "testimonial_image",
-          "label": "Testimonial Image"
+          "label": "Image"
         },
         {
           "type": "text",
           "id": "client_review_title",
-          "label": "Review Title",
+          "label": "Title",
           "default": "Elevated Streetwear"
         },
         {
           "type": "richtext",
           "id": "client_review_text",
-          "label": "Review Text",
+          "label": "Text",
           "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
         },
         {
           "type": "image_picker",
           "id": "client_image",
-          "label": "Client Image"
-        },
-        {
-        "type": "product",
-        "id": "testimonial_product",
-        "label": "Select Product"
+          "label": "Avatar"
         },
         {
           "type": "text",
           "id": "client_name",
-          "label": "Client Name",
+          "label": "Name",
           "default": "Anya Petrova"
         },
         {
           "type": "text",
           "id": "client_location",
-          "label": "Client Location",
+          "label": "Location",
           "default": "Paris, France"
+        },
+        {
+        "type": "product",
+        "id": "testimonial_product",
+        "label": "Select Product"
         }
       ]
     }
