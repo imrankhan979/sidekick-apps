@@ -226,10 +226,10 @@ START: Testimonial CSS
 
 .testimonial-item {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   width: 50%;
   column-gap: 48px;
+  margin-right: 48px;
 }
 
 @media only screen and (min-width: 1601px) and (max-width: 1770px) {
