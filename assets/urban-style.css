@@ -32,7 +32,7 @@
     margin-bottom: 143px;
   }
   .redefine_wrapper .redefine_title .title {
-    font-size: 144px;
+    font-size: clamp(2rem, -0.625rem + 11.6667vw, 9rem);
     text-align: center;
     margin-bottom: 0;
     letter-spacing: -0.01em;
@@ -43,18 +43,13 @@
     .redefine_wrapper .redefine_title {
       margin-bottom: 100px;
     }
-    .redefine_wrapper .redefine_title .title {
-      font-size: 100px;
-    }
   }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .redefine_wrapper .redefine_title {
       max-width: 620px;
       margin-bottom: 90px;
     }
-    .redefine_wrapper .redefine_title .title {
-      font-size: 80px;
-    }
+
   }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .redefine_wrapper {
@@ -69,9 +64,7 @@
     .redefine_wrapper .redefine_title {
       margin-bottom: 80px;
     }
-    .redefine_wrapper .redefine_title .title {
-      font-size: 70px;
-    }
+
   }
   @media only screen and (min-width: 576px) and (max-width: 767px) {
     .redefine_wrapper {
@@ -81,9 +74,7 @@
     .redefine_wrapper .redefine_title {
       margin-bottom: 50px;
     }
-    .redefine_wrapper .redefine_title .title {
-      font-size: 60px;
-    }
+
   }
   @media (max-width: 575px) {
     .redefine_wrapper {
@@ -93,10 +84,6 @@
     .redefine_wrapper .redefine_title {
       max-width: 285px;
       margin-bottom: 48px;
-    }
-    .redefine_wrapper .redefine_title .title {
-      font-size: 32px;
-      line-height: 1.2;
     }
   }
   
@@ -162,11 +149,7 @@
     bottom: -12.4%;
     left: -29.5%;
   }
-  @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .redefine_item .redefine_content .title {
-      font-size: 35px;
-    }
-  }
+
   @media only screen and (min-width: 1601px) and (max-width: 1770px) {
     .redefine_item .redefine_images .shapes-1 {
       top: 80px;
@@ -175,9 +158,6 @@
     }
   }
   @media only screen and (min-width: 1400px) and (max-width: 1600px) {
-    .redefine_item {
-      max-width: 1020px;
-    }
     .redefine_item .redefine_images {
       max-width: 450px;
     }
@@ -197,9 +177,6 @@
     }
   }
   @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-    .redefine_item {
-      max-width: 925px;
-    }
     .redefine_item .redefine_images {
       max-width: 400px;
     }
@@ -224,9 +201,6 @@
     }
   }
   @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .redefine_item {
-      max-width: 795px;
-    }
     .redefine_item .redefine_images {
       max-width: 360px;
     }
@@ -266,11 +240,6 @@
       max-width: 520px;
       padding: 60px 30px;
     }
-    .redefine_item .redefine_content .title {
-      letter-spacing: -0.02em;
-      color: rgb(var(--color-foreground));
-      font-size: 30px;
-  }
     .redefine_item .redefine_content .shapes-2 {
       max-width: 120px;
       top: 55%;
@@ -298,9 +267,6 @@
       max-width: 100%;
       padding: 50px 25px;
       margin-top: -20px;
-    }
-    .redefine_item .redefine_content .title {
-      font-size: 25px;
     }
     .redefine_item .redefine_content .desc {
       font-size: 18px;
@@ -349,9 +315,7 @@
     .redefine_item .redefine_content .title {
       max-width: 230px;
       width: 100%;
-      font-size: 20px;
       margin-bottom: 20px;
-      letter-spacing: -0.01em;
     }
     .redefine_item .redefine_content .desc {
       font-size: 14px;

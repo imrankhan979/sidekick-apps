@@ -1,0 +1,71 @@
+{% stylesheet %}
+    .position-{{ block.id }}-top{
+        top: {{ block.settings.top_offset }}%;
+    }
+    .position-{{ block.id }}-left{
+        left: {{ block.settings.left_offset }}%;
+    }
+    .block-shape-img{
+        position: absolute;
+    }
+{% endstylesheet %}
+<img 
+  src="{{ block.settings.image | image_url: width: 1500 }}" 
+  srcset="{{ block.settings.image | image_url: width: 165 }} 165w, 
+          {{ block.settings.image | image_url: width: 360 }} 360w, 
+          {{ block.settings.image | image_url: width: 535 }} 535w, 
+          {{ block.settings.image | image_url: width: 750 }} 750w, 
+          {{ block.settings.image | image_url: width: 1070 }} 1070w, 
+          {{ block.settings.image | image_url: width: 1500 }} 1500w" 
+        class="block-shape-img" 
+        width="1500" 
+        height="556" 
+        loading="lazy" 
+        style="top: {{ block.settings.top_offset }}%;  left: {{ block.settings.left_offset }}%; max-width: {{ block.settings.max_width }}%">
+{% schema %}
+    {
+        "name": "Shape image",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "range",
+                "id": "max_width",
+                "label": "Max width",
+                "default": 80,
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "%"
+            },
+            {
+                "type": "range",
+                "id": "top_offset",
+                "label": "Top offset",
+                "default": 0,
+                "min": -100,
+                "max": 100,
+                "step": 2,
+                "unit": "%"
+            },
+            {
+                "type": "range",
+                "id": "left_offset",
+                "label": "Left offset",
+                "default": 0,
+                "min": -100,
+                "max": 100,
+                "step": 2,
+                "unit": "%"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Shape image"
+            }
+        ]
+    }
+{% endschema %}
