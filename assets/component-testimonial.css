@@ -4,7 +4,6 @@
 
 .heading_area .sec_title {
   font-size: 64px;
-  text-transform: uppercase;
   line-height: 1;
 }
 
@@ -72,7 +71,7 @@ START: Testimonial CSS
 .testimonial-section .page-width .flickity-prev-next-button.previous {
   left: auto;
   right: 64px;
-  top: -120px;
+  top: -112px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -182,7 +181,7 @@ START: Testimonial CSS
 
 .testimonial-section .page-width .flickity-prev-next-button.next {
   right: 0;
-  top: -120px;
+  top: -112px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -221,6 +220,9 @@ START: Testimonial CSS
   .testimonial-section .page-width .flickity-prev-next-button[disabled]{
     background-color: rgba(var(--color-button), 0.5) !important;
   }
+  .testimonial-section .page-width .flickity-prev-next-button:hover svg path{
+    fill: rgb(var(--color-button-text)) !important;
+  }
 }
 @media only screen and (min-width: 1601px) and (max-width: 1770px) {
   .testimonial-section .testimonial-item {
@@ -244,14 +246,6 @@ START: Testimonial CSS
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 15px;
   }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 28px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 32px;
-  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -265,14 +259,6 @@ START: Testimonial CSS
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 15px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 20px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 20px;
   }
 }
 
@@ -288,14 +274,6 @@ START: Testimonial CSS
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 25px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 30px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 40px;
   }
 }
 
@@ -316,14 +294,6 @@ START: Testimonial CSS
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 25px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 30px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 40px;
   }
 }
 
@@ -354,12 +324,10 @@ START: Testimonial CSS
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 25px;
     justify-content: center;
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 30px;
     justify-content: center;
     text-align: start;
   }
@@ -387,12 +355,10 @@ START: Testimonial CSS
   .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
     column-gap: 12px;
     justify-content: center;
-    margin-top: 36px;
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
     justify-content: center;
-    margin-top: 36px;
     text-align: start;
   }
 
@@ -440,7 +406,19 @@ START: Testimonial CSS
   width: 100%;
   padding-right: 24px;
 }
-
+.testimonial-item .testimonial-content > * + * {
+  margin-top: 60px;
+}
+@media (max-width: 1600px) {
+  .testimonial-item .testimonial-content > * + * {
+    margin-top: 36px;
+  }
+}
+@media (max-width: 767px) {
+  .testimonial-item .testimonial-content {
+    padding-right: 0;
+  }  
+}
 .testimonial-item .testimonial-content .testimonial-text .title {
   margin-bottom: 38px;
 }
@@ -461,7 +439,6 @@ START: Testimonial CSS
   flex-wrap: wrap;
   align-items: center;
   column-gap: 16px;
-  margin-top: 58px;
 }
 
 .testimonial-item .testimonial-content .testimonial-author .author-images {
@@ -487,7 +464,7 @@ START: Testimonial CSS
 
 .testimonial-item .testimonial-content .testimonial-author .author-text .designation {
   display: inline-block;
-  color: rgb(var(--color-foreground));
+  color: rgba(var(--color-foreground), .55);
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -497,7 +474,6 @@ START: Testimonial CSS
   display: flex;
   flex-wrap: wrap;
   column-gap: 24px;
-  margin-top: 62px;
 }
 
 .testimonial-item .testimonial-content .testimonial-infos .infos-text .title {

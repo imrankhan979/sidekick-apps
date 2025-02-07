@@ -26,7 +26,7 @@
     </div>
     <div class="testimonial_erap">
       <items-carousel> 
-      <div class="carousel items-carousel-selector" data-flickity='{ "freeScroll": false, "contain": true, "prevNextButtons": true, "pageDots": false }'>
+      <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false, "autoPlay": {{ section.settings.autoplay }} }'>
         {%- for block in section.blocks -%} 
         <div class="testimonial-item" {{ block.shopify_attributes }}>
             {%- if block.settings.testimonial_image != blank -%}
@@ -35,40 +35,54 @@
           </div>
         {%- endif -%}
           <div class="testimonial-content">
-            <div class="testimonial-text">
-              <h5 class="title">{{ block.settings.client_review_title }}</h5>
-              <div class="desc">
-                <p>{{ block.settings.client_review_text }}</p>
-              </div>
-            </div>
-            <div class="testimonial-author">
-                {%- if block.settings.client_image != blank -%}
-              <div class="author-images">
-                {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-              </div>
-            {%- endif -%}
-              <div class="author-text">
-                <h5 class="title">{{ block.settings.client_name }}</h5>
-                <span class="designation">{{ block.settings.client_location }}</span>
-              </div>
-            </div>
-            <div class="testimonial-infos">
-                <div class="infos-text">
-                    <h6 class="title">
-                        <a  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
-                            {{ block.settings.testimonial_product.title | default: "Select a product" }}
-                        </a>
-                    </h6>
-                    <span class="price">
-                        {{ block.settings.testimonial_product.price | money | default: "$0.00" }}
-                    </span>
+            {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
+                <div class="testimonial-text">
+                {% if block.settings.client_review_title %}
+                  <h5 class="title">{{ block.settings.client_review_title }}</h5>
+                {% endif %}
+                {% if block.settings.client_review_text %}
+                  <div class="desc">
+                    <p>{{ block.settings.client_review_text }}</p>
+                  </div>
+                {% endif %}
                 </div>
-                <div class="testimonial-button">
-                    <a class="link-btn" href="{{ block.settings.testimonial_product.url }}">
-                        {{- 'icon-plus.svg' | inline_asset_content -}}
-                    </a>
+            {% endif %}
+            {% if block.settings.client_image != blank  or  block.settings.client_name != blank or block.settings.client_location != blank %}
+               <div class="testimonial-author">
+                  {%- if block.settings.client_image != blank -%}
+                <div class="author-images">
+                  {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                 </div>
-            </div>
+              {%- endif -%}
+                <div class="author-text">
+                  {% if block.settings.client_name %}
+                    <h5 class="title">{{ block.settings.client_name }}</h5>
+                  {% endif %}
+                  {% if block.settings.client_location %}
+                    <span class="designation">{{ block.settings.client_location }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+            {% if block.settings.show_product %}
+              <div class="testimonial-infos">
+                  <div class="infos-text">
+                      <h6 class="title">
+                          <a  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
+                              {{ block.settings.testimonial_product.title | default: "Select a product" }}
+                          </a>
+                      </h6>
+                      <span class="price">
+                          {{ block.settings.testimonial_product.price | money | default: "$0.00" }}
+                      </span>
+                  </div>
+                  <div class="testimonial-button">
+                      <a class="link-btn" href="{{ block.settings.testimonial_product.url }}">
+                          {{- 'icon-plus.svg' | inline_asset_content -}}
+                      </a>
+                  </div>
+              </div>
+            {% endif %}
           </div> 
         </div>
         {%- endfor -%}
@@ -103,6 +117,16 @@
       "step": 1,
       "default": 2,
       "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -163,6 +187,12 @@
           "id": "client_location",
           "label": "Location",
           "default": "Paris, France"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product",
+          "label": "Show product",
+          "default": true
         },
         {
         "type": "product",
