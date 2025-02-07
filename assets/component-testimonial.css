@@ -266,9 +266,8 @@ START: Testimonial CSS
   .testimonial-section {
     padding-bottom: 100px;
   }
-
+ 
   .testimonial-section .testimonial-item {
-    width: 100%;
     column-gap: 30px;
   }
 

@@ -40,7 +40,7 @@
                 {% if block.settings.client_review_title %}
                   <h5 class="title">{{ block.settings.client_review_title }}</h5>
                 {% endif %}
-                {% if block.settings.client_review_text %}
+                {% if block.settings.client_review_text %} 
                   <div class="desc">
                     <p>{{ block.settings.client_review_text }}</p>
                   </div>
@@ -204,7 +204,18 @@
   ],
   "presets": [
     {
-      "name": "Testimonial Section"
+      "name": "Testimonial Section",
+      "blocks": [
+      {
+        "type": "testimonial"
+      },
+      {
+        "type": "testimonial"
+      },
+      {
+        "type": "testimonial"
+      }
+    ]
     }
   ]
 }
