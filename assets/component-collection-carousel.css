@@ -14,10 +14,10 @@ START: Collection carousel CSS
   }
   
   .collection-carousel-section .flickity-button {
-    background: #ffffff;
-    color: #000000;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
   }
-  
+ 
   .collection-carousel-section .flickity-prev-next-button {
     width: 64px;
     height: 64px;
@@ -46,14 +46,11 @@ START: Collection carousel CSS
   .collection_carousel_item {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     column-gap: 64px;
     align-items: center;
-    background: #F88E24;
     border-radius: 40px;
     margin: 0 12px;
     width: 70%;
-    height: 868px;
     overflow: hidden;
   }
   
@@ -85,18 +82,17 @@ START: Collection carousel CSS
   }
   
   .collection_carousel_item .collection_carousel_content {
-    max-width: 512px;
     width: 100%;
-    padding: 15px;
+    padding: 120px 15px;
   }
   
   .collection_carousel_item .collection_carousel_content .subTitle {
     display: inline-block;
-    color: #ffffff;
+    color: rgb(var(--color-foreground));
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    border: 1px solid #ffffff;
+    border: 1px solid rgb(var(--color-foreground));
     border-radius: 100px;
     padding: 13px 16px 11px;
     line-height: 1;
@@ -108,7 +104,7 @@ START: Collection carousel CSS
   
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
     display: inline-block;
-    color: #ffffff;
+    color: rgb(var(--color-foreground));
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -118,7 +114,7 @@ START: Collection carousel CSS
   
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .sub-title {
     display: block;
-    color: #ffffff;
+    color: rgb(var(--color-foreground));
     font-size: 20px;
     font-weight: 400;
     letter-spacing: -0.01em;
@@ -132,7 +128,7 @@ START: Collection carousel CSS
     display: flex;
     align-items: center;
     column-gap: 12px;
-    color: #ffffff;
+    color: rgb(var(--color-secondary-button-text));
     font-family: var(--sds-ff-heading);
     font-size: 18px;
     font-weight: 700;
@@ -146,12 +142,12 @@ START: Collection carousel CSS
     justify-content: center;
     width: 28px;
     height: 28px;
-    background: #ffffff;
+    background: rgb(var(--color-secondary-button-text));
     border-radius: 50%;
   }
   
   .collection_carousel_button .collection_carousel_btn span svg path {
-    fill: #000000;
+    fill: rgb(var(--color-secondary-button ));
   }
   
   @media only screen and (min-width: 1600px) and (max-width: 1770px) {
@@ -301,6 +297,7 @@ START: Collection carousel CSS
     }
   
     .collection_carousel_item {
+    flex-direction: column;
       height: auto;
       border-radius: 24px;
     }
@@ -317,6 +314,10 @@ START: Collection carousel CSS
   
     .collection_carousel_button {
       margin-top: 25px;
+    }
+
+    .collection_carousel_item .collection_carousel_content {
+      padding: 40px 15px;
     }
   
     .collection_carousel_item .collection_carousel_content .subTitle {
@@ -347,6 +348,7 @@ START: Collection carousel CSS
     }
   
     .collection_carousel_item {
+      flex-direction: column;
       height: auto;
       border-radius: 24px;
     }
