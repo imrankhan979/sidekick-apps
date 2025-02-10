@@ -1,4 +1,23 @@
-<div class="desc" {{ block.shopify_attributes }}>{{ block.settings.description }}</div>
+{% stylesheet %}
+  .block_desc {
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: rgb(var(--color-foreground));
+    line-height: 1.4;
+  }
+  .block_desc p:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+    @media screen and (max-width: 991px){
+        .block_desc{
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+{% endstylesheet %}
+
+<div class="block_desc" {{ block.shopify_attributes }}>{{ block.settings.description }}</div>
 
 {% schema %}
     {

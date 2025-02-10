@@ -1,3 +1,11 @@
+{% stylesheet %}
+    @media screen and (max-width: 991px){
+        .theme_block_heading{
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
+{% endstylesheet %}
 <h3 class="theme_block_heading {% if block.settings.uppercase %}uppercase{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h3>
 
 {% schema %}
