@@ -1,4 +1,4 @@
-{{ 'component-collection-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'component-community-stories.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -15,8 +15,7 @@
 
 {%- endstyle -%}
 
-
- <!-- start: Collection Section -->
+<!-- start: Collection Section -->
  <section class="collection-carousel-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
         <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
@@ -83,13 +82,49 @@
         </div>
     </div>
 </section>
-
  <!-- end: Collection Section -->
+
+   <!-- start: Slider Community Section -->
+   <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+    <div class="page-width">
+       <div class="heading_area">
+          <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
+       </div>
+       <div class="slider_community_wrapper">
+          <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
+
+             <div class="slider_community_item">
+                <a class="#">
+                   <div class="slider_community_images">
+                      <a href="#"><img src="assets/images/community/slider-community-1.png" alt="Images"></a>
+                   </div>
+                   <div class="slider_community_content_box">
+                      <div class="slider_community_thumb">
+                         <img src="assets/images/community/slider-thumb-1.png" alt="Images">
+                      </div>
+                      <div class="slider_community_text">
+                         <h6 class="slider_community_title">Flame Logo T-shirt</h6>
+                         <div class="slider_community_percent">$315.00</div>
+                      </div>
+                   </div>
+                </a>
+             </div>
+             
+          </div>
+       </div>
+ </section>
+ <!-- end: Slider Community Section -->
 
 {% schema %}
 {
   "name": "Collection Carousel",
   "settings": [
+    {
+      "type": "text",
+      "id": "community_heading",
+      "label": "Community Heading",
+      "default": "Community Stories"
+    },
     {
       "type": "color_scheme",
       "id": "section_color_scheme",

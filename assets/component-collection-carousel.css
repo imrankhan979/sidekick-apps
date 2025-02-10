@@ -83,7 +83,7 @@ START: Collection carousel CSS
   
   .collection_carousel_item .collection_carousel_content {
     width: 100%;
-    padding: 120px 0;
+    padding: 120px 15px;
   }
   
   .collection_carousel_item .collection_carousel_content .subTitle {
@@ -297,6 +297,7 @@ START: Collection carousel CSS
     }
   
     .collection_carousel_item {
+    flex-direction: column;
       height: auto;
       border-radius: 24px;
     }
@@ -313,6 +314,10 @@ START: Collection carousel CSS
   
     .collection_carousel_button {
       margin-top: 25px;
+    }
+
+    .collection_carousel_item .collection_carousel_content {
+      padding: 40px 15px;
     }
   
     .collection_carousel_item .collection_carousel_content .subTitle {
@@ -343,6 +348,7 @@ START: Collection carousel CSS
     }
   
     .collection_carousel_item {
+      flex-direction: column;
       height: auto;
       border-radius: 24px;
     }
