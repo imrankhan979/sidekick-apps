@@ -1272,10 +1272,8 @@ class ObservedDiv extends HTMLElement {
     this.resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const height = entry.contentRect.height;
-        this.style.setProperty(
-          "--observed-height",
-          `${height}px`
-        );
+        document.body.style.setProperty("--observed-height", `${height}px`);
+        this.style.setProperty("--observed-height", `${height}px`);
       }
     });
     this.resizeObserver.observe(this);
@@ -1544,7 +1542,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           initialize(options) {
               if (this.theCarousel && this.theCarousel.offsetParent !== null) {
-                  const defaultOptions = { /* ... your default options ... */ };
+                  const defaultOptions = { "autoplay": false };
                   const mergedOptions = { ...defaultOptions, ...options };
                   this.flickity = new Flickity(this.theCarousel, mergedOptions);
                   this.theCarousel.style.display = "block";
@@ -1575,3 +1573,4 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 });
+
