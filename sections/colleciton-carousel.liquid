@@ -5,41 +5,71 @@
     padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
   }
-
+ 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
 {%- endstyle -%}
 
 
  <!-- start: Collection Section -->
- <section class="collection-carousel-section section-{{ section.id }}-padding">
+ <section class="collection-carousel-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
         <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
           {%- for block in section.blocks -%}
-            {%- assign collection = block.settings.collection -%}
-            <div class="collection_carousel_item">
+            <div class="collection_carousel_item" style="background-color: {{ block.settings.collection_bg_color }};">
                 <div class="collection_carousel_images">
-                    <a href="{{ collection.url }}">
+                  {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
+                    <a href="{{ block.settings.collection_select.url }}">
                       {%- if block.settings.collection_image != blank -%}
                         {{ block.settings.collection_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                         {%- else -%}
                         {{ block.settings.collection_select.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                       {%- endif -%}
                     </a>
+                    {%- else -%}
+                    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                    {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
                 </div>
                 <div class="collection_carousel_content">
-                    <span class="subTitle">Featured collection</span>
+                    <span class="subTitle">{{ block.settings.collection_featured }}</span>
+                    {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
                     <div class="collection_carousel_text">
-                        <h2 class="display-1"><a href="{{ collection.url }}">{{ collection.title }}</a></h2>
-                        <span class="sub-title">{{ collection.products_count }} Items</span>
+                        <h2 class="display-1"><a href="{{ block.settings.collection_select.url }}">
+                          {%- if block.settings.collection_heading != blank -%}
+                            {{ block.settings.collection_heading }}
+                            {%- else -%}
+                          {{ block.settings.collection_select.title }}
+                        {%- endif -%}
+                          </a></h2>
+                        <span class="sub-title">{{ block.settings.collection_select.products_count }}
+                          {%- if block.settings.collection_select != blank -%}
+                          {%- if block.settings.collection_select.products_count <= 1 -%}
+                           Item
+                           {%- else -%}
+                           Items
+                          {%- endif -%}
+                          {%- else -%}
+                         0 Item
+                        {%- endif -%}
+                           </span> 
                     </div>
+                  {%- endif -%}
                     <div class="collection_carousel_button">
-                        <a class="collection_carousel_btn" href="{{ collection.url }}">
-                            Shop Now
+                        <a class="collection_carousel_btn" href="
+                        {%- if block.settings.collection_button_link != blank -%}
+                        {{ block.settings.collection_button_link }}
+                        {%- else -%}
+                        {{ block.settings.collection_select.url }}
+                        {%- endif -%}
+                         ">
+                          {{ block.settings.collection_button }}
                             <span>
                                 <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.70697 11.707L7.41397 5.99997L1.70697 0.292969L0.292969 1.70697L4.58597 5.99997L0.292969 10.293L1.70697 11.707Z" fill="white"></path>
@@ -61,16 +91,14 @@
   "name": "Collection Carousel",
   "settings": [
     {
-      "type": "text",
-      "id": "testimonial_heading",
-      "label": "Testimonial Heading",
-      "default": "Customer Reviews"
-    },
-    {
       "type": "color_scheme",
       "id": "section_color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -96,8 +124,19 @@
   "blocks": [
     {
       "type": "collection",
-      "name": "Collection Item",
+      "name": "Collection Carousel",
       "settings": [
+        {
+        "type": "collection",
+        "id": "collection_select",
+        "label": "Select Collection"
+        },
+        {
+          "type": "color",
+          "id": "collection_bg_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
         {
           "type": "image_picker",
           "id": "collection_image",
@@ -105,37 +144,27 @@
         },
         {
           "type": "text",
-          "id": "client_review_title",
-          "label": "Review Title",
-          "default": "Elevated Streetwear"
-        },
-        {
-          "type": "richtext",
-          "id": "client_review_text",
-          "label": "Review Text",
-          "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
-        },
-        {
-          "type": "image_picker",
-          "id": "client_image",
-          "label": "Client Image"
-        },
-        {
-        "type": "collection",
-        "id": "collection_select",
-        "label": "Select Collection"
+          "id": "collection_heading",
+          "label": "Heading",
+          "default": "Elevated Streetwear",
+          "info": "If left blank, the collection name will be used."
         },
         {
           "type": "text",
-          "id": "client_name",
-          "label": "Client Name",
-          "default": "Anya Petrova"
+          "id": "collection_featured",
+          "label": "Badge",
+          "default": "Featured Collection"
         },
         {
           "type": "text",
-          "id": "client_location",
-          "label": "Client Location",
-          "default": "Paris, France"
+          "id": "collection_button",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "collection_button_link",
+          "label": "Button Link"
         }
       ]
     }
