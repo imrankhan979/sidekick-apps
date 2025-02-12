@@ -13,44 +13,60 @@
   }
 {%- endstyle -%}
 
-<section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }} section-{{ section.id }}-padding">
-  <div class="page-width">
+<section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}">
     <div class="slider_wrapper">
       <items-carousel>
         <div class="carousel items-carousel-selector" data-flickity='{"prevNextButtons": true, "pageDots": true}'>
           {% for block in section.blocks %}
-            <div class="slider_item" {{ block.shopify_attributes }}>
-              <div class="slider-images" style="width: {{ block.settings.image_max_width }}%;">
-                {% if block.settings.image %}
-                  <img src="{{ block.settings.image | img_url: 'master' }}" width="" height="" alt="Slide Image">
-                {% else %}
-                  
-                {% endif %} 
-              </div>
-              <div class="slider_item_content" style="width: calc(100% - {{ block.settings.image_max_width }}%);">
-                <h1 class="slider_title">
-                  {{ block.settings.title | newline_to_br }}
-                  {% if block.settings.cta_text %}
-                    <a class="active-text" href="{{ block.settings.cta_link }}">{{ block.settings.cta_text }}</a>
-                  {% endif %}
-                </h1>
-                <div class="slider_item_text">
-                  <div class="slider_item_desc">
-                    <p>{{ block.settings.description }}</p>
-                  </div>
-                  <div class="slider_button">
-                    {% if block.settings.button_text %}
-                      <a class="slider-btn" href="{{ block.settings.button_link }}">{{ block.settings.button_text }} <span> {{- 'icon-arrow.svg' | inline_asset_content -}}</span></a>
-                    {% endif %}
-                  </div>
+            <div class="section-{{ section.id }}-padding slider_item {% if block.settings.image == blank %}no-img{% endif %}" {{ block.shopify_attributes }}>
+            {% if block.settings.image == blank %}
+              <div class="page-width w-full">
+            {% endif %}
+              {% if block.settings.image != blank %} 
+                <div class="slider-images" style="width: {{ block.settings.image_max_width }}%;">
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | img_url: 'master' }}" width="" height="" alt="Slide Image">
+                  {% else %}
+                    
+                  {% endif %} 
                 </div>
+              {% endif %}
+
+              <div class="slider_item_content" {% if block.settings.image != blank %} style="width: calc(100% - {{ block.settings.image_max_width }}%);" {% endif %}>
+                {% if block.settings.title != blank %}
+                  <h1 class="slider_title">
+                    {{ block.settings.title | newline_to_br }}
+                    {% if block.settings.cta_text != blank %}
+                      <a class="active-text" href="{{ block.settings.cta_link }}">{{ block.settings.cta_text }}</a>
+                    {% endif %}
+                  </h1>
+                {% endif %}
+                {% if block.settings.description != blank or block.settings.button_text != blank %}
+                <div class="slider_item_text">
+                  {% if block.settings.description != blank %}
+                    <div class="slider_item_desc">
+                      <p>{{ block.settings.description }}</p>
+                    </div>
+                  {% endif %}
+                  {% if block.settings.button_text != blank %}
+                    <div class="slider_button">
+                      {% if block.settings.button_text %}
+                        <a class="slider-btn" href="{{ block.settings.button_link }}">{{ block.settings.button_text }} <span> {{- 'icon-arrow.svg' | inline_asset_content -}}</span></a>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endif %}
               </div>
+              {% if block.settings.image == blank %}
+                </div>
+              {% endif %}
+
             </div>
           {% endfor %}
         </div>
       </items-carousel>
     </div>
-  </div>
 </section>
 
 {% schema %}
@@ -75,7 +91,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding Top",
-      "default": 0
+      "default": 60
     },
     {
       "type": "range",
@@ -85,7 +101,7 @@
       "step": 4,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 0
+      "default": 120
     }
     ],
     "blocks": [
@@ -93,6 +109,10 @@
         "type": "slide",
         "name": "Slide",
         "settings": [
+          {
+            "type": "header",
+            "content": "Image"
+          },
           {
             "type": "image_picker",
             "id": "image",
@@ -109,6 +129,10 @@
             "default": 60
           },
           {
+            "type": "header",
+            "content": "Text content"
+          },
+          {
             "type": "text",
             "id": "title",
             "label": "Title",
@@ -118,7 +142,8 @@
             "type": "text",
             "id": "cta_text",
             "label": "CTA Text",
-            "default": "collection"
+            "default": "collection",
+            "info": "CTA will be shown only if the title is not blank."
           },
           {
             "type": "url",
