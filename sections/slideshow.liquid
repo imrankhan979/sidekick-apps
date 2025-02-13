@@ -1,43 +1,43 @@
 {{ 'slideshow.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  {% for block in section.blocks %}
+  .section-{{ block.id }}-padding {
+    padding-top: {{ block.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ block.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
   @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+    .section-{{ block.id }}-padding {
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
     }
   }
+{% endfor %}
 {%- endstyle -%}
-
+  
 <section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}">
     <div class="slider_wrapper">
       <items-carousel>
         <div class="carousel items-carousel-selector" data-flickity='{"prevNextButtons": true, "pageDots": true}'>
           {% for block in section.blocks %}
-            <div class="section-{{ section.id }}-padding slider_item {% if block.settings.image == blank %}no-img{% endif %}" {{ block.shopify_attributes }}>
-            {% if block.settings.image == blank %}
-              <div class="page-width w-full">
-            {% endif %}
-              {% if block.settings.image != blank %} 
-                <div class="slider-images" style="width: {{ block.settings.image_max_width }}%;">
-                  {% if block.settings.image %}
+            <div class="section-{{ block.id }}-padding slider_item" {{ block.shopify_attributes }}>
+         
+              {% comment %} {% if block.settings.image != blank %}  {% endcomment %}
+                <div class="slider-images" style="width: calc(100% - {{ block.settings.content_width }}%);">
+                  {% if block.settings.image  != blank %}
                     <img src="{{ block.settings.image | img_url: 'master' }}" width="" height="" alt="Slide Image">
                   {% else %}
                     
                   {% endif %} 
                 </div>
-              {% endif %}
+              {% comment %} {% endif %} {% endcomment %}
 
-              <div class="slider_item_content" {% if block.settings.image != blank %} style="width: calc(100% - {{ block.settings.image_max_width }}%);" {% endif %}>
+              <div class="slider_item_content" {% if block.settings.image != blank %} style="width: {{ block.settings.content_width }}%;" {% endif %}>
                 {% if block.settings.title != blank %}
                   <h1 class="slider_title">
                     {{ block.settings.title | newline_to_br }}
                     {% if block.settings.cta_text != blank %}
-                      <a class="active-text" href="{{ block.settings.cta_link }}">{{ block.settings.cta_text }}</a>
+                      <a class="active-text" {% if block.settings.cta_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.cta_link }}" {% endif %}>{{ block.settings.cta_text }}</a>
                     {% endif %}
                   </h1>
                 {% endif %}
@@ -51,17 +51,24 @@
                   {% if block.settings.button_text != blank %}
                     <div class="slider_button">
                       {% if block.settings.button_text %}
-                        <a class="slider-btn" href="{{ block.settings.button_link }}">{{ block.settings.button_text }} <span> {{- 'icon-arrow.svg' | inline_asset_content -}}</span></a>
+                        <a class="slider-btn" {% if block.settings.button_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.button_link }}" {% endif %}>{{ block.settings.button_text }} <span> {{- 'icon-arrow.svg' | inline_asset_content -}}</span></a>
                       {% endif %}
                     </div>
                   {% endif %}
                 </div>
               {% endif %}
               </div>
-              {% if block.settings.image == blank %}
-                </div>
-              {% endif %}
-
+       
+              <div class="bg-media">
+                {% if block.settings.bg_video != blank %}
+                  {% assign video_url = block.settings.bg_video.sources[1].url %}
+                <video src="{{ video_url }}"playsinline  muted {% if block.settings.video_loop %}loop{% endif %} {% if block.settings.video_autoplay %}autoplay{% endif %}></video>
+                  {% elsif block.settings.bg_image != blank%}
+                  {{ block.settings.bg_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                  {% else %} 
+                  {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+              </div>
             </div>
           {% endfor %}
         </div>
@@ -78,40 +85,40 @@
       "id": "section_color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Top",
-      "default": 60
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "label": "Padding Bottom",
-      "default": 120
     }
     ],
     "blocks": [
       {
         "type": "slide",
-        "name": "Slide",
+        "name": "Slide item",
         "settings": [
           {
+            "type": "image_picker",
+            "id": "bg_image",
+            "label": "Background image"
+          },
+          {
+            "type": "video", 
+            "id": "bg_video",
+            "label": "Background video"
+          },
+          {
+            "type": "checkbox",
+            "id": "video_loop",
+            "label": "Loop video",
+            "default": true,
+            "info": "Enable to play the video in a continuous loop."
+        },
+        {
+            "type": "checkbox",
+            "id": "video_autoplay",
+            "label": "Autoplay video",
+            "default": true,
+            "info": "Enable to start playing the video automatically when loaded."
+        },
+          {
             "type": "header",
-            "content": "Image"
+            "content": "Image content"
           },
           {
             "type": "image_picker",
@@ -119,18 +126,18 @@
             "label": "Slide Image"
           },
           {
+            "type": "header",
+            "content": "Text content"
+          },
+          {
             "type": "range",
-            "id": "image_max_width",
+            "id": "content_width",
             "min": 0,
             "max": 100,
             "step": 1,
             "unit": "%",
-            "label": "Image width",
-            "default": 60
-          },
-          {
-            "type": "header",
-            "content": "Text content"
+            "label": "Content width",
+            "default": 40
           },
           {
             "type": "text",
@@ -166,6 +173,30 @@
             "type": "url",
             "id": "button_link",
             "label": "Button Link"
+          },
+          {
+            "type": "header",
+            "content": "Slide item padding"
+          },
+          {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 120,
+            "step": 4,
+            "unit": "px",
+            "label": "Padding Top",
+            "default": 60
+          },
+          {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 120,
+            "step": 4,
+            "unit": "px",
+            "label": "Padding Bottom",
+            "default": 120
           }
         ]
       }
