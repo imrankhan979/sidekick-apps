@@ -1,19 +1,11 @@
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
 {{ 'product-bundle.css' | asset_url | stylesheet_tag }}
 
-{% unless product.has_only_default_variant %}
-  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
-{% endunless %}
 
-
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+<script>
+  window.currencySymbol = "{{ cart.currency.symbol }}";
+</script>
+<script src="{{ 'bundle.js' | asset_url }}" defer></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -36,119 +28,83 @@
         <div id="product-list" class="bundle-products grid">
         
           {% for product in section.settings.collection.products %}
-          <div 
-            class="product" 
-            data-id="{{ product.id }}" 
-            data-title="{{ product.title }}"
-            data-price="{{ product.price | money_without_currency }}"
-          >
+            <div class="product" data-title="{{ product.title }}">
+              <a href="{{ product.url }}" class="product-image">
+                <img src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
+              </a>
+                <h5 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h5>
+                <p class="product-price" id="product-price-{{ product.id }}">{{ product.variants.first.price | money }}</p>
 
-          <div
-        class="card__inner {% if product.featured_media %} ratio{% endif %}"
-        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-      >
-          {%- if product.featured_media -%}
-            <div class="card-media">
-              <div class="media--transparent media--hover-effect">
-                {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-                <img
-                  srcset="
-                    {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                    {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                    {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                    {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                    {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                    {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                    {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
-                  "
-                  src="{{ product.featured_media | image_url: width: 533 }}"
-                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ product.featured_media.alt | escape }}"
-                  class="motion-reduce"
-                    loading="lazy"
-                  width="{{ product.featured_media.width }}"
-                  height="{{ product.featured_media.height }}"
-                >
-  
-                {%- if product.media[1] != null and section.settings.show_secondary_image -%}
-                  <img
-                    srcset="
-                      {%- if product.media[1].width >= 165 -%}{{ product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
-                      {%- if product.media[1].width >= 360 -%}{{ product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
-                      {%- if product.media[1].width >= 533 -%}{{ product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
-                      {%- if product.media[1].width >= 720 -%}{{ product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
-                      {%- if product.media[1].width >= 940 -%}{{ product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
-                      {%- if product.media[1].width >= 1066 -%}{{ product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
-                      {{ product.media[1] | image_url }} {{ product.media[1].width }}w
-                    "
-                    src="{{ product.media[1] | image_url: width: 533 }}"
-                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                    alt=""
-                    class="motion-reduce"
-                    loading="lazy"
-                    width="{{ product.media[1].width }}"
-                    height="{{ product.media[1].height }}"
-                  >
-                {%- endif -%}
-              </div>
+                {% assign showVariant = false %}
+                {% for option in product.options_with_values %}
+                  {% if option.name != "Title"  %}
+                    {% assign showVariant = true %}
+                  {% endif %}
+                {% endfor %}
+
+                {% if showVariant %}
+                  <div class="variant-picker">
+                    {% for option in product.options_with_values %}
+                      <div class="variant-group{% if option.name == 'Color' %} color-swatch{% endif %}">
+                        <p class="variant-group-name">{{ option.name }}</p>
+                        {% for value in option.values %}
+                        <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% if forloop.first %}checked{% endif %}>
+                          {%- liquid
+                              assign swatch_value = null
+                              if value.swatch.image
+                                assign image_url = value.swatch.image | image_url: width: 50
+                                assign swatch_value = 'url(' | append: image_url | append: ')'
+                              elsif value.swatch.color
+                                assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                              endif
+                            -%}
+                          <label for="{{product.id}}-{{value}}"  style="--swatch--background: {{ swatch_value }}" >
+                            {{ value }}
+                          </label>
+                        {% endfor %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                  
+                {% endif %}
+                <input class="product-variant-id" type="hidden" name="id" id="selected-variant-{{ product.id }}" value="{{ product.variants.first.id }}">
+                <button type="submit" class="add-to-bundle" id="add-to-cart-{{ product.id }}" {% unless product.variants.first.available %}disabled{% endunless %}>{% if product.variants.first.available %}Add to cart {% else %}Sold out{% endif %}</button>
             </div>
-          {%- endif -%}
-          <div class="card__badge">
-          {%- if product.available == false -%}
-            <span
-              id="Badge-{{ section_id }}-{{ product.id }}"
-              class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-            >
-              {{- 'products.product.sold_out' | t -}}
-            </span>
-          {%- elsif product.compare_at_price > product.price and product.available -%}
-            <span
-              id="Badge-{{ section_id }}-{{ product.id }}"
-              class="badge flex center badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-            >
-              {{- 'products.product.on_sale' | t -}}
-            </span>
-          {%- endif -%}
-        </div>
-        </div>
+            
+            <script>
+                  document.addEventListener("DOMContentLoaded", function() {
+                    document.querySelectorAll(".variant-picker input").forEach(input => {
+                      input.addEventListener("change", function() {
+                        let productId = this.dataset.productId;
+                        let selectedOptions = [];
+                        
+                        document.querySelectorAll(`[data-product-id='${productId}']`).forEach(option => {
+                          if (option.checked) {
+                            selectedOptions[option.dataset.optionIndex] = option.dataset.value;
+                          }
+                        });
+                        // console.log({{ product.variants | json }})
+                        let selectedVariant = {{ product.variants | json }}.find(variant => {  return JSON.stringify(variant.options) === JSON.stringify(selectedOptions); });
+                        
+                        if (selectedVariant) {
+                          document.getElementById(`selected-variant-${productId}`).value = selectedVariant.id;
 
-        <product-info
-        data-section="{{ section.id }}"
-        data-product-id="{{ product.id }}"
-        data-update-url="false"
-        data-url="{{ product.url }}"
-        {% if section.settings.image_zoom == 'hover' %}
-          data-zoom-on-hover
-        {% endif %}
-      >
-          <h2 class="product__title" >{{ product.title | escape }}</h2>
+                          let currencySymbol = "{{ cart.currency.symbol }}"; 
+                          document.getElementById(`product-price-${productId}`).innerText = currencySymbol + (selectedVariant.price / 100).toFixed(2);
+                          
+                          let addToCartButton = document.getElementById(`add-to-cart-${productId}`);
+                          if (addToCartButton.disabled = !selectedVariant.available) {
+                            addToCartButton.innerHTML = "Sold out"
+                          }else {
+                            addToCartButton.innerHTML = "Add to cart"
+                          }
+                          ;
+                        }
+                      });
+                    });
+                  });
+            </script>
 
-          <div id="price-{{ section.id }}" role="status" >
-            {%- render 'price',
-              product: product,
-              placeholder: placeholder,
-              use_variant: true,
-              show_badges: true,
-              price_class: 'price--large'
-            -%}
-          </div>
-
-       
-          {% render 'product-variant-picker-new',
-            product: product,
-            product_form_id: product_form_id
-          %}
-
-
-          {%- render 'buy-buttons',
-            product: product,
-            product_form_id: product_form_id,
-            section_id: section.id
-          -%}
-        
-          </product-info>
-
-          </div>
           {% endfor %}
         </div>
         <!-- Right Section: Bundle List -->
@@ -176,212 +132,6 @@
   </div>
 </div>
 
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const BUNDLE_LIMIT = 3;
-
-    function updateItemRange() {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      const itemRangeValue = (currentBundle.length / BUNDLE_LIMIT) * 100;
-      
-      // Get the #item-range div and update its --item-range CSS variable
-      const itemRangeDiv = document.getElementById('item-range');
-      itemRangeDiv.style.setProperty('--item-range', `${itemRangeValue}%`);
-    }
-
-    // Initial load of the page
-    updateItemRange();
-
-    const buttons = document.querySelectorAll('.add-to-bundle')
-    // Add to Bundle button handler
-    document.querySelectorAll('.add-to-bundle').forEach((button) => {
-      button.addEventListener('click', function () {
-        if (this.getAttribute('data-disabled') === 'true') {
-        return; // Prevent action if button is marked as disabled
-      }
-      
-        const productElem = this.closest('.product');
-        const productId = productElem.dataset.id;
-        const productTitle = productElem.dataset.title;
-        const productPrice = parseFloat(productElem.dataset.price);
-        const productImage = productElem.querySelector('img') ? productElem.querySelector('img').src : null;
-        const variantSelect = productElem.querySelector('.variant-select');
-        const variantId = variantSelect ? variantSelect.value : null;
-        const quantityInput = productElem.querySelector('.quantity-input');
-        const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
-
-        // Create bundle item object
-        const bundleItem = {
-          id: productId,
-          title: productTitle,
-          price: productPrice,
-          image: productImage,
-          variant: variantId,
-          quantity: quantity,
-        };
-
-        // Add to localStorage
-        const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-        currentBundle.push(bundleItem);
-        localStorage.setItem('bundleList', JSON.stringify(currentBundle));
-
-        this.disabled = true;
-
-        updateItemRange();
-        // Update Bundle List
-        updateBundleList();
-      });
-    });
-
-    // Remove Item from Bundle List
-    function removeItemFromBundle(itemId) {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      const updatedBundle = currentBundle.filter((item) => item.id !== itemId);
-      localStorage.setItem('bundleList', JSON.stringify(updatedBundle));
-
-      buttons.forEach((button) => {
-        const productElem = button.closest('.product');
-        if (productElem.dataset.id === itemId) {
-          button.disabled = false;
-        }
-      });
-
-      updateItemRange();
-      updateBundleList();
-    }
-
-    // Update quantity in the Bundle List
-    function updateQuantity(itemId, quantity) {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      const itemIndex = currentBundle.findIndex((item) => item.id === itemId);
-      if (itemIndex !== -1) {
-        currentBundle[itemIndex].quantity = quantity;
-        localStorage.setItem('bundleList', JSON.stringify(currentBundle));
-        updateBundleList();
-      }
-    }
-
-    // Calculate the total price of the bundle
-    function calculateTotalPrice() {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      let totalPrice = 0;
-      currentBundle.forEach((item) => {
-        totalPrice += item.quantity * item.price;
-      });
-      return totalPrice;
-    }
-
-  // Update Bundle List UI
-  function updateBundleList() {
-    const bundleListElem = document.getElementById('bundle-items');
-    bundleListElem.innerHTML = ''; // Clear the list
-    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-
-    currentBundle.forEach((item) => {
-      const listItemHTML = `
-        <li class="flex">
-          <img class="item-thumb" src="${item.image}" alt="${item.title}">
-          <div class="item-product-info">
-            <h5>${item.title}</h5>
-            <p>
-            $${item.price.toFixed(2)}</p>
-            <div class="item-info-bottom flex align-items-center">
-              <div class="item-info-btns grid">
-                <button class="minus-btn">-</button>
-                <input type="text" class="quantity-input" value="${item.quantity}">
-                <button class="plus-btn">+</button>
-              </div>
-                <button class="remove-btn btn-line">Remove</button>
-            </div>
-          </div>
-        </li>
-      `;
-
-      bundleListElem.insertAdjacentHTML('beforeend', listItemHTML);
-
-      // Add event listeners for quantity and remove buttons
-      const listItem = bundleListElem.lastElementChild;
-      const minusButton = listItem.querySelector('.minus-btn');
-      const plusButton = listItem.querySelector('.plus-btn');
-      const quantityInput = listItem.querySelector('.quantity-input');
-      const removeButton = listItem.querySelector('.remove-btn');
-
-      minusButton.addEventListener('click', function () {
-        if (item.quantity > 1) {
-          item.quantity--;
-          updateQuantity(item.id, item.quantity);
-        }
-      });
-
-      plusButton.addEventListener('click', function () {
-        item.quantity++;
-        updateQuantity(item.id, item.quantity);
-      });
-
-      quantityInput.addEventListener('change', function () {
-        const newQuantity = parseInt(quantityInput.value, 10);
-        if (!isNaN(newQuantity) && newQuantity > 0) {
-          updateQuantity(item.id, newQuantity);
-        }
-      });
-
-      removeButton.addEventListener('click', function () {
-        removeItemFromBundle(item.id);
-      });
-    });
-
-      // Add placeholders if needed
-      const placeholdersNeeded = BUNDLE_LIMIT - currentBundle.length;
-      for (let i = 0; i < placeholdersNeeded; i++) {
-        const placeholderHTML = `
-          <li class="flex align-items-center">
-            <div class="item-thumb placeholder">
-                <span class="activity"></span>
-            </div>
-            <div class="item-product-info">
-              <div class="placeholder">
-                <span class="activity"></span>
-              </div>
-              <div class="placeholder">
-                <span class="activity"></span>
-              </div>
-            </div>
-        </li>
-        `;
-        bundleListElem.insertAdjacentHTML('beforeend', placeholderHTML);
-      }
-
-    // Disable all "Add to Bundle" buttons if limit is reached
-    const addButtons = document.querySelectorAll('.add-to-bundle');
-    addButtons.forEach((button) => {
-      const productElem = button.closest('.product');
-      const productId = productElem.dataset.id;
-
-      // Disable the button if the limit is reached or if the product is already in the bundle
-      if (currentBundle.length >= BUNDLE_LIMIT || currentBundle.some(item => item.id === productId)) {
-        button.classList.add('disabled'); // Add a visual "disabled" style
-        button.setAttribute('data-disabled', 'true'); // Custom attribute to track the disabled state
-      } else {
-        button.classList.remove('disabled'); // Remove the visual "disabled" style
-        button.removeAttribute('data-disabled'); // Remove the custom attribute
-      }
-    });
-
-
-    // Update Total Price of the Bundle
-    const totalPrice = calculateTotalPrice();
-    const totalPriceElem = document.getElementById('bundle-total');
-    totalPriceElem.textContent = `$${totalPrice.toFixed(2)}`;
-  }
-
-
-    // Initial Load
-    updateBundleList();
-  });
-
-</script>
 
 
 

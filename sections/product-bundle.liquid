@@ -132,11 +132,11 @@
                     <div class="card_vendor">{{ product.vendor }}</div>
                   {%- endif -%}
                   <div class="product__title">
-                    <h2 class="card__heading">
+                    <h5 class="card__heading">
                     <a href="{{ product.url }}" >
                         {{ product.title | escape }}
                         </a>
-                        </h2>
+                        </h5>
                   </div>
 
                   {%- if product.metafields.reviews.rating.value != blank -%}
@@ -198,7 +198,7 @@
                     </div>
                   {% endunless %}
                
-                  {%- render 'buy-buttons-for-card',
+                  {%- render 'buy-buttons',
                     product: product,
                     product_form_id: product_form_id,
                     section_id: section.id

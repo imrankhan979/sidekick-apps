@@ -211,9 +211,12 @@
   right: 0;
   width: 0;
 }
-
+    
 
 /* Product list */
+.product__title{
+  color: rgb(var(--color-foreground));
+}
 .card__content{
   margin-top: 36px;
 }
@@ -295,4 +298,30 @@ color: #000;
 }
 .card__content .product-form__input.product-form__input--swatch{
   gap: 16px;
+}
+
+
+
+
+
+
+
+
+.variant-picker input{
+  display: none;
+}
+.variant-picker label {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  background: var(--swatch--background);
+}
+
+/* Styling for the selected variant (checked state) */
+.variant-picker input[type="radio"]:checked + label {
+  border-color: #0056b3; /* Darker border when selected */
 }
