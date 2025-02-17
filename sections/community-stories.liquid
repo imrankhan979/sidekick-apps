@@ -13,111 +13,75 @@
     }
   }
 
+  .id-{{ section.id }} .slider_community_images::before{
+    opacity: {{ section.block.settings.overlay_opacity | divided_by: 100.0 }};
+  }
 {%- endstyle -%}
 
-<!-- start: Collection Section -->
- <section class="collection-carousel-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-    <div class="page-width">
-        <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-          {%- for block in section.blocks -%}
-            <div class="collection_carousel_item" style="background-color: {{ block.settings.collection_bg_color }};">
-                <div class="collection_carousel_images">
-                  {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
-                    <a href="{{ block.settings.collection_select.url }}">
-                      {%- if block.settings.collection_image != blank -%}
-                        {{ block.settings.collection_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        {%- else -%}
-                        {{ block.settings.collection_select.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                      {%- endif -%}
-                    </a>
-                    {%- else -%}
-                    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                    {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                  {%- endif -%}
-                </div>
-                <div class="collection_carousel_content">
-                    <span class="subTitle">{{ block.settings.collection_featured }}</span>
-                    {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
-                    <div class="collection_carousel_text">
-                        <h2 class="display-1"><a href="{{ block.settings.collection_select.url }}">
-                          {%- if block.settings.collection_heading != blank -%}
-                            {{ block.settings.collection_heading }}
-                            {%- else -%}
-                          {{ block.settings.collection_select.title }}
-                        {%- endif -%}
-                          </a></h2>
-                        <span class="sub-title">{{ block.settings.collection_select.products_count }}
-                          {%- if block.settings.collection_select != blank -%}
-                          {%- if block.settings.collection_select.products_count <= 1 -%}
-                           Item
-                           {%- else -%}
-                           Items
-                          {%- endif -%}
-                          {%- else -%}
-                         0 Item
-                        {%- endif -%}
-                           </span> 
-                    </div>
-                  {%- endif -%}
-                    <div class="collection_carousel_button">
-                        <a class="collection_carousel_btn" href="
-                        {%- if block.settings.collection_button_link != blank -%}
-                        {{ block.settings.collection_button_link }}
-                        {%- else -%}
-                        {{ block.settings.collection_select.url }}
-                        {%- endif -%}
-                         ">
-                          {{ block.settings.collection_button }}
-                            <span>
-                                <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.70697 11.707L7.41397 5.99997L1.70697 0.292969L0.292969 1.70697L4.58597 5.99997L0.292969 10.293L1.70697 11.707Z" fill="white"></path>
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
- <!-- end: Collection Section -->
 
    <!-- start: Slider Community Section -->
-   <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+   <section class="slider-community-section section-{{ section.id }}-padding id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
        <div class="heading_area">
           <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
        </div>
        <div class="slider_community_wrapper">
           <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-
+            {%- for block in section.blocks -%}
              <div class="slider_community_item">
                 <a class="#">
                    <div class="slider_community_images">
-                      <a href="#"><img src="assets/images/community/slider-community-1.png" alt="Images"></a>
+                    {%- if block.settings.product_image != blank -%}
+                        <a href="{{ block.settings.product_select.url }}">
+                            {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                        </a>
+                        {%- else -%}
+                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
                    </div>
                    <div class="slider_community_content_box">
                       <div class="slider_community_thumb">
-                         <img src="assets/images/community/slider-thumb-1.png" alt="Images">
+                        {%- if block.settings.product_select.featured_image != blank -%}
+                        {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                        {%- else -%}
+                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                        {%- endif -%}
                       </div>
                       <div class="slider_community_text">
-                         <h6 class="slider_community_title">Flame Logo T-shirt</h6>
-                         <div class="slider_community_percent">$315.00</div>
+                         <h6 class="slider_community_title"><a href="{{ block.settings.product_select.url }}">
+                            {%- if block.settings.product_select != blank -%}
+                              {{ block.settings.product_select.title }}
+                              {%- else -%}
+                              Statement Monnogram T-shirt
+                            {%- endif -%}
+                            </a></h6>
+                            {% if block.settings.product_select.price != blank %}
+                         {% if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
+                              <div class="slider_community_percent active">{{ block.settings.product_select.price | money }}<span>{{ block.settings.product_select.compare_at_price | money }}</span></div>
+                          {% else %}
+                          <div class="slider_community_percent">{{ block.settings.product_select.price | money }}</div>
+                          {% endif %}
+                          {% else %}
+                          <div class="slider_community_percent">$315.00</div>
+                        {% endif %}
                       </div>
                    </div>
                 </a>
              </div>
-             
+            {% endfor %}
           </div>
+       </div>
        </div>
  </section>
  <!-- end: Slider Community Section -->
 
 {% schema %}
 {
-  "name": "Collection Carousel",
+  "name": "Community Stories",
   "settings": [
     {
       "type": "text",
@@ -158,64 +122,44 @@
   ],
   "blocks": [
     {
-      "type": "collection",
-      "name": "Collection Carousel",
+      "type": "product",
+      "name": "Product Carousel",
       "settings": [
         {
-        "type": "collection",
-        "id": "collection_select",
-        "label": "Select Collection"
+        "type": "product",
+        "id": "product_select",
+        "label": "Select Product"
         },
         {
-          "type": "color",
-          "id": "collection_bg_color",
-          "label": "Background Color",
-          "default": "#ffffff"
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "label": "Opacity",
+      "default": 70,
+      "unit": "%"
         },
         {
           "type": "image_picker",
-          "id": "collection_image",
-          "label": "Collection Image"
-        },
-        {
-          "type": "text",
-          "id": "collection_heading",
-          "label": "Heading",
-          "default": "Elevated Streetwear",
-          "info": "If left blank, the collection name will be used."
-        },
-        {
-          "type": "text",
-          "id": "collection_featured",
-          "label": "Badge",
-          "default": "Featured Collection"
-        },
-        {
-          "type": "text",
-          "id": "collection_button",
-          "label": "Button Label",
-          "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "collection_button_link",
-          "label": "Button Link"
+          "id": "product_image",
+          "label": "Product Image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection Carousel",
+      "name": "Community Stories",
       "blocks": [
         {
-          "type": "collection"
+          "type": "product"
         },
         {
-          "type": "collection"
+          "type": "product"
         },
         {
-          "type": "collection"
+          "type": "product"
         }
       ]
     }
