@@ -1,4 +1,5 @@
 {{ 'component-community-stories.css' | asset_url | stylesheet_tag }}
+{{ 'component-heading.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -12,15 +13,16 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
-  .id-{{ section.id }} .slider_community_images::before{
-    opacity: {{ section.block.settings.overlay_opacity | divided_by: 100.0 }};
+  {%- for block in section.blocks -%}
+  .id-{{ block.id }} .slider_community_images::before{
+    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
   }
+{% endfor %}
 {%- endstyle -%}
 
 
    <!-- start: Slider Community Section -->
-   <section class="slider-community-section section-{{ section.id }}-padding id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
+   <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
        <div class="heading_area">
           <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
@@ -28,19 +30,27 @@
        <div class="slider_community_wrapper">
           <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
             {%- for block in section.blocks -%}
-             <div class="slider_community_item">
+             <div class="slider_community_item id-{{ block.id }}">
                 <a class="#">
-                   <div class="slider_community_images">
-                    {%- if block.settings.product_image != blank -%}
-                        <a href="{{ block.settings.product_select.url }}">
-                            {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        </a>
-                        {%- else -%}
-                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                      {%- endif -%}
-                   </div>
+                  <div class="slider_community_images">
+              {%- if block.settings.product_image != blank -%}
+                  <a href="{{ block.settings.product_image | image_url }}">
+                      {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                  </a>
+              {%- elsif block.settings.product_select and block.settings.product_select.featured_image != blank -%}
+                  <a href="{{ block.settings.product_select.url }}">
+                      {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                  </a>
+              {%- else -%}
+                  {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                  {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                  <div class="placeholder-wrapper">
+                      {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+              {%- endif -%}
+                </div>
+
+
                    <div class="slider_community_content_box">
                       <div class="slider_community_thumb">
                         {%- if block.settings.product_select.featured_image != blank -%}
@@ -56,7 +66,7 @@
                             {%- if block.settings.product_select != blank -%}
                               {{ block.settings.product_select.title }}
                               {%- else -%}
-                              Statement Monnogram T-shirt
+                              Product Name
                             {%- endif -%}
                             </a></h6>
                             {% if block.settings.product_select.price != blank %}
@@ -66,7 +76,7 @@
                           <div class="slider_community_percent">{{ block.settings.product_select.price | money }}</div>
                           {% endif %}
                           {% else %}
-                          <div class="slider_community_percent">$315.00</div>
+                          <div class="slider_community_percent">$00.00</div>
                         {% endif %}
                       </div>
                    </div>
