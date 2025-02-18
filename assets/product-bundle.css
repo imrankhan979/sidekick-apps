@@ -315,13 +315,16 @@ color: #000;
   padding: 8px 12px;
   margin: 5px;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
-  background: var(--swatch--background);
+  background: var(--swatch-bg);
 }
 
 /* Styling for the selected variant (checked state) */
 .variant-picker input[type="radio"]:checked + label {
-  border-color: #0056b3; /* Darker border when selected */
+  border-color: #ff00ea; /* Darker border when selected */
+}
+input[disabled] + label {
+  opacity: .5;
 }

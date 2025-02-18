@@ -10,7 +10,9 @@
 .collage__item > * {
   width: 100%;
 }
-
+input[disabled]{
+  cursor: not-allowed;
+}
 .collage__item .card__content {
   flex-grow: initial;
 }

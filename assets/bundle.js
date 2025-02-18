@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const productId = productElem.querySelector('.product-variant-id').value;
         const productTitle = productElem.dataset.title;
         const productPrice = parseFloat(productElem.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
-        const productImage = productElem.querySelector('img') ? productElem.querySelector('img').src : null;
+        const productImage = productElem.querySelector('.featured-image') ? productElem.querySelector('.featured-image').src : null;
         const variantSelect = productElem.querySelector('.variant-select');
         const variantGroups = productElem.querySelectorAll('.variant-group');
           let selectedVariants = [];
@@ -137,11 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
               button.classList.add('disabled');
               button.setAttribute('data-disabled', 'true');
               button.disabled = true; // Ensure it's disabled
-            } else {
-              button.classList.remove('disabled');
-              button.removeAttribute('data-disabled');
-              button.disabled = false; // Ensure it's enabled
-            }
+            } 
           });
         // Add event listeners for quantity and remove buttons
         const listItem = bundleListElem.lastElementChild;
