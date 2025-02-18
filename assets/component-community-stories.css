@@ -10,19 +10,19 @@ START: Community CSS
   }
   
   .slider-community-section .flickity-button {
-    background: #ffffff;
+    background: rgb(var(--color-button));
   }
   
   .slider-community-section .flickity-button svg path {
-    fill: #000000;
+    fill: rgb(var(--color-button-text));
   }
   
   .slider-community-section .flickity-button:hover {
-    background-color: #000000;
+    background-color: rgb(var(--color-button-hover));;
   }
   
   .slider-community-section .flickity-button:hover svg path {
-    fill: #ffffff;
+    fill: rgb(var(--color-button-text-hover));
   }
   
   .slider-community-section .flickity-prev-next-button {
@@ -103,7 +103,7 @@ START: Community CSS
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_title {
-    color: #ffffff;
+    color: rgb(var(--color-foreground));
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
@@ -111,19 +111,19 @@ START: Community CSS
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent {
     display: block;
-    color: #ffffff;
+    color: rgb(var(--color-secondary-foreground));
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent.active {
-    color: #FF3E3E;
+    color: rgb(var(--color-highlight-text));
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent span {
     position: relative;
-    color: #808080;
+    color: rgba(var(--color-secondary-foreground), .5);
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent span::before {
