@@ -86,6 +86,9 @@ p {
 }
 body{
   font-family: var(--font-family-body);
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: normal;
 }
 h1,
 h2, 
@@ -218,6 +221,12 @@ img{
 }
 .h-full-vh{
   height: 100vh;
+}
+.d-none{
+  display: none;
+}
+.d-block{
+  display: block;
 }
 .overflow-hidden{
   overflow: hidden;
