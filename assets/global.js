@@ -1574,3 +1574,74 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// bundle responsive button click toggle
+let dropDownBtn = document.getElementById("dropdown-icon");
+let bundleListWrapper = document.getElementById("bundle-list");
+dropDownBtn.addEventListener("click", () => {
+  bundleListWrapper.classList.toggle("active");
+});
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const contentContainers = document.querySelectorAll('.bundle-products');
+  const productThumbs = document.querySelectorAll("#product-list .product-thumb");
+
+  if (productThumbs.length) {
+    let maxHeight = Math.max(...Array.from(productThumbs, el => el.offsetHeight));
+    document.querySelector(".slider-controls").style.setProperty("--thumb-height", `${maxHeight}px`);
+  }
+
+  contentContainers.forEach(container => {
+    if (window.innerWidth <= 575) { // Check screen size
+      const prevButton = container.parentElement.querySelector('.prev-slide');
+      const nextButton = container.parentElement.querySelector('.next-slide');
+
+      if (prevButton && nextButton) {
+        prevButton.addEventListener('click', () => {
+          container.scrollBy({
+            left: -container.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+
+        nextButton.addEventListener('click', () => {
+          container.scrollBy({
+            left: container.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+      }
+      // Drag functionality
+let isDragging = false;
+let startX = 0;
+let scrollLeft = 0;
+
+container.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX - container.getBoundingClientRect().left;
+  scrollLeft = container.scrollLeft;
+  container.style.scrollBehavior = 'smooth';
+});
+
+container.addEventListener('mouseleave', () => {
+  isDragging = false;
+  container.style.scrollBehavior = 'smooth';
+});
+
+container.addEventListener('mouseup', () => {
+  isDragging = false;
+  container.style.scrollBehavior = 'smooth';
+});
+
+container.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - container.getBoundingClientRect().left;
+  const walk = (x - startX) * 2;
+  container.scrollLeft = scrollLeft - walk;
+});
+    }
+  });
+});

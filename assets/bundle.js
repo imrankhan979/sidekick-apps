@@ -39,7 +39,7 @@ class BundleManager extends HTMLElement {
       const selectedOption = group.querySelector('input:checked');
       if (selectedOption) {
         const selectedValue = selectedOption.value;
-        selectedVariants.push(`${groupName} ${selectedValue}`);
+        selectedVariants.push(`${groupName}: ${selectedValue}`);
       }
     });
 
@@ -111,8 +111,10 @@ class BundleManager extends HTMLElement {
           <div class="item-thumb"><img src="${item.image}" alt="${item.title}"></div>
           <div class="item-product-info">
             <h5 class="item-title">${item.title}</h5>
-            ${item.selectedVariants.map(variant => `<p class="selected-variants">${variant}</p>`).join('')}
-            <p>${this.currencySymbol + item.price.toFixed(2)}</p>
+            <div class="item-variant-info">
+              ${item.selectedVariants.map(variant => `<p class="selected-variants">${variant}</p>`).join('')}
+            </div>
+            <p class="item-price">${this.currencySymbol + item.price.toFixed(2)}</p>
             <div class="item-info-bottom flex align-items-center">
               <div class="item-info-btns grid">
                 <button class="minus-btn">-</button>

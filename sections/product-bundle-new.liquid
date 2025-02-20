@@ -31,7 +31,7 @@
           
             {% for product in section.settings.collection.products %}
               <div class="product" data-title="{{ product.title }}">
-                <a href="{{ product.url }}" class="product-thumb">
+                <a href="{{ product.url }}" class="product-thumb flex">
                   <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
 
                   <div class="product-badge-wrapper flex wrap align-items-center">
@@ -42,7 +42,11 @@
                     {% endif %}
 
                     {% if product.variants.size > 1 %}
-                      <div class="badge sale-badge d-none" id="sale-badge-{{ product.id }}"></div>
+                      <div class="badge sale-badge {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
+                        {% assign discount_amount = product.variants.first.compare_at_price | minus: product.variants.first.price %}
+                        {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.variants.first.compare_at_price | round %}
+                        {{ discount_percentage }}% off
+                      </div>
                       {% elsif product.variants.first.compare_at_price > product.variants.first.price %}
                         <div class="badge sale-badge">
                           {% assign discount_amount = product.compare_at_price | minus: product.price %}
@@ -93,7 +97,6 @@
                                 {% endif %}
                               {% endfor %}
 
-                            <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% unless variant_available %}disabled{% endunless %}>
                               {%- liquid
                                   assign swatch_value = null
                                   if value.swatch.image
@@ -103,6 +106,7 @@
                                     assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
                                   endif
                                 -%}
+                            <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% unless variant_available %}disabled{% endunless %}  style="--swatch-bg: {{ swatch_value }}">
                               <label for="{{product.id}}-{{value}}"  style="--swatch-bg: {{ swatch_value }}" >
                                 {{ value }}
                               </label>
@@ -116,8 +120,6 @@
 
                   <input class="product-variant-id" type="hidden" name="id" id="selected-variant-{{ product.id }}" value="{{ product.variants.first.id }}">
                   <button type="submit" class="product-btn{% if product.variants.first.available %} add-to-bundle {% else %} sold-out{% endif %} " id="add-to-cart-{{ product.id }}" {% unless product.variants.first.available %}disabled{% endunless %}>{% if product.variants.first.available %} {% if product.variants.size > 1 %}Choose Variant {% else %}Add to bundle{% endif %} {% else %}Sold out{% endif %}</button>
-              </div>
-              
               <script>
                   document.addEventListener("DOMContentLoaded", () => {
                       document.querySelectorAll(".variant-picker input").forEach(input => {
@@ -162,7 +164,7 @@
                             }
                             const saleBadge = document.getElementById(`sale-badge-${productId}`);
                             if (selectedVariant.compare_at_price > selectedVariant.price) {
-                              const discountPercentage = Math.floor(((selectedVariant.compare_at_price - selectedVariant.price) / selectedVariant.compare_at_price) * 100);
+                              const discountPercentage = Math.round(((selectedVariant.compare_at_price - selectedVariant.price) / selectedVariant.compare_at_price) * 100);
                               saleBadge.textContent = `${discountPercentage}% off`; // Show percentage
                               saleBadge.style.display = "block";
                             } else {
@@ -193,15 +195,29 @@
                       });
                     });
               </script>
+              </div>
+              
 
             {% endfor %}
           </div>
+          <div class="slider-controls">
+            <button class="prev-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
+            <button class="next-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
+          </div>
+        
           <!-- Right Section: Bundle List -->
           <div id="bundle-list">
             <div class="bundle-list-inner">
               <div class="bundle-list-header">
-                <h5>{{ section.settings.bundle_cart_heading }}</h5>
-                <p>{{ section.settings.bundle_cart_subheading }}</p>
+                <div class="bundle-list-header-top flex align-items-center space-between">
+                  <div class="bundle-list-header-content">
+                    <h5>{{ section.settings.bundle_cart_heading }}</h5>
+                    <p>{{ section.settings.bundle_cart_subheading }}</p>
+                  </div>
+                  <div class="bundle-list-header-icon flex" id="dropdown-icon">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </div>
+                </div>
                 <div id="item-range" class="item-range"></div>
               </div>
               <div class="bundle-list-body no-scrollbar">
