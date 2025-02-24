@@ -48,8 +48,10 @@
                         <h2><a class="shop_collection_title" href="{{ block.settings.collection_select.url }}">
                           {%- if block.settings.collection_heading != blank -%}
                           {{ block.settings.collection_heading }}
-                          {%- else -%}
+                          {%- elsif block.settings.collection_select.title != blank -%}
                         {{ block.settings.collection_select.title }}
+                        {%- else -%}
+                        Collection Name
                          {%- endif -%}
                          </a></h2>
                         <span class="shop_collection_subTitle">
@@ -149,7 +151,6 @@
           "type": "text",
           "id": "collection_heading",
           "label": "Heading",
-          "default": "Collection Name",
           "info": "If left blank, the collection name will be used."
         },
         {
