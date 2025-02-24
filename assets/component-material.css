@@ -1,0 +1,147 @@
+/**----------------------------------------
+START: Material CSS
+----------------------------------------*/
+.about-material-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  
+  .about-material-section .material_slider_wrapper {
+    display: none;
+  }
+  
+  .about-material-section .heading-area {
+    max-width: 680px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 120px;
+  }
+  
+  .material_main_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 30px;
+    text-align: center;
+  }
+  
+  .material_item .material_icons {
+    max-width: 96px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+  }
+  
+  .material_item .material_item_title {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .about-material-section {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+  
+    .about-material-section .heading-area {
+      margin-bottom: 100px;
+    }
+  
+    .material_item .material_icons {
+      margin-bottom: 30px;
+    }
+  
+    .material_item .material_item_title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .about-material-section {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  
+    .about-material-section .heading-area {
+      margin-bottom: 80px;
+    }
+  
+    .material_main_wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .material_item .material_icons {
+      max-width: 80px;
+      margin-bottom: 20px;
+    }
+  
+    .material_item .material_item_title {
+      font-size: 26px;
+      line-height: 36px;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .about-material-section {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  
+    .about-material-section .heading-area {
+      margin-bottom: 60px;
+    }
+  
+    .material_main_wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .material_item .material_icons {
+      max-width: 75px;
+      margin-bottom: 10px;
+    }
+  
+    .material_item .material_item_title {
+      line-height: 32px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .about-material-section {
+      padding-top: 80px;
+    }
+  
+    .about-material-section .heading-area {
+      margin-bottom: 36px;
+    }
+  
+    .about-material-section .flickity-page-dots {
+      bottom: -44px;
+    }
+  
+    .material_item .material_item_title {
+      font-size: 20px;
+    }
+  
+    .material_main_wrapper {
+      display: none;
+    }
+  
+    .about-material-section .material_slider_wrapper {
+      display: block;
+    }
+  
+    .material_item {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .material_item .material_icons {
+      max-width: 56px;
+      margin-bottom: 12px;
+    }
+  }
+  
+  /* !END: Material CSS *
