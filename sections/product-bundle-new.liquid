@@ -23,12 +23,18 @@
 
 <div class="bundle-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
+    {% if section.settings.heading_text != blank %}
+      <div class="section_title">
+        <h1>{{ section.settings.heading_text }}</h1>
+      </div>
+    {% endif %}
     <bundle-manager>
 
       <div class="bundle-container-inner grid">
           <!-- Left Section: Product List -->
           <div id="product-list" class="bundle-products grid">
           
+          {% if section.settings.collection != blank %}
             {% for product in section.settings.collection.products %}
               <div class="product" data-title="{{ product.title }}">
                 <a href="{{ product.url }}" class="product-thumb flex">
@@ -196,9 +202,27 @@
                     });
               </script>
               </div>
-              
-
             {% endfor %}
+            {% else %}
+            {% for i in (1..6) %}
+              <div class="product">
+                <a  role="link" aria-disabled="true" class="product-thumb flex">
+                  {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                  {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                  {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                </a>
+                <div class="product-content">
+                  <h5 class="product-title">Example product title</h5>
+                  <div class="product-price-wrapper align-items-center flex no-compare">
+                    <h6 class="product-price">{{ 00.00 |  money }}</h6>
+                  </div>
+                </div>
+                <button type="submit" class="product-btn add-to-bundle" disabled>
+                  Add to bundle
+                </button>
+              </div>
+            {% endfor %}
+          {% endif %}
           </div>
           <div class="slider-controls">
             <button class="prev-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
@@ -211,8 +235,12 @@
               <div class="bundle-list-header">
                 <div class="bundle-list-header-top flex align-items-center space-between">
                   <div class="bundle-list-header-content">
-                    <h5>{{ section.settings.bundle_cart_heading }}</h5>
-                    <p>{{ section.settings.bundle_cart_subheading }}</p>
+                    {% if section.settings.bundle_cart_heading %}
+                      <h5>{{ section.settings.bundle_cart_heading }}</h5>
+                    {% endif %}
+                    {% if section.settings.bundle_cart_subheading %}
+                      <p> {{ section.settings.bundle_cart_subheading }}</p>
+                    {% endif %}
                   </div>
                   <div class="bundle-list-header-icon flex" id="dropdown-icon">
                     {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -227,7 +255,7 @@
               </div>
               <div class="bundle-list-footer">
                 <div class="bundle-list-footer-inner">
-                  <div class="bundle-total-price flex space-between align-items-center"><span>SUBTOTAL</span><span id="bundle-total">$00.00</span></div>
+                  <div class="bundle-total-price flex space-between align-items-center"><span>SUBTOTAL</span><span id="bundle-total">{{ 00.00 |  money }}</span></div>
                 <button class="add-to-cart">ADD TO CART</button>
                 </div>
               </div>
@@ -253,89 +281,15 @@
           "default": "scheme-1"
         },
         {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading",
+          "default": "BUILD YOUR BUNDLE"
+        },
+        {
             "type": "collection",
             "id": "collection",
             "label": "Chose collection"
-        },
-        {
-          "type": "header",
-          "content": "t:sections.featured-collection.settings.header.content"
-        },
-        {
-          "type": "select",
-          "id": "image_ratio",
-          "options": [
-            {
-              "value": "adapt",
-              "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
-            },
-            {
-              "value": "portrait",
-              "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
-            },
-            {
-              "value": "square",
-              "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
-            }
-          ],
-          "default": "portrait",
-          "label": "t:sections.featured-collection.settings.image_ratio.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_secondary_image",
-          "default": false,
-          "label": "t:sections.featured-collection.settings.show_secondary_image.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_vendor",
-          "default": true,
-          "label": "t:sections.featured-collection.settings.show_vendor.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_rating",
-          "default": false,
-          "label": "t:sections.featured-collection.settings.show_rating.label",
-          "info": "t:sections.featured-collection.settings.show_rating.info"
-        },
-        {
-          "type": "select",
-          "id": "picker_type",
-          "options": [
-            {
-              "value": "dropdown",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__1.label"
-            },
-            {
-              "value": "button",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__2.label"
-            }
-          ],
-          "default": "button",
-          "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.label"
-        },
-        {
-          "id": "swatch_shape",
-          "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.label",
-          "type": "select",
-          "info": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.info",
-          "options": [
-            {
-              "value": "circle",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.options__1.label"
-            },
-            {
-              "value": "square",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.options__2.label"
-            },
-            {
-              "value": "none",
-              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label"
-            }
-          ],
-          "default": "circle"
         },
         {
             "type": "header",

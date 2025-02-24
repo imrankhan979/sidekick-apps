@@ -3631,6 +3631,8 @@ details[open] > .header__icon--menu .icon-hamburger {
 
 .section_title{
   margin-bottom: 80px;
+}
+.section_title.text-center{
   text-align: center;
 }
 @media (max-width: 991px) {

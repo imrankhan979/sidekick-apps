@@ -1577,9 +1577,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // bundle responsive button click toggle
 let dropDownBtn = document.getElementById("dropdown-icon");
 let bundleListWrapper = document.getElementById("bundle-list");
-dropDownBtn.addEventListener("click", () => {
-  bundleListWrapper.classList.toggle("active");
-});
+if(dropDownBtn && bundleListWrapper){
+  dropDownBtn.addEventListener("click", () => {
+    bundleListWrapper.classList.toggle("active");
+  });
+
+}
 
 
 
@@ -1594,7 +1597,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   contentContainers.forEach(container => {
-    if (window.innerWidth <= 575) { // Check screen size
+    if (window.innerWidth <= 575) {
       const prevButton = container.parentElement.querySelector('.prev-slide');
       const nextButton = container.parentElement.querySelector('.next-slide');
 
@@ -1613,35 +1616,81 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         });
       }
+
+      // Function to update slider height
+      function updateSliderHeight() {
+        let activeSlide = container.children[0];
+        let scrollLeft = container.scrollLeft;
+        let slideWidth = container.offsetWidth;
+        let slideIndex = Math.round(scrollLeft / slideWidth);
+
+        if (container.children[slideIndex]) {
+          activeSlide = container.children[slideIndex];
+        }
+
+        container.style.height = activeSlide.offsetHeight + 'px';
+      }
+
+      // Initial height update
+      updateSliderHeight();
+
+      // Update height on scroll (drag)
+      container.addEventListener('scroll', updateSliderHeight);
+
       // Drag functionality
-let isDragging = false;
-let startX = 0;
-let scrollLeft = 0;
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeft = 0;
 
-container.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.pageX - container.getBoundingClientRect().left;
-  scrollLeft = container.scrollLeft;
-  container.style.scrollBehavior = 'smooth';
-});
+      container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - container.getBoundingClientRect().left;
+        scrollLeft = container.scrollLeft;
+        container.style.scrollBehavior = 'auto';
+      });
 
-container.addEventListener('mouseleave', () => {
-  isDragging = false;
-  container.style.scrollBehavior = 'smooth';
-});
+      container.addEventListener('mouseleave', () => {
+        isDragging = false;
+        container.style.scrollBehavior = 'smooth';
+      });
 
-container.addEventListener('mouseup', () => {
-  isDragging = false;
-  container.style.scrollBehavior = 'smooth';
-});
+      container.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.scrollBehavior = 'smooth';
+      });
 
-container.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - container.getBoundingClientRect().left;
-  const walk = (x - startX) * 2;
-  container.scrollLeft = scrollLeft - walk;
-});
+      container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - container.getBoundingClientRect().left;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Touch events for mobile
+      container.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX - container.getBoundingClientRect().left;
+        scrollLeft = container.scrollLeft;
+        container.style.scrollBehavior = 'smooth';
+      });
+
+      container.addEventListener('touchend', () => {
+        isDragging = false;
+        container.style.scrollBehavior = 'smooth';
+      });
+
+      container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - container.getBoundingClientRect().left;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Update height on window resize
+      window.addEventListener("resize", updateSliderHeight);
+
     }
   });
 });
+
