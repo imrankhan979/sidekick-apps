@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
       tabImages.forEach((image) => {
         image.style.display = image.getAttribute("data-tab") === tabData ? "block" : "none";
       });
-      
+
       tabMnu.forEach((tab) => tab.classList.remove("active"));
       this.classList.add("active");
     });
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "info": "The Humble Beginnings"
         },
         {
-          "type": "richtext",
+          "type": "text",
           "id": "tab_description",
           "label": "Description",
           "info": "The Humble Beginnings"
