@@ -29,24 +29,20 @@
       </div>
     {% endif %}
     <bundle-manager>
-
       <div class="bundle-container-inner grid">
           <!-- Left Section: Product List -->
           <div id="product-list" class="bundle-products grid">
-          
           {% if section.settings.collection != blank %}
             {% for product in section.settings.collection.products %}
               <div class="product" data-title="{{ product.title }}">
                 <a href="{{ product.url }}" class="product-thumb flex">
                   <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
-
                   <div class="product-badge-wrapper flex wrap align-items-center">
                     {% if product.tags.size > 0 %}
                           {% for tag in product.tags %}
                             <div class="badge tag-badge">{{ tag }}</div>
                           {% endfor %}
                     {% endif %}
-
                     {% if product.variants.size > 1 %}
                       <div class="badge sale-badge {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
                         {% assign discount_amount = product.variants.first.compare_at_price | minus: product.variants.first.price %}
@@ -60,15 +56,12 @@
                           {{ discount_percentage }}% off
                         </div>
                     {% endif %}
-
-                    
                         <div class="badge sold-out-badge {% if product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ product.id }}">
                           {% unless product.variants.first.available %}
                             SOLD OUT
                           {% endunless %}
                         </div>
                   </div>
-
                 </a>
                   <div class="product-content">
                       {% if product.vendor %}
@@ -88,7 +81,6 @@
                                 <h6 class="product-previous-price" id="product-previous-price-{{ product.id }}"><del>{{ product.compare_at_price | money }}</del></h6>
                           </div>
                     {% endif %} 
-
                     {% if product.variants.size > 1 %}
                       <div class="variant-picker">
                         {% for option in product.options_with_values %}
@@ -102,7 +94,6 @@
                                   {% assign variant_available = true %}
                                 {% endif %}
                               {% endfor %}
-
                               {%- liquid
                                   assign swatch_value = null
                                   if value.swatch.image
@@ -123,7 +114,6 @@
                       </div>
                     {% endif %}
                   </div>
-
                   <input class="product-variant-id" type="hidden" name="id" id="selected-variant-{{ product.id }}" value="{{ product.variants.first.id }}">
                   <button type="submit" class="product-btn{% if product.variants.first.available %} add-to-bundle {% else %} sold-out{% endif %} " id="add-to-cart-{{ product.id }}" {% unless product.variants.first.available %}disabled{% endunless %}>{% if product.variants.first.available %} {% if product.variants.size > 1 %}Choose Variant {% else %}Add to bundle{% endif %} {% else %}Sold out{% endif %}</button>
               <script>
@@ -139,15 +129,15 @@
                             }
                           });
 
-                          const variants = {{ product.variants | json }};
-                          console.log(variants)
-                          const selectedVariant = variants.find(variant => JSON.stringify(variant.options) === JSON.stringify(selectedOptions));
+                          let selectedVariant = {{ product.variants | json }}.find(variant => {  return JSON.stringify(variant.options) === JSON.stringify(selectedOptions); });
 
                           if (selectedVariant) {
                             const currencySymbol = "{{ cart.currency.symbol }}";
                             const productPrice = document.getElementById(`product-price-${productId}`);
                             const productPreviousPrice = document.getElementById(`product-previous-price-${productId}`);
                             const priceWrappers = document.querySelectorAll(".product-price-wrapper");
+
+                            document.getElementById(`selected-variant-${productId}`).value = selectedVariant.id;
 
                             const productImage = document.getElementById(`featured-image-${productId}`); // Use template literal
                             if (productImage) { // Check if productImage exists

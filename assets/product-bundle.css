@@ -1,3 +1,6 @@
+.bundle-section {
+  background: rgba(var(--color-background),1);
+}
 .bundle-section .section_title h1{
   color: rgb(var(--color-foreground));
 }
@@ -66,7 +69,7 @@
   } 
   .bundle-section #bundle-list .bundle-list-inner 
   .bundle-list-header-icon svg path{
-    fill: #fff;
+    fill: rgb(var(--color-secondary-foreground));
   } 
   .bundle-section #bundle-list.active .bundle-list-inner 
   .bundle-list-header-icon svg{
