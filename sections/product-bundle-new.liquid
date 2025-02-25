@@ -1,19 +1,11 @@
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
+
 {{ 'product-bundle.css' | asset_url | stylesheet_tag }}
 
-{% unless product.has_only_default_variant %}
-  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
-{% endunless %}
 
-
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+<script>
+  window.currencySymbol = "{{ cart.currency.symbol }}";
+</script>
+<script src="{{ 'bundle.js' | asset_url }}" defer></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -31,357 +23,249 @@
 
 <div class="bundle-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
-    <div class="bundle-container-inner grid">
-        <!-- Left Section: Product List -->
-        <div id="product-list" class="bundle-products grid">
-        
-          {% for product in section.settings.collection.products %}
-          <div 
-            class="product" 
-            data-id="{{ product.id }}" 
-            data-title="{{ product.title }}"
-            data-price="{{ product.price | money_without_currency }}"
-          >
+    {% if section.settings.heading_text != blank %}
+      <div class="section_title">
+        <h1>{{ section.settings.heading_text }}</h1>
+      </div>
+    {% endif %}
+    <bundle-manager>
 
-          <div
-        class="card__inner {% if product.featured_media %} ratio{% endif %}"
-        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-      >
-          {%- if product.featured_media -%}
-            <div class="card-media">
-              <div class="media--transparent media--hover-effect">
-                {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
-                <img
-                  srcset="
-                    {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
-                    {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-                    {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-                    {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-                    {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
-                    {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
-                    {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
-                  "
-                  src="{{ product.featured_media | image_url: width: 533 }}"
-                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ product.featured_media.alt | escape }}"
-                  class="motion-reduce"
-                    loading="lazy"
-                  width="{{ product.featured_media.width }}"
-                  height="{{ product.featured_media.height }}"
-                >
-  
-                {%- if product.media[1] != null and section.settings.show_secondary_image -%}
-                  <img
-                    srcset="
-                      {%- if product.media[1].width >= 165 -%}{{ product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
-                      {%- if product.media[1].width >= 360 -%}{{ product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
-                      {%- if product.media[1].width >= 533 -%}{{ product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
-                      {%- if product.media[1].width >= 720 -%}{{ product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
-                      {%- if product.media[1].width >= 940 -%}{{ product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
-                      {%- if product.media[1].width >= 1066 -%}{{ product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
-                      {{ product.media[1] | image_url }} {{ product.media[1].width }}w
-                    "
-                    src="{{ product.media[1] | image_url: width: 533 }}"
-                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                    alt=""
-                    class="motion-reduce"
-                    loading="lazy"
-                    width="{{ product.media[1].width }}"
-                    height="{{ product.media[1].height }}"
-                  >
-                {%- endif -%}
+      <div class="bundle-container-inner grid">
+          <!-- Left Section: Product List -->
+          <div id="product-list" class="bundle-products grid">
+          
+          {% if section.settings.collection != blank %}
+            {% for product in section.settings.collection.products %}
+              <div class="product" data-title="{{ product.title }}">
+                <a href="{{ product.url }}" class="product-thumb flex">
+                  <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
+
+                  <div class="product-badge-wrapper flex wrap align-items-center">
+                    {% if product.tags.size > 0 %}
+                          {% for tag in product.tags %}
+                            <div class="badge tag-badge">{{ tag }}</div>
+                          {% endfor %}
+                    {% endif %}
+
+                    {% if product.variants.size > 1 %}
+                      <div class="badge sale-badge {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
+                        {% assign discount_amount = product.variants.first.compare_at_price | minus: product.variants.first.price %}
+                        {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.variants.first.compare_at_price | round %}
+                        {{ discount_percentage }}% off
+                      </div>
+                      {% elsif product.variants.first.compare_at_price > product.variants.first.price %}
+                        <div class="badge sale-badge">
+                          {% assign discount_amount = product.compare_at_price | minus: product.price %}
+                          {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round %}
+                          {{ discount_percentage }}% off
+                        </div>
+                    {% endif %}
+
+                    
+                        <div class="badge sold-out-badge {% if product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ product.id }}">
+                          {% unless product.variants.first.available %}
+                            SOLD OUT
+                          {% endunless %}
+                        </div>
+                  </div>
+
+                </a>
+                  <div class="product-content">
+                      {% if product.vendor %}
+                        <p class="product-vendor">{{ product.vendor }}</p>
+                      {% endif %}
+
+                        <h5 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h5>
+
+                      {% if product.variants.size > 1 %}
+                        <div class="product-price-wrapper align-items-center flex {% if product.variants.first.compare_at_price == nil %}no-compare{% endif %}" id="product-price-wrapper-{{product.id}}">
+                          <h6 class="product-price" id="product-price-{{ product.id }}">{{ product.variants.first.price | money }}</h6>
+                          <h6 class="product-previous-price"><del id="product-previous-price-{{ product.id }}">{{ product.variants.first.compare_at_price | money }}</del></h6>
+                        </div>
+                        {% else %}
+                          <div class="product-price-wrapper align-items-center flex {% if product.compare_at_price == nil %}no-compare{% endif %}">
+                                <h6 class="product-price" id="product-price-{{ product.id }}">{{ product.price | money }}</h6>
+                                <h6 class="product-previous-price" id="product-previous-price-{{ product.id }}"><del>{{ product.compare_at_price | money }}</del></h6>
+                          </div>
+                    {% endif %} 
+
+                    {% if product.variants.size > 1 %}
+                      <div class="variant-picker">
+                        {% for option in product.options_with_values %}
+                          <div class="variant-group{% if option.name == 'Color' %} color-swatch{% endif %}">
+                            <p class="variant-group-name">{{ option.name }}</p>
+                            <div class="variant-items">
+                            {% for value in option.values %}
+                              {% assign variant_available = false %}
+                              {% for variant in product.variants %}
+                                {% if variant.available and variant.options contains value %}
+                                  {% assign variant_available = true %}
+                                {% endif %}
+                              {% endfor %}
+
+                              {%- liquid
+                                  assign swatch_value = null
+                                  if value.swatch.image
+                                    assign image_url = value.swatch.image | image_url: width: 50
+                                    assign swatch_value = 'url(' | append: image_url | append: ')'
+                                  elsif value.swatch.color
+                                    assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                                  endif
+                                -%}
+                            <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% unless variant_available %}disabled{% endunless %}  style="--swatch-bg: {{ swatch_value }}">
+                              <label for="{{product.id}}-{{value}}"  style="--swatch-bg: {{ swatch_value }}" >
+                                {{ value }}
+                              </label>
+                            {% endfor %}
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <input class="product-variant-id" type="hidden" name="id" id="selected-variant-{{ product.id }}" value="{{ product.variants.first.id }}">
+                  <button type="submit" class="product-btn{% if product.variants.first.available %} add-to-bundle {% else %} sold-out{% endif %} " id="add-to-cart-{{ product.id }}" {% unless product.variants.first.available %}disabled{% endunless %}>{% if product.variants.first.available %} {% if product.variants.size > 1 %}Choose Variant {% else %}Add to bundle{% endif %} {% else %}Sold out{% endif %}</button>
+              <script>
+                  document.addEventListener("DOMContentLoaded", () => {
+                      document.querySelectorAll(".variant-picker input").forEach(input => {
+                        input.addEventListener("change", () => {
+                          const productId = input.dataset.productId;
+                          const selectedOptions = [];
+
+                          document.querySelectorAll(`[data-product-id='${productId}']`).forEach(option => {
+                            if (option.checked) {
+                              selectedOptions[option.dataset.optionIndex] = option.dataset.value;
+                            }
+                          });
+
+                          const variants = {{ product.variants | json }};
+                          console.log(variants)
+                          const selectedVariant = variants.find(variant => JSON.stringify(variant.options) === JSON.stringify(selectedOptions));
+
+                          if (selectedVariant) {
+                            const currencySymbol = "{{ cart.currency.symbol }}";
+                            const productPrice = document.getElementById(`product-price-${productId}`);
+                            const productPreviousPrice = document.getElementById(`product-previous-price-${productId}`);
+                            const priceWrappers = document.querySelectorAll(".product-price-wrapper");
+
+                            const productImage = document.getElementById(`featured-image-${productId}`); // Use template literal
+                            if (productImage) { // Check if productImage exists
+                              if (selectedVariant && selectedVariant.featured_image) {
+                                productImage.src = selectedVariant.featured_image.src;
+                              } else {
+                                productImage.src = "{{ product.featured_image | img_url: 'large' }}"; // Revert to product image
+                              }
+                            }
+
+                            if (productPrice) {
+                              productPrice.innerText = `${currencySymbol}${(selectedVariant.price / 100).toFixed(2)}`;
+                              productPreviousPrice.innerText = selectedVariant.compare_at_price ? `${currencySymbol}${(selectedVariant.compare_at_price / 100).toFixed(2)}` : "";
+                              const priceWrapper = document.getElementById(`product-price-wrapper-${productId}`);
+                              if (priceWrapper) {
+                                priceWrapper.classList.toggle("no-compare", !selectedVariant.compare_at_price);
+                              } else {
+                                console.warn(`Price wrapper not found for product ${productId}`);
+                              }
+                            }
+                            const saleBadge = document.getElementById(`sale-badge-${productId}`);
+                            if (selectedVariant.compare_at_price > selectedVariant.price) {
+                              const discountPercentage = Math.round(((selectedVariant.compare_at_price - selectedVariant.price) / selectedVariant.compare_at_price) * 100);
+                              saleBadge.textContent = `${discountPercentage}% off`; // Show percentage
+                              saleBadge.style.display = "block";
+                            } else {
+                              saleBadge.style.display = "none";
+                            }
+                            const soldBadge = document.getElementById(`sold-out-badge-${productId}`);
+                              soldBadge.textContent = selectedVariant.available ? " " : "SOLD OUT"
+                            if(!selectedVariant.available){
+                              soldBadge.style.display = "block";
+                              soldBadge.textContent = "SOLD OUT";
+                            }
+                              else {
+                                soldBadge.style.display = "none";
+                              }
+                            
+                            document.querySelectorAll(`[data-option-index="1"][data-product-id='${productId}']`).forEach(colorInput => {
+                              const colorValue = colorInput.dataset.value;
+                              const variantForColor = variants.find(variant => variant.options[0] === selectedOptions[0] && variant.options[1] === colorValue);
+                              colorInput.disabled = !(variantForColor && variantForColor.available);
+                              colorInput.parentNode.classList.toggle('disabled', colorInput.disabled);
+                            });
+
+                            const addToCartButton = document.getElementById(`add-to-cart-${productId}`);
+                            addToCartButton.disabled = !selectedVariant.available;
+                            addToCartButton.textContent = addToCartButton.disabled ? "Sold out" : "Add to bundle";
+                          }
+                        });
+                      });
+                    });
+              </script>
+              </div>
+            {% endfor %}
+            {% else %}
+            {% for i in (1..6) %}
+              <div class="product">
+                <a  role="link" aria-disabled="true" class="product-thumb flex">
+                  {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                  {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                  {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                </a>
+                <div class="product-content">
+                  <h5 class="product-title">Example product title</h5>
+                  <div class="product-price-wrapper align-items-center flex no-compare">
+                    <h6 class="product-price">{{ 00.00 |  money }}</h6>
+                  </div>
+                </div>
+                <button type="submit" class="product-btn add-to-bundle" disabled>
+                  Add to bundle
+                </button>
+              </div>
+            {% endfor %}
+          {% endif %}
+          </div>
+          <div class="slider-controls">
+            <button class="prev-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
+            <button class="next-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
+          </div>
+        
+          <!-- Right Section: Bundle List -->
+          <div id="bundle-list">
+            <div class="bundle-list-inner">
+              <div class="bundle-list-header">
+                <div class="bundle-list-header-top flex align-items-center space-between">
+                  <div class="bundle-list-header-content">
+                    {% if section.settings.bundle_cart_heading %}
+                      <h5>{{ section.settings.bundle_cart_heading }}</h5>
+                    {% endif %}
+                    {% if section.settings.bundle_cart_subheading %}
+                      <p> {{ section.settings.bundle_cart_subheading }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="bundle-list-header-icon flex" id="dropdown-icon">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </div>
+                </div>
+                <div id="item-range" class="item-range"></div>
+              </div>
+              <div class="bundle-list-body no-scrollbar">
+                <ul id="bundle-items">
+                  <!-- JavaScript will dynamically populate this list -->
+                </ul>
+              </div>
+              <div class="bundle-list-footer">
+                <div class="bundle-list-footer-inner">
+                  <div class="bundle-total-price flex space-between align-items-center"><span>SUBTOTAL</span><span id="bundle-total">{{ 00.00 |  money }}</span></div>
+                <button class="add-to-cart">ADD TO CART</button>
+                </div>
               </div>
             </div>
-          {%- endif -%}
-          <div class="card__badge">
-          {%- if product.available == false -%}
-            <span
-              id="Badge-{{ section_id }}-{{ product.id }}"
-              class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-            >
-              {{- 'products.product.sold_out' | t -}}
-            </span>
-          {%- elsif product.compare_at_price > product.price and product.available -%}
-            <span
-              id="Badge-{{ section_id }}-{{ product.id }}"
-              class="badge flex center badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-            >
-              {{- 'products.product.on_sale' | t -}}
-            </span>
-          {%- endif -%}
-        </div>
-        </div>
-
-        <product-info
-        data-section="{{ section.id }}"
-        data-product-id="{{ product.id }}"
-        data-update-url="false"
-        data-url="{{ product.url }}"
-        {% if section.settings.image_zoom == 'hover' %}
-          data-zoom-on-hover
-        {% endif %}
-      >
-          <h2 class="product__title" >{{ product.title | escape }}</h2>
-
-          <div id="price-{{ section.id }}" role="status" >
-            {%- render 'price',
-              product: product,
-              placeholder: placeholder,
-              use_variant: true,
-              show_badges: true,
-              price_class: 'price--large'
-            -%}
           </div>
-
-       
-          {% render 'product-variant-picker-new',
-            product: product,
-            product_form_id: product_form_id
-          %}
-
-
-          {%- render 'buy-buttons',
-            product: product,
-            product_form_id: product_form_id,
-            section_id: section.id
-          -%}
-        
-          </product-info>
-
-          </div>
-          {% endfor %}
-        </div>
-        <!-- Right Section: Bundle List -->
-        <div id="bundle-list">
-          <div class="bundle-list-inner">
-            <div class="bundle-list-header">
-              <h5>{{ section.settings.bundle_cart_heading }}</h5>
-              <p>{{ section.settings.bundle_cart_subheading }}</p>
-              <div id="item-range" class="item-range"></div>
-            </div>
-            <div class="bundle-list-body no-scrollbar">
-              <ul id="bundle-items">
-                <!-- JavaScript will dynamically populate this list -->
-              </ul>
-            </div>
-            <div class="bundle-list-footer">
-              <div class="bundle-list-footer-inner">
-                <div class="bundle-total-price flex space-between align-items-center"><span>SUBTOTAL</span><span id="bundle-total">$00.00</span></div>
-              <button class="add-to-cart">ADD TO CART</button>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+     </div>
+     </bundle-manager>
   </div>
 </div>
 
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const BUNDLE_LIMIT = 3;
-
-    function updateItemRange() {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      const itemRangeValue = (currentBundle.length / BUNDLE_LIMIT) * 100;
-      
-      // Get the #item-range div and update its --item-range CSS variable
-      const itemRangeDiv = document.getElementById('item-range');
-      itemRangeDiv.style.setProperty('--item-range', `${itemRangeValue}%`);
-    }
-
-    // Initial load of the page
-    updateItemRange();
-
-    const buttons = document.querySelectorAll('.add-to-bundle')
-    // Add to Bundle button handler
-    document.querySelectorAll('.add-to-bundle').forEach((button) => {
-      button.addEventListener('click', function () {
-        if (this.getAttribute('data-disabled') === 'true') {
-        return; // Prevent action if button is marked as disabled
-      }
-      
-        const productElem = this.closest('.product');
-        const productId = productElem.dataset.id;
-        const productTitle = productElem.dataset.title;
-        const productPrice = parseFloat(productElem.dataset.price);
-        const productImage = productElem.querySelector('img') ? productElem.querySelector('img').src : null;
-        const variantSelect = productElem.querySelector('.variant-select');
-        const variantId = variantSelect ? variantSelect.value : null;
-        const quantityInput = productElem.querySelector('.quantity-input');
-        const quantity = quantityInput ? parseInt(quantityInput.value, 10) : 1;
-
-        // Create bundle item object
-        const bundleItem = {
-          id: productId,
-          title: productTitle,
-          price: productPrice,
-          image: productImage,
-          variant: variantId,
-          quantity: quantity,
-        };
-
-        // Add to localStorage
-        const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-        currentBundle.push(bundleItem);
-        localStorage.setItem('bundleList', JSON.stringify(currentBundle));
-
-        this.disabled = true;
-
-        updateItemRange();
-        // Update Bundle List
-        updateBundleList();
-      });
-    });
-
-    // Remove Item from Bundle List
-    function removeItemFromBundle(itemId) {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      const updatedBundle = currentBundle.filter((item) => item.id !== itemId);
-      localStorage.setItem('bundleList', JSON.stringify(updatedBundle));
-
-      buttons.forEach((button) => {
-        const productElem = button.closest('.product');
-        if (productElem.dataset.id === itemId) {
-          button.disabled = false;
-        }
-      });
-
-      updateItemRange();
-      updateBundleList();
-    }
-
-    // Update quantity in the Bundle List
-    function updateQuantity(itemId, quantity) {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      const itemIndex = currentBundle.findIndex((item) => item.id === itemId);
-      if (itemIndex !== -1) {
-        currentBundle[itemIndex].quantity = quantity;
-        localStorage.setItem('bundleList', JSON.stringify(currentBundle));
-        updateBundleList();
-      }
-    }
-
-    // Calculate the total price of the bundle
-    function calculateTotalPrice() {
-      const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-      let totalPrice = 0;
-      currentBundle.forEach((item) => {
-        totalPrice += item.quantity * item.price;
-      });
-      return totalPrice;
-    }
-
-  // Update Bundle List UI
-  function updateBundleList() {
-    const bundleListElem = document.getElementById('bundle-items');
-    bundleListElem.innerHTML = ''; // Clear the list
-    const currentBundle = JSON.parse(localStorage.getItem('bundleList')) || [];
-
-    currentBundle.forEach((item) => {
-      const listItemHTML = `
-        <li class="flex">
-          <img class="item-thumb" src="${item.image}" alt="${item.title}">
-          <div class="item-product-info">
-            <h5>${item.title}</h5>
-            <p>
-            $${item.price.toFixed(2)}</p>
-            <div class="item-info-bottom flex align-items-center">
-              <div class="item-info-btns grid">
-                <button class="minus-btn">-</button>
-                <input type="text" class="quantity-input" value="${item.quantity}">
-                <button class="plus-btn">+</button>
-              </div>
-                <button class="remove-btn btn-line">Remove</button>
-            </div>
-          </div>
-        </li>
-      `;
-
-      bundleListElem.insertAdjacentHTML('beforeend', listItemHTML);
-
-      // Add event listeners for quantity and remove buttons
-      const listItem = bundleListElem.lastElementChild;
-      const minusButton = listItem.querySelector('.minus-btn');
-      const plusButton = listItem.querySelector('.plus-btn');
-      const quantityInput = listItem.querySelector('.quantity-input');
-      const removeButton = listItem.querySelector('.remove-btn');
-
-      minusButton.addEventListener('click', function () {
-        if (item.quantity > 1) {
-          item.quantity--;
-          updateQuantity(item.id, item.quantity);
-        }
-      });
-
-      plusButton.addEventListener('click', function () {
-        item.quantity++;
-        updateQuantity(item.id, item.quantity);
-      });
-
-      quantityInput.addEventListener('change', function () {
-        const newQuantity = parseInt(quantityInput.value, 10);
-        if (!isNaN(newQuantity) && newQuantity > 0) {
-          updateQuantity(item.id, newQuantity);
-        }
-      });
-
-      removeButton.addEventListener('click', function () {
-        removeItemFromBundle(item.id);
-      });
-    });
-
-      // Add placeholders if needed
-      const placeholdersNeeded = BUNDLE_LIMIT - currentBundle.length;
-      for (let i = 0; i < placeholdersNeeded; i++) {
-        const placeholderHTML = `
-          <li class="flex align-items-center">
-            <div class="item-thumb placeholder">
-                <span class="activity"></span>
-            </div>
-            <div class="item-product-info">
-              <div class="placeholder">
-                <span class="activity"></span>
-              </div>
-              <div class="placeholder">
-                <span class="activity"></span>
-              </div>
-            </div>
-        </li>
-        `;
-        bundleListElem.insertAdjacentHTML('beforeend', placeholderHTML);
-      }
-
-    // Disable all "Add to Bundle" buttons if limit is reached
-    const addButtons = document.querySelectorAll('.add-to-bundle');
-    addButtons.forEach((button) => {
-      const productElem = button.closest('.product');
-      const productId = productElem.dataset.id;
-
-      // Disable the button if the limit is reached or if the product is already in the bundle
-      if (currentBundle.length >= BUNDLE_LIMIT || currentBundle.some(item => item.id === productId)) {
-        button.classList.add('disabled'); // Add a visual "disabled" style
-        button.setAttribute('data-disabled', 'true'); // Custom attribute to track the disabled state
-      } else {
-        button.classList.remove('disabled'); // Remove the visual "disabled" style
-        button.removeAttribute('data-disabled'); // Remove the custom attribute
-      }
-    });
-
-
-    // Update Total Price of the Bundle
-    const totalPrice = calculateTotalPrice();
-    const totalPriceElem = document.getElementById('bundle-total');
-    totalPriceElem.textContent = `$${totalPrice.toFixed(2)}`;
-  }
-
-
-    // Initial Load
-    updateBundleList();
-  });
-
-</script>
 
 
 
@@ -397,89 +281,15 @@
           "default": "scheme-1"
         },
         {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading",
+          "default": "BUILD YOUR BUNDLE"
+        },
+        {
             "type": "collection",
             "id": "collection",
             "label": "Chose collection"
-        },
-        {
-          "type": "header",
-          "content": "t:sections.featured-collection.settings.header.content"
-        },
-        {
-          "type": "select",
-          "id": "image_ratio",
-          "options": [
-            {
-              "value": "adapt",
-              "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
-            },
-            {
-              "value": "portrait",
-              "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
-            },
-            {
-              "value": "square",
-              "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
-            }
-          ],
-          "default": "portrait",
-          "label": "t:sections.featured-collection.settings.image_ratio.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_secondary_image",
-          "default": false,
-          "label": "t:sections.featured-collection.settings.show_secondary_image.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_vendor",
-          "default": true,
-          "label": "t:sections.featured-collection.settings.show_vendor.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_rating",
-          "default": false,
-          "label": "t:sections.featured-collection.settings.show_rating.label",
-          "info": "t:sections.featured-collection.settings.show_rating.info"
-        },
-        {
-          "type": "select",
-          "id": "picker_type",
-          "options": [
-            {
-              "value": "dropdown",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__1.label"
-            },
-            {
-              "value": "button",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.options__2.label"
-            }
-          ],
-          "default": "button",
-          "label": "t:sections.featured-product.blocks.variant_picker.settings.picker_type.label"
-        },
-        {
-          "id": "swatch_shape",
-          "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.label",
-          "type": "select",
-          "info": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.info",
-          "options": [
-            {
-              "value": "circle",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.options__1.label"
-            },
-            {
-              "value": "square",
-              "label": "t:sections.featured-product.blocks.variant_picker.settings.swatch_shape.options__2.label"
-            },
-            {
-              "value": "none",
-              "label": "t:sections.main-product.blocks.variant_picker.settings.swatch_shape.options__3.label"
-            }
-          ],
-          "default": "circle"
         },
         {
             "type": "header",

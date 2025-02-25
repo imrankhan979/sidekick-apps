@@ -100,6 +100,11 @@
                     },
                     {
                       "type": "color",
+                      "id": "button_border",
+                      "label": "Border"
+                    },
+                    {
+                      "type": "color",
                       "id": "button_hover",
                       "label": "Background hover"
                     },
@@ -121,6 +126,11 @@
                       "type": "color",
                       "id": "secondary_button_label",
                       "label": "Label"
+                    },
+                    {
+                      "type": "color",
+                      "id": "secondary_button_border",
+                      "label": "Border"
                     },
                     {
                       "type": "color",
@@ -200,7 +210,7 @@
       {
         "type": "font_picker",
         "id": "type_header_font",
-        "default": "assistant_n4",
+        "default": "oswald_n7",
         "label": "t:settings_schema.typography.settings.type_header_font.label",
         "info": "t:settings_schema.typography.settings.type_header_font.info"
       },
@@ -254,7 +264,7 @@
         "type": "range",
         "id": "spacing_sections",
         "min": 0,
-        "max": 100,
+        "max": 100, 
         "step": 4,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_sections.label",

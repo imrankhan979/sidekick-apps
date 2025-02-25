@@ -1,0 +1,222 @@
+{{ 'component-testimonial.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  .testimonial-item{
+    width: calc((100% / {{section.settings.columns_desktop}}));
+  }
+  
+{%- endstyle -%}
+
+<!-- start: Testimonial Section -->
+<section class="testimonial-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="heading_area">
+      <h2 class="sec_title">{{ section.settings.testimonial_heading }}</h2>
+    </div>
+    <div class="testimonial_erap">
+      <items-carousel> 
+      <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false, "autoPlay": {{ section.settings.autoplay }} }'>
+        {%- for block in section.blocks -%} 
+        <div class="testimonial-item" {{ block.shopify_attributes }}>
+            {%- if block.settings.testimonial_image != blank -%}
+          <div class="testimonial-images">
+            {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+          </div>
+        {%- endif -%}
+          <div class="testimonial-content">
+            {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
+                <div class="testimonial-text">
+                {% if block.settings.client_review_title %}
+                  <h5 class="title">{{ block.settings.client_review_title }}</h5>
+                {% endif %}
+                {% if block.settings.client_review_text %} 
+                  <div class="desc">
+                    <p>{{ block.settings.client_review_text }}</p>
+                  </div>
+                {% endif %}
+                </div>
+            {% endif %}
+            {% if block.settings.client_image != blank  or  block.settings.client_name != blank or block.settings.client_location != blank %}
+               <div class="testimonial-author">
+                  {%- if block.settings.client_image != blank -%}
+                <div class="author-images">
+                  {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                </div>
+              {%- endif -%}
+                <div class="author-text">
+                  {% if block.settings.client_name %}
+                    <h5 class="title">{{ block.settings.client_name }}</h5>
+                  {% endif %}
+                  {% if block.settings.client_location %}
+                    <span class="designation">{{ block.settings.client_location }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+            {% if block.settings.show_product %}
+              <div class="testimonial-infos">
+                  <div class="infos-text">
+                      <h6 class="title">
+                          <a  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
+                              {{ block.settings.testimonial_product.title | default: "Select a product" }}
+                          </a>
+                      </h6>
+                      <span class="price">
+                          {{ block.settings.testimonial_product.price | money | default: "$0.00" }}
+                      </span>
+                  </div>
+                  <div class="testimonial-button">
+                      <a class="link-btn" href="{{ block.settings.testimonial_product.url }}">
+                          {{- 'icon-plus.svg' | inline_asset_content -}}
+                      </a>
+                  </div>
+              </div>
+            {% endif %}
+          </div> 
+        </div>
+        {%- endfor -%}
+      </div>
+      </items-carousel>
+    </div>
+  </div>
+</section>
+<!-- end: Testimonial Section -->
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "testimonial_heading",
+      "label": "Heading",
+      "default": "Customer Reviews"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 120
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "testimonial_image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "client_review_title",
+          "label": "Title",
+          "default": "Elevated Streetwear"
+        },
+        {
+          "type": "richtext",
+          "id": "client_review_text",
+          "label": "Text",
+          "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "client_image",
+          "label": "Avatar"
+        },
+        {
+          "type": "text",
+          "id": "client_name",
+          "label": "Name",
+          "default": "Anya Petrova"
+        },
+        {
+          "type": "text",
+          "id": "client_location",
+          "label": "Location",
+          "default": "Paris, France"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_product",
+          "label": "Show product",
+          "default": true
+        },
+        {
+        "type": "product",
+        "id": "testimonial_product",
+        "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial",
+      "blocks": [
+      {
+        "type": "testimonial"
+      },
+      {
+        "type": "testimonial"
+      },
+      {
+        "type": "testimonial"
+      }
+    ]
+    }
+  ]
+}
+{% endschema %}

@@ -1272,10 +1272,8 @@ class ObservedDiv extends HTMLElement {
     this.resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
         const height = entry.contentRect.height;
-        this.style.setProperty(
-          "--observed-height",
-          `${height}px`
-        );
+        document.body.style.setProperty("--observed-height", `${height}px`);
+        this.style.setProperty("--observed-height", `${height}px`);
       }
     });
     this.resizeObserver.observe(this);
@@ -1544,7 +1542,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           initialize(options) {
               if (this.theCarousel && this.theCarousel.offsetParent !== null) {
-                  const defaultOptions = { /* ... your default options ... */ };
+                  const defaultOptions = { "autoplay": false };
                   const mergedOptions = { ...defaultOptions, ...options };
                   this.flickity = new Flickity(this.theCarousel, mergedOptions);
                   this.theCarousel.style.display = "block";
@@ -1575,3 +1573,124 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 });
+
+// bundle responsive button click toggle
+let dropDownBtn = document.getElementById("dropdown-icon");
+let bundleListWrapper = document.getElementById("bundle-list");
+if(dropDownBtn && bundleListWrapper){
+  dropDownBtn.addEventListener("click", () => {
+    bundleListWrapper.classList.toggle("active");
+  });
+
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const contentContainers = document.querySelectorAll('.bundle-products');
+  const productThumbs = document.querySelectorAll("#product-list .product-thumb");
+
+  if (productThumbs.length) {
+    let maxHeight = Math.max(...Array.from(productThumbs, el => el.offsetHeight));
+    document.querySelector(".slider-controls").style.setProperty("--thumb-height", `${maxHeight}px`);
+  }
+
+  contentContainers.forEach(container => {
+    if (window.innerWidth <= 575) {
+      const prevButton = container.parentElement.querySelector('.prev-slide');
+      const nextButton = container.parentElement.querySelector('.next-slide');
+
+      if (prevButton && nextButton) {
+        prevButton.addEventListener('click', () => {
+          container.scrollBy({
+            left: -container.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+
+        nextButton.addEventListener('click', () => {
+          container.scrollBy({
+            left: container.offsetWidth,
+            behavior: 'smooth'
+          });
+        });
+      }
+
+      // Function to update slider height
+      function updateSliderHeight() {
+        let activeSlide = container.children[0];
+        let scrollLeft = container.scrollLeft;
+        let slideWidth = container.offsetWidth;
+        let slideIndex = Math.round(scrollLeft / slideWidth);
+
+        if (container.children[slideIndex]) {
+          activeSlide = container.children[slideIndex];
+        }
+
+        container.style.height = activeSlide.offsetHeight + 'px';
+      }
+
+      // Initial height update
+      updateSliderHeight();
+
+      // Update height on scroll (drag)
+      container.addEventListener('scroll', updateSliderHeight);
+
+      // Drag functionality
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - container.getBoundingClientRect().left;
+        scrollLeft = container.scrollLeft;
+        container.style.scrollBehavior = 'auto';
+      });
+
+      container.addEventListener('mouseleave', () => {
+        isDragging = false;
+        container.style.scrollBehavior = 'smooth';
+      });
+
+      container.addEventListener('mouseup', () => {
+        isDragging = false;
+        container.style.scrollBehavior = 'smooth';
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - container.getBoundingClientRect().left;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Touch events for mobile
+      container.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX - container.getBoundingClientRect().left;
+        scrollLeft = container.scrollLeft;
+        container.style.scrollBehavior = 'smooth';
+      });
+
+      container.addEventListener('touchend', () => {
+        isDragging = false;
+        container.style.scrollBehavior = 'smooth';
+      });
+
+      container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - container.getBoundingClientRect().left;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Update height on window resize
+      window.addEventListener("resize", updateSliderHeight);
+
+    }
+  });
+});
+

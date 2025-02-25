@@ -1,18 +1,14 @@
-/**----------------------------------------
-START: Heading CSS
-----------------------------------------*/
-.heading_area {
-  margin-bottom: 60px;
+.page-width .heading_area {
+  margin-bottom: 80px;
 }
 
 .heading_area .sec_title {
   font-size: 64px;
-  text-transform: uppercase;
   line-height: 1;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .heading_area {
+  .page-width .heading_area {
     margin-bottom: 60px;
   }
 
@@ -22,7 +18,7 @@ START: Heading CSS
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .heading_area {
+  .page-width  .heading_area {
     margin-bottom: 50px;
   }
 
@@ -32,7 +28,7 @@ START: Heading CSS
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .heading_area {
+  .page-width .heading_area {
     margin-bottom: 50px;
   }
 
@@ -42,7 +38,7 @@ START: Heading CSS
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-  .heading_area {
+  .page-width  .heading_area {
     margin-bottom: 50px;
   }
 
@@ -52,7 +48,7 @@ START: Heading CSS
 }
 
 @media (max-width: 575px) {
-  .heading_area {
+  .page-width  .heading_area {
     margin-bottom: 48px;
     text-align: center;
   }
@@ -63,12 +59,10 @@ START: Heading CSS
 }
 
 /* !END: Heading CSS *
-/**----------------------------------------
+/
+**----------------------------------------
 START: Testimonial CSS
 ----------------------------------------*/
-/* .testimonial-section {
-  padding-bottom: 120px;
-} */
 
 .testimonial-section .page-width {
   position: relative;
@@ -77,7 +71,7 @@ START: Testimonial CSS
 .testimonial-section .page-width .flickity-prev-next-button.previous {
   left: auto;
   right: 64px;
-  top: -120px;
+  top: -112px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -173,14 +167,6 @@ START: Testimonial CSS
   }
 }
 
-.testimonial-section .page-width .flickity-prev-next-button.previous:hover {
-  background-color: #000000;
-}
-
-.testimonial-section .page-width .flickity-prev-next-button.previous:hover svg path {
-  fill: #ffffff;
-}
-
 .testimonial-section .page-width .flickity-button:disabled {
   opacity: 1;
 }
@@ -193,13 +179,9 @@ START: Testimonial CSS
   transform: translate(-50%, -50%);
 }
 
-.testimonial-section .page-width .flickity-prev-next-button.previous svg path {
-  fill: rgb(var(--color-foreground));
-}
-
 .testimonial-section .page-width .flickity-prev-next-button.next {
   right: 0;
-  top: -120px;
+  top: -112px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -207,31 +189,41 @@ START: Testimonial CSS
   height: 64px;
   background: transparent;
 }
-
-.testimonial-section .page-width .flickity-prev-next-button.next:hover {
-  background-color: #000000;
+.testimonial-section .page-width .flickity-prev-next-button svg path {
+  fill: rgb(var(--color-button-text));
 }
-
-.testimonial-section .page-width .flickity-prev-next-button.next svg path {
-  fill: rgb(var(--color-foreground));
+.testimonial-section .page-width .flickity-prev-next-button:hover {
+  background-color: rgb(var(--color-button-hover));
 }
-
-.testimonial-section .page-width .flickity-prev-next-button.next:hover svg path {
-  fill: #ffffff;
+.testimonial-section .page-width .flickity-prev-next-button:hover svg path {
+  fill: rgb(var(--color-button-text-hover));
 }
-
-.testimonial-section .page-width .flickity-prev-next-button.next:hover svg path {
-  fill: #ffffff;
-}
-
 .testimonial-item {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  width: 51%;
   column-gap: 48px;
 }
-
+@media (max-width: 767px) {
+  .testimonial-item {
+    flex-direction: column;
+  }
+}
+@media (max-width: 767px) {
+  .testimonial-section .page-width .flickity-prev-next-button{
+    background-color: rgb(var(--color-button));
+  }
+}
+@media (max-width: 767px) {
+  .testimonial-section .page-width .flickity-prev-next-button{
+    background-color: rgb(var(--color-button)) !important;
+  }
+  .testimonial-section .page-width .flickity-prev-next-button[disabled]{
+    background-color: rgba(var(--color-button), 0.5) !important;
+  }
+  .testimonial-section .page-width .flickity-prev-next-button:hover svg path{
+    fill: rgb(var(--color-button-text)) !important;
+  }
+}
 @media only screen and (min-width: 1601px) and (max-width: 1770px) {
   .testimonial-section .testimonial-item {
     column-gap: 35px;
@@ -254,14 +246,6 @@ START: Testimonial CSS
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 15px;
   }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 28px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 32px;
-  }
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -273,20 +257,8 @@ START: Testimonial CSS
     max-width: 194px;
   }
 
-  .testimonial-section .testimonial-item .testimonial-content {
-    max-width: 362px;
-  }
-
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 15px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 20px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 20px;
   }
 }
 
@@ -294,28 +266,19 @@ START: Testimonial CSS
   .testimonial-section {
     padding-bottom: 100px;
   }
-
+ 
   .testimonial-section .testimonial-item {
-    width: 100%;
     column-gap: 30px;
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 25px;
   }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 30px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 40px;
-  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .testimonial-section {
-    padding-bottom: 80px;
+    padding-bottom: 80px; 
   }
 
   .testimonial-section .testimonial-item {
@@ -330,14 +293,6 @@ START: Testimonial CSS
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-text .title {
     margin-bottom: 25px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 30px;
-  }
-
-  .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 40px;
   }
 }
 
@@ -368,12 +323,10 @@ START: Testimonial CSS
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
-    margin-top: 25px;
     justify-content: center;
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
-    margin-top: 30px;
     justify-content: center;
     text-align: start;
   }
@@ -401,12 +354,10 @@ START: Testimonial CSS
   .testimonial-section .testimonial-item .testimonial-content .testimonial-author {
     column-gap: 12px;
     justify-content: center;
-    margin-top: 36px;
   }
 
   .testimonial-section .testimonial-item .testimonial-content .testimonial-infos {
     justify-content: center;
-    margin-top: 36px;
     text-align: start;
   }
 
@@ -451,10 +402,22 @@ START: Testimonial CSS
 }
 
 .testimonial-item .testimonial-content {
-  max-width: 381px;
   width: 100%;
+  padding-right: 24px;
 }
-
+.testimonial-item .testimonial-content > * + * {
+  margin-top: 60px;
+}
+@media (max-width: 1600px) {
+  .testimonial-item .testimonial-content > * + * {
+    margin-top: 36px;
+  }
+}
+@media (max-width: 767px) {
+  .testimonial-item .testimonial-content {
+    padding-right: 0;
+  }  
+}
 .testimonial-item .testimonial-content .testimonial-text .title {
   margin-bottom: 38px;
 }
@@ -475,7 +438,6 @@ START: Testimonial CSS
   flex-wrap: wrap;
   align-items: center;
   column-gap: 16px;
-  margin-top: 58px;
 }
 
 .testimonial-item .testimonial-content .testimonial-author .author-images {
@@ -492,16 +454,16 @@ START: Testimonial CSS
 
 .testimonial-item .testimonial-content .testimonial-author .author-text .title {
   color: rgb(var(--color-foreground));
-  font-family: var(--sds-ff-body);
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 0;
-  line-height: 24px;
+  line-height: 16px;
+  margin-bottom: 8px;
 }
 
 .testimonial-item .testimonial-content .testimonial-author .author-text .designation {
   display: inline-block;
-  color: rgb(var(--color-foreground));
+  color: rgba(var(--color-foreground), .55);
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -511,7 +473,6 @@ START: Testimonial CSS
   display: flex;
   flex-wrap: wrap;
   column-gap: 24px;
-  margin-top: 62px;
 }
 
 .testimonial-item .testimonial-content .testimonial-infos .infos-text .title {
@@ -570,9 +531,7 @@ START: Testimonial CSS
   width: 28px;
   height: 28px;
   font-size: 14px;
-  color: rgb(var(--color-button-text));
-  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-secondary-button-text));
+  background-color: rgb(var(--color-secondary-button));
   border-radius: 50%;
 }
-
-/* !END: Testimonial CSS *
