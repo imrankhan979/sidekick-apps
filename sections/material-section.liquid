@@ -6,8 +6,8 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
   }
  
-  @media screen and (min-width: 1199px) { 
-  .shop_material_wrapper {
+  @media screen and (min-width: 800px) { 
+    .material_main_wrapper {
     grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
 }
   }
@@ -24,7 +24,7 @@
    <section class="about-material-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
        <div class="heading-area">
-          <h5 class="material_title">{{ settings.block.section_title }}</h5>
+          <h5 class="material_title">{{ section.settings.section_title }}</h5>
        </div>
        <div class="material_main_wrapper">
         {%- for block in section.blocks -%}
@@ -34,7 +34,7 @@
                       {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                       {%- else -%}
                       {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                      {%- assign placeholder_image = 'material-apparel-' | append: placeholder_image_index -%}
+                      {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
                       {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                     {%- endif -%}
              </div>
@@ -48,16 +48,39 @@
           </div>
         {% endfor %}
        </div>
+       <div class="material_slider_wrapper material_slider_section">
+        <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'>
+            {%- for block in section.blocks -%} 
+           <div class="material_item">
+              <div class="material_icons">
+                {%- if block.settings.material_image != blank -%}
+                    {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                    {%- else -%}
+                    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                    {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+              </div>
+              <h5 class="material_item_title">
+                {%- if block.settings.material_heading != blank -%}
+                {{ block.settings.material_heading }}
+              {%- else -%}
+              Material Name
+               {%- endif -%}</h5>
+           </div>
+        {% endfor %}
+        </div>
+     </div>
     </div>
  </section>
  <!-- end: Material Section -->
 
 {% schema %}
 {
-  "name": "All Material",
+  "name": "Icon With Text",
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "text",
       "id": "section_title",
       "default": "Section Description",
       "label": "Section Description"
@@ -72,10 +95,10 @@
       "type": "range",
       "id": "columns_desktop",
       "min": 2,
-      "max": 4,
+      "max": 6,
       "step": 1,
-      "default": 2,
-      "label": "t:sections.material-list.settings.columns_desktop.label"
+      "default": 4,
+      "label": "Column Desktop"
     },
     {
       "type": "header",
@@ -117,18 +140,13 @@
           "id": "material_heading",
           "label": "Heading",
           "info": "If left blank, the material name will be used."
-        },
-        {
-          "type": "url",
-          "id": "material_button_link",
-          "label": "Button Link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "All Material",
+      "name": "Icon With Text",
       "blocks": [
         {
           "type": "material"

@@ -1,0 +1,221 @@
+{{ 'our-journey.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+ 
+  @media screen and (min-width: 800px) { 
+    .tab_main_wrapper {
+    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+}
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+{%- endstyle -%}
+ <!-- start: Journey Section -->
+ <section class="our-journey-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+    <div class="page-width">
+       <div class="heading-area">
+          <h2 class="our_journey_main_title">{{ section.settings.section_title }}</h2>
+          <h5 class="our_journey_title">We’ve evolved from a small streetwear label to a recognized force in the
+             industry, constantly pushing boundaries and setting new trends.</h5>
+       </div>
+       <div class="our_journey_main_wrapper">
+        {%- for block in section.blocks -%}
+          <div class="our_journey_images">
+            {%- if block.settings.tab_image != blank -%}
+              {{ block.settings.tab_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+              {%- else -%}
+              {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+              {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+          <div class="our_journey_tabs">
+             <div class="our_journey_tab" id="our-journey-tab">
+                <div class="our_journey_menu">
+                   <ul class="tabs_menu">
+                    {%- for block in section.blocks -%}
+                      <li class="
+                     {% if forloop.first %}active{% endif %}
+                      ">{%- if block.settings.tab_button != blank -%}
+                        {{ block.settings.tab_button }}
+                      {%- else -%}
+                      2024
+                       {%- endif -%}
+                       </li>
+                    {% endfor %}
+                      
+                   </ul>
+                </div>
+                <div class="our_journey_content">
+                  {%- for block in section.blocks -%}
+                   <div class="tab-pane">
+                      <h3 class="our_journey_title">
+                        {%- if block.settings.tab_heading != blank -%}
+                          {{ block.settings.tab_heading }}
+                        {%- else -%}
+                        The Humble Beginnings
+                         {%- endif -%}</h3>
+                      <p class="our_journey_desc"> 
+                        {%- if block.settings.tab_description != blank -%}
+                        {{ block.settings.tab_description }}
+                      {%- else -%}
+                      Dapper was born in New York from a shared passion for urban fashion. 
+                      Founded by Ryan Davis, a visionary with a keen eye for style, 
+                      the brand quickly gained traction among local streetwear enthusiasts.
+                       {%- endif -%}
+                       </p>
+                   </div>
+                  {% endfor %}
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- end: Journey Section -->
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+  let tabWrapper = document.getElementById("our-journey-tab");
+  if (!tabWrapper) return;
+  let tabMnu = tabWrapper.querySelectorAll(".tabs_menu li"),
+      tabContent = tabWrapper.querySelectorAll(".our_journey_content > .tab-pane"),
+      tabImages = document.querySelectorAll(".our_journey_images");
+
+  if (tabMnu.length === 0 || tabContent.length === 0) return;
+  tabContent.forEach((content, index) => {
+    content.style.display = index === 0 ? "block" : "none";
+    content.setAttribute("data-tab", "tab" + index);
+  });
+
+  tabMnu.forEach((item, index) => {
+    item.setAttribute("data-tab", "tab" + index);
+  });
+
+  tabImages.forEach((image, index) => {
+    image.setAttribute("data-tab", "tab" + index);
+    image.style.display = index === 0 ? "block" : "none";
+  });
+
+  tabMnu.forEach((item) => {
+    item.addEventListener("click", function () {
+      var tabData = this.getAttribute("data-tab");
+      tabContent.forEach((content) => {
+        content.style.display = content.getAttribute("data-tab") === tabData ? "block" : "none";
+      });
+
+      tabImages.forEach((image) => {
+        image.style.display = image.getAttribute("data-tab") === tabData ? "block" : "none";
+      });
+      
+      tabMnu.forEach((tab) => tab.classList.remove("active"));
+      this.classList.add("active");
+    });
+  });
+
+  tabMnu[0].classList.add("active");
+});
+  </script>
+{% schema %}
+{
+  "name": "Icon With Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "default": "Section Description",
+      "label": "Section Description"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 352
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 352
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab Section",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "tab_image",
+          "label": "Tab Image"
+        },
+        {
+          "type": "text",
+          "id": "tab_button",
+          "label": "Button Text",
+          "info": "2020"
+        },
+        {
+          "type": "text",
+          "id": "tab_heading",
+          "label": "Heading",
+          "info": "The Humble Beginnings"
+        },
+        {
+          "type": "richtext",
+          "id": "tab_description",
+          "label": "Description",
+          "info": "The Humble Beginnings"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tab Section",
+      "blocks": [
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        },
+        {
+          "type": "tab"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
