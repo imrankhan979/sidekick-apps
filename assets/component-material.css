@@ -1,14 +1,6 @@
 /**----------------------------------------
 START: Material CSS
 ----------------------------------------*/
-.about-material-section {
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-  
-  .about-material-section .material_slider_wrapper {
-    display: none;
-  }
   
   .about-material-section .heading-area {
     max-width: 680px;
@@ -17,11 +9,11 @@ START: Material CSS
     margin-right: auto;
     text-align: center;
     margin-bottom: 120px;
+    color: rgb(var(--color-foreground));
   }
   
   .material_main_wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     row-gap: 30px;
     text-align: center;
   }
@@ -37,6 +29,13 @@ START: Material CSS
   .material_item .material_item_title {
     font-weight: 700;
     text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+  }
+
+  @media only screen and (min-width: 575px) {
+    .about-material-section .material_slider_wrapper {
+        display: none;
+      }
   }
   
   @media only screen and (min-width: 992px) and (max-width: 1199px) {

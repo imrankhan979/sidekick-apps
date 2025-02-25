@@ -1,0 +1,245 @@
+
+/**----------------------------------------
+START: Our journey CSS
+----------------------------------------*/
+.our-journey-section {
+    padding-bottom: 120px;
+  }
+  
+  .our-journey-section .heading-area {
+    max-width: 930px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  
+  .our-journey-section .heading-area .our_journey_main_title {
+    text-transform: uppercase;
+    margin-bottom: 65px;
+  }
+  
+  .our_journey_main_wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+    background: #F6F6F6;
+    border-radius: 64px;
+    overflow: hidden;
+  }
+  
+  .our_journey_main_wrapper .our_journey_images {
+    display: flex;
+    max-width: 880px;
+    width: 100%;
+  }
+  
+  .our_journey_main_wrapper .our_journey_images img {
+    border-radius: 64px 0px 0px 64px;
+  }
+  
+  .our_journey_main_wrapper .our_journey_content {
+    max-width: 750px;
+    width: 100%;
+  }
+  
+  .our_journey_main_wrapper .our_journey_menu {
+    margin-bottom: 264px;
+  }
+  
+  .our_journey_tabs .our_journey_tab {
+    padding: 25px;
+  }
+  
+  .our_journey_main_wrapper .our_journey_tab .tabs_menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 16px;
+    row-gap: 10px;
+  }
+  
+  .our_journey_main_wrapper .our_journey_tab .tabs_menu li {
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #000000;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 100px;
+    padding: 11px 16px;
+    line-height: 1;
+  }
+  
+  .our_journey_main_wrapper .our_journey_tab .tabs_menu li.active {
+    background-color: #000000;
+    border-color: #000000;
+    color: #ffffff;
+  }
+  
+  .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+  
+  .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_desc {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 28px;
+  }
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .our_journey_main_wrapper .our_journey_menu {
+      margin-bottom: 200px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
+      margin-bottom: 30px;
+    }
+  }
+  
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .our_journey_main_wrapper .our_journey_menu {
+      margin-bottom: 95px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
+      margin-bottom: 20px;
+    }
+  
+    .our_journey_main_wrapper {
+      column-gap: 20px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .our-journey-section {
+      padding-bottom: 100px;
+    }
+  
+    .our_journey_main_wrapper {
+      flex-direction: column;
+      border-radius: 24px;
+    }
+  
+    .our-journey-section .heading-area .our_journey_main_title {
+      margin-bottom: 30px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_menu {
+      margin-bottom: 80px;
+    }
+  
+    .our-journey-section .heading-area {
+      margin-bottom: 60px;
+    }
+  
+    .our_journey_tabs .our_journey_tab {
+      padding: 40px 25px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
+      margin-bottom: 15px;
+      line-height: 32px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_images img {
+      border-radius: 24px 24px 0px 0px;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .our-journey-section {
+      padding-bottom: 80px;
+    }
+  
+    .our_journey_main_wrapper {
+      flex-direction: column;
+      border-radius: 24px;
+    }
+  
+    .our-journey-section .heading-area .our_journey_main_title {
+      margin-bottom: 25px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_menu {
+      margin-bottom: 60px;
+    }
+  
+    .our-journey-section .heading-area {
+      margin-bottom: 40px;
+    }
+  
+    .our_journey_tabs .our_journey_tab {
+      padding: 40px 25px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
+      margin-bottom: 15px;
+      line-height: 30px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_images img {
+      border-radius: 24px 24px 0px 0px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_desc {
+      font-size: 18px;
+      line-height: 26px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .our-journey-section {
+      padding-bottom: 80px;
+    }
+  
+    .our_journey_main_wrapper {
+      flex-direction: column;
+      border-radius: 24px;
+    }
+  
+    .our-journey-section .heading-area .our_journey_main_title {
+      margin-bottom: 25px;
+      line-height: 28px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_menu {
+      margin-bottom: 40px;
+    }
+  
+    .our-journey-section .heading-area {
+      margin-bottom: 40px;
+    }
+  
+    .our_journey_tabs .our_journey_tab {
+      padding: 30px 25px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
+      margin-bottom: 15px;
+      line-height: 26px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_images img {
+      border-radius: 24px 24px 0px 0px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_desc {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  
+    .our_journey_main_wrapper .our_journey_tab .tabs_menu li {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
+  /* !END: Our journey CSS *
