@@ -25,12 +25,11 @@
     <div class="page-width">
        <div class="heading-area">
           <h2 class="our_journey_main_title">{{ section.settings.section_title }}</h2>
-          <h5 class="our_journey_title">We’ve evolved from a small streetwear label to a recognized force in the
-             industry, constantly pushing boundaries and setting new trends.</h5>
+          <h5 class="our_journey_title">{{ section.settings.section_description }}</h5>
        </div>
-       <div class="our_journey_main_wrapper">
+       <div class="our_journey_main_wrapper" style="background-color: {{ block.settings.collection_bg_color }};">
         {%- for block in section.blocks -%}
-          <div class="our_journey_images">
+          <div class="our_journey_images flex">
             {%- if block.settings.tab_image != blank -%}
               {{ block.settings.tab_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
               {%- else -%}
@@ -45,10 +44,8 @@
                 <div class="our_journey_menu">
                    <ul class="tabs_menu">
                     {%- for block in section.blocks -%}
-                      <li class="
-                     {% if forloop.first %}active{% endif %}
-                      ">{%- if block.settings.tab_button != blank -%}
-                        {{ block.settings.tab_button }}
+                      <li class="{% if forloop.first %}active{% endif %}">{%- if block.settings.tab_button != blank -%}
+                      {{ block.settings.tab_button }}
                       {%- else -%}
                       2024
                        {%- endif -%}
@@ -128,11 +125,17 @@ document.addEventListener("DOMContentLoaded", function () {
   </script>
 {% schema %}
 {
-  "name": "Icon With Text",
+  "name": "Tab Section",
   "settings": [
     {
       "type": "text",
       "id": "section_title",
+      "default": "Section Title",
+      "label": "Section Title"
+    },
+    {
+      "type": "text",
+      "id": "section_description",
       "default": "Section Description",
       "label": "Section Description"
     },
@@ -180,20 +183,17 @@ document.addEventListener("DOMContentLoaded", function () {
         {
           "type": "text",
           "id": "tab_button",
-          "label": "Button Text",
-          "info": "2020"
+          "label": "Button Text"
         },
         {
           "type": "text",
           "id": "tab_heading",
-          "label": "Heading",
-          "info": "The Humble Beginnings"
+          "label": "Heading"
         },
         {
           "type": "text",
           "id": "tab_description",
-          "label": "Description",
-          "info": "The Humble Beginnings"
+          "label": "Description"
         }
       ]
     }
