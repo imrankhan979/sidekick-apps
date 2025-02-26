@@ -29,7 +29,7 @@
                     <span class="hotspot_sub_title">{{ section.settings.hotspot_subtitle }}</span>
                     
                 {% endif %}
-                <span class="hotspot_percent">Subtotal: <strong>$668.00</strong> </span>
+                <div class="hotspot_percent">Subtotal: <strong>{{ cart.currency.symbol }}<span class="hotspot-subtotal"></span> </strong> </div>
                 <div class="bulk_hotspot_button">
                    <button class="bulk-hotspot-btn">{{ section.settings.cart_button_text }} <span>
                     {{- 'icon-plus.svg' | inline_asset_content -}}
@@ -69,123 +69,39 @@
 
              </div>
              
-             <!-- Flickity Slider -->
-
-             <div class="hotpot_slider_wrapper"
-             data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": true }'>
-             {% for block in section.blocks %}
-                {% if block.type == 'product' %}
-                    <div class="hotpot_slider_item">
-                       <div class="hotpot_slider_thumb">
-                        {% assign product = block.settings.selected_product %}
-                            <a class="flex" href="{{ product.url }}">
-                                {% if product.featured_image != blank %}
-                                    {{ product.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                                    {% else %}
-                                    {{ 'product-apparel-1'  | placeholder_svg_tag: 'placeholder-svg' }}
-                                {% endif %}
-                            </a>
-                            <div class="hotpot_slider_content">
-                                {% if product.vendor != blank %}
-                                    <span class="hotpot_slider_label">{{ product.vendor }}</span>
-                                {% endif %}
-                                {% if product.title != blank %}
-                                    <h5><a class="hotpot_slider_title" href="{{product.url}}">{{ product.title }}</a></h5>
-                                    {% else %}
-                                    <h5><a class="hotpot_slider_title" href="{{product.url}}">Product title</a></h5>
-                                {% endif %}
-                                {% if product.price != blank %}
-                                    <span class="hotpot_slider_amount">{{ product.price |  money }}</span>
-                                {% endif %}
-
-                                {% assign swatchAvailable = false %}
-                                {% for option in product.options_with_values %}
-                                    {% if option.name == 'Color' %}
-                                        {% assign swatchAvailable = true %}
-                                    {% endif %}
-                                {% endfor %}
-
-                                {% if swatchAvailable %}
-                                    {% if product.variants.size > 1 %}
-                                        <div class="variant-picker">
-                                        {% for option in product.options_with_values %}
-                                            {% if option.name == 'Color' %}
-                                            <div class="variant-group color-swatch">
-                                                <div class="variant-items">
-                                                {% for value in option.values %}
-                                                    {% assign variant_available = false %}
-                                                    {% for variant in product.variants %}
-                                                    {% if variant.available and variant.options contains value %}
-                                                        {% assign variant_available = true %}
-                                                    {% endif %}
-                                                    {% endfor %}
-                                                    {%- liquid 
-                                                    assign swatch_value = null
-                                                    if value.swatch.image
-                                                        assign image_url = value.swatch.image | image_url: width: 50
-                                                        assign swatch_value = 'url(' | append: image_url | append: ')'
-                                                    elsif value.swatch.color
-                                                        assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
-                                                    endif
-                                                    -%}
-                                                    <input id="{{ product.id }}-{{ value }}" 
-                                                        type="radio" 
-                                                        name="option-{{ product.id }}-{{ option.name | handleize }}" 
-                                                        value="{{ value }}" 
-                                                        data-option-index="{{ forloop.parentloop.index0 }}" 
-                                                        data-value="{{ value }}" 
-                                                        data-product-id="{{ product.id }}" 
-                                                        {% unless variant_available %}disabled{% endunless %}  
-                                                        style="--swatch-bg: {{ swatch_value }}">
-                                                        <label for="{{ product.id }}-{{ value }}" style="--swatch-bg: {{ swatch_value }}"></label>
-                                                {% endfor %}
-                                                </div>
-                                            </div>
-                                            {% endif %}
-                                        {% endfor %}
-                                        </div>
-                                    {% endif %}                                  
-                                {% endif %}
-                            </div>
-                       </div>
-                    </div>
-                {% endif %}
-             {% endfor %}
-             </div>
+            {% if section.blocks.size > 0 %}
+             <items-carousel>
+                <div class="items-carousel-selector hotpot_slider_wrapper"
+                data-flickity='{"contain": true, "prevNextButtons": {% if section.blocks.size > 1 %}true {% else %}false{% endif %}, "pageDots": false }'>
+                {% for block in section.blocks %}
+                    {% if block.type == 'product' %}
+                        <div class="hotpot_slider_item" {{ block.shopify_attributes }}>
+                            {% assign product = block.settings.selected_product %}
+                            {% if product != blank %}
+                                {% render "product", product: product, button: false %}
+                                {% else %}
+                                    <div class="hotpot_slider_thumb flex">
+                                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                                    </div>
+                                    <div class="hotpot_slider_content">
+                                        <h5  class="hotpot_slider_title" href="{{product.url}}">Product title</h5>
+                                        <p class="hotpot_slider_amount">{{ 0.00 |  money }}</p>
+                                    </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+           </items-carousel>
+        {% endif %}
           </div>
        </div>
     </div>
 </section>
  
  <script>
-document.addEventListener("DOMContentLoaded", () => {
-    function initSlider() {
-        const sliderWrapper = document.querySelector(".hotpot_slider_wrapper");
-        if (!sliderWrapper) return;
-        const flkty = new Flickity(sliderWrapper, {
-            contain: true,
-            prevNextButtons: true,
-            pageDots: false
-        });
-        const hotspots = document.querySelectorAll(".hotspot");
-        const updateActiveHotspot = (index) => {
-            hotspots.forEach((hotspot, i) => 
-                hotspot.classList.toggle("active", i === index)
-            );
-        };
-        hotspots.forEach((hotspot, index) => {
-            hotspot.addEventListener("click", () => {
-                flkty.select(index);
-                updateActiveHotspot(index);
-            });
-        });
-        flkty.on("change", updateActiveHotspot);
-        updateActiveHotspot(0);
-    }
-    initSlider(); // Run on page load
-    // Reinitialize when the section updates in the Shopify editor
-    document.addEventListener("shopify:section:load", initSlider);
-});
 
  </script>
 

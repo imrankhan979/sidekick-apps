@@ -1574,6 +1574,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
 // bundle responsive button click toggle
 let dropDownBtn = document.getElementById("dropdown-icon");
 let bundleListWrapper = document.getElementById("bundle-list");
@@ -1585,8 +1586,7 @@ if(dropDownBtn && bundleListWrapper){
 }
 
 
-
-
+// bundle responsive slider
 document.addEventListener('DOMContentLoaded', function() {
   const contentContainers = document.querySelectorAll('.bundle-products');
   const productThumbs = document.querySelectorAll("#product-list .product-thumb");
@@ -1674,3 +1674,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+
+// image hotspot
+document.addEventListener("DOMContentLoaded", () => {
+  const initSlider = () => {
+    const wrapper = document.querySelector(".hotpot_slider_wrapper");
+    if (!wrapper) return;
+    const flkty = new Flickity(wrapper, { contain: true, prevNextButtons: true, pageDots: false });
+    const hotspots = document.querySelectorAll(".hotspot");
+    const updateActive = (index) => hotspots.forEach((hotspot, i) => hotspot.classList.toggle("active", i === index));
+    hotspots.forEach((hotspot, index) => hotspot.addEventListener("click", () => { flkty.select(index); updateActive(index); }));
+    flkty.on("change", updateActive);
+    if (hotspots.length) updateActive(0);
+  };
+
+  const updateSubtotal = () => {
+    const subtotal = Array.from(document.querySelectorAll(".bulk-hotspot-section .product-price"))
+      .reduce((acc, priceElement) => {
+        const price = parseFloat(priceElement.textContent.replace(/[^0-9.]/g, ""));
+        return acc + (isNaN(price) ? 0 : price);
+      }, 0);
+    const subtotalElement = document.querySelector(".hotspot-subtotal");
+    if (subtotalElement) subtotalElement.textContent = subtotal.toFixed(2);
+  };
+
+  const handleAddToCart = () => {
+    const items = Array.from(document.querySelectorAll('.bulk-hotspot-section .product-variant-id'))
+      .map(input => ({ id: input.value, quantity: 1 }));
+    if (items.length) {
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items }) })
+        .then(response => response.json())
+        .then(() => window.location.href = '/cart')
+        .catch(error => console.error("Error adding to cart:", error));
+    }
+  };
+
+  initSlider();
+  updateSubtotal();
+
+  document.addEventListener("shopify:section:load", () => {
+    initSlider();
+    updateSubtotal();
+  });
+
+  const addAllToCartBtn = document.querySelector('.bulk-hotspot-btn');
+  if (addAllToCartBtn) addAllToCartBtn.addEventListener('click', handleAddToCart);
+});
+
