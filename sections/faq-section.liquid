@@ -1,0 +1,173 @@
+{{ 'component-faq.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+ 
+  @media screen and (min-width: 800px) { 
+    .tab_main_wrapper {
+    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+}
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+{%- endstyle -%}
+  <!-- start: FAQ Section -->
+  <section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+    <div class="page-width">
+       <div class="faq_main_wrapper">
+
+        {%- if section.settings.section_heading != blank and section.settings.section_description != blank -%}
+          <div class="faq_left_content">
+             <h3 class="faq_left_title">{{ section.settings.section_heading }}</h3>
+             <div class="faq_left_desc">
+                <p class="faq__desc">{{ section.settings.section_description }}</p>
+             </div>
+          </div>
+        {%- endif -%}
+
+          <div class="accordion_main_content">
+             <div class="accordion faq_tabs">
+                {%- if section.settings.faq_title != blank -%}
+                <h4 class="faq_title">{{ section.settings.faq_title }}</h4>
+                {%- endif -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.faq_heading != blank and block.settings.faq_description != blank -%}
+                <div class="accordion-style-2">
+                   <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+                    {%- if block.settings.faq_heading != blank -%}
+                        {{ block.settings.faq_heading }}
+                    {%- endif -%}
+                        </span>
+                      <span class="icon" aria-hidden="true"></span></button>
+                   <div class="accordion_content">
+                      <p class="accordion_desc">{{ block.settings.faq_description }}</p>
+                   </div>
+                </div>
+              {%- endif -%}
+            {% endfor %}
+             </div>
+            
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- end: FAQ Section -->
+<script>
+const items = document.querySelectorAll(".accordion button");
+function toggleAccordion() {
+  const itemToggle = this.getAttribute('aria-expanded');
+  
+  for (i = 0; i < items.length; i++) {
+    items[i].setAttribute('aria-expanded', 'false');
+  }
+  
+  if (itemToggle == 'false') {
+    this.setAttribute('aria-expanded', 'true');
+  }
+}
+items.forEach(item => item.addEventListener('click', toggleAccordion));
+</script>
+
+{% schema %}
+{
+  "name": "FAQ Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "default": "Section Heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "default": "<p>Section Description</p>",
+      "label": "Section Description"
+    },
+    {
+      "type": "text",
+      "id": "faq_title",
+      "label": "FAQ Information",
+      "default": "FAQ Title"
+    },
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 352
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 360,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 352
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ Section",
+      "settings": [
+        {
+          "type": "text",
+          "id": "faq_heading",
+          "label": "FAQ Subtitle",
+          "default": "How To Set Faq Option"
+        },
+        {
+          "type": "richtext",
+          "id": "faq_description",
+          "label": "FAQ Description",
+          "default": "<p>How To Set Faq Option</p>"
+        }
+      ] 
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Section",
+      "blocks": [
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        },
+        {
+          "type": "faq"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
