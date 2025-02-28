@@ -1722,3 +1722,4 @@ document.addEventListener("DOMContentLoaded", () => {
   if (addAllToCartBtn) addAllToCartBtn.addEventListener('click', handleAddToCart);
 });
 
+

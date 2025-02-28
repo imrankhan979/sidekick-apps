@@ -1,5 +1,4 @@
 
-
 .product-thumb{
     position: relative;
     border-radius: 24px;
@@ -19,19 +18,19 @@
     top: 24px;
     left: 24px;
     gap: 8px;
+    width: calc(100% - 48px);
   }
   .product-thumb .product-badge-wrapper .badge{
-    padding: 0px 12px;
+    padding: 6px 12px;
     border-radius: 24px;
     font-weight: 700;
     font-size: 14px;
-    line-height: 27px;
+    line-height: 1;
     letter-spacing: 0;
     text-align: center;
     text-transform: uppercase;
     background: rgba(var(--color-background),1);
     color: rgb(var(--color-foreground));
-    height: 26px;
   }
   .product-thumb .product-badge-wrapper .badge.sale-badge{
     background: rgb(var(--color-highlight-text));
@@ -39,7 +38,7 @@
   }
   .product-thumb .product-badge-wrapper .badge.sold-out-badge{
     background: rgba(var(--color-foreground),1);
-    color: rgba(var(--color-background),1);
+    color: rgb(var(--color-secondary-foreground));
     }
   .product-content{
     margin-top: 26px;
