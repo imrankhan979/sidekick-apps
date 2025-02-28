@@ -154,7 +154,7 @@
       cursor: pointer;
       vertical-align: text-top;
       height: 44px;
-      min-width: 68px;
+      width: 68px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -163,11 +163,12 @@
       font-size: 20px;
       line-height: 28px;
       padding-inline: 20px;
+      min-width: max-content;
   }
   @media (max-width: 767px) {
     .product-content .variant-picker .variant-group label{
         height: 36px;
-        min-width: 60px;
+        width: 60px;
         font-size: 14px;
         line-height: 20px;
         padding-inline: 20px;
@@ -218,6 +219,7 @@
   }
   .product-content .variant-picker .variant-group.color-swatch .variant-items{
     padding-left: 3px;
+    padding-bottom: 3px;
   }
   .product-content .variant-group.color-swatch input[type=radio]:checked::before,
   .product-content .variant-group.color-swatch input[type=radio]:hover::before {
