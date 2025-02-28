@@ -35,10 +35,11 @@ START: FAQ CSS
     text-transform: uppercase;
     margin-bottom: 48px;
     line-height: 64px;
+    color: rgba(var(--color-foreground));
   }
   
   .faq_main_wrapper .faq_left_content .faq_left_desc .faq__desc {
-    color: #000000;
+    color: rgba(var(--color-highlight-text));
     margin-bottom: 25px;
   }
   
@@ -56,6 +57,7 @@ START: FAQ CSS
     text-transform: uppercase;
     line-height: 64px;
     margin-bottom: 48px;
+    color: rgba(var(--color-foreground));
   }
   
   .faq_main_wrapper .accordion-style-2 {
@@ -69,7 +71,7 @@ START: FAQ CSS
   }
   
   .faq_main_wrapper .accordion-style-2 .accordion_content .accordion_desc {
-    color: #494949;
+    color: rgba(var(--color-highlight-text));
     font-size: 18px;
     font-weight: 400;
     line-height: 28px;
@@ -77,10 +79,11 @@ START: FAQ CSS
   
   .faq_main_wrapper .accordion-style-2 button {
     padding: 28px 50px 28px 24px;
+    text-align: left;
   }
   
   .faq_main_wrapper .faq_tabs button .accordion-title {
-    color: #000000;
+    color: rgba(var(--color-secondary-foreground));
     font-size: 18px;
     font-weight: 700;
     text-transform: capitalize;
