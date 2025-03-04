@@ -4,12 +4,12 @@
     <a href="{{ product.url }}" class="product-thumb flex">
       <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
       <div class="product-badge-wrapper flex wrap align-items-center">
-        {% if product.tags.size > 0 %}
+        {% if product.tags.size > 0 and product.variants.first.available %}
               {% for tag in product.tags %}
                 <div class="badge tag-badge">{{ tag }}</div>
               {% endfor %}
         {% endif %}
-        {% if product.variants.size > 1 %}
+        {% if product.variants.size > 1 and product.variants.first.available %}
           <div class="badge sale-badge {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
             {% assign discount_amount = product.variants.first.compare_at_price | minus: product.variants.first.price %}
             {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.variants.first.compare_at_price | round %}

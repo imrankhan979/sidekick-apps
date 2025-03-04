@@ -13,6 +13,11 @@
     width: 100%;
     border-radius: 24px;
   }
+  @media (max-width: 767px) {
+    .product-thumb > *{
+      border-radius: 16px;
+    }
+  }
   .product-thumb .product-badge-wrapper{
     position: absolute;
     top: 24px;
@@ -31,6 +36,17 @@
     text-transform: uppercase;
     background: rgba(var(--color-background),1);
     color: rgb(var(--color-foreground));
+  }
+  @media (max-width: 767px) {
+    .product-thumb .product-badge-wrapper .badge{
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+    .product-thumb .product-badge-wrapper{
+      top: 16px;
+      left: 16px;
+      width: calc(100% - 32px);
+    }
   }
   .product-thumb .product-badge-wrapper .badge.sale-badge{
     background: rgb(var(--color-highlight-text));
@@ -152,8 +168,8 @@
       background: none;
       cursor: pointer;
       vertical-align: text-top;
-      height: 44px;
-      width: 68px;
+      min-height: 44px;
+      min-width: 68px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -162,12 +178,11 @@
       font-size: 20px;
       line-height: 28px;
       padding-inline: 20px;
-      min-width: max-content;
   }
   @media (max-width: 767px) {
     .product-content .variant-picker .variant-group label{
-        height: 36px;
-        width: 60px;
+        min-height: 36px;
+        min-width: 60px;
         font-size: 14px;
         line-height: 20px;
         padding-inline: 20px;
@@ -231,6 +246,19 @@
     transform: translate(-50%, -50%);
     border: 1px solid rgba(var(--color-button-border), 1);
     border-radius: 50%;
+  }
+  @media (max-width: 767px) {
+     .product-content .variant-picker .variant-group .variant-items{
+      gap: 6px;
+    }
+     .product-content .variant-group.color-swatch input{
+      width: 16px;
+      height: 16px;
+    }
+     .product-content .variant-group.color-swatch input[type=radio]:checked:before,    .product-content .variant-group.color-swatch input[type=radio]:hover:before{
+      width: 20px;
+      height: 20px;
+    }
   }
   .product-content .variant-group.color-swatch input[type="radio"]:disabled {
     opacity: .5;

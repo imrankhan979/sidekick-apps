@@ -21,48 +21,53 @@
 {% endfor %}
 {%- endstyle -%}
 <section class="collection-tab section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-  <div class="page-width">
     <div class="tabs-section">
       <snazzy-tab>
-        <div class="tab-header flex wrap space-between align-items-center">
-          <div class="section-title">
-            <h1 class="sec_title">{{ section.settings.section_heading }}</h1>
-          </div>
-          <div class="snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
+        <div class="page-width">
+            <div class="tab-header flex wrap space-between align-items-center">
+              <div class="section-title">
+                <h1 class="sec_title">{{ section.settings.section_heading }}</h1>
+              </div>
+              <div class="scroller-wrapper">
+                <div class="scroll-width">
+                  <div class="snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
+                    {% for block in section.blocks %}
+                      {% assign collection = collections[block.settings.collection_handle] %}
+                      {% if collection.products.size > 0 %}
+                        <button  role="tab" class="snazzy-tab-button {% if forloop.first %}active{% endif %}"  {{ block.shopify_attributes }}>
+                          {{ block.settings.tab_title | default: collection.title }}
+                        </button>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="page-width">
+          <div class="snazzy-tab-contents">
             {% for block in section.blocks %}
               {% assign collection = collections[block.settings.collection_handle] %}
               {% if collection.products.size > 0 %}
-                <button  role="tab" class="snazzy-tab-button {% if forloop.first %}active{% endif %}"  {{ block.shopify_attributes }}>
-                  {{ block.settings.tab_title | default: collection.title }}
-                </button>
+                <div class="snazzy-tab-content {% if forloop.first %}active{% endif %}">
+                    {% assign maximum_product_show = 8 %}
+                          <div class="product-grid product-grid-{{block.id}}" >        
+                              {% for product in collection.products limit: maximum_product_show %}
+                                  {% render "product", button: false, product: product %}
+                                {% endfor %}
+                          </div>
+                          {% if collection.products.size > maximum_product_show %}
+                              <div class="view-all-btn-wrapper flex  justify-content-center">
+                                  <a class="snazzy-icon-btn" href="{{ collection.url }}">VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
+                              </div>
+                          {% endif %}
+                </div>
               {% endif %}
             {% endfor %}
           </div>
         </div>
-
-        <div class="snazzy-tab-contents">
-          {% for block in section.blocks %}
-            {% assign collection = collections[block.settings.collection_handle] %}
-            {% if collection.products.size > 0 %}
-              <div class="snazzy-tab-content {% if forloop.first %}active{% endif %}">
-                  {% assign maximum_product_show = 8 %}
-                        <div class="product-grid product-grid-{{block.id}}" >        
-                            {% for product in collection.products limit: maximum_product_show %}
-                                {% render "product", button: false, product: product %}
-                              {% endfor %}
-                        </div>
-                        {% if collection.products.size > maximum_product_show %}
-                            <div class="view-all-btn-wrapper flex  justify-content-center">
-                                <a class="snazzy-icon-btn" href="{{ collection.url }}">VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
-                            </div>
-                        {% endif %}
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
       </snazzy-tab>
     </div>
-  </div>
 </section>
 
 
