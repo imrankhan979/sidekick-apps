@@ -403,21 +403,37 @@ img{
   font-family: var(--font-family-heading);
   font-weight: 700;
   font-size: 18px;
-  line-height: 28px;
-  display: flex;
+  line-height: 1;
+  display: inline-flex;
   align-items: center;
   gap: 12px;
   color: var(--color-button-text);
 }
+.snazzy-icon-btn.btn-with-border{
+  position: relative;
+  padding-bottom: 12px;
+}
 @media (max-width: 767px) {
   .snazzy-icon-btn{
     font-size: 16px;
-    line-height: 24px;
   }
 }
+.snazzy-icon-btn.btn-with-border:after{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background: #000;
+  transition: .3s;
+}
+
 .snazzy-icon-btn span{
   width: 24px;
   height: 24px;
+  min-width: 24px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
