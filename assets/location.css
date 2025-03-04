@@ -1,0 +1,175 @@
+/**----------------------------------------
+START: Contact maps CSS
+----------------------------------------*/
+.contact-tabs-section {
+    padding-bottom: 120px;
+  }
+  
+  .contact-tabs-section .page-width {
+    max-width: 1296px;
+  }
+  
+  .contact_map_wrapper {
+    position: relative;
+  }
+  
+  .contact_map_wrapper iframe {
+    width: 100%;
+    min-height: 680px;
+    border-radius: 24px;
+  }
+  
+  .contact_map_wrapper .contact_tabs {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 395px;
+    width: 100%;
+    background: #ffffff;
+    padding: 30px 48px;
+    border-radius: 16px;
+  }
+  
+  .contact_map_wrapper .contact_tabs .faq_title {
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  
+  .accordion .accordion-item {
+    border-bottom: 1px solid #DDDDDD;
+  }
+  
+  .accordion .accordion-item:last-child {
+    border-bottom: none;
+  }
+  
+  .accordion button {
+    position: relative;
+    display: block;
+    text-align: left;
+    width: 100%;
+    padding: 18px 0;
+    color: #7288a2;
+    font-weight: 400;
+    border: none;
+    background: none;
+    outline: none;
+  }
+  
+  .accordion button .accordion-title {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .accordion-item .accordion_content .faq_location {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 24px;
+  }
+  
+  .accordion-item .accordion_content .faq_link {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: #000000;
+    line-height: 24px;
+  }
+  
+  .accordion-item .accordion_content .faq_timer {
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    color: #808080;
+    margin-top: 6px;
+  }
+  
+  .contact_map_wrapper .accordion button .icon {
+    display: inline-block;
+    position: absolute;
+    top: 18px;
+    right: 0;
+    width: 22px;
+    height: 22px;
+  }
+  
+  .contact_map_wrapper .accordion button .icon::before {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 9px;
+    left: 5px;
+    width: 14px;
+    height: 2px;
+    background: #000000;
+  }
+  
+  .contact_map_wrapper .accordion button .icon::after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 4px;
+    left: 11px;
+    width: 2px;
+    height: 13px;
+    background: #000000;
+  }
+  
+  .contact_map_wrapper .accordion button[aria-expanded='true'] .icon::after {
+    width: 0;
+  }
+  
+  .contact_map_wrapper .accordion button[aria-expanded='true']+.accordion_content {
+    opacity: 1;
+    max-height: 9em;
+    transition: all 200ms linear;
+    will-change: opacity, max-height;
+    padding-bottom: 18px;
+  }
+  
+  .contact_map_wrapper .accordion .accordion_content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 200ms linear, max-height 200ms linear;
+    will-change: opacity, max-height;
+  }
+  
+  @media (max-width: 767px) {
+    .contact-tabs-section {
+      padding-bottom: 80px;
+    }
+  
+    .contact_map_wrapper iframe {
+      min-height: 625px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .contact-tabs-section {
+      padding-bottom: 80px;
+    }
+  
+    .contact_map_wrapper iframe {
+      min-height: 560px;
+    }
+  
+    .contact_map_wrapper .contact_tabs {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 300px;
+      padding: 25px 20px;
+    }
+  
+    .contact_map_wrapper .contact_tabs .faq_title {
+      margin-bottom: 10px;
+      line-height: 32px;
+    }
+  }
+  
+  /* !END: Contact maps CSS *
+  

@@ -1,0 +1,190 @@
+ /**----------------------------------------
+START: Blog CSS
+----------------------------------------*/
+.blog-feature-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+  
+  .blog_feature_item {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+    border-radius: 40px;
+  }
+  
+  .blog_feature_item .blog_feature_images {
+    display: flex;
+    width: 100%;
+  }
+  
+  .blog_feature_item .blog_feature_images a {
+    display: inline-flex;
+  }
+  
+  .blog_feature_item .blog_feature_images a img {
+    border-radius: 0px 40px 40px 0px;
+  }
+  
+  .blog_feature_item .blog_feature_content {
+    padding: 80px 200px 80px 80px;
+  }
+  
+  .blog_category {
+    margin-bottom: 48px;
+  }
+  
+  .blog_category ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 10px;
+    column-gap: 16px;
+  }
+  
+  .blog_category ul li {
+    color: rgba(var(--color-secondary-foreground));
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1.35px solid rgba(var(--color-button-border));
+    border-radius: 100px;
+    padding: 11px 16px;
+    line-height: 1;
+  }
+  
+  .blog_feature_item .blog_feature_content .blog_feature_title {
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground));
+  }
+  
+  .blog_feature_item .blog_feature_content .blog_desc {
+    color: #000000;
+  }
+  
+  .blog_feature_item .blog_feature_content .blog_feature_button {
+    margin-top: 60px;
+  }
+  
+  .blog_feature_item .blog_feature_content .blog_feature_button .blog-feature-btn {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    font-family: var(--sds-ff-heading);
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  
+  .blog_feature_item .blog_feature_content .blog_feature_button .blog-feature-btn span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(var(--color-button));
+  }
+  .blog_feature_item .blog_feature_content .blog_feature_button .blog-feature-btn span svg path {
+    fill: rgba(var(--color-button-text));
+  }
+  @media (max-width: 1399px) {
+    .blog_feature_item .blog_feature_content {
+      padding: 60px 60px;
+    }
+  }
+  
+  @media (max-width: 1199px) {
+    .blog_feature_item .blog_feature_content {
+      padding: 40px 30px;
+    }
+  
+    .blog_feature_item .blog_feature_content h4 {
+      line-height: 38px;
+    }
+  
+    .blog_feature_item .blog_feature_content .blog_feature_button {
+      margin-top: 25px;
+    }
+  
+    .blog_feature_item .blog_feature_content .blog_category {
+      margin-bottom: 24px;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .blog_feature_item {
+      flex-direction: column;
+      border-radius: 24px;
+    }
+  
+    .blog_feature_item .blog_feature_images a img {
+      border-radius: 0px 0px 24px 24px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .blog-feature-section {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  
+    .blog_feature_item {
+      flex-direction: column;
+      border-radius: 24px;
+    }
+  
+    .blog_feature_item .blog_feature_content {
+      padding: 40px 75px 40px 30px;
+    }
+  
+    .blog_feature_item .blog_feature_images a img {
+      border-radius: 0px 0px 24px 24px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .blog-feature-section {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  
+    .blog_feature_item {
+      flex-direction: column;
+      border-radius: 24px;
+    }
+  
+    .blog_feature_item .blog_feature_content {
+      padding: 35px 20px;
+    }
+  
+    .blog_feature_item .blog_feature_content h4 {
+      line-height: 32px;
+    }
+  
+    .blog_feature_item .blog_feature_images a img {
+      border-radius: 0px 0px 24px 24px;
+    }
+  
+    .blog_feature_item .blog_feature_content .blog_desc {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  
+    .blog_feature_item .blog_feature_content .blog_category ul {
+      column-gap: 10px;
+    }
+  
+    .blog_feature_item .blog_feature_content .blog_category ul li {
+      font-size: 14px;
+      padding: 9px 12px;
+    }
+  }
+  
+  /* !END: Blog CSS *
+  
