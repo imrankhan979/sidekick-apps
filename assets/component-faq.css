@@ -61,7 +61,7 @@ START: FAQ CSS
   }
   
   .faq_main_wrapper .accordion-style-2 {
-    border: 1px solid #BBBBBB;
+    border: 1px solid rgba(var(--color-button-border));
     border-radius: 16px;
     margin-bottom: 16px;
   }

@@ -1,4 +1,4 @@
-{{ 'component-faq.css' | asset_url | stylesheet_tag }}
+{{ 'location.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -24,7 +24,7 @@
   <section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
        <div class="faq_main_wrapper">
-
+   
         {%- if section.settings.section_heading != blank and section.settings.section_description != blank -%}
           <div class="faq_left_content">
              <h3 class="faq_left_title">{{ section.settings.section_heading }}</h3>
@@ -60,7 +60,37 @@
        </div>
     </div>
  </section>
- <!-- end: FAQ Section -->
+<!-- end: FAQ Section -->
+
+<!-- start: Contact Section -->
+  <section class="contact-tabs-section">
+    <div class="page-width">
+       <div class="contact_map_wrapper">
+          <iframe
+             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14606.067940183722!2d90.34947031040731!3d23.764597896928564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c09f9ba3d447%3A0x1babce9f1c6c95a3!2sMohammadpur%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1738834601817!5m2!1sen!2sbd"
+             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+             referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="accordion contact_tabs">
+             <h4 class="faq_title">Stores location</h4>
+
+             <div class="accordion-item">
+                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+                      alabama</span>
+                   <span class="icon" aria-hidden="true"></span></button>
+                <div class="accordion_content">
+                   <span class="faq_location">141 Duane St, New York, NY 10013</span>
+                   <a class="faq_link" href="#">+1 914 677 0555</a>
+                   <span class="faq_timer">Mon - Sun: 9.00AM - 7.00PM</span>
+                </div>
+             </div>
+             
+
+          </div>
+       </div>
+    </div>
+ </section>
+<!-- end: Contact Section -->
+
 <script>
 const items = document.querySelectorAll(".accordion button");
 function toggleAccordion() {
