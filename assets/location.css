@@ -26,7 +26,9 @@ START: Contact maps CSS
     transform: translateY(-50%);
     max-width: 395px;
     width: 100%;
-    background: #ffffff;
+    max-height: 66%;
+    overflow: auto;
+    background: rgba(var(--color-secondary-background));
     padding: 30px 48px;
     border-radius: 16px;
   }
@@ -34,6 +36,7 @@ START: Contact maps CSS
   .contact_map_wrapper .contact_tabs .faq_title {
     text-transform: uppercase;
     margin-bottom: 16px;
+    color: rgba(var(--color-foreground));
   }
   
   .accordion .accordion-item {
@@ -58,7 +61,7 @@ START: Contact maps CSS
   }
   
   .accordion button .accordion-title {
-    color: #000000;
+    color: rgba(var(--color-foreground));
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
@@ -68,7 +71,7 @@ START: Contact maps CSS
     display: block;
     font-size: 16px;
     font-weight: 400;
-    color: #000000;
+    color: rgba(var(--color-foreground));
     line-height: 24px;
   }
   
@@ -84,7 +87,7 @@ START: Contact maps CSS
     display: block;
     font-size: 16px;
     font-weight: 400;
-    color: #808080;
+    color: rgba(var(--color-secondary-foreground));
     margin-top: 6px;
   }
   
@@ -105,7 +108,7 @@ START: Contact maps CSS
     left: 5px;
     width: 14px;
     height: 2px;
-    background: #000000;
+    background: rgba(var(--color-button));
   }
   
   .contact_map_wrapper .accordion button .icon::after {
@@ -116,7 +119,7 @@ START: Contact maps CSS
     left: 11px;
     width: 2px;
     height: 13px;
-    background: #000000;
+    background: rgba(var(--color-button));
   }
   
   .contact_map_wrapper .accordion button[aria-expanded='true'] .icon::after {
