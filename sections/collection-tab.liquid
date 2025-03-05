@@ -1,5 +1,6 @@
 {{ 'snazzy-collection-tab.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'snazzy-collection-tab.js' | asset_url }}" defer></script>
+{{ 'snazzy-tab.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'snazzy-tab.js' | asset_url }}" defer></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -33,11 +34,9 @@
                   <div class="snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
                     {% for block in section.blocks %}
                       {% assign collection = collections[block.settings.collection_handle] %}
-                      {% if collection.products.size > 0 %}
                         <button  role="tab" class="snazzy-tab-button {% if forloop.first %}active{% endif %}"  {{ block.shopify_attributes }}>
                           {{ block.settings.tab_title | default: collection.title }}
                         </button>
-                      {% endif %}
                     {% endfor %}
                   </div>
                 </div>
@@ -48,22 +47,28 @@
           <div class="snazzy-tab-contents">
             {% for block in section.blocks %}
               {% assign collection = collections[block.settings.collection_handle] %}
-              {% if collection.products.size > 0 %}
-                <div class="snazzy-tab-content {% if forloop.first %}active{% endif %}">
-                    {% assign maximum_product_show = 8 %}
-                          <div class="product-grid product-grid-{{block.id}}" >        
-                              {% for product in collection.products limit: maximum_product_show %}
-                                  {% render "product", button: false, product: product %}
-                                {% endfor %}
-                          </div>
-                          {% if collection.products.size > maximum_product_show %}
-                              <div class="view-all-btn-wrapper flex  justify-content-center">
-                                  <a class="snazzy-icon-btn" href="{{ collection.url }}">VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
-                              </div>
-                          {% endif %}
+              {% assign maximum_product_show = block.settings.item_total %}
+              
+              <div class="snazzy-tab-content {% if forloop.first %}active{% endif %}">
+                <div class="product-grid product-grid-{{ block.id }}">
+                  {% if collection.products.size > 0 %}
+                    {% for product in collection.products limit: maximum_product_show %}
+                      {% render "product", button: false, product: product %}
+                    {% endfor %}
+                  {% else %}
+                    {% for i in (1..4) %}
+                      {% render "product-placeholder", index: forloop.index %}
+                    {% endfor %}
+                  {% endif %}
                 </div>
-              {% endif %}
+                {% if collection.products.size > maximum_product_show %}
+                  <div class="view-all-btn-wrapper flex justify-content-center">
+                    <a class="snazzy-icon-btn" href="{{ collection.url }}">VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
+                  </div>
+                {% endif %}
+              </div>
             {% endfor %}
+            
           </div>
         </div>
       </snazzy-tab>
@@ -129,7 +134,17 @@
           "type": "text",
           "id": "tab_title",
           "label": "Tab Title",
-          "info": "Optional. Defaults to collection title."
+          "info": "Optional. Defaults to collection title.",
+          "default" : "Collection"
+        },
+        {
+          "type": "range",
+          "id": "item_total",
+          "min": 2,
+          "max": 9,
+          "step": 1,
+          "label": "Number of products to show",
+          "default": 8
         },
         {
           "type": "range",
@@ -140,13 +155,32 @@
           "label": "Number of products to show in a row",
           "default": 4
         }
-
       ]
     }
   ],
-  "presets": [
+"presets": [
     {
-      "name": "Collection tab"
+      "name": "Collection tab",
+      "blocks": [
+        {
+          "type": "collection",
+          "settings": {
+            "tab_title": "Featured"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "tab_title": "Best Sellers"
+          }
+        },
+        {
+          "type": "collection",
+          "settings": {
+            "tab_title": "New Arrivals"
+          }
+        }
+      ]
     }
   ]
 }

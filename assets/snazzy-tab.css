@@ -1,0 +1,68 @@
+
+snazzy-tab .tab-header{
+    margin-bottom: 80px;
+  }
+  snazzy-tab .snazzy-tab-buttons{
+    gap: 16px;
+    max-width: 100%;
+  }
+  @media (max-width: 991px) {
+    snazzy-tab .tab-header{
+      margin-bottom: 48px;
+    }
+    snazzy-tab .snazzy-tab-buttons{
+      overflow-x: auto;
+      flex-wrap: nowrap !important;
+      white-space: nowrap;
+      gap: 12px;
+    }
+    snazzy-tab .snazzy-tab-button:first-child {
+      margin-left: auto;
+  }
+  
+  snazzy-tab .snazzy-tab-button:last-child {
+      margin-right: auto;
+  }
+  }
+  snazzy-tab .snazzy-tab-button {
+      border: 1px solid rgba(var(--color-button-border), 1);
+      background-color: rgba(var(--color-button), 1);
+      cursor: pointer;
+      font-family: var(--font-family-body);
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 16px;
+      letter-spacing: 0%;
+      padding: 11px 16px;
+      border-radius: 100px;
+      transition: .4s;
+      color: rgb(var(--color-button-text));
+      text-transform: uppercase;
+    }
+  @media (max-width: 991px) {
+    snazzy-tab .snazzy-tab-button {
+        font-size: 12px;
+        line-height: 12px;
+        padding: 9px 16px;
+      }
+  }
+  snazzy-tab .snazzy-tab-button.active {
+      background-color: rgba(var(--color-button-hover), 1);
+      color: rgb(var(--color-button-text-hover));
+    }
+  
+    snazzy-tab .snazzy-tab-content {
+      height: 0;
+      overflow: hidden;
+      transition: opacity .6s, transform .6s;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(24px);
+    }
+  
+    snazzy-tab  .snazzy-tab-content.active {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
