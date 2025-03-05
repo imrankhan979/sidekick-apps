@@ -1,6 +1,6 @@
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
 
-<div class="product" data-title="{{ product.title }}">
+<div class="product content-grid-item"  data-title="{{ product.title }}">
     <a href="{{ product.url }}" class="product-thumb flex">
       <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
       <div class="product-badge-wrapper flex wrap align-items-center">

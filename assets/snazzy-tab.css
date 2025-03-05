@@ -57,7 +57,7 @@ snazzy-tab .tab-header{
       transition: opacity .6s, transform .6s;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(24px);
+      transform: translateY(30px);
     }
   
     snazzy-tab  .snazzy-tab-content.active {
@@ -65,4 +65,7 @@ snazzy-tab .tab-header{
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
+    }
+    snazzy-tab  .product-grid .content-grid-item {
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
