@@ -300,3 +300,6 @@
     color: rgb(var(--color-secondary-button-text)); 
     cursor: not-allowed;
   }
+  .placeholder-product .product-thumb{
+    background: #DDDDDD;
+  }
