@@ -39,6 +39,11 @@
     position: relative;
   }
 }
+@media (min-width: 576px) {
+  .bundle-section #product-list{
+    height: unset !important;
+  }
+}
 .bundle-section #bundle-list .bundle-list-inner{
   max-height: 760px;
   border-radius: 24px;
