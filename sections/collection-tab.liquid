@@ -1,8 +1,10 @@
 {{ 'snazzy-collection-tab.css' | asset_url | stylesheet_tag }}
 {{ 'snazzy-tab.css' | asset_url | stylesheet_tag }}
+{{ 'product-style.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'snazzy-tab.js' | asset_url }}" defer></script>
 
 {%- style -%}
+
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
@@ -56,7 +58,7 @@
                       {% render "product", button: false, product: product %}
                     {% endfor %}
                   {% else %}
-                    {% for i in (1..4) %}
+                    {% for i in (1..maximum_product_show) %}
                       {% render "product-placeholder", index: forloop.index %}
                     {% endfor %}
                   {% endif %}
@@ -141,10 +143,10 @@
           "type": "range",
           "id": "item_total",
           "min": 2,
-          "max": 9,
+          "max": 12,
           "step": 1,
-          "label": "Number of products to show",
-          "default": 8
+          "label": "Maximum number of products to show",
+          "default": 4
         },
         {
           "type": "range",

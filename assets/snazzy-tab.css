@@ -52,17 +52,20 @@ snazzy-tab .tab-header{
     }
   
     snazzy-tab .snazzy-tab-content {
-      height: 0;
+      max-height: 0;
       overflow: hidden;
       transition: opacity .6s, transform .6s;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(24px);
+      transform: translateY(30px);
     }
   
     snazzy-tab  .snazzy-tab-content.active {
-      height: auto;
+      max-height: unset;
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
+    }
+    snazzy-tab  .product-grid .content-grid-item {
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
