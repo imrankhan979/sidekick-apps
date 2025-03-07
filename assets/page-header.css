@@ -1,0 +1,198 @@
+  
+  .breadcrumb-main-area.blog-inner-area {
+    padding-top: 80px;
+    padding-bottom: 120px;
+    background: #ffffff;
+  }
+  
+  .breadcrumb-main-area.cart_inner {
+    background: #ffffff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  
+  .breadcrumb-main-area.product-inner-area {
+    background: #ffffff;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  
+  .breadcrumb-content-area.product-style .breadcrumb-link {
+    margin-bottom: 0;
+  }
+  
+  .breadcrumb-content-area.product-style .breadcrumb-link ul li {
+    color: #000000;
+  }
+  
+  .breadcrumb-content-area.product-style .breadcrumb-link ul li a {
+    color: #494949;
+  
+  }
+  
+  .breadcrumb-content-area.product-style .breadcrumb-link ul li::before {
+    background: #000000;
+  }
+  
+  .breadcrumb-content-area {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+  }
+  
+  .breadcrumb-content-area.blog-style {
+    max-width: 1294px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-title {
+    font-size: 144px;
+    color: #FFEC3E;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-link {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 2;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-link ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-link ul li {
+    position: relative;
+    color: #ffffff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-right: 13px;
+    padding-right: 13px;
+    line-height: 1;
+    z-index: 1;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-link ul li::before {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    transform: rotate(18deg);
+    background: #ffffff;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-link ul li:last-child {
+    font-weight: 700;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  
+  .breadcrumb-content-area .breadcrumb-link ul li:last-child::before {
+    display: none;
+  }
+  
+  .breadcrumb-content-area.blog-style .breadcrumb-link ul li {
+    color: #000000;
+  }
+  
+  .breadcrumb-content-area.blog-style .breadcrumb-link ul li::before {
+    background: #000000;
+  }
+  
+  .breadcrumb-content-area.blog-style .breadcrumb-title {
+    font-size: 96px;
+    color: #000000;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  
+  .breadcrumb-content-area.blog-style .blog_category {
+    margin-top: 48px;
+    margin-bottom: 0;
+  }
+  
+  .breadcrumb-content-area.blog-style .blog_category ul {
+    justify-content: center;
+  }
+  
+  .breadcrumb-content-area.blog-style .breadcrumb-link {
+    margin-bottom: 65px;
+  }
+  .cart_inner .breadcrumb-content-area .breadcrumb-link ul li {
+    color: #000000;
+  }
+  
+  .cart_inner .breadcrumb-content-area .breadcrumb-link ul li::before {
+    background: #000000;
+  }
+  
+  .cart_inner .breadcrumb-content-area .breadcrumb-title {
+    color: #000000;
+  }
+  
+  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+    .breadcrumb-main-area {
+      padding-top: 180px;
+      padding-bottom: 220px;
+    }
+  
+    .breadcrumb-content-area .breadcrumb-title {
+      font-size: 120px;
+    }
+  }
+  
+  @media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .breadcrumb-content-area .breadcrumb-title {
+      font-size: 100px;
+    }
+  }
+  
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+    .breadcrumb-content-area .breadcrumb-title {
+      font-size: 90px;
+    }
+  }
+  
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .breadcrumb-content-area .breadcrumb-title {
+      font-size: 74px;
+    }
+  
+    .breadcrumb-content-area .breadcrumb-link {
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 575px) {
+    .breadcrumb-content-area .breadcrumb-title {
+      font-size: 64px;
+      letter-spacing: -0.03em;
+    }
+  
+    .breadcrumb-content-area .breadcrumb-link {
+      margin-bottom: 26px;
+    }
+  
+    .breadcrumb-content-area .breadcrumb-link ul li {
+      font-size: 14px;
+      margin-right: 12px;
+      padding-right: 12px;
+    }
+  }
