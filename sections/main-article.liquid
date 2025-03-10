@@ -1,302 +1,282 @@
+{{ 'page-header.css' | asset_url | stylesheet_tag }}
 {{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
 
-<article class="article-template">
-  {%- for block in section.blocks -%}
-    {%- case block.type -%}
-      {%- when '@app' -%}
-        <div class="page-width page-width--narrow">
-          {% render block %}
-        </div>
-      {%- when 'featured_image' -%}
-        {%- if article.image -%}
-          <div
-            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-            {{ block.shopify_attributes }}
-          >
-            <div
-              class="article-template__hero-{{ block.settings.image_height }} media"
-              {% if block.settings.image_height == 'adapt' and article.image %}
-                style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
-              {% endif %}
-            >
-              <img
-                srcset="
-                  {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
-                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
-                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
-                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
-                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
-                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
-                  {{ article.image | image_url }} {{ article.image.width }}w
-                "
-                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
-                src="{{ article.image | image_url: width: 1100 }}"
-                loading="eager"
-                fetchpriority="high"
-                width="{{ article.image.width }}"
-                height="{{ article.image.height }}"
-                alt="{{ article.image.alt | escape }}"
-              >
-            </div>
-          </div>
-        {%- endif -%}
+{%- style -%}
 
-      {%- when 'title' -%}
-        <header
-          class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          <h1
-            class="article-template__title"
-          >
-            {{ article.title | escape }}
-          </h1>
-          {%- if block.settings.blog_show_date -%}
-            <span class="circle-divider caption-with-letter-spacing">
-              {{- article.published_at | time_tag: format: 'date' -}}
-            </span>
-          {%- endif -%}
-          {%- if block.settings.blog_show_author -%}
-            <span class="caption-with-letter-spacing">
-              <span>{{ article.author }}</span>
-            </span>
-          {%- endif -%}
-        </header>
+   .section-{{ section.id }}-padding {
+     padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+     padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+   }
+ 
+   @media screen and (min-width: 750px) {
+     .section-{{ section.id }}-padding {
+       padding-top: {{ section.settings.padding_top }}px;
+       padding-bottom: {{ section.settings.padding_bottom }}px;
+     }
+   }
+ {%- endstyle -%}
 
-      {%- when 'content' -%}
-        <div
-          class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          {{ article.content }}
-        </div>
-
-      {%- when 'share' -%}
-        <div
-          class="article-template__social-sharing page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {{ block.shopify_attributes }}
-        >
-          {% assign share_url = request.origin | append: article.url %}
-          {% render 'share-button', block: block, share_link: share_url %}
-        </div>
-    {%- endcase -%}
-  {%- endfor -%}
-
-  <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
-      <span class="icon-wrap">
-        <span class="svg-wrapper">
-          {{- 'icon-arrow.svg' | inline_asset_content -}}
-        </span>
-      </span>
-      {{ 'blogs.article.back_to_blog' | t: title: blog.title | escape }}
-    </a>
-  </div>
-  {%- if blog.comments_enabled? -%}
-    <div class="article-template__comment-wrapper background-secondary">
-      <div
-        id="comments"
-        class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-      >
-        {%- if article.comments_count > 0 -%}
-          {%- assign anchorId = '#Comments-' | append: article.id -%}
-
-          <h2 id="Comments-{{ article.id }}" tabindex="-1">
-            {{ 'blogs.article.comments' | t: count: article.comments_count }}
-          </h2>
-          {% paginate article.comments by 5 %}
-            <div class="article-template__comments">
-              {%- if comment.status == 'pending' and comment.content -%}
-                <article id="{{ comment.id }}" class="article-template__comments-comment">
-                  {{ comment.content }}
-                  <footer class="right">
-                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
-                  </footer>
-                </article>
-              {%- endif -%}
-
-              {%- for comment in article.comments -%}
-                <article id="{{ comment.id }}" class="article-template__comments-comment">
-                  {{ comment.content }}
-                  <footer class="right">
-                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span
-                    ><span class="caption-with-letter-spacing">
-                      {{- comment.created_at | time_tag: format: 'date' -}}
-                    </span>
-                  </footer>
-                </article>
-              {%- endfor -%}
-              {% render 'pagination', paginate: paginate, anchor: anchorId %}
-            </div>
-          {% endpaginate %}
-        {%- endif -%}
-        {% form 'new_comment', article %}
-          {%- liquid
-            assign post_message = 'blogs.article.success'
-            if blog.moderated? and comment.status == 'unapproved'
-              assign post_message = 'blogs.article.success_moderated'
-            endif
-          -%}
-          <h2>{{ 'blogs.article.comment_form_title' | t }}</h2>
-          {%- if form.errors -%}
-            <div class="form__message" role="alert">
-              <h3 class="form-status caption-large text-body" tabindex="-1" autofocus>
-                <span class="svg-wrapper">
-                  {{- 'icon-error.svg' | inline_asset_content -}}
-                </span>
-                {{ 'templates.contact.form.error_heading' | t }}
-              </h3>
-            </div>
-            <ul class="form-status-list caption-large">
-              {%- for field in form.errors -%}
-                <li>
-                  <a href="#CommentForm-{{ field }}" class="link">
-                    {%- if form.errors.translated_fields[field] contains 'author' -%}
-                      {{ 'blogs.article.name' | t }}
-                    {%- elsif form.errors.translated_fields[field] contains 'body' -%}
-                      {{ 'blogs.article.message' | t }}
-                    {%- else -%}
-                      {{ form.errors.translated_fields[field] }}
-                    {%- endif -%}
-                    {{ form.errors.messages[field] }}
-                  </a>
-                </li>
-              {%- endfor -%}
-            </ul>
-          {%- elsif form.posted_successfully? -%}
-            <div class="form-status-list form__message" role="status">
-              <h3 class="form-status" tabindex="-1" autofocus>
-                <span class="svg-wrapper">
-                  {{- 'icon-success.svg' | inline_asset_content -}}
-                </span>
-                {{ post_message | t }}
-              </h3>
-            </div>
-          {%- endif -%}
-
-          <div
-            {% if blog.moderated? == false %}
-              class="article-template__comments-fields"
+<div class="article-page section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+   <div class="page-width">
+      <div class="breadcrumb-main-area blog-inner-area">
+           <div class="breadcrumb-content-area blog-style">
+              <div class="breadcrumb-link">
+                 <ul>
+                  <li><a href="{{ routes.root_url }}">Home</a></li>
+                  <li>{{ blog.title }}</li>
+                 </ul>
+              </div>
+              <div class="breadcrumb-heading">
+                 <h1 class="breadcrumb-title">{{ article.title }}</h1>
+              </div>
+              {% if article.tags.size > 0 or  article.published_at %}
+              <div class="blog_category">
+                 <ul>
+                  {% if article.tags.size > 0 %}
+                     {% for tag in article.tags %}
+                        <li>
+                          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+                        </li>
+                      {% endfor %}
+                   {% endif %}
+                   {% if article.published_at %}
+                     <li>{{ article.published_at | date: "%b %d, %Y" | upcase }}</li>
+                   {% endif %}
+                 </ul>
+              </div>
             {% endif %}
-          >
-            <div class="article-template__comment-fields">
-              <div class="field field--with-error">
-                <input
-                  type="text"
-                  name="comment[author]"
-                  id="CommentForm-author"
-                  class="field__input"
-                  autocomplete="name"
-                  value="{{ form.author }}"
-                  aria-required="true"
-                  required
-                  {% if form.errors contains 'author' %}
-                    aria-invalid="true"
-                    aria-describedby="CommentForm-author-error"
-                  {% endif %}
-                  placeholder="{{ 'blogs.article.name' | t }}"
-                >
-                <label class="field__label" for="CommentForm-author">
-                  {{- 'blogs.article.name' | t }}
-                  <span aria-hidden="true">*</span></label
-                >
-                {%- if form.errors contains 'author' -%}
-                  <small id="CommentForm-author-error">
-                    <span class="form__message">
-                      <span class="svg-wrapper">
-                        {{- 'icon-error.svg' | inline_asset_content -}}
-                      </span>
-                      {{- 'blogs.article.name' | t }}
-                      {{ form.errors.messages.author }}.</span
-                    >
-                  </small>
-                {%- endif -%}
+           </div>
+      </div> 
+      
+      <div class="blog-details-section">
+           <div class="blog_details_main">
+              <div class="blog_details_lg_images">
+                     <img
+                     class="w-full"
+                     srcset="
+                     {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+                     {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+                     {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+                     {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+                     {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+                     {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                     {{ article.image.src | image_url }} {{ article.image.src.width }}w
+                     "
+                     src="{{ article.image.src | image_url: width: article.image.width }}"
+                     sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                     alt="{{ article.image.src.alt | escape }}"
+                     loading="lazy"
+                     width="{{ article.image.width }}"
+                     height="{{ article.image.height }}"
+                  >
               </div>
-              <div class="field field--with-error">
-                <input
-                  type="email"
-                  name="comment[email]"
-                  id="CommentForm-email"
-                  autocomplete="email"
-                  class="field__input"
-                  value="{{ form.email }}"
-                  autocorrect="off"
-                  autocapitalize="off"
-                  aria-required="true"
-                  required
-                  {% if form.errors contains 'email' %}
-                    aria-invalid="true"
-                    aria-describedby="CommentForm-email-error"
+              <div class="blog_details_Wrapper">
+                 <div class="blog_details_content">
+                    {{ article.content }}
+                 </div>
+                 <div class="blog_details_infos_box">
+                  {% if article.tags.size > 0 %}
+                     <div class="blog_details_tag">
+                        <ul>
+                           <li><span>Tags:</span></li>
+                           {% for tag in article.tags %}
+                            <li>
+                              <a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+                            </li>
+                          {% endfor %}
+                        </ul>
+                     </div>                     
                   {% endif %}
-                  placeholder="{{ 'blogs.article.email' | t }}"
-                >
-                <label class="field__label" for="CommentForm-email">
-                  {{- 'blogs.article.email' | t }}
-                  <span aria-hidden="true">*</span></label
-                >
-                {%- if form.errors contains 'email' -%}
-                  <small id="CommentForm-email-error">
-                    <span class="form__message">
-                      <span class="svg-wrapper">
-                        {{- 'icon-error.svg' | inline_asset_content -}}
-                      </span>
-                      {{- 'blogs.article.email' | t }}
-                      {{ form.errors.messages.email }}.</span
-                    >
-                  </small>
-                {%- endif -%}
+                    <div class="blog_details_socials">
+                       <ul>
+                        <li>
+                           <button id="share-facebook">f</button>
+                        </li>
+                        <li>
+                           <button id="share-pinterest">p</button>
+                        </li>
+                        <li>
+                           <button id="share-instagram">i</button>
+                        </li>
+                        <li>
+                           <button id="copy-link">c</button>
+                        </li>
+                       </ul>
+                    </div>
+                 </div>
+                 <div class="blog_details_author">
+                    <div class="blog_author_text">
+                       <h6 class="author_name">{{ article.author }}</h6>
+                    </div>
+                 </div>
+                 <div class="comments-container">
+                    <div class="comments-wrap">
+                       <div class="comments-title">
+                          <h2 class="title">2 Comment</h2>
+                       </div>
+                       <div class="latest-comments">
+                          <ul>
+                             <li class="comment">
+                                <div class="comment-content">
+                                   <div class="commment-author">
+                                      <div class="comment-avatar">
+                                         <div class="avatar-icon">
+                                            <span>
+                                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                  xmlns="http://www.w3.org/2000/svg">
+                                                  <path
+                                                     d="M12 2C9.243 2 7 4.243 7 7C7 9.757 9.243 12 12 12C14.757 12 17 9.757 17 7C17 4.243 14.757 2 12 2ZM12 10C10.346 10 9 8.654 9 7C9 5.346 10.346 4 12 4C13.654 4 15 5.346 15 7C15 8.654 13.654 10 12 10ZM21 21V20C21 16.141 17.859 13 14 13H10C6.14 13 3 16.141 3 20V21H5V20C5 17.243 7.243 15 10 15H14C16.757 15 19 17.243 19 20V21H21Z"
+                                                     fill="#808080" />
+                                               </svg>
+                                            </span>
+                                         </div>
+                                         <div class="avatar-name">
+                                            <h6 class="title">
+                                               <a href="#">Leo Morales</a>
+                                            </h6>
+                                         </div>
+                                      </div>
+                                      <div class="commment-month">
+                                         <span>Nov 24, 2024</span>
+                                      </div>
+                                   </div>
+                                   <div class="comment-desc">
+                                      Seriously though, great job curating this list of dope brands.
+                                   </div>
+                                </div>
+                             </li>
+                             <li class="comment">
+                                <ul class="children">
+                                   <li class="comment">
+                                      <div class="comment-content">
+                                         <div class="commment-author">
+                                            <div class="comment-avatar">
+                                               <div class="avatar-images">
+                                                  <img src="assets/images/blog/blog-thumb-images-2.png" alt="Image" />
+                                               </div>
+                                               <div class="avatar-name">
+                                                  <h6 class="title">
+                                                     <a href="#">Ethan Kim</a>
+                                                  </h6>
+                                               </div>
+                                            </div>
+                                            <div class="commment-month">
+                                               <span>Nov 29, 2024</span>
+                                            </div>
+                                         </div>
+                                         <div class="comment-desc">
+                                            I've been looking to upgrade my streetwear wardrobe, and this is a huge
+                                            help
+                                         </div>
+                                      </div>
+                                   </li>
+                                </ul>
+                             </li>
+                          </ul>
+                       </div>
+                    </div>
+                    <div class="comment-respond">
+                       <div class="comment-header">
+                          <h3 class="title">Leave a Comment</h3>
+                             <div class="comment-desc">Please note, comments need to be approved before they are
+                                published. This site is protected by hCaptcha and the hCaptcha <a href="#">Privacy
+                                   Policy</a> and <a href="#">Terms of Service</a>
+                                apply.</div>
+                       </div>
+                       <div class="comment_details_form">
+                          <div class="form-input">
+                             <label for="text">Name <span>*</span></label>
+                             <input type="text" id="text" name="name" placeholder="Enter your name" required="" />
+                          </div>
+                          <div class="form-input">
+                             <label for="email">E-mail <span>*</span></label>
+                             <input type="email" id="email" name="email" placeholder="Enter your e-mail" required="" />
+                          </div>
+                          <div class="form-input comment-textarea">
+                             <label for="comment">Massage <span>*</span></label>
+                             <textarea id="comment" name="message" placeholder="Write your massage"></textarea>
+                          </div>
+                          <button class="submit-btn" type="submit" value="submit">Submit your comment <span><svg
+                                   width="8" height="12" viewBox="0 0 8 12" fill="none"
+                                   xmlns="http://www.w3.org/2000/svg">
+                                   <path
+                                      d="M1.70697 11.707L7.41397 5.99997L1.70697 0.292969L0.292969 1.70697L4.58597 5.99997L0.292969 10.293L1.70697 11.707Z"
+                                      fill="white" />
+                                </svg>
+                             </span></button>
+                       </div>
+                    </div>
+                 </div>
               </div>
-            </div>
-            <div class="field field--with-error">
-              <textarea
-                rows="5"
-                name="comment[body]"
-                id="CommentForm-body"
-                class="text-area field__input"
-                aria-required="true"
-                required
-                {% if form.errors contains 'body' %}
-                  aria-invalid="true"
-                  aria-describedby="CommentForm-body-error"
-                {% endif %}
-                placeholder="{{ 'blogs.article.message' | t }}"
-              >{{ form.body }}</textarea>
-              <label class="form__label field__label" for="CommentForm-body">
-                {{- 'blogs.article.message' | t }}
-                <span aria-hidden="true">*</span></label
-              >
-            </div>
-            {%- if form.errors contains 'body' -%}
-              <small id="CommentForm-body-error">
-                <span class="form__message">
-                  <span class="svg-wrapper">
-                    {{- 'icon-error.svg' | inline_asset_content -}}
-                  </span>
-                  {{- 'blogs.article.message' | t }}
-                  {{ form.errors.messages.body }}.</span
-                >
-              </small>
-            {%- endif -%}
-          </div>
-          {%- if blog.moderated? -%}
-            <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
-          {%- endif -%}
-          <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
-        {% endform %}
+           </div>
       </div>
-    </div>
-  {%- endif -%}
-</article>
+   </div>
+</div>
 
 <script type="application/ld+json">
   {{ article | structured_data }}
 </script>
+<script>
+   const pageUrl = encodeURIComponent(window.location.href);
+const pageTitle = encodeURIComponent(document.title);
+const imageUrl = encodeURIComponent('https://your-image-url.jpg'); // Replace with an actual image URL for Pinterest
 
+// Facebook Share
+document.getElementById('share-facebook').addEventListener('click', () => {
+  const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+  window.open(shareUrl, '_blank', 'width=600,height=400');
+});
+
+// Pinterest Share
+document.getElementById('share-pinterest').addEventListener('click', () => {
+  const shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&media=${imageUrl}&description=${pageTitle}`;
+  window.open(shareUrl, '_blank', 'width=600,height=400');
+});
+
+// Instagram (No direct share API)
+document.getElementById('share-instagram').addEventListener('click', () => {
+  alert('Instagram sharing is not supported via web APIs.');
+});
+
+// Copy Link
+document.getElementById('copy-link').addEventListener('click', () => {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    alert('Link copied to clipboard!');
+  });
+});
+
+</script>
 {% schema %}
 {
   "name": "t:sections.main-article.name",
   "tag": "section",
   "class": "section",
+  "settings": [
+   {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 200
+    }
+  ],
   "blocks": [
     {
       "type": "@app"

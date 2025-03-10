@@ -43,7 +43,9 @@
 }
 .blog_main_header a {
     text-decoration: none;
-    color: rgba(var(--color-button-text), 1);
+}
+.blog_main_header{
+    color: rgba(var(--color-foreground));
 }
 .blog_main_header .title {
     width: calc(100%);
