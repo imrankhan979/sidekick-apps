@@ -1,35 +1,40 @@
-{{ 'component-blog.css' | asset_url | stylesheet_tag }}
+{{ 'blog-section.css' | asset_url | stylesheet_tag }}
+{{ 'blog-item-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .blog-section-inner-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-} 
-@media screen and (min-width: 991px) {
-.blog-section-inner {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr); 
-}
-}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+  }
 
   @media screen and (min-width: 750px) {
-    .blog-section-inner-{{ section.id }}-padding {
+    .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px; 
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+@media screen and (min-width: 768px) {
+  .blog-section-inner {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr); 
+  }
+}
 {%- endstyle -%} 
 
-{%- liquid
-assign posts_displayed = section.settings.blog.articles_count
-if section.settings.post_limit <= section.settings.blog.articles_count or section.settings.post_limit <= 6
-  assign posts_exceed_limit = true
-  assign posts_displayed = section.settings.post_limit
-endif
--%}
-<div class="color-{{ section.settings.color_scheme }}"> 
-<div class="page-width isolate{% if posts_displayed < 3 %} page-width-tablet{% endif %} section-{{ section.id }}-padding">
-<div class="blog-section-inner-{{ section.id }}-padding">
+{% assign articles = section.settings.blog.articles %}
+{% if articles == blank %}
+  {% assign articles = blogs['news'].articles %}
+{% endif %}
+
+
+<div class="blog-post color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding"> 
+<div class="page-width">
+  {% if section.settings.heading_text != blank %}
+    <div class="section_title text-center">
+      <h1>{{ section.settings.heading_text }}</h1>
+    </div>
+  {% endif %}
 <div class="blog-section-inner">
+<<<<<<< HEAD
 
 {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
   {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
@@ -90,6 +95,11 @@ endif
       </div>
   </div>
 </div>
+=======
+{%- if articles.size > 0 -%}
+  {%- for article in articles limit: section.settings.post_limit -%}
+    {% render "blog-item-card" article: article %}
+>>>>>>> a43cba74741959f1d519a68d13351ead8d3f36ba
   {%- endfor -%}
 {%- else -%}
   {% for i in (1..section.settings.post_limit) -%}
@@ -106,19 +116,18 @@ endif
       </div>
     {%- endif -%}
       <div class="blog_inner_content">
-          <h3 class="blog_main_header">
+          <h6 class="blog_main_header">
             {{ 'sections.featured_blog.onboarding_title' | t }}
-          </h3>
+          </h6>
       </div>
   </div>
 </div>
 {%- endfor -%}
 {%- endif -%}
 </div>
-{%- if section.settings.show_view_all and section.settings.post_limit < section.settings.blog.articles_count -%}
-<div class="blog_view-all-button"><a href="{{ section.settings.blog.url }}">EXPLORE MORE <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a></div>
+{%- if section.settings.btn_text != blank -%}
+<div class="blog_view-all-button"><a class="snazzy-icon-btn" href="{{ section.settings.btn_url }}">{{ section.settings.btn_text }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a></div>
 {% endif %}
-</div>
   </div>
    </div>
    
@@ -131,18 +140,18 @@ endif
   }, 
   "settings": [
     {
-      "type": "inline_richtext",
-      "id": "heading",
-      "default": "Blog Post",
-      "label": "Heading"
-    },
-    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color Scheme",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
+    {
+          "type": "text",
+          "id": "heading_text",
+          "label": "Heading",
+          "default": "LATEST FASHION NEWS"
+        },
     {
       "type": "blog",
       "id": "blog",
@@ -191,10 +200,16 @@ endif
       "label": "Show Tags"
     },
     {
-      "type": "checkbox",
-      "id": "show_view_all",
-      "default": true,
-      "label": "Show View All"
+      "type": "text",
+      "id": "btn_text",
+      "default": "EXPLORE MORE",
+      "label": "Button label",
+      "info": "Leave the label blank to hide the button."
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button link"
     },
     {
       "type": "header",
@@ -208,7 +223,7 @@ endif
       "step": 4,
       "unit": "px",
       "label": "Top Padding",
-      "default": 36
+      "default": 100
     },
     {
       "type": "range",
@@ -218,7 +233,7 @@ endif
       "step": 4,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 36
+      "default": 100
     }
   ],
   "presets": [

@@ -48,7 +48,7 @@
 }
 .collection_item  .title {
   width: calc(100%);
-  background-image: linear-gradient(transparent calc(100% - 1px), black 1px);
+  background-image: linear-gradient(transparent calc(100% - 1px), rgba(var(--color-foreground)) 1px);
   background-repeat: no-repeat;
   background-size: 0% 100%;
   transition: background-size .4s;

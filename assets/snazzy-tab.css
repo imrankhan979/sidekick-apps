@@ -46,7 +46,7 @@ snazzy-tab .tab-header{
         padding: 9px 16px;
       }
   }
-  snazzy-tab .snazzy-tab-button.active {
+  snazzy-tab .snazzy-tab-button.active, snazzy-tab .snazzy-tab-button:hover {
       background-color: rgba(var(--color-button-hover), 1);
       color: rgb(var(--color-button-text-hover));
     }
