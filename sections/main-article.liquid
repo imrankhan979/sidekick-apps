@@ -105,10 +105,18 @@
                     </div>
                  </div>
                  <div class="blog_details_author">
-                    <div class="blog_author_text">
-                       <h6 class="author_name">{{ article.author }}</h6>
-                    </div>
-                 </div>
+                  {% if section.settings.author_image != blank %}
+                     <div class="blog_thumb_images">
+                        <img src="{{ section.settings.author_image | image_url: width: 533 }}" loading="lazy" width="{{ section.settings.author_image.width }}" height="{{ section.settings.author_image.height }}" >
+                     </div>
+                  {% endif %}
+                  <div class="blog_author_text">
+                     <h6 class="author_name"><a href="#">{{ article.author }}</a></h6>
+                     {% if section.settings.author_designation != blank %}
+                        <span class="author_designation">{{ section.settings.author_designation }}</span>
+                     {% endif %}
+                  </div>
+               </div>
                  <div class="comments-container">
                     <div class="comments-wrap">
                        <div class="comments-title">
@@ -208,8 +216,7 @@
                     </div>
                  </div>
               </div>
-           </div>
-      </div>
+           </div> </div>
    </div>
 </div>
 
@@ -247,11 +254,28 @@ document.getElementById('copy-link').addEventListener('click', () => {
 
 </script>
 {% schema %}
+
 {
   "name": "t:sections.main-article.name",
   "tag": "section",
   "class": "section",
   "settings": [
+   {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "author_image",
+      "label": "Author image"
+    },
+    {
+      "type": "text",
+      "id": "author_designation",
+      "label": "Author designation"
+    },
    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"

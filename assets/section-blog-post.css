@@ -412,10 +412,6 @@
 }
 
 @media (max-width: 767px) {
-  .blog-details-section {
-    padding-bottom: 80px;
-  }
-
   .breadcrumb-main-area.blog-inner-area {
     padding-bottom: 80px;
   }
