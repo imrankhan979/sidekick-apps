@@ -140,65 +140,7 @@ h6 {
   line-height: 32px;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  h2 {
-    font-size: 40px;
-  }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  h2 {
-    font-size: 35px;
-  }
-
-  h3 {
-    font-size: 32px;
-  }
-
-  h4 {
-    font-size: 28px;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  h2 {
-    font-size: 30px;
-  }
-
-  h3 {
-    font-size: 28px;
-  }
-
-  h4 {
-    font-size: 26px;
-  }
-
-  h5 {
-    font-size: 25px;
-    line-height: 36px;
-  }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-  h2 {
-    font-size: 28px;
-  }
-
-  h3 {
-    font-size: 26px;
-  }
-
-  h4 {
-    font-size: 24px;
-  }
-
-  h5 {
-    font-size: 22px;
-    line-height: 34px;
-  }
-}
-
-@media (max-width: 575px) {
+@media (max-width: 991px) {
   h2 {
     font-size: 24px;
   }
@@ -354,7 +296,6 @@ img{
 .no-scrollbar::-webkit-scrollbar { 
   display: none;
 }
-
 
 .fancy-scrollbar {
   --sb-track-color:  #ddd;

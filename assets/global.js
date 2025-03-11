@@ -1722,4 +1722,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (addAllToCartBtn) addAllToCartBtn.addEventListener('click', handleAddToCart);
 });
 
+//  share button
+const pageUrl = encodeURIComponent(window.location.href);
+const pageTitle = encodeURIComponent(document.title);
+const imageUrl = encodeURIComponent('https://your-image-url.jpg'); // Replace with an actual image URL for Pinterest
 
+// Facebook Share
+document.getElementById('share-facebook').addEventListener('click', () => {
+  const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+  window.open(shareUrl, '_blank', 'width=600,height=400');
+});
+
+// Pinterest Share
+document.getElementById('share-pinterest').addEventListener('click', () => {
+  const shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&media=${imageUrl}&description=${pageTitle}`;
+  window.open(shareUrl, '_blank', 'width=600,height=400');
+});
+
+// Copy Link
+document.getElementById('copy-link').addEventListener('click', () => {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    alert('Link copied to clipboard!');
+  });
+});
