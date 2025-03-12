@@ -13,7 +13,6 @@
 
 .breadcrumb-main-area.blog-inner-area {
   padding-bottom: 120px;
-  background: #ffffff;
 }
 
 .breadcrumb-main-area.cart_inner {
@@ -119,16 +118,16 @@
 }
 
 .breadcrumb-content-area.blog-style .breadcrumb-link ul li {
-  color: #000000;
+  color:  rgb(var(--color-foreground));
 }
 
 .breadcrumb-content-area.blog-style .breadcrumb-link ul li::before {
-  background: #000000;
+  background: rgba(var(--color-foreground), 1);
 }
 
 .breadcrumb-content-area.blog-style .breadcrumb-title {
   font-size: 96px;
-  color: #000000;
+  color: rgb(var(--color-foreground));
   letter-spacing: -0.03em;
   text-transform: uppercase;
   line-height: 1;

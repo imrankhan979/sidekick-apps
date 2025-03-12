@@ -12,6 +12,7 @@
 
 .blog_details_Wrapper .blog_details_content {
   margin-bottom: 75px;
+  color: rgb(var(--color-foreground));
 }
 .blog_details_Wrapper .blog_details_content  img {
   border-radius: 40px;
@@ -28,8 +29,8 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
+  border-top: 1px solid rgb(var(--color-foreground));
+  border-bottom: 1px solid rgb(var(--color-foreground));
   padding-top: 48px;
   column-gap: 15px;
   row-gap: 12px;
@@ -52,11 +53,11 @@
 
 .blog_details_Wrapper .blog_details_infos_box .blog_details_tag ul li {
   font-size: 18px;
-  color: #494949;
+  color: rgba(var(--color-foreground), .7);
 }
 
 .blog_details_Wrapper .blog_details_infos_box .blog_details_tag ul li span {
-  color: #000000;
+  color: rgb(var(--color-foreground));
   font-weight: 700;
   margin-right: 10px;
 }
@@ -76,21 +77,23 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: 1px solid #000000;
+  border: 1px solid rgb(var(--color-button-border));
   border-radius: 50%;
+  background: rgb(var(--color-button));
+  transition: .4s;
 }
 
 .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover {
-  background-color: #000000;
-  border-color: #000000;
+  background-color: rgba(var(--color-button-hover), 1);
 }
 
 .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button svg path {
-  fill: #000000;
+  fill: rgba(var(--color-button-text), 1);
+  transition: .4s;
 }
 
 .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg path {
-  fill: #ffffff;
+  fill: rgba(var(--color-button-text-hover), 1);
 }
 
 .blog_details_main .blog_details_Wrapper .blog_details_author {
@@ -116,10 +119,11 @@
   letter-spacing: initial;
   font-family: var(--font-family-body);
   line-height: 24px;
+  color: rgb(var(--color-foreground));
 }
 
 .blog_details_main .blog_details_Wrapper .blog_details_author .blog_author_text .author_designation {
-  color: #808080;
+  color: rgba(var(--color-foreground), .5);
   font-size: 16px;
 }
 
@@ -134,6 +138,7 @@
 .comments-wrap .comments-title .title {
   font-size: 64px;
   text-transform: uppercase;
+  color: rgb(var(--color-foreground));
 }
 
 .comments-wrap .latest-comments ul {
@@ -144,7 +149,7 @@
 }
 
 .comments-wrap .latest-comments ul .comment:not(:last-child)  .comment-content{
-  border-bottom: 1px solid #DDDDDD;
+  border-bottom: 1px solid rgb(var(--color-secondary-background));
   padding-bottom: 48px;
   margin-bottom: 48px;
 }
@@ -159,6 +164,7 @@
 
 .comments-wrap .latest-comments ul .comment .comment-content .comment-desc {
   letter-spacing: 0.02em;
+  color: rgb(var(--color-foreground));
 }
 
 .comments-wrap .latest-comments ul .comment .comment-content .commment-author .comment-avatar {
@@ -175,8 +181,11 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  background: #F6F6F6;
+  background: rgba(var(--color-secondary-background), 1);
   border-radius: 50%;
+}
+.comments-wrap .latest-comments ul .comment .comment-content .commment-author .comment-avatar .avatar-icon svg path{
+  fill: rgba(var(--color-foreground), .5);
 }
 
 .comments-wrap .latest-comments ul .comment .comment-content .commment-author .comment-avatar .avatar-images {
@@ -207,15 +216,15 @@
   margin-bottom: 5px;
   font-family: var(--font-family-body);
   line-height: 1;
+  color: rgb(var(--color-foreground));
 }
 
 .comments-wrap .latest-comments ul .comment .comment-content .commment-author .commment-month span {
-  color: #808080;
+   color: rgba(var(--color-foreground), .5);
   font-size: 16px;
 }
 
 .comments-wrap .latest-comments ul .comment .desc {
-  color: #000000;
   padding-left: 75px;
 }
 
@@ -242,16 +251,18 @@
   letter-spacing: -0.03em;
   margin-bottom: 40px;
   line-height: 64px;
+  color: rgb(var(--color-foreground));
 }
 
 .comment-respond .comment-header .comment-desc {
   margin-bottom: 54px;
+  color: rgb(var(--color-foreground));
 }
 
 .comment-respond .comment-header .comment-desc a {
   display: inline-block;
   position: relative;
-  color: #0160A0;
+  color: rgba(var(--color-secondary-foreground), 1);
   z-index: 1;
 }
 
@@ -262,7 +273,7 @@
   height: 1px;
   bottom: 4px;
   left: 0;
-  background: #0160A0;
+  background: rgba(var(--color-secondary-foreground), 1);
 }
 
 .comment-respond .comment_details_form {
@@ -286,10 +297,11 @@
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
+  color: rgb(var(--color-foreground));
 }
 
 .comment-respond .form-input label span {
-  color: #FF3E3E;
+  color: rgb(var(--color-highlight-text));
 }
 
 .comment-respond .form-input textarea,
@@ -299,21 +311,22 @@
   padding: 20px 24px;
   font-size: 16px;
   background: transparent;
-  border: 1px solid #000000;
-  font-family: var(--sds-ff-body);
+  border: 1px solid rgb(var(--color-foreground));
+  font-family: var(--font-family-body);
   border-radius: 10px;
+  color: rgb(var(--color-foreground));
 }
 
 .comment-respond .form-input textarea::-webkit-input-placeholder,
 .comment-respond .form-input input[type=email]::-webkit-input-placeholder,
 .comment-respond .form-input input[type=text]::-webkit-input-placeholder {
-  color: #808080;
+  color: rgba(var(--color-foreground), .7);
 }
 
 .comment-respond .form-input textarea::-moz-placeholder,
 .comment-respond .form-input input[type=email]::-moz-placeholder,
 .comment-respond .form-input input[type=text]::-moz-placeholder {
-  color: #808080;
+  color: rgba(var(--color-foreground), .7);
 }
 
 .comment-respond .form-input textarea {
@@ -324,7 +337,7 @@
 .comment_details_form .form-info {
 font-size: 14px;
 line-height: 20px;
-color: #FF3E3E;
+color: rgb(var(--color-highlight-text));
 margin-top: 4px;
 }
 .comment_details_form .submit-btn {
@@ -343,11 +356,11 @@ margin-top: 4px;
 }
 
 .blog_category ul li {
-  color: #000000;
+  color: rgb(var(--color-foreground));
   font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
-  border: 1.35px solid #000000;
+  border: 1.35px solid rgb(var(--color-foreground));
   border-radius: 100px;
   padding: 11px 16px;
   line-height: 1; 
