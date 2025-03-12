@@ -35,15 +35,19 @@
                <div class="blog_feature_content">
                   <div class="blog_category">
                      <ul>
+                      {%- if section.settings.show_tags -%}
                       {% if article.tags.size > 0 %}
                             <li><a href="{{ article.url }}">{{ article.tags | first }}</a></li>
                         {% else %}
                             <li><a href="#">Trend Area</a></li>
                         {% endif %}
+                        {% endif %}
+                        {%- if section.settings.show_date -%}
                         {% if article.published_at %}
                           <li>{{ article.published_at | date: "%b %d, %Y" }}</li>
                       {% else %}
                           <li>12-25-2025</li>
+                      {% endif %}
                       {% endif %}
                      </ul>
                   </div>
@@ -71,6 +75,7 @@
                      </a>
                   </div>
                </div>
+               {%- if section.settings.show_image -%}
                <div class="blog_feature_images">
                   <a href="{{ article.url }}">
                   {%- if section.settings.selected_article != blank -%}
@@ -82,6 +87,7 @@
                 {%- endif -%}
                   </a>
                </div>
+              {%- endif -%}
             </div>
             {%- endif -%}
          </div>
