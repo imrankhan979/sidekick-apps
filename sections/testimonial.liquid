@@ -49,7 +49,7 @@
             {% endif %}
             {% if block.settings.client_image != blank  or  block.settings.client_name != blank or block.settings.client_location != blank %}
                <div class="testimonial-author">
-                  {%- if block.settings.client_image != blank -%}
+                {%- if block.settings.client_image != blank -%}
                 <div class="author-images">
                   {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                 </div>
