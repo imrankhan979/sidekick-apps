@@ -2495,7 +2495,18 @@ input[type='checkbox'] {
     display: none;
   }
 }
-
+@media (max-width: 991px) {
+ .header-heading-logo-wrapper{
+  max-height: 24px;
+ }   
+ .header-heading-logo-wrapper img{
+  width: auto;
+  height: 100%;
+ }   
+}
+.snazzy-header header-menu-drawer  .header-menu-icon svg path{
+  fill: rgb(var(--color-foreground));
+}
 .snazzy-header header-menu-drawer .menu-drawer-header-wrapper{
   padding-bottom: 48px;
 }

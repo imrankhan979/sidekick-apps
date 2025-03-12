@@ -1,0 +1,103 @@
+.about-material-section .border-inline-top{
+  border-top: 1px solid rgb(var(--color-secondary-background));
+}
+.about-material-section .border-inline-bottom{
+  border-bottom: 1px solid rgb(var(--color-secondary-background));
+}
+.icon-with-text-section-heading {
+  max-width: 700px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 120px;
+  color: rgb(var(--color-foreground));
+}
+  .material_main_wrapper {
+    display: grid;
+    gap: 30px;
+    text-align: center;
+  }
+  
+  .material_item .material_icons {
+    max-width: 96px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px; 
+  transition: all 0.5s ease-in-out 0s;
+  }
+  
+  .material_item:hover .material_icons {
+    transform: rotateY(180deg);
+  }
+  
+  .material_item .material_icons > *{
+    max-width: 100%;
+  }
+  
+  .material_item .material_item_title {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground));
+  }
+  .about-material-section .flickity-page-dots li{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(var(--color-foreground), 15);
+    transition: .4s;
+  }
+  .about-material-section .flickity-page-dots li.is-selected{
+    background: rgb(var(--color-foreground));
+  }
+
+  @media only screen and (min-width: 768px) {
+    .about-material-section .material_slider_wrapper {
+        display: none;
+      }
+  }
+  @media  (max-width: 991px) {
+    .about-material-section .heading-area {
+      margin-bottom: 60px;
+    }
+    .material_item .material_icons {
+      margin-bottom: 24px;
+      max-width: 56px;
+    }
+  
+    .material_main_wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .material_item .material_item_title {
+      line-height: 32px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .about-material-section .heading-area {
+      margin-bottom: 36px;
+    }
+  
+    .about-material-section .flickity-page-dots {
+      bottom: -44px;
+    }
+  
+    .material_item .material_item_title {
+      font-size: 20px;
+    }
+  
+    .material_main_wrapper {
+      display: none;
+    }
+  
+    .about-material-section .material_slider_wrapper {
+      display: block;
+      padding-bottom: 40px;
+    }
+  
+    .material_item {
+      width: 100%;
+      text-align: center;
+    }
+  }
