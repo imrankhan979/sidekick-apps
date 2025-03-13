@@ -2,10 +2,20 @@
     display: flex;
     align-items: center;
     overflow: hidden;
-    border-top: 2px solid #000000;
-    border-bottom: 2px solid #000000;
+    border-top: 2px solid rgb(var(--color-foreground));
+    border-bottom: 2px solid rgb(var(--color-foreground));
+    padding: 76px 0;
   }
-  
+  @media (max-width: 1400px) {
+    .marquee-section .marquee_slider {
+      padding: 58px 0;
+  }
+  }
+  @media (max-width: 991px) {
+    .marquee-section .marquee_slider {
+      padding: 48px 0;
+  }
+  }
   .marquee-section .marquee_sm_slider {
     display: none;
   }
@@ -33,12 +43,12 @@
     top: 50%;
     transform: translateY(-50%);
     right: 0;
-    background: #000000;
+    background: rgb(var(--color-foreground));
     border-radius: 50%;
   }
   
   .marquee_item .marquee_title .title {
-    color: #000000;
+    color: rgb(var(--color-foreground));
     text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 1;
@@ -73,24 +83,12 @@
     }
   }
   
-  @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .marquee_item .marquee_title .title {
-      font-size: 26px;
-    }
-  
-    .marquee_item .marquee_title {
-      padding-right: 35px;
-      padding-left: 25px;
-    }
-  }
-  
-  @media (max-width: 575px) {
+  @media (max-width: 767px) {
     .marquee-section .page-width {
       border-top: none;
       border-bottom: none;
       padding-bottom: 35px;
     }
-  
     .marquee-section .flickity-page-dots {
       bottom: -80px;
     }
@@ -105,8 +103,8 @@
   
     .marquee-section .marquee_sm_slider {
       display: block;
-      border-top: 2px solid #000000;
-      border-bottom: 2px solid #000000;
+      border-top: 2px solid rgb(var(--color-foreground));
+      border-bottom: 2px solid rgb(var(--color-foreground));
       padding: 43px 0;
     }
   
@@ -124,4 +122,13 @@
       text-align: center;
     }
   }
-  
+  .icon-with-text .flickity-page-dots li{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(var(--color-foreground), 15);
+    transition: .4s;
+  }
+  .icon-with-text .flickity-page-dots li.is-selected{
+    background: rgb(var(--color-foreground));
+  }

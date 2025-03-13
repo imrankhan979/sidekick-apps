@@ -407,8 +407,6 @@ fill: rgba(var(--color-button), 1);
 
 
 
-
-
 body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   max-width: 100%;
 }
