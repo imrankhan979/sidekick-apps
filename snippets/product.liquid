@@ -1,5 +1,3 @@
-{{ 'product-style.css' | asset_url | stylesheet_tag }}
-
 <div class="product content-grid-item"  data-title="{{ product.title }}">
     <a href="{{ product.url }}" class="product-thumb flex">
       <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
@@ -37,12 +35,12 @@
             <h5 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h5>
 
           {% if product.variants.size > 1 %}
-            <div class="product-price-wrapper align-items-center flex wrap{% if product.variants.first.compare_at_price == nil %}no-compare{% endif %}" id="product-price-wrapper-{{product.id}}">
+            <div class="product-price-wrapper align-items-center flex wrap {% if product.variants.first.compare_at_price == nil %} no-compare{% endif %}" id="product-price-wrapper-{{product.id}}">
               <h6 class="product-price" id="product-price-{{ product.id }}">{{ product.variants.first.price | money }}</h6>
               <h6 class="product-previous-price"><del id="product-previous-price-{{ product.id }}">{{ product.variants.first.compare_at_price | money }}</del></h6>
             </div>
             {% else %}
-              <div class="product-price-wrapper align-items-center flex wrap{% if product.compare_at_price == nil %}no-compare{% endif %}">
+              <div class="product-price-wrapper align-items-center flex wrap {% if product.compare_at_price == nil %} no-compare{% endif %}">
                     <h6 class="product-price" id="product-price-{{ product.id }}">{{ product.price | money }}</h6>
                     <h6 class="product-previous-price" id="product-previous-price-{{ product.id }}"><del>{{ product.compare_at_price | money }}</del></h6>
               </div>

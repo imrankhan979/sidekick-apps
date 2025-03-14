@@ -207,3 +207,24 @@ class BundleManager extends HTMLElement {
 }
 
 customElements.define('bundle-manager', BundleManager);
+
+
+
+
+// bundle responsive button click toggle
+let dropDownBtn = document.getElementById("dropdown-icon");
+let bundleListWrapper = document.getElementById("bundle-list");
+let bundleListBody = document.getElementById("bundle-items"); // Select the body
+
+if (dropDownBtn && bundleListWrapper && bundleListBody) {
+  dropDownBtn.addEventListener("click", () => {
+    bundleListWrapper.classList.toggle("active");
+
+    // Measure and set scroll height
+    if (bundleListWrapper.classList.contains("active")) {
+      const scrollHeight = bundleListBody.scrollHeight;
+      bundleListWrapper.style.setProperty("--bundle-body-scroll-height", `${scrollHeight}px`);
+    }
+
+  });
+} 
