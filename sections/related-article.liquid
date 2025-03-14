@@ -1,0 +1,146 @@
+{{ 'blog-section.css' | asset_url | stylesheet_tag }}
+{{ 'blog-item-card.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+  .blog-section-inner {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr); 
+  }
+}
+
+{%- endstyle -%}
+
+{% assign common_tags = article.tags %}
+{% assign post_limit = section.settings.item_shows %}
+{% assign matched_articles = "" %}
+
+{% for related_article in blog.articles %}
+    {% for tag in related_article.tags %}
+        {% if common_tags contains tag %}
+            {% assign matched_articles = matched_articles | append: related_article.id | append: "," %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+{% assign matched_articles = matched_articles | split: "," %}
+
+{% if matched_articles.size > 1 or (matched_articles.size == 1 and matched_articles.first != "") %}
+<div class="related-posts">
+    <h2>{{ section.settings.heading }}</h2>
+    <div class="related-posts-container">
+        {% assign counter = 0 %}
+        {% for related_article in blog.articles %}
+            {% if matched_articles contains related_article.id and counter < post_limit %}
+                <div class="related-post">
+                    {% if related_article.image %}
+                        {{ related_article.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500'}}
+                    {% endif %}
+                    <h3>{{ related_article.title }}</h3>
+                    <p>{{ related_article.excerpt | truncatewords: 20 }}</p>
+                    <a href="{{ related_article.url }}">Read More →</a>
+                </div>
+                {% assign counter = counter | plus: 1 %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Related blog post",
+    "settings": [
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "info": "t:sections.all.colors.has_cards_info",
+            "default": "scheme-1"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "RELATED POSTS"
+        },
+        {
+            "type": "range",
+            "id": "item_shows",
+            "min": 1,
+            "max": 6,
+            "step": 1,
+            "label": "How many post shows",
+            "default": 3
+        },
+        {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "label": "Desktop Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show Featured Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show Date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "Show Author"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "default": true,
+      "label": "Show Tags"
+    },
+    {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 120
+    },
+    {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 120
+    }
+    ],
+    "presets": [
+        {
+            "name": "Related blog post"
+        }
+    ]
+  }
+{% endschema %}

@@ -275,7 +275,7 @@ img{
     padding-left: 24px;
     padding-right: 24px;
   }
-}
+} 
 @media (max-width: 991px) {
   .md-none{
     display: none;
