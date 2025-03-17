@@ -26,36 +26,41 @@
 {% assign matched_articles = "" %}
 
 {% for related_article in blog.articles %}
-    {% for tag in related_article.tags %}
-        {% if common_tags contains tag %}
-            {% assign matched_articles = matched_articles | append: related_article.id | append: "," %}
-            {% break %}
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-
-{% assign matched_articles = matched_articles | split: "," %}
-
-{% if matched_articles.size > 1 or (matched_articles.size == 1 and matched_articles.first != "") %}
-<div class="related-posts">
-    <h2>{{ section.settings.heading }}</h2>
-    <div class="related-posts-container">
-        {% assign counter = 0 %}
-        {% for related_article in blog.articles %}
-            {% if matched_articles contains related_article.id and counter < post_limit %}
-                <div class="related-post">
-                    {% if related_article.image %}
-                        {{ related_article.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500'}}
-                    {% endif %}
-                    <h3>{{ related_article.title }}</h3>
-                    <p>{{ related_article.excerpt | truncatewords: 20 }}</p>
-                    <a href="{{ related_article.url }}">Read More →</a>
-                </div>
-                {% assign counter = counter | plus: 1 %}
+    {% if related_article.id != article.id %}
+        {% for tag in related_article.tags %}
+            {% if common_tags contains tag %}
+                {% assign matched_articles = matched_articles | append: related_article.id | append: "," %}
+                {% break %}
             {% endif %}
         {% endfor %}
-    </div>
+    {% endif %}
+{% endfor %}
+
+{% assign matched_articles = matched_articles | strip | strip_newlines | remove_last: "," | split: "," %}
+{% assign matched_articles_str = matched_articles | join: "," %}
+
+{% if matched_articles.size > 0 %}
+<div class="related-posts color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <div class="section_title">
+        <h1>{{ section.settings.heading }}</h1>
+      </div>
+    {% endif %}
+      <div class="blog-section-inner">
+          {% assign counter = 0 %}
+          {% for related_article in blog.articles %}
+              {% if matched_articles_str contains related_article.id and counter < post_limit %}
+                  {% render "blog-item-card" article: related_article %}
+                  {% assign counter = counter | plus: 1 %}
+              {% endif %}
+          {% endfor %}
+      </div>
+  </div>
 </div>
+{% endif %}
+
+
 
 {% schema %}
   {
