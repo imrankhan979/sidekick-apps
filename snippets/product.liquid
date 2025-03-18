@@ -1,0 +1,159 @@
+<div class="product content-grid-item"  data-title="{{ product.title }}">
+    <a href="{{ product.url }}" class="product-thumb flex">
+      <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
+      <div class="product-badge-wrapper flex wrap align-items-center">
+        {% if product.tags.size > 0 and product.variants.first.available %}
+              {% for tag in product.tags %}
+                <div class="badge tag-badge">{{ tag }}</div>
+              {% endfor %}
+        {% endif %}
+        {% if product.variants.size > 1 and product.variants.first.available %}
+          <div class="badge sale-badge {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
+            {% assign discount_amount = product.variants.first.compare_at_price | minus: product.variants.first.price %}
+            {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.variants.first.compare_at_price | round %}
+            {{ discount_percentage }}% off
+          </div>
+          {% elsif product.variants.first.compare_at_price > product.variants.first.price %}
+            <div class="badge sale-badge">
+              {% assign discount_amount = product.compare_at_price | minus: product.price %}
+              {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round %}
+              {{ discount_percentage }}% off
+            </div>
+        {% endif %}
+            <div class="badge sold-out-badge {% if product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ product.id }}">
+              {% unless product.variants.first.available %}
+                SOLD OUT
+              {% endunless %}
+            </div>
+      </div>
+    </a>
+      <div class="product-content">
+          {% if product.vendor %}
+            <p class="product-vendor">{{ product.vendor }}</p>
+          {% endif %}
+
+            <h5 class="product-title"><a href="{{ product.url }}">{{ product.title }}</a></h5>
+
+          {% if product.variants.size > 1 %}
+            <div class="product-price-wrapper align-items-center flex wrap {% if product.variants.first.compare_at_price == nil %} no-compare{% endif %}" id="product-price-wrapper-{{product.id}}">
+              <h6 class="product-price" id="product-price-{{ product.id }}">{{ product.variants.first.price | money }}</h6>
+              <h6 class="product-previous-price"><del id="product-previous-price-{{ product.id }}">{{ product.variants.first.compare_at_price | money }}</del></h6>
+            </div>
+            {% else %}
+              <div class="product-price-wrapper align-items-center flex wrap {% if product.compare_at_price == nil %} no-compare{% endif %}">
+                    <h6 class="product-price" id="product-price-{{ product.id }}">{{ product.price | money }}</h6>
+                    <h6 class="product-previous-price" id="product-previous-price-{{ product.id }}"><del>{{ product.compare_at_price | money }}</del></h6>
+              </div>
+        {% endif %} 
+        {% if product.variants.size > 1 %}
+          <div class="variant-picker">
+            {% for option in product.options_with_values %}
+              <div class="variant-group{% if option.name == 'Color' %} color-swatch{% endif %}">
+                <p class="variant-group-name">{{ option.name }}</p>
+                <div class="variant-items">
+                {% for value in option.values %}
+                  {% assign variant_available = false %}
+                  {% for variant in product.variants %}
+                    {% if variant.available and variant.options contains value %}
+                      {% assign variant_available = true %}
+                    {% endif %}
+                  {% endfor %}
+                  {%- liquid
+                      assign swatch_value = null
+                      if value.swatch.image
+                        assign image_url = value.swatch.image | image_url: width: 50
+                        assign swatch_value = 'url(' | append: image_url | append: ')'
+                      elsif value.swatch.color
+                        assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+                      endif
+                    -%}
+                <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% unless variant_available %}disabled{% endunless %}  style="--swatch-bg: {{ swatch_value }}">
+                  <label for="{{product.id}}-{{value}}"  style="--swatch-bg: {{ swatch_value }}" >
+                    {{ value }}
+                  </label>
+                {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <input class="product-variant-id" type="hidden" name="id" id="selected-variant-{{ product.id }}" value="{{ product.variants.first.id }}">
+      {% if button %}
+      <button type="submit" class="product-btn{% if product.variants.first.available %} add-to-bundle {% else %} sold-out{% endif %} " id="add-to-cart-{{ product.id }}" {% unless product.variants.first.available %}disabled{% endunless %}>{% if product.variants.first.available %} {% if product.variants.size > 1 %}Choose Variant {% else %}Add to bundle{% endif %} {% else %}Sold out{% endif %}</button>
+      {% endif %}
+  <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll(".variant-picker input").forEach(input => {
+            input.addEventListener("change", () => {
+              const productId = input.dataset.productId;
+              const selectedOptions = [];
+
+              document.querySelectorAll(`[data-product-id='${productId}']`).forEach(option => {
+                if (option.checked) {
+                  selectedOptions[option.dataset.optionIndex] = option.dataset.value;
+                }
+              });
+              let variants = {{ product.variants | json }};
+              let selectedVariant = variants.find(variant =>
+                  JSON.stringify(variant.options) === JSON.stringify(selectedOptions)
+              );
+              if (selectedVariant) {
+                const currencySymbol = "{{ cart.currency.symbol }}";
+                const productPrice = document.getElementById(`product-price-${productId}`);
+                const productPreviousPrice = document.getElementById(`product-previous-price-${productId}`);
+                const priceWrappers = document.querySelectorAll(".product-price-wrapper");
+                document.getElementById(`selected-variant-${productId}`).value = selectedVariant.id;
+                const productImage = document.getElementById(`featured-image-${productId}`); // Use template literal
+                if (productImage) { // Check if productImage exists
+                  if (selectedVariant && selectedVariant.featured_image) {
+                    productImage.src = selectedVariant.featured_image.src;
+                  } else {
+                    productImage.src = "{{ product.featured_image | img_url: 'large' }}"; // Revert to product image
+                  }
+                }
+
+                if (productPrice) {
+                  productPrice.innerText = `${currencySymbol}${(selectedVariant.price / 100).toFixed(2)}`;
+                  productPreviousPrice.innerText = selectedVariant.compare_at_price ? `${currencySymbol}${(selectedVariant.compare_at_price / 100).toFixed(2)}` : "";
+                  const priceWrapper = document.getElementById(`product-price-wrapper-${productId}`);
+                  if (priceWrapper) {
+                    priceWrapper.classList.toggle("no-compare", !selectedVariant.compare_at_price);
+                  } else {
+                    console.warn(`Price wrapper not found for product ${productId}`);
+                  }
+                }
+                const saleBadge = document.getElementById(`sale-badge-${productId}`);
+                if (selectedVariant.compare_at_price > selectedVariant.price) {
+                  const discountPercentage = Math.round(((selectedVariant.compare_at_price - selectedVariant.price) / selectedVariant.compare_at_price) * 100);
+                  saleBadge.textContent = `${discountPercentage}% off`; // Show percentage
+                  saleBadge.style.display = "block";
+                } else {
+                  saleBadge.style.display = "none";
+                }
+                const soldBadge = document.getElementById(`sold-out-badge-${productId}`);
+                  soldBadge.textContent = selectedVariant.available ? " " : "SOLD OUT"
+                if(!selectedVariant.available){
+                  soldBadge.style.display = "block";
+                  soldBadge.textContent = "SOLD OUT";
+                }
+                  else {
+                    soldBadge.style.display = "none";
+                  }
+                
+                document.querySelectorAll(`[data-option-index="1"][data-product-id='${productId}']`).forEach(colorInput => {
+                  const colorValue = colorInput.dataset.value;
+                  const variantForColor = variants.find(variant => variant.options[0] === selectedOptions[0] && variant.options[1] === colorValue);
+                  colorInput.disabled = !(variantForColor && variantForColor.available);
+                  colorInput.parentNode.classList.toggle('disabled', colorInput.disabled);
+                });
+
+                const addToCartButton = document.getElementById(`add-to-cart-${productId}`);
+                addToCartButton.disabled = !selectedVariant.available;
+                addToCartButton.textContent = addToCartButton.disabled ? "Sold out" : "Add to bundle";
+              }
+            });
+          });
+        });
+  </script>
+  </div>

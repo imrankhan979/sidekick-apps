@@ -1,0 +1,174 @@
+{{ 'icon-with-text.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+ 
+  @media screen and (min-width: 992px) { 
+    .material_main_wrapper {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+    }
+  }
+  @media screen and (min-width: 991px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+{%- endstyle -%}
+   <!-- start: Material Section -->
+   <section class="icon-with-text color-{{ section.settings.color_scheme }}">
+    <div class="page-width">
+      <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
+        {% if section.settings.section_title != blank %}
+          <div class="heading-area icon-with-text-section-heading">
+             <h5 class="material_title">{{ section.settings.section_title }}</h5>
+          </div>
+        {% endif %}
+         <div class="material_main_wrapper">
+          {%- for block in section.blocks -%}
+            <div class="material_item"  {{ block.shopify_attributes }}>
+               <div class="material_icons">
+                      {%- if block.settings.material_image != blank -%}
+                        {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                        {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+               </div>
+               {%- if block.settings.material_heading != blank -%}
+                <h5 class="material_item_title">{{ block.settings.material_heading }}</h5>
+                {%- endif -%}
+            </div>
+          {% endfor %}
+         </div>
+         <div class="material_slider_wrapper material_slider_section">
+          <items-carousel>
+            <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'>
+                {%- for block in section.blocks -%} 
+              <div class="material_item">
+                  <div class="material_icons">
+                    {%- if block.settings.material_image != blank -%}
+                        {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                        {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                  </div>
+                  {%- if block.settings.material_heading != blank -%}
+                      <h5 class="material_item_title">{{ block.settings.material_heading }}</h5>
+                    {%- endif -%}
+              </div>
+            {% endfor %}
+            </div>
+          </items-carousel>
+       </div>
+      </div>
+    </div>
+ </section>
+ <!-- end: Material Section -->
+
+{% schema %}
+{
+  "name": "Icon with text",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_top",
+      "label": "Border top",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": " Border bottom",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "default": " We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable.",
+      "label": "Description"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 120
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "material_image",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "material_heading",
+          "label": "Text",
+          "default": "Example text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon with text",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+ 

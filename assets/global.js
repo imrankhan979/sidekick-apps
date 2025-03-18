@@ -1574,33 +1574,20 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// bundle responsive button click toggle
-let dropDownBtn = document.getElementById("dropdown-icon");
-let bundleListWrapper = document.getElementById("bundle-list");
-if(dropDownBtn && bundleListWrapper){
-  dropDownBtn.addEventListener("click", () => {
-    bundleListWrapper.classList.toggle("active");
-  });
-
-}
 
 
-
-
+// bundle responsive slider
 document.addEventListener('DOMContentLoaded', function() {
   const contentContainers = document.querySelectorAll('.bundle-products');
   const productThumbs = document.querySelectorAll("#product-list .product-thumb");
-
   if (productThumbs.length) {
     let maxHeight = Math.max(...Array.from(productThumbs, el => el.offsetHeight));
     document.querySelector(".slider-controls").style.setProperty("--thumb-height", `${maxHeight}px`);
   }
-
   contentContainers.forEach(container => {
     if (window.innerWidth <= 575) {
       const prevButton = container.parentElement.querySelector('.prev-slide');
       const nextButton = container.parentElement.querySelector('.next-slide');
-
       if (prevButton && nextButton) {
         prevButton.addEventListener('click', () => {
           container.scrollBy({
@@ -1608,7 +1595,6 @@ document.addEventListener('DOMContentLoaded', function() {
             behavior: 'smooth'
           });
         });
-
         nextButton.addEventListener('click', () => {
           container.scrollBy({
             left: container.offsetWidth,
@@ -1616,49 +1602,39 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         });
       }
-
       // Function to update slider height
       function updateSliderHeight() {
         let activeSlide = container.children[0];
         let scrollLeft = container.scrollLeft;
         let slideWidth = container.offsetWidth;
         let slideIndex = Math.round(scrollLeft / slideWidth);
-
         if (container.children[slideIndex]) {
           activeSlide = container.children[slideIndex];
         }
-
         container.style.height = activeSlide.offsetHeight + 'px';
       }
-
       // Initial height update
       updateSliderHeight();
-
       // Update height on scroll (drag)
       container.addEventListener('scroll', updateSliderHeight);
-
       // Drag functionality
       let isDragging = false;
       let startX = 0;
       let scrollLeft = 0;
-
       container.addEventListener('mousedown', (e) => {
         isDragging = true;
         startX = e.pageX - container.getBoundingClientRect().left;
         scrollLeft = container.scrollLeft;
         container.style.scrollBehavior = 'auto';
       });
-
       container.addEventListener('mouseleave', () => {
         isDragging = false;
         container.style.scrollBehavior = 'smooth';
       });
-
       container.addEventListener('mouseup', () => {
         isDragging = false;
         container.style.scrollBehavior = 'smooth';
       });
-
       container.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
         e.preventDefault();
@@ -1666,7 +1642,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const walk = (x - startX) * 2;
         container.scrollLeft = scrollLeft - walk;
       });
-
       // Touch events for mobile
       container.addEventListener('touchstart', (e) => {
         isDragging = true;
@@ -1674,23 +1649,89 @@ document.addEventListener('DOMContentLoaded', function() {
         scrollLeft = container.scrollLeft;
         container.style.scrollBehavior = 'smooth';
       });
-
       container.addEventListener('touchend', () => {
         isDragging = false;
         container.style.scrollBehavior = 'smooth';
       });
-
       container.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
         const x = e.touches[0].pageX - container.getBoundingClientRect().left;
         const walk = (x - startX) * 2;
         container.scrollLeft = scrollLeft - walk;
       });
-
       // Update height on window resize
       window.addEventListener("resize", updateSliderHeight);
-
     }
   });
 });
 
+
+// image hotspot
+document.addEventListener("DOMContentLoaded", () => {
+  const initSlider = () => {
+    const wrapper = document.querySelector(".hotpot_slider_wrapper");
+    if (!wrapper) return;
+    const flkty = new Flickity(wrapper, { contain: true, prevNextButtons: true, pageDots: false });
+    const hotspots = document.querySelectorAll(".hotspot");
+    const updateActive = (index) => hotspots.forEach((hotspot, i) => hotspot.classList.toggle("active", i === index));
+    hotspots.forEach((hotspot, index) => hotspot.addEventListener("click", () => { flkty.select(index); updateActive(index); }));
+    flkty.on("change", updateActive);
+    if (hotspots.length) updateActive(0);
+  };
+
+  const updateSubtotal = () => {
+    const subtotal = Array.from(document.querySelectorAll(".bulk-hotspot-section .product-price"))
+      .reduce((acc, priceElement) => {
+        const price = parseFloat(priceElement.textContent.replace(/[^0-9.]/g, ""));
+        return acc + (isNaN(price) ? 0 : price);
+      }, 0);
+    const subtotalElement = document.querySelector(".hotspot-subtotal");
+    if (subtotalElement) subtotalElement.textContent = subtotal.toFixed(2);
+  };
+
+  const handleAddToCart = () => {
+    const items = Array.from(document.querySelectorAll('.bulk-hotspot-section .product-variant-id'))
+      .map(input => ({ id: input.value, quantity: 1 }));
+    if (items.length) {
+      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items }) })
+        .then(response => response.json())
+        .then(() => window.location.href = '/cart')
+        .catch(error => console.error("Error adding to cart:", error));
+    }
+  };
+
+  initSlider();
+  updateSubtotal();
+
+  document.addEventListener("shopify:section:load", () => {
+    initSlider();
+    updateSubtotal();
+  });
+
+  const addAllToCartBtn = document.querySelector('.bulk-hotspot-btn');
+  if (addAllToCartBtn) addAllToCartBtn.addEventListener('click', handleAddToCart);
+});
+
+//  share button
+// const pageUrl = encodeURIComponent(window.location.href);
+// const pageTitle = encodeURIComponent(document.title);
+// const imageUrl = encodeURIComponent('https://your-image-url.jpg'); // Replace with an actual image URL for Pinterest
+
+// // Facebook Share
+// document.getElementById('share-facebook').addEventListener('click', () => {
+//   const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+//   window.open(shareUrl, '_blank', 'width=600,height=400');
+// });
+
+// // Pinterest Share
+// document.getElementById('share-pinterest').addEventListener('click', () => {
+//   const shareUrl = `https://pinterest.com/pin/create/button/?url=${pageUrl}&media=${imageUrl}&description=${pageTitle}`;
+//   window.open(shareUrl, '_blank', 'width=600,height=400');
+// });
+
+// // Copy Link
+// document.getElementById('copy-link').addEventListener('click', () => {
+//   navigator.clipboard.writeText(window.location.href).then(() => {
+//     alert('Link copied to clipboard!');
+//   });
+// });

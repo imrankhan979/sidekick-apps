@@ -1,5 +1,26 @@
 {
-  "article": [],
+  "article": [
+    {
+      "key": "author_image",
+      "namespace": "custom",
+      "name": "Author image",
+      "description": "",
+      "type": {
+        "name": "file_reference",
+        "category": "REFERENCE"
+      }
+    },
+    {
+      "key": "author_designation",
+      "namespace": "custom",
+      "name": "Author designation",
+      "description": "",
+      "type": {
+        "name": "single_line_text_field",
+        "category": "TEXT"
+      }
+    }
+  ],
   "blog": [],
   "brand": [],
   "collection": [],

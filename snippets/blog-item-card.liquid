@@ -1,0 +1,58 @@
+<div class="blog_item">
+    {%- if section.settings.show_image == true and article.image -%}
+      <div class="blog_inner_image_section">
+        <a href="{{ article.url }}" >
+           <div class="blog_item_img flex">
+            <img
+                srcset="
+                  {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+                  {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {{ article.image.src | image_url }} {{ article.image.src.width }}w
+                "
+                src="{{ article.image.src | image_url: width: 533 }}"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                alt="{{ article.image.src.alt | escape }}"
+                {% unless lazy_load == false %}
+                  loading="lazy"
+                {% endunless %}
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+              >
+           </div>
+           </a>
+      </div>
+    {%- endif -%}
+      <div class="blog_inner_content">
+          <div class="blog_meta_section">
+            {%- if section.settings.show_author == true or section.settings.show_tags == true or section.settings.show_date == true -%}
+              <ul>
+                {%- if section.settings.show_author == true and article.author -%}
+                  <li>{{ article.author | upcase }}</li>
+                {% endif %}
+                {%- if section.settings.show_tags == true -%}
+                {% if article.tags.size > 0 %}
+                  {% for tag in article.tags %}
+                    <li>
+                    {{ tag }}
+                    </li>
+                {% endfor %}
+                {% endif %}
+                {% endif %}
+                  {%- if section.settings.show_date == true and article.published_at -%}
+                    <li>{{ article.published_at | date: "%b %d, %Y" | upcase }}</li>
+                  {%- endif -%}
+              </ul>
+            {%- endif -%}
+          </div>
+          <h6 class="blog_main_header">
+            <a href="{{ article.url }}"><span class="title">{{ article.title | upcase }}</span></a>
+          </h6>
+          {% if section .settings.show_excerpt%}
+            <p>{{article.excerpt}}</p>
+          {% endif %}
+      </div>
+  </div>
