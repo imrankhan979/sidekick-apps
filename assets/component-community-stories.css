@@ -7,16 +7,17 @@ START: Community CSS
   
   .slider-community-section .heading_area {
     text-align: center;
+    margin-bottom: 80px;
   }
   
   .slider-community-section .flickity-button {
     background: rgb(var(--color-button));
   }
-  
+
   .slider-community-section .flickity-button svg path {
     fill: rgb(var(--color-button-text));
   }
-  
+
   .slider-community-section .flickity-button:hover {
     background-color: rgb(var(--color-button-hover));;
   }
@@ -103,7 +104,7 @@ START: Community CSS
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_title {
-    color: rgb(var(--color-foreground));
+    color: rgba(var(--color-foreground));
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
@@ -111,14 +112,14 @@ START: Community CSS
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent {
     display: block;
-    color: rgb(var(--color-secondary-foreground));
+    color: rgba(var(--color-secondary-foreground));
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent.active {
-    color: rgb(var(--color-highlight-text));
+    color: rgba(var(--color-highlight-text));
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent span {
@@ -135,7 +136,7 @@ START: Community CSS
     top: 50%;
     transform: translateY(-50%);
     left: 0;
-    background: #808080;
+    background: rgba(var(--color-button-border));
   }
   
   @media only screen and (min-width: 1400px) and (max-width: 1599px) {
