@@ -1,0 +1,10 @@
+<div class="product placeholder-product content-grid-item">
+    <div class="product-thumb flex">
+      {%- assign placeholder_image_index = index | modulo: 4 | plus: 1 -%}
+      {%- assign placeholder_image = 'product-' | append: placeholder_image_index -%}
+      {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+      <div class="product-content">
+            <h5 class="product-title">Example product title</h5>
+      </div>
+  </div>

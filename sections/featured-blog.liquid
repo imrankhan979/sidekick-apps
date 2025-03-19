@@ -6,10 +6,10 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
   }
  
-  @media screen and (min-width: 800px) { 
+  @media screen and (min-width: 768px) { 
     .tab_main_wrapper {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
-}
+        grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -18,10 +18,16 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
+  #shopify-section-{{section.id}}{
+    margin-top: -60px;
+    border-top-left-radius: 64px;
+    border-top-right-radius: 64px;
+    overflow: hidden;
+    position: relative;
+  }
 {%- endstyle -%}
    <!-- start: Blog Feature Section -->
-   {% if section.settings.selected_article %}
+   {% if section.settings.selected_article !=  blank %}
     {% assign article = section.settings.selected_article %}
   {% else %}
     {% assign article = blogs['news'].articles.first %}
@@ -31,10 +37,12 @@
       <div class="page-width">
          <div class="blog_feature_wrapper">
             {%- if article -%}
-            <div class="blog_feature_item" style="background-color: {{ section.settings.blog_bg_color }};">
+            <div class="blog_feature_item grid">
                <div class="blog_feature_content">
+                {% if section.settings.show_tags or section.settings.show_date %}
                   <div class="blog_category">
                      <ul>
+
                       {%- if section.settings.show_tags -%}
                       {% if article.tags.size > 0 %}
                             <li><a href="{{ article.url }}">{{ article.tags | first }}</a></li>
@@ -44,46 +52,44 @@
                         {% endif %}
                         {%- if section.settings.show_date -%}
                         {% if article.published_at %}
+
+                      {% if article.tags.size > 0 and section.settings.show_tags %}
+                        {% for tag in article.tags %}
+                            <li>{{ tag | link_to_tag: tag }}</li>
+                        {% endfor %}
+                        {% endif %}
+                        {% if article.published_at  and section.settings.show_date %}
+
                           <li>{{ article.published_at | date: "%b %d, %Y" }}</li>
-                      {% else %}
-                          <li>12-25-2025</li>
                       {% endif %}
                       {% endif %}
                      </ul>
                   </div>
-                  <h4><a class="blog_feature_title" href="{{ article.url }}">
+                {% endif %}
                     <h4>
-                        <a class="blog_feature_title" href="{{ article.url }}">
+                        <a class="blog_feature_title" {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %} >
                             {% if article.title != blank %}
                                 {{ article.title }}
                             {% else %}
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            {% comment %} placeholder text {% endcomment %}
+                            Blog title
                             {% endif %}
                         </a>
                     </h4>
-                    </a></h4>
-                  <p class="blog_desc">{{ article.excerpt | truncatewords: 20 }}</p>
+                    {% if section.settings.show_excerpt and article.excerpt != blank%}
+                      <p class="blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
+                    {% endif %}
                   <div class="blog_feature_button">
-                     <a class="blog-feature-btn" href="{{ article.url }}">Read more
-                        <span><svg width="8" height="12" viewBox="0 0 8 12" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                 d="M1.70697 11.707L7.41397 5.99997L1.70697 0.292969L0.292969 1.70697L4.58597 5.99997L0.292969 10.293L1.70697 11.707Z"
-                                 fill="white" />
-                           </svg>
-                           </span>
-                     </a>
+                    <a class="snazzy-icon-btn btn-with-border" href="{{ article.url }}">READ MORE<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
                   </div>
                </div>
                {%- if section.settings.show_image -%}
                <div class="blog_feature_images">
-                  <a href="{{ article.url }}">
-                  {%- if section.settings.selected_article != blank -%}
+                  <a  {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %}>
+                  {%- if article.image != blank -%}
                     <img src="{{ article.image | image_url: width: 533 }}" alt="{{ article.image.alt | escape }}" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}" >
                   {%- else -%}
-                  {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                  {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-                  {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
                   </a>
                </div>
@@ -96,18 +102,12 @@
  <!-- end: Blog Feature Section -->
  {% schema %}
     {
-      "name": "Feature Blog Post",
+      "name": "Featured blog",
       "tag": "section",
       "disabled_on": {
         "groups": ["header", "footer"]
       }, 
       "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "Featured Blog",
-          "label": "Heading"
-        },
         {
           "type": "color_scheme",
           "id": "color_scheme",
@@ -121,28 +121,22 @@
         "label": "Select a Blog Post"
         },
         {
-          "type": "color",
-          "id": "blog_bg_color",
-          "label": "Background Color",
-          "default": "#ffffff"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_image",
-          "default": true,
-          "label": "Show Featured Image"
-        },
-        {
           "type": "checkbox",
           "id": "show_date",
           "default": true,
-          "label": "Show Date"
+          "label": "Show date"
         },
         {
           "type": "checkbox",
           "id": "show_tags",
           "default": true,
-          "label": "Show Tags"
+          "label": "Show tags"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_excerpt",
+          "default": true,
+          "label": "Show excerpt"
         },
         {
           "type": "header",
@@ -152,26 +146,26 @@
           "type": "range",
           "id": "padding_top",
           "min": 0,
-          "max": 120,
+          "max": 200,
           "step": 4,
           "unit": "px",
-          "label": "Top Padding",
+          "label": "Padding top",
           "default": 36
         },
         {
           "type": "range",
           "id": "padding_bottom",
           "min": 0,
-          "max": 120,
+          "max": 200,
           "step": 4,
           "unit": "px",
-          "label": "Padding Bottom",
+          "label": "Padding bottom",
           "default": 36
         }
       ],
       "presets": [
         {
-          "name": "Feature Blog Post"
+          "name": "Featured blog"
         }
       ]
     }

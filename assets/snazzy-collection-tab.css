@@ -1,0 +1,34 @@
+
+.collection-tab .tab-header{
+  gap: 24px;
+}
+
+@media (max-width: 991px) {
+  .collection-tab .tab-header{
+    flex-direction: column;
+    text-align: center;
+  }
+  .collection-tab .sec_title{
+  font-size: 32px;
+  line-height: 40px;
+  }
+}
+
+  .collection-tab .product-grid {
+    display: grid;
+    gap: 64px 24px;
+  }
+  @media (max-width: 767px) {
+    .collection-tab .product-grid {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 48px 20px;
+    }
+  }
+ .collection-tab .view-all-btn-wrapper{
+    margin-top: 80px;
+  }
+  @media (max-width: 991px) {
+    .collection-tab .view-all-btn-wrapper{
+      margin-top: 48px;
+    }
+  }

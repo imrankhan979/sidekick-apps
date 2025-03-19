@@ -1,0 +1,241 @@
+{{ 'image-hotspot.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="bulk-hotspot-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+    <div class="page-width">
+       <div class="bulk_hotspot_wrapper">
+          <div class="bulk_hotspot_left_content">
+                {% if section.settings.section_title != blank%}
+                    <h2 class="bulk_hotspot_title">{{ section.settings.section_title }}</h2>
+                {% endif %}
+             <div class="bulk_hotspot_left_text">
+                {% if section.settings.hotspot_title != blank %}
+                    <h5 class="hotspot_title">{{ section.settings.hotspot_title }}</h5>
+                {% endif %}
+                {% if section.settings.hotspot_subtitle != blank %}
+                    <span class="hotspot_sub_title">{{ section.settings.hotspot_subtitle }}</span>
+                    
+                {% endif %}
+                <div class="hotspot_percent">Subtotal: <strong>{{ cart.currency.symbol }}<span class="hotspot-subtotal"></span> </strong> </div>
+                <div class="bulk_hotspot_button">
+                   <button class="bulk-hotspot-btn">{{ section.settings.cart_button_text }} <span>
+                    {{- 'icon-plus.svg' | inline_asset_content -}}
+                      </span></button>
+                </div>
+             </div>
+          </div>
+          <div class="bulk_hotspot_box bulk_hotspot_slider">
+             <div class="bulk_hotspot_images">
+                {% if section.settings.hotsopt_image != blank %}
+                    {{ section.settings.hotsopt_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                    {% else %}
+                            {{ 'detailed-apparel-1'  | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <!-- Hotspots --> 
+                {% for block in section.blocks %}
+                    {% if block.type == 'product' %}
+                            <div class="hotspot {% if forloop.first %} active{% endif %}" data-slide="{{forloop.index}}" style="top: {{ block.settings.pointer_position_top }}%; left: {{ block.settings.pointer_position_left }}%;"
+                               data-content="">
+                               <div class="popup-wrapper">
+                                   <div class="hotspot-popup">
+                                    {% if block.settings.selected_product.title != blank %}
+                                        <p>{{ block.settings.selected_product.title }}</p>
+                                        {% else %}
+                                            <p>Product title</p>
+                                    {% endif %}
+                                    {% if block.settings.selected_product.price != blank %}
+                                        <p>{{ block.settings.selected_product.price |  money }}</p>
+                                        {% else %}
+                                            <p>{{ 00.00 |  money }}</p>
+                                    {% endif %}
+                                   </div>
+                               </div>
+                            </div>
+                    {% endif %}
+                 {% endfor %}
+
+             </div>
+             
+            {% if section.blocks.size > 0 %}
+             <items-carousel>
+                <div class="items-carousel-selector hotpot_slider_wrapper"
+                data-flickity='{"contain": true, "prevNextButtons": {% if section.blocks.size > 1 %}true {% else %}false{% endif %}, "pageDots": false }'>
+                {% for block in section.blocks %}
+                    {% if block.type == 'product' %}
+                        <div class="hotpot_slider_item" {{ block.shopify_attributes }}>
+                            {% assign product = block.settings.selected_product %}
+                            {% if product != blank %}
+                                {% render "product", product: product, button: false %}
+                                {% else %}
+                                    <div class="hotpot_slider_thumb flex">
+                                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                                    </div>
+                                    <div class="hotpot_slider_content">
+                                        <h5  class="hotpot_slider_title" href="{{product.url}}">Product title</h5>
+                                        <p class="hotpot_slider_amount">{{ 0.00 |  money }}</p>
+                                    </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+           </items-carousel>
+        {% endif %}
+          </div>
+       </div>
+    </div>
+</section>
+ 
+ <script>
+
+ </script>
+
+{% schema %}
+{
+  "name": "Image hotspot",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+        "type": "text",
+        "id": "section_title",
+        "label": "Section title",
+        "default": "Your next favorite outfit"
+    },
+    {
+        "type": "text",
+        "id": "hotspot_title",
+        "label": "Hotspot title",
+        "default": "Editor’s Picked Look"
+    },
+    {
+        "type": "text",
+        "id": "hotspot_subtitle",
+        "label": "Hotspot subtitle",
+        "default": "Including 3 Items: Shirt, T-Shirt, Pant"
+    },
+    {
+        "type": "text",
+        "id": "cart_button_text",
+        "label": "Cart button text",
+        "default": "ADD ALL TO CART"
+    },
+    {
+        "type": "image_picker",
+         "id": "hotsopt_image",
+         "label": "Hotspot image"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 120
+    }
+  ],
+  "blocks": [
+    {
+        "type": "product",
+        "name":  "Product",
+        "settings": [
+            {
+                "type": "product",
+                "label": "Choose product",
+                "id": "selected_product"
+            },
+            {
+                "type": "header",
+                "content": "Hotspot point position"
+            },
+            {
+            "type": "range",
+            "id": "pointer_position_top",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "label": "Top",
+            "default": 0
+        },
+        {
+            "type": "range",
+            "id": "pointer_position_left",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "label": "Left",
+            "default": 0
+        }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image hotspot",
+      "blocks": [
+        {
+            "type": "product",
+          "settings": {
+            "selected_product": "",
+            "pointer_position_top": 18,
+            "pointer_position_left": 28
+          }
+        },
+        {
+            "type": "product",
+          "settings": {
+            "selected_product": "",
+            "pointer_position_top": 42,
+            "pointer_position_left": 56
+          }
+        },
+        {
+            "type": "product",
+          "settings": {
+            "selected_product": "",
+            "pointer_position_top": 85,
+            "pointer_position_left": 45
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
