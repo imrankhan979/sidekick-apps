@@ -323,6 +323,16 @@ img{
                      var(--sb-track-color);
   }
 }
+@media (min-width: 992px) {
+  .for-small{
+    display: none ! important;
+  }
+}
+@media (max-width: 991px) {
+    .for-large{
+      display: none ! important;
+    }
+}
   
 
  .scroll-trigger--slide-in {

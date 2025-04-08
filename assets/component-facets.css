@@ -144,16 +144,10 @@
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
 
-.facet-filters__sort:focus-visible {
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  outline-offset: 1rem;
-  box-shadow: 0 0 0 1rem rgb(var(--color-background)), 0 0 0.2rem 1.2rem rgba(var(--color-foreground), 0.3);
-}
-
-.facet-filters__sort.focused {
-  outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
-  outline-offset: 1rem;
-  box-shadow: 0 0 0 1rem rgb(var(--color-background)), 0 0 0.2rem 1.2rem rgba(var(--color-foreground), 0.3);
+.facet-filters__sort:focus-visible, .facet-filters__sort.focused {
+  outline: 0rem solid transparent;
+  outline-offset: 0;
+  box-shadow: none;
 }
 
 .facets {
@@ -705,11 +699,7 @@ a.active-facets__button.focused .active-facets__button-inner {
   }
 }
 
-.active-facets facet-remove:only-child {
-  display: none;
-}
-
-.facets-vertical .active-facets .active-facets-vertical-filter:only-child > facet-remove {
+ facet-remove:only-child {
   display: none;
 }
 
@@ -753,7 +743,18 @@ a.active-facets__button.focused .active-facets__button-inner {
 
 .mobile-facets__disclosure {
   display: flex;
+  padding: 9px 12px 9px 16px;
+    line-height: 1;
+    background-color: #fff;
+    color: #000;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: -.01em;
+    border: 1px solid #000000;
+    border-radius: 100px;
+    text-transform: uppercase;
 }
+
 
 .mobile-facets__wrapper {
   margin-left: 0;
@@ -831,8 +832,6 @@ a.active-facets__button.focused .active-facets__button-inner {
 .mobile-facets__open {
   text-align: left;
   width: 100%;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   display: flex;
   align-items: center;
   color: rgba(var(--color-link), var(--alpha-link));
@@ -1101,8 +1100,10 @@ input.mobile-facets__checkbox {
 }
 
 .product-count__text {
-  font-size: 1.4rem;
-  line-height: calc(1 + 0.5 / var(--font-body-scale));
+  font-size: 12px;
+  font-weight: 700;
+text-transform: uppercase;
+  line-height: 1;
   margin: 0;
 }
 
@@ -1253,3 +1254,7 @@ input.mobile-facets__checkbox {
     padding: 0 1rem 1rem;
   }
 }
+
+
+
+
