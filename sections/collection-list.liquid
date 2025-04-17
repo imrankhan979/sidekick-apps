@@ -35,8 +35,14 @@
     {% endif %}
      <div class="collection_wrapper fancy-scrollbar"> 
       {%- for block in section.blocks -%}
-        <div class="collection_item flex center" {{ block.shopify_attributes }}> 
-        <a {% if block.settings.collection == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection.url }}" {% endif %} class="item_inner">
+        <div class="anim-item collection_item reveal flex center" {{ block.shopify_attributes }}> 
+          <a
+            {% if block.settings.collection != blank %}
+              href="{{ block.settings.collection.url }}"
+            {% else %}
+              role="link" aria-disabled="true"
+            {% endif %}
+            class="item_inner">
           {%- if block.settings.collection_img -%}
             {{ block.settings.collection_img | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
           {%- elsif block.settings.collection.featured_image -%} 
@@ -73,12 +79,12 @@
             <span class="title"> 
               {%- if block.settings.collection.title != blank -%}
                 {{- block.settings.collection.title -}} 
-              {%- else -%}{{ 'onboarding.collection_title' | t }}
+              {%- else -%}
+                {{ 'onboarding.collection_title' | t }}
               {%- endif -%}
             </span>
           </span>
         </a>
-        
         </div>
       {%- endfor -%}    
  
@@ -89,7 +95,7 @@
 
 {% schema %}
 {
-  "name": "Collection List",
+  "name": "Collection list",
   "tag": "section",
   "class": "section section-collection-list",
   "max_blocks": 15,
