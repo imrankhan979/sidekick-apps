@@ -1,95 +1,110 @@
 {{ 'all-collection.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-  }
- 
-  @media screen and (min-width: 1199px) { 
-  .shop_collection_wrapper {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
-}
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
     }
-  }
 
+    @media screen and (min-width: 1199px) {
+    .shop_collection_wrapper {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
+  }
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
 {%- endstyle -%}
 
- <div class="shop-collection-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-         <div class="page-width">
-            <div class="shop_collection_wrapper">
-              {%- for block in section.blocks -%}
-               <div class="shop_collection_item">
-                  <div class="shop_collection_images">
-                     <a class="collection_images" href="{{ block.settings.collection_select.url }}">
-                      {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
-                      
-                          {%- if block.settings.collection_image != blank -%}
-                            {{ block.settings.collection_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                            {%- else -%}
-                            {{ block.settings.collection_select.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                          {%- endif -%}
-                      
-                        {%- else -%}
-                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                        {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                      {%- endif -%}
-                      </a>
-                  </div>
-                  <div class="shop_collection_content" style="background-color: {{ block.settings.collection_bg_color }};">
-                     <div class="shop_collection_text">
-                        <h2><a class="shop_collection_title" href="{{ block.settings.collection_select.url }}">
-                          {%- if block.settings.collection_heading != blank -%}
-                          {{ block.settings.collection_heading }}
-                          {%- elsif block.settings.collection_select.title != blank -%}
-                        {{ block.settings.collection_select.title }}
-                        {%- else -%}
-                        Collection Name
-                         {%- endif -%}
-                         </a></h2>
-                        <span class="shop_collection_subTitle">
-                          {{ block.settings.collection_select.products_count }}
-                          {%- if block.settings.collection_select != blank -%}
-                          {%- if block.settings.collection_select.products_count <= 1 -%}
-                           Item
-                           {%- else -%}
-                           Items
-                          {%- endif -%}
-                          {%- else -%}
-                          0 Item
-                        {%- endif -%}</span>
-                     </div>
-                     <div class="shop_collection_button">
-                        <a class="shop-collection-btn" href="{{ block.settings.collection_select.url }}"><svg width="18" height="28" viewBox="0 0 18 28"
-                              fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path
-                                 d="M4.0445 27.0445L17.0891 13.9999L4.0445 0.955322L0.8125 4.18732L10.6251 13.9999L0.8125 23.8125L4.0445 27.0445Z"
-                                 fill="black"/>
-                           </svg>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-              {% endfor %}
+<div class="shop-collection-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="shop_collection_wrapper">
+      {%- for block in section.blocks -%}
+        <div class="anim-item shop_collection_item reveal">
+          <div class="shop_collection_images">
+            <a class="collection_images" href="{{ block.settings.collection_select.url }}">
+              {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
+                {%- if block.settings.collection_image != blank -%}
+                  {{
+                    block.settings.collection_image
+                    | image_url: width: 1500
+                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                  }}
+                {%- else -%}
+                  {{
+                    block.settings.collection_select.image
+                    | image_url: width: 1500
+                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                  }}
+                {%- endif -%}
+
+              {%- else -%}
+                {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </a>
+          </div>
+          <div class="shop_collection_content" style="background-color: {{ block.settings.collection_bg_color }};">
+            <div class="shop_collection_text">
+              <div class="shop_collection_main_title {{ section.settings.heading_tag }}">
+                <a class="shop_collection_title" href="{{ block.settings.collection_select.url }}">
+                  {%- if block.settings.collection_heading != blank -%}
+                    {{ block.settings.collection_heading }}
+                  {%- elsif block.settings.collection_select.title != blank -%}
+                    {{ block.settings.collection_select.title }}
+                  {%- else -%}
+                    Collection Name
+                  {%- endif -%}
+                </a>
+              </div>
+              <span class="shop_collection_subTitle">
+                {{ block.settings.collection_select.products_count }}
+                {%- if block.settings.collection_select != blank -%}
+                  {%- if block.settings.collection_select.products_count <= 1 -%}
+                    Item
+                  {%- else -%}
+                    Items
+                  {%- endif -%}
+                {%- else -%}
+                  0 Item
+                {%- endif -%}
+              </span>
+            </div>
+            <div class="shop_collection_button">
+              <a class="shop-collection-btn" href="{{ block.settings.collection_select.url }}">
+                <svg
+                  width="18"
+                  height="28"
+                  viewBox="0 0 18 28"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                     d="M4.0445 27.0445L17.0891 13.9999L4.0445 0.955322L0.8125 4.18732L10.6251 13.9999L0.8125 23.8125L4.0445 27.0445Z"
+                     fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
+      {% endfor %}
     </div>
+  </div>
 </div>
 
 {% schema %}
 {
-  "name": "All Collection",
+  "name": "All collection",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {
@@ -102,6 +117,20 @@
       "label": "t:sections.collection-list.settings.columns_desktop.label"
     },
     {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ]
+    },
+    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -112,7 +141,7 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Padding top",
       "default": 352
     },
     {
@@ -122,30 +151,30 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Padding bottom",
       "default": 352
     }
   ],
   "blocks": [
     {
       "type": "collection",
-      "name": "Collection Carousel",
+      "name": "Collection carousel",
       "settings": [
         {
-        "type": "collection",
-        "id": "collection_select",
-        "label": "Select Collection"
+          "type": "collection",
+          "id": "collection_select",
+          "label": "Select collection"
         },
         {
           "type": "color",
           "id": "collection_bg_color",
-          "label": "Background Color",
+          "label": "Background color",
           "default": "#ffffff"
         },
         {
           "type": "image_picker",
           "id": "collection_image",
-          "label": "Collection Image"
+          "label": "Collection image"
         },
         {
           "type": "text",
@@ -156,14 +185,14 @@
         {
           "type": "url",
           "id": "collection_button_link",
-          "label": "Button Link"
+          "label": "Button link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "All Collection",
+      "name": "All collection",
       "blocks": [
         {
           "type": "collection",

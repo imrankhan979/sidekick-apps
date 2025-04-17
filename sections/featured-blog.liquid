@@ -5,10 +5,10 @@
     padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
   }
- 
-  @media screen and (min-width: 768px) { 
+
+  @media screen and (min-width: 768px) {
     .tab_main_wrapper {
-        grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+        grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
     }
   }
 
@@ -26,147 +26,166 @@
     position: relative;
   }
 {%- endstyle -%}
-   <!-- start: Blog Feature Section -->
-   {% if section.settings.selected_article !=  blank %}
-    {% assign article = section.settings.selected_article %}
-  {% else %}
-    {% assign article = blogs['news'].articles.first %}
-  {% endif %}
-  
-  <section class="blog-feature-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-      <div class="page-width">
-         <div class="blog_feature_wrapper">
-            {%- if article -%}
-            <div class="blog_feature_item grid">
-               <div class="blog_feature_content">
-                {% if section.settings.show_tags or section.settings.show_date %}
-                  <div class="blog_category">
-                     <ul>
+<!-- start: Blog Feature Section -->
+{% if section.settings.selected_article != blank %}
+  {% assign article = section.settings.selected_article %}
+{% else %}
+  {% assign article = blogs.news.articles.first %}
+{% endif %}
 
-                      {%- if section.settings.show_tags -%}
-                      {% if article.tags.size > 0 %}
-                            <li><a href="{{ article.url }}">{{ article.tags | first }}</a></li>
-                        {% else %}
-                            <li><a href="#">Trend Area</a></li>
-                        {% endif %}
-                        {% endif %}
-                        {%- if section.settings.show_date -%}
-                        {% if article.published_at %}
-
+<section class="blog-feature-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="blog_feature_wrapper">
+      {%- if article -%}
+        <div class="blog_feature_item grid">
+          <div class="blog_feature_content">
+            {% if section.settings.show_tags or section.settings.show_date %}
+              <div class="blog_category">
+                <ul>
+                  {%- if section.settings.show_tags -%}
+                    {% if article.tags.size > 0 %}
+                      <li>
+                        <a href="{{ article.url }}">{{ article.tags | first }}</a>
+                      </li>
+                    {% else %}
+                      <li><a href="#">Trend Area</a></li>
+                    {% endif %}
+                  {% endif %}
+                  {%- if section.settings.show_date -%}
+                    {% if article.published_at %}
                       {% if article.tags.size > 0 and section.settings.show_tags %}
                         {% for tag in article.tags %}
-                            <li>{{ tag | link_to_tag: tag }}</li>
+                          <li>{{ tag | link_to_tag: tag }}</li>
                         {% endfor %}
-                        {% endif %}
-                        {% if article.published_at  and section.settings.show_date %}
-
-                          <li>{{ article.published_at | date: "%b %d, %Y" }}</li>
                       {% endif %}
+                      {% if article.published_at and section.settings.show_date %}
+                        <li>{{ article.published_at | date: '%b %d, %Y' }}</li>
                       {% endif %}
-                     </ul>
-                  </div>
-                {% endif %}
-                    <h4>
-                        <a class="blog_feature_title" {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %} >
-                            {% if article.title != blank %}
-                                {{ article.title }}
-                            {% else %}
-                            {% comment %} placeholder text {% endcomment %}
-                            Blog title
-                            {% endif %}
-                        </a>
-                    </h4>
-                    {% if section.settings.show_excerpt and article.excerpt != blank%}
-                      <p class="blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
                     {% endif %}
-                  <div class="blog_feature_button">
-                    <a class="snazzy-icon-btn btn-with-border" href="{{ article.url }}">READ MORE<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
-                  </div>
-               </div>
-               {%- if section.settings.show_image -%}
-               <div class="blog_feature_images">
-                  <a  {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %}>
-                  {%- if article.image != blank -%}
-                    <img src="{{ article.image | image_url: width: 533 }}" alt="{{ article.image.alt | escape }}" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}" >
-                  {%- else -%}
+                  {% endif %}
+                </ul>
+              </div>
+            {% endif %}
+            <h4>
+              <a
+                class="blog_feature_title"
+                {% if article == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ article.url }}"
+                {% endif %}
+              >
+                {% if article.title != blank %}
+                  {{ article.title }}
+                  Blog title
+                {% endif %}
+              </a>
+            </h4>
+            {% if section.settings.show_excerpt and article.excerpt != blank %}
+              <p class="blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
+            {% endif %}
+            <div class="blog_feature_button">
+              <a class="snazzy-icon-btn btn-with-border" href="{{ article.url }}"
+                >READ MORE<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+              >
+            </div>
+          </div>
+          {%- if section.settings.show_image -%}
+            <div class="blog_feature_images">
+              <a
+                {% if article == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ article.url }}"
+                {% endif %}
+              >
+                {%- if article.image != blank -%}
+                  <img
+                    src="{{ article.image | image_url: width: 533 }}"
+                    alt="{{ article.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                  >
+                {%- else -%}
                   {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
-                  </a>
-               </div>
-              {%- endif -%}
+              </a>
             </div>
-            {%- endif -%}
-         </div>
-      </div>
-   </section>  
- <!-- end: Blog Feature Section -->
- {% schema %}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+<!-- end: Blog Feature Section -->
+{% schema %}
+{
+  "name": "Featured blog",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
     {
-      "name": "Featured blog",
-      "tag": "section",
-      "disabled_on": {
-        "groups": ["header", "footer"]
-      }, 
-      "settings": [
-        {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "Color Scheme",
-          "info": "t:sections.all.colors.has_cards_info",
-          "default": "scheme-1"
-        },
-        {
-        "type": "article",
-        "id": "selected_article",
-        "label": "Select a Blog Post"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_date",
-          "default": true,
-          "label": "Show date"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_tags",
-          "default": true,
-          "label": "Show tags"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_excerpt",
-          "default": true,
-          "label": "Show excerpt"
-        },
-        {
-          "type": "header",
-          "content": "Padding Section"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "min": 0,
-          "max": 200,
-          "step": 4,
-          "unit": "px",
-          "label": "Padding top",
-          "default": 36
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "min": 0,
-          "max": 200,
-          "step": 4,
-          "unit": "px",
-          "label": "Padding bottom",
-          "default": 36
-        }
-      ],
-      "presets": [
-        {
-          "name": "Featured blog"
-        }
-      ]
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "article",
+      "id": "selected_article",
+      "label": "Select a Blog Post"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "default": true,
+      "label": "Show tags"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "Show excerpt"
+    },
+    {
+      "type": "header",
+      "content": "Padding Section"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
     }
-    {% endschema %}
+  ],
+  "presets": [
+    {
+      "name": "Featured blog"
+    }
+  ]
+}
+{% endschema %}
