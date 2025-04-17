@@ -64,39 +64,90 @@
   assign search_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
 -%}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
 
 {% paginate search.results by 24 %}
-  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} section-{{ section.id }}-padding">
-    <div class="template-search__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} color-{{ section.settings.color_scheme }}">
+    <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <div class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme_header }}">
         <div class="breadcrumb-content-area page-width">
           <div class="breadcrumb-content-area-inner">
             <div class="breadcrumb-link">
               <ul>
                   <li><a href="{{ routes.root_url }}">Home</a></li>
-                  <li>SEARCH: "<strong>{{ search.terms }}</strong></li>
-                  <li>{{ collection.title }}</li>
+                  <li>SEARCH: "<strong>{{ search.terms }}</strong>"</li>
               </ul>
             </div>
             <div class="breadcrumb-heading">
-            {% if section.settings.section_heading != blank %}
-              <h1 class="breadcrumb-title">{{ section.settings.section_heading }}</h1>
-              {% else %}
-              <h1 class="breadcrumb-title">{{ collection.title }}</h1>
-            {% endif %}
+              {% if section.settings.section_heading != blank %}
+                <h1 class="breadcrumb-title">{{ section.settings.section_heading }}</h1>
+                {% else %}
+                <h1 class="breadcrumb-title"> {%- if search.performed -%}
+                  {{- 'templates.search.title' | t -}}
+                {%- else -%}
+                  {{- 'general.search.search' | t -}}
+                {%- endif -%}</h1>
+              {% endif %}
+            </div>
+            <div class="breadcrumb_form">
+              <div class="">
+                {%- if settings.predictive_search_enabled -%}
+                  <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
+                {%- endif -%}
+                <main-search>
+                  <form action="{{ routes.search_url }}" method="get" role="search" class="search">
+                    <div class="form-input">
+                      <input
+                        class="search__input field__input"
+                        id="Search-In-Template"
+                        type="search"
+                        name="q"
+                        value="{{ search.terms | escape }}"
+                        placeholder="{{ 'general.search.search' | t }}"
+                        {%- if settings.predictive_search_enabled -%}
+                          role="combobox"
+                          aria-expanded="false"
+                          aria-owns="predictive-search-results"
+                          aria-controls="predictive-search-results"
+                          aria-haspopup="listbox"
+                          aria-autocomplete="list"
+                          autocorrect="off"
+                          autocomplete="off"
+                          autocapitalize="off"
+                          spellcheck="false"
+                        {%- endif -%}
+                      >
+                      <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+                      <input name="options[prefix]" type="hidden" value="last">
+        
+                      {%- if settings.predictive_search_enabled -%}
+                        <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
+                          {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                        </div>
+        
+                        <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                      {%- endif -%}
+        
+                      <button
+                        type="reset"
+                        class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                        aria-label="{{ 'general.search.reset' | t }}"
+                      >
+                        <span class="svg-wrapper">
+                          {{- 'icon-reset.svg' | inline_asset_content -}}
+                        </span>
+                      </button>
+                      <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+                        <span class="svg-wrapper">
+                          {{- 'icon-search.svg' | inline_asset_content -}}
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+                </main-search>
+                {%- if settings.predictive_search_enabled -%}
+                  </predictive-search>
+                {%- endif -%}
+              </div>
             </div>
           </div>
         </div>
@@ -106,65 +157,7 @@
           </div>
         {% endif %}
     </div>
-      <div class="template-search__search">
-        {%- if settings.predictive_search_enabled -%}
-          <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
-        {%- endif -%}
-        <main-search>
-          <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-            <div class="field">
-              <input
-                class="search__input field__input"
-                id="Search-In-Template"
-                type="search"
-                name="q"
-                value="{{ search.terms | escape }}"
-                placeholder="{{ 'general.search.search' | t }}"
-                {%- if settings.predictive_search_enabled -%}
-                  role="combobox"
-                  aria-expanded="false"
-                  aria-owns="predictive-search-results"
-                  aria-controls="predictive-search-results"
-                  aria-haspopup="listbox"
-                  aria-autocomplete="list"
-                  autocorrect="off"
-                  autocomplete="off"
-                  autocapitalize="off"
-                  spellcheck="false"
-                {%- endif -%}
-              >
-              <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
-              <input name="options[prefix]" type="hidden" value="last">
 
-              {%- if settings.predictive_search_enabled -%}
-                <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
-                  {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
-                </div>
-
-                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-              {%- endif -%}
-
-              <button
-                type="reset"
-                class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
-                aria-label="{{ 'general.search.reset' | t }}"
-              >
-                <span class="svg-wrapper">
-                  {{- 'icon-reset.svg' | inline_asset_content -}}
-                </span>
-              </button>
-              <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                <span class="svg-wrapper">
-                  {{- 'icon-search.svg' | inline_asset_content -}}
-                </span>
-              </button>
-            </div>
-          </form>
-        </main-search>
-        {%- if settings.predictive_search_enabled -%}
-          </predictive-search>
-        {%- endif -%}
-      </div>
       {%- if search.performed -%}
         {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
           {%- if search.results_count > 0 -%}
@@ -180,72 +173,17 @@
     </div>
     {%- if search.performed -%}
       {%- if section.settings.enable_sorting
-        and section.settings.filter_type == 'vertical'
         and search.filters != empty
       -%}
-        <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
-          <form class="facets-vertical-form" id="FacetSortForm">
-            <div class="facet-filters sorting caption">
-              <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
-                  <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
-                </h2>
-                <div class="select">
-                  {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
-                  <select
-                    name="sort_by"
-                    class="facet-filters__sort select__select caption-large"
-                    id="SortBy"
-                    aria-describedby="a11y-refresh-page-message"
-                  >
-                    {%- for option in search.sort_options -%}
-                      <option
-                        value="{{ option.value | escape }}"
-                        {% if option.value == sort_by %}
-                          selected="selected"
-                        {% endif %}
-                      >
-                        {{ option.name | escape }}
-                      </option>
-                    {%- endfor -%}
-                  </select>
-                  <span class="svg-wrapper">
-                    {{- 'icon-caret.svg' | inline_asset_content -}}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="product-count-vertical light" role="status">
-              <h2 class="product-count__text text-body">
-                <span id="ProductCountDesktop">
-                  {%- if search.results_count -%}
-                    {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-                  {%- elsif search.products_count == search.all_products_count -%}
-                    {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
-                  {%- else -%}
-                    {{
-                      'products.facets.product_count'
-                      | t: product_count: search.products_count, count: search.all_products_count
-                    }}
-                  {%- endif -%}
-                </span>
-              </h2>
-              {%- render 'loading-spinner' -%}
-            </div>
-          </form>
-        </facet-filters-form>
       {%- endif -%}
       <div
-        {% if section.settings.filter_type == 'vertical' %}
           class="facets-vertical page-width"
-        {% endif %}
       >
         {%- if search.filters != empty -%}
           {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
             <aside
               aria-labelledby="verticalTitle"
-              class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}"
               id="main-search-filters"
               data-id="{{ section.id }}"
             >
@@ -253,16 +191,66 @@
                 results: search,
                 enable_filtering: section.settings.enable_filtering,
                 enable_sorting: section.settings.enable_sorting,
-                filter_type: section.settings.filter_type,
                 paginate: paginate
               %}
             </aside>
           {%- endif -%}
         {%- endif -%}
         <div class="product-grid-container" id="ProductGridContainer">
+          <facet-filters-form class="facets facets-vertical-sort small-hide ">
+            <form class="search_results_filter_top_wrapper " id="FacetSortForm">
+              <div class="" role="status">
+                <h2 class="search_results_product_title ">
+                  <span id="ProductCountDesktop">
+                    {%- if search.results_count -%}
+                      {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+                    {%- elsif search.products_count == search.all_products_count -%}
+                      {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
+                    {%- else -%}
+                      {{
+                        'products.facets.product_count'
+                        | t: product_count: search.products_count, count: search.all_products_count
+                      }}
+                    {%- endif -%}
+                  </span>
+                </h2>
+                {%- render 'loading-spinner' -%}
+              </div>
+              <div class="sorting">
+                <div class="search_results_filterForm">
+                  <div class="search_results_label">
+                    <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                  </div>
+                  <div class="search_results_select_box">
+                    {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
+                    <select
+                      name="sort_by"
+                      class="facet-filters__sort select__select select-box__input-text"
+                      id="SortBy"
+                      aria-describedby="a11y-refresh-page-message"
+                    >
+                      {%- for option in search.sort_options -%}
+                        <option
+                          value="{{ option.value | escape }}"
+                          {% if option.value == sort_by %}
+                            selected="selected"
+                          {% endif %}
+                        >
+                          {{ option.name | escape }}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                    <span class="select-box__icon flex">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </facet-filters-form>
           {%- if search.results.size == 0 and search.filters != empty -%}
             <div
-              class="template-search__results collection collection--empty{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="template-search__results collection collection--empty"
               id="product-grid"
               data-id="{{ section.id }}"
             >
@@ -280,13 +268,13 @@
             </div>
           {%- else -%}
             <div
-              class="template-search__results collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="template-search__results collection "
               id="product-grid"
               data-id="{{ section.id }}"
             >
               <div class="loading-overlay gradient"></div>
               <ul
-                class="grid product-grid  grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop"
+                class="grid product-grid  grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop search_results_product_box"
                 role="list"
               >
                 {%- assign skip_card_product_styles = false -%}
@@ -373,13 +361,19 @@
   "class": "section",
   "settings": [
     {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
       "type": "header",
-      "content": "Search header"
+      "content": "Search banner"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme_header",
-      "label": "Color Scheme",
+      "label": "Banner color scheme",
       "default": "scheme-1"
     },
     {
@@ -394,17 +388,13 @@
       "info": "Leave it blank to show the default heading." 
     },
     {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
       "type": "range",
       "id": "padding_top_header",
       "min": 0,
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Banner padding top",
       "default": 200
     },
     {
@@ -414,7 +404,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Banner padding bottom",
       "default": 200
     },
     {

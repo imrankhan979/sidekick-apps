@@ -141,19 +141,22 @@ h6, .h6 {
 }
 
 @media (max-width: 991px) {
-  h2 {
+  h2, .h2 {
     font-size: 24px;
+    line-height: 1;
   }
 
-  h3 {
+  h3, .h3 {
     font-size: 20px;
+    line-height: 1;
   }
 
-  h4 {
+  h4, .h4 {
     font-size: 22px;
+    line-height: 1;
   }
 
-  h5 {
+  h5, .h5 {
     font-size: 18px;
     line-height: 28px;
     letter-spacing: initial;
@@ -1655,7 +1658,6 @@ details[open] > .share-button__fallback {
   box-sizing: border-box;
   transition: box-shadow var(--duration-short) ease;
   border-radius: var(--inputs-radius);
-  height: 4.5rem;
   min-height: calc(var(--inputs-border-width) * 2);
   min-width: calc(7rem + (var(--inputs-border-width) * 2));
   position: relative;
@@ -3758,4 +3760,8 @@ details[open] > .header__icon--menu .icon-hamburger {
     line-height: 40px;
     letter-spacing: -0.01em;
   }
+}
+
+.template-search .predictive-search--search-template{
+
 }

@@ -159,18 +159,22 @@
   z-index: 1;
 }
 
-.breadcrumb-content-area .breadcrumb_form form .form-input button {
+.breadcrumb-content-area .breadcrumb_form form .form-input button.search__button {
   position: absolute;
   left: 24px;
   top: 50%;
   transform: translateY(-50%);
+  justify-content: flex-start;
+}
+.breadcrumb-content-area .breadcrumb_form form .form-input label, .breadcrumb-content-area .breadcrumb_form form .form-input .reset__button {
+  display: none;
 }
 
 .breadcrumb-content-area .breadcrumb_form form .form-input input[type="search"] {
-  color: #000000;
+  color: rgba(var(--color-secondary-foreground), .6);
   font-size: 16px;
   border-radius: 100px;
-  padding: 19px 24px 19px 60px;
+  padding: 16px 24px 16px 60px;
 }
 
 .breadcrumb-content-area .breadcrumb_form form .form-input input[type="search"]::placeholder {
