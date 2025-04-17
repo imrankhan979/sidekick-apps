@@ -1,6 +1,5 @@
 {{ 'page-header.css' | asset_url | stylesheet_tag }}
 
-
 {%- style -%}
 
   .section-{{ section.id }}-padding {
@@ -16,20 +15,22 @@
   }
 {%- endstyle -%}
 
+
 <section class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
     <div class="breadcrumb-content-area page-width">
       <div class="breadcrumb-content-area-inner">
         <div class="breadcrumb-link">
           <ul>
               <li><a href="{{ routes.root_url }}">Home</a></li>
-              <li>{{ blog.title }}</li>
+              <li>SEARCH: "<strong>{{ search.terms }}</strong></li>
+              <li>{{ collection.title }}</li>
           </ul>
         </div>
         <div class="breadcrumb-heading">
         {% if section.settings.section_heading != blank %}
           <h1 class="breadcrumb-title">{{ section.settings.section_heading }}</h1>
           {% else %}
-          <h1 class="breadcrumb-title">{{ blog.title }}</h1>
+          <h1 class="breadcrumb-title">{{ collection.title }}</h1>
         {% endif %}
         </div>
       </div>
@@ -41,14 +42,10 @@
     {% endif %}
 </section>
 
-
- 
-
-
 {% schema %}
 {
-  "name": "Blog Page header",
-  "class": "page-header-main",
+  "name": "Search banner",
+  "class": "section",
   "settings": [
     {
       "type": "color_scheme",
@@ -90,12 +87,28 @@
       "unit": "px",
       "label": "Padding Bottom",
       "default": 200
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-collection-banner.settings.paragraph.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "t:sections.main-collection-banner.settings.show_collection_description.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": false,
+      "label": "t:sections.main-collection-banner.settings.show_collection_image.label",
+      "info": "t:sections.main-collection-banner.settings.show_collection_image.info"
     }
   ],
-
-"presets": [
+  "presets": [
     {
-      "name": "Blog page header"
+      "name": "Search banner"
     }
   ]
 }

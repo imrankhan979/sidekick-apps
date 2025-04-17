@@ -2,6 +2,7 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-search.css' | asset_url | stylesheet_tag }}
+{{ 'page-header.css' | asset_url | stylesheet_tag }}
 
 {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
   {{ 'component-facets.css' | asset_url | stylesheet_tag }}
@@ -42,6 +43,20 @@
     height: 1.8rem;
   }
 </style>
+{%- style -%}
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top_header | times: 0.65 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom_header | times: 0.65 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_header }}px;
+      padding-bottom: {{ section.settings.padding_bottom_header }}px;
+    }
+  }
+{%- endstyle -%}
 
 {%- liquid
   assign sort_by = search.sort_by | default: search.default_sort_by
@@ -66,13 +81,31 @@
 {% paginate search.results by 24 %}
   <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} section-{{ section.id }}-padding">
     <div class="template-search__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-      <h1 class="h2 center">
-        {%- if search.performed -%}
-          {{- 'templates.search.title' | t -}}
-        {%- else -%}
-          {{- 'general.search.search' | t -}}
-        {%- endif -%}
-      </h1>
+      <div class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme_header }}">
+        <div class="breadcrumb-content-area page-width">
+          <div class="breadcrumb-content-area-inner">
+            <div class="breadcrumb-link">
+              <ul>
+                  <li><a href="{{ routes.root_url }}">Home</a></li>
+                  <li>SEARCH: "<strong>{{ search.terms }}</strong></li>
+                  <li>{{ collection.title }}</li>
+              </ul>
+            </div>
+            <div class="breadcrumb-heading">
+            {% if section.settings.section_heading != blank %}
+              <h1 class="breadcrumb-title">{{ section.settings.section_heading }}</h1>
+              {% else %}
+              <h1 class="breadcrumb-title">{{ collection.title }}</h1>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+        {% if section.settings.header_bg %}
+          <div class="page-header-bg">
+            <img src="{{ section.settings.header_bg | image_url: width: 533 }}" loading="lazy" width="{{ section.settings.header_bg.width }}" height="{{ section.settings.header_bg.height }}" >
+          </div>
+        {% endif %}
+    </div>
       <div class="template-search__search">
         {%- if settings.predictive_search_enabled -%}
           <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
@@ -339,6 +372,51 @@
   "tag": "section",
   "class": "section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Search header"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme_header",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_bg",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Page heading",
+      "info": "Leave it blank to show the default heading." 
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_header",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 200
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_header",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 200
+    },
     {
       "type": "range",
       "id": "columns_desktop",

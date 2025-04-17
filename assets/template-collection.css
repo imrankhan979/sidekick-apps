@@ -281,14 +281,13 @@
 
 .search_results_filter_top_wrapper .search_results_filterForm .search_results_label {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 20px; 
   letter-spacing: -0.01em;
   text-transform: uppercase;
 }
 
 .search_results_product_box {
   display: grid;
-  align-items: center;
   column-gap: 24px;
   row-gap: 30px;
   padding-top: 48px;
