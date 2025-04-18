@@ -38,7 +38,14 @@
                   {%- endif -%}
                 </div>
                 <div class="collection_carousel_content">
-                    <span class="subTitle">{{ block.settings.collection_featured }}</span>
+                    <span class="subTitle">
+                      <span class="collection_anim">
+                        <span class="anim_text">
+                      {{ block.settings.collection_featured }}
+                        </span>
+                      </span>
+                    </span>
+
                     {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
                     <div class="collection_carousel_text">
                         <h2 class="display-1"><a href="{{ block.settings.collection_select.url }}">
@@ -61,6 +68,7 @@
                            </span> 
                     </div>
                   {%- endif -%}
+                  
                     <div class="collection_carousel_button">
                         <a class="collection_carousel_btn" href="
                         {%- if block.settings.collection_button_link != blank -%}

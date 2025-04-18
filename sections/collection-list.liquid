@@ -35,7 +35,7 @@
     {% endif %}
      <div class="collection_wrapper fancy-scrollbar"> 
       {%- for block in section.blocks -%}
-        <div class="anim-item collection_item reveal flex center" {{ block.shopify_attributes }}> 
+        <div class="anim-item collection_item flex center" {{ block.shopify_attributes }}> 
           <a
             {% if block.settings.collection != blank %}
               href="{{ block.settings.collection.url }}"

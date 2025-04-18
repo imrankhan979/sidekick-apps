@@ -1735,3 +1735,23 @@ document.addEventListener("DOMContentLoaded", () => {
 //     alert('Link copied to clipboard!');
 //   });
 // });
+
+// anim Js
+document.addEventListener("DOMContentLoaded", function () {
+  const cards = document.querySelectorAll(".anim-item");
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add("reveal");
+          }, index * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  cards.forEach((card) => observer.observe(card));
+});
+// anim Js
