@@ -1188,6 +1188,7 @@ summary::-webkit-details-marker {
   background-color: rgba(var(--color-foreground), 0.1);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .media--transparent {
@@ -3027,7 +3028,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   font-family: var(--font-family-body);
   font-size: 14px;
   font-weight: 700;
-  line-height: 20px;
+  line-height: 26px;
   color: #FFFFFF;
   background: #000000;
   text-transform: uppercase;
@@ -3762,6 +3763,19 @@ details[open] > .header__icon--menu .icon-hamburger {
   }
 }
 
-.template-search .predictive-search--search-template{
-
+.template-search .card__heading{
+  font-family: var(--font-family-heading);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -1%;
+  vertical-align: middle;
+  color: rgb(var(--color-foreground));
+}
+@media (max-width: 767px) {
+  .template-search .card__heading{
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0%;
+  }
 }
