@@ -1735,3 +1735,32 @@ document.addEventListener("DOMContentLoaded", () => {
 //     alert('Link copied to clipboard!');
 //   });
 // });
+
+
+
+// Search drawer
+function initSearchDrawer() {
+  const toggleBtn = document.getElementById('search-toggle');
+  const drawer = document.getElementById('search-drawer');
+  const closeBtn = drawer?.querySelector('.search-close');
+  const overlay = document.getElementById('drawer-overlay');
+
+  if (!toggleBtn || !drawer) return;
+
+  const toggleDrawer = (open) => {
+    toggleBtn.setAttribute('aria-expanded', open);
+    drawer.setAttribute('aria-hidden', !open);
+    drawer.classList.toggle('drawer-open', open);
+  };
+
+  toggleBtn.addEventListener('click', () => toggleDrawer(!drawer.classList.contains('drawer-open')));
+  closeBtn?.addEventListener('click', () => toggleDrawer(false));
+  overlay?.addEventListener('click', () => toggleDrawer(false));
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', initSearchDrawer);
+// Re-init if editor reloads section
+document.addEventListener('shopify:section:load', initSearchDrawer);
+
+
