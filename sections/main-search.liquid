@@ -56,6 +56,15 @@
       padding-bottom: {{ section.settings.padding_bottom_header }}px;
     }
   }
+
+  .template-search .search_results_product_box{
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr)
+  }
+  @media screen and (max-width: 767px) {
+    .template-search .search_results_product_box{
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr)
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -177,7 +186,7 @@
       -%}
       {%- endif -%}
       <div
-          class="facets-vertical page-width"
+          class="facets-vertical page-width search_results_filter__main"
       >
         {%- if search.filters != empty -%}
           {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
@@ -216,7 +225,7 @@
                 </h2>
                 {%- render 'loading-spinner' -%}
               </div>
-              <div class="sorting">
+
                 <div class="search_results_filterForm">
                   <div class="search_results_label">
                     <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
@@ -245,7 +254,7 @@
                     </span>
                   </div>
                 </div>
-              </div>
+
             </form>
           </facet-filters-form>
           {%- if search.results.size == 0 and search.filters != empty -%}
@@ -285,7 +294,7 @@
                   {%- endif -%}
 
                   <li
-                    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    class="{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                     {% if settings.animations_reveal_on_scroll %}
                       data-cascade
                     {% endif %}
@@ -317,7 +326,7 @@
                       {%- when 'page' -%}
                         <div class="article-card-wrapper card-wrapper underline-links-hover">
                           <div
-                            class="card card--card card--text ratio color-{{ settings.blog_card_color_scheme }}"
+                            class="card card--card card--text ratio"
                             style="--ratio-percent: 100%;"
                           >
                             <div class="card__content">
