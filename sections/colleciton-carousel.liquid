@@ -48,13 +48,15 @@
 
                     {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
                     <div class="collection_carousel_text">
-                        <h2 class="display-1"><a href="{{ block.settings.collection_select.url }}">
+                          <div class="display-1 collection_carousel_main_title {{ section.settings.heading_tag }}">
+                          <a href="{{ block.settings.collection_select.url }}">
                           {%- if block.settings.collection_heading != blank -%}
                             {{ block.settings.collection_heading }}
                             {%- else -%}
                           {{ block.settings.collection_select.title }}
                         {%- endif -%}
-                          </a></h2>
+                          </a>
+                        </div>
                         <span class="sub-title">{{ block.settings.collection_select.products_count }}
                           {%- if block.settings.collection_select != blank -%}
                           {%- if block.settings.collection_select.products_count <= 1 -%}
@@ -103,6 +105,20 @@
       "id": "section_color_scheme",
       "label": "Color Scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" },
+        { "value": "h3", "label": "H3" },
+        { "value": "h4", "label": "H4" },
+        { "value": "h5", "label": "H5" },
+        { "value": "h6", "label": "H6" }
+      ]
     },
     {
       "type": "header",
