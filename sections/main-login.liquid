@@ -1,133 +1,150 @@
-{{ 'snazzy-customer.css' | asset_url | stylesheet_tag }}
+{{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      }
+
+      @media screen and (min-width: 750px) {
         .section-{{ section.id }}-padding {
-          padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-          padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+          padding-top: {{ section.settings.padding_top }}px;
+          padding-bottom: {{ section.settings.padding_bottom }}px;
         }
-
-        @media screen and (min-width: 750px) {
-          .section-{{ section.id }}-padding {
-            padding-top: {{ section.settings.padding_top }}px;
-            padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+      .login-section {
+          padding-top: 120px;
+          padding-bottom: 120px;
+          background: linear-gradient(180deg, #0160a0 0%, #2992d9 100%);
+        }
+        .contact_form_box_two {
+            max-width: 465px;
+            width: 100%;
+            background-color: #ffffff;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 16px;
+            padding: 48px 48px;
           }
-        }
-
-        .login-section {
-        padding-top: 120px;
-        padding-bottom: 120px;
-        background: linear-gradient(180deg, #0160a0 0%, #2992d9 100%);
-      }
-      .contact_form_box_two {
-        max-width: 465px;
-        width: 100%;
-        background-color: #ffffff;
-        margin-left: auto;
-        margin-right: auto;
-        border-radius: 16px;
-        padding: 48px 48px;
-      }
-      .contact_form_box_two .field {
-        margin-bottom: 20px;
-        display: block;
-      }
-      .contact_form_box_two .field label {
-        display: inline-block;
-        color: #000000;
-        font-size: 16px;
-        font-weight: 700;
-        line-height: 24px;
-        margin-bottom: 10px;
-      }
-      .contact_form_box_two form .field input[type="email"],
-      .contact_form_box_two form .field input[type="password"] {
-        width: 100%;
-        padding: 20px 24px;
-        font-size: 16px;
-        background: transparent;
-        border: 1px solid #000000;
-        border-radius: 10px;
-        font-family: var(--sds-fs-body);
-        color: #000000;
-      }
-      .contact_form_box_two h1 {
-        font-size: 24px;
-        color: #000000;
-        margin-top: 0px;
-        text-align: center;
-        text-transform: uppercase;
-        margin-bottom: 16px;
-        line-height: 30px;
-      }
-      .contact_form_box_two form .submit-btn {
-        position: relative;
-        color: #ffffff;
-        background-color: #000000;
-        font-family: var(--sds-ff-heading);
-        font-weight: 700;
-        width: 100%;
-        font-size: 18px;
-        text-align: center;
-        text-transform: uppercase;
-        border-radius: 10px;
-        padding: 19px 15px;
-        line-height: 1;
-        margin: 20px 0px;
-      }
-      .contact_form_box_two p {
-        margin-bottom: 25px;
-      }
-      .contact_form_box_two form a {
-        display: inline-block;
-        position: relative;
-        font-size: 14px;
-        color: #808080;
-        text-decoration: none;
-        color: currentColor;
-        cursor: pointer;
-        -webkit-transition: all 0.3s ease-in-out 0s;
-        transition: all 0.3s ease-in-out 0s;
-      }
-      .contact_form_box_two form a::before {
-        position: absolute;
-        content: "";
-        display: block;
-        height: 1px;
-        min-height: 1px;
-        right: 0;
-        bottom: 6px;
-        left: 0;
-        background: #808080;
-        will-change: transform;
-        animation-duration: 0.9s;
-        animation-timing-function: ease;
-      }
-      .contact_form_box_two h2.form__message {
-        font-size: 18px;
-        color: #000000;
-        margin-top: 0px;
-        text-align: center;
-        text-transform: math-auto;
-        margin-bottom: 16px;
-     }
-     .errors ul li {
-      margin-bottom: 10px;
-    }
-    .contact_form_box_two form .form__message {
-      font-size: 14px;
-      line-height: 14px;
-      display: inline;
-      color: #808080;
+          .contact_form_box_two .field {
+            margin-bottom: 20px;
+            display: block;
+          }
+          .field__label, .customer .field label {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            left: 0;
+            color: #000000;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+          }
+          .contact_form_box_two .form-input label {
+            display: inline-block;
+            color: #000000;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 24px;
+            margin-bottom: 10px;
+          }
+          .contact_form_box_two form .field input[type="email"],
+          .contact_form_box_two form .field input[type="password"] {
+            width: 100%;
+            padding: 20px 24px;
+            font-size: 16px;
+            background: transparent;
+            border: 1px solid #000000;
+            border-radius: 10px;
+            font-family: var(--sds-fs-body);
+            color: #000000;
+          }
+          .contact_form_box_two h1 {
+            font-size: 24px;
+            color: #000000;
+            margin-top: 0px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            line-height: 30px;
+          }
+          .contact_form_box_two form .submit-btn {
+            position: relative;
+            color: #ffffff;
+            background-color: #000000;
+            font-family: var(--sds-ff-heading);
+            font-weight: 700;
+            width: 100%;
+            font-size: 18px;
+            text-align: center;
+            text-transform: uppercase;
+            border-radius: 10px;
+            padding: 19px 15px;
+            line-height: 1;
+            margin: 20px 0px;
+          }
+          .contact_form_box_two .form_desc {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 28px;
+      text-align: center;
+      margin-bottom: 25px;
+      text-transform: none;
   }
+          .contact_form_box_two form a {
+            display: inline-block;
+            position: relative;
+            font-size: 14px;
+            color: #808080;
+            text-decoration: none;
+            color: currentColor;
+            cursor: pointer;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+          }
+          .contact_form_box_two form a::before {
+            position: absolute;
+            content: "";
+            display: block;
+            height: 1px;
+            min-height: 1px;
+            right: 0;
+            bottom: 6px;
+            left: 0;
+            background: #808080;
+            will-change: transform;
+            animation-duration: 0.9s;
+            animation-timing-function: ease;
+          }
+          .contact_form_box_two h2.form__message {
+            font-size: 18px;
+            color: #000000;
+            margin-top: 0px;
+            text-align: center;
+            text-transform: math-auto;
+            margin-bottom: 16px;
+         }
+         .errors ul li {
+          margin-bottom: 10px;
+        }
+        .contact_form_box_two form .form__message {
+          font-size: 14px;
+          line-height: 14px;
+          display: inline;
+          color: #808080;
+      }
+      .contact_form_box_two form .field input::placeholder {
+        color: #999;
+        font-size: 14px;
+      }
 {%- endstyle -%}
 
 {%- if section.settings.enable_shop_login_button == false -%}
   {%- assign hide_shop_login_button = true -%}
 {%- endif -%}
-
-<div class="login-section section-{{ section.id }}-padding">
+<section class="login-section">
   <div class="page-width">
-    <div class="contact_form_box_two">
+    <div class="contact_form_box_two customer login section-{{ section.id }}-padding">
       <h1 id="recover" tabindex="-1">
         {{ 'customer.recover_password.title' | t }}
       </h1>
@@ -166,7 +183,6 @@
               {{ form.errors.messages.form }}
             </small>
           {%- endif -%}
-
           <button class="submit-btn">
             {{ 'customer.login_page.submit' | t }}
           </button>
@@ -176,8 +192,10 @@
           </a>
         {%- endform -%}
       </div>
-      <h1 id="login" tabindex="-1">{{ 'customer.login_page.title' | t }}</h1>
-      <p class="form_desc">Welcome back! Login to get started!</p>
+      <h1 id="login" tabindex="-1">
+        {{ 'customer.login_page.title' | t }}
+        <p class="form_desc">Welcome back! Login to get started!</p>
+      </h1>
       <div>
         {%- if recover_success == true -%}
           <h3 class="form__message" tabindex="-1" autofocus>
@@ -268,7 +286,7 @@
           <h2>{{ 'customer.login_page.guest_title' | t }}</h2>
 
           {%- form 'guest_login' -%}
-            <button>
+            <button class="submit-btn">
               {{ 'customer.login_page.guest_continue' | t }}
             </button>
           {%- endform -%}
@@ -276,8 +294,7 @@
       {%- endif -%}
     </div>
   </div>
-</div>
-
+</section>
 {% schema %}
 {
   "name": "t:sections.main-login.name",
