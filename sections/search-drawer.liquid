@@ -1,0 +1,139 @@
+ <div id="search-drawer" aria-hidden="true"
+ >
+<div id="drawer-overlay" class="drawer-overlay"></div>
+ <div class="search_main_wrapper color-{{ section.settings.color_scheme }}">
+
+    <div class="search_top_header">
+        <div class="search_top_title">
+            <h6 class="search_title">Search</h6>
+        </div>
+        <div class="search_close_button ">
+            <button
+            class="search-close"
+            >    {{- 'icon-close.svg' | inline_asset_content -}}
+            </button>
+        </div>
+    </div>
+
+ <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="predictive_search_form">
+    <div class="search_input">
+        <input
+        class=""
+        id="{{ input_id }}"
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.search' | t }}"
+        {%- if settings.predictive_search_enabled -%}
+            role="combobox"
+            aria-expanded="false"
+            aria-owns="predictive-search-results"
+            aria-controls="predictive-search-results"
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            autocorrect="off"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+        {%- endif -%}
+        >
+        <button
+        type="reset"
+        class="reset__button field__button hidden"
+        aria-label="{{ 'general.search.reset' | t }}"
+        >
+        <span class="svg-wrapper">
+            {{- 'icon-reset.svg' | inline_asset_content -}}
+        </span>
+        </button>
+        <button class="search__button field__button " aria-label="{{ 'general.search.search' | t }}">
+        <span class="svg-wrapper">
+            {{- 'icon-search.svg' | inline_asset_content -}}
+        </span>
+        </button>
+    </div>
+
+    {%- if settings.predictive_search_enabled -%}
+        <div class="predictive-wrapper" tabindex="-1" data-predictive-search>
+        {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+        </div>
+
+        <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+    {%- endif -%}
+    </form>
+</predictive-search> 
+</div>
+</div>
+{% comment %} <div class="search_main_wrapper">
+              
+               <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+                    <form action="{{ routes.search_url }}" method="get" role="search" class="">
+
+               
+               
+                    <div class="search_input">
+                        <button type="submit" value="submit"><svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.33464 14.0001C8.87297 14.0001 10.2871 13.4709 11.4155 12.5934L15.0788 16.2567L16.2571 15.0784L12.5938 11.4151C13.4721 10.2859 14.0013 8.87175 14.0013 7.33341C14.0013 3.65758 11.0105 0.666748 7.33464 0.666748C3.6588 0.666748 0.667969 3.65758 0.667969 7.33341C0.667969 11.0092 3.6588 14.0001 7.33464 14.0001ZM7.33464 2.33341C10.0921 2.33341 12.3346 4.57591 12.3346 7.33341C12.3346 10.0909 10.0921 12.3334 7.33464 12.3334C4.57714 12.3334 2.33464 10.0909 2.33464 7.33341C2.33464 4.57591 4.57714 2.33341 7.33464 2.33341Z" fill="black"></path>
+                            </svg>
+                        </button>
+                        <input
+                        class=""
+                        id="{{ input_id }}"
+                        type="search"
+                        name="q"
+                        value="{{ search.terms | escape }}"
+                        placeholder="{{ 'general.search.search' | t }}"
+                        {%- if settings.predictive_search_enabled -%}
+                            role="combobox"
+                            aria-expanded="false"
+                            aria-owns="predictive-search-results"
+                            aria-controls="predictive-search-results"
+                            aria-haspopup="listbox"
+                            aria-autocomplete="list"
+                            autocorrect="off"
+                            autocomplete="off"
+                            autocapitalize="off"
+                            spellcheck="false"
+                        {%- endif -%}
+                        >
+                    </div>
+                    <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
+                        {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                    </div>
+                    <div class="popular_product_blogs_button">
+                        <a class="popular-product-blogs-button" href="#">
+                            <span class="popular_anim">
+                                <span class="anim_text">
+                                View All Results
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+
+
+                    </form>
+               </predictive-search>
+</div> {% endcomment %}
+
+
+
+{% schema %}
+    {
+      "name": "Search drawer",
+      "settings": [
+        {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "scheme-1"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Search drawer"
+        }
+      ]
+    }
+    {% endschema %}

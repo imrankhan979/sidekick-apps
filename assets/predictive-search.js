@@ -245,7 +245,7 @@ class PredictiveSearch extends SearchForm {
   }
 
   open() {
-    this.predictiveSearchResults.style.maxHeight = this.resultsMaxHeight || `${this.getResultsMaxHeight()}px`;
+    // this.predictiveSearchResults.style.maxHeight = this.resultsMaxHeight || `${this.getResultsMaxHeight()}px`;
     this.setAttribute('open', true);
     this.input.setAttribute('aria-expanded', true);
     this.isOpen = true;
