@@ -24,7 +24,6 @@
 .predictive-search__results-groups-wrapper {
   display: flex;
   border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
-  padding-bottom: 1rem;
 }
 #search-drawer .predictive-search__results-groups-wrapper{
   flex-direction: column;
@@ -67,6 +66,7 @@ predictive-search[loading] .predictive-search {
   overflow-y: auto;
   height: 100%;
   padding:  0 48px;
+  position: relative;
 }
 @media (max-width: 767px) {
   #predictive-search-results{
@@ -78,7 +78,20 @@ predictive-search[loading] .predictive-search {
   flex-direction: column;
   flex: 1 1 auto;
 }
-
+.predictive-search__result-group > div{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-top: 1px solid #DDDDDD;
+}
+@media (max-width: 767px) {
+  .predictive-search__result-group > div{
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+}
+.predictive-search__result-group .search_suggestion_tags{
+  border: none;
+}
 .predictive-search__result-group:first-child .predictive-search__pages-wrapper {
   display: none;
 }
@@ -101,7 +114,7 @@ predictive-search[loading] .predictive-search {
 }
 
 .predictive-search__heading {
-  margin-top: 48px;
+  margin-bottom: 24px;
   color: rgba(var(--color-foreground), 0.7);
   font-weight: 400;
   font-size: 20px;
@@ -120,6 +133,14 @@ predictive-search:not([loading]) .predictive-search-status__loading {
   display: none;
 }
 
+predictive-search .predictive-search__loading-state {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 predictive-search[loading] .predictive-search__loading-state {
   display: flex;
   justify-content: center;
@@ -138,23 +159,9 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   display: initial;
 }
 
-.predictive-search__list-item[aria-selected='true'] > *,
-.predictive-search__list-item:hover > *,
-.predictive-search__item[aria-selected='true'],
-.predictive-search__item:hover {
-  color: rgb(var(--color-foreground));
-  background-color: rgba(var(--color-foreground), 0.04);
-}
-
-.predictive-search__list-item[aria-selected='true'] .predictive-search__item-heading,
-.predictive-search__list-item:hover .predictive-search__item-heading {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
 
 .predictive-search__item {
   display: flex;
-  padding: 1rem 0;
   text-align: left;
   text-decoration: none;
   width: 100%;
@@ -162,11 +169,21 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 
 .predictive-search__item--link-with-thumbnail {
   display: grid;
-  grid-template-columns: 5rem 1fr;
-  grid-column-gap: 2rem;
+  grid-template-columns: 86px 1fr;
+  grid-column-gap: 24px;
   grid-template-areas: 'product-image product-content';
+  align-items: center;
 }
-
+.predictive-search__item--link-with-thumbnail .predictive-search__image_wrapper{
+  border-radius: 8px;
+  overflow: hidden;
+}
+.predictive-search__item--link-with-thumbnail .predictive-search__image_wrapper > *{
+  width: 100%;
+}
+#predictive-search-results-products-list li:not(:last-child){
+  margin-bottom: 16px;
+}
 .predictive-search__item-content {
   grid-area: product-content;
   display: flex;
@@ -181,10 +198,20 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   font-size: 0.9rem;
 }
 
-.predictive-search__item-heading {
+#predictive-search-results-products-list .predictive-search__item-heading {
   margin: 0;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  font-family: var(--font-family-heading);
+}
+#predictive-search-results-pages-list-mobile .predictive-search__item-heading, #predictive-search-results-pages-list-desktop .predictive-search__item-heading {
+  font-size: 18px;
+  line-height: 24px;
 }
 
+#predictive-search-results-products-list .predictive-search__item-heading
 .predictive-search__item-query-result *:not(mark) {
   font-weight: bolder;
 }
@@ -237,4 +264,7 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
 }
 #search-drawer .predictive-wrapper{
   overflow: hidden;
+}
+#predictive-search-results-pages-list-desktop li:not(:last-child), #predictive-search-results-pages-list-mobile li:not(:last-child){
+  margin-bottom: 12px;
 }

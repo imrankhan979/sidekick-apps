@@ -3854,6 +3854,7 @@ details[open] > .header__icon--menu .icon-hamburger {
 
 .search_main_wrapper .search_top_header .search_top_title .search_title {
   text-transform: uppercase;
+  font-family: var(--font-family-heading);
 }
 
 .search_main_wrapper .search_top_header .search_close_button {
@@ -3931,11 +3932,6 @@ details[open] > .header__icon--menu .icon-hamburger {
   margin-bottom: 14px;
 }
 
-.search_suggestion_tags {
-  padding-top: 45px;
-  margin-bottom: 48px;
-}
-
 .search_suggestion_tags .tags_menu {
   margin: 0;
   padding: 0;
@@ -3949,7 +3945,7 @@ details[open] > .header__icon--menu .icon-hamburger {
 
 .search_suggestion_tags .tags_menu li a {
   position: relative;
-  display: inline-block;
+  display: flex;
   color: #000000;
   font-weight: 400;
   font-size: 16px;
@@ -3959,6 +3955,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   padding: 11px 16px;
   overflow: hidden;
   line-height: 1;
+
 }
 
 .search_suggestion_tags .tags_menu li a:hover {
@@ -4114,11 +4111,6 @@ details[open] > .header__icon--menu .icon-hamburger {
     border-radius: 24px 0px 0px 24px;
   }
 
-  .search_suggestion_tags {
-    padding-top: 30px;
-    margin-bottom: 35px;
-  }
-
   .popular_product_wrapper {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -4134,7 +4126,7 @@ details[open] > .header__icon--menu .icon-hamburger {
   }
 
   .popular_product_blogs_button {
-    margin-top: 50px;
+    margin-top: 30px;
   }
 
   .search_main_wrapper .search_input input[type="search"] {
