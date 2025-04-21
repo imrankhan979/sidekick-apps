@@ -24,16 +24,16 @@
    <!-- start: Slider Community Section -->
    <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
-       <div class="heading_area">
+       <div class="heading_area anim-item">
           <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
        </div>
        <div class="slider_community_wrapper">
           <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
             {%- for block in section.blocks -%}
-             <div class="slider_community_item id-{{ block.id }}">
-                <a class="#">
+             <div class="slider_community_item anim-item id-{{ block.id }}">
+           
                   <div class="slider_community_images">
-              {%- if block.settings.product_image != blank -%}
+              {%- if block.settings.product_image != blank -%}       
                   <a href="{{ block.settings.product_image | image_url }}">
                       {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                   </a>
@@ -52,6 +52,7 @@
 
 
                    <div class="slider_community_content_box">
+                    <a href="{{ block.settings.product_select.url }}">
                       <div class="slider_community_thumb">
                         {%- if block.settings.product_select.featured_image != blank -%}
                         {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
@@ -61,6 +62,7 @@
                         {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                         {%- endif -%}
                       </div>
+                      </a>
                       <div class="slider_community_text">
                          <h6 class="slider_community_title"><a href="{{ block.settings.product_select.url }}">
                             {%- if block.settings.product_select != blank -%}
@@ -71,7 +73,10 @@
                             </a></h6>
                             {% if block.settings.product_select.price != blank %}
                          {% if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
-                              <div class="slider_community_percent active">{{ block.settings.product_select.price | money }}<span>{{ block.settings.product_select.compare_at_price | money }}</span></div>
+                              <div class="slider_community_percent active">
+                                {{ block.settings.product_select.price | money }}
+                                <span>{{ block.settings.product_select.compare_at_price | money }}</span>
+                              </div>
                           {% else %}
                           <div class="slider_community_percent">{{ block.settings.product_select.price | money }}</div>
                           {% endif %}
@@ -80,7 +85,6 @@
                         {% endif %}
                       </div>
                    </div>
-                </a>
              </div>
             {% endfor %}
           </div>

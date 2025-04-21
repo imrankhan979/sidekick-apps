@@ -3891,3 +3891,36 @@ details[open]>.header__icon--menu .icon-hamburger {
 }
 
 /* Collection anim CSS */
+
+/* Animation Keyframes */
+@keyframes arrow-move {
+  0% {
+    transform: translateX(0%);
+  }
+
+  50% {
+    transform: translateX(100%);
+  }
+
+  51% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* products Keyframes CSS */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Animation Keyframes */

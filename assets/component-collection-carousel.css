@@ -6,12 +6,12 @@ START: Collection carousel CSS
   }
   
   .collection-carousel-section .page-width {
-    margin-left: calc((100% - 1810px) / 2);
+    margin-right: calc((100% - 1820px) / 2);
     width: auto;
     min-width: auto;
     max-width: inherit;
     padding-right: 0;
-  }
+}
   
   .collection-carousel-section .flickity-button {
     background: rgb(var(--color-button));
@@ -116,7 +116,11 @@ START: Collection carousel CSS
     text-transform: uppercase;
     margin-bottom: 24px;
   }
-  
+
+  .collection_carousel_item.is-selected .collection_carousel_content .collection_carousel_text .display-1 {
+    animation: fadeInUp 0.5s ease-in-out 0s;
+  }
+
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .sub-title {
     display: block;
     color: rgb(var(--color-foreground));
@@ -125,10 +129,14 @@ START: Collection carousel CSS
     letter-spacing: -0.01em;
   }
 
+  .collection_carousel_item.is-selected .collection_carousel_content .collection_carousel_text .sub-title {
+    animation: fadeInUp 0.6s ease-in-out 0s;
+  }
+
   .collection_carousel_item.is-selected .collection_carousel_content .subTitle {
     animation: fadeInUp 0.4s ease-in-out 0s;
-  }
-  
+  } 
+
   .collection_carousel_item.is-selected .collection_carousel_content .subTitle .collection_anim {
     display: block;
     overflow: hidden;
@@ -153,6 +161,9 @@ START: Collection carousel CSS
   .collection_carousel_button {
     margin-top: 152px;
   }
+  .collection_carousel_item.is-selected .collection_carousel_button {
+  animation: fadeInUp 0.7s ease-in-out 0s;
+  }
   
   .collection_carousel_button .collection_carousel_btn {
     display: flex;
@@ -174,6 +185,15 @@ START: Collection carousel CSS
     height: 28px;
     background: rgb(var(--color-secondary-button));
     border-radius: 50%;
+    overflow: hidden;
+  }
+  .collection_carousel_button .collection_carousel_btn span svg {
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+  }
+  .collection_carousel_button .collection_carousel_btn:hover span svg {
+    animation: arrow-move .4s linear;
   }
   
   .collection_carousel_button .collection_carousel_btn span svg path {
@@ -227,10 +247,6 @@ START: Collection carousel CSS
       flex-wrap: nowrap;
       column-gap: 35px;
       height: 515px;
-    }
-  
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
-      font-size: 65px;
     }
   
     .collection_carousel_item .collection_carousel_content .collection_carousel_text {
@@ -354,7 +370,9 @@ START: Collection carousel CSS
       font-size: 12px;
     }
   
-    .collection_carousel_item .collection_carousel_images a > * {
+    .collection_carousel_item .collection_carousel_images > * {
+      height: 240px;
+      object-fit: cover;
       border-radius: 24px 24px 0px 0px;
     }
   }
