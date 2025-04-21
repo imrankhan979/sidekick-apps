@@ -64,7 +64,8 @@
                       </div>
                       </a>
                       <div class="slider_community_text">
-                         <h6 class="slider_community_title"><a href="{{ block.settings.product_select.url }}">
+                         <h6 class="slider_community_title">
+                          <a href="{{ block.settings.product_select.url }}">
                             {%- if block.settings.product_select != blank -%}
                               {{ block.settings.product_select.title }}
                               {%- else -%}
@@ -95,18 +96,18 @@
 
 {% schema %}
 {
-  "name": "Community Stories",
+  "name": "Community stories",
   "settings": [
     {
       "type": "text",
       "id": "community_heading",
-      "label": "Community Heading",
-      "default": "Community Stories"
+      "label": "Community heading",
+      "default": "Community stories"
     },
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {
@@ -120,7 +121,7 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Padding top",
       "default": 352
     },
     {
@@ -130,19 +131,19 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Padding bottom",
       "default": 352
     }
   ],
   "blocks": [
     {
       "type": "product",
-      "name": "Product Carousel",
+      "name": "Product carousel",
       "settings": [
         {
         "type": "product",
         "id": "product_select",
-        "label": "Select Product"
+        "label": "Select product"
         },
         {
       "type": "range",
@@ -157,14 +158,14 @@
         {
           "type": "image_picker",
           "id": "product_image",
-          "label": "Product Image"
+          "label": "Product image"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Community Stories",
+      "name": "Community stories",
       "blocks": [
         {
           "type": "product"
