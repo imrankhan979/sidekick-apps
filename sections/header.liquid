@@ -87,6 +87,7 @@
                                 <button class="flex" id="search-toggle" role="button" aria-controls="search-drawer" aria-expanded="false" aria-label="Search">
                                     {{- 'icon-search.svg' | inline_asset_content -}}
                                   </button>
+                                  {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
                     
                                 {%- if shop.customer_accounts_enabled -%}
                                     <a

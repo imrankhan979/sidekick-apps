@@ -1744,6 +1744,7 @@ function initSearchDrawer() {
   const drawer = document.getElementById('search-drawer');
   const closeBtn = drawer?.querySelector('.search-close');
   const overlay = document.getElementById('drawer-overlay');
+  const body = document.getElementById('body')
 
   if (!toggleBtn || !drawer) return;
 
@@ -1751,6 +1752,15 @@ function initSearchDrawer() {
     toggleBtn.setAttribute('aria-expanded', open);
     drawer.setAttribute('aria-hidden', !open);
     drawer.classList.toggle('drawer-open', open);
+
+    if (open) {
+      body.classList.add('drawer-open');
+      drawer.setAttribute('tabindex', '-1');
+      drawer.focus();
+    } else {
+      body.classList.remove('drawer-open');
+      drawer.removeAttribute('tabindex');
+    }
   };
 
   toggleBtn.addEventListener('click', () => toggleDrawer(!drawer.classList.contains('drawer-open')));

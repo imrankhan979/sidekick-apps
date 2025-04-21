@@ -42,7 +42,6 @@
                 {% if section.settings.show_tags or section.settings.show_date %}
                   <div class="blog_category">
                      <ul>
-
                       {%- if section.settings.show_tags -%}
                         {% if article.tags.size > 0 %}
                               <li><a href="{{ article.url }}">{{ article.tags | first }}</a></li>
