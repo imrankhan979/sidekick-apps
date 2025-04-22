@@ -33,12 +33,7 @@
               role="option"
               aria-selected="false"
             >
-              <a href="{{ query.url }}" class="predictive-search__item link link--text" tabindex="-1">
-                <span class="tags_anim">
-                                 <span class="anim_text">{{ query.styled_text }}</span>
-                              </span>
-
-              </a>
+              <a href="{{ query.url }}" class="predictive-search__item " tabindex="-1">{{ query.styled_text }}</a>
             </li>
           {%- endfor -%}
           {%- for collection in predictive_search.resources.collections -%}
@@ -79,9 +74,9 @@
               role="option"
               aria-selected="false"
             >
-              <a href="{{ page.url }}" class="predictive-search__item link link--text" tabindex="-1">
+              <a href="{{ page.url }}" class="predictive-search__item" tabindex="-1">
                 <div class="predictive-search__item-content predictive-search__item-content--centered">
-                  <p class="predictive-search__item-heading ">{{ page.title | escape }}</p>
+                  <p class="predictive-search__item-heading "><span class="underline_anim_multiline">{{ page.title | escape }}</span></p>
                 </div>
               </a>
             </li>
@@ -93,9 +88,9 @@
               role="option"
               aria-selected="false"
             >
-              <a href="{{ article.url }}" class="predictive-search__item link link--text" tabindex="-1">
+              <a href="{{ article.url }}" class="predictive-search__item" tabindex="-1">
                 <div class="predictive-search__item-content predictive-search__item-content--centered">
-                  <p class="predictive-search__item-heading ">{{ article.title | escape }}</p>
+                  <p class="predictive-search__item-heading"><span class="underline_anim_multiline">{{ article.title | escape }}</span> </p>
                 </div>
               </a>
             </li>
@@ -134,7 +129,7 @@
                 >
                   <a
                     href="{{ product.url }}"
-                    class="predictive-search__item predictive-search__item--link-with-thumbnail link link--text"
+                    class="predictive-search__item predictive-search__item--link-with-thumbnail"
                     tabindex="-1"
                   >
                     {%- if product.featured_media != blank -%}
@@ -155,7 +150,7 @@
                           {{ product.vendor }}
                         </div>
                       {%- endif -%}
-                      <p class="predictive-search__item-heading">{{ product.title | escape }}</p>
+                      <p class="predictive-search__item-heading "><span class="underline_anim_multiline">{{ product.title | escape }}</span></p>
                       {%- if settings.predictive_search_show_price -%}
                         {% render 'price', product: product, use_variant: true, show_badges: false %}
                       {%- endif -%}
@@ -187,9 +182,9 @@
                   role="option"
                   aria-selected="false"
                 >
-                  <a href="{{ page.url }}" class="predictive-search__item link link--text" tabindex="-1">
+                  <a href="{{ page.url }}" class="predictive-search__item " tabindex="-1">
                     <div class="predictive-search__item-content predictive-search__item-content--centered">
-                      <p class="predictive-search__item-heading">{{ page.title | escape }}</p>
+                      <p class="predictive-search__item-heading "><span class="underline_anim_multiline">{{ page.title | escape }}</span></p>
                     </div>
                   </a>
                 </li>
@@ -201,9 +196,9 @@
                   role="option"
                   aria-selected="false"
                 >
-                  <a href="{{ article.url }}" class="predictive-search__item link link--text" tabindex="-1">
+                  <a href="{{ article.url }}" class="predictive-search__item" tabindex="-1">
                     <div class="predictive-search__item-content predictive-search__item-content--centered">
-                      <p class="predictive-search__item-heading">{{ article.title | escape }}</p>
+                      <p class="predictive-search__item-heading "> <span class="underline_anim_multiline">{{ article.title | escape }}</span> </p>
                     </div>
                   </a>
                 </li>
