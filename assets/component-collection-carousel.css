@@ -188,9 +188,7 @@ START: Collection carousel CSS
     overflow: hidden;
   }
   .collection_carousel_button .collection_carousel_btn span svg {
-    width: 18px;
-    height: 18px;
-    padding: 3px;
+    transform: rotate(-90deg);
   }
   .collection_carousel_button .collection_carousel_btn:hover span svg {
     animation: arrow-move .4s linear;

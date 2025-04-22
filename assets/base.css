@@ -4273,21 +4273,22 @@ details[open]>.header__icon--menu .icon-hamburger {
 /* Animation Keyframes */
 @keyframes arrow-move {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0%) rotate(-90deg);
   }
 
   50% {
-    transform: translateX(100%);
+    transform: translateX(100%) rotate(-90deg);
   }
 
   51% {
-    transform: translateX(-100%);
+    transform: translateX(-100%) rotate(-90deg);
   }
 
   100% {
-    transform: translateX(0);
+    transform: translateX(0) rotate(-90deg);
   }
 }
+
 
 /* products Keyframes CSS */
 @keyframes fadeInUp {
