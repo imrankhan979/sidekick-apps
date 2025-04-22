@@ -1774,3 +1774,56 @@ document.addEventListener('DOMContentLoaded', initSearchDrawer);
 document.addEventListener('shopify:section:load', initSearchDrawer);
 
 
+if (!customElements.get('renders-sub-popup')) {
+  customElements.define(
+    'renders-sub-popup',
+    class extends HTMLElement {
+      constructor() {
+        super();
+        this.cBtn = this.querySelector('[data-close="close-btn"]');
+        this.testMode = this.getAttribute('mode');
+        this.delay = parseInt(this.getAttribute('delay'));
+        this.expiry = parseInt(this.getAttribute('expiry'));
+        this.cookieName = 'snazzy:newsletter-popup';
+        this.cBtn.addEventListener('click', this.afterHide.bind(this));
+      }
+      connectedCallback() {
+        this.init()
+      }
+      init() {
+        Shopify?.designMode
+          ? this.testMode == 'true' && this.load(0)
+          : !this.getCookie(this.cookieName) && this.load(this.delay);
+      }
+      load(delay) {
+        setTimeout(() => this.show(), delay * 1000);
+      }
+      show() {
+        this.classList.add('active');
+        setTimeout(() => this.afterShow(), 500);
+      }
+      getCookie(name) {
+        const match = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
+        return match ? match[2] : null;
+      }
+      setCookie(name, expiry) {
+        document.cookie = `${name}=true; max-age=${expiry * 24 * 60 * 60}; path=/`;
+      }
+      removeCookie(name) {
+        document.cookie = `${name}=; max-age=0`;
+      }
+      afterShow() {
+        this.classList.add('image-show');
+      }
+      afterHide() {
+        this.classList.remove('image-show');
+        setTimeout(() => this.classList.remove('active'), 1000);
+        if (this.testMode == 'true') {
+          this.removeCookie(this.cookieName);
+          return;
+        }
+        this.setCookie(this.cookieName, this.expiry);
+      }
+    }
+  );
+}
