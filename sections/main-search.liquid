@@ -99,9 +99,9 @@
             </div>
             <div class="breadcrumb_form">
               <div class="">
-                {%- if settings.predictive_search_enabled -%}
+                {% comment %} {%- if settings.predictive_search_enabled -%}
                   <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
-                {%- endif -%}
+                {%- endif -%} {% endcomment %}
                 <main-search>
                   <form action="{{ routes.search_url }}" method="get" role="search" class="search">
                     <div class="form-input">
@@ -153,9 +153,9 @@
                     </div>
                   </form>
                 </main-search>
-                {%- if settings.predictive_search_enabled -%}
+                {% comment %} {%- if settings.predictive_search_enabled -%}
                   </predictive-search>
-                {%- endif -%}
+                {%- endif -%} {% endcomment %}
               </div>
             </div>
           </div>
