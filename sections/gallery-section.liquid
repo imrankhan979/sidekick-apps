@@ -23,7 +23,7 @@
           <div class="carousel"
              data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'>
              {%- for block in section.blocks -%}
-             <div class="galley_item">
+             <div class="anim-item galley_item">
                 <div class="gallery_images">
                     {%- if block.settings.gallery_image != blank -%}
                         {{ block.settings.gallery_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}

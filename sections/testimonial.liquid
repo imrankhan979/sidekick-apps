@@ -21,14 +21,16 @@
 <!-- start: Testimonial Section -->
 <section class="testimonial-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="heading_area">
+      {% if section.settings.testimonial_heading != blank %}
+      <div class="heading_area">
       <h2 class="sec_title">{{ section.settings.testimonial_heading }}</h2>
-    </div>
+      </div>
+      {% endif %}
     <div class="testimonial_erap">
       <items-carousel> 
       <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false, "autoPlay": {{ section.settings.autoplay }} }'>
         {%- for block in section.blocks -%} 
-        <div class="testimonial-item" {{ block.shopify_attributes }}>
+        <div class="anim-item testimonial-item" {{ block.shopify_attributes }}>
             {%- if block.settings.testimonial_image != blank -%}
           <div class="testimonial-images">
             {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
@@ -40,7 +42,7 @@
                 {% if block.settings.client_review_title %}
                   <h5 class="title">{{ block.settings.client_review_title }}</h5>
                 {% endif %}
-                {% if block.settings.client_review_text %} 
+                {% if block.settings.client_review_text != blank %} 
                   <div class="desc">
                     <p>{{ block.settings.client_review_text }}</p>
                   </div>
@@ -55,16 +57,16 @@
                 </div>
               {%- endif -%}
                 <div class="author-text">
-                  {% if block.settings.client_name %}
+                  {% if block.settings.client_name != blank %}
                     <h5 class="title">{{ block.settings.client_name }}</h5>
                   {% endif %}
-                  {% if block.settings.client_location %}
+                  {% if block.settings.client_location != blank %}
                     <span class="designation">{{ block.settings.client_location }}</span>
                   {% endif %}
                 </div>
               </div>
             {% endif %}
-            {% if block.settings.show_product %}
+            {% if block.settings.show_product != blank %}
               <div class="testimonial-infos">
                   <div class="infos-text">
                       <h6 class="title">
@@ -100,14 +102,14 @@
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "testimonial_heading",
       "label": "Heading",
-      "default": "Customer Reviews"
+      "default": "Customer reviews"
     },
     {
       "type": "range",
@@ -135,7 +137,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Padding top",
       "default": 120
     },
     {
@@ -145,14 +147,14 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Padding bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "testimonial",
-      "name": "Testimonial Item",
+      "name": "Testimonial item",
       "settings": [
         {
           "type": "image_picker",
@@ -180,7 +182,7 @@
           "type": "text",
           "id": "client_name",
           "label": "Name",
-          "default": "Anya Petrova"
+          "default": "Anya petrova"
         },
         {
           "type": "text",
@@ -197,7 +199,7 @@
         {
         "type": "product",
         "id": "testimonial_product",
-        "label": "Select Product"
+        "label": "Select product"
         }
       ]
     }
