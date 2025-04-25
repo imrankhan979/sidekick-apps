@@ -1788,7 +1788,7 @@ if (!customElements.get('renders-sub-popup')) {
         this.cBtn.addEventListener('click', this.afterHide.bind(this));
       }
       connectedCallback() {
-        this.init()
+        this.init();
       }
       init() {
         Shopify?.designMode

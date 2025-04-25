@@ -13,12 +13,23 @@
     padding: 0 24px;
     z-index: 99;
   }
-  /* renders-sub-popup {
+  .popup_newsletter_wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 33px;
+    max-width: 905px;
+    width: 100%;
+    position: relative;
+    background: #ffffff;
+    border-radius: 40px;
+    z-index: 99;
+  }
+  renders-sub-popup {
     position: fixed;
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -29,6 +40,7 @@
     z-index: 5;
     opacity: 0;
     visibility: hidden;
+    padding: 0 24px;
     transition: 0.8s cubic-bezier(0.7, 0, 0.2, 1);
   }
 
@@ -36,7 +48,7 @@
     visibility: visible;
     opacity: 1;
     z-index: 20;
-  } */
+  }
 {%- endstyle -%}
 
 {% assign show_again_delay = section.settings.show_again_delay %}
@@ -93,7 +105,7 @@
                     <h2 class="popup_newsletter_title">{{ block.settings.popup_heading_title }}</h2>
                   {% when 'news_popup_text' %}
                     <div class="popup_newsletter_desc">
-                      {{ block.settings.popup_text }}
+                      <p>{{ block.settings.popup_text }}</p>
                     </div>
                   {% when 'news_pop_form_area' %}
                     {% form 'customer', class: 'newsletter-form-x' %}
@@ -159,7 +171,7 @@
                     {% endform %}
                   {% when 'news_pop_lower_content' %}
                     <div class="popup_lower_content">
-                      {{ block.settings.news_pop_lower_content_text }}
+                      <p>{{ block.settings.news_pop_lower_content_text }}</p>
                     </div>
                 {% endcase %}
               {% endfor %}
@@ -170,6 +182,7 @@
     </div>
   </renders-sub-popup>
 {% endif %}
+
 {% schema %}
 {
   "name": "Newsletter popup",
@@ -300,3 +313,6 @@
   ]
 }
 {% endschema %}
+
+{% javascript %}
+{% endjavascript %}
