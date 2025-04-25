@@ -1,142 +1,162 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-          .section-{{ section.id }}-padding {
-            padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-            padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-          }
-
-          @media screen and (min-width: 750px) {
             .section-{{ section.id }}-padding {
-              padding-top: {{ section.settings.padding_top }}px;
-              padding-bottom: {{ section.settings.padding_bottom }}px;
+              padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+              padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
             }
-          }
-          .login-section {
-       padding-top: 120px;
-       padding-bottom: 120px;
-       background: linear-gradient(180deg, #0160a0 0%, #2992d9 100%);
+
+            @media screen and (min-width: 750px) {
+              .section-{{ section.id }}-padding {
+                padding-top: {{ section.settings.padding_top }}px;
+                padding-bottom: {{ section.settings.padding_bottom }}px;
+              }
+            }
+            .login-section {
+         padding-top: 120px;
+         padding-bottom: 120px;
+         background: linear-gradient(180deg, #0160a0 0%, #2992d9 100%);
+    }
+     .contact_form_box_two {
+         max-width: 465px;
+         width: 100%;
+         background-color: #ffffff;
+         margin-left: auto;
+         margin-right: auto;
+         border-radius: 16px;
+         padding: 48px 48px;
+    }
+     .contact_form_box_two .field {
+         margin-bottom: 20px;
+         display: block;
+    }
+     .field__label, .customer .field label {
+         position: relative;
+         display: inline-block;
+         margin-bottom: 20px;
+         left: 0;
+         color: #000000;
+         font-size: 16px;
+         font-weight: 700;
+         line-height: 24px;
+    }
+     .contact_form_box_two .form-input label {
+         display: inline-block;
+         color: #000000;
+         font-size: 16px;
+         font-weight: 700;
+         line-height: 24px;
+         margin-bottom: 10px;
+    }
+     .contact_form_box_two form .field input[type="email"], .contact_form_box_two form .field input[type="password"] {
+         width: 100%;
+         padding: 20px 24px;
+         font-size: 16px;
+         background: transparent;
+         border: 1px solid #000000;
+         border-radius: 10px;
+         font-family: var(--sds-fs-body);
+         color: #000000;
+    }
+     .contact_form_box_two h1 {
+         font-size: 24px;
+         color: #000000;
+         margin-top: 0px;
+         text-align: center;
+         text-transform: uppercase;
+         margin-bottom: 16px;
+         line-height: 30px;
+    }
+     .contact_form_box_two form .submit-btn {
+         position: relative;
+         color: #ffffff;
+         background-color: #000000;
+         font-family: var(--sds-ff-heading);
+         font-weight: 700;
+         width: 100%;
+         font-size: 18px;
+         text-align: center;
+         text-transform: uppercase;
+         border-radius: 10px;
+         padding: 19px 15px;
+         line-height: 1;
+         margin: 20px 0px;
+    }
+     .contact_form_box_two .form_desc {
+         font-size: 18px;
+         font-weight: 400;
+         line-height: 28px;
+         text-align: center;
+         margin-bottom: 25px;
+         text-transform: none;
+    }
+     .contact_form_box_two form a {
+         display: inline-block;
+         position: relative;
+         font-size: 14px;
+         color: #808080;
+         text-decoration: none;
+         color: currentColor;
+         cursor: pointer;
+         -webkit-transition: all 0.3s ease-in-out 0s;
+         transition: all 0.3s ease-in-out 0s;
+    }
+     .contact_form_box_two form a::before {
+         position: absolute;
+         content: "";
+         display: block;
+         height: 1px;
+         min-height: 1px;
+         right: 0;
+         bottom: 6px;
+         left: 0;
+         background: #808080;
+         will-change: transform;
+         animation-duration: 0.9s;
+         animation-timing-function: ease;
+    }
+     .contact_form_box_two h2.form__message {
+         font-size: 18px;
+         color: #000000;
+         margin-top: 0px;
+         text-align: center;
+         text-transform: math-auto;
+         margin-bottom: 16px;
+    }
+     .errors ul li {
+         margin-bottom: 10px;
+    }
+     .contact_form_box_two form .form__message {
+         font-size: 14px;
+         line-height: 14px;
+         display: inline;
+         color: #808080;
+    }
+     .contact_form_box_two form .field input[type="text"]::placeholder, .contact_form_box_two form .field input[type="password"]::placeholder, .contact_form_box_two form .field input[type="email"]::placeholder {
+         color: #000000;
+         opacity: 1;
+         font-family: var(--sds-fs-body);
+         font-size: 16px;
+    }
+    .contact_form_box_two .submit-btn .submit_anim {
+    display: inline-block;
+    overflow: hidden;
+    text-shadow: 0 23px 0 #ffffff;
+    transition: all ease 0.3s;
   }
-   .contact_form_box_two {
-       max-width: 465px;
-       width: 100%;
-       background-color: #ffffff;
-       margin-left: auto;
-       margin-right: auto;
-       border-radius: 16px;
-       padding: 48px 48px;
+
+  .contact_form_box_two .submit-btn:hover .submit_anim>.anim_text {
+    text-shadow: 0 23px 0 #ffffff;
+    transform: translateY(-23px);
   }
-   .contact_form_box_two .field {
-       margin-bottom: 20px;
-       display: block;
-  }
-   .field__label, .customer .field label {
-       position: relative;
-       display: inline-block;
-       margin-bottom: 20px;
-       left: 0;
-       color: #000000;
-       font-size: 16px;
-       font-weight: 700;
-       line-height: 24px;
-  }
-   .contact_form_box_two .form-input label {
-       display: inline-block;
-       color: #000000;
-       font-size: 16px;
-       font-weight: 700;
-       line-height: 24px;
-       margin-bottom: 10px;
-  }
-   .contact_form_box_two form .field input[type="email"], .contact_form_box_two form .field input[type="password"] {
-       width: 100%;
-       padding: 20px 24px;
-       font-size: 16px;
-       background: transparent;
-       border: 1px solid #000000;
-       border-radius: 10px;
-       font-family: var(--sds-fs-body);
-       color: #000000;
-  }
-   .contact_form_box_two h1 {
-       font-size: 24px;
-       color: #000000;
-       margin-top: 0px;
-       text-align: center;
-       text-transform: uppercase;
-       margin-bottom: 16px;
-       line-height: 30px;
-  }
-   .contact_form_box_two form .submit-btn {
-       position: relative;
-       color: #ffffff;
-       background-color: #000000;
-       font-family: var(--sds-ff-heading);
-       font-weight: 700;
-       width: 100%;
-       font-size: 18px;
-       text-align: center;
-       text-transform: uppercase;
-       border-radius: 10px;
-       padding: 19px 15px;
-       line-height: 1;
-       margin: 20px 0px;
-  }
-   .contact_form_box_two .form_desc {
-       font-size: 18px;
-       font-weight: 400;
-       line-height: 28px;
-       text-align: center;
-       margin-bottom: 25px;
-       text-transform: none;
-  }
-   .contact_form_box_two form a {
-       display: inline-block;
-       position: relative;
-       font-size: 14px;
-       color: #808080;
-       text-decoration: none;
-       color: currentColor;
-       cursor: pointer;
-       -webkit-transition: all 0.3s ease-in-out 0s;
-       transition: all 0.3s ease-in-out 0s;
-  }
-   .contact_form_box_two form a::before {
-       position: absolute;
-       content: "";
-       display: block;
-       height: 1px;
-       min-height: 1px;
-       right: 0;
-       bottom: 6px;
-       left: 0;
-       background: #808080;
-       will-change: transform;
-       animation-duration: 0.9s;
-       animation-timing-function: ease;
-  }
-   .contact_form_box_two h2.form__message {
-       font-size: 18px;
-       color: #000000;
-       margin-top: 0px;
-       text-align: center;
-       text-transform: math-auto;
-       margin-bottom: 16px;
-  }
-   .errors ul li {
-       margin-bottom: 10px;
-  }
-   .contact_form_box_two form .form__message {
-       font-size: 14px;
-       line-height: 14px;
-       display: inline;
-       color: #808080;
-  }
-   .contact_form_box_two form .field input[type="text"]::placeholder, .contact_form_box_two form .field input[type="password"]::placeholder, .contact_form_box_two form .field input[type="email"]::placeholder {
-       color: #000000;
-       opacity: 1;
-       font-family: var(--sds-fs-body);
-       font-size: 16px;
+
+  .contact_form_box_two .submit-btn .submit_anim>.anim_text {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: translateY(0);
+    transition: all ease 0.3s;
   }
 {%- endstyle -%}
 
@@ -185,7 +205,9 @@
             </small>
           {%- endif -%}
           <button class="submit-btn">
-            {{ 'customer.login_page.submit' | t }}
+            <span class="submit_anim">
+              <span class="anim_text"> {{ 'customer.login_page.submit' | t }}</span>
+            </span>
           </button>
 
           <a href="#login">
@@ -270,11 +292,11 @@
               {{ 'customer.login_page.forgot_password' | t }}
             </a>
           {%- endif -%}
-
           <button class="submit-btn">
-            {{ 'customer.login_page.sign_in' | t }}
+            <span class="submit_anim">
+              <span class="anim_text"> {{ 'customer.login_page.sign_in' | t }}</span>
+            </span>
           </button>
-
           <a href="{{ routes.account_register_url }}">
             {{ 'customer.login_page.create_account' | t }}
           </a>

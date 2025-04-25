@@ -11,20 +11,34 @@
     justify-content: center;
     background: rgba(0, 0, 0, 0.4);
     padding: 0 24px;
+    z-index: 99;
+  }
+  /* renders-sub-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.8s cubic-bezier(0.7, 0, 0.2, 1);
   }
 
-  .popup_newsletter_wrapper {
-    display: flex;
-    align-items: center;
-    column-gap: 33px;
-    max-width: 905px;
-    width: 100%;
-    position: relative;
-    background: #ffffff;
-    border-radius: 40px;
-    z-index: 2;
-  }
+  renders-sub-popup.active {
+    visibility: visible;
+    opacity: 1;
+    z-index: 20;
+  } */
 {%- endstyle -%}
+
 {% assign show_again_delay = section.settings.show_again_delay %}
 {% assign show_again_rif_after = section.settings.show_again_rif_after %}
 {% assign display_mode_popup = section.settings.display_mode_popup %}
@@ -36,7 +50,7 @@
 
 {% if section.settings.enable_popuo == true %}
   <renders-sub-popup
-    class="popup-size-cart-section renders-sub-popup-area color-{{ section.settings.color_scheme }}"
+    class="renders-sub-popup-area color-{{ section.settings.color_scheme }}"
     mode="{{ display_mode_popup_val }}"
     delay="{{ show_again_delay }}"
     expiry="{{ show_again_rif_after }}"
@@ -82,28 +96,69 @@
                       {{ block.settings.popup_text }}
                     </div>
                   {% when 'news_pop_form_area' %}
-                    <div class="contact_form_box_three">
-                      <form>
-                        <div class="form-input">
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your e-mail"
-                            required=""
-                          >
-                        </div>
-                        <div class="form_button">
-                          <button class="submit-btn" type="submit" value="submit">
-                            <span class="submit_anim">
-                              <span class="anim_text">Subscribe</span>
-                            </span>
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+                    {% form 'customer', class: 'newsletter-form-x' %}
+                      <div class="newsletter-form-field">
+                        <label class="field__label" for="NewsletterForm--{{ block.id }}">
+                          {{ 'newsletter.label' | t }}
+                        </label>
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+                        <input
+                          id="NewsletterForm--{{ block.id }}"
+                          type="email"
+                          name="contact[email]"
+                          class="field__input"
+                          value="{{ form.email }}"
+                          aria-required="true"
+                          autocorrect="off"
+                          autocapitalize="off"
+                          autocomplete="email"
+                          {% if form.errors %}
+                            autofocus
+                            aria-invalid="true"
+                            aria-describedby="Newsletter-error--{{ block.id }}"
+                          {% elsif form.posted_successfully? %}
+                            aria-describedby="Newsletter-success--{{ block.id }}"
+                          {% endif %}
+                          placeholder="{{ 'newsletter.label' | t }}"
+                          required
+                        >
+                        <button
+                          class="btn-hub submit-btn"
+                          type="submit"
+                          name="commit"
+                          id="Subscribe"
+                          aria-label="{{ 'newsletter.button_label' | t }}"
+                        >
+                          <span class="submit_anim">
+                            <span class="anim_text"> {{ 'newsletter.button_label' | t }}</span>
+                          </span>
+                        </button>
+                      </div>
+                      {%- if form.errors -%}
+                        <small class="newsletter-form__message form__message" id="Newsletter-error--{{ block.id }}">
+                          <span class="svg-wrapper">
+                            {{- 'icon-error.svg' | inline_asset_content -}}
+                          </span>
+                          {{- form.errors.translated_fields.email | capitalize }}
+                          {{ form.errors.messages.email -}}
+                        </small>
+                      {%- endif -%}
+                      {%- if form.posted_successfully? -%}
+                        <h3
+                          class="newsletter-form__message newsletter-form__message--success form__message"
+                          id="Newsletter-success--{{ block.id }}"
+                          tabindex="-1"
+                          autofocus
+                        >
+                          <span class="svg-wrapper">
+                            {{- 'icon-success.svg' | inline_asset_content -}}
+                          </span>
+                          {{- 'newsletter.success' | t }}
+                        </h3>
+                      {%- endif -%}
+                    {% endform %}
                   {% when 'news_pop_lower_content' %}
-                    <div class="popup_newsletter_desc">
+                    <div class="popup_lower_content">
                       {{ block.settings.news_pop_lower_content_text }}
                     </div>
                 {% endcase %}

@@ -152,6 +152,26 @@
       font-family: var(--sds-fs-body);
       font-size: 16px;
   }
+  .contact_form_box_two .submit-btn .submit_anim {
+    display: inline-block;
+    overflow: hidden;
+    text-shadow: 0 23px 0 #ffffff;
+    transition: all ease 0.3s;
+  }
+
+  .contact_form_box_two .submit-btn:hover .submit_anim>.anim_text {
+    text-shadow: 0 23px 0 #ffffff;
+    transform: translateY(-23px);
+  }
+
+  .contact_form_box_two .submit-btn .submit_anim>.anim_text {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: translateY(0);
+    transition: all ease 0.3s;
+  }
 {%- endstyle -%}
 <section class="login-section">
   <div class="page-width">
@@ -269,7 +289,9 @@
           </span>
         {%- endif -%}
         <button class="submit-btn">
-          {{ 'customer.register.submit' | t }}
+          <span class="submit_anim">
+            <span class="anim_text">{{ 'customer.register.submit' | t }}</span>
+          </span>
         </button>
       {%- endform -%}
     </div>
