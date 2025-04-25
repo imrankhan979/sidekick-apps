@@ -1,0 +1,302 @@
+{{ 's-newsletter-popup.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .popup_newsletter_main {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0 24px;
+    z-index: 99;
+  }
+  /* renders-sub-popup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.8s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+
+  renders-sub-popup.active {
+    visibility: visible;
+    opacity: 1;
+    z-index: 20;
+  } */
+{%- endstyle -%}
+
+{% assign show_again_delay = section.settings.show_again_delay %}
+{% assign show_again_rif_after = section.settings.show_again_rif_after %}
+{% assign display_mode_popup = section.settings.display_mode_popup %}
+{% if display_mode_popup == 'display_mode_popup_test_disable' %}
+  {% assign display_mode_popup_val = false %}
+{% else %}
+  {% assign display_mode_popup_val = true %}
+{% endif %}
+
+{% if section.settings.enable_popuo == true %}
+  <renders-sub-popup
+    class="renders-sub-popup-area color-{{ section.settings.color_scheme }}"
+    mode="{{ display_mode_popup_val }}"
+    delay="{{ show_again_delay }}"
+    expiry="{{ show_again_rif_after }}"
+    id="renders-sub-popup"
+  >
+    <div class="page-width">
+      <div class="popup_newsletter_main">
+        <div class="popup_newsletter_wrapper">
+          <div class="popup_newsletter_images">
+            {%- if section.settings.news_popup_image != blank -%}
+              {{
+                section.settings.news_popup_image
+                | image_url: width: section.settings.news_popup_image.width
+                | image_tag: loading: 'lazy', class: 'lazyload'
+              }}
+            {% else %}
+              {{ 'collection-apparel-1' | placeholder_svg_tag: 'product-placeholder-svg' }}
+            {%- endif -%}
+          </div>
+          <div class="popup_newsletter_content">
+            <div class="popup_newsletter_close">
+              <button data-close="close-btn">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.9866 0.573334L9.91495 7.64333L2.84495 0.573334L0.488281 2.93L7.55828 10L0.488281 17.07L2.84495 19.4267L9.91495 12.3567L16.9866 19.4267L19.3433 17.07L12.2733 10L19.3433 2.93L16.9866 0.573334Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </div>
+            <div class="popup_newsletter_text">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                  {% when 'news_popup_heading' %}
+                    <h2 class="popup_newsletter_title">{{ block.settings.popup_heading_title }}</h2>
+                  {% when 'news_popup_text' %}
+                    <div class="popup_newsletter_desc">
+                      {{ block.settings.popup_text }}
+                    </div>
+                  {% when 'news_pop_form_area' %}
+                    {% form 'customer', class: 'newsletter-form-x' %}
+                      <div class="newsletter-form-field">
+                        <label class="field__label" for="NewsletterForm--{{ block.id }}">
+                          {{ 'newsletter.label' | t }}
+                        </label>
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+                        <input
+                          id="NewsletterForm--{{ block.id }}"
+                          type="email"
+                          name="contact[email]"
+                          class="field__input"
+                          value="{{ form.email }}"
+                          aria-required="true"
+                          autocorrect="off"
+                          autocapitalize="off"
+                          autocomplete="email"
+                          {% if form.errors %}
+                            autofocus
+                            aria-invalid="true"
+                            aria-describedby="Newsletter-error--{{ block.id }}"
+                          {% elsif form.posted_successfully? %}
+                            aria-describedby="Newsletter-success--{{ block.id }}"
+                          {% endif %}
+                          placeholder="{{ 'newsletter.label' | t }}"
+                          required
+                        >
+                        <button
+                          class="btn-hub submit-btn"
+                          type="submit"
+                          name="commit"
+                          id="Subscribe"
+                          aria-label="{{ 'newsletter.button_label' | t }}"
+                        >
+                          <span class="submit_anim">
+                            <span class="anim_text"> {{ 'newsletter.button_label' | t }}</span>
+                          </span>
+                        </button>
+                      </div>
+                      {%- if form.errors -%}
+                        <small class="newsletter-form__message form__message" id="Newsletter-error--{{ block.id }}">
+                          <span class="svg-wrapper">
+                            {{- 'icon-error.svg' | inline_asset_content -}}
+                          </span>
+                          {{- form.errors.translated_fields.email | capitalize }}
+                          {{ form.errors.messages.email -}}
+                        </small>
+                      {%- endif -%}
+                      {%- if form.posted_successfully? -%}
+                        <h3
+                          class="newsletter-form__message newsletter-form__message--success form__message"
+                          id="Newsletter-success--{{ block.id }}"
+                          tabindex="-1"
+                          autofocus
+                        >
+                          <span class="svg-wrapper">
+                            {{- 'icon-success.svg' | inline_asset_content -}}
+                          </span>
+                          {{- 'newsletter.success' | t }}
+                        </h3>
+                      {%- endif -%}
+                    {% endform %}
+                  {% when 'news_pop_lower_content' %}
+                    <div class="popup_lower_content">
+                      {{ block.settings.news_pop_lower_content_text }}
+                    </div>
+                {% endcase %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </renders-sub-popup>
+{% endif %}
+{% schema %}
+{
+  "name": "Newsletter popup",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_popuo",
+      "default": false,
+      "label": "Enable popup"
+    },
+    {
+      "type": "select",
+      "id": "display_mode_popup",
+      "label": "Display mode",
+      "options": [
+        {
+          "value": "display_mode_popup_test_disable",
+          "label": "Disable"
+        },
+        {
+          "value": "display_mode_popup_test_enable",
+          "label": "Enable"
+        }
+      ],
+      "default": "display_mode_popup_test_disable",
+      "info": "You should only use this for editing the popup. Make sure 'Test mode' is disabled when publishing your theme."
+    },
+    {
+      "type": "range",
+      "id": "show_again_rif_after",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "label": "Show again after (days)",
+      "info": "Independent to each browser and device",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "show_again_delay",
+      "min": 1,
+      "max": 60,
+      "step": 1,
+      "unit": "sec",
+      "label": "Delay",
+      "info": "Delay is disabled in theme editor for visibility.",
+      "default": 60
+    },
+    {
+      "type": "image_picker",
+      "id": "news_popup_image",
+      "label": "Image"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Heading",
+      "limit": 1,
+      "type": "news_popup_heading",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "popup_heading_title",
+          "label": "Heading",
+          "default": "Subscribe Newsletter"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "limit": 1,
+      "type": "news_popup_text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "popup_text",
+          "label": "Subheading",
+          "default": "Subscribe now and receive a discount on your first order"
+        }
+      ]
+    },
+    {
+      "name": "Form",
+      "limit": 1,
+      "type": "news_pop_form_area"
+    },
+    {
+      "name": "Additional description",
+      "limit": 1,
+      "type": "news_pop_lower_content",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "news_pop_lower_content_text",
+          "label": "Description",
+          "default": "Subscribe and receive exclusive information and offers!"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter popup",
+      "blocks": [
+        {
+          "type": "news_popup_heading"
+        },
+        {
+          "type": "news_popup_text"
+        },
+        {
+          "type": "news_pop_form_area"
+        },
+        {
+          "type": "news_pop_lower_content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
