@@ -21,7 +21,7 @@
 <section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
        <div class="snzz-video-inner">
         {% assign video_url = section.settings.bg_video.sources[1].url %}
-            <div class="snzz-video-img ">
+            <div class="snzz-video-img">
                 {%- if section.settings.bg_image -%}
                     {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                {%- elsif video_url -%}
