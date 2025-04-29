@@ -4289,7 +4289,6 @@ details[open]>.header__icon--menu .icon-hamburger {
   }
 }
 
-
 /* products Keyframes CSS */
 @keyframes fadeInUp {
   0% {
@@ -4300,6 +4299,23 @@ details[open]>.header__icon--menu .icon-hamburger {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* animtion keyframes */
+
+@keyframes socailsMediaAnim {
+  49% {
+    transform: translateY(-100%);
+  }
+
+  50% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  51% {
+    opacity: 1;
   }
 }
 /* Animation Keyframes */
