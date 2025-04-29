@@ -99,6 +99,7 @@
 
 .errors ul li {
   margin-bottom: 10px;
+  list-style-type: disc;
 }
 
 .contact_form_box_two form .form__message {
@@ -179,6 +180,30 @@
   color: #808080;
   margin-top: 10px;
   margin-bottom: 30px;
+}
+
+.contact_form_box_two form .cancle-btn {
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  font-family: var(--sds-ff-body);
+  z-index: 1;
+  color: gray;
+}
+
+.contact_form_box_two form .cancle-btn:before {
+  position: absolute;
+  content: "";
+  display: block;
+  height: 1px;
+  min-height: 1px;
+  right: 0;
+  bottom: 6px;
+  left: 0;
+  background: #000;
+  will-change: transform;
+  animation-duration: .9s;
+  animation-timing-function: ease;
 }
 
 .contact_form_box_two form .forgot_password::before {
