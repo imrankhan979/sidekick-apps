@@ -28,7 +28,7 @@
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
-    >
+      >
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
@@ -132,14 +132,14 @@
       data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
     >
       <template>
-        <pickup-availability-preview class="pickup-availability-preview">
-          <span class="svg-wrapper">
+        <pickup-availability-preview class="pickup-availability-preview product_single_information_box">
+          <div class="svg-wrapper information_check_icons">
             {{- 'icon-unavailable.svg' | inline_asset_content -}}
-          </span>
-          <div class="pickup-availability-info">
-            <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
-            <button class="pickup-availability-button link link--text underlined-link">
-              {{ 'products.product.pickup_availability.refresh' | t }}
+          </div>
+          <div class="pickup-availability-info information_text">
+            <p class="information_title">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+            <button class="pickup-availability-button information-btn">
+              {{ 'products.product.pickup_availability.refresh' | t }} 
             </button>
           </div>
         </pickup-availability-preview>
