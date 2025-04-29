@@ -133,10 +133,13 @@ padding: 11px 20px;
 .product-form__input--swatch {
   display: flex;
   flex-wrap: wrap;
+  gap: 11px;
 }
+
 
 .product-form__input--swatch .swatch-input__input + .swatch-input__label {
   --swatch-input--size: 3.6rem;
+  margin-left: 5px;
 }
 
 @media screen and (min-width: 750px) {

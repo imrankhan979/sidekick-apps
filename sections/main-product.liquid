@@ -152,7 +152,7 @@
                 </div>
               {%- when 'inventory' -%}
                 <div
-                      class="product__inventory{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
+                      class="product__inventory{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
                       {{ block.shopify_attributes }}
                       id="Inventory-{{ section.id }}"
                       role="status"
@@ -160,8 +160,14 @@
                       <div class="w-full">
                         {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
                           {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
-                            {%- assign inventory_quantity = product.selected_or_first_available_variant.inventory_quantity -%}
-                            {%- assign max_inventory = block.settings.inventory_threshold -%}
+                            {% comment %} {%- assign inventory_quantity = product.selected_or_first_available_variant.inventory_quantity -%}
+                            {%- assign max_inventory = block.settings.inventory_threshold -%} {% endcomment %}
+                            {% assign current_inventory = product.selected_or_first_available_variant.inventory_quantity %}
+                            {% assign max_inventory = block.settings.inventory_max_stock | default: 100 %}
+                            {% if current_inventory > max_inventory %}
+                              {% assign current_inventory = max_inventory %}
+                            {% endif %}
+                            {% assign inventory_progress = current_inventory | times: 100 | divided_by: max_inventory %}
                             {%- if product.selected_or_first_available_variant.inventory_quantity
                               <= block.settings.inventory_threshold
                           -%}
@@ -174,7 +180,7 @@
                                 </p>
                                 <span
                                     class="inventory-status-bar"
-                                    style="--stock-bar-width: {% if max_inventory > 0 %}{{ inventory_quantity }}{% else %}100{% endif %}%"
+                                    style="--stock-bar-width: {{inventory_progress}}%"
                                   >
                                   </span>
                             {%- else -%}
@@ -187,7 +193,7 @@
                                 </p>
                                 <span
                                     class="inventory-status-bar"
-                                    style="--stock-bar-width: {% if max_inventory > 0 %}{{ inventory_quantity }}{% else %}100{% endif %}%"
+                                   style="--stock-bar-width: {{inventory_progress}}%"
                                   >
                                   </span>
                             {%- endif -%}
@@ -198,7 +204,7 @@
                                 </p>
                                 <span
                                   class="inventory-status-bar"
-                                  style="--stock-bar-width: {% if max_inventory > 0 %}{{ inventory_quantity }}{% else %}100{% endif %}%"
+                                  style="--stock-bar-width: {{inventory_progress}}%"
                                 >
                                 </span>
                             {%- else -%}
@@ -207,7 +213,7 @@
                                 </p>
                                 <span
                                     class="inventory-status-bar"
-                                    style="--stock-bar-width: {% if max_inventory > 0 %}{{ inventory_quantity }}{% else %}100{% endif %}%"
+                                    style="--stock-bar-width: {{inventory_progress}}%"
                                   >
                                   </span>
                             {%- endif -%}
@@ -812,26 +818,6 @@
       "name": "t:sections.main-product.blocks.inventory.name",
       "limit": 1,
       "settings": [
-        {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__1.label"
-            },
-            {
-              "value": "subtitle",
-              "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__2.label"
-            },
-            {
-              "value": "uppercase",
-              "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__3.label"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.main-product.blocks.inventory.settings.text_style.label"
-        },
         {
           "type": "range",
           "id": "inventory_threshold",
