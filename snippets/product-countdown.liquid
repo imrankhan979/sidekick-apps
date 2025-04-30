@@ -1,0 +1,90 @@
+{% if block.settings.countdown_end != blank %}
+    <div class="product_single_timer_box" {{ block.shopify_attributes }}>
+            <div class="product_single_timer_content">
+            <div class="product_single_timer_icons flex">
+                {{- 'icon-flash.svg' | inline_asset_content -}}
+            </div>
+            {% if block.settings.timer_title != blank or block.settings.timer_sub_title != blank %}
+                <div class="product_single_timer_text">
+                    {% if block.settings.timer_title != blank %}
+                        <h6 class="timer_title">{{ block.settings.timer_title }}</h6>
+                    {% endif %}
+                    {% if block.settings.timer_sub_title != blank %}
+                        <span class="timer_sub_title">{{ block.settings.timer_sub_title }}</span>
+                    {% endif %}
+                </div>
+            {% endif %}
+            </div>
+            <countdown-timer class="product_single_timer_wrapper" countdown-end="{{ block.settings.countdown_end }}">
+            <div class="coundown_timer">
+                <div class="days">
+                    <h2 class="product_single_timer" id="days">DD</h2>Days
+                </div>
+            </div>
+            <div class="coundown_timer">
+                <div class="hours">
+                    <h2 class="product_single_timer" id="hours">HH</h2>HOURS
+                </div>
+            </div>
+            <div class="coundown_timer">
+                <div class="minutes">
+                    <h2 class="product_single_timer" id="minutes">MM</h2>MINUTES
+                </div>
+            </div>
+            <div class="coundown_timer">
+                <div class="seconds">
+                    <h2 class="product_single_timer" id="seconds">SS</h2>SECONDS
+                </div>
+            </div>
+            </countdown-timer>
+    </div>
+{% endif %}
+
+<script>
+if (!customElements.get('countdown-timer')) {
+  customElements.define(
+    'countdown-timer',
+    class CountdownTimer extends HTMLElement {
+      constructor() {
+        super();
+        // Get the countdown end time from the attribute
+        const countdownEnd = this.getAttribute('countdown-end');
+        this.endTime = new Date(countdownEnd).getTime();
+      }
+
+      connectedCallback() {
+        this.updateCountdown();
+        this.interval = setInterval(() => this.updateCountdown(), 1000);
+      }
+
+      disconnectedCallback() {
+        clearInterval(this.interval); // Cleanup interval when component is removed
+      }
+
+      updateCountdown() {
+        const now = new Date().getTime();
+        const distance = this.endTime - now;
+
+        if (distance < 0) {
+          this.querySelector("#days").textContent = "00";
+          this.querySelector("#hours").textContent = "00";
+          this.querySelector("#minutes").textContent = "00";
+          this.querySelector("#seconds").textContent = "00";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        this.querySelector("#days").textContent = String(days).padStart(2, '0');
+        this.querySelector("#hours").textContent = String(hours).padStart(2, '0');
+        this.querySelector("#minutes").textContent = String(minutes).padStart(2, '0');
+        this.querySelector("#seconds").textContent = String(seconds).padStart(2, '0');
+      }
+    }
+  );
+}
+
+</script>
