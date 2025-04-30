@@ -1691,7 +1691,7 @@ vertical-align: middle;
   align-items: center;
   justify-content: space-between;
   background: #FFEFEF;
-  column-gap: 20px;
+  gap: 16px 20px;
   margin-top: 48px;
   border-radius: 10px;
   padding: 23px 24px;
@@ -1703,6 +1703,7 @@ vertical-align: middle;
   display: flex;
   align-items: center;
   column-gap: 12px;
+  max-width: 180px;
 }
 
 .product_single_wrapper .product_single_timer_box .product_single_timer_content .product_single_timer_text .timer_title {
@@ -1723,19 +1724,19 @@ vertical-align: middle;
   align-items: center;
 }
 
-.product_single_wrapper .product_single_timer_wrapper .coundown_timer {
+.product_single_wrapper .product_single_timer_wrapper .countdown_timer {
   padding-right: 25px;
   margin-right: 25px;
   position: relative;
   z-index: 1;
 }
 
-.product_single_wrapper .product_single_timer_wrapper .coundown_timer:last-child {
+.product_single_wrapper .product_single_timer_wrapper .countdown_timer:last-child {
   padding-right: 0;
   margin-right: 0;
 }
 
-.product_single_wrapper .product_single_timer_wrapper .coundown_timer::before {
+.product_single_wrapper .product_single_timer_wrapper .countdown_timer::before {
   position: absolute;
   content: ":";
   top: 50%;
@@ -1745,7 +1746,7 @@ vertical-align: middle;
   color: #000000;
 }
 
-.product_single_wrapper .product_single_timer_wrapper .coundown_timer:last-child::before {
+.product_single_wrapper .product_single_timer_wrapper .countdown_timer:last-child::before {
   display: none;
 }
 
@@ -2159,7 +2160,7 @@ vertical-align: middle;
     column-gap: 50px;
   }
 
-  .product_single_wrapper .product_single_timer_wrapper .coundown_timer {
+  .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
     padding-right: 20px;
     margin-right: 20px;
   }
@@ -2169,7 +2170,7 @@ vertical-align: middle;
   }
 
   .product_single_wrapper .product_single_timer_box {
-    padding: 20px 15px;
+    padding: 20px 5px;
   }
 
   .product_single_wrapper .product_single_left_thumb .product_right_carousel_thumb .carousel-main .flickity-viewport {
@@ -2202,7 +2203,7 @@ vertical-align: middle;
     height: 545px !important;
   }
 
-  .product_single_wrapper .product_single_timer_wrapper .coundown_timer {
+  .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
     padding-right: 14px;
     margin-right: 14px;
   }
@@ -2263,7 +2264,12 @@ vertical-align: middle;
   .product_single_wrapper .product_single_left_thumb .product_right_carousel_thumb .carousel-main .flickity-viewport {
     height: 705px !important;
   }
-
+  .product_single_wrapper .product_single_timer_box .product_single_timer_content{
+    column-gap: 8px;
+  }
+  .product_single_wrapper .product_single_timer_box .product_single_timer_content .product_single_timer_icons svg {
+    max-width: 32px;
+  }
   .product_single_wrapper .product_single_timer_box .product_single_timer_content .product_single_timer_text .timer_title {
     font-size: 16px;
     line-height: 24px;
@@ -2273,7 +2279,7 @@ vertical-align: middle;
     font-size: 14px;
   }
 
-  .product_single_wrapper .product_single_timer_wrapper .coundown_timer {
+  .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
     padding-right: 10px;
     margin-right: 10px;
   }
@@ -2282,7 +2288,7 @@ vertical-align: middle;
     font-size: 24px;
   }
 
-  .product_single_wrapper .product_single_timer_wrapper .coundown_timer::before {
+  .product_single_wrapper .product_single_timer_wrapper .countdown_timer::before {
     font-size: 30px;
   }
 }
@@ -2341,8 +2347,7 @@ vertical-align: middle;
   }
 
   .product_single_wrapper .product_single_timer_box {
-    flex-direction: column;
-    align-items: start;
+    flex-wrap: wrap;
   }
 
   .quick_shop_main_title {
@@ -2402,6 +2407,17 @@ vertical-align: middle;
 
   .product_single_wrapper .product_single_right_content .product_single_rating .rating_review {
     display: none;
+  }
+  .product_single_wrapper .product_single_timer_box .product_single_timer_content{
+    max-width: 100%;
+  }
+  .product_single_wrapper .product_single_timer_wrapper{
+    width: 100%;
+  }
+  .product_single_wrapper .product_single_timer_wrapper .item-text{ 
+    margin-top: 12px;
+        display: block;
+        line-height: 1;
   }
 }
 
@@ -2555,4 +2571,21 @@ vertical-align: middle;
 }
 .product_single_wrapper .product__info-container .product__price{
   margin-top: 10px;
+}
+
+
+.product_single_timer { font-size: 2em; display: block; text-align: center; }
+.digit-container { position: relative; height: 1em; display: block; overflow: hidden; }
+.digit { display: block; position: absolute; width: 100%; text-align: center; transition: all 0.5s ease; line-height: 1; }
+.digit.current { transform: translateY(0); opacity: 1; }
+.digit.next { transform: translateY(100%); opacity: 0; }
+.digit-container.animate .current { animation: slideToUp 1s ease; }
+@keyframes slideToUp { 0% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-100%); opacity: 0; } 51% { transform: translateY(0%); opacity: 1; } }
+.digit-container.animate .next { animation: slideToDown 1s ease; }
+@keyframes slideToDown { 0% { transform: translateY(100%); opacity: 0; } 50% { transform: translateY(0%); opacity: 1; } 51% { transform: translateY(100%); opacity: 0; } }
+
+@media (min-width: 576px) {
+  .for-small{
+    display: none;
+  } 
 }
