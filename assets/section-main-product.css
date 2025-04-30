@@ -240,11 +240,6 @@ a.product__text {
 }
 
 @media screen and (min-width: 750px) {
-  .product__info-container {
-    max-width: 60rem;
-  }
-
-
   .product__info-container > *:first-child {
     margin-top: 0;
   }
@@ -1762,7 +1757,8 @@ vertical-align: middle;
 }
 
 .product_single_wrapper .product_single_timer_wrapper .product_single_timer {
-  font-family: var(--sds-ff-heading);
+  font-family: var(--font-family-heading);
+  color: #000000;
   font-weight: 700;
   font-size: 40px;
   letter-spacing: -0.02em;
