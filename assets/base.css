@@ -4155,3 +4155,13 @@ details[open] > .header__icon--menu .icon-hamburger {
 body.drawer-open{
   overflow: hidden;
 }
+.underline-line-hover .inner-text{
+  width: calc(100%);
+  background-image: linear-gradient(transparent calc(100% - 1px), rgba(var(--color-foreground)) 1px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size .4s;
+}
+.underline-line-hover:hover  .inner-text{  
+  background-size: 100% 100%;  
+} 
