@@ -3,7 +3,9 @@ class SnazzyTab extends HTMLElement {
     super();
 
     this.addEventListener('click', (event) => {
-      const index = [...this.querySelectorAll('.snazzy-tab-button')].indexOf(event.target);
+      const tabButtons = [...this.querySelectorAll('.snazzy-tab-button')];
+      const clickedButton = event.target.closest('.snazzy-tab-button');
+      const index = tabButtons.indexOf(clickedButton);
       if (index !== -1) this.updateTabs(index);
     });
 
