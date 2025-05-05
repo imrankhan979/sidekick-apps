@@ -290,7 +290,17 @@ quantity-input.quantity.cart-quantity:after {
     background: #f6f6f6;
 }
 
+tr.cart-item {
+    border-bottom: 1px solid #000000;
+}
+
+.checkout-box  #cart-errors {
+    display: none;
+}
 @media screen and (max-width: 575px) {
+    .cart-page {
+        flex-direction: column;
+    }
 
     .cart__warnings .cart__empty-text,
     .title-wrapper-with-link .title--primary {

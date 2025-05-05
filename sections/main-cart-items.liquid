@@ -497,8 +497,7 @@
       {% if section.blocks.size > 0 %}
         <div
           class="checkout-box {% if cart == empty %} is-empty{% endif %}"
-          id="main-cart-footer"
-          data-id="{{ section.id }}"
+          id="cart-sub-total"
         >
           <div class="isolate isolate">
             {%- if settings.show_cart_note -%}
@@ -519,8 +518,8 @@
                   {%- when '@app' -%}
                     {% render block %}
                   {%- when 'subtotal' -%}
-                    <div class="js-contents" {{ block.shopify_attributes }}>
-                      <div>
+                    <div class="subtotal-calculate" {{ block.shopify_attributes }}>
+                      <div class="js-contents">
                         {%- if cart.cart_level_discount_applications.size > 0 -%}
                           <ul
                             class="discounts list-unstyled"
