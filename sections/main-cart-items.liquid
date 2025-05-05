@@ -29,9 +29,30 @@
 <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} {% endif %} section-{{ section.id }}-padding">
   <div class="page-width">
     <div class="title-wrapper-with-link">
+      <div class="anim-item breadcrumb-link">
+        <ul>
+          <li><a href="{{ request.origin }}">Home </a></li>
+          <li>/</li>
+          <li>{{ 'sections.cart.title' | t }}</li>
+        </ul>
+      </div>
       <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-      <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
+      <a href="{{ routes.all_products_collection_url }}" class="underlined-link you-cart-shop-btn">
         {{- 'general.continue_shopping' | t -}}
+        <span>
+          <svg
+            class="icon icon-caret"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+               d="M6.29303 10.707L12 16.414L17.707 10.707L16.293 9.29297L12 13.586L7.70703 9.29297L6.29303 10.707Z"
+               fill="black"></path>
+          </svg>
+        </span>
       </a>
     </div>
     <div class="cart__warnings">
@@ -570,14 +591,16 @@
                       <button
                         type="submit"
                         id="checkout"
-                        class="cart__checkout-button button"
+                        class="cart__checkout-button button cart-checkout-btn"
                         name="checkout"
                         {% if cart == empty %}
                           disabled
                         {% endif %}
                         form="cart"
                       >
-                        {{ 'sections.cart.checkout' | t }}
+                        <span class="check_anim">
+                          <span class="anim_text">{{ 'sections.cart.checkout' | t }}</span>
+                        </span>
                       </button>
                     </div>
 
