@@ -136,10 +136,10 @@ class CartItems extends HTMLElement {
         selector: '.shopify-section',
       },
       {
-        id: 'main-cart-footer',
-        section: document.getElementById('main-cart-footer').dataset.id,
-        selector: '.js-contents',
-      },
+        id: "cart-sub-total",
+        section: "cart-sub-total",
+        selector: ".subtotal-calculate",
+      }
     ];
   }
 

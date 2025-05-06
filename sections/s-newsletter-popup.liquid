@@ -1,42 +1,5 @@
 {{ 's-newsletter-popup.css' | asset_url | stylesheet_tag }}
 {%- style -%}
-  .popup_newsletter_main {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.4);
-    padding: 0 24px;
-    z-index: 99;
-  }
-  /* renders-sub-popup {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 5;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.8s cubic-bezier(0.7, 0, 0.2, 1);
-  }
-
-  renders-sub-popup.active {
-    visibility: visible;
-    opacity: 1;
-    z-index: 20;
-  } */
 {%- endstyle -%}
 
 {% assign show_again_delay = section.settings.show_again_delay %}
@@ -46,6 +9,11 @@
   {% assign display_mode_popup_val = false %}
 {% else %}
   {% assign display_mode_popup_val = true %}
+{% endif %}
+
+{% assign image_class = '' %}
+{% if section.settings.news_popup_image == blank %}
+  {% assign image_class = image_class | append: ' no-image' %}
 {% endif %}
 
 {% if section.settings.enable_popuo == true %}
@@ -58,18 +26,16 @@
   >
     <div class="page-width">
       <div class="popup_newsletter_main">
-        <div class="popup_newsletter_wrapper">
-          <div class="popup_newsletter_images">
-            {%- if section.settings.news_popup_image != blank -%}
+        <div class="popup_newsletter_wrapper {{ image_class }}">
+          {%- if section.settings.news_popup_image != blank -%}
+            <div class="popup_newsletter_images">
               {{
                 section.settings.news_popup_image
                 | image_url: width: section.settings.news_popup_image.width
                 | image_tag: loading: 'lazy', class: 'lazyload'
               }}
-            {% else %}
-              {{ 'collection-apparel-1' | placeholder_svg_tag: 'product-placeholder-svg' }}
-            {%- endif -%}
-          </div>
+            </div>
+          {%- endif -%}
           <div class="popup_newsletter_content">
             <div class="popup_newsletter_close">
               <button data-close="close-btn">
@@ -96,70 +62,72 @@
                       {{ block.settings.popup_text }}
                     </div>
                   {% when 'news_pop_form_area' %}
-                    {% form 'customer', class: 'newsletter-form-x' %}
-                      <div class="newsletter-form-field">
-                        <label class="field__label" for="NewsletterForm--{{ block.id }}">
-                          {{ 'newsletter.label' | t }}
-                        </label>
-                        <input type="hidden" name="contact[tags]" value="newsletter">
-                        <input
-                          id="NewsletterForm--{{ block.id }}"
-                          type="email"
-                          name="contact[email]"
-                          class="field__input"
-                          value="{{ form.email }}"
-                          aria-required="true"
-                          autocorrect="off"
-                          autocapitalize="off"
-                          autocomplete="email"
-                          {% if form.errors %}
+                    <div class="contact_form_box_three">
+                      {% form 'customer', class: 'newsletter-form-x' %}
+                        <div class="newsletter-form-field">
+                          <label class="field__label" for="NewsletterForm--{{ block.id }}">
+                            {{ 'newsletter.label' | t }}
+                          </label>
+                          <input type="hidden" name="contact[tags]" value="newsletter">
+                          <input
+                            id="NewsletterForm--{{ block.id }}"
+                            type="email"
+                            name="contact[email]"
+                            class="field__input"
+                            value="{{ form.email }}"
+                            aria-required="true"
+                            autocorrect="off"
+                            autocapitalize="off"
+                            autocomplete="email"
+                            {% if form.errors %}
+                              autofocus
+                              aria-invalid="true"
+                              aria-describedby="Newsletter-error--{{ block.id }}"
+                            {% elsif form.posted_successfully? %}
+                              aria-describedby="Newsletter-success--{{ block.id }}"
+                            {% endif %}
+                            placeholder="{{ 'newsletter.label' | t }}"
+                            required
+                          >
+                          <button
+                            class="btn-hub submit-btn"
+                            type="submit"
+                            name="commit"
+                            id="Subscribe"
+                            aria-label="{{ 'newsletter.button_label' | t }}"
+                          >
+                            <span class="submit_anim">
+                              <span class="anim_text"> {{ 'newsletter.button_label' | t }}</span>
+                            </span>
+                          </button>
+                        </div>
+                        {%- if form.errors -%}
+                          <small class="newsletter-form__message form__message" id="Newsletter-error--{{ block.id }}">
+                            <span class="svg-wrapper">
+                              {{- 'icon-error.svg' | inline_asset_content -}}
+                            </span>
+                            {{- form.errors.translated_fields.email | capitalize }}
+                            {{ form.errors.messages.email -}}
+                          </small>
+                        {%- endif -%}
+                        {%- if form.posted_successfully? -%}
+                          <h3
+                            class="newsletter-form__message newsletter-form__message--success form__message"
+                            id="Newsletter-success--{{ block.id }}"
+                            tabindex="-1"
                             autofocus
-                            aria-invalid="true"
-                            aria-describedby="Newsletter-error--{{ block.id }}"
-                          {% elsif form.posted_successfully? %}
-                            aria-describedby="Newsletter-success--{{ block.id }}"
-                          {% endif %}
-                          placeholder="{{ 'newsletter.label' | t }}"
-                          required
-                        >
-                        <button
-                          class="btn-hub submit-btn"
-                          type="submit"
-                          name="commit"
-                          id="Subscribe"
-                          aria-label="{{ 'newsletter.button_label' | t }}"
-                        >
-                          <span class="submit_anim">
-                            <span class="anim_text"> {{ 'newsletter.button_label' | t }}</span>
-                          </span>
-                        </button>
-                      </div>
-                      {%- if form.errors -%}
-                        <small class="newsletter-form__message form__message" id="Newsletter-error--{{ block.id }}">
-                          <span class="svg-wrapper">
-                            {{- 'icon-error.svg' | inline_asset_content -}}
-                          </span>
-                          {{- form.errors.translated_fields.email | capitalize }}
-                          {{ form.errors.messages.email -}}
-                        </small>
-                      {%- endif -%}
-                      {%- if form.posted_successfully? -%}
-                        <h3
-                          class="newsletter-form__message newsletter-form__message--success form__message"
-                          id="Newsletter-success--{{ block.id }}"
-                          tabindex="-1"
-                          autofocus
-                        >
-                          <span class="svg-wrapper">
-                            {{- 'icon-success.svg' | inline_asset_content -}}
-                          </span>
-                          {{- 'newsletter.success' | t }}
-                        </h3>
-                      {%- endif -%}
-                    {% endform %}
+                          >
+                            <span class="svg-wrapper">
+                              {{- 'icon-success.svg' | inline_asset_content -}}
+                            </span>
+                            {{- 'newsletter.success' | t }}
+                          </h3>
+                        {%- endif -%}
+                      {% endform %}
+                    </div>
                   {% when 'news_pop_lower_content' %}
                     <div class="popup_lower_content">
-                      {{ block.settings.news_pop_lower_content_text }}
+                      <p>{{ block.settings.news_pop_lower_content_text }}</p>
                     </div>
                 {% endcase %}
               {% endfor %}
@@ -170,6 +138,7 @@
     </div>
   </renders-sub-popup>
 {% endif %}
+
 {% schema %}
 {
   "name": "Newsletter popup",
