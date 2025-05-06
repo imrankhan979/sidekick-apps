@@ -247,7 +247,7 @@
     }
   }
   
-  @media (max-width: 575px) {
+  @media (max-width: 767px) {
     .product_details_tabs_item .product_details_thumb {
       flex-wrap: wrap;
     }
@@ -258,7 +258,7 @@
   
     .product_details_tabs .product_details_menu .tabs_menu li {
       font-size: 12px;
-      padding: 11px 8px;
+      padding: 11px 16px;
     }
   }
   

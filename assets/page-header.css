@@ -83,6 +83,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  gap: 12px 0;
 }
 
 .breadcrumb-content-area .breadcrumb-link ul li {

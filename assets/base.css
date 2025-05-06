@@ -1998,7 +1998,11 @@ input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
 }
-
+@media (max-width: 767px) {
+  .quantity__input {
+    font-size: 16px;
+  }
+}
 .quantity__button {
   width: calc(4.5rem / var(--font-body-scale));
   flex-shrink: 0;
