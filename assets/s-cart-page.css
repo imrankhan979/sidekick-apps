@@ -4,6 +4,10 @@
     gap: 40px;
 }
 
+.is-empty .cart-page {
+    display: none;
+}
+
 .cart-page.single {
     justify-content: center;
 }
@@ -12,9 +16,6 @@
     display: none;
 }
 
-/* .checkout-box .cart-items {
-    display: none;
-} */
 cart-items .title-wrapper-with-link {
     text-align: center;
     margin-bottom: 80px;
@@ -294,9 +295,10 @@ tr.cart-item {
     border-bottom: 1px solid #000000;
 }
 
-.checkout-box  #cart-errors {
+.checkout-box #cart-errors {
     display: none;
 }
+
 @media screen and (max-width: 575px) {
     .cart-page {
         flex-direction: column;
