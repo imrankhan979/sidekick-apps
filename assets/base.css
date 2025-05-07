@@ -303,7 +303,8 @@ img{
 .fancy-scrollbar {
   --sb-track-color:  #ddd;
   --sb-thumb-color: #000;
-  --sb-size: 4px;
+  --sb-size: 20px;
+  scrollbar-color: #000 #ddd;
 }
 
 .fancy-scrollbar::-webkit-scrollbar {
