@@ -24,7 +24,6 @@
     display: block;
     object-fit: cover;
     object-position: center;
-    
   }
   
   .snzz-video-img::before {
@@ -42,7 +41,7 @@
   }
   .snzz-inner-content {
     text-align: center;
-    color: rgb(var(--color-foreground));
+    color: rgb(var(--color-secondary-foreground));
     position: relative;
     z-index: 2;
     max-width: 900px;

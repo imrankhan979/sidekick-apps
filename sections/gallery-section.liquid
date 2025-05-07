@@ -20,8 +20,8 @@
    <section class="gallery-section id-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
        <div class="gallery_wrapper">
-          <div class="carousel"
-             data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'>
+        <items-carousel>
+          <div class="carousel items-carousel-selector" data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'>
              {%- for block in section.blocks -%}
              <div class="galley_item">
                 <div class="gallery_images">
@@ -41,6 +41,7 @@
              </div>
             {% endfor %}
           </div>
+        </items-carousel>
           {%- if section.settings.tab_button != blank -%}
           <div class="gallery_button">
              <a class="gallery-btn" href="{{ section.settings.button_link }}">{{ section.settings.tab_button }}<span><svg width="8" height="12"

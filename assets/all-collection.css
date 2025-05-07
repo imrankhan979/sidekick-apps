@@ -1,311 +1,311 @@
-
 /**----------------------------------------
 START: Shop Collection CSS
 ----------------------------------------*/
 .shop-collection-section {
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-  
-  .shop_collection_wrapper {
-    display: grid;
-    justify-content: center;
-    column-gap: 24px;
-    row-gap: 48px;
-  }
-  
-  .shop_collection_item {
-    width: 100%;
-    border-radius: 24px;
-  }
-  
-  .shop_collection_item .shop_collection_images .collection_images {
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    border-radius: 24px 24px 0 0;
-  }
-  
-  .shop_collection_item .shop_collection_images .collection_images img {
-    border-radius: 24px 24px 0 0;
-    transform: scale(1);
-    transition: transform 0.6s ease-in-out;
-  }
-  
-  .shop_collection_item .shop_collection_content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 10px;
-    padding: 63px 48px;
-    border-radius: 0 0 24px 24px;
-  }
-  
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
 
-  .shop_collection_item .shop_collection_content .shop_collection_text h2 {
-    margin-bottom: 14px;
+.shop_collection_wrapper {
+  display: grid;
+  justify-content: center;
+  column-gap: 24px;
+  row-gap: 48px;
+}
+
+.shop_collection_item {
+  width: 100%;
+  border-radius: 24px;
+}
+
+.shop_collection_item .shop_collection_images .collection_images {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+}
+
+.shop_collection_item .shop_collection_images .collection_images>* {
+  border-radius: 24px 24px 0 0;
+  transform: scale(1);
+  transition: transform 0.6s ease-in-out;
+}
+
+.shop_collection_item .shop_collection_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+  padding: 63px 48px;
+  border-radius: 0 0 24px 24px;
+}
+
+
+.shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title {
+  margin-bottom: 14px;
+}
+
+.shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title {
+  position: relative;
+  color: rgb(var(--color-foreground));
+  text-transform: uppercase;
+  line-height: 52px;
+  z-index: 1;
+}
+
+.shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title::before {
+  position: absolute;
+  content: "";
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgb(var(--color-foreground));
+  width: 100%;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_subTitle {
+  color: rgb(var(--color-secondary-foreground));
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.shop_collection_button .shop-collection-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: rgb(var(--color-button));
+  border-radius: 50%;
+}
+
+.shop_collection_button .shop-collection-btn svg path {
+  fill: rgb(var(--color-button-text));
+}
+
+.shop_collection_item:hover .shop_collection_images .collection_images>* {
+  transform: scale(1.03);
+}
+
+.shop_collection_item:hover .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.shop_collection_item:hover .shop_collection_button .shop-collection-btn {
+  background-color: rgb(var(--color-button-hover));
+}
+
+.shop_collection_item:hover .shop_collection_button .shop-collection-btn svg path {
+  fill: rgb(var(--color-button-text-hover));
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1770px) {
+  .shop_collection_item {
+    max-width: 764px;
   }
-  
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1599px) {
+  .shop_collection_item {
+    max-width: 664px;
+  }
+}
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .shop_collection_item {
+    max-width: 564px;
+  }
+
+  .shop_collection_item .shop_collection_content {
+    padding: 46px 30px;
+  }
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title {
+    line-height: 42px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .shop-collection-section {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .shop_collection_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .shop_collection_wrapper {
+    row-gap: 32px;
+  }
+
+  .shop_collection_item .shop_collection_content {
+    padding: 36px 20px;
+  }
+
   .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
-    position: relative;
-    color: rgb(var(--color-foreground));
-    text-transform: uppercase;
-    line-height: 52px;
-    z-index: 1;
+    line-height: 24px;
   }
-  
-  .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title::before {
-    position: absolute;
-    content: "";
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: rgb(var(--color-foreground));
-    width: 100%;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_subTitle {
-    color: rgb(var(--color-secondary-foreground));
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: -0.01em;
-  }
-  
+
   .shop_collection_button .shop-collection-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    background: rgb(var(--color-button));
-    border-radius: 50%;
+    width: 54px;
+    height: 54px;
   }
-  
-  .shop_collection_button .shop-collection-btn svg path {
-    fill: rgb(var(--color-button-text));
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 14px;
+    height: 20px;
   }
-  
-  .shop_collection_item:hover .shop_collection_images .collection_images img {
-    transform: scale(1.03);
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .shop-collection-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
-  
-  .shop_collection_item:hover .shop_collection_content .shop_collection_text h2 .shop_collection_title::before {
-    transform-origin: left;
-    transform: scaleX(1);
+
+  .shop_collection_wrapper {
+    row-gap: 24px;
   }
-  
-  .shop_collection_item:hover .shop_collection_button .shop-collection-btn {
-    background-color: rgb(var(--color-button-hover));
+
+  .shop_collection_item .shop_collection_content {
+    padding: 36px 15px;
   }
-  
-  .shop_collection_item:hover .shop_collection_button .shop-collection-btn svg path {
-    fill: rgb(var(--color-button-text-hover));
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title {
+    line-height: 32px;
   }
-  
-  @media only screen and (min-width: 1600px) and (max-width: 1770px) {
-    .shop_collection_item {
-      max-width: 764px;
-    }
+
+  .shop_collection_button .shop-collection-btn {
+    width: 54px;
+    height: 54px;
   }
-  
-  @media only screen and (min-width: 1400px) and (max-width: 1599px) {
-    .shop_collection_item {
-      max-width: 664px;
-    }
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 14px;
+    height: 20px;
   }
-  
-  
-  @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-    .shop_collection_item {
-      max-width: 564px;
-    }
-  
-    .shop_collection_item .shop_collection_content {
-      padding: 46px 30px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
-      line-height: 42px;
-    }
+
+  .shop_collection_button .shop-collection-btn {
+    width: 30px;
+    height: 30px;
   }
-  
-  @media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .shop-collection-section {
-      padding-top: 100px;
-      padding-bottom: 100px;
-    }
-  
-    .shop_collection_wrapper {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .shop_collection_wrapper {
-      row-gap: 32px;
-    }
-  
-    .shop_collection_item .shop_collection_content {
-      padding: 36px 20px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
-      line-height: 24px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 54px;
-      height: 54px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 14px;
-      height: 20px;
-    }
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 10px;
+    height: 20px;
   }
-  
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .shop-collection-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-  
-    .shop_collection_wrapper {
-      row-gap: 24px;
-    }
-    .shop_collection_item .shop_collection_content {
-      padding: 36px 15px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
-      line-height: 32px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 54px;
-      height: 54px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 14px;
-      height: 20px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 30px;
-      height: 30px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 10px;
-      height: 20px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 {
-      margin-bottom: 8px;
-    }
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title {
+    margin-bottom: 8px;
   }
-  
-  @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .shop-collection-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-  
-    .shop_collection_wrapper {
-      row-gap: 24px;
-    }
-  
-    .shop_collection_item {
-      max-width: 100%;
-    }
-  
-    .shop_collection_item .shop_collection_content {
-      padding: 36px 24px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
-      line-height: 32px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 54px;
-      height: 54px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 14px;
-      height: 20px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 10px;
-      height: 20px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 {
-      margin-bottom: 8px;
-    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .shop-collection-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
-  
-  @media (max-width: 575px) {
-    .shop-collection-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-  
-    .shop_collection_wrapper {
-      row-gap: 24px;
-    }
-  
-    .shop_collection_wrapper {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  
-    .shop_collection_item {
-      max-width: 100%;
-    }
-  
-    .shop_collection_item .shop_collection_content {
-      padding: 36px 20px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
-      line-height: 26px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 54px;
-      height: 54px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 14px;
-      height: 20px;
-    }
-  
-    .shop_collection_button .shop-collection-btn {
-      width: 28px;
-      height: 28px;
-    }
-  
-    .shop_collection_button .shop-collection-btn svg {
-      width: 10px;
-      height: 20px;
-    }
-  
-    .shop_collection_item .shop_collection_content .shop_collection_text h2 {
-      margin-bottom: 8px;
-    }
+
+  .shop_collection_wrapper {
+    row-gap: 24px;
   }
-  
-  /* !END: Shop Collection CSS *
+
+  .shop_collection_item {
+    max-width: 100%;
+  }
+
+  .shop_collection_item .shop_collection_content {
+    padding: 36px 24px;
+  }
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title {
+    line-height: 32px;
+  }
+
+  .shop_collection_button .shop-collection-btn {
+    width: 54px;
+    height: 54px;
+  }
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 14px;
+    height: 20px;
+  }
+
+  .shop_collection_button .shop-collection-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 10px;
+    height: 20px;
+  }
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 575px) {
+  .shop-collection-section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .shop_collection_wrapper {
+    row-gap: 24px;
+  }
+
+  .shop_collection_wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .shop_collection_item {
+    max-width: 100%;
+  }
+
+  .shop_collection_item .shop_collection_content {
+    padding: 36px 20px;
+  }
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title .shop_collection_title {
+    line-height: 26px;
+  }
+
+  .shop_collection_button .shop-collection-btn {
+    width: 54px;
+    height: 54px;
+  }
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 14px;
+    height: 20px;
+  }
+
+  .shop_collection_button .shop-collection-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .shop_collection_button .shop-collection-btn svg {
+    width: 10px;
+    height: 20px;
+  }
+
+  .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_main_title {
+    margin-bottom: 8px;
+  }
+}
+
+/* !END: Shop Collection CSS *
   
