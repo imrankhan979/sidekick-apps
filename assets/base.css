@@ -4264,8 +4264,8 @@ details[open]>.header__icon--menu .icon-hamburger {
 }
 
 .anim-item.reveal {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Collection anim CSS */
@@ -4316,6 +4316,30 @@ details[open]>.header__icon--menu .icon-hamburger {
 
   51% {
     opacity: 1;
+  }
+}
+
+/* feyframe CSS */
+
+@keyframes hover-underline {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right
+  }
+
+  49% {
+    transform: scaleX(0);
+    transform-origin: right
+  }
+
+  50% {
+    transform: scaleX(0);
+    transform-origin: left
+  }
+
+  to {
+    transform: scaleX(1);
+    transform-origin: left
   }
 }
 /* Animation Keyframes */

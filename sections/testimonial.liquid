@@ -31,11 +31,15 @@
       <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false, "autoPlay": {{ section.settings.autoplay }} }'>
         {%- for block in section.blocks -%} 
         <div class="anim-item testimonial-item" {{ block.shopify_attributes }}>
-            {%- if block.settings.testimonial_image != blank -%}
+
           <div class="testimonial-images">
-            {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+            {% if block.settings.testimonial_image != blank %}
+              {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+            {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+            {% endif %}
           </div>
-        {%- endif -%}
+                    
           <div class="testimonial-content">
             {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
                 <div class="testimonial-text">
@@ -52,9 +56,13 @@
             {% if block.settings.client_image != blank  or  block.settings.client_name != blank or block.settings.client_location != blank %}
                <div class="testimonial-author">
                 {%- if block.settings.client_image != blank -%}
-                <div class="author-images">
-                  {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                </div>
+                  <div class="author-images">
+                    {% if block.settings.client_image != blank %}
+                      {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                    {% else %}
+                      {{ 'image' | placeholder_svg_tag }}
+                    {% endif %}
+                  </div>
               {%- endif -%}
                 <div class="author-text">
                   {% if block.settings.client_name != blank %}

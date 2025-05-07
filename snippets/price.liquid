@@ -90,13 +90,13 @@
           </span>
         {%- endif -%}
       </div>
-      <div class="price__sale">
+      <div class="price__sale quick_order_list_top_header">
         
-        <span class="price-item price-item--sale price-item--last">
+        <span class="price-item price-item--sale price-item--last quick_order_list_price">
           {{ money_price }}
           </span>
           {%- unless product.price_varies == false and product.compare_at_price_varies %}
-            <span>
+            <span class="discount">
               <s class="price-item price-item--regular">
                 {% if settings.currency_code_enabled %}
                   {{ compare_at_price | money_with_currency }}
