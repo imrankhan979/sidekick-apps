@@ -291,6 +291,16 @@
         "name": "date_time",
         "category": "DATE_TIME"
       }
+    },
+    {
+      "key": "size_chart",
+      "namespace": "custom",
+      "name": "Size chart",
+      "description": "",
+      "type": {
+        "name": "file_reference",
+        "category": "REFERENCE"
+      }
     }
   ],
   "variant": [],

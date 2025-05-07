@@ -165,7 +165,12 @@ margin-top: 38px;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
-
+@media (max-width: 767px) {
+  .product-form__input .form__label {
+    font-size: 16px;
+    line-height: 1;
+  }
+}
 .product-form__input .select {
   max-width: 100%;
 }
@@ -2440,7 +2445,12 @@ vertical-align: middle;
   vertical-align: middle;
   text-transform: uppercase;
   color: #808080;
-
+}
+@media (max-width: 767px) {
+  .product_single_wrapper .product__text{
+    font-size: 16px;
+    line-height: 1;
+  }
 }
 .product_single_wrapper .price .badge{
     color: #ffffff;
@@ -2480,6 +2490,7 @@ vertical-align: middle;
   overflow: hidden;
   min-height: 56px;
 }
+
 .product_single_wrapper .product-form__quantity .quantity__input:focus-visible {
   background-color: transparent;
 }
@@ -2490,6 +2501,16 @@ vertical-align: middle;
   width: unset;
   height: 56px;
   padding: 17px 22px;
+}
+@media (max-width: 767px) {
+  .product_single_wrapper .product-form__quantity quantity-input{
+    min-height: 48px;
+  }
+  .product_single_wrapper .product-form__quantity quantity-input .quantity__button{
+    width: unset;
+    height: 48px;
+    padding: 17px 22px;
+  }
 }
 .product_single_wrapper .product-form__quantity quantity-input .quantity__button svg{
   transform: scale(1);
@@ -2535,6 +2556,7 @@ vertical-align: middle;
   align-items: center;
   gap: 12px;
 }
+
 .product_single_wrapper .product-form__buttons > .product-form__submit .loading__spinner{
   display: flex;
   position: static;
@@ -2563,6 +2585,14 @@ vertical-align: middle;
   height: unset;
   overflow: hidden;
 }
+@media (max-width: 767px) {
+  .product_single_wrapper .product-form__buttons > .product-form__submit,   .product_single_wrapper .product-form__buttons  .shopify-payment-button__button{
+    font-size: 16px;
+    line-height: 24px;
+    padding: 11px 25px;
+    max-height: 48px;
+  }
+}
 .product_single_wrapper .product__description{
   color: #808080;
 }
@@ -2574,6 +2604,12 @@ vertical-align: middle;
 }
 .product_single_wrapper .product__info-container .product__title{
   margin-top: 10px;
+}
+@media (max-width: 767px) {
+  .product_single_wrapper .product__info-container .product__title{
+    font-size: 32px;
+    line-height: 40px;
+  }
 }
 .product_single_wrapper .product__info-container .product__price{
   margin-top: 10px;
