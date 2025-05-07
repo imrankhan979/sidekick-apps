@@ -125,6 +125,7 @@ START: Community CSS
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent span {
     position: relative;
     color: rgba(var(--color-secondary-foreground), .5);
+    left: 4px;
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent span::before {

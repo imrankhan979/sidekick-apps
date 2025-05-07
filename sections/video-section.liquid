@@ -21,7 +21,7 @@
 <section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
        <div class="snzz-video-inner">
         {% assign video_url = section.settings.bg_video.sources[1].url %}
-            <div class="snzz-video-img ">
+            <div class="snzz-video-img">
                 {%- if section.settings.bg_image -%}
                     {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                {%- elsif video_url -%}
@@ -35,11 +35,11 @@
               {% case block.type %}
               {% when 'title_content' %}
             {%- if block.settings.main_heading != blank -%}
-             <h3 {{ block.shopify_attributes }}>{{ block.settings.main_heading | upcase }}</h3>
+             <h3 class="anim-item" {{ block.shopify_attributes }}>{{ block.settings.main_heading | upcase }}</h3>
             {%- endif -%}
             {% when 'subtile_content' %}
              {%- if block.settings.sub_heading != blank -%}
-             <span {{ block.shopify_attributes }} class="sub-heading flex">{{ block.settings.sub_heading }}</span>
+             <span {{ block.shopify_attributes }} class="sub-heading flex anim-item">{{ block.settings.sub_heading }}</span>
             {%- endif -%}
           {% endcase %}
        {%- endfor -%}
@@ -146,13 +146,13 @@
     },
     {
       "type": "subtile_content",
-      "name": "Sub Heading content",
+      "name": "Sub heading content",
        "limit": 1,
       "settings": [
         {
           "type": "richtext",
           "id": "sub_heading",
-          "label": "Sub Heading",
+          "label": "Sub heading",
           "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
         }
       ]

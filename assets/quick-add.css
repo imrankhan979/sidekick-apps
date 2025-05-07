@@ -173,10 +173,6 @@
   display: flex;
 }
 
-.quick-add-modal__content-info--bulk .quick-add__content-info__media {
-  width: auto;
-}
-
 @media screen and (max-width: 989px) {
   .quick-add-modal__content-info--bulk .quick-add__content-info__media {
     display: flex;
@@ -277,10 +273,6 @@
 
 quick-add-modal .product:not(.featured-product) .product__view-details {
   display: block;
-}
-
-.quick-add-modal__content--bulk .product__view-details .icon {
-  margin-left: 1.2rem;
 }
 
 quick-add-modal .quick-add-hidden,

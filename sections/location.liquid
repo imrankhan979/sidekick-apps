@@ -33,8 +33,8 @@
                 <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
             {%- endif -%}
              {%- for block in section.blocks -%}
-             <div class="accordion-item">
-                <button id="accordion-button-1" aria-expanded="false"><span class="accordion-title">
+             <div class="accordion-item anim-item">
+              <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 and section.settings.accordion_open %}true{% else %}false{% endif %}"><span class="accordion-title">
                     {%- if block.settings.location_title != blank -%}
                         {{ block.settings.location_title }}
                     {%- endif -%}
@@ -74,25 +74,31 @@ items.forEach(item => item.addEventListener('click', toggleAccordion));
 
 {% schema %}
 {
-  "name": "Location Section",
+  "name": "Location section",
   "settings": [
     {
       "type": "textarea",
       "id": "location_iframe",
-      "default": "Map Iframe",
-      "label": "Map Iframe"
-    },
+      "default": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d848300.8253314648!2d150.27255546310082!3d-33.84648855820782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sbd!4v1745469404037!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+      "label": "Map iframe"
+    },    
     {
       "type": "text",
       "id": "stores_location",
-      "default": "Stores Location",
-      "label": "Location Title"
+      "default": "Stores location",
+      "label": "Location title"
     },
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "accordion_open",
+      "label": "Open first accordion",
+      "default": true
     },
     {
       "type": "header",
@@ -105,7 +111,7 @@ items.forEach(item => item.addEventListener('click', toggleAccordion));
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "Padding top",
       "default": 352
     },
     {
@@ -115,31 +121,31 @@ items.forEach(item => item.addEventListener('click', toggleAccordion));
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "Padding bottom",
       "default": 352
     }
   ],
   "blocks": [
     {
       "type": "location",
-      "name": "Location Section",
+      "name": "Location section",
       "settings": [
         {
           "type": "text",
           "id": "location_title",
-          "label": "Location Title",
+          "label": "Location title",
           "default": "Alabama"
         },
         {
           "type": "richtext",
           "id": "location_description",
-          "label": "Location Description",
+          "label": "Location description",
           "default": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>"
         },
         {
           "type": "text",
           "id": "store_timing",
-          "label": "Store Timing",
+          "label": "Store timing",
           "default": "Mon - Sun: 9.00AM - 7.00PM"
         }
       ] 
@@ -147,7 +153,7 @@ items.forEach(item => item.addEventListener('click', toggleAccordion));
   ],
   "presets": [
     {
-      "name": "Location Section",
+      "name": "Location section",
       "blocks": [
         {
           "type": "location"
