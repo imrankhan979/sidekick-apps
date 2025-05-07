@@ -301,6 +301,16 @@
         "name": "file_reference",
         "category": "REFERENCE"
       }
+    },
+    {
+      "key": "additional_information",
+      "namespace": "custom",
+      "name": "Additional information",
+      "description": "",
+      "type": {
+        "name": "rich_text_field",
+        "category": "TEXT"
+      }
     }
   ],
   "variant": [],

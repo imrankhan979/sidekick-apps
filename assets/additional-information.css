@@ -248,22 +248,13 @@
   }
   
   @media (max-width: 767px) {
-    .product_details_tabs_item .product_details_thumb {
-      flex-wrap: wrap;
-    }
     .product_details_tabs_item .product_details_thumb img {
       border-radius: 12px;
-      max-width: 178px;
+      max-width: calc(50% - 12px);
     }
   
     .product_details_tabs .product_details_menu .tabs_menu li {
       font-size: 12px;
       padding: 11px 16px;
-    }
-  }
-  
-  @media (max-width: 427px) {
-    .product_details_tabs_item .product_details_thumb img {
-      max-width: 100%;
     }
   }
