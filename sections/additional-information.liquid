@@ -1,0 +1,167 @@
+{{ 'additional-information.css' | asset_url | stylesheet_tag }}
+{{ 'snazzy-tab.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'snazzy-tab.js' | asset_url }}" defer></script>
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="product-details-tabs-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+         <div class="page-width">
+          <snazzy-tab>
+            <div class="product-details-tabs_wrapper">
+               <div class="product_details_tabs" id="our-journey-tab">
+                  <div class="product_details_menu">
+                    <div class="scroller-wrapper">
+                      <div class="scroll-width">
+                        <ul class="tabs_menu snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
+                         {% for block in section.blocks %}
+                           <li class="snazzy-tab-button {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+                             <span class="product_anim">
+                               <span class="anim_text"> 
+                                 {{ block.settings.tab_title }}
+                               </span>
+                             </span>
+                           </li>
+                         {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product_details_content_box">
+                    {% for block in section.blocks %}
+                      <div class="snazzy-tab-content tab-pane {% if forloop.first %}active{% endif %}">
+                        <div class="product_details_tabs_item">
+                          {% if block.settings.content_rich != blank %}
+                            <div class="product-description-content rte-content-area">
+                              {{ block.settings.content_rich }} 
+                            </div>
+                          {% endif %}
+                          {% if block.settings.page.content != blank %}
+                          <div class="product-description-content rte-content-area">
+                              {{ block.settings.page.content }}
+                            </div>
+                          {% endif %}
+                          {% if block.settings.custom_liquid != blank %}
+                          <div class="product-description-content rte-content-area">
+                              {{ block.settings.custom_liquid }}
+                            </div>
+                          {% endif %}
+                        </div>
+                     </div>
+                    {% endfor %}
+                  </div>
+               </div>
+            </div>
+            </snazzy-tab>
+         </div>
+      </section>
+
+ 
+
+
+{% schema %}
+{
+  "name": "Additional information",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 120
+    }
+  ],
+"blocks": [
+    {
+      "type": "Item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default" : "Item"
+        },
+        {
+          "type": "richtext",
+          "id": "content_rich",
+          "label": "Content",
+          "info": "Text from here describes your description."
+        },
+        {
+          "type": "page",
+          "id": "page",
+          "label": "Content from page"
+        },
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "Custom liquid",
+          "info": "Add app snippets or other Liquid code to create advanced customizations. For product additional description, you can use {{ product.description }}",
+          "default": "{{ product.description }}"
+        }
+      ]
+    }
+  ],
+"presets": [
+    {
+      "name": "Additional information",
+      "blocks": [
+        {
+          "type": "Item",
+          "settings": {
+            "tab_title": "DESCRIPTION"
+          }
+        },
+        {
+          "type": "Item",
+          "settings": {
+            "tab_title": "FABRIC & CARE"
+          }
+        },
+        {
+          "type": "Item",
+          "settings": {
+            "tab_title": "SHIPPING"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

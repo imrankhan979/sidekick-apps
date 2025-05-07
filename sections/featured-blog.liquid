@@ -18,7 +18,13 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
+  #shopify-section-{{section.id}}{
+    margin-top: -60px;
+    border-top-left-radius: 64px;
+    border-top-right-radius: 64px;
+    overflow: hidden;
+    position: relative;
+  }
 {%- endstyle -%}
    <!-- start: Blog Feature Section -->
    {% if section.settings.selected_article !=  blank %}
@@ -36,13 +42,22 @@
                 {% if section.settings.show_tags or section.settings.show_date %}
                   <div class="blog_category">
                      <ul>
-                      {% if article.tags.size > 0 and section.settings.show_tags %}
-                        {% for tag in article.tags %}
-                            <li>{{ tag | link_to_tag: tag }}</li>
-                        {% endfor %}
+                      {%- if section.settings.show_tags -%}
+                        {% if article.tags.size > 0 %}
+                              <li><a href="{{ article.url }}">{{ article.tags | first }}</a></li>
+                          {% endif %}
+                        {% endif %}
+                        {%- if section.settings.show_date -%}
+                        {% if article.published_at %}
+                        {% endif %}
+                        {% if article.tags.size > 0 and section.settings.show_tags %}
+                            {% for tag in article.tags %}
+                                <li>{{ tag | link_to_tag: tag }}</li>
+                            {% endfor %}
                         {% endif %}
                         {% if article.published_at  and section.settings.show_date %}
                           <li>{{ article.published_at | date: "%b %d, %Y" }}</li>
+                        {% endif %}
                       {% endif %}
                      </ul>
                   </div>
@@ -64,6 +79,7 @@
                     <a class="snazzy-icon-btn btn-with-border" href="{{ article.url }}">READ MORE<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
                   </div>
                </div>
+               {%- if section.settings.show_image -%}
                <div class="blog_feature_images">
                   <a  {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %}>
                   {%- if article.image != blank -%}
@@ -73,6 +89,7 @@
                 {%- endif -%}
                   </a>
                </div>
+              {%- endif -%}
             </div>
             {%- endif -%}
          </div>
@@ -125,7 +142,7 @@
           "type": "range",
           "id": "padding_top",
           "min": 0,
-          "max": 120,
+          "max": 200,
           "step": 4,
           "unit": "px",
           "label": "Padding top",
@@ -135,7 +152,7 @@
           "type": "range",
           "id": "padding_bottom",
           "min": 0,
-          "max": 120,
+          "max": 200,
           "step": 4,
           "unit": "px",
           "label": "Padding bottom",

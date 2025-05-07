@@ -1,4 +1,5 @@
 {{ 'image-hotspot.css' | asset_url | stylesheet_tag }}
+{{ 'product-style.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -8,7 +9,7 @@
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
+      padding-top: {{ section.settings.padding_top }}px; 
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
@@ -27,7 +28,6 @@
                 {% endif %}
                 {% if section.settings.hotspot_subtitle != blank %}
                     <span class="hotspot_sub_title">{{ section.settings.hotspot_subtitle }}</span>
-                    
                 {% endif %}
                 <div class="hotspot_percent">Subtotal: <strong>{{ cart.currency.symbol }}<span class="hotspot-subtotal"></span> </strong> </div>
                 <div class="bulk_hotspot_button">

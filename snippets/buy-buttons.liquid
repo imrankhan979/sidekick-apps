@@ -28,7 +28,7 @@
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
-    >
+      >
       <div class="product-form__error-message-wrapper" role="alert" hidden>
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
@@ -59,8 +59,8 @@
         {%- if gift_card_recipient_feature_active -%}
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
-
-        <div class="product-form__buttons">
+         
+        <div class="product-form__buttons{% if show_dynamic_checkout == false %} hide-dynamic-checkout{% endif %}">
           {%- liquid
             assign check_against_inventory = true
             if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
@@ -74,7 +74,7 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+            class="product-form__submit"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
@@ -114,6 +114,29 @@
     </div>
   {%- endif -%}
 
+  {%- if block.settings.payment_enable -%}
+    <div class="product_single_checkout_box">
+            <div class="product_single_checkout_text">
+               <span>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <path d="M20.9954 6.90002C20.9614 6.55802 20.7544 6.25802 20.4474 6.10502L12.4474 2.10502C12.1664 1.96402 11.8344 1.96402 11.5524 2.10502L3.55243 6.10502C3.24643 6.25902 3.03943 6.55902 3.00543 6.90002C2.99443 7.00702 2.04443 17.667 11.5944 21.914C11.7234 21.972 11.8614 22 12.0004 22C12.1394 22 12.2774 21.972 12.4064 21.914C21.9564 17.667 21.0064 7.00802 20.9954 6.90002ZM12.0004 19.897C5.23143 16.625 4.91143 9.64202 4.96643 7.63502L12.0004 4.11802L19.0294 7.63302C19.0664 9.62202 18.7014 16.651 12.0004 19.897Z" fill="black"></path>
+                     <path d="M11 12.586L8.70697 10.293L7.29297 11.707L11 15.414L16.707 9.70697L15.293 8.29297L11 12.586Z" fill="black"></path>
+                  </svg>
+               </span>
+               Guaranteed safe checkout
+            </div>
+            <div class="product_single_checkout_thumb">
+               <ul role="list">
+                  {%- for type in shop.enabled_payment_types -%}
+                    <li class="list-payment-item">
+                      {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+                    </li>
+                {%- endfor -%}
+               </ul>
+            </div>
+         </div>
+  {%- endif -%}
+
   {%- if show_pickup_availability -%}
     {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
 
@@ -132,14 +155,14 @@
       data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
     >
       <template>
-        <pickup-availability-preview class="pickup-availability-preview">
-          <span class="svg-wrapper">
+        <pickup-availability-preview class="pickup-availability-preview product_single_information_box">
+          <div class="svg-wrapper information_check_icons">
             {{- 'icon-unavailable.svg' | inline_asset_content -}}
-          </span>
-          <div class="pickup-availability-info">
-            <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
-            <button class="pickup-availability-button link link--text underlined-link">
-              {{ 'products.product.pickup_availability.refresh' | t }}
+          </div>
+          <div class="pickup-availability-info information_text">
+            <p class="information_title">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+            <button class="pickup-availability-button information-btn">
+              {{ 'products.product.pickup_availability.refresh' | t }} 
             </button>
           </div>
         </pickup-availability-preview>

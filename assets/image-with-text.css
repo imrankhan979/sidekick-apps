@@ -32,12 +32,17 @@
     margin-bottom: 143px;
   }
   .redefine_wrapper .redefine_title .title {
-    font-size: clamp(2rem, -0.625rem + 11.6667vw, 9rem);
+    font-size: 144px;
     text-align: center;
     margin-bottom: 0;
     letter-spacing: -0.01em;
     color:  var(--color-foreground);
     line-height: 1;
+  }
+  @media (max-width: 1400px) {
+    .redefine_wrapper .redefine_title .title{
+      font-size: 100px;
+    }
   }
   @media only screen and (min-width: 1400px) and (max-width: 1600px), only screen and (min-width: 1200px) and (max-width: 1399px) {
     .redefine_wrapper .redefine_title {
@@ -74,6 +79,9 @@
     .redefine_wrapper .redefine_title {
       margin-bottom: 50px;
     }
+    .redefine_wrapper .redefine_title .title{
+      font-size: 32px;
+    }
 
   }
   @media (max-width: 575px) {
@@ -84,6 +92,9 @@
     .redefine_wrapper .redefine_title {
       max-width: 285px;
       margin-bottom: 48px;
+    }
+    .redefine_wrapper .redefine_title .title{
+      font-size: 32px;
     }
   }
   
@@ -110,7 +121,7 @@
     position: relative;
     max-width: 560px;
     width: 100%;
-    padding: 120px 64px;
+    padding: 110px 64px;
     margin-bottom: 45px;
     background: rgb(var(--color-background));
   }

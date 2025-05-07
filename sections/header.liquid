@@ -54,7 +54,7 @@
                                         {% endif %}
                                     </div>
                                     {%- else -%}
-                                    <span class="h2">{{ shop.name }}</span>
+                                    <span class="h4">{{ shop.name }}</span>
                                     {%- endif -%}
                                 </a>
                         {%- if request.page_type == 'index' -%}
@@ -84,7 +84,10 @@
                                 {%- endif -%}
                             </div>
                             <div class="header-icons flex align-items-center">
-                                {% render 'header-search', input_id: 'Search-In-Modal' %}
+                                <button class="flex" id="search-toggle" role="button" aria-controls="search-drawer" aria-expanded="false" aria-label="Search">
+                                    {{- 'icon-search.svg' | inline_asset_content -}}
+                                  </button>
+                                  {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
                     
                                 {%- if shop.customer_accounts_enabled -%}
                                     <a

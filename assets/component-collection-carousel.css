@@ -142,12 +142,12 @@ START: Collection carousel CSS
     justify-content: center;
     width: 28px;
     height: 28px;
-    background: rgb(var(--color-secondary-button-text));
+    background: rgb(var(--color-secondary-button));
     border-radius: 50%;
   }
   
   .collection_carousel_button .collection_carousel_btn span svg path {
-    fill: rgb(var(--color-secondary-button ));
+    fill: rgb(var(--color-secondary-button-border ));
   }
   
   @media only screen and (min-width: 1600px) and (max-width: 1770px) {
