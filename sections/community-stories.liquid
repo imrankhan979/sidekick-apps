@@ -2,101 +2,112 @@
 {{ 'component-heading.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-  }
- 
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
     }
-  }
-  {%- for block in section.blocks -%}
-  .id-{{ block.id }} .slider_community_images::before{
-    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
-  }
-{% endfor %}
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+    {%- for block in section.blocks -%}
+    .id-{{ block.id }} .slider_community_images::before{
+      opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+    }
+  {% endfor %}
 {%- endstyle -%}
 
-
-   <!-- start: Slider Community Section -->
-   <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-    <div class="page-width">
-       <div class="heading_area anim-item">
-          <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
-       </div>
-       <div class="slider_community_wrapper">
-        <items-carousel>
-          <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-            {%- for block in section.blocks -%}
-             <div class="slider_community_item id-{{ block.id }}">
+<section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="heading_area anim-item">
+      <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
+    </div>
+    <div class="slider_community_wrapper">
+      <items-carousel>
+        <div
+          class="carousel items-carousel-selector"
+          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
+        >
+          {%- for block in section.blocks -%}
+            <div class="slider_community_item id-{{ block.id }}">
               <div class="anim-item">
-           
-                  <div class="slider_community_images">
-              {%- if block.settings.product_image != blank -%}       
-                  <a href="{{ block.settings.product_image | image_url }}">
-                      {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                  </a>
-              {%- elsif block.settings.product_select and block.settings.product_select.featured_image != blank -%}
-                  <a href="{{ block.settings.product_select.url }}">
-                      {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                  </a>
-              {%- else -%}
-                  {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                  {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-                  <div class="placeholder-wrapper">
+                <div class="slider_community_images">
+                  {%- if block.settings.product_image != blank -%}
+                    <a href="{{ block.settings.product_image | image_url }}">
+                      {{
+                        block.settings.product_image
+                        | image_url: width: 1500
+                        | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                      }}
+                    </a>
+                  {%- elsif block.settings.product_select and block.settings.product_select.featured_image != blank -%}
+                    <a href="{{ block.settings.product_select.url }}">
+                      {{
+                        block.settings.product_select.featured_image
+                        | image_url: width: 1500
+                        | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                      }}
+                    </a>
+                  {%- else -%}
+                    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                    {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                    <div class="placeholder-wrapper">
                       {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                  </div>
-              {%- endif -%}
+                    </div>
+                  {%- endif -%}
                 </div>
 
-
-                   <div class="slider_community_content_box">
-                    <a href="{{ block.settings.product_select.url }}">
-                      <div class="slider_community_thumb">
-                        {%- if block.settings.product_select.featured_image != blank -%}
-                        {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        {%- else -%}
+                <div class="slider_community_content_box">
+                  <a href="{{ block.settings.product_select.url }}">
+                    <div class="slider_community_thumb">
+                      {%- if block.settings.product_select.featured_image != blank -%}
+                        {{
+                          block.settings.product_select.featured_image
+                          | image_url: width: 1500
+                          | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                        }}
+                      {%- else -%}
                         {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                         {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
                         {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                  </a>
+                  <div class="slider_community_text">
+                    <h6 class="slider_community_title">
+                      <a href="{{ block.settings.product_select.url }}">
+                        {%- if block.settings.product_select != blank -%}
+                          {{ block.settings.product_select.title }}
+                        {%- else -%}
+                          Product Name
                         {%- endif -%}
-                      </div>
                       </a>
-                      <div class="slider_community_text">
-                         <h6 class="slider_community_title">
-                          <a href="{{ block.settings.product_select.url }}">
-                            {%- if block.settings.product_select != blank -%}
-                              {{ block.settings.product_select.title }}
-                              {%- else -%}
-                              Product Name
-                            {%- endif -%}
-                            </a></h6>
-                            {% if block.settings.product_select.price != blank %}
-                         {% if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
-                              <div class="slider_community_percent active">
-                                {{ block.settings.product_select.price | money }}
-                                <span>{{ block.settings.product_select.compare_at_price | money }}</span>
-                              </div>
-                          {% else %}
-                          <div class="slider_community_percent">{{ block.settings.product_select.price | money }}</div>
-                          {% endif %}
-                          {% else %}
-                          <div class="slider_community_percent">$00.00</div>
-                        {% endif %}
-                      </div>
-                   </div>
+                    </h6>
+                    {% if block.settings.product_select.price != blank %}
+                      {% if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
+                        <div class="slider_community_percent active">
+                          {{ block.settings.product_select.price | money }}
+                          <span>{{ block.settings.product_select.compare_at_price | money }}</span>
+                        </div>
+                      {% else %}
+                        <div class="slider_community_percent">{{ block.settings.product_select.price | money }}</div>
+                      {% endif %}
+                    {% else %}
+                      <div class="slider_community_percent">$00.00</div>
+                    {% endif %}
                   </div>
-             </div>
-            {% endfor %}
-          </div>
-        </items-carousel>
-       </div>
-       </div>
- </section>
- <!-- end: Slider Community Section -->
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </items-carousel>
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
@@ -145,19 +156,19 @@
       "name": "Product carousel",
       "settings": [
         {
-        "type": "product",
-        "id": "product_select",
-        "label": "Select product"
+          "type": "product",
+          "id": "product_select",
+          "label": "Select product"
         },
         {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "label": "Opacity",
-      "default": 70,
-      "unit": "%"
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Opacity",
+          "default": 70,
+          "unit": "%"
         },
         {
           "type": "image_picker",
