@@ -468,6 +468,54 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "gallery_section_CHk9qV": {
+      "type": "gallery-section",
+      "blocks": {
+        "gallery_A7JypM": {
+          "type": "gallery",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        },
+        "gallery_jjbmAg": {
+          "type": "gallery",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        },
+        "gallery_dwXeA6": {
+          "type": "gallery",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        },
+        "gallery_YJPaUB": {
+          "type": "gallery",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "gallery_A7JypM",
+        "gallery_jjbmAg",
+        "gallery_dwXeA6",
+        "gallery_YJPaUB"
+      ],
+      "name": "Gallery Section",
+      "settings": {
+        "section_color_scheme": "",
+        "tab_button": "",
+        "button_link": "",
+        "overlay_opacity": 70,
+        "padding_top": 120,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -481,6 +529,7 @@
     "image_banner_rWtrhW",
     "product_bundle_KaQ8BR",
     "blog_section_XUCBMy",
-    "scrolling_text_aNXVL6"
+    "scrolling_text_aNXVL6",
+    "gallery_section_CHk9qV"
   ]
 }
