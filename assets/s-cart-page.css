@@ -263,7 +263,8 @@ span.price.price--end {
 small.tax-note.caption-large.rte {
 	font-weight: 400;
 	font-size: 14px;
-	color: #808080;
+	color: gray;
+	text-align: left;
 }
 
 .cart__blocks .totals {
@@ -276,6 +277,7 @@ small.tax-note.caption-large.rte {
 
 .checkout-box .cart__note {
 	margin-bottom: 50px;
+	top: 0px;
 }
 
 .checkout-box .cart__note .field__input {
@@ -303,6 +305,71 @@ small.tax-note.caption-large.rte {
 
 .cart-items tbody tr.cart-item:last-child {
 	border-bottom: 0px solid #DDDDDD;
+}
+
+.subtotal-calculate {
+	margin-top: 20px;
+}
+
+.show .accordion-content {
+	display: block;
+}
+
+.accordion-content {
+	display: none;
+}
+
+.cart-page .checkout-box {
+	max-width: 330px;
+	width: 100%;
+}
+
+.checkout-box .accordion-item {
+	position: relative;
+}
+
+.accordion-item .accordion-title {
+	font-size: 16px;
+	font-weight: 700;
+	color: #000;
+	text-transform: uppercase;
+	cursor: pointer;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #DDDDDD;
+	margin-bottom: 20px;
+	transition: all .4s ease-in-out;
+}
+
+.accordion-item .accordion-title:before,
+.accordion-item .accordion-title:after {
+	content: "";
+	background: #000000;
+	width: 14px;
+	height: 2px;
+	position: absolute;
+	display: block;
+	right: 0px;
+	top: 13px;
+}
+
+h2.totals__total {
+	font-weight: 500;
+}
+
+cart-note.cart__note.field {
+	display: block;
+}
+
+.accordion-item .accordion-title:after {
+	transform: rotate(90deg);
+}
+
+.accordion-item.show .accordion-title:after {
+	transform: rotate(180deg);
+}
+
+.accordion-item.show .accordion-title:before {
+	transform: rotate(180deg);
 }
 
 quantity-input.quantity.cart-quantity:before,
