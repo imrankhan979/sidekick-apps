@@ -50,32 +50,13 @@
 {%- endcapture -%}
 
 <div
-  class="product-media-container media-type-{{ media.media_type }} media-fit-{{ media_fit }} global-media-settings gradient{% if constrain_to_viewport %} constrain-height{% endif %}"
+  class="product-media-container media-type-{{ media.media_type }} global-media-settings {% if constrain_to_viewport %} constrain-height{% endif %}"
   style="--ratio: {{ media.aspect_ratio | default: 1.0 }}; --preview-ratio: {{ media.preview_image.aspect_ratio | default: 1.0 }};"
 >
   <modal-opener
     class="product__modal-opener product__modal-opener--{{ media.media_type }}"
     data-modal="#ProductModal-{{ modal_id }}"
   >
-    <span
-      class="product__media-icon motion-reduce quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}"
-      aria-hidden="true"
-    >
-      {% case media.media_type %}
-        {% when 'video', 'external_video' %}
-          <span class="svg-wrapper">
-            {{- 'icon-play.svg' | inline_asset_content -}}
-          </span>
-        {% when 'model' %}
-          <span class="svg-wrapper">
-            {{- 'icon-3d-model.svg' | inline_asset_content -}}
-          </span>
-        {% else %}
-          <span class="svg-wrapper">
-            {{- 'icon-zoom.svg' | inline_asset_content -}}
-          </span>
-      {% endcase %}
-    </span>
     {%- render 'loading-spinner' -%}
     <div class="product__media media media--transparent">
       {{
@@ -124,9 +105,7 @@
         media.preview_image
         | image_url: width: 1946
         | image_tag:
-          loading: lazy,
-          sizes: sizes,
-          widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
+          loading: lazy
       }}
     </button>
     <template>

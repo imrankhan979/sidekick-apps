@@ -122,5 +122,16 @@
         </span>
       </small>
     </div>
+    {%- if show_badges -%}
+      <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
+        {% comment %} {{ 'products.product.on_sale' | t }} {% endcomment %}
+        {% assign discount_amount = product.compare_at_price | minus: product.price %}
+              {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round %}
+              {{ discount_percentage }}% off
+      </span>
+      <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
+        {{ 'products.product.sold_out' | t }}
+      </span>
+    {%- endif -%}
   </div>
 {% endunless %}

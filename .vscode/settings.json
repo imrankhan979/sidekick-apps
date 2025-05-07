@@ -1,7 +1,4 @@
 {
-    "cSpell.words": [
-        "flickity",
-        "hotspot"
-    ],
-    "files.exclude": {}
+  "cSpell.words": ["flickity", "hotspot", "pinterest", "scroller"],
+  "files.exclude": {}
 }

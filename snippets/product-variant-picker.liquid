@@ -13,6 +13,7 @@
     id="variant-selects-{{ section.id }}"
     data-section="{{ section.id }}"
     {{ block.shopify_attributes }}
+    class="variant_group_wrapper"
   >
     {%- for option in product.options_with_values -%}
       {%- liquid

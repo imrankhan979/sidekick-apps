@@ -169,7 +169,6 @@ if (!customElements.get('product-info')) {
           this.updateOptionValues(html);
           this.updateURL(productUrl, variant?.id);
           this.updateVariantInputs(variant?.id);
-          console.log(variant)
           if (!variant) {
             this.setUnavailable();
             return;

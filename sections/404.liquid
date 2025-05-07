@@ -1,0 +1,43 @@
+<!-- start: Breadcrumb Area  -->
+
+{{ '404.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+{%- endstyle -%}
+<section class="breadcrumb-main-area">
+    <div class="page-width">
+       <div class="breadcrumb-content-area error-content">
+          <div class="breadcrumb-heading">
+             <h1 class="anim-item breadcrumb-title">404</h1>
+             <div class="anim-item error_desc">
+                <span class="breadcrumb-desc">Great things take time… and some pages just take a wrong
+                   turn.</span>
+             </div>
+             <div class="anim-item breadcrumb_error_button">
+                <a class="breadcrumb-error-btn" href="#">Back to home
+                   <span>
+                      <svg class="icon icon-caret" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                         <path
+                            d="M6.29303 10.707L12 16.414L17.707 10.707L16.293 9.29297L12 13.586L7.70703 9.29297L6.29303 10.707Z"
+                            fill="black"></path>
+                      </svg>
+                   </span>
+                </a>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ <!-- end: Breadcrumb Area  -->

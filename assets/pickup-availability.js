@@ -90,7 +90,10 @@ if (!customElements.get('pickup-availability-drawer')) {
     class PickupAvailabilityDrawer extends HTMLElement {
       constructor() {
         super();
-
+        const drawerOverlay = this.querySelector('.drawer-overlay');
+        drawerOverlay.addEventListener('click', () => {
+          this.hide();
+        });
         this.onBodyClick = this.handleBodyClick.bind(this);
 
         this.querySelector('button').addEventListener('click', () => {
