@@ -4304,7 +4304,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 .anim-item.reveal {
   opacity: 1 !important;
-  transform: none !important;
+  transform: translateY(0) !important;
 }
 
 /* Collection anim CSS */

@@ -1,15 +1,16 @@
 /**----------------------------------------
 START: Community CSS
 ----------------------------------------*/
-.slider-community-section {
-    padding-top: 120px;
-  }
-  
   .slider-community-section .heading_area {
     text-align: center;
     margin-bottom: 80px;
   }
-  
+  @media (max-width: 767px) {
+    .slider-community-section .heading_area {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+  }
   .slider-community-section .flickity-button {
     background: rgb(var(--color-button));
   }
@@ -29,6 +30,7 @@ START: Community CSS
   .slider-community-section .flickity-prev-next-button {
     width: 64px;
     height: 64px;
+    z-index: 2;
   }
   
   .slider-community-section .flickity-prev-next-button .flickity-button-icon {
@@ -50,8 +52,8 @@ START: Community CSS
   .slider_community_item {
     position: relative;
     margin: 0 12px;
-    width: 24%;
     border-radius: 24px;
+    overflow: hidden;
   }
   
   .slider_community_item:first-child {
@@ -62,9 +64,36 @@ START: Community CSS
     margin-right: 0;
   }
   
+  .slider_community_item .product-link-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
   .slider_community_item .slider_community_images {
     position: relative;
     border-radius: 24px;
+    overflow: hidden;
+    width: 100%;
+    max-height: 640px;
+  }
+  .slider_community_item .slider_community_images::after {
+    content: "";
+    height: 0;
+    display: block;
+    padding-top: var(--aspect-ratio);
+  }
+  @media (max-width: 767px) {
+      .slider_community_item .slider_community_images {
+        max-height: 576px;
+      }
+  }
+  .slider_community_item .slider_community_images video, .slider_community_item .slider_community_images img, .slider_community_item .slider_community_images svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   
   .slider_community_item .slider_community_images::before {
@@ -76,6 +105,7 @@ START: Community CSS
     left: 0;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, #000000 100%);
     border-radius: 24px;
+    z-index: 1;
   }
   
   .slider_community_item .slider_community_images a img {
@@ -91,6 +121,7 @@ START: Community CSS
     bottom: 0;
     left: 0;
     padding: 16px;
+    z-index: 2;
   }
   
   .slider_community_item .slider_community_content_box .slider_community_thumb {
@@ -104,7 +135,7 @@ START: Community CSS
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_title {
-    color: rgba(var(--color-foreground));
+    color: #fff;
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
@@ -112,19 +143,19 @@ START: Community CSS
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent {
     display: block;
-    color: rgba(var(--color-secondary-foreground));
+    color: #fff;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent.active {
-    color: rgba(var(--color-highlight-text));
+    color: #FF3E3E;
   }
   
   .slider_community_item .slider_community_content_box .slider_community_text .slider_community_percent span {
     position: relative;
-    color: rgba(var(--color-secondary-foreground), .5);
+    color: #808080;
     left: 4px;
   }
   
@@ -151,13 +182,7 @@ START: Community CSS
   }
   
   @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-    .slider-community-section {
-      padding-top: 100px;
-    }
-  
-    .slider_community_item {
-      width: 23.4%;
-    }
+
   
     .slider_community_item .slider_community_content_box {
       column-gap: 12px;
@@ -179,10 +204,6 @@ START: Community CSS
       height: 56px;
     }
   
-    .slider_community_item {
-      width: 31.7%;
-    }
-  
     .slider_community_item .slider_community_content_box {
       column-gap: 12px;
     }
@@ -193,17 +214,10 @@ START: Community CSS
   }
   
   @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .slider-community-section {
-      padding-top: 80px;
-    }
-  
+
     .slider-community-section .flickity-prev-next-button {
       width: 46px;
       height: 46px;
-    }
-  
-    .slider_community_item {
-      width: 48%;
     }
   
     .slider_community_item .slider_community_content_box {
@@ -227,7 +241,7 @@ START: Community CSS
     }
   
     .slider_community_item {
-      width: 48%;
+      width: calc((100% / 2) - 18px);
     }
   
     .slider_community_item .slider_community_content_box {
@@ -245,10 +259,6 @@ START: Community CSS
   }
   
   @media (max-width: 575px) {
-    .slider-community-section {
-      padding-top: 80px;
-    }
-  
     .slider_community_item {
       width: 100%;
     }
@@ -278,4 +288,3 @@ START: Community CSS
     }
   }
   
-  /* !END: Community carousel CSS *
