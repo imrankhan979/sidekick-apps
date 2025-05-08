@@ -1777,24 +1777,33 @@ document.addEventListener('shopify:section:load', initSearchDrawer);
 
 
 // anim Js
-document.addEventListener("DOMContentLoaded", function () {
-  const cards = document.querySelectorAll(".anim-item");
-  const observer = new IntersectionObserver(
-    (entries, observer) => {
+function observeAnimItems() {
+  const wrappers = document.querySelectorAll('.anim-wrapper');
+
+  wrappers.forEach(wrapper => {
+    const items = wrapper.querySelectorAll('.anim-item:not(.reveal)');
+
+    const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
-            entry.target.classList.add("reveal");
+            entry.target.classList.add('reveal');
           }, index * 100);
-          observer.unobserve(entry.target);
+          obs.unobserve(entry.target);
         }
       });
-    },
-    { threshold: 0.2 }
-  );
-  cards.forEach((card) => observer.observe(card));
-});
-// anim Js
+    }, {
+      threshold: 0.2
+    });
+
+    items.forEach(item => observer.observe(item));
+  });
+}
+document.addEventListener("DOMContentLoaded", observeAnimItems);
+document.addEventListener("shopify:section:load", observeAnimItems);
+
+
+// Newsletter popup
 if (!customElements.get('renders-sub-popup')) {
   customElements.define(
     'renders-sub-popup',

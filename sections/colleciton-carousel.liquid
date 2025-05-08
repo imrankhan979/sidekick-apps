@@ -25,7 +25,7 @@
       <items-carousel>
         <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
           {%- for block in section.blocks -%}
-            <div class="collection_carousel_item block-bg-{{ block.id }}"  {{ block.shopify_attributes }}>
+            <div class="collection_carousel_item block-bg-{{ block.id }}" {{ block.shopify_attributes }}>
                 <div class="collection_carousel_images">
                   {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
                     <a {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection_select.url }}" {% endif %}>
