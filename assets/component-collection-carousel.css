@@ -3,8 +3,8 @@
     overflow: hidden;
   }
   .collection-carousel-section .flickity-button {
-    background: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
+    background: #ffffff;
+    color: #000;
   }
   .collection-carousel-section .flickity-prev-next-button {
     width: 64px;
@@ -79,11 +79,11 @@
   }
   .collection_carousel_item .collection_carousel_content .subTitle {
     display: inline-block;
-    color: rgb(var(--color-foreground));
+    color: #ffffff;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    border: 1px solid rgb(var(--color-foreground));
+    border: 1px solid #ffffff;
     border-radius: 100px;
     padding: 13px 16px 11px;
     line-height: 1;
@@ -93,7 +93,7 @@
   
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
     display: inline-block;
-    color: rgb(var(--color-foreground));
+    color: #ffffff;
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -107,7 +107,7 @@
 
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .sub-title {
     display: block;
-    color: rgb(var(--color-foreground));
+    color: #ffffff;
     font-size: 20px;
     font-weight: 400;
     letter-spacing: -0.01em;
@@ -164,7 +164,7 @@
     justify-content: center;
     width: 28px;
     height: 28px;
-    background: rgb(var(--color-secondary-button));
+    background: #ffffff;
     border-radius: 50%;
     overflow: hidden;
   }
@@ -176,7 +176,7 @@
   }
   
   .collection_carousel_button .collection_carousel_btn span svg path {
-    fill: rgb(var(--color-secondary-button-border ));
+    fill: #000;
   }
   
   @media only screen and (min-width: 1600px) and (max-width: 1770px) {

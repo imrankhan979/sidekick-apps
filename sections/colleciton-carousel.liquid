@@ -103,20 +103,6 @@
       "default": "scheme-1"
     },
     {
-      "type": "select",
-      "id": "heading_tag",
-      "label": "Heading tag",
-      "default": "h2",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "h4", "label": "H4" },
-        { "value": "h5", "label": "H5" },
-        { "value": "h6", "label": "H6" }
-      ]
-    },
-    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -166,7 +152,7 @@
           "type": "text",
           "id": "collection_heading",
           "label": "Heading",
-          "default": "Monogram Caps & hats",
+          "default": "Collection title",
           "info": "If left blank, the collection name will be used."
         },
         {
@@ -189,13 +175,32 @@
       "name": "Collection carousel",
       "blocks": [
         {
-          "type": "collection"
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#F88E24"
+            }
         },
         {
-          "type": "collection"
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#399965"
+            }
         },
         {
-          "type": "collection"
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#0183D5"
+            }
+        },
+        {
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#FE3D83"
+            }
         }
       ]
     }
