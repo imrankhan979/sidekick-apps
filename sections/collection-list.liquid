@@ -1,88 +1,97 @@
 {{ 'component-collection.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'custom-scrollbar.js' | asset_url }}" defer="defer"></script>
 
-
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
-  }
-  @media screen and (min-width: 992px) { 
-  .collection_wrapper {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
-}
-}
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
+    @media screen and (min-width: 992px) {
+    .collection_wrapper {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
   }
+  }
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
 {%- endstyle -%}
 
 <section class="collection-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     {% if section.settings.section_title != blank %}
       <div class="section_title">
-          <h1>{{ section.settings.section_title }}</h1>
-      </div> 
+        <h1>{{ section.settings.section_title }}</h1>
+      </div>
     {% endif %}
     <div class="custom-scroller-wrapper">
-      <div class="collection_wrapper custom-scroller"> 
-       {%- for block in section.blocks -%}
-         <div class="collection_item flex center" {{ block.shopify_attributes }}> 
-         <a {% if block.settings.collection == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection.url }}" {% endif %} class="item_inner">
-           {%- if block.settings.collection_img -%}
-             {{ block.settings.collection_img | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-           {%- elsif block.settings.collection.featured_image -%} 
-             <img
-               srcset="
-                 {%- if block.settings.collection.featured_image.width >= 165 -%}{{ block.settings.collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
-                 {%- if block.settings.collection.featured_image.width >= 330 -%}{{ block.settings.collection.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
-                 {%- if block.settings.collection.featured_image.width >= 535 -%}{{ block.settings.collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
-                 {%- if block.settings.collection.featured_image.width >= 750 -%}{{ block.settings.collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
-                 {%- if block.settings.collection.featured_image.width >= 1000 -%}{{ block.settings.collection.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
-                 {%- if block.settings.collection.featured_image.width >= 1500 -%}{{ block.settings.collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                 {%- if block.settings.collection.featured_image.width >= 3000 -%}{{ block.settings.collection.featured_image | image_url: width: 3000 }} 3000w,{%- endif -%}
-                 {{ block.settings.collection.featured_image | image_url }} {{ block.settings.collection.featured_image.width }}w
-               "
-               src="{{ block.settings.collection.featured_image | image_url: width: 1500 }}"
-               sizes="
-                 (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
-                 (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
-                 calc(100vw - 3rem)
-               "
-               alt="{{ block.settings.collection.featured_image.alt | escape }}"
-               height="{{ block.settings.collection.featured_image.height }}"
-               width="{{ block.settings.collection.featured_image.width }}"
-               loading="lazy"
-               class="motion-reduce"
-             >
-           {%- else -%} 
-             {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-             {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-           {%- endif -%}
-         
-           <span class="title-wrapper">
-             <span class="title"> 
-               {%- if block.settings.collection.title != blank -%}
-                 {{- block.settings.collection.title -}} 
-               {%- else -%}{{ 'onboarding.collection_title' | t }}
-               {%- endif -%}
-             </span>
-           </span>
-         </a>
-         
-         </div>
-       {%- endfor -%}    
-  
+      <div class="collection_wrapper custom-scroller">
+        {%- for block in section.blocks -%}
+          <div class="collection_item flex center" {{ block.shopify_attributes }}>
+            <a
+              {% if block.settings.collection == blank %}
+                role="link" aria-disabled="true"
+              {% else %}
+                href="{{ block.settings.collection.url }}"
+              {% endif %}
+              class="item_inner"
+            >
+              {%- if block.settings.collection_img -%}
+                {{
+                  block.settings.collection_img
+                  | image_url: width: 1500
+                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                }}
+              {%- elsif block.settings.collection.featured_image -%}
+                <img
+                  srcset="
+                    {%- if block.settings.collection.featured_image.width >= 165 -%}{{ block.settings.collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if block.settings.collection.featured_image.width >= 330 -%}{{ block.settings.collection.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
+                    {%- if block.settings.collection.featured_image.width >= 535 -%}{{ block.settings.collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
+                    {%- if block.settings.collection.featured_image.width >= 750 -%}{{ block.settings.collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+                    {%- if block.settings.collection.featured_image.width >= 1000 -%}{{ block.settings.collection.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
+                    {%- if block.settings.collection.featured_image.width >= 1500 -%}{{ block.settings.collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                    {%- if block.settings.collection.featured_image.width >= 3000 -%}{{ block.settings.collection.featured_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+                    {{ block.settings.collection.featured_image | image_url }} {{ block.settings.collection.featured_image.width }}w
+                  "
+                  src="{{ block.settings.collection.featured_image | image_url: width: 1500 }}"
+                  sizes="
+                    (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
+                    (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
+                    calc(100vw - 3rem)
+                  "
+                  alt="{{ block.settings.collection.featured_image.alt | escape }}"
+                  height="{{ block.settings.collection.featured_image.height }}"
+                  width="{{ block.settings.collection.featured_image.width }}"
+                  loading="lazy"
+                  class="motion-reduce"
+                >
+              {%- else -%}
+                {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+
+              <span class="title-wrapper">
+                <span class="title">
+                  {%- if block.settings.collection.title != blank -%}
+                    {{- block.settings.collection.title -}}
+                  {%- else -%}
+                    {{ 'onboarding.collection_title' | t }}
+                  {%- endif -%}
+                </span>
+              </span>
+            </a>
+          </div>
+        {%- endfor -%}
       </div>
       <div class="scrollbar">
-       <div class="scroll-thumb"></div>
-     </div>
+        <div class="scroll-thumb"></div>
+      </div>
     </div>
-  </div> 
+  </div>
 </section>
 
 {% schema %}
@@ -115,6 +124,26 @@
       "step": 1,
       "default": 6,
       "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "1",
+          "label": "Square"
+        },
+        {
+          "value": "2",
+          "label": "Portrait"
+        }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",
