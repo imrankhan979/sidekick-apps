@@ -295,6 +295,63 @@
         "padding_bottom": 60
       }
     },
+    "colleciton_carousel_KzaLdn": {
+      "type": "colleciton-carousel",
+      "blocks": {
+        "collection_jCde4G": {
+          "type": "collection",
+          "settings": {
+            "collection_select": "",
+            "collection_bg_color": "#f88e24",
+            "collection_heading": "Collection title",
+            "collection_featured": "Featured Collection",
+            "collection_button": "Shop Now"
+          }
+        },
+        "collection_w6ae8J": {
+          "type": "collection",
+          "settings": {
+            "collection_select": "",
+            "collection_bg_color": "#399965",
+            "collection_heading": "Collection title",
+            "collection_featured": "Featured Collection",
+            "collection_button": "Shop Now"
+          }
+        },
+        "collection_G8wFef": {
+          "type": "collection",
+          "settings": {
+            "collection_select": "",
+            "collection_bg_color": "#0183d5",
+            "collection_heading": "Collection title",
+            "collection_featured": "Featured Collection",
+            "collection_button": "Shop Now"
+          }
+        },
+        "collection_9iGcth": {
+          "type": "collection",
+          "settings": {
+            "collection_select": "",
+            "collection_bg_color": "#fe3d83",
+            "collection_heading": "Collection title",
+            "collection_featured": "Featured Collection",
+            "collection_button": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "collection_jCde4G",
+        "collection_w6ae8J",
+        "collection_G8wFef",
+        "collection_9iGcth"
+      ],
+      "name": "Collection carousel",
+      "settings": {
+        "section_color_scheme": "",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "testimonial_xM4Wjg": {
       "type": "testimonial",
       "blocks": {
@@ -404,7 +461,7 @@
         "collection": "",
         "bundle_cart_heading": "BUNDLE CART",
         "bundle_cart_subheading": "Add at least 3 items to get 30% OFF",
-        "padding_top": 70,
+        "padding_top": 120,
         "padding_bottom": 120
       }
     },
@@ -525,6 +582,7 @@
     "image_with_text_MWxqfX",
     "collection_tab_gT463q",
     "bulk_hotspot_JjfnHW",
+    "colleciton_carousel_KzaLdn",
     "testimonial_xM4Wjg",
     "image_banner_rWtrhW",
     "product_bundle_KaQ8BR",
