@@ -1,0 +1,64 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "faq_section_gUXLFL": {
+      "type": "faq-section",
+      "blocks": {
+        "faq_6aYb7y": {
+          "type": "faq",
+          "settings": {
+            "faq_heading": "How long does it take to get my products?",
+            "faq_description": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.</p>"
+          }
+        },
+        "faq_e3Mz8N": {
+          "type": "faq",
+          "settings": {
+            "faq_heading": "How long does it take to get my products?",
+            "faq_description": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.</p>"
+          }
+        },
+        "faq_yfWcxx": {
+          "type": "faq",
+          "settings": {
+            "faq_heading": "How long does it take to get my products?",
+            "faq_description": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.</p>"
+          }
+        },
+        "faq_PJFUpX": {
+          "type": "faq",
+          "settings": {
+            "faq_heading": "How long does it take to get my products?",
+            "faq_description": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_6aYb7y", "faq_e3Mz8N", "faq_yfWcxx", "faq_PJFUpX"],
+      "name": "FAQ Section",
+      "settings": {
+        "section_heading": "NEED HELP",
+        "section_description": "<p>If you have an issue or question that requires immediate assistance, you can Contact to chat with a Customer Service representative.Please allow 06 - 12 business days from the time your package arrives back to us for a refund to be issued.</p>",
+        "faq_title": "Shipping Information",
+        "section_color_scheme": "",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    }
+  },
+  "order": ["main", "faq_section_gUXLFL"]
+}
