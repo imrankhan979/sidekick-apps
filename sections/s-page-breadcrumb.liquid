@@ -1,25 +1,36 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+{{ 's-page-breadcrumb.css' | asset_url | stylesheet_tag }}
 
-  @media screen and (min-width: 750px) {
+{%- style -%}
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
     }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .breadcrumb-main-area {
+          padding-top: 100px;
+          padding-bottom: 60px;
+      }
   }
 {%- endstyle -%}
 <section class="breadcrumb-main-area section-{{ section.id }}-padding">
   <div class="page-width">
     <div class="breadcrumb-content-area">
-      <div class="anim-item breadcrumb-link">
-        <ul>
-          <li><a href="{{ routes.root_url }}">Home</a></li>
-          <li>{{ page.title | escape }}</li>
-        </ul>
-      </div>
+      {% if section.settings.enable_breadcrumb_navigation == true %}
+        <div class="anim-item breadcrumb-link">
+          <ul>
+            <li><a href="{{ routes.root_url }}">Home</a></li>
+            <li>{{ page.title | escape }}</li>
+          </ul>
+        </div>
+      {% endif %}
       <div class="anim-item breadcrumb-heading">
         <h1 class="breadcrumb-title">
           {% if section.settings.custom_text != blank %}
