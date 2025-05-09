@@ -20,7 +20,7 @@
     <div class="contact_main_wrapper" style=" {% if section.blocks.size > 0 %} grid-template-columns: 1fr 2fr; {% else %} grid-template-columns: 1fr; {% endif %}">
 
      {% if section.blocks.size != 0 %}
-      <div class="contact_left_content anim-item">
+      <div class="contact_left_content">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'contact_address' %}
@@ -101,7 +101,7 @@
           {%- endif -%}
           
           <div class="form_item">
-            <div class="form-input anim-item">
+            <div class="form-input ">
               <label for="name">Name <span>*</span></label>
               <input
               autocomplete="name"
@@ -117,7 +117,7 @@
               placeholder="{{ 'templates.contact.form.name' | t }}"
               >
             </div>
-            <div class="form-input anim-item">
+            <div class="form-input ">
               <label for="email">E-mail <span>*</span></label>
               <input
               autocomplete="email"
@@ -145,7 +145,7 @@
               </ul>
             {% endif %}
             </div>
-            <div class="form-input textarea_form anim-item">
+            <div class="form-input textarea_form ">
               <label for="message">Message <span>*</span></label>
               <textarea
               rows="10"
@@ -157,7 +157,7 @@
             {{- form.body -}}
             </textarea>
             </div>
-            <div class="form_button anim-item">
+            <div class="form_button ">
               <button type="submit" class="submit-btn">
               {{ 'templates.contact.form.send' | t }}
               <span> {{- 'icon-caret.svg' | inline_asset_content -}}</span>

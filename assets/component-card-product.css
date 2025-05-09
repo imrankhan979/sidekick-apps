@@ -830,7 +830,7 @@ START: Quick order list CSS
 }
 
 .related-product-item .flickity-prev-next-button.previous svg path {
-  fill: #000000;
+  fill: #000000;   
 }
 
 .related-product-item .flickity-prev-next-button.next:hover {

@@ -90,8 +90,8 @@ START: Contact CSS
   border-color: rgba(var(--color-secondary-button-border));
 }
 .contact_item_socials ul li svg {
-  height: 22px;
-  width: 22px;
+  height: 18px;
+  width: 18px;
 }
 .contact_item_socials ul li a svg path {
   fill: rgba(var(--color-secondary-button-text));
@@ -179,7 +179,7 @@ START: Contact CSS
   padding: 20px 24px;
   font-size: 16px;
   background: transparent;
-  border: 1px solid rgba(var(--color-button-border));
+  border: 1px solid rgba(var(--color-highlight-text));
   border-radius: 10px;
   font-family: var(--sds-fs-body);
   color: #000000;
@@ -215,7 +215,7 @@ START: Contact CSS
   max-width: 99%;
   width: 100%;
 
-}
+} 
 
 .contact_form_box_one form .form_item .form-input.textarea_form textarea {
   min-height: 177px;
