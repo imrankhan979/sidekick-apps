@@ -69,7 +69,12 @@ START: Contact CSS
   row-gap: 10px;
 }
 
+.contact_item_socials ul li {
+  overflow: hidden;
+}
+
 .contact_item_socials ul li a {
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;

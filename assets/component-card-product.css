@@ -684,3 +684,167 @@ START: Quick order list CSS
     font-weight: 400;
     line-height: 40px;
 }
+
+.product-card-wrapper .card__information .caption-with-letter-spacing {
+  font-size: 14px;
+  letter-spacing: 0.0rem;
+  line-height: calc(1 + .2 / var(--font-body-scale));
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.product-card-color-swatches .color-swatch {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 6px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.related-product-item .flickity-enabled.is-draggable .flickity-viewport {
+  cursor: default;
+}
+
+.related-product-item .flickity-prev-next-button.previous {
+  left: 93%;
+  right: 64px;
+  top: -60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #ffffff;
+}
+
+.related-product-item .flickity-prev-next-button.previous {
+  top: -60px;
+}
+
+.related-product-item .flickity-prev-next-button.next {
+  top: -60px !important;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .related-product-item .flickity-prev-next-button.previous {
+    top: -70px;
+  }
+
+  .related-product-item .flickity-prev-next-button.next {
+    top: -70px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .related-product-item .flickity-prev-next-button.previous {
+    top: -60px;
+  }
+
+  .related-product-item .flickity-prev-next-button.next {
+    top: -60px !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .related-product-item .flickity-prev-next-button.previous {
+    top: 34%;
+    width: 50px;
+    right: 50px;
+    height: 50px;
+    left: 25px;
+    right: auto;
+  }
+
+  .related-product-item .flickity-prev-next-button.next {
+    top: 34% !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .related-product-item .flickity-prev-next-button.previous {
+    top: 34%;
+    width: 50px;
+    right: 50px;
+    height: 50px;
+    left: 25px;
+    right: auto;
+  }
+
+  .related-product-item .flickity-prev-next-button.next {
+    top: 34% !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .related-product-item .flickity-prev-next-button.previous {
+    top: 32%;
+    width: 40px;
+    right: 50px;
+    height: 40px;
+    left: 20px;
+    right: auto;
+  }
+
+  .related-product-item .flickity-prev-next-button.next {
+    top: 32% !important;
+    width: 40px !important;
+    height: 40px !important;
+    right: 20px !important;
+  }
+
+  .related-product-item .flickity-prev-next-button .flickity-button-icon {
+    width: 10px !important;
+    height: 10px !important;
+  }
+
+  .related-product-item .card__content .h5 {
+    font-size: 22px;
+    line-height: 32px;
+}
+}
+
+.related-product-item .flickity-prev-next-button.previous:hover {
+  background-color: #000000;
+}
+
+.related-product-item .flickity-prev-next-button.previous:hover svg path {
+  fill: #ffffff;
+}
+
+.related-product-item .flickity-button:disabled {
+  opacity: 1;
+}
+
+.related-product-item .flickity-prev-next-button .flickity-button-icon {
+  width: 15px;
+  height: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.related-product-item .flickity-prev-next-button.previous svg path {
+  fill: #000000;
+}
+
+.related-product-item .flickity-prev-next-button.next:hover {
+  background-color: #000000;
+}
+
+.related-product-item .flickity-prev-next-button.next svg path {
+  fill: #000000;
+}
+
+.related-product-item .flickity-prev-next-button.next:hover svg path {
+  fill: #ffffff;
+}
+
+.related-product-item .flickity-prev-next-button.next:hover svg path {
+  fill: #ffffff;
+}
