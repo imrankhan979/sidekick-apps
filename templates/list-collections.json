@@ -1,17 +1,84 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
   "sections": {
-    "main": {
-      "type": "main-list-collections",
+    "breadcrumb": {
+      "type": "collection-list-banner",
       "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "color_scheme": "",
+        "custom_text": "",
+        "enable_breadcrumb_navigation": true,
+        "padding_top": 250,
+        "padding_bottom": 200
+      }
+    },
+    "collection_list_TUb7bt": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_8QzXWd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_y7NmTT": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_nxEeyD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_XitEy3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_iBP84W": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "featured_collection_dMLdTe": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_8QzXWd",
+        "featured_collection_y7NmTT",
+        "featured_collection_nxEeyD",
+        "featured_collection_XitEy3",
+        "featured_collection_iBP84W",
+        "featured_collection_dMLdTe"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "section_title": "",
+        "columns_desktop": 6,
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     }
   },
   "order": [
-    "main"
+    "breadcrumb",
+    "collection_list_TUb7bt"
   ]
 }
