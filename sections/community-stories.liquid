@@ -2,117 +2,232 @@
 {{ 'component-heading.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-  }
- 
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
-  }
-  {%- for block in section.blocks -%}
-  .id-{{ block.id }} .slider_community_images::before{
-    opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
-  }
-{% endfor %}
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+    @media screen and (min-width: 768px) {
+      .slider-community-section .slider_community_item{
+        width: calc((100% / {{ section.settings.columns_desktop }}) - 18px);
+      }
+    }
+    {%- for block in section.blocks -%}
+      .id-{{ block.id }} .slider_community_images::before{
+        opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+      }
+  {% endfor %}
 {%- endstyle -%}
 
+<section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="heading_area">
+      <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
+    </div>
+    <div class="slider_community_wrapper">
+      <items-carousel>
+        <div
+          class="carousel items-carousel-selector anim-wrapper"
+          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
+        >
+          {%- for block in section.blocks -%}
+            <div class="slider_community_item id-{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- assign ratio_setting = section.settings.ratio %}
+              {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 %}
+              {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index %}
 
-   <!-- start: Slider Community Section -->
-   <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-    <div class="page-width">
-       <div class="heading_area anim-item">
-          <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
-       </div>
-       <div class="slider_community_wrapper">
-        <items-carousel>
-          <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-            {%- for block in section.blocks -%}
-             <div class="slider_community_item id-{{ block.id }}">
-              <div class="anim-item">
-           
-                  <div class="slider_community_images">
-              {%- if block.settings.product_image != blank -%}       
-                  <a href="{{ block.settings.product_image | image_url }}">
-                      {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                  </a>
-              {%- elsif block.settings.product_select and block.settings.product_select.featured_image != blank -%}
-                  <a href="{{ block.settings.product_select.url }}">
-                      {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                  </a>
+              {%- assign auto_ratio = '' %}
+              {%- if block.settings.product_video %}
+                {%- assign auto_ratio = block.settings.product_video.aspect_ratio %}
+              {%- elsif block.settings.product_image %}
+                {%- assign auto_ratio = block.settings.product_image.aspect_ratio %}
+              {%- elsif block.settings.placeholder_image %}
+                {%- assign auto_ratio = block.settings.placeholder_image.aspect_ratio %}
+              {%- endif %}
+
+              {%- if ratio_setting == 'auto' and auto_ratio != blank -%}
+                {%- assign aspect_ratio_auto = 1 | divided_by: auto_ratio | times: 100 -%}
+              {%- elsif ratio_setting == '1' -%}
+                {%- assign aspect_ratio_auto = 100 -%}
+              {%- elsif ratio_setting == '2' -%}
+                {%- assign aspect_ratio_auto = 125 -%}
               {%- else -%}
-                  {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                  {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-                  <div class="placeholder-wrapper">
-                      {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                  </div>
+                {%- assign aspect_ratio_auto = 100 -%}
               {%- endif -%}
+
+              {%- if aspect_ratio_auto == 0 or aspect_ratio_auto == null -%}
+                {%- assign aspect_ratio_auto = 100 -%}
+              {%- endif -%}
+
+              <div class="slider_community_images anim-item flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
+                {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
+                  {%- assign video_url = block.settings.product_video.sources[1].url %}
+                  <video
+                    src="{{ video_url }}"
+                    playsinline
+                    muted
+                    {% if forloop.first %}
+                      autoplay
+                    {% endif %}
+                    {% if block.settings.video_loop %}
+                      loop
+                    {% endif %}
+                    class="community-video {% unless forloop.first %}hover-play{% endunless %}"
+                  ></video>
+                {%- elsif block.settings.product_image %}
+                  <div>
+                    {{
+                      block.settings.product_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
+                    }}
+                  </div>
+
+                {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
+                  <div>
+                    {{
+                      block.settings.product_select.featured_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
+                    }}
+                  </div>
+
+                {%- else %}
+                  <div class="placeholder-wrapper">
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {%- endif %}
+
+                <a
+                  class="product-link-wrapper"
+                  {% if block.settings.product_select == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.product_select.url }}"
+                  {% endif %}
+                ></a>
+              </div>
+
+              <a
+                {% if block.settings.product_select == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ block.settings.product_select.url }}"
+                {% endif %}
+                class="slider_community_content_box w-full"
+              >
+                <div class="slider_community_thumb">
+                  {%- if block.settings.product_select.featured_image %}
+                    {{
+                      block.settings.product_select.featured_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
+                    }}
+                  {%- else %}
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif %}
                 </div>
 
+                <div class="slider_community_text">
+                  <h6 class="slider_community_title">
+                    {{ block.settings.product_select.title | default: 'Product Name' }}
+                  </h6>
+                  {%- if block.settings.product_select.price %}
+                    {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
+                      <div class="slider_community_percent active">
+                        {{ block.settings.product_select.price | money }}
+                        <span>{{ block.settings.product_select.compare_at_price | money }}</span>
+                      </div>
+                    {%- else %}
+                      <div class="slider_community_percent">
+                        {{ block.settings.product_select.price | money }}
+                      </div>
+                    {%- endif %}
+                  {%- else %}
+                    <div class="slider_community_percent">$00.00</div>
+                  {%- endif %}
+                </div>
+              </a>
+            </div>
+          {%- endfor -%}
+        </div>
+      </items-carousel>
+    </div>
+  </div>
+</section>
 
-                   <div class="slider_community_content_box">
-                    <a href="{{ block.settings.product_select.url }}">
-                      <div class="slider_community_thumb">
-                        {%- if block.settings.product_select.featured_image != blank -%}
-                        {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        {%- else -%}
-                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                        {%- endif -%}
-                      </div>
-                      </a>
-                      <div class="slider_community_text">
-                         <h6 class="slider_community_title">
-                          <a href="{{ block.settings.product_select.url }}">
-                            {%- if block.settings.product_select != blank -%}
-                              {{ block.settings.product_select.title }}
-                              {%- else -%}
-                              Product Name
-                            {%- endif -%}
-                            </a></h6>
-                            {% if block.settings.product_select.price != blank %}
-                         {% if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
-                              <div class="slider_community_percent active">
-                                {{ block.settings.product_select.price | money }}
-                                <span>{{ block.settings.product_select.compare_at_price | money }}</span>
-                              </div>
-                          {% else %}
-                          <div class="slider_community_percent">{{ block.settings.product_select.price | money }}</div>
-                          {% endif %}
-                          {% else %}
-                          <div class="slider_community_percent">$00.00</div>
-                        {% endif %}
-                      </div>
-                   </div>
-                  </div>
-             </div>
-            {% endfor %}
-          </div>
-        </items-carousel>
-       </div>
-       </div>
- </section>
- <!-- end: Slider Community Section -->
+<script>
+  function setupCommunityVideoHover() {
+    const videos = document.querySelectorAll('.slider_community_images video');
+    videos.forEach((video) => {
+      const parent = video.parentElement;
+      if (!parent.classList.contains('hover-bound')) {
+        parent.classList.add('hover-bound');
+        parent.addEventListener('mouseenter', function () {
+          videos.forEach((v) => {
+            v.removeAttribute('autoplay');
+            v.pause();
+          });
+          video.setAttribute('autoplay', '');
+          video.play();
+        });
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', setupCommunityVideoHover);
+  document.addEventListener('shopify:section:load', setupCommunityVideoHover);
+</script>
 
 {% schema %}
 {
-  "name": "Community stories",
+  "name": "Product carousel",
   "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
     {
       "type": "text",
       "id": "community_heading",
-      "label": "Community heading",
-      "default": "Community stories"
+      "label": "Title",
+      "default": "Product carousel"
     },
     {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "1",
+          "label": "Square"
+        },
+        {
+          "value": "2",
+          "label": "Portrait"
+        }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",
@@ -142,35 +257,55 @@
   "blocks": [
     {
       "type": "product",
-      "name": "Product carousel",
+      "name": "Product",
       "settings": [
         {
-        "type": "product",
-        "id": "product_select",
-        "label": "Select product"
+          "type": "product",
+          "id": "product_select",
+          "label": "Select product"
         },
         {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "label": "Opacity",
-      "default": 70,
-      "unit": "%"
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Opacity",
+          "default": 70,
+          "unit": "%"
         },
         {
           "type": "image_picker",
           "id": "product_image",
-          "label": "Product image"
+          "label": "Image",
+          "info": "Image will replace product image."
+        },
+        {
+          "type": "video",
+          "id": "product_video",
+          "label": "Video",
+          "info": "Video will replace all (Image and product image)."
+        },
+        {
+          "type": "checkbox",
+          "id": "video_loop",
+          "label": "Loop video",
+          "default": true,
+          "info": "Enable to play the video in a continuous loop."
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Community stories",
+      "name": "Product carousel",
       "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
         {
           "type": "product"
         },

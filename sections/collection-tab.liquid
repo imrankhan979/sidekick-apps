@@ -4,82 +4,82 @@
 <script src="{{ 'snazzy-tab.js' | asset_url }}" defer></script>
 
 {%- style -%}
-
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
     }
-  }
-  
-{% for block in section.blocks %}
-  .collection-tab .product-grid-{{block.id}}{
-    grid-template-columns: repeat({{block.settings.item_count}}, 1fr);
-  }
-{% endfor %}
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+  {% for block in section.blocks %}
+    .collection-tab .product-grid-{{block.id}}{
+      grid-template-columns: repeat({{block.settings.item_count}}, 1fr);
+    }
+  {% endfor %}
 {%- endstyle -%}
 <section class="collection-tab section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <div class="tabs-section">
-      <snazzy-tab>
-        <div class="page-width">
-            <div class="tab-header flex wrap space-between align-items-center">
-              <div class="section-title">
-                <h1 class="sec_title">{{ section.settings.section_heading }}</h1>
-              </div>
-              <div class="scroller-wrapper">
-                <div class="scroll-width">
-                  <div class="snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
-                    {% for block in section.blocks %}
-                      {% assign collection = collections[block.settings.collection_handle] %}
-                        <button  role="tab" class="snazzy-tab-button {% if forloop.first %}active{% endif %}"  {{ block.shopify_attributes }}>
-                          {{ block.settings.tab_title | default: collection.title }}
-                        </button>
-                    {% endfor %}
-                  </div>
-                </div>
+  <div class="tabs-section">
+    <snazzy-tab>
+      <div class="page-width">
+        <div class="tab-header flex wrap space-between align-items-center">
+          <div class="section-title">
+            <h1 class="sec_title">{{ section.settings.section_heading }}</h1>
+          </div>
+          <div class="scroller-wrapper">
+            <div class="scroll-width">
+              <div class="snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
+                {% for block in section.blocks %}
+                  {% assign collection = collections[block.settings.collection_handle] %}
+                  <button
+                    role="tab"
+                    class="snazzy-tab-button {% if forloop.first %}active{% endif %}"
+                    {{ block.shopify_attributes }}
+                  >
+                    {{ block.settings.tab_title | default: collection.title }}
+                  </button>
+                {% endfor %}
               </div>
             </div>
-        </div>
-        <div class="page-width">
-          <div class="snazzy-tab-contents">
-            {% for block in section.blocks %}
-              {% assign collection = collections[block.settings.collection_handle] %}
-              {% assign maximum_product_show = block.settings.item_total %}
-              
-              <div class="snazzy-tab-content {% if forloop.first %}active{% endif %}">
-                <div class="product-grid product-grid-{{ block.id }}">
-                  {% if collection.products.size > 0 %}
-                    {% for product in collection.products limit: maximum_product_show %}
-                      {% render "product", button: false, product: product %}
-                    {% endfor %}
-                  {% else %}
-                    {% for i in (1..maximum_product_show) %}
-                      {% render "product-placeholder", index: forloop.index %}
-                    {% endfor %}
-                  {% endif %}
-                </div>
-                {% if collection.products.size > maximum_product_show %}
-                  <div class="view-all-btn-wrapper flex justify-content-center">
-                    <a class="snazzy-icon-btn btn-with-border" href="{{ collection.url }}">VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
-                  </div>
-                {% endif %}
-              </div>
-            {% endfor %}
-            
           </div>
         </div>
-      </snazzy-tab>
-    </div>
+      </div>
+      <div class="page-width">
+        <div class="snazzy-tab-contents">
+          {% for block in section.blocks %}
+            {% assign collection = collections[block.settings.collection_handle] %}
+            {% assign maximum_product_show = block.settings.item_total %}
+
+            <div class="snazzy-tab-content {% if forloop.first %}active{% endif %}">
+              <div class="product-grid product-grid-{{ block.id }}">
+                {% if collection.products.size > 0 %}
+                  {% for product in collection.products limit: maximum_product_show %}
+                    {% render 'product', button: false, product: product %}
+                  {% endfor %}
+                {% else %}
+                  {% for i in (1..maximum_product_show) %}
+                    {% render 'product-placeholder', index: forloop.index %}
+                  {% endfor %}
+                {% endif %}
+              </div>
+              {% if collection.products.size > maximum_product_show %}
+                <div class="view-all-btn-wrapper flex justify-content-center">
+                  <a class="snazzy-icon-btn btn-with-border" href="{{ collection.url }}"
+                    >VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+                  >
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </snazzy-tab>
+  </div>
 </section>
-
-
- 
-
 
 {% schema %}
 {
@@ -96,6 +96,26 @@
       "id": "section_heading",
       "default": "PRODUCT",
       "label": "Section heading"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "1",
+          "label": "Square"
+        },
+        {
+          "value": "2",
+          "label": "Portrait"
+        }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",
@@ -122,7 +142,7 @@
       "default": 120
     }
   ],
-"blocks": [
+  "blocks": [
     {
       "type": "collection",
       "name": "Collection",
@@ -137,7 +157,7 @@
           "id": "tab_title",
           "label": "Tab Title",
           "info": "Optional. Defaults to collection title.",
-          "default" : "Collection"
+          "default": "Collection"
         },
         {
           "type": "range",
@@ -160,7 +180,7 @@
       ]
     }
   ],
-"presets": [
+  "presets": [
     {
       "name": "Collection tab",
       "blocks": [

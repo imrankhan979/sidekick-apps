@@ -1,24 +1,23 @@
 {{ 'product-bundle.css' | asset_url | stylesheet_tag }}
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
 
-
 <script>
-  window.currencySymbol = "{{ cart.currency.symbol }}";
+  window.currencySymbol = '{{ cart.currency.symbol }}';
 </script>
 <script src="{{ 'bundle.js' | asset_url }}" defer></script>
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-}
-
-@media screen and (min-width: 750px) {
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+    .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
-}
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
 {%- endstyle -%}
 
 <div class="bundle-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
@@ -30,16 +29,16 @@
     {% endif %}
     <bundle-manager>
       <div class="bundle-container-inner grid">
-          <!-- Left Section: Product List -->
-          <div id="product-list" class="bundle-products grid">
+        <!-- Left Section: Product List -->
+        <div id="product-list" class="bundle-products grid">
           {% if section.settings.collection != blank %}
             {% for product in section.settings.collection.products %}
-              {% render "product", product: product, button: true %}
+              {% render 'product', product: product, button: true %}
             {% endfor %}
-            {% else %}
+          {% else %}
             {% for i in (1..6) %}
               <div class="product">
-                <a  role="link" aria-disabled="true" class="product-thumb flex">
+                <a role="link" aria-disabled="true" class="product-thumb flex">
                   {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                   {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
@@ -47,129 +46,144 @@
                 <div class="product-content">
                   <h5 class="product-title">Example product title</h5>
                   <div class="product-price-wrapper align-items-center flex no-compare">
-                    <h6 class="product-price">{{ 00.00 |  money }}</h6>
+                    <h6 class="product-price">{{ 00.00 | money }}</h6>
                   </div>
                 </div>
-                <button type="submit" class="product-btn add-to-bundle" disabled>
-                  Add to bundle
-                </button>
+                <button type="submit" class="product-btn add-to-bundle" disabled>Add to bundle</button>
               </div>
             {% endfor %}
           {% endif %}
-          </div>
-          <div class="slider-controls">
-            <button class="prev-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
-            <button class="next-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
-          </div>
-        
-          <!-- Right Section: Bundle List -->
-          <div id="bundle-list">
-            <div class="bundle-list-inner">
-              <div class="bundle-list-header">
-                <div class="bundle-list-header-top flex align-items-center space-between">
-                  <div class="bundle-list-header-content">
-                    {% if section.settings.bundle_cart_heading %}
-                      <h5>{{ section.settings.bundle_cart_heading }}</h5>
-                    {% endif %}
-                    {% if section.settings.bundle_cart_subheading %}
-                      <p> {{ section.settings.bundle_cart_subheading }}</p>
-                    {% endif %}
-                  </div>
-                  <div class="bundle-list-header-icon flex" id="dropdown-icon">
-                    {{- 'icon-arrow.svg' | inline_asset_content -}}
-                  </div>
+        </div>
+        <div class="slider-controls">
+          <button class="prev-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
+          <button class="next-slide">{{- 'icon-arrow.svg' | inline_asset_content -}}</button>
+        </div>
+
+        <!-- Right Section: Bundle List -->
+        <div id="bundle-list">
+          <div class="bundle-list-inner">
+            <div class="bundle-list-header">
+              <div class="bundle-list-header-top flex align-items-center space-between">
+                <div class="bundle-list-header-content">
+                  {% if section.settings.bundle_cart_heading %}
+                    <h5>{{ section.settings.bundle_cart_heading }}</h5>
+                  {% endif %}
+                  {% if section.settings.bundle_cart_subheading %}
+                    <p>{{ section.settings.bundle_cart_subheading }}</p>
+                  {% endif %}
                 </div>
-                <div id="item-range" class="item-range"></div>
+                <div class="bundle-list-header-icon flex" id="dropdown-icon">
+                  {{- 'icon-arrow.svg' | inline_asset_content -}}
+                </div>
               </div>
-              <div class="bundle-list-body no-scrollbar">
-                <ul id="bundle-items">
-                  <!-- JavaScript will dynamically populate this list -->
-                </ul>
-              </div>
-              <div class="bundle-list-footer">
-                <div class="bundle-list-footer-inner">
-                  <div class="bundle-total-price flex space-between align-items-center"><span>SUBTOTAL</span><span id="bundle-total">{{ 00.00 |  money }}</span></div>
+              <div id="item-range" class="item-range"></div>
+            </div>
+            <div class="bundle-list-body no-scrollbar">
+              <ul id="bundle-items">
+                <!-- JavaScript will dynamically populate this list -->
+              </ul>
+            </div>
+            <div class="bundle-list-footer">
+              <div class="bundle-list-footer-inner">
+                <div class="bundle-total-price flex space-between align-items-center">
+                  <span>SUBTOTAL</span><span id="bundle-total">{{ 00.00 | money }}</span>
+                </div>
                 <button class="add-to-cart">ADD TO CART</button>
-                </div>
               </div>
             </div>
           </div>
-     </div>
-     </bundle-manager>
+        </div>
+      </div>
+    </bundle-manager>
   </div>
 </div>
 
-
-
-
-
 {% schema %}
+{
+  "name": "Product bundle",
+  "settings": [
     {
-      "name": "Product bundle",
-      "settings": [
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "BUILD YOUR BUNDLE"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Chose collection"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image ratio",
+      "options": [
         {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "t:sections.all.colors.label",
-          "default": "scheme-1"
+          "value": "auto",
+          "label": "Adapt to image"
         },
         {
-          "type": "text",
-          "id": "heading_text",
-          "label": "Heading",
-          "default": "BUILD YOUR BUNDLE"
+          "value": "1",
+          "label": "Square"
         },
         {
-            "type": "collection",
-            "id": "collection",
-            "label": "Chose collection"
-        },
-        {
-            "type": "header",
-            "content": "Bundle cart"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "bundle_cart_heading",
-          "label": "Bundle cart heading",
-          "default": "BUNDLE CART"
-        },
-        {
-          "type": "inline_richtext",
-          "id": "bundle_cart_subheading",
-          "label": "Bundle cart subheading",
-          "default": "Add at least 3 items to get 30% OFF"
-        },
-        {
-            "type": "header",
-            "content": "t:sections.all.padding.section_padding_heading"
-        },
-        {
-            "type": "range",
-            "id": "padding_top",
-            "min": 0,
-            "max": 120,
-            "step": 5,
-            "unit": "px",
-            "label": "t:sections.all.padding.padding_top",
-            "default": 120
-        },
-        {
-            "type": "range",
-            "id": "padding_bottom",
-            "min": 0,
-            "max": 120,
-            "step": 5,
-            "unit": "px",
-            "label": "t:sections.all.padding.padding_bottom",
-            "default": 120
+          "value": "2",
+          "label": "Portrait"
         }
       ],
-      "presets": [
-        {
-            "name": "Product bundle"
-        }
-      ]
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Bundle cart"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "bundle_cart_heading",
+      "label": "Bundle cart heading",
+      "default": "BUNDLE CART"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "bundle_cart_subheading",
+      "label": "Bundle cart subheading",
+      "default": "Add at least 3 items to get 30% OFF"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
     }
-    {% endschema %}
-    
+  ],
+  "presets": [
+    {
+      "name": "Product bundle"
+    }
+  ]
+}
+{% endschema %}

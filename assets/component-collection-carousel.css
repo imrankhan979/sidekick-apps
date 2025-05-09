@@ -1,28 +1,15 @@
-/**----------------------------------------
-START: Collection carousel CSS
-----------------------------------------*/
 .collection-carousel-section {
     padding-bottom: 120px;
+    overflow: hidden;
   }
-  
-  .collection-carousel-section .page-width {
-    margin-right: calc((100% - 1820px) / 2);
-    width: auto;
-    min-width: auto;
-    max-width: inherit;
-    padding-right: 0;
-}
-  
   .collection-carousel-section .flickity-button {
-    background: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
+    background: #ffffff;
+    color: #000;
   }
- 
   .collection-carousel-section .flickity-prev-next-button {
     width: 64px;
     height: 64px;
   }
-  
   .collection-carousel-section .flickity-button:disabled {
     pointer-events: initial;
   }
@@ -34,18 +21,16 @@ START: Collection carousel CSS
     width: 12px;
     height: 12px;
   }
-  
   .collection-carousel-section .flickity-prev-next-button.previous {
     left: 16px;
   }
-  
   .collection-carousel-section .flickity-prev-next-button.next {
-    right: 80px;
+    right: 16px;
   }
-  
   .collection_carousel_item {
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: 640px 1fr;
     column-gap: 64px;
     align-items: center;
     border-radius: 40px;
@@ -53,63 +38,62 @@ START: Collection carousel CSS
     width: 70%;
     overflow: hidden;
   }
-  
   .collection_carousel_item:first-child {
     margin-left: 0;
   }
-  
   .collection_carousel_item:last-child {
     margin-right: 0;
   }
-  
-  .collection_carousel_item:nth-child(2) {
-    background: #399965;
-  }
-  
   .collection_carousel_item .collection_carousel_images {
-    max-width: 640px;
     width: 100%;
+    overflow: hidden;
+    height: 100%;
   }
-  
   .collection_carousel_item .collection_carousel_images a {
     display: flex;
     width: 100%;
+    height: 100%;
   }
-  
+  .collection_carousel_item .collection_carousel_images a > *{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
   .collection_carousel_item .collection_carousel_images > * {
     width: 100%;
     border-radius: 40px 0px 0px 40px;
     transform: scale(1.2);
     transition: transform .6s ease-in-out;
   }
-  
   .collection_carousel_item:hover .collection_carousel_images > * {
     transform: scale(1.1);
   }
   .collection_carousel_item .collection_carousel_content {
     width: 100%;
     padding: 120px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 24px;
   }
-  
   .collection_carousel_item .collection_carousel_content .subTitle {
     display: inline-block;
-    color: rgb(var(--color-foreground));
+    color: #ffffff;
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    border: 1px solid rgb(var(--color-foreground));
+    border: 1px solid #ffffff;
     border-radius: 100px;
     padding: 13px 16px 11px;
     line-height: 1;
+    max-width: max-content;
   }
-  
-  .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-    margin-top: 150px;
-  }
+
   
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
     display: inline-block;
-    color: rgb(var(--color-foreground));
+    color: #ffffff;
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.03em;
@@ -123,7 +107,7 @@ START: Collection carousel CSS
 
   .collection_carousel_item .collection_carousel_content .collection_carousel_text .sub-title {
     display: block;
-    color: rgb(var(--color-foreground));
+    color: #ffffff;
     font-size: 20px;
     font-weight: 400;
     letter-spacing: -0.01em;
@@ -158,9 +142,6 @@ START: Collection carousel CSS
     transform: translateY(-23px);
   }
 
-  .collection_carousel_button {
-    margin-top: 152px;
-  }
   .collection_carousel_item.is-selected .collection_carousel_button {
   animation: fadeInUp 0.7s ease-in-out 0s;
   }
@@ -183,7 +164,7 @@ START: Collection carousel CSS
     justify-content: center;
     width: 28px;
     height: 28px;
-    background: rgb(var(--color-secondary-button));
+    background: #ffffff;
     border-radius: 50%;
     overflow: hidden;
   }
@@ -195,13 +176,10 @@ START: Collection carousel CSS
   }
   
   .collection_carousel_button .collection_carousel_btn span svg path {
-    fill: rgb(var(--color-secondary-button-border ));
+    fill: #000;
   }
   
   @media only screen and (min-width: 1600px) and (max-width: 1770px) {
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 1600px) / 2);
-    }
   
     .collection_carousel_item {
       width: 78%;
@@ -209,50 +187,22 @@ START: Collection carousel CSS
   }
   
   @media only screen and (min-width: 1400px) and (max-width: 1599px) {
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 1400px) / 2);
-    }
-  
-    .collection_carousel_item .collection_carousel_images {
-      max-width: 535px;
-    }
-  
     .collection_carousel_item {
-      flex-wrap: nowrap;
       column-gap: 35px;
-      height: 610px;
+      grid-template-columns: 1fr 1fr;
     }
-  
     .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
       font-size: 80px;
-    }
-  
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-      margin-top: 95px;
-    }
-  
-    .collection_carousel_button {
-      margin-top: 100px;
     }
   }
   
   @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 1200px) / 2);
-    }
-  
     .collection_carousel_item {
-      flex-wrap: nowrap;
       column-gap: 35px;
-      height: 515px;
+      grid-template-columns: 1fr 1fr;
     }
-  
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-      margin-top: 95px;
-    }
-  
-    .collection_carousel_button {
-      margin-top: 85px;
+    .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
+      font-size: 70px;
     }
   }
   
@@ -261,31 +211,18 @@ START: Collection carousel CSS
       padding-bottom: 100px;
     }
   
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 992px) / 2);
-    }
-  
     .collection-carousel-section .flickity-prev-next-button {
       width: 56px;
       height: 56px;
     }
-  
+    
     .collection_carousel_item {
-      flex-wrap: nowrap;
-      column-gap: 15px;
-      height: 425px;
+      column-gap: 35px;
+      grid-template-columns: 1fr 1fr;
     }
   
     .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
       font-size: 50px;
-    }
-  
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-      margin-top: 65px;
-    }
-  
-    .collection_carousel_button {
-      margin-top: 65px;
     }
   }
   
@@ -294,31 +231,18 @@ START: Collection carousel CSS
       padding-bottom: 80px;
     }
   
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 768px) / 2);
-    }
-  
     .collection-carousel-section .flickity-prev-next-button {
       width: 56px;
       height: 56px;
     }
   
     .collection_carousel_item {
-      flex-wrap: nowrap;
-      column-gap: 15px;
-      height: 320px;
+      column-gap: 35px;
+      grid-template-columns: 1fr 1fr;
     }
   
     .collection_carousel_item .collection_carousel_content .collection_carousel_text .display-1 {
       font-size: 40px;
-    }
-  
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-      margin-top: 35px;
-    }
-  
-    .collection_carousel_button {
-      margin-top: 35px;
     }
   
     .collection_carousel_item .collection_carousel_content .subTitle {
@@ -331,18 +255,14 @@ START: Collection carousel CSS
       padding-bottom: 80px;
     }
   
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 576px) / 2);
-    }
-  
     .collection-carousel-section .flickity-prev-next-button {
       width: 50px;
       height: 50px;
     }
   
     .collection_carousel_item {
-    flex-direction: column;
-      height: auto;
+      column-gap: 35px;
+      grid-template-columns: 1fr;
       border-radius: 24px;
     }
   
@@ -350,14 +270,6 @@ START: Collection carousel CSS
       font-size: 25px;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
-    }
-  
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-      margin-top: 30px;
-    }
-  
-    .collection_carousel_button {
-      margin-top: 25px;
     }
 
     .collection_carousel_item .collection_carousel_content {
@@ -369,7 +281,6 @@ START: Collection carousel CSS
     }
   
     .collection_carousel_item .collection_carousel_images > * {
-      height: 240px;
       object-fit: cover;
       border-radius: 24px 24px 0px 0px;
     }
@@ -380,23 +291,15 @@ START: Collection carousel CSS
       padding-bottom: 80px;
     }
   
-    .collection-carousel-section .page-width {
-      margin-left: calc((100% - 375px) / 2);
-    }
-  
     .collection-carousel-section .flickity-prev-next-button {
       width: 45px;
       height: 45px;
     }
-  
-    .collection-carousel-section .flickity-prev-next-button.next {
-      right: 25px;
-    }
-  
+
     .collection_carousel_item {
-      flex-direction: column;
-      height: auto;
       border-radius: 24px;
+      column-gap: 35px;
+      grid-template-columns: 1fr;
     }
   
     .collection_carousel_item .collection_carousel_content {
@@ -409,10 +312,6 @@ START: Collection carousel CSS
       margin-bottom: 10px;
     }
   
-    .collection_carousel_item .collection_carousel_content .collection_carousel_text {
-      margin-top: 24px;
-    }
-  
     .collection_carousel_button {
       display: none;
     }
@@ -423,7 +322,6 @@ START: Collection carousel CSS
     }
   
     .collection_carousel_item .collection_carousel_images > * {
-      height: 240px;
       object-fit: cover;
       border-radius: 24px 24px 0px 0px;
     }
@@ -433,5 +331,6 @@ START: Collection carousel CSS
       letter-spacing: initial;
     }
   }
-  
-  /* !END: Collection carousel CSS *
+  .collection-carousel-section .flickity-viewport {
+    overflow: visible;
+}

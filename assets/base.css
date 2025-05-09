@@ -172,6 +172,24 @@ h6,
     letter-spacing: initial;
   }
 }
+.display-1 {
+  font-size: 96px;
+  letter-spacing: -0.04em;
+  font-family: var(--font-family-heading);
+  line-height: 96px;
+}
+
+.display-2 {
+  font-size: 96px;
+  letter-spacing: -0.04em;
+  font-family: var(--font-family-heading);
+  line-height: 96px;
+}
+
+.sub-title {
+  font-size: 20px;
+  line-height: 28px;
+}
 
 .sub-heading {
   font-size: 20px;
@@ -4286,7 +4304,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 .anim-item.reveal {
   opacity: 1 !important;
-  transform: none !important;
+  transform: translateY(0) !important;
 }
 
 /* Collection anim CSS */

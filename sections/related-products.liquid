@@ -7,31 +7,31 @@
 {%- endif -%}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    @media screen and (min-width: 750px) {
+    .product-item {
+      width: {{ 100 | divided_by: section.settings.columns_desktop }}%;
+      padding-right: 10px;
     }
   }
-
-  @media screen and (min-width: 750px) {
-  .product-item {
-    width: {{ 100 | divided_by: section.settings.columns_desktop }}%;
-    padding-right: 10px;
+  @media screen and (max-width: 749px) {
+    .product-item {
+      width: 50%;
+      padding-right: 10px;
+    }
   }
-}
-@media screen and (max-width: 749px) {
-  .product-item {
-    width: 50%;
-    padding-right: 10px;
-  }
-}
-{%- endstyle -%} 
+{%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
   <product-recommendations
@@ -63,11 +63,8 @@
               skip_styles: skip_card_product_styles
             %}
           </div>
-          {%- assign skip_card_product_styles = true -%}
-        {% endfor %}
+        </items-carousel>
       </div>
-      </items-carousel>
-    </div>
     {% endif %}
   </product-recommendations>
   {% if section.settings.image_shape == 'arch' %}
@@ -150,23 +147,23 @@
     },
     {
       "type": "select",
-      "id": "image_ratio",
+      "id": "ratio",
+      "label": "Image ratio",
       "options": [
         {
-          "value": "adapt",
-          "label": "t:sections.related-products.settings.image_ratio.options__1.label"
+          "value": "auto",
+          "label": "Adapt to image"
         },
         {
-          "value": "portrait",
-          "label": "t:sections.related-products.settings.image_ratio.options__2.label"
+          "value": "1",
+          "label": "Square"
         },
         {
-          "value": "square",
-          "label": "t:sections.related-products.settings.image_ratio.options__3.label"
+          "value": "2",
+          "label": "Portrait"
         }
       ],
-      "default": "adapt",
-      "label": "t:sections.related-products.settings.image_ratio.label"
+      "default": "auto"
     },
     {
       "type": "select",

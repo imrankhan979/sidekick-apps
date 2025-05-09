@@ -1,30 +1,34 @@
 {{ 'component-collection-carousel.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
- 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+{% for block in section.blocks %}
+   .collection_carousel_item.block-bg-{{ block.id }}{
+    background-color: {{ block.settings.collection_bg_color }};
+   }
+{% endfor %}
 
 {%- endstyle -%}
 
-
- <!-- start: Collection Section -->
  <section class="collection-carousel-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
-        <div class="carousel" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
+      <items-carousel>
+        <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
           {%- for block in section.blocks -%}
-            <div class="collection_carousel_item" style="background-color: {{ block.settings.collection_bg_color }};">
+            <div class="collection_carousel_item block-bg-{{ block.id }}" {{ block.shopify_attributes }}>
                 <div class="collection_carousel_images">
                   {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
-                    <a href="{{ block.settings.collection_select.url }}">
+                    <a {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection_select.url }}" {% endif %}>
                       {%- if block.settings.collection_image != blank -%}
                         {{ block.settings.collection_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                         {%- else -%}
@@ -48,15 +52,15 @@
 
                     {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
                     <div class="collection_carousel_text">
-                          <div class="display-1 collection_carousel_main_title {{ section.settings.heading_tag }}">
-                          <a href="{{ block.settings.collection_select.url }}">
+                          <h2 class="display-1 collection_carousel_main_title">
+                          <a {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection_select.url }}" {% endif %}>
                           {%- if block.settings.collection_heading != blank -%}
                             {{ block.settings.collection_heading }}
                             {%- else -%}
                           {{ block.settings.collection_select.title }}
                         {%- endif -%}
                           </a>
-                        </div>
+                        </h2>
                         <span class="sub-title">{{ block.settings.collection_select.products_count }}
                           {%- if block.settings.collection_select != blank -%}
                           {%- if block.settings.collection_select.products_count <= 1 -%}
@@ -72,51 +76,31 @@
                   {%- endif -%}
                   
                     <div class="collection_carousel_button">
-                        <a class="collection_carousel_btn" href="
-                        {%- if block.settings.collection_button_link != blank -%}
-                        {{ block.settings.collection_button_link }}
-                        {%- else -%}
-                        {{ block.settings.collection_select.url }}
-                        {%- endif -%}
-                         ">
+                        <a class="collection_carousel_btn" 
+                      {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" 
+                        {% else %} href="{{ block.settings.collection_select.url }}" 
+                      {% endif %}
+                        >
                           {{ block.settings.collection_button }}
-                            <span>
-                              {{- 'icon-caret.svg' | inline_asset_content -}}
-                            </span>
+                            <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
                         </a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+      </items-carousel>
     </div>
 </section>
-
- <!-- end: Collection Section -->
-
 {% schema %}
 {
-  "name": "Collection Carousel",
+  "name": "Collection carousel",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
-    },
-    {
-      "type": "select",
-      "id": "heading_tag",
-      "label": "Heading tag",
-      "default": "h2",
-      "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" },
-        { "value": "h3", "label": "H3" },
-        { "value": "h4", "label": "H4" },
-        { "value": "h5", "label": "H5" },
-        { "value": "h6", "label": "H6" }
-      ]
     },
     {
       "type": "header",
@@ -126,27 +110,27 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
-      "default": 352
+      "label": "Padding top",
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
-      "default": 352
+      "label": "Padding bottom",
+      "default": 120
     }
   ],
   "blocks": [
     {
       "type": "collection",
-      "name": "Collection Carousel",
+      "name": "Collection carousel",
       "settings": [
         {
         "type": "collection",
@@ -156,19 +140,19 @@
         {
           "type": "color",
           "id": "collection_bg_color",
-          "label": "Background Color",
+          "label": "Background color",
           "default": "#f3f3f3"
         },
         {
           "type": "image_picker",
           "id": "collection_image",
-          "label": "Collection Image"
+          "label": "Collection image"
         },
         {
           "type": "text",
           "id": "collection_heading",
           "label": "Heading",
-          "default": "Elevated Streetwear",
+          "default": "Collection title",
           "info": "If left blank, the collection name will be used."
         },
         {
@@ -182,27 +166,41 @@
           "id": "collection_button",
           "label": "Button Label",
           "default": "Shop Now"
-        },
-        {
-          "type": "url",
-          "id": "collection_button_link",
-          "label": "Button Link"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection Carousel",
+      "name": "Collection carousel",
       "blocks": [
         {
-          "type": "collection"
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#F88E24"
+            }
         },
         {
-          "type": "collection"
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#399965"
+            }
         },
         {
-          "type": "collection"
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#0183D5"
+            }
+        },
+        {
+          "type": "collection",
+          "settings": 
+            {
+              "collection_bg_color": "#FE3D83"
+            }
         }
       ]
     }
