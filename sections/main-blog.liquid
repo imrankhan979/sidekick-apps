@@ -14,68 +14,69 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  @media screen and (min-width: 768px) { 
+  @media screen and (min-width: 768px) {
     .main-blog .blog-articles-grid {
-        grid-template-columns: repeat( {{ section.settings.item_count }} , 1fr); 
+        grid-template-columns: repeat( {{ section.settings.item_count }} , 1fr);
     }
   }
 {%- endstyle -%}
-
 
 {% assign current_tags = '' %}
 {% if request.path contains '/tagged/' %}
   {% assign current_tags = request.path | split: '/tagged/' | last | handleize %}
 {% endif %}
 
-
 <div class="main-blog section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <div class="page-width">
-      <div class="main-blog-top flex align-items-center space-between wrap">
-        <div class="section-title">
-          <h1>
-            {% if section.settings.heading_text != blank %}
-              {{ section.settings.heading_text }}
-              {% else %}
-              {{ blog.title | escape }}
-            {% endif %}
-            </h1>
-        </div>
-        <div class="scroller-wrapper">
-          <div class="scroll-width">
-            <ul class="tags-list flex wrap align-items-center no-scrollbar">
+  <div class="page-width">
+    <div class="main-blog-top flex align-items-center space-between wrap">
+      <div class="section-title">
+        <h1>
+          {% if section.settings.heading_text != blank %}
+            {{ section.settings.heading_text }}
+          {% else %}
+            {{ blog.title | escape }}
+          {% endif %}
+        </h1>
+      </div>
+      <div class="scroller-wrapper">
+        <div class="scroll-width">
+          <ul class="tags-list flex wrap align-items-center no-scrollbar">
+            <li>
+              <a href="{{ blog.url }}" class="flex {% if current_tags == blank %}active{% endif %}">All</a>
+            </li>
+            {% for tag in blog.all_tags %}
+              {% assign handled_tag = tag | handle %}
               <li>
-                <a href="{{ blog.url }}" class="flex {% if current_tags == blank %}active{% endif %}">All</a>
+                <a
+                  href="{{ blog.url }}/tagged/{{ handled_tag }}"
+                  class="flex {% if current_tags == handled_tag %}active{% endif %}"
+                >
+                  {{ tag }}
+                </a>
               </li>
-              {% for tag in blog.all_tags %}
-                  {% assign handled_tag = tag | handle %}
-                  <li>
-                    <a href="{{ blog.url }}/tagged/{{ handled_tag }}" class="flex {% if current_tags == handled_tag %}active{% endif %}">
-                      {{ tag }}
-                    </a>
-                  </li>
-              {% endfor %}
-            </ul>
-          </div>
+            {% endfor %}
+          </ul>
         </div>
       </div>
-      {%- paginate blog.articles by section.settings.item_total -%}
-          <div class="blog-articles-grid grid">
-            {%- for article in blog.articles -%}
-                {%- render 'blog-item-card',
-                  article: article,
-                  show_image: section.settings.show_image,
-                  show_date: section.settings.show_date,
-                  show_author: section.settings.show_author,
-                  show_excerpt: section.settings.show_excerpt
-                -%}
-            {%- endfor -%}
-          </div>
-          {%- if paginate.pages > 1 -%}
-            {%- render 'pagination', paginate: paginate -%}
-          {%- endif -%}
-        {%- endpaginate -%}
     </div>
+    {%- paginate blog.articles by section.settings.item_total -%}
+      <div class="blog-articles-grid grid">
+        {%- for article in blog.articles -%}
+          {%- render 'blog-item-card',
+            article: article,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            show_author: section.settings.show_author,
+            show_excerpt: section.settings.show_excerpt
+          -%}
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        {%- render 'pagination', paginate: paginate -%}
+      {%- endif -%}
+    {%- endpaginate -%}
   </div>
+</div>
 
 {% schema %}
 {
@@ -143,6 +144,26 @@
       "id": "show_author",
       "default": false,
       "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "1",
+          "label": "Square"
+        },
+        {
+          "value": "2",
+          "label": "Portrait"
+        }
+      ],
+      "default": "auto"
     },
     {
       "type": "header",

@@ -6,7 +6,7 @@
       padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
-  
+
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -25,144 +25,164 @@
   {% endfor %}
 {%- endstyle -%}
 
+<section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="page-width">
+    <div class="heading_area">
+      <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
+    </div>
+    <div class="slider_community_wrapper">
+      <items-carousel>
+        <div
+          class="carousel items-carousel-selector anim-wrapper"
+          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
+        >
+          {%- for block in section.blocks -%}
+            <div class="slider_community_item id-{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- assign ratio_setting = section.settings.ratio %}
+              {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 %}
+              {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index %}
 
+              {%- assign auto_ratio = '' %}
+              {%- if block.settings.product_video %}
+                {%- assign auto_ratio = block.settings.product_video.aspect_ratio %}
+              {%- elsif block.settings.product_image %}
+                {%- assign auto_ratio = block.settings.product_image.aspect_ratio %}
+              {%- elsif block.settings.placeholder_image %}
+                {%- assign auto_ratio = block.settings.placeholder_image.aspect_ratio %}
+              {%- endif %}
 
-   <section class="slider-community-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <div class="page-width">
-       <div class="heading_area">
-          <h2 class="sec_title">{{ section.settings.community_heading }}</h2>
-       </div>
-       <div class="slider_community_wrapper">
-        <items-carousel>
-          <div class="carousel items-carousel-selector anim-wrapper" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-            {%- for block in section.blocks -%}
-              <div class="slider_community_item id-{{ block.id }}" {{ block.shopify_attributes }}>
-                {%- assign ratio_setting = section.settings.ratio %}
-                {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 %}
-                {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index %}
-                
-                {%- assign auto_ratio = '' %}
-                {%- if block.settings.product_video %}
-                  {%- assign auto_ratio = block.settings.product_video.aspect_ratio %}
+              {%- if ratio_setting == 'auto' and auto_ratio != blank -%}
+                {%- assign aspect_ratio_auto = 1 | divided_by: auto_ratio | times: 100 -%}
+              {%- elsif ratio_setting == '1' -%}
+                {%- assign aspect_ratio_auto = 100 -%}
+              {%- elsif ratio_setting == '2' -%}
+                {%- assign aspect_ratio_auto = 125 -%}
+              {%- else -%}
+                {%- assign aspect_ratio_auto = 100 -%}
+              {%- endif -%}
+
+              {%- if aspect_ratio_auto == 0 or aspect_ratio_auto == null -%}
+                {%- assign aspect_ratio_auto = 100 -%}
+              {%- endif -%}
+
+              <div class="slider_community_images anim-item flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
+                {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
+                  {%- assign video_url = block.settings.product_video.sources[1].url %}
+                  <video
+                    src="{{ video_url }}"
+                    playsinline
+                    muted
+                    {% if forloop.first %}
+                      autoplay
+                    {% endif %}
+                    {% if block.settings.video_loop %}
+                      loop
+                    {% endif %}
+                    class="community-video {% unless forloop.first %}hover-play{% endunless %}"
+                  ></video>
                 {%- elsif block.settings.product_image %}
-                  {%- assign auto_ratio = block.settings.product_image.aspect_ratio %}
-                {%- elsif block.settings.placeholder_image %}
-                  {%- assign auto_ratio = block.settings.placeholder_image.aspect_ratio %}
+                  <div>
+                    {{
+                      block.settings.product_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
+                    }}
+                  </div>
+
+                {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
+                  <div>
+                    {{
+                      block.settings.product_select.featured_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
+                    }}
+                  </div>
+
+                {%- else %}
+                  <div class="placeholder-wrapper">
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
                 {%- endif %}
-            
-                {%- if ratio_setting == 'auto' and auto_ratio != blank -%}
-                  {%- assign aspect_ratio_auto = 1 | divided_by: auto_ratio | times: 100 -%}
-                {%- elsif ratio_setting == '1' -%}
-                  {%- assign aspect_ratio_auto = 100 -%}
-                {%- elsif ratio_setting == '2' -%}
-                  {%- assign aspect_ratio_auto = 125 -%}
-                {%- else -%}
-                  {%- assign aspect_ratio_auto = 100 -%}
-                {%- endif -%}
-                
-                {%- if aspect_ratio_auto == 0 or aspect_ratio_auto == null -%}
-                  {%- assign aspect_ratio_auto = 100 -%}
-                {%- endif -%}
-            
-                <div class="slider_community_images anim-item flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
-                  {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
-                    {%- assign video_url = block.settings.product_video.sources[1].url %}
-                    <video
-                      src="{{ video_url }}"
-                      playsinline
-                      muted
-                      {% if forloop.first %}autoplay{% endif %}
-                      {% if block.settings.video_loop %}loop{% endif %}
-                      class="community-video {% unless forloop.first %}hover-play{% endunless %}">
-                    </video>
-                  {%- elsif block.settings.product_image %}
-                    <div>
-                      {{ block.settings.product_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: '' }}
-                    </div>
-            
-                  {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
-                    <div>
-                      {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title }}
-                    </div>
-            
-                  {%- else %}
-                    <div class="placeholder-wrapper">
-                      {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                    </div>
-                  {%- endif %}
-            
-                  <a class="product-link-wrapper"
-                    {% if block.settings.product_select == blank %}
-                      role="link" aria-disabled="true"
-                    {% else %}
-                      href="{{ block.settings.product_select.url }}"
-                    {% endif %}></a>
-                </div>
-            
-                <a  {% if block.settings.product_select == blank %}
+
+                <a
+                  class="product-link-wrapper"
+                  {% if block.settings.product_select == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.product_select.url }}"
+                  {% endif %}
+                ></a>
+              </div>
+
+              <a
+                {% if block.settings.product_select == blank %}
                   role="link" aria-disabled="true"
                 {% else %}
                   href="{{ block.settings.product_select.url }}"
-                {% endif %} class="slider_community_content_box w-full">
-                  <div class="slider_community_thumb">
-                    {%- if block.settings.product_select.featured_image %}
-                      {{ block.settings.product_select.featured_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title }}
-                    {%- else %}
-                      {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                    {%- endif %}
-                  </div>
-            
-                  <div class="slider_community_text">
-                    <h6 class="slider_community_title">
-                      {{ block.settings.product_select.title | default: 'Product Name' }}
-                    </h6>
-                    {%- if block.settings.product_select.price %}
-                      {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
-                        <div class="slider_community_percent active">
-                          {{ block.settings.product_select.price | money }}
-                          <span>{{ block.settings.product_select.compare_at_price | money }}</span>
-                        </div>
-                      {%- else %}
-                        <div class="slider_community_percent">
-                          {{ block.settings.product_select.price | money }}
-                        </div>
-                      {%- endif %}
-                    {%- else %}
-                      <div class="slider_community_percent">$00.00</div>
-                    {%- endif %}
-                  </div>
-                </a>
-              </div>
-            {%- endfor -%}
-            
-          </div>
-        </items-carousel>
-       </div>
-       </div>
- </section>
+                {% endif %}
+                class="slider_community_content_box w-full"
+              >
+                <div class="slider_community_thumb">
+                  {%- if block.settings.product_select.featured_image %}
+                    {{
+                      block.settings.product_select.featured_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
+                    }}
+                  {%- else %}
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif %}
+                </div>
 
- <script>
-    function setupCommunityVideoHover() {
-      const videos = document.querySelectorAll('.slider_community_images video');
-      videos.forEach((video) => {
-        const parent = video.parentElement;
-        if (!parent.classList.contains('hover-bound')) {
-          parent.classList.add('hover-bound'); 
-          parent.addEventListener('mouseenter', function () {
-            videos.forEach(v => {
-              v.removeAttribute('autoplay');
-              v.pause();
-            });
-            video.setAttribute('autoplay', '');
-            video.play();
+                <div class="slider_community_text">
+                  <h6 class="slider_community_title">
+                    {{ block.settings.product_select.title | default: 'Product Name' }}
+                  </h6>
+                  {%- if block.settings.product_select.price %}
+                    {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
+                      <div class="slider_community_percent active">
+                        {{ block.settings.product_select.price | money }}
+                        <span>{{ block.settings.product_select.compare_at_price | money }}</span>
+                      </div>
+                    {%- else %}
+                      <div class="slider_community_percent">
+                        {{ block.settings.product_select.price | money }}
+                      </div>
+                    {%- endif %}
+                  {%- else %}
+                    <div class="slider_community_percent">$00.00</div>
+                  {%- endif %}
+                </div>
+              </a>
+            </div>
+          {%- endfor -%}
+        </div>
+      </items-carousel>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupCommunityVideoHover() {
+    const videos = document.querySelectorAll('.slider_community_images video');
+    videos.forEach((video) => {
+      const parent = video.parentElement;
+      if (!parent.classList.contains('hover-bound')) {
+        parent.classList.add('hover-bound');
+        parent.addEventListener('mouseenter', function () {
+          videos.forEach((v) => {
+            v.removeAttribute('autoplay');
+            v.pause();
           });
-        }
-      });
-    }
-    document.addEventListener('DOMContentLoaded', setupCommunityVideoHover);
-    document.addEventListener('shopify:section:load', setupCommunityVideoHover);
- </script>
-
+          video.setAttribute('autoplay', '');
+          video.play();
+        });
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', setupCommunityVideoHover);
+  document.addEventListener('shopify:section:load', setupCommunityVideoHover);
+</script>
 
 {% schema %}
 {
@@ -240,19 +260,19 @@
       "name": "Product",
       "settings": [
         {
-        "type": "product",
-        "id": "product_select",
-        "label": "Select product"
+          "type": "product",
+          "id": "product_select",
+          "label": "Select product"
         },
         {
-      "type": "range",
-      "id": "overlay_opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "label": "Opacity",
-      "default": 70,
-      "unit": "%"
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "label": "Opacity",
+          "default": 70,
+          "unit": "%"
         },
         {
           "type": "image_picker",
@@ -267,11 +287,11 @@
           "info": "Video will replace all (Image and product image)."
         },
         {
-        "type": "checkbox",
-        "id": "video_loop",
-        "label": "Loop video",
-        "default": true,
-        "info": "Enable to play the video in a continuous loop."
+          "type": "checkbox",
+          "id": "video_loop",
+          "label": "Loop video",
+          "default": true,
+          "info": "Enable to play the video in a continuous loop."
         }
       ]
     }

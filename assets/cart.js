@@ -284,3 +284,20 @@ if (!customElements.get('cart-note')) {
     }
   );
 }
+
+
+// const titles = document.querySelectorAll('.accordion-title');
+// titles.forEach(title => {
+//   title.addEventListener('click', () => {
+//     const content = title.nextElementSibling;
+//     content.classList.toggle('show');
+//   });
+// });
+
+const titles = document.querySelectorAll('.accordion-title');
+titles.forEach(title => {
+  title.addEventListener('click', () => {
+    const item = title.parentElement;
+    item.classList.toggle('show');
+  });
+});
