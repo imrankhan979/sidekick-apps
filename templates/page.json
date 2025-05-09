@@ -1,14 +1,15 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "bread": {
+      "type": "s-page-breadcrumb",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "color_scheme": "",
+        "custom_text": "",
+        "enable_breadcrumb_navigation": true,
+        "padding_top": 250,
+        "padding_bottom": 200
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["bread"]
 }
