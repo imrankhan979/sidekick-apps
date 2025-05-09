@@ -128,42 +128,65 @@
         "padding_bottom": 60
       }
     },
-    "community_stories_JW8z7M": {
+    "community_stories_QyYUaW": {
       "type": "community-stories",
       "blocks": {
-        "product_RYQijX": {
+        "product_TV7Q4T": {
           "type": "product",
           "settings": {
             "product_select": "",
-            "overlay_opacity": 70
+            "overlay_opacity": 70,
+            "video_loop": true
           }
         },
-        "product_Q9gnNm": {
+        "product_wFdR6L": {
           "type": "product",
           "settings": {
             "product_select": "",
-            "overlay_opacity": 70
+            "overlay_opacity": 70,
+            "video_loop": true
           }
         },
-        "product_f6TpMm": {
+        "product_rTVV9p": {
           "type": "product",
           "settings": {
             "product_select": "",
-            "overlay_opacity": 70
+            "overlay_opacity": 70,
+            "video_loop": true
+          }
+        },
+        "product_bWLVP7": {
+          "type": "product",
+          "settings": {
+            "product_select": "",
+            "overlay_opacity": 70,
+            "video_loop": true
+          }
+        },
+        "product_WtNHgw": {
+          "type": "product",
+          "settings": {
+            "product_select": "",
+            "overlay_opacity": 70,
+            "video_loop": true
           }
         }
       },
       "block_order": [
-        "product_RYQijX",
-        "product_Q9gnNm",
-        "product_f6TpMm"
+        "product_TV7Q4T",
+        "product_wFdR6L",
+        "product_rTVV9p",
+        "product_bWLVP7",
+        "product_WtNHgw"
       ],
-      "name": "Community stories",
+      "name": "Product carousel",
       "settings": {
-        "community_heading": "Community stories",
-        "section_color_scheme": "",
-        "padding_top": 60,
-        "padding_bottom": 60
+        "color_scheme": "",
+        "community_heading": "Product carousela",
+        "columns_desktop": 4,
+        "ratio": "auto",
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     },
     "image_with_text_MWxqfX": {
@@ -578,7 +601,7 @@
   "order": [
     "slideshow_6WrwVQ",
     "collection_list_HGWihJ",
-    "community_stories_JW8z7M",
+    "community_stories_QyYUaW",
     "image_with_text_MWxqfX",
     "collection_tab_gT463q",
     "bulk_hotspot_JjfnHW",
