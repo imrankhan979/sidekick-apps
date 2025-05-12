@@ -50,8 +50,7 @@
 }
 
 .snazzy_pagination .pagination-list .pagination_slide svg path {
-  fill: rgba(var(--color-button-text), 1);
-  ;
+  fill: #000000;
 }
 
 .snazzy_pagination .pagination-list .pagination-link {
