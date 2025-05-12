@@ -1,1 +1,58 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+    "name": "t:sections.footer.name",
+    "type": "footer",
+    "sections": {
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "newsletter_twM9K3": {
+            "type": "newsletter",
+            "settings": {
+              "newsletter_heading": "GET 15% OFF ON YOUR FIRST ORDER"
+            }
+          },
+          "logo_xbKkck": {
+            "type": "logo",
+            "settings": {
+              "logo": "shopify://shop_images/dapper_2ad1c71a-605d-4d74-8257-6e094be4a08a.png",
+              "logo_width": 100
+            }
+          },
+          "nav_links_74xQVc": {
+            "type": "nav_links",
+            "settings": {
+              "menu": "footer",
+              "title": ""
+            }
+          }
+        },
+        "block_order": [
+          "newsletter_twM9K3",
+          "logo_xbKkck",
+          "nav_links_74xQVc"
+        ],
+        "settings": {
+          "color_scheme": "scheme-1",
+          "show_copyright": true,
+          "additional_copyright_text": "ALL RIGHTS RESERVED",
+          "copyright_bottom_text": "<p>This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels</p>",
+          "show_policy": false,
+          "payment_enable": true,
+          "margin_top": 0
+        }
+      }
+    },
+    "order": [
+      "footer"
+    ]
+  }
+  
