@@ -32,8 +32,9 @@
             {%- if section.settings.stores_location != blank -%}
                 <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
             {%- endif -%}
+            <accordion-item>
              {%- for block in section.blocks -%}
-             <div class="accordion-item anim-item">
+             <div class="accordion-item">
               <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 and section.settings.accordion_open %}true{% else %}false{% endif %}"><span class="accordion-title">
                     {%- if block.settings.location_title != blank -%}
                         {{ block.settings.location_title }}
@@ -50,6 +51,7 @@
                 </div>
              </div>
             {% endfor %}
+          </accordion-item>
           </div>
        </div>
     </div>
@@ -57,20 +59,29 @@
 <!-- end: Contact Section -->
 
 <script>
-const items = document.querySelectorAll(".accordion button");
-function toggleAccordion() {
-  const itemToggle = this.getAttribute('aria-expanded');
+const accordionButtons = document.querySelectorAll('.accordion button');
+
+  accordionButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      const content = this.nextElementSibling;
+
+      accordionButtons.forEach(btn => {
+        btn.setAttribute('aria-expanded', 'false');
+        const c = btn.nextElementSibling;
+        c.style.maxHeight = null;
+        c.classList.remove('active');
+      });
+
+      if (!expanded) {
+        this.setAttribute('aria-expanded', 'true');
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.classList.add('active');
+      }
+    });
+  });
   
-  for (i = 0; i < items.length; i++) {
-    items[i].setAttribute('aria-expanded', 'false');
-  }
-  
-  if (itemToggle == 'false') {
-    this.setAttribute('aria-expanded', 'true');
-  }
-}
-items.forEach(item => item.addEventListener('click', toggleAccordion));
-</script>
+</script> 
 
 {% schema %}
 {
