@@ -35,11 +35,11 @@
               {% case block.type %}
               {% when 'title_content' %}
             {%- if block.settings.main_heading != blank -%}
-             <h3 class="anim-item" {{ block.shopify_attributes }}>{{ block.settings.main_heading | upcase }}</h3>
+             <h3 class="" {{ block.shopify_attributes }}>{{ block.settings.main_heading | upcase }}</h3>
             {%- endif -%}
             {% when 'subtile_content' %}
              {%- if block.settings.sub_heading != blank -%}
-             <span {{ block.shopify_attributes }} class="sub-heading flex anim-item">{{ block.settings.sub_heading }}</span>
+             <span {{ block.shopify_attributes }} class="sub-heading flex">{{ block.settings.sub_heading }}</span>
             {%- endif -%}
           {% endcase %}
        {%- endfor -%}

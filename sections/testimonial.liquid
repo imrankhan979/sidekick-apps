@@ -5,7 +5,6 @@
     padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
   }
-
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -15,10 +14,9 @@
   .testimonial-item{
     width: calc((100% / {{section.settings.columns_desktop}}));
   }
-  
 {%- endstyle -%}
 
-<!-- start: Testimonial Section -->
+
 <section class="testimonial-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
       {% if section.settings.testimonial_heading != blank %}
@@ -28,17 +26,15 @@
       {% endif %}
     <div class="testimonial_erap">
       <items-carousel> 
-      <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false, "autoPlay": {{ section.settings.autoplay }} }'>
+      <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false}'>
         {%- for block in section.blocks -%} 
-        <div class="anim-item testimonial-item" {{ block.shopify_attributes }}>
+        <div class="testimonial-item" {{ block.shopify_attributes }}>
 
-          <div class="testimonial-images">
             {% if block.settings.testimonial_image != blank %}
-              {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-            {% else %}
-              {{ 'image' | placeholder_svg_tag }}
+              <div class="testimonial-images">
+                {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+              </div>
             {% endif %}
-          </div>
                     
           <div class="testimonial-content">
             {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
@@ -79,7 +75,7 @@
                   <div class="infos-text">
                       <h6 class="title">
                           <a  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
-                              {{ block.settings.testimonial_product.title | default: "Select a product" }}
+                              {{ block.settings.testimonial_product.title | default: "Product title" }}
                           </a>
                       </h6>
                       <span class="price">
@@ -87,7 +83,7 @@
                       </span>
                   </div>
                   <div class="testimonial-button">
-                      <a class="link-btn" href="{{ block.settings.testimonial_product.url }}">
+                      <a class="link-btn"  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
                           {{- 'icon-plus.svg' | inline_asset_content -}}
                       </a>
                   </div>
@@ -101,7 +97,7 @@
     </div>
   </div>
 </section>
-<!-- end: Testimonial Section -->
+
 
 {% schema %}
 {
@@ -127,12 +123,6 @@
       "step": 1,
       "default": 2,
       "label": "t:sections.collection-list.settings.columns_desktop.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Autoplay",
-      "default": false
     },
     {
       "type": "header",
@@ -167,7 +157,8 @@
         {
           "type": "image_picker",
           "id": "testimonial_image",
-          "label": "Image"
+          "label": "Image",
+          "info": "Size 430 x 575 recommended"
         },
         {
           "type": "text",

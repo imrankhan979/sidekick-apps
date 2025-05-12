@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "slideshow_6WrwVQ": {
       "type": "slideshow",
@@ -261,6 +261,7 @@
       "settings": {
         "color_scheme": "",
         "section_heading": "PRODUCT",
+        "ratio": "auto",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -422,66 +423,48 @@
         "section_color_scheme": "",
         "testimonial_heading": "Customer reviews",
         "columns_desktop": 2,
-        "autoplay": true,
         "padding_top": 60,
         "padding_bottom": 120
       }
     },
-    "image_banner_rWtrhW": {
-      "type": "image-banner",
+    "video_section_4VCawk": {
+      "type": "video-section",
       "blocks": {
-        "heading_CrCYgB": {
-          "type": "heading",
+        "title_content_Fj3mn6": {
+          "type": "title_content",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "h1"
+            "main_heading": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
           }
         },
-        "text_wGXRHh": {
-          "type": "text",
+        "subtile_content_pQ8FAi": {
+          "type": "subtile_content",
           "settings": {
-            "text": "Give customers details about the banner image(s) or content on the template.",
-            "text_style": "body"
-          }
-        },
-        "buttons_TiyabG": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "sub_heading": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
           }
         }
       },
       "block_order": [
-        "heading_CrCYgB",
-        "text_wGXRHh",
-        "buttons_TiyabG"
+        "title_content_Fj3mn6",
+        "subtile_content_pQ8FAi"
       ],
-      "name": "t:sections.image-banner.presets.name",
+      "name": "Video",
       "settings": {
-        "image_overlay_opacity": 0,
-        "image_height": "medium",
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "",
-        "image_behavior": "none",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
+        "section_color_scheme": "",
+        "video_loop": true,
+        "video_autoplay": true,
+        "overlay_opacity": 70,
+        "padding_top": 352,
+        "padding_bottom": 352
       }
     },
     "product_bundle_KaQ8BR": {
       "type": "product-bundle",
       "name": "Product bundle",
       "settings": {
-        "color_scheme": "",
+        "color_scheme": "scheme-2",
         "heading_text": "BUILD YOUR BUNDLE",
-        "collection": "",
+        "collection": "snazzy",
+        "ratio": "auto",
         "bundle_cart_heading": "BUNDLE CART",
         "bundle_cart_subheading": "Add at least 3 items to get 30% OFF",
         "padding_top": 120,
@@ -503,7 +486,7 @@
         "show_tags": true,
         "btn_text": "EXPLORE MORE",
         "btn_url": "",
-        "padding_top": 60,
+        "padding_top": 0,
         "padding_bottom": 120
       }
     },
@@ -549,32 +532,39 @@
         "padding_bottom": 0
       }
     },
-    "gallery_section_CHk9qV": {
+    "gallery_section_GYDCNF": {
       "type": "gallery-section",
       "blocks": {
-        "gallery_A7JypM": {
-          "type": "gallery",
+        "item_jTH6Fr": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_jjbmAg": {
-          "type": "gallery",
+        "item_KHkK9k": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_dwXeA6": {
-          "type": "gallery",
+        "item_MdH9qk": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_YJPaUB": {
-          "type": "gallery",
+        "item_ataexd": {
+          "type": "Item",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        },
+        "item_cMTzJ9": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
@@ -582,15 +572,17 @@
         }
       },
       "block_order": [
-        "gallery_A7JypM",
-        "gallery_jjbmAg",
-        "gallery_dwXeA6",
-        "gallery_YJPaUB"
+        "item_jTH6Fr",
+        "item_KHkK9k",
+        "item_MdH9qk",
+        "item_ataexd",
+        "item_cMTzJ9"
       ],
-      "name": "Gallery Section",
+      "name": "Image gallery",
       "settings": {
         "section_color_scheme": "",
-        "tab_button": "",
+        "columns_desktop": 5,
+        "tab_button": "EXPLORE MORE",
         "button_link": "",
         "overlay_opacity": 70,
         "padding_top": 120,
@@ -607,10 +599,10 @@
     "bulk_hotspot_JjfnHW",
     "colleciton_carousel_KzaLdn",
     "testimonial_xM4Wjg",
-    "image_banner_rWtrhW",
+    "video_section_4VCawk",
     "product_bundle_KaQ8BR",
     "blog_section_XUCBMy",
     "scrolling_text_aNXVL6",
-    "gallery_section_CHk9qV"
+    "gallery_section_GYDCNF"
   ]
 }

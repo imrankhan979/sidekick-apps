@@ -33,7 +33,7 @@
     <div class="slider_community_wrapper">
       <items-carousel>
         <div
-          class="carousel items-carousel-selector anim-wrapper"
+          class="carousel items-carousel-selector "
           data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
         >
           {%- for block in section.blocks -%}
@@ -65,7 +65,7 @@
                 {%- assign aspect_ratio_auto = 100 -%}
               {%- endif -%}
 
-              <div class="slider_community_images anim-item flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
+              <div class="slider_community_images flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
                 {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
                   {%- assign video_url = block.settings.product_video.sources[1].url %}
                   <video
