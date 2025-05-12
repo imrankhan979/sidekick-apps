@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "breadcrumb": {
       "type": "collection-list-banner",
@@ -17,6 +17,14 @@
         "enable_breadcrumb_navigation": true,
         "padding_top": 250,
         "padding_bottom": 200
+      }
+    },
+    "collections_list_page": {
+      "type": "collections-list-page",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     },
     "collection_list_TUb7bt": {
@@ -77,8 +85,5 @@
       }
     }
   },
-  "order": [
-    "breadcrumb",
-    "collection_list_TUb7bt"
-  ]
+  "order": ["breadcrumb", "collections_list_page", "collection_list_TUb7bt"]
 }
