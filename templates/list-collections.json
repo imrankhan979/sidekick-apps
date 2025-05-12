@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "breadcrumb": {
       "type": "collection-list-banner",
@@ -15,7 +15,7 @@
         "color_scheme": "",
         "custom_text": "",
         "enable_breadcrumb_navigation": true,
-        "padding_top": 250,
+        "padding_top": 200,
         "padding_bottom": 200
       }
     },
@@ -23,8 +23,11 @@
       "type": "collections-list-page",
       "settings": {
         "color_scheme": "",
+        "columns_by_page": 4,
+        "sort": "alphabetical",
+        "ratio": "2",
         "padding_top": 120,
-        "padding_bottom": 120
+        "padding_bottom": 60
       }
     },
     "collection_list_TUb7bt": {
@@ -80,10 +83,14 @@
         "color_scheme": "",
         "section_title": "",
         "columns_desktop": 6,
-        "padding_top": 120,
+        "padding_top": 60,
         "padding_bottom": 120
       }
     }
   },
-  "order": ["breadcrumb", "collections_list_page", "collection_list_TUb7bt"]
+  "order": [
+    "breadcrumb",
+    "collections_list_page",
+    "collection_list_TUb7bt"
+  ]
 }

@@ -1,23 +1,37 @@
-<div class="anim-item shop_collection_item" id="collection_item-{{ card_collection.id }}">
+{%- if ratio_h == 'auto' -%}
+  {%- assign aspect_ratio_auto = 1 | divided_by: card_collection.featured_image.aspect_ratio | times: 100 %}
+{%- elsif ratio_h == '1' -%}
+  {%- assign aspect_ratio_auto = '100' -%}
+{%- elsif ratio_h == '2' -%}
+  {%- assign aspect_ratio_auto = '125' -%}
+{%- else -%}
+  {%- assign aspect_ratio_auto = '100' -%}
+{%- endif -%}
+
+{%- liquid
+  if aspect_ratio_auto == 0 or aspect_ratio_auto == null
+    assign aspect_ratio_auto = 100
+  endif
+-%}
+
+<div class="anim-item shop_collection_item reveal" id="collection_item-{{ card_collection.id }}">
   <div class="shop_collection_images">
     <a class="collection_images" href="{{card_collection.url}}">
-      {%- if card_collection.featured_image -%}
-        {%- if image -%}
-          {%- liquid
-            assign height = image.width | divided_by: image.aspect_ratio | round
-            assign sizes = '100vw'
-            assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
-          -%}
-          {{
-            image
-            | image_url: width: 3840
-            | image_tag: height: height, sizes: sizes, widths: widths, loading: 'lazy', rel: 'preload'
-          }}
-        {%- else -%}
-          {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-        {%- endif -%}
+      {%- if card_collection.featured_image != blank -%}
+        {%- liquid
+          assign height = image.width | divided_by: image.aspect_ratio | round
+          assign sizes = '100vw'
+          assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+        -%}
+        {{
+          card_collection.featured_image
+          | image_url: width: 3840
+          | image_tag: height: height, sizes: sizes, widths: widths, loading: 'lazy', rel: 'preload'
+        }}
       {%- else -%}
-        {{ 'collection-apparel-1' | placeholder_svg_tag: 'product-placeholder-svg' }}
+        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+        {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
       {%- endif -%}
     </a>
   </div>
@@ -26,7 +40,7 @@
       <h2>
         <a class="shop_collection_title" href="{{ card_collection.url }}">{{ card_collection.title }}</a>
       </h2>
-      <span class="shop_collection_subTitle">16 Items</span>
+      <span class="shop_collection_subTitle">{{ card_collection.all_products_count }} Items</span>
     </div>
     <div class="shop_collection_button">
       <a class="shop-collection-btn" href="{{ card_collection.url }}">

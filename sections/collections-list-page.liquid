@@ -1,4 +1,4 @@
-{{ 'all-collection.css' | asset_url | stylesheet_tag }}
+{{ 'collections-list-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
     .section-{{ section.id }}-padding {
@@ -35,8 +35,8 @@
 
 <section class="shop-collection-section section-{{ section.id }}-padding">
   <div class="page-width">
-    <div class="shop_collection_wrapper">
-      {%- paginate collections by section.settings.columns_by_page -%}
+    {%- paginate collections by section.settings.columns_by_page -%}
+      <div class="shop_collection_wrapper">
         {% for collection in collections %}
           {% render 'collection-card-list',
             card_collection: collection,
@@ -44,9 +44,9 @@
             sections_id: section.id
           %}
         {% endfor %}
-        {% render 'pagination', paginate: paginate %}
-      {%- endpaginate -%}
-    </div>
+      </div>
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
   </div>
 </section>
 
