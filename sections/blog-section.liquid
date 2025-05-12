@@ -63,7 +63,7 @@
 {%- endif -%}
 </div>
 {%- if section.settings.btn_text != blank -%}
-<div class="blog_view-all-button"><a class="snazzy-icon-btn" href="{{ section.settings.btn_url }}">{{ section.settings.btn_text }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a></div>
+<div class="blog_view-all-button"><a class="snazzy-icon-btn" {% if section.settings.btn_url == blank %} role="link" aria-disabled="true" {% else %} href="{{ section.settings.btn_url }}" {% endif %}>{{ section.settings.btn_text }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a></div>
 {% endif %}
   </div>
    </div>

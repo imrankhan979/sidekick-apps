@@ -12,6 +12,11 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+  @media screen and (min-width: 768px){
+    .gallery-section .galley_item {
+        width: calc(100% / {{ section.settings.columns_desktop }});
+    }
+  }
   .id-{{ section.id }} .galley_item .gallery_images::before{
     opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
   }
@@ -25,7 +30,7 @@
           data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'
         >
           {%- for block in section.blocks -%}
-            <div class="galley_item">
+            <div class="galley_item" {{ block.shopify_attributes }}>
               <div class="gallery_images">
                 {%- if block.settings.gallery_image != blank -%}
                   {{
@@ -39,7 +44,7 @@
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
                 <div class="gallery-icons">
-                  <a href="{{ block.settings.icon_link }}">
+                  <a {% if block.settings.icon_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.icon_link}}" {% endif %}>
                     {{ block.settings.button_icon_svg }}
                   </a>
                 </div>
@@ -74,7 +79,7 @@
 
 {% schema %}
 {
-  "name": "Gallery Section",
+  "name": "Image gallery",
   "settings": [
     {
       "type": "color_scheme",
@@ -82,10 +87,20 @@
       "label": "Color Scheme",
       "default": "scheme-1"
     },
+        {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
     {
       "type": "text",
       "id": "tab_button",
-      "label": "Button Text"
+      "label": "Button Text",
+      "default": "EXPLORE MORE"
     },
     {
       "type": "url",
@@ -98,7 +113,7 @@
       "min": 0,
       "max": 100,
       "step": 1,
-      "label": "Opacity",
+      "label": "Overlay opacity",
       "default": 70,
       "unit": "%"
     },
@@ -110,7 +125,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding Top",
@@ -120,7 +135,7 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding Bottom",
@@ -129,13 +144,13 @@
   ],
   "blocks": [
     {
-      "type": "gallery",
-      "name": "Gallery Section",
+      "type": "Item",
+      "name": "Image",
       "settings": [
         {
           "type": "image_picker",
           "id": "gallery_image",
-          "label": "Gallery Image"
+          "label": "Image"
         },
         {
           "type": "textarea",
@@ -153,19 +168,22 @@
   ],
   "presets": [
     {
-      "name": "Gallery Section",
+      "name": "Image gallery",
       "blocks": [
         {
-          "type": "gallery"
+          "type": "Item"
         },
         {
-          "type": "gallery"
+          "type": "Item"
         },
         {
-          "type": "gallery"
+          "type": "Item"
         },
         {
-          "type": "gallery"
+          "type": "Item"
+        },
+        {
+          "type": "Item"
         }
       ]
     }
