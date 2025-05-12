@@ -102,7 +102,7 @@
   },
   "onboarding": {
     "product_title": "Example product title",
-    "collection_title": "Collection"   
+    "collection_title": "Collection"
   },
   "products": {
     "product": {
@@ -327,7 +327,8 @@
       "view_all_label": "View all products in the {{ collection_name }} collection"
     },
     "collection_list": {
-      "view_all": "View all"
+      "view_all": "View all",
+      "collections_text": "Collections"
     },
     "collection_template": {
       "empty": "No products found",
