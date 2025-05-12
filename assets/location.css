@@ -129,7 +129,7 @@ START: Contact maps CSS
   
   .contact_map_wrapper .accordion button[aria-expanded='true']+.accordion_content {
     opacity: 1;
-    max-height: 500px;
+    max-height: 200px;
     transition: all 200ms linear;
     will-change: opacity, max-height;
     padding-bottom: 18px;

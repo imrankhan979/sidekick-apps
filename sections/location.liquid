@@ -58,31 +58,6 @@
  </section>
 <!-- end: Contact Section -->
 
-<script>
-const accordionButtons = document.querySelectorAll('.accordion button');
-
-  accordionButtons.forEach(button => {
-    button.addEventListener('click', function () {
-      const expanded = this.getAttribute('aria-expanded') === 'true';
-      const content = this.nextElementSibling;
-
-      accordionButtons.forEach(btn => {
-        btn.setAttribute('aria-expanded', 'false');
-        const c = btn.nextElementSibling;
-        c.style.maxHeight = null;
-        c.classList.remove('active');
-      });
-
-      if (!expanded) {
-        this.setAttribute('aria-expanded', 'true');
-        content.style.maxHeight = content.scrollHeight + 'px';
-        content.classList.add('active');
-      }
-    });
-  });
-  
-</script> 
-
 {% schema %}
 {
   "name": "Location section",
