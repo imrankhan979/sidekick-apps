@@ -28,9 +28,9 @@
       </div> 
     {% endif %}
     <div class="custom-scroller-wrapper">
-      <div class="collection_wrapper custom-scroller anim-wrapper"> 
+      <div class="collection_wrapper custom-scroller"> 
        {%- for block in section.blocks -%}
-         <div class="collection_item anim-item flex center" {{ block.shopify_attributes }}> 
+         <div class="collection_item flex center" {{ block.shopify_attributes }}> 
          <a {% if block.settings.collection == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection.url }}" {% endif %} class="item_inner">
            {%- if block.settings.collection_img -%}
              {{ block.settings.collection_img | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}

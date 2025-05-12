@@ -1,5 +1,10 @@
 {{ 'image-hotspot.css' | asset_url | stylesheet_tag }}
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
+{% comment %} {{ 'quick-add.css' | asset_url | stylesheet_tag }} {% endcomment %}
+
+{% comment %} <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script> {% endcomment %}
+
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -39,10 +44,10 @@
           </div>
           <div class="bulk_hotspot_box bulk_hotspot_slider">
              <div class="bulk_hotspot_images">
-                {% if section.settings.hotsopt_image != blank %}
-                    {{ section.settings.hotsopt_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+                {% if section.settings.hotspot_image != blank %}
+                    {{ section.settings.hotspot_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                     {% else %}
-                            {{ 'detailed-apparel-1'  | placeholder_svg_tag: 'placeholder-svg' }}
+                            {{ 'hero-apparel-1'  | placeholder_svg_tag: 'placeholder-svg' }}
                 {% endif %}
                 <!-- Hotspots --> 
                 {% for block in section.blocks %}
@@ -71,7 +76,7 @@
              
             {% if section.blocks.size > 0 %}
              <items-carousel>
-                <div class="items-carousel-selector hotpot_slider_wrapper"
+                <div class="carousel items-carousel-selector hotpot_slider_wrapper"
                 data-flickity='{"contain": true, "prevNextButtons": {% if section.blocks.size > 1 %}true {% else %}false{% endif %}, "pageDots": false }'>
                 {% for block in section.blocks %}
                     {% if block.type == 'product' %}
@@ -141,7 +146,7 @@
     },
     {
         "type": "image_picker",
-         "id": "hotsopt_image",
+         "id": "hotspot_image",
          "label": "Hotspot image"
     },
     {
