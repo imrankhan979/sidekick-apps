@@ -1864,27 +1864,35 @@ class CustomAccordion extends HTMLElement {
   }
 
   connectedCallback() {
-    const accordionButtons = this.querySelectorAll('.accordion button');
+    const accordionButtons = document.querySelectorAll('.accordion button');
 
-    accordionButtons.forEach(button => {
-      button.addEventListener('click', function () {
-        const expanded = this.getAttribute('aria-expanded') === 'true';
-        const content = this.nextElementSibling;
+if (accordionButtons.length > 0) {
+  const firstButton = accordionButtons[0];
+  const firstContent = firstButton.nextElementSibling;
+  firstButton.setAttribute('aria-expanded', 'true');
+  firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+}
 
-        accordionButtons.forEach(btn => {
-          btn.setAttribute('aria-expanded', 'false');
-          const c = btn.nextElementSibling;
-          c.style.maxHeight = null;
-          c.classList.remove('active');
-        });
+accordionButtons.forEach(button => {
+  button.addEventListener('click', function () {
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    const content = this.nextElementSibling;
 
-        if (!expanded) {
-          this.setAttribute('aria-expanded', 'true');
-          content.style.maxHeight = content.scrollHeight + 'px';
-          content.classList.add('active');
-        }
-      });
+    accordionButtons.forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+      const c = btn.nextElementSibling;
+      c.style.maxHeight = null;
+      c.classList.remove('active');
     });
+
+    if (!expanded) {
+      this.setAttribute('aria-expanded', 'true');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.classList.add('active');
+    }
+  });
+});
+
   }
 }
 

@@ -35,7 +35,7 @@
             <accordion-item>
              {%- for block in section.blocks -%}
              <div class="accordion-item">
-              <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 and section.settings.accordion_open %}true{% else %}false{% endif %}"><span class="accordion-title">
+              <button id="accordion-button-{{ forloop.index }}" aria-expanded="false"><span class="accordion-title">
                     {%- if block.settings.location_title != blank -%}
                         {{ block.settings.location_title }}
                     {%- endif -%}
@@ -79,12 +79,6 @@
       "id": "section_color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
-    },
-    {
-      "type": "checkbox",
-      "id": "accordion_open",
-      "label": "Open first accordion",
-      "default": true
     },
     {
       "type": "header",

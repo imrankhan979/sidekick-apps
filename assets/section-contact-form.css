@@ -14,7 +14,6 @@ START: Contact CSS
   display: grid;
   column-gap: 25px;
   justify-content: space-between;
-  grid-template-columns: 1fr 2fr;
 }
 
 .contact_main_wrapper .contact_left_content .contact_left_title {
@@ -156,9 +155,11 @@ START: Contact CSS
 .contact_form_box_one form .form_item .form-input {
   max-width: 48%;
   width: 50%;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
-
+.contact_form_box_one form .form_item .form-input .form-status-list {
+  margin-bottom: 0;
+}
 .contact_form_box_one form .form_item .form-input label {
   display: inline-block;
   color: rgba(var(--color-highlight-text));
