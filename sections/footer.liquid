@@ -2,17 +2,19 @@
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .footer {
-    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+    .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
   }
+
   @media screen and (min-width: 750px) {
-    .footer {
-      margin-top: {{ section.settings.margin_top }}px;
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
 
-<footer class="footer rounded-top-corner color-{{ section.settings.color_scheme }}">
+<footer class="footer rounded-top-corner color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="footer-inner">
     <div class="footer-top-content page-width">
 
@@ -35,10 +37,7 @@
               {%- when '@app' -%} 
                 {% render block %}
               {%- when 'newsletter' -%}
-                <div class="footer-newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                  {% if settings.animations_reveal_on_scroll %}
-                    data-cascade
-                  {% endif %} {{ block.shopify_attributes }}>
+                <div class="footer-newsletter" {{ block.shopify_attributes }}>
                     <div class="newsletter">
                       {%- if block.settings.newsletter_heading != blank -%}
                         <h6 class="newsletter-heading uppercase">{{ block.settings.newsletter_heading }}</h6>
@@ -106,10 +105,8 @@
                     </div>
                 </div>
               {%- when 'logo' -%}
-                <div class="footer-logo {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                  {% if settings.animations_reveal_on_scroll %}
-                    data-cascade
-                  {% endif %} {{ block.shopify_attributes }}>
+                <div class="footer-logo"
+                  {{ block.shopify_attributes }}>
                   <a href="{{ routes.root_url }}">
                     <div class="footer-heading-logo-wrapper flex" style="max-width: {{block.settings.logo_width}}%;">
                     {% if block.settings.logo != blank %}
@@ -134,12 +131,9 @@
                 {%- when '@app' -%}
                   {% render block %}
                     {%- when 'nav_links' -%}
-                      <div class="footer-navigation-links {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      <div class="footer-navigation-links"
                         {{ block.shopify_attributes }}
-                        {% if settings.animations_reveal_on_scroll %}
-                          data-cascade
-                          style="--animation-order: {{ forloop.index }};"
-                        {% endif %}>
+                        >
                         {% assign menu_title = block.settings.menu.title %}
                         {% assign display_title = block.settings.title | default: menu_title %}
                         <responsive-dropdown-menu>
@@ -159,10 +153,7 @@
             {%- endif -%}
             {%- if section.settings.show_copyright == true or section.settings.show_policy == true -%}
             
-            <div class="footer-copyright {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                  {% if settings.animations_reveal_on_scroll %}
-                    data-cascade
-                  {% endif %}>
+            <div class="footer-copyright">
               <div class="footer-copyright-inner">
                 {%- if section.settings.show_copyright -%}
                   <div class="copyright-content uppercase flex wrap">
@@ -194,8 +185,8 @@
         {%- endif -%}
         </div>
     </div>
-    <div class="footer-bottom-content page-width {% if section.settings.payment_enable != true %}md-none{% endif %}">
-        <div class="footer-bottom-content-inner flex space-between wrap {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"{% if settings.animations_reveal_on_scroll %}data-cascade{% endif %}>
+    <div class="footer-bottom-content {% if section.settings.payment_enable != true %}md-none{% endif %}">
+        <div class="footer-bottom-content-inner flex space-between wrap">
           {%- if section.settings.payment_enable -%}
             <div class="footer-payment">
               <ul class="list list-payment flex align-items-center" role="list">
@@ -208,7 +199,7 @@
             </div>
           {%- endif -%}
 
-          <button class="back-to-top uppercase flex align-items-center">
+          <button class="back-to-top uppercase flex align-items-center" id="back-to-top">
             BACK TO TOP <span class="flex center"> {{- 'icon-caret.svg' | inline_asset_content -}} </span>
           </button>
         </div>
@@ -327,19 +318,29 @@
       "default": true,
       "label": "t:sections.footer.settings.payment_enable.label"
     },
-    {
+        {
       "type": "header",
-      "content": "t:sections.all.spacing"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
-      "id": "margin_top",
+      "id": "padding_top",
       "min": 0,
       "max": 120,
-      "step": 5,
+      "step": 4,
       "unit": "px",
-      "label": "t:sections.footer.settings.margin_top.label",
-      "default": 0
+      "label": "Padding Top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 36
     }
   ],
   "presets": [

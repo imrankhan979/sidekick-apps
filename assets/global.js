@@ -1859,3 +1859,14 @@ if (!customElements.get('renders-sub-popup')) {
 }
 
 
+// Back to top
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+  backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+}

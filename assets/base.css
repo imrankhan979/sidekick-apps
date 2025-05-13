@@ -319,7 +319,11 @@ img {
 .overflow-y-auto {
   overflow-y: auto;
 }
-
+@media (min-width: 992px) {
+  .for-mobile{
+    display: none;
+  } 
+}
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;

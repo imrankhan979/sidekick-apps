@@ -27,7 +27,7 @@
           <h1>{{ section.settings.section_title }}</h1>
       </div> 
     {% endif %}
-    <div class="custom-scroller-wrapper">
+    <div class="custom-scroller-wrapper carousel-wrapper">
       <div class="collection_wrapper custom-scroller"> 
        {%- for block in section.blocks -%}
          <div class="collection_item flex center" {{ block.shopify_attributes }}> 
@@ -73,7 +73,6 @@
              </span>
            </span>
          </a>
-         
          </div>
        {%- endfor -%}    
   

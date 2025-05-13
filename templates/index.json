@@ -431,7 +431,7 @@
       "type": "video-section",
       "blocks": {
         "title_content_Fj3mn6": {
-          "type": "title_content",
+          "type": "title_content", 
           "settings": {
             "main_heading": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
           }
