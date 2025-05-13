@@ -14,20 +14,22 @@
   }
 {%- endstyle -%}
 
-
 <section class="marquee-section color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
     <div class="marquee_slider">
-      <div class="marquee_wrapper marquee_box_revers" style="--scroll-duration: {{ section.settings.scroll_duration }}s">
+      <div
+        class="marquee_wrapper marquee_box_revers"
+        style="--scroll-duration: {{ section.settings.scroll_duration }}s"
+      >
         {% assign block_count = section.blocks.size %}
 
         {% if block_count < 3 %}
           {% assign repeat_count = 10 %}
         {% else %}
-          {% assign repeat_count = 1 %} 
+          {% assign repeat_count = 1 %}
         {% endif %}
 
-        {% for i in (1..repeat_count) %} 
+        {% for i in (1..repeat_count) %}
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
               <div class="marquee_item" {{ block.shopify_attributes }}>
@@ -39,7 +41,7 @@
           {% endfor %}
         {% endfor %}
 
-        {% for i in (1..repeat_count) %} 
+        {% for i in (1..repeat_count) %}
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
               <div class="marquee_item" {{ block.shopify_attributes }}>
@@ -52,16 +54,19 @@
         {% endfor %}
       </div>
 
-      <div class="marquee_wrapper marquee_box_revers" style="--scroll-duration: {{ section.settings.scroll_duration }}s">
+      <div
+        class="marquee_wrapper marquee_box_revers"
+        style="--scroll-duration: {{ section.settings.scroll_duration }}s"
+      >
         {% assign block_count = section.blocks.size %}
 
         {% if block_count < 3 %}
           {% assign repeat_count = 5 %}
         {% else %}
-          {% assign repeat_count = 1 %} 
+          {% assign repeat_count = 1 %}
         {% endif %}
 
-        {% for i in (1..repeat_count) %} 
+        {% for i in (1..repeat_count) %}
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
               <div class="marquee_item" {{ block.shopify_attributes }}>
@@ -89,83 +94,90 @@
 
     <div class="marquee_sm_slider">
       <items-carousel>
-          <div class="scroll_text_carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'>
-            {% for block in section.blocks %}
-              {% if block.type == 'marquee_item' %}
-                <div class="marquee_item" {{ block.shopify_attributes }}>
-                  <div class="marquee_title">
-                    <h3 class="title">{{ block.settings.title }}</h3>
-                  </div>
+        <div
+          class="scroll_text_carousel items-carousel-selector"
+          data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'
+        >
+          {% for block in section.blocks %}
+            {% if block.type == 'marquee_item' %}
+              <div class="marquee_item" {{ block.shopify_attributes }}>
+                <div class="marquee_title">
+                  <h3 class="title">{{ block.settings.title }}</h3>
                 </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
       </items-carousel>
     </div>
   </div>
 </section>
 
 {% schema %}
-  {
-    "name": "Scrolling text",
-    "settings": [
+{
+  "name": "Scrolling text",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "number",
+      "id": "scroll_duration",
+      "label": "Scroll duration (seconds)",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "marquee_item",
+      "name": "Marquee item",
+      "settings": [
         {
-            "type": "color_scheme",
-            "id": "color_scheme",
-            "label": "t:sections.all.colors.label",
-            "info": "t:sections.all.colors.has_cards_info",
-            "default": "scheme-1"
-        },
-        {
-            "type": "number",
-            "id": "scroll_duration",
-            "label": "Scroll duration (seconds)",
-            "default": 60
-        },
-        {
-            "type": "range",
-            "id": "padding_top",
-            "min": 0,
-            "max": 200,
-            "step": 4,
-            "unit": "px",
-            "label": "t:sections.all.padding.padding_top",
-            "default": 0
-        },
-        {
-            "type": "range",
-            "id": "padding_bottom",
-            "min": 0,
-            "max": 200,
-            "step": 4,
-            "unit": "px",
-            "label": "t:sections.all.padding.padding_bottom",
-            "default": 0
+          "type": "text",
+          "id": "title",
+          "label": "Text"
         }
-    ],
-    "blocks": [
-      {
-        "type": "marquee_item",
-        "name": "Marquee Item",
-        "settings": [
-         {
-            "type": "text",
-            "id": "title",
-            "label": "Text"
-          }
-        ]
-      }
-    ],
-    "presets": [
-        {
-            "name": "Scrolling text",
-            "blocks": [
-                {"type": "marquee_item", "settings": {"title": "Worldwide Delivery"}},
-                {"type": "marquee_item", "settings": {"title": "Flexible Payment"}},
-                {"type": "marquee_item", "settings": {"title": "30-Day Free Return"}},
-                {"type": "marquee_item", "settings": {"title": "Quick Support 24/7"}}
-            ]
-        }
-    ]
-  }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling text",
+      "blocks": [
+        { "type": "marquee_item", "settings": { "title": "Worldwide Delivery" } },
+        { "type": "marquee_item", "settings": { "title": "Flexible Payment" } },
+        { "type": "marquee_item", "settings": { "title": "30-Day Free Return" } },
+        { "type": "marquee_item", "settings": { "title": "Quick Support 24/7" } }
+      ]
+    }
+  ]
+}
 {% endschema %}

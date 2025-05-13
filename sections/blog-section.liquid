@@ -80,7 +80,7 @@
 </div>
 {% schema %}
 {
-  "name": "Blog Post",
+  "name": "Blog posts",
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
@@ -102,7 +102,7 @@
     {
       "type": "blog",
       "id": "blog",
-      "label": "Select Blog"
+      "label": "Blog"
     },
     {
       "type": "range",
@@ -111,7 +111,7 @@
       "max": 6,
       "step": 1,
       "default": 3,
-      "label": "Post Limit"
+      "label": "Number of blog posts to show"
     },
     {
       "type": "range",
@@ -120,31 +120,31 @@
       "max": 4,
       "step": 1,
       "default": 3,
-      "label": "Desktop Columns"
+      "label": "Desktop columns"
     },
     {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
-      "label": "Show Featured Image"
+      "label": "Show featured image"
     },
     {
       "type": "checkbox",
       "id": "show_date",
       "default": true,
-      "label": "Show Date"
+      "label": "Show date"
     },
     {
       "type": "checkbox",
       "id": "show_author",
       "default": false,
-      "label": "Show Author"
+      "label": "Show author"
     },
     {
       "type": "checkbox",
       "id": "show_tags",
       "default": true,
-      "label": "Show Tags"
+      "label": "Show tags"
     },
     {
       "type": "text",
@@ -160,7 +160,7 @@
     },
     {
       "type": "header",
-      "content": "Padding Section"
+      "content": "Section padding"
     },
     {
       "type": "range",
@@ -169,8 +169,8 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Top Padding",
-      "default": 100
+      "label": "Top",
+      "default": 120
     },
     {
       "type": "range",
@@ -179,13 +179,13 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
-      "default": 100
+      "label": "Bottom",
+      "default": 120
     }
   ],
   "presets": [
     {
-      "name": "Blog Post"
+      "name": "Blog posts"
     }
   ]
 }
