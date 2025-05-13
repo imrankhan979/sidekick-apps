@@ -1,87 +1,88 @@
 {{ 'location.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-  }
- 
-  @media screen and (min-width: 800px) { 
-    .tab_main_wrapper {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
-}
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
     }
-  }
 
+    @media screen and (min-width: 800px) {
+      .tab_main_wrapper {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
+  }
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
 {%- endstyle -%}
 
-<!-- start: Contact Section -->
-  <section class="contact-tabs-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-    <div class="page-width">
-       <div class="contact_map_wrapper">
-        {%- if section.settings.location_iframe != blank -%}
-            {{ section.settings.location_iframe }}
+<section class="contact-tabs-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="contact_map_wrapper">
+      {%- if section.settings.location_iframe != blank -%}
+        {{ section.settings.location_iframe }}
+      {%- endif -%}
+      <div class="accordion contact_tabs">
+        {%- if section.settings.stores_location != blank -%}
+          <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
         {%- endif -%}
-          <div class="accordion contact_tabs">
-            {%- if section.settings.stores_location != blank -%}
-                <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
-            {%- endif -%}
-             {%- for block in section.blocks -%}
-             <div class="accordion-item anim-item">
-              <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 and section.settings.accordion_open %}true{% else %}false{% endif %}"><span class="accordion-title">
-                    {%- if block.settings.location_title != blank -%}
-                        {{ block.settings.location_title }}
-                    {%- endif -%}
-                      </span>
-                   <span class="icon" aria-hidden="true"></span></button>
-                <div class="accordion_content">
-                   {%- if block.settings.location_description != blank -%}
-                    <span class="faq_location">{{ block.settings.location_description }}</span>
-                   {%- endif -%}
-                   {%- if block.settings.store_timing != blank -%}
-                    <span class="faq_timer">{{ block.settings.store_timing }}</span>
-                   {%- endif -%}
-                </div>
-             </div>
-            {% endfor %}
+        {%- for block in section.blocks -%}
+          <div class="accordion-item anim-item">
+            <button
+              id="accordion-button-{{ forloop.index }}"
+              aria-expanded="{% if forloop.index == 1 and section.settings.accordion_open %}true{% else %}false{% endif %}"
+            >
+              <span class="accordion-title">
+                {%- if block.settings.location_title != blank -%}
+                  {{ block.settings.location_title }}
+                {%- endif -%}
+              </span>
+              <span class="icon" aria-hidden="true"></span>
+            </button>
+            <div class="accordion_content">
+              {%- if block.settings.location_description != blank -%}
+                <span class="faq_location">{{ block.settings.location_description }}</span>
+              {%- endif -%}
+              {%- if block.settings.store_timing != blank -%}
+                <span class="faq_timer">{{ block.settings.store_timing }}</span>
+              {%- endif -%}
+            </div>
           </div>
-       </div>
+        {% endfor %}
+      </div>
     </div>
- </section>
-<!-- end: Contact Section -->
-
+  </div>
+</section>
 <script>
-const items = document.querySelectorAll(".accordion button");
-function toggleAccordion() {
-  const itemToggle = this.getAttribute('aria-expanded');
-  
-  for (i = 0; i < items.length; i++) {
-    items[i].setAttribute('aria-expanded', 'false');
+  const items = document.querySelectorAll('.accordion button');
+  function toggleAccordion() {
+    const itemToggle = this.getAttribute('aria-expanded');
+
+    for (i = 0; i < items.length; i++) {
+      items[i].setAttribute('aria-expanded', 'false');
+    }
+
+    if (itemToggle == 'false') {
+      this.setAttribute('aria-expanded', 'true');
+    }
   }
-  
-  if (itemToggle == 'false') {
-    this.setAttribute('aria-expanded', 'true');
-  }
-}
-items.forEach(item => item.addEventListener('click', toggleAccordion));
+  items.forEach((item) => item.addEventListener('click', toggleAccordion));
 </script>
 
 {% schema %}
 {
-  "name": "Location section",
+  "name": "Map",
   "settings": [
     {
       "type": "textarea",
       "id": "location_iframe",
       "default": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d848300.8253314648!2d150.27255546310082!3d-33.84648855820782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sbd!4v1745469404037!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
       "label": "Map iframe"
-    },    
+    },
     {
       "type": "text",
       "id": "stores_location",
@@ -112,7 +113,7 @@ items.forEach(item => item.addEventListener('click', toggleAccordion));
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 352
+      "default": 0
     },
     {
       "type": "range",
@@ -122,38 +123,38 @@ items.forEach(item => item.addEventListener('click', toggleAccordion));
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 352
+      "default": 120
     }
   ],
   "blocks": [
     {
       "type": "location",
-      "name": "Location section",
+      "name": "Location",
       "settings": [
         {
           "type": "text",
           "id": "location_title",
-          "label": "Location title",
+          "label": "Title",
           "default": "Alabama"
         },
         {
           "type": "richtext",
           "id": "location_description",
-          "label": "Location description",
+          "label": "Description",
           "default": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>"
         },
         {
           "type": "text",
           "id": "store_timing",
-          "label": "Store timing",
+          "label": "Business hours",
           "default": "Mon - Sun: 9.00AM - 7.00PM"
         }
-      ] 
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Location section",
+      "name": "Map",
       "blocks": [
         {
           "type": "location"
