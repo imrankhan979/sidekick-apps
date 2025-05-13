@@ -129,7 +129,7 @@
 </script>
 {% schema %}
 {
-  "name": "Tab Section",
+  "name": "Image with tabbed content",
   "settings": [
     {
       "type": "text",
@@ -160,8 +160,8 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
-      "default": 352
+      "label": "Top",
+      "default": 120
     },
     {
       "type": "range",
@@ -170,24 +170,24 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
-      "default": 352
+      "label": "Bottom",
+      "default": 120
     }
   ],
   "blocks": [
     {
       "type": "tab",
-      "name": "Tab Section",
+      "name": "Tab",
       "settings": [
         {
           "type": "image_picker",
           "id": "tab_image",
-          "label": "Tab Image"
+          "label": "Image"
         },
         {
           "type": "text",
           "id": "tab_button",
-          "label": "Button Text"
+          "label": "Button text"
         },
         {
           "type": "text",
@@ -204,7 +204,7 @@
   ],
   "presets": [
     {
-      "name": "Tab Section",
+      "name": "Image with tabbed content",
       "blocks": [
         {
           "type": "tab"

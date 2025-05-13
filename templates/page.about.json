@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "bread": {
       "type": "s-page-breadcrumb",
@@ -93,13 +93,13 @@
         "section_color_scheme": "",
         "main_heading": "REDEFINE YOUR URBAN STYLE",
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 0
       }
     },
-    "tab_section_7GtYCq": {
+    "tab_section_8gkQEf": {
       "type": "tab-section",
       "blocks": {
-        "tab_Br66p7": {
+        "tab_YCkTVU": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -107,7 +107,7 @@
             "tab_description": ""
           }
         },
-        "tab_x9TdNN": {
+        "tab_TYWrCi": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -115,7 +115,7 @@
             "tab_description": ""
           }
         },
-        "tab_xYHXfg": {
+        "tab_VFChjC": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -123,7 +123,7 @@
             "tab_description": ""
           }
         },
-        "tab_MPAnHk": {
+        "tab_yztLE6": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -133,12 +133,12 @@
         }
       },
       "block_order": [
-        "tab_Br66p7",
-        "tab_x9TdNN",
-        "tab_xYHXfg",
-        "tab_MPAnHk"
+        "tab_YCkTVU",
+        "tab_TYWrCi",
+        "tab_VFChjC",
+        "tab_yztLE6"
       ],
-      "name": "Tab Section",
+      "name": "Image with tabbed content",
       "settings": {
         "section_title": "Section Title",
         "section_description": "Section Description",
@@ -189,32 +189,39 @@
         "padding_bottom": 0
       }
     },
-    "gallery_section_Q6afHe": {
+    "gallery_section_jnyrnQ": {
       "type": "gallery-section",
       "blocks": {
-        "gallery_bLHCqj": {
-          "type": "gallery",
+        "item_WUww49": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_BaKDAK": {
-          "type": "gallery",
+        "item_ifXzVC": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_R36XQj": {
-          "type": "gallery",
+        "item_6Mgm3i": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_FmV6Jr": {
-          "type": "gallery",
+        "item_akmDMR": {
+          "type": "Item",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        },
+        "item_neFwGU": {
+          "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
@@ -222,15 +229,17 @@
         }
       },
       "block_order": [
-        "gallery_bLHCqj",
-        "gallery_BaKDAK",
-        "gallery_R36XQj",
-        "gallery_FmV6Jr"
+        "item_WUww49",
+        "item_ifXzVC",
+        "item_6Mgm3i",
+        "item_akmDMR",
+        "item_neFwGU"
       ],
-      "name": "Gallery Section",
+      "name": "Image gallery",
       "settings": {
         "section_color_scheme": "",
-        "tab_button": "@DAPPER ON INSTAGRAM",
+        "columns_desktop": 5,
+        "tab_button": "EXPLORE MORE",
         "button_link": "",
         "overlay_opacity": 70,
         "padding_top": 120,
@@ -242,8 +251,8 @@
     "bread",
     "icon_with_text_mrYi8P",
     "image_with_text_zj9Uzp",
-    "tab_section_7GtYCq",
+    "tab_section_8gkQEf",
     "scrolling_text_6NYCg7",
-    "gallery_section_Q6afHe"
+    "gallery_section_jnyrnQ"
   ]
 }
