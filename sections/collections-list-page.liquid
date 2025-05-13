@@ -27,7 +27,6 @@
     when 'date', 'date_reversed'
       assign collections = collections | sort: 'published_at'
   endcase
-
   if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
     assign collections = collections | reverse
   endif
@@ -38,11 +37,13 @@
     {%- paginate collections by section.settings.columns_by_page -%}
       <div class="shop_collection_wrapper">
         {% for collection in collections %}
-          {% render 'collection-card-list',
-            card_collection: collection,
-            ratio_h: section.settings.ratio,
-            sections_id: section.id
-          %}
+          <div class="collection-card-wrapper" style="background-color: {{ collection.metafields.custom.additional_color }}">
+            {% render 'collection-card-list',
+              card_collection: collection,
+              ratio_h: section.settings.ratio,
+              sections_id: section.id
+            %}
+          </div>
         {% endfor %}
       </div>
       {% render 'pagination', paginate: paginate %}
@@ -69,6 +70,15 @@
       "step": 1,
       "label": "Collections per page",
       "default": 4
+    },
+        {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.collection-list.settings.columns_desktop.label"
     },
     {
       "type": "select",

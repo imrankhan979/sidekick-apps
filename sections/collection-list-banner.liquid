@@ -45,7 +45,8 @@
 </section>
 {% schema %}
 {
-  "name": "Breadcrumb banner",
+  "name": "Collection list banner",
+  "class": "collection-list-banner",
   "tag": "section",
   "settings": [
     {
@@ -66,7 +67,7 @@
       "default": true,
       "label": "Enable breadcrumb navigation"
     },
-    {
+    { 
       "type": "header",
       "content": "Section padding"
     },
@@ -89,6 +90,11 @@
       "unit": "px",
       "label": "Bottom padding",
       "default": 250
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection list banner"
     }
   ]
 }
