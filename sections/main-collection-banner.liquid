@@ -1,7 +1,6 @@
 {{ 'page-header.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
@@ -15,35 +14,36 @@
   }
 {%- endstyle -%}
 
-
 <section class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <div class="breadcrumb-content-area page-width">
-      <div class="breadcrumb-content-area-inner">
-        <div class="breadcrumb-link">
-          <ul>
-              <li><a href="{{ routes.root_url }}">Home</a></li>
-              <li><a href="{{ shop.url }}/collections/all">Shop</a></li>
-              <li>{{ collection.title }}</li>
-          </ul>
-        </div>
-        <div class="breadcrumb-heading">
+  <div class="breadcrumb-content-area page-width">
+    <div class="breadcrumb-content-area-inner">
+      <div class="breadcrumb-link">
+        <ul>
+          <li><a href="{{ routes.root_url }}">Home</a></li>
+          <li><a href="{{ shop.url }}/collections/all">Shop</a></li>
+          <li>{{ collection.title }}</li>
+        </ul>
+      </div>
+      <div class="breadcrumb-heading">
         {% if section.settings.section_heading != blank %}
           <h1 class="breadcrumb-title">{{ section.settings.section_heading }}</h1>
-          {% else %}
+        {% else %}
           <h1 class="breadcrumb-title">{{ collection.title }}</h1>
         {% endif %}
-        </div>
       </div>
     </div>
-    {% if section.settings.header_bg %}
-      <div class="page-header-bg">
-        <img src="{{ section.settings.header_bg | image_url: width: 533 }}" loading="lazy" width="{{ section.settings.header_bg.width }}" height="{{ section.settings.header_bg.height }}" >
-      </div>
-    {% endif %}
+  </div>
+  {% if section.settings.header_bg %}
+    <div class="page-header-bg">
+      <img
+        src="{{ section.settings.header_bg | image_url: width: 533 }}"
+        loading="lazy"
+        width="{{ section.settings.header_bg.width }}"
+        height="{{ section.settings.header_bg.height }}"
+      >
+    </div>
+  {% endif %}
 </section>
-
-
-
 
 {% schema %}
 {
@@ -53,7 +53,7 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {
@@ -65,7 +65,7 @@
       "type": "text",
       "id": "section_heading",
       "label": "Page heading",
-      "info": "Leave it blank to show the default heading." 
+      "info": "Leave it blank to show the default heading."
     },
     {
       "type": "header",
@@ -91,9 +91,6 @@
       "label": "Padding Bottom",
       "default": 200
     },
-
-
-
 
     {
       "type": "paragraph",

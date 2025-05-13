@@ -24,13 +24,12 @@
   }
 {%- endstyle -%}
 
-
 <section class="contact-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="contact_main_wrapper {% if section.blocks.size > 0 %} grid-colums {% endif %}">
+    <div class="contact_main_wrapper" style=" {% if section.blocks.size > 0 %} grid-template-columns: 1fr 2fr; {% else %} grid-template-columns: 1fr; {% endif %}">
 
      {% if section.blocks.size != 0 %}
-      <div class="contact_left_content">
+      <div class="contact_left_content anim-item">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'contact_address' %}
@@ -109,68 +108,68 @@
               </h2>
             </div>
           {%- endif -%}
-          
+
           <div class="form_item">
             <div class="form-input ">
               <label for="name">Name <span>*</span></label>
               <input
-              autocomplete="name"
-              type="text"
-              id="ContactForm-name"
-              name="contact[{{ 'templates.contact.form.name' | t }}]"
-              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
-              aria-required="true"
-              {% if form.errors contains 'name' %}
-                aria-invalid="true"
-                aria-describedby="ContactForm-name-error"
-              {% endif %}
-              placeholder="{{ 'templates.contact.form.name' | t }}"
+                autocomplete="name"
+                type="text"
+                id="ContactForm-name"
+                name="contact[{{ 'templates.contact.form.name' | t }}]"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                aria-required="true"
+                {% if form.errors contains 'name' %}
+                  aria-invalid="true"
+                  aria-describedby="ContactForm-name-error"
+                {% endif %}
+                placeholder="{{ 'templates.contact.form.name' | t }}"
               >
             </div>
             <div class="form-input ">
               <label for="email">E-mail <span>*</span></label>
               <input
-              autocomplete="email"
-              type="email"
-              id="ContactForm-email"
-              name="contact[email]"
-              spellcheck="false"
-              autocapitalize="off"
-              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-              aria-required="true"
-              {% if form.errors contains 'email' %}
-                aria-invalid="true"
-                aria-describedby="ContactForm-email-error"
-              {% endif %}
-              placeholder="Enter Your E-mail"
-            >
+                autocomplete="email"
+                type="email"
+                id="ContactForm-email"
+                name="contact[email]"
+                spellcheck="false"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                aria-required="true"
+                {% if form.errors contains 'email' %}
+                  aria-invalid="true"
+                  aria-describedby="ContactForm-email-error"
+                {% endif %}
+                placeholder="Enter Your E-mail"
+              >
               {% if form.errors %}
-              <ul class="form-status-list caption-large" role="list">
-                <li>
-                  <a href="#ContactForm-email" class="link">
-                    {{ form.errors.translated_fields.email | capitalize }}
-                    {{ form.errors.messages.email }}
-                  </a>
-                </li>
-              </ul>
-            {% endif %}
+                <ul class="form-status-list caption-large" role="list">
+                  <li>
+                    <a href="#ContactForm-email" class="link">
+                      {{ form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email }}
+                    </a>
+                  </li>
+                </ul>
+              {% endif %}
             </div>
             <div class="form-input textarea_form ">
               <label for="message">Message <span>*</span></label>
               <textarea
-              rows="10"
-              id="ContactForm-body"
-              name="contact[{{ 'templates.contact.form.comment' | t }}]"
-              aria-required="true"
-              placeholder="Write Your Massage"
-            >
+                rows="10"
+                id="ContactForm-body"
+                name="contact[{{ 'templates.contact.form.comment' | t }}]"
+                aria-required="true"
+                placeholder="Write Your Massage"
+              >
             {{- form.body -}}
             </textarea>
             </div>
             <div class="form_button ">
               <button type="submit" class="submit-btn">
-              {{ 'templates.contact.form.send' | t }}
-              <span> {{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                {{ 'templates.contact.form.send' | t }}
+                <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
               </button>
             </div>
           </div>
@@ -194,13 +193,13 @@
         "type": "text",
         "id": "section_title",
         "label": "Section Title",
-        "default": "SEND US MESSAGE"
+        "default": "Contact Us"
       },
       {
         "type": "richtext",
         "id": "section_description",
         "label": "Section Description",
-        "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it</p>"
+        "default": "<p>If you have any questions, feel free to reach out to us.</p>"
       },
       {
           "type": "header",
@@ -227,75 +226,75 @@
           "default": 120
         }
   ],
-    "blocks": [
-      {
-        "type": "contact_address",
-        "name": "Contact Address",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "text",
-            "id": "contact_title",
-            "label": "Section Title",
-            "default": "Contact"
-          },
-          {
-            "type": "text",
-            "id": "address_title",
-            "label": "Address Title",
-            "default": "Address"
-          },
-          {
-            "type": "text",
-            "id": "address",
-            "label": "Address",
-            "default": "141 Duane St, New York, NY 10013"
-          },
-          {
-            "type": "text",
-            "id": "email_title",
-            "label": "Email Title",
-            "default": "E-mail"
-          },
-          {
-            "type": "text",
-            "id": "email",
-            "label": "Email",
-            "default": "helpcenter@dapper.com"
-          },
-          {
-            "type": "text",
-            "id": "phone_title",
-            "label": "Phone Title",
-            "default": "Hotline"
-          },
-          {
-            "type": "text",
-            "id": "phone",
-            "label": "Phone",
-            "default": "+1 914 677 07777"
-          }
-        ]
-      },
-      {
-        "type": "social_share",
-        "name": "Social Share",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "text",
-            "id": "social_title",
-            "label": "Social Title",
-            "default": "Socials"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Contact Form Section",
-        "category": "Custom"
-      }
-    ]
-  }
-  {% endschema %}
+  "blocks": [
+    {
+      "type": "contact_address",
+      "name": "Contact Address",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "contact_title",
+          "label": "Section Title",
+          "default": "Contact"
+        },
+        {
+          "type": "text",
+          "id": "address_title",
+          "label": "Address Title",
+          "default": "Address"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address",
+          "default": "141 Duane St, New York, NY 10013"
+        },
+        {
+          "type": "text",
+          "id": "email_title",
+          "label": "Email Title",
+          "default": "E-mail"
+        },
+        {
+          "type": "text",
+          "id": "email",
+          "label": "Email",
+          "default": "helpcenter@dapper.com"
+        },
+        {
+          "type": "text",
+          "id": "phone_title",
+          "label": "Phone Title",
+          "default": "Hotline"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "+1 914 677 07777"
+        }
+      ]
+    },
+    {
+      "type": "social_share",
+      "name": "Social Share",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "social_title",
+          "label": "Social Title",
+          "default": "Socials"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

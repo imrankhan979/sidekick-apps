@@ -1,9 +1,11 @@
+{{ 'component-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-scrollbar.js' | asset_url }}" defer="defer"></script>
 {{ 'component-gallery.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -44,7 +46,13 @@
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
                 <div class="gallery-icons">
-                  <a {% if block.settings.icon_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.icon_link}}" {% endif %}>
+                  <a
+                    {% if block.settings.icon_link == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.icon_link}}"
+                    {% endif %}
+                  >
                     {{ block.settings.button_icon_svg }}
                   </a>
                 </div>
@@ -53,22 +61,39 @@
           {% endfor %}
         </div>
       </items-carousel>
+      <div class="for-mobile custom-scroller-wrapper carousel-wrapper">
+        <div class="custom-scroller flex">
+                    {%- for block in section.blocks -%}
+              <div class="galley_item" {{ block.shopify_attributes }}>
+                <div class="gallery_images">
+                  {%- if block.settings.gallery_image != blank -%}
+                    {{
+                      block.settings.gallery_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
+                  {%- else -%}
+                    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                    {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                  <div class="gallery-icons">
+                    <a {% if block.settings.icon_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.icon_link}}" {% endif %}>
+                      {{ block.settings.button_icon_svg }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+           <div class="scrollbar"><div class="scroll-thumb"></div></div>
+      </div>
       {%- if section.settings.tab_button != blank -%}
         <div class="gallery_button">
           <a class="gallery-btn" href="{{ section.settings.button_link }}">
             {{- section.settings.tab_button -}}
             <span>
-              <svg
-                width="8"
-                height="12"
-                viewBox="0 0 8 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                   d="M1.70697 11.707L7.41397 5.99997L1.70697 0.292969L0.292969 1.70697L4.58597 5.99997L0.292969 10.293L1.70697 11.707Z"
-                   fill="white" />
-              </svg>
+                {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </a>
         </div>
@@ -84,10 +109,10 @@
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "range",
       "id": "columns_desktop",
       "min": 1,

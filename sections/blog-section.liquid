@@ -2,92 +2,103 @@
 {{ 'blog-item-card.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  @media screen and (min-width: 768px) {
+    .blog-section-inner {
+        grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr);
     }
   }
-@media screen and (min-width: 768px) {
-  .blog-section-inner {
-      grid-template-columns: repeat( {{ section.settings.columns_desktop }}, 1fr); 
-  }
-}
-{%- endstyle -%} 
+{%- endstyle -%}
 
 {% assign articles = section.settings.blog.articles %}
 {% if articles == blank %}
-  {% assign articles = blogs['news'].articles %}
+  {% assign articles = blogs.news.articles %}
 {% endif %}
 
+<div class="blog-post color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.heading_text != blank %}
+      <div class="section_title text-center">
+        <h1>{{ section.settings.heading_text }}</h1>
+      </div>
+    {% endif %}
+    <div class="blog-section-inner">
+      {%- if articles.size > 0 -%}
+        {%- for article in articles limit: section.settings.post_limit -%}
+          {% render 'blog-item-card', article: article %}
+        {%- endfor -%}
+      {%- else -%}
+        {% for i in (1..section.settings.post_limit) -%}
+          {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
+          {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
 
-<div class="blog-post color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding"> 
-<div class="page-width">
-  {% if section.settings.heading_text != blank %}
-    <div class="section_title text-center">
-      <h1>{{ section.settings.heading_text }}</h1>
+          <div class="blog-bundle-list">
+            <div class="blog_bundle_cart_item">
+              {%- if section.settings.show_image == true -%}
+                <div class="blog_inner_image_section">
+                  <div class="blog_item_img">
+                    {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
+                  </div>
+                </div>
+              {%- endif -%}
+              <div class="blog_inner_content">
+                <h6 class="blog_main_header">
+                  {{ 'sections.featured_blog.onboarding_title' | t }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
     </div>
-  {% endif %}
-<div class="blog-section-inner">
-{%- if articles.size > 0 -%}
-  {%- for article in articles limit: section.settings.post_limit -%}
-    {% render "blog-item-card" article: article %}
-  {%- endfor -%}
-{%- else -%}
-  {% for i in (1..section.settings.post_limit) -%}
-    {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
-    {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
-
-<div class="blog-bundle-list">
-  <div class="blog_bundle_cart_item">
-    {%- if section.settings.show_image == true -%}
-      <div class="blog_inner_image_section">
-           <div class="blog_item_img">
-            {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
-           </div>
+    {%- if section.settings.btn_text != blank -%}
+      <div class="blog_view-all-button">
+        <a
+          class="snazzy-icon-btn"
+          {% if section.settings.btn_url == blank %}
+            role="link" aria-disabled="true"
+          {% else %}
+            href="{{ section.settings.btn_url }}"
+          {% endif %}
+        >
+          {{- section.settings.btn_text }}
+          <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+        >
       </div>
-    {%- endif -%}
-      <div class="blog_inner_content">
-          <h6 class="blog_main_header">
-            {{ 'sections.featured_blog.onboarding_title' | t }}
-          </h6>
-      </div>
+    {% endif %}
   </div>
 </div>
-{%- endfor -%}
-{%- endif -%}
-</div>
-{%- if section.settings.btn_text != blank -%}
-<div class="blog_view-all-button"><a class="snazzy-icon-btn" {% if section.settings.btn_url == blank %} role="link" aria-disabled="true" {% else %} href="{{ section.settings.btn_url }}" {% endif %}>{{ section.settings.btn_text }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a></div>
-{% endif %}
-  </div>
-   </div>
 {% schema %}
 {
   "name": "Blog Post",
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
-  }, 
+  },
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
     {
-          "type": "text",
-          "id": "heading_text",
-          "label": "Heading",
-          "default": "LATEST FASHION NEWS"
-        },
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading",
+      "default": "LATEST FASHION NEWS"
+    },
     {
       "type": "blog",
       "id": "blog",

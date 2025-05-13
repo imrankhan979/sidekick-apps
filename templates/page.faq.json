@@ -9,11 +9,14 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "bread": {
+      "type": "s-page-breadcrumb",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "color_scheme": "",
+        "custom_text": "",
+        "enable_breadcrumb_navigation": true,
+        "padding_top": 250,
+        "padding_bottom": 200
       }
     },
     "faq_section_gUXLFL": {
@@ -60,5 +63,5 @@
       }
     }
   },
-  "order": ["main", "faq_section_gUXLFL"]
+  "order": ["bread", "faq_section_gUXLFL"]
 }

@@ -1,0 +1,40 @@
+<div class="anim-item shop_collection_item reveal" id="collection_item-{{ card_collection.id }}">
+  <div class="shop_collection_images">
+    <a class="collection_images" href="{{card_collection.url}}">
+      {%- if card_collection.featured_image != blank -%}
+        {{
+          card_collection.featured_image
+          | image_url: width: 1500
+          | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+        }}
+      {%- else -%}
+        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+        {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+  </div>
+  <div class="shop_collection_content">
+    <div class="shop_collection_text">
+      <h2>
+        <a class="shop_collection_title" href="{{ card_collection.url }}">{{ card_collection.title }}</a>
+      </h2>
+      <span class="shop_collection_subTitle">{{ card_collection.all_products_count }} Items</span>
+    </div>
+    <div class="shop_collection_button">
+      <a class="shop-collection-btn" href="{{ card_collection.url }}">
+        <svg
+          width="18"
+          height="28"
+          viewBox="0 0 18 28"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4.0445 27.0445L17.0891 13.9999L4.0445 0.955322L0.8125 4.18732L10.6251 13.9999L0.8125 23.8125L4.0445 27.0445Z"
+            fill="black" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>

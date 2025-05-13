@@ -12,7 +12,6 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
 {%- endstyle -%}
 
 <section class="sds-redefine-section color-{{ section.settings.section_color_scheme }}">
@@ -26,64 +25,89 @@
         {% assign is_first_block = true %}
 
         {% for block in section.blocks %}
-          {% if block.type == 'redefine_images' %}   
+          {% if block.type == 'redefine_images' %}
             {% assign redefine_images_block_present = true %}
           {% endif %}
         {% endfor %}
-        {%- for block in section.blocks -%} 
-            {% case block.type %}
-              {% when 'redefine_images' %}
-                  <div class="redefine_images flex"  {{ block.shopify_attributes }} style="transform: rotate({{ block.settings.card_image_rotation }}deg);">
-                    {%- if block.settings.main_image != blank -%}
-                      {%- capture sizes -%}
+        {%- for block in section.blocks -%}
+          {% case block.type %}
+            {% when 'redefine_images' %}
+              <div
+                class="redefine_images flex"
+                {{ block.shopify_attributes }}
+                style="transform: rotate({{ block.settings.card_image_rotation }}deg);"
+              >
+                {%- if block.settings.main_image != blank -%}
+                  {%- capture sizes -%}
                         (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
                         (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
                       {%- endcapture -%}
-                      {{
-                        block.settings.main_image | image_url: width: 1500 | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
-                      }}
-                      {%- else -%}
-                      {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                      {%- endif -%}
-      
-                    {%- if block.settings.shape_image_one != blank -%}
-                      <div class="shapes-1">
-                        {{ block.settings.shape_image_one | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                      </div>
-                    {%- endif -%}
+                  {{
+                    block.settings.main_image
+                    | image_url: width: 1500
+                    | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
+                  }}
+                {%- else -%}
+                  {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+
+                {%- if block.settings.shape_image_one != blank -%}
+                  <div class="shapes-1">
+                    {{
+                      block.settings.shape_image_one
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
                   </div>
-              {% when 'redefine_content' %}
-                  <div class="redefine_content {% if redefine_images_block_present == false or is_first_block %}no_redefine_images{% endif %}"  {{ block.shopify_attributes }} style="transform: rotate({{ block.settings.card_content_rotation }}deg)">
-                    <div class="redefine_content_inner">
-                      {% if block.settings.sub_heading != blank %}
-                        <h3>{{ block.settings.sub_heading }}</h3>
-                      {% endif %}
-                      {% if block.settings.paragraph_one %}
-                        <div class="desc">
-                          {{ block.settings.paragraph_one }}
-                        </div>
-                      {% endif %}
-                      {% if block.settings.button_text != blank %}
-                        <div class="redefine_button">
-                          <a class="snazzy-icon-btn" href="{{ block.settings.button_link }}">{{ block.settings.button_text }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
-                        </div>
-                      {% endif %}
+                {%- endif -%}
+              </div>
+            {% when 'redefine_content' %}
+              <div
+                class="redefine_content {% if redefine_images_block_present == false or is_first_block %}no_redefine_images{% endif %}"
+                {{ block.shopify_attributes }}
+                style="transform: rotate({{ block.settings.card_content_rotation }}deg)"
+              >
+                <div class="redefine_content_inner">
+                  {% if block.settings.sub_heading != blank %}
+                    <h3>{{ block.settings.sub_heading }}</h3>
+                  {% endif %}
+                  {% if block.settings.paragraph_one %}
+                    <div class="desc">
+                      {{ block.settings.paragraph_one }}
                     </div>
-      
-                    {%- if block.settings.shape_image_two != blank -%}
-                      <div class="shapes-2">
-                        {{ block.settings.shape_image_two | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                      </div>
-                    {%- endif -%}
-      
-                    {%- if block.settings.shape_image_three != blank -%}
-                      <div class="shapes-3">
-                        {{ block.settings.shape_image_three | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                      </div>
-                    {%- endif -%}
+                  {% endif %}
+                  {% if block.settings.button_text != blank %}
+                    <div class="redefine_button">
+                      <a class="snazzy-icon-btn" href="{{ block.settings.button_link }}">
+                        {{- block.settings.button_text }}
+                        <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+                      >
+                    </div>
+                  {% endif %}
+                </div>
+
+                {%- if block.settings.shape_image_two != blank -%}
+                  <div class="shapes-2">
+                    {{
+                      block.settings.shape_image_two
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
                   </div>
-            {% endcase %}
-            {% assign is_first_block = false %}
+                {%- endif -%}
+
+                {%- if block.settings.shape_image_three != blank -%}
+                  <div class="shapes-3">
+                    {{
+                      block.settings.shape_image_three
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
+                  </div>
+                {%- endif -%}
+              </div>
+          {% endcase %}
+          {% assign is_first_block = false %}
         {%- endfor -%}
       </div>
       {%- if section.settings.bg_image != blank -%}
@@ -145,7 +169,7 @@
     {
       "type": "redefine_images",
       "name": "Image",
-       "limit": 1,
+      "limit": 1,
       "settings": [
         {
           "type": "image_picker",
@@ -172,7 +196,7 @@
     {
       "type": "redefine_content",
       "name": "Text",
-       "limit": 1,
+      "limit": 1,
       "settings": [
         {
           "type": "text",
@@ -200,12 +224,12 @@
         {
           "type": "image_picker",
           "id": "shape_image_two",
-          "label": "Shape image"
+          "label": "Shape image right"
         },
         {
           "type": "image_picker",
           "id": "shape_image_three",
-          "label": "Shape image"
+          "label": "Shape image left"
         },
         {
           "type": "range",
@@ -220,20 +244,20 @@
       ]
     }
   ],
-"presets": [
-  {
-    "name": "Image with text",
-    "blocks": [
-      {
-        "type": "redefine_images",
-        "settings": {}
-      },
-      {
-        "type": "redefine_content",
-        "settings": {}
-      }
-    ]
-  }
-]
+  "presets": [
+    {
+      "name": "Image with text",
+      "blocks": [
+        {
+          "type": "redefine_images",
+          "settings": {}
+        },
+        {
+          "type": "redefine_content",
+          "settings": {}
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

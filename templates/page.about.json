@@ -7,16 +7,16 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "bread": {
       "type": "s-page-breadcrumb",
       "settings": {
         "color_scheme": "",
-        "text": "",
+        "custom_text": "",
         "enable_breadcrumb_navigation": true,
-        "padding_top": 200,
-        "padding_bottom": 250
+        "padding_top": 250,
+        "padding_bottom": 200
       }
     },
     "icon_with_text_mrYi8P": {
@@ -84,7 +84,10 @@
           }
         }
       },
-      "block_order": ["redefine_images_QPHGA4", "redefine_content_twWM68"],
+      "block_order": [
+        "redefine_images_QPHGA4",
+        "redefine_content_twWM68"
+      ],
       "name": "Image with text",
       "settings": {
         "section_color_scheme": "",
@@ -129,7 +132,12 @@
           }
         }
       },
-      "block_order": ["tab_Br66p7", "tab_x9TdNN", "tab_xYHXfg", "tab_MPAnHk"],
+      "block_order": [
+        "tab_Br66p7",
+        "tab_x9TdNN",
+        "tab_xYHXfg",
+        "tab_MPAnHk"
+      ],
       "name": "Tab Section",
       "settings": {
         "section_title": "Section Title",

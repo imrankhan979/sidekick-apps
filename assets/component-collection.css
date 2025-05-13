@@ -94,6 +94,7 @@
 .custom-scroller {
   overflow-x: auto;
   scrollbar-width: none;
+   margin: 0 -24px;
 }
 .custom-scroller.has-scrollbar {
   padding-bottom: 28px; 

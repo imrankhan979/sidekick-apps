@@ -1,128 +1,132 @@
 {{ 'our-journey.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-  }
- 
-  @media screen and (min-width: 800px) { 
-    .tab_main_wrapper {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
-}
-  }
-
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
     }
+
+    @media screen and (min-width: 800px) {
+      .tab_main_wrapper {
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
   }
+    }
 
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
 {%- endstyle -%}
- <!-- start: Journey Section -->
- <section class="our-journey-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-    <div class="page-width">
-       <div class="heading-area">
-          <h2 class="our_journey_main_title">{{ section.settings.section_title }}</h2>
-          <h5 class="our_journey_title">{{ section.settings.section_description }}</h5>
-       </div>
-       <div class="our_journey_main_wrapper" style="background-color: {{ block.settings.collection_bg_color }};">
-        {%- for block in section.blocks -%}
-          <div class="our_journey_images flex">
-            {%- if block.settings.tab_image != blank -%}
-              {{ block.settings.tab_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-              {%- else -%}
-              {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-              {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-              {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- endif -%}
-          </div>
-        {%- endfor -%}
-          <div class="our_journey_tabs">
-             <div class="our_journey_tab" id="our-journey-tab">
-                <div class="our_journey_menu">
-                   <ul class="tabs_menu">
-                    {%- for block in section.blocks -%}
-                      <li class="{% if forloop.first %}active{% endif %}">{%- if block.settings.tab_button != blank -%}
-                      {{ block.settings.tab_button }}
-                      {%- else -%}
-                      2024
-                       {%- endif -%}
-                       </li>
-                    {% endfor %}
-                      
-                   </ul>
-                </div>
-                <div class="our_journey_content">
-                  {%- for block in section.blocks -%}
-                   <div class="tab-pane">
-                      <h3 class="our_journey_title">
-                        {%- if block.settings.tab_heading != blank -%}
-                          {{ block.settings.tab_heading }}
-                        {%- else -%}
-                        The Humble Beginnings
-                         {%- endif -%}</h3>
-                      <p class="our_journey_desc"> 
-                        {%- if block.settings.tab_description != blank -%}
-                        {{ block.settings.tab_description }}
-                      {%- else -%}
-                      Dapper was born in New York from a shared passion for urban fashion. 
-                      Founded by Ryan Davis, a visionary with a keen eye for style, 
-                      the brand quickly gained traction among local streetwear enthusiasts.
-                       {%- endif -%}
-                       </p>
-                   </div>
-                  {% endfor %}
-                </div>
-             </div>
-          </div>
-       </div>
+<!-- start: Journey Section -->
+<section class="our-journey-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <div class="heading-area">
+      <h2 class="our_journey_main_title">{{ section.settings.section_title }}</h2>
+      <h5 class="our_journey_title">{{ section.settings.section_description }}</h5>
     </div>
- </section>
- <!-- end: Journey Section -->
- <script>
-document.addEventListener("DOMContentLoaded", function () {
-  let tabWrapper = document.getElementById("our-journey-tab");
-  if (!tabWrapper) return;
-  let tabMnu = tabWrapper.querySelectorAll(".tabs_menu li"),
-      tabContent = tabWrapper.querySelectorAll(".our_journey_content > .tab-pane"),
-      tabImages = document.querySelectorAll(".our_journey_images");
+    <div class="our_journey_main_wrapper" style="background-color: {{ block.settings.collection_bg_color }};">
+      {%- for block in section.blocks -%}
+        <div class="our_journey_images flex">
+          {%- if block.settings.tab_image != blank -%}
+            {{
+              block.settings.tab_image
+              | image_url: width: 1500
+              | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+            }}
+          {%- else -%}
+            {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+            {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+            {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+      <div class="our_journey_tabs">
+        <div class="our_journey_tab" id="our-journey-tab">
+          <div class="our_journey_menu">
+            <ul class="tabs_menu">
+              {%- for block in section.blocks -%}
+                <li class="{% if forloop.first %}active{% endif %}">
+                  {%- if block.settings.tab_button != blank -%}
+                    {{ block.settings.tab_button }}
+                  {%- else -%}
+                    2024
+                  {%- endif -%}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="our_journey_content">
+            {%- for block in section.blocks -%}
+              <div class="tab-pane">
+                <h3 class="our_journey_title">
+                  {%- if block.settings.tab_heading != blank -%}
+                    {{ block.settings.tab_heading }}
+                  {%- else -%}
+                    The Humble Beginnings
+                  {%- endif -%}
+                </h3>
+                <p class="our_journey_desc">
+                  {%- if block.settings.tab_description != blank -%}
+                    {{ block.settings.tab_description }}
+                  {%- else -%}
+                    Dapper was born in New York from a shared passion for urban fashion. Founded by Ryan Davis, a
+                    visionary with a keen eye for style, the brand quickly gained traction among local streetwear
+                    enthusiasts.
+                  {%- endif -%}
+                </p>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end: Journey Section -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let tabWrapper = document.getElementById('our-journey-tab');
+    if (!tabWrapper) return;
+    let tabMnu = tabWrapper.querySelectorAll('.tabs_menu li'),
+      tabContent = tabWrapper.querySelectorAll('.our_journey_content > .tab-pane'),
+      tabImages = document.querySelectorAll('.our_journey_images');
 
-  if (tabMnu.length === 0 || tabContent.length === 0) return;
-  tabContent.forEach((content, index) => {
-    content.style.display = index === 0 ? "block" : "none";
-    content.setAttribute("data-tab", "tab" + index);
-  });
-
-  tabMnu.forEach((item, index) => {
-    item.setAttribute("data-tab", "tab" + index);
-  });
-
-  tabImages.forEach((image, index) => {
-    image.setAttribute("data-tab", "tab" + index);
-    image.style.display = index === 0 ? "block" : "none";
-  });
-
-  tabMnu.forEach((item) => {
-    item.addEventListener("click", function () {
-      var tabData = this.getAttribute("data-tab");
-      tabContent.forEach((content) => {
-        content.style.display = content.getAttribute("data-tab") === tabData ? "block" : "none";
-      });
-
-      tabImages.forEach((image) => {
-        image.style.display = image.getAttribute("data-tab") === tabData ? "block" : "none";
-      });
-
-      tabMnu.forEach((tab) => tab.classList.remove("active"));
-      this.classList.add("active");
+    if (tabMnu.length === 0 || tabContent.length === 0) return;
+    tabContent.forEach((content, index) => {
+      content.style.display = index === 0 ? 'block' : 'none';
+      content.setAttribute('data-tab', 'tab' + index);
     });
-  });
 
-  tabMnu[0].classList.add("active");
-});
-  </script>
+    tabMnu.forEach((item, index) => {
+      item.setAttribute('data-tab', 'tab' + index);
+    });
+
+    tabImages.forEach((image, index) => {
+      image.setAttribute('data-tab', 'tab' + index);
+      image.style.display = index === 0 ? 'block' : 'none';
+    });
+
+    tabMnu.forEach((item) => {
+      item.addEventListener('click', function () {
+        var tabData = this.getAttribute('data-tab');
+        tabContent.forEach((content) => {
+          content.style.display = content.getAttribute('data-tab') === tabData ? 'block' : 'none';
+        });
+
+        tabImages.forEach((image) => {
+          image.style.display = image.getAttribute('data-tab') === tabData ? 'block' : 'none';
+        });
+
+        tabMnu.forEach((tab) => tab.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    tabMnu[0].classList.add('active');
+  });
+</script>
 {% schema %}
 {
   "name": "Tab Section",
@@ -132,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "id": "section_title",
       "default": "Section Title",
       "label": "Section Title"
-    }, 
+    },
     {
       "type": "text",
       "id": "section_description",
@@ -142,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {

@@ -1899,3 +1899,14 @@ accordionButtons.forEach(button => {
 if (!customElements.get('accordion-item')) {
   customElements.define('accordion-item', CustomAccordion);
 }
+// Back to top
+const backToTop = document.getElementById('back-to-top');
+if (backToTop) {
+  backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  });
+}
