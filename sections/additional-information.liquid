@@ -18,58 +18,58 @@
 {%- endstyle -%}
 
 <section class="product-details-tabs-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-         <div class="page-width">
-          <snazzy-tab>
-            <div class="product-details-tabs_wrapper">
-               <div class="product_details_tabs" id="our-journey-tab">
-                  <div class="product_details_menu">
-                    <div class="scroller-wrapper">
-                      <div class="scroll-width">
-                        <ul class="tabs_menu snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
-                         {% for block in section.blocks %}
-                           <li class="snazzy-tab-button {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
-                             <span class="product_anim">
-                               <span class="anim_text"> 
-                                 {{ block.settings.tab_title }}
-                               </span>
-                             </span>
-                           </li>
-                         {% endfor %}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="product_details_content_box">
-                    {% for block in section.blocks %}
-                      <div class="snazzy-tab-content tab-pane {% if forloop.first %}active{% endif %}">
-                        <div class="product_details_tabs_item">
-                          {% if block.settings.content_rich != blank %}
-                            <div class="product-description-content rte-content-area">
-                              {{ block.settings.content_rich }} 
-                            </div>
-                          {% endif %}
-                          {% if block.settings.page.content != blank %}
-                          <div class="product-description-content rte-content-area">
-                              {{ block.settings.page.content }}
-                            </div>
-                          {% endif %}
-                          {% if block.settings.custom_liquid != blank %}
-                          <div class="product-description-content rte-content-area">
-                              {{ block.settings.custom_liquid }}
-                            </div>
-                          {% endif %}
-                        </div>
-                     </div>
-                    {% endfor %}
-                  </div>
-               </div>
+  <div class="page-width">
+    <snazzy-tab>
+      <div class="product-details-tabs_wrapper">
+        <div class="product_details_tabs" id="our-journey-tab">
+          <div class="product_details_menu">
+            <div class="scroller-wrapper">
+              <div class="scroll-width">
+                <ul class="tabs_menu snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
+                  {% for block in section.blocks %}
+                    <li
+                      class="snazzy-tab-button {% if forloop.first %}active{% endif %}"
+                      {{ block.shopify_attributes }}
+                    >
+                      <span class="product_anim">
+                        <span class="anim_text">
+                          {{ block.settings.tab_title }}
+                        </span>
+                      </span>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
             </div>
-            </snazzy-tab>
-         </div>
-      </section>
-
- 
-
+          </div>
+          <div class="product_details_content_box">
+            {% for block in section.blocks %}
+              <div class="snazzy-tab-content tab-pane {% if forloop.first %}active{% endif %}">
+                <div class="product_details_tabs_item">
+                  {% if block.settings.content_rich != blank %}
+                    <div class="product-description-content rte-content-area">
+                      {{ block.settings.content_rich }}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.page.content != blank %}
+                    <div class="product-description-content rte-content-area">
+                      {{ block.settings.page.content }}
+                    </div>
+                  {% endif %}
+                  {% if block.settings.custom_liquid != blank %}
+                    <div class="product-description-content rte-content-area">
+                      {{ block.settings.custom_liquid }}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </snazzy-tab>
+  </div>
+</section>
 
 {% schema %}
 {
@@ -78,7 +78,7 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
     {
@@ -106,7 +106,7 @@
       "default": 120
     }
   ],
-"blocks": [
+  "blocks": [
     {
       "type": "Item",
       "name": "Item",
@@ -115,7 +115,7 @@
           "type": "text",
           "id": "tab_title",
           "label": "Tab Title",
-          "default" : "Item"
+          "default": "Item"
         },
         {
           "type": "richtext",
@@ -138,7 +138,7 @@
       ]
     }
   ],
-"presets": [
+  "presets": [
     {
       "name": "Additional information",
       "blocks": [

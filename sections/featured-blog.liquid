@@ -23,165 +23,181 @@
     position: relative;
   }
 {%- endstyle -%}
-   <!-- start: Blog Feature Section -->
-   {% if section.settings.selected_article !=  blank %}
-    {% assign article = section.settings.selected_article %}
-  {% else %}
-    {% assign article = blogs['news'].articles.first %}
-  {% endif %}
-  <section class="blog-feature-section section-{{ section.id }}-padding">
-      <div class="page-width">
-         <div class="blog_feature_wrapper">
-            {%- if article -%}
-            <div class="blog_feature_item grid color-{{ section.settings.color_scheme }}">
-               <div class="blog_feature_content">
-                {% if section.settings.show_tags or section.settings.show_date %}
-                  <div class="anim-item blog_category">
-
-                 
-                      {%- if section.settings.show_tags -%}
-                          {% if article.tags.size > 0 and section.settings.show_tags %}
-                            {% for tag in article.tags %}
-                                <div class="category_text">
-                                  <span class="blog_anim">
-                                     <span class="anim_text">
-                                      {{ tag | link_to_tag: tag }}
-                                     </span>
-                                  </span>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                        {% endif %}
-
-                        {%- if section.settings.show_date -%}
-                          {% if article.published_at %}
-                              <a class="category_text" href="{{ article.url }}">
-                                  <span class="blog_anim">
-                                     <span class="anim_text">
-                                      {{ article.published_at | date: "%b %d, %Y" }}
-                                     </span>
-                                  </span>
-                               </a>
-                          {% endif %}
-                        {% endif %}
-
-                  </div>
+<!-- start: Blog Feature Section -->
+{% if section.settings.selected_article != blank %}
+  {% assign article = section.settings.selected_article %}
+{% else %}
+  {% assign article = blogs.news.articles.first %}
+{% endif %}
+<section class="blog-feature-section section-{{ section.id }}-padding">
+  <div class="page-width">
+    <div class="blog_feature_wrapper">
+      {%- if article -%}
+        <div class="blog_feature_item grid color-{{ section.settings.color_scheme }}">
+          <div class="blog_feature_content">
+            {% if section.settings.show_tags or section.settings.show_date %}
+              <div class="anim-item blog_category">
+                {%- if section.settings.show_tags -%}
+                  {% if article.tags.size > 0 and section.settings.show_tags %}
+                    {% for tag in article.tags %}
+                      <div class="category_text">
+                        <span class="blog_anim">
+                          <span class="anim_text">
+                            {{ tag | link_to_tag: tag }}
+                          </span>
+                        </span>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
                 {% endif %}
-                <h4 class="anim-item">
-                        <a class="blog_feature_title" {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %} >
-                            {% if article.title != blank %}
-                                {{ article.title }}
-                            {% else %}
-                            Blog title
-                            {% endif %}
-                        </a>
-                    </h4>
-                    {% if section.settings.show_excerpt and article.excerpt != blank %}
-                      <p class="anim-item blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
-                    {% endif %}
-                  <div class="anim-item blog_feature_button">
-                    <a class="blog-feature-btn" href="{{ article.url }}">
-                      {{ section.settings.section_button }}
-                      <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a>
-                  </div>
-               </div>
-               {%- if section.settings.show_image -%}
-               <div class="blog_feature_images">
-                  <a  {% if article == blank %} role="link" aria-disabled="true" {% else %} href="{{ article.url }}" {% endif %}>
-                  {%- if article.image != blank -%}
-                    <img src="{{ article.image | image_url: width: 533 }}" alt="{{ article.image.alt | escape }}" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}" >
-                  {%- else -%}
+
+                {%- if section.settings.show_date -%}
+                  {% if article.published_at %}
+                    <a class="category_text" href="{{ article.url }}">
+                      <span class="blog_anim">
+                        <span class="anim_text">
+                          {{ article.published_at | date: '%b %d, %Y' }}
+                        </span>
+                      </span>
+                    </a>
+                  {% endif %}
+                {% endif %}
+              </div>
+            {% endif %}
+            <h4 class="anim-item">
+              <a
+                class="blog_feature_title"
+                {% if article == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ article.url }}"
+                {% endif %}
+              >
+                {% if article.title != blank %}
+                  {{ article.title }}
+                {% else %}
+                  Blog title
+                {% endif %}
+              </a>
+            </h4>
+            {% if section.settings.show_excerpt and article.excerpt != blank %}
+              <p class="anim-item blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
+            {% endif %}
+            <div class="anim-item blog_feature_button">
+              <a class="blog-feature-btn" href="{{ article.url }}">
+                {{ section.settings.section_button }}
+                <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+              >
+            </div>
+          </div>
+          {%- if section.settings.show_image -%}
+            <div class="blog_feature_images">
+              <a
+                {% if article == blank %}
+                  role="link" aria-disabled="true"
+                {% else %}
+                  href="{{ article.url }}"
+                {% endif %}
+              >
+                {%- if article.image != blank -%}
+                  <img
+                    src="{{ article.image | image_url: width: 533 }}"
+                    alt="{{ article.image.alt | escape }}"
+                    loading="lazy"
+                    width="{{ article.image.width }}"
+                    height="{{ article.image.height }}"
+                  >
+                {%- else -%}
                   {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
-                  </a>
-               </div>
-              {%- endif -%}
+              </a>
             </div>
-            {%- endif -%}
-         </div>
-      </div>
-   </section>
- <!-- end: Blog Feature Section -->
- {% schema %}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+<!-- end: Blog Feature Section -->
+{% schema %}
+{
+  "name": "Featured blog",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
     {
-      "name": "Featured blog",
-      "tag": "section",
-      "disabled_on": {
-        "groups": ["header", "footer"]
-      },
-      "settings": [
-
-        {
-          "type": "text",
-          "id": "section_button",
-          "label": "Section button",
-          "default": "READ MORE"
-        },
-        {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "Color Scheme",
-          "info": "t:sections.all.colors.has_cards_info",
-          "default": "scheme-1"
-        },
-        {
-        "type": "article",
-        "id": "selected_article",
-        "label": "Select a Blog Post"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_image",
-          "default": true,
-          "label": "Show image"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_date",
-          "default": true,
-          "label": "Show date"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_tags",
-          "default": true,
-          "label": "Show tags"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_excerpt",
-          "default": true,
-          "label": "Show excerpt"
-        },
-        {
-          "type": "header",
-          "content": "Padding Section"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "min": 0,
-          "max": 200,
-          "step": 4,
-          "unit": "px",
-          "label": "Padding top",
-          "default": 36
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "min": 0,
-          "max": 200,
-          "step": 4,
-          "unit": "px",
-          "label": "Padding bottom",
-          "default": 36
-        }
-      ],
-      "presets": [
-        {
-          "name": "Featured blog"
-        }
-      ]
+      "type": "text",
+      "id": "section_button",
+      "label": "Section button",
+      "default": "READ MORE"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "article",
+      "id": "selected_article",
+      "label": "Select a Blog Post"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show date"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tags",
+      "default": true,
+      "label": "Show tags"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_excerpt",
+      "default": true,
+      "label": "Show excerpt"
+    },
+    {
+      "type": "header",
+      "content": "Padding Section"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
     }
-    {% endschema %}
+  ],
+  "presets": [
+    {
+      "name": "Featured blog"
+    }
+  ]
+}
+{% endschema %}
