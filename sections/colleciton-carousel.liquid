@@ -1,96 +1,121 @@
 {{ 'component-collection-carousel.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
-  }
-  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
-  }
-{% for block in section.blocks %}
-   .collection_carousel_item.block-bg-{{ block.id }}{
-    background-color: {{ block.settings.collection_bg_color }};
-   }
-{% endfor %}
-
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {% for block in section.blocks %}
+     .collection_carousel_item.block-bg-{{ block.id }}{
+      background-color: {{ block.settings.collection_bg_color }};
+     }
+  {% endfor %}
 {%- endstyle -%}
 
- <section class="collection-carousel-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-    <div class="page-width">
-      <items-carousel>
-        <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-          {%- for block in section.blocks -%}
-            <div class="collection_carousel_item block-bg-{{ block.id }}" {{ block.shopify_attributes }}>
-                <div class="collection_carousel_images">
-                  {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
-                    <a {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection_select.url }}" {% endif %}>
-                      {%- if block.settings.collection_image != blank -%}
-                        {{ block.settings.collection_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        {%- else -%}
-                        {{ block.settings.collection_select.image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+<section class="collection-carousel-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+  <div class="page-width">
+    <items-carousel>
+      <div
+        class="carousel items-carousel-selector"
+        data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
+      >
+        {%- for block in section.blocks -%}
+          <div class="collection_carousel_item block-bg-{{ block.id }}" {{ block.shopify_attributes }}>
+            <div class="collection_carousel_images">
+              {%- if block.settings.collection_image != blank or block.settings.collection_select.image != blank -%}
+                <a
+                  {% if block.settings.collection_select == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.collection_select.url }}"
+                  {% endif %}
+                >
+                  {%- if block.settings.collection_image != blank -%}
+                    {{
+                      block.settings.collection_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
+                  {%- else -%}
+                    {{
+                      block.settings.collection_select.image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
+                  {%- endif -%}
+                </a>
+              {%- else -%}
+                {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+            <div class="collection_carousel_content">
+              <span class="subTitle">
+                <span class="collection_anim">
+                  <span class="anim_text">
+                    {{ block.settings.collection_featured }}
+                  </span>
+                </span>
+              </span>
+
+              {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
+                <div class="collection_carousel_text">
+                  <h2 class="display-1 collection_carousel_main_title">
+                    <a
+                      {% if block.settings.collection_select == blank %}
+                        role="link" aria-disabled="true"
+                      {% else %}
+                        href="{{ block.settings.collection_select.url }}"
+                      {% endif %}
+                    >
+                      {%- if block.settings.collection_heading != blank -%}
+                        {{ block.settings.collection_heading }}
+                      {%- else -%}
+                        {{ block.settings.collection_select.title }}
                       {%- endif -%}
                     </a>
+                  </h2>
+                  <span class="sub-title">
+                    {{- block.settings.collection_select.products_count }}
+                    {%- if block.settings.collection_select != blank -%}
+                      {%- if block.settings.collection_select.products_count <= 1 -%}
+                        Item
+                      {%- else -%}
+                        Items
+                      {%- endif -%}
                     {%- else -%}
-                    {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                    {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-                    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                  {%- endif -%}
+                      0 Item
+                    {%- endif -%}
+                  </span>
                 </div>
-                <div class="collection_carousel_content"> 
-                    <span class="subTitle">
-                      <span class="collection_anim">
-                        <span class="anim_text">
-                      {{ block.settings.collection_featured }}
-                        </span>
-                      </span>
-                    </span>
+              {%- endif -%}
 
-                    {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
-                    <div class="collection_carousel_text">
-                          <h2 class="display-1 collection_carousel_main_title">
-                          <a {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.collection_select.url }}" {% endif %}>
-                          {%- if block.settings.collection_heading != blank -%}
-                            {{ block.settings.collection_heading }}
-                            {%- else -%}
-                          {{ block.settings.collection_select.title }}
-                        {%- endif -%}
-                          </a>
-                        </h2>
-                        <span class="sub-title">{{ block.settings.collection_select.products_count }}
-                          {%- if block.settings.collection_select != blank -%}
-                          {%- if block.settings.collection_select.products_count <= 1 -%}
-                           Item
-                           {%- else -%}
-                           Items
-                          {%- endif -%}
-                          {%- else -%}
-                         0 Item
-                        {%- endif -%}
-                           </span> 
-                    </div>
-                  {%- endif -%}
-                  
-                    <div class="collection_carousel_button">
-                        <a class="collection_carousel_btn" 
-                      {% if block.settings.collection_select == blank %} role="link" aria-disabled="true" 
-                        {% else %} href="{{ block.settings.collection_select.url }}" 
-                      {% endif %}
-                        >
-                          {{ block.settings.collection_button }}
-                            <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-                        </a>
-                    </div>
-                </div>
+              <div class="collection_carousel_button">
+                <a
+                  class="collection_carousel_btn"
+                  {% if block.settings.collection_select == blank %}
+                    role="link" aria-disabled="true"
+                  {% else %}
+                    href="{{ block.settings.collection_select.url }}"
+                  {% endif %}
+                >
+                  {{ block.settings.collection_button }}
+                  <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                </a>
+              </div>
             </div>
-            {% endfor %}
-        </div>
-      </items-carousel>
-    </div>
+          </div>
+        {% endfor %}
+      </div>
+    </items-carousel>
+  </div>
 </section>
 {% schema %}
 {
@@ -133,9 +158,9 @@
       "name": "Collection carousel",
       "settings": [
         {
-        "type": "collection",
-        "id": "collection_select",
-        "label": "Select Collection"
+          "type": "collection",
+          "id": "collection_select",
+          "label": "Select collection"
         },
         {
           "type": "color",
@@ -176,31 +201,27 @@
       "blocks": [
         {
           "type": "collection",
-          "settings": 
-            {
-              "collection_bg_color": "#F88E24"
-            }
+          "settings": {
+            "collection_bg_color": "#F88E24"
+          }
         },
         {
           "type": "collection",
-          "settings": 
-            {
-              "collection_bg_color": "#399965"
-            }
+          "settings": {
+            "collection_bg_color": "#399965"
+          }
         },
         {
           "type": "collection",
-          "settings": 
-            {
-              "collection_bg_color": "#0183D5"
-            }
+          "settings": {
+            "collection_bg_color": "#0183D5"
+          }
         },
         {
           "type": "collection",
-          "settings": 
-            {
-              "collection_bg_color": "#FE3D83"
-            }
+          "settings": {
+            "collection_bg_color": "#FE3D83"
+          }
         }
       ]
     }

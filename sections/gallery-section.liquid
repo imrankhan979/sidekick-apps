@@ -44,7 +44,13 @@
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
                 <div class="gallery-icons">
-                  <a {% if block.settings.icon_link == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.icon_link}}" {% endif %}>
+                  <a
+                    {% if block.settings.icon_link == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.icon_link}}"
+                    {% endif %}
+                  >
                     {{ block.settings.button_icon_svg }}
                   </a>
                 </div>
@@ -84,10 +90,10 @@
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color Scheme",
+      "label": "Color scheme",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "range",
       "id": "columns_desktop",
       "min": 1,
