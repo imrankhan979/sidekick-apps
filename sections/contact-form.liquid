@@ -26,10 +26,10 @@
 
 <section class="contact-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="contact_main_wrapper" style=" {% if section.blocks.size > 0 %} grid-template-columns: 1fr 2fr; {% else %} grid-template-columns: 1fr; {% endif %}">
+    <div class="contact_main_wrapper {% if section.blocks.size > 0 %} grid-colums {% endif %}">
 
      {% if section.blocks.size != 0 %}
-      <div class="contact_left_content anim-item">
+      <div class="contact_left_content">
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'contact_address' %}
@@ -193,13 +193,13 @@
         "type": "text",
         "id": "section_title",
         "label": "Section Title",
-        "default": "Contact Us"
+        "default": "send us message"
       },
       {
         "type": "richtext",
         "id": "section_description",
         "label": "Section Description",
-        "default": "<p>If you have any questions, feel free to reach out to us.</p>"
+        "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
       },
       {
           "type": "header",
