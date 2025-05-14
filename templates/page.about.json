@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "bread": {
       "type": "s-page-breadcrumb",
@@ -56,6 +56,7 @@
       "name": "Icon with text",
       "settings": {
         "color_scheme": "",
+        "show_border": false,
         "border_top": false,
         "border_bottom": false,
         "section_title": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable.",
@@ -96,10 +97,10 @@
         "padding_bottom": 60
       }
     },
-    "tab_section_7GtYCq": {
-      "type": "tab-section",
+    "timeline_tab_naxp44": {
+      "type": "timeline-tab",
       "blocks": {
-        "tab_Br66p7": {
+        "tab_atkiDj": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -107,7 +108,7 @@
             "tab_description": ""
           }
         },
-        "tab_x9TdNN": {
+        "tab_4PK3fh": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -115,15 +116,7 @@
             "tab_description": ""
           }
         },
-        "tab_xYHXfg": {
-          "type": "tab",
-          "settings": {
-            "tab_button": "",
-            "tab_heading": "",
-            "tab_description": ""
-          }
-        },
-        "tab_MPAnHk": {
+        "tab_mhefxh": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -133,17 +126,16 @@
         }
       },
       "block_order": [
-        "tab_Br66p7",
-        "tab_x9TdNN",
-        "tab_xYHXfg",
-        "tab_MPAnHk"
+        "tab_atkiDj",
+        "tab_4PK3fh",
+        "tab_mhefxh"
       ],
-      "name": "Tab Section",
+      "name": "Timeline tabs",
       "settings": {
-        "section_title": "Section Title",
-        "section_description": "Section Description",
         "section_color_scheme": "",
-        "padding_top": 60,
+        "section_title": "Our journey",
+        "section_description": "<p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>",
+        "padding_top": 120,
         "padding_bottom": 120
       }
     },
@@ -230,6 +222,7 @@
       "name": "Gallery Section",
       "settings": {
         "section_color_scheme": "",
+        "columns_desktop": 5,
         "tab_button": "@DAPPER ON INSTAGRAM",
         "button_link": "",
         "overlay_opacity": 70,
@@ -242,7 +235,7 @@
     "bread",
     "icon_with_text_mrYi8P",
     "image_with_text_zj9Uzp",
-    "tab_section_7GtYCq",
+    "timeline_tab_naxp44",
     "scrolling_text_6NYCg7",
     "gallery_section_Q6afHe"
   ]

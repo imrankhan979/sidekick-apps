@@ -2,14 +2,8 @@
 
 {%- style -%}
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-    }
-
-    @media screen and (min-width: 800px) {
-      .tab_main_wrapper {
-      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
-  }
+       padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+       padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
 
     @media screen and (min-width: 750px) {
@@ -19,7 +13,7 @@
       }
     }
 {%- endstyle -%}
-<!-- start: FAQ Section -->
+
 <section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="faq_main_wrapper">
@@ -39,6 +33,7 @@
           {%- endif -%}
           {%- for block in section.blocks -%}
             {%- if block.settings.faq_heading != blank and block.settings.faq_description != blank -%}
+              <faq-item>
               <div class="accordion-style-2">
                 <button id="accordion-button-1" aria-expanded="false">
                   <span class="accordion-title">
@@ -52,6 +47,7 @@
                   <div class="accordion_desc">{{ block.settings.faq_description }}</div>
                 </div>
               </div>
+              </faq-item>
             {%- endif -%}
           {% endfor %}
         </div>
@@ -59,21 +55,38 @@
     </div>
   </div>
 </section>
-<!-- end: FAQ Section -->
 <script>
-  const items = document.querySelectorAll('.accordion button');
-  function toggleAccordion() {
-    const itemToggle = this.getAttribute('aria-expanded');
-
-    for (i = 0; i < items.length; i++) {
-      items[i].setAttribute('aria-expanded', 'false');
-    }
-
-    if (itemToggle == 'false') {
-      this.setAttribute('aria-expanded', 'true');
-    }
+class FaqItem extends HTMLElement {
+  constructor() {
+    super();
   }
-  items.forEach((item) => item.addEventListener('click', toggleAccordion));
+  connectedCallback() {
+    const button = this.querySelector('button[aria-expanded]');
+    const content = this.querySelector('.accordion_content');
+
+    if (!button || !content) return;
+
+    // Start with collapsed content
+    content.style.height = '0px';
+    button.addEventListener('click', () => {
+      const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+      // Collapse all
+      button.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+
+      if (isExpanded) {
+        content.style.height = '0px';
+      } else {
+        // Temporarily remove height to measure natural height
+        const fullHeight = content.scrollHeight + 'px';
+        content.style.height = fullHeight;
+      }
+    });
+  }
+}
+
+customElements.define('faq-item', FaqItem);
+
 </script>
 
 {% schema %}

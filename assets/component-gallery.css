@@ -299,7 +299,7 @@
       align-items: center;
     }
     .gallery-section .gallery_wrapper .custom-scroller-wrapper .galley_item{
-      min-width: 44%;
+      min-width: 40%;
       width: 40%;
       margin: 0;
     }
