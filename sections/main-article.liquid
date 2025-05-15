@@ -19,17 +19,17 @@
   <div class="page-width">
     <div class="breadcrumb-content-area blog-style">
       {% if section.settings.show_breadcrumb %}
-        <div class="anim-item breadcrumb-link">
+        <div class=" breadcrumb-link">
           <ul>
             <li><a href="{{ routes.root_url }}">Home</a></li>
             <li>{{ blog.title }}</li>
           </ul>
         </div>
       {% endif %}
-      <div class="anim-item breadcrumb-heading">
+      <div class=" breadcrumb-heading">
         <h1 class="breadcrumb-title">{{ article.title }}</h1>
       </div>
-      <div class="anim-item blog_category">
+      <div class=" blog_category">
         {% if article.tags.size > 0 and section.settings.show_tag %}
           {% for tag in article.tags %}
             <a class="category_text" href="{{ blog.url }}/tagged/{{ tag | handleize }}">
@@ -54,7 +54,7 @@
   <div class="page-width">
     <div class="blog_details_main">
       {% if article.image != blank %}
-        <div class="anim-item blog_details_lg_images">
+        <div class=" blog_details_lg_images">
           <img
             class="w-full"
             srcset="
@@ -76,10 +76,10 @@
         </div>
       {% endif %}
       <div class="blog_details_Wrapper">
-        <div class="anim-item blog_details_content">
+        <div class=" blog_details_content">
           {{ article.content }}
         </div>
-        <div class="anim-item blog_details_infos_box">
+        <div class=" blog_details_infos_box">
           {% if section.settings.show_tag or section.settings.show_social_share %}
             {% if article.tags.size > 0 and section.settings.show_tag %}
               <div class="blog_details_tag">

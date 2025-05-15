@@ -9,11 +9,11 @@
     text-transform: uppercase;
     line-height: 1;
 }
-
+/* 
 .anim-item {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 .breadcrumb-content-area {
     position: relative;
