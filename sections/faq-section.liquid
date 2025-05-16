@@ -1,33 +1,5 @@
-{% comment %} <section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-  <div class="page-width">
-    <div class="faq_main_wrapper">
-      <div class="accordion_main_content">
-        {%- for block in section.blocks -%}
-            <div class="accordion faq_tabs"  {{ block.shopify_attributes }}>
-              {%- if block.settings.faq_title != blank -%}
-                <h4 class="faq_title">{{ block.settings.faq_title }}</h4>
-              {%- endif -%}
-              {% if block.settings.faq_heading != blank and block.settings.faq_description != blank %}
-                <faq-accordion>
-                  <div class="accordion-wrapper">
-                    <button aria-expanded="false">
-                      <span class="accordion-title">{{ block.settings.faq_heading }}</span><span class="icon" aria-hidden="true"></span>
-                    </button>
-                    <div class="accordion_content">
-                      <div class="accordion_desc">{{ block.settings.faq_description }}</div>
-                    </div>
-                  </div>
-                </faq-accordion>
-              {% endif %}
-            </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section> {% endcomment %}
-
 {{ 'component-faq.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'faq-item.js' | asset_url }}" defer></script>
+<script src="{{ 'accordion-item.js' | asset_url }}" defer></script>
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -77,7 +49,7 @@
                   {% assign default_category_opened = true %}
                 {% endunless %}
               {% endunless %}
-              <faq-accordion>
+              <accordion-item>
               <div class="accordion-wrapper" {{ block.shopify_attributes }}>
                 <button id="accordion-button-{{ forloop.index }}" aria-expanded="false">
                   <span class="accordion-title">{{ block.settings.question }}</span>
@@ -87,7 +59,7 @@
                   <p class="accordion_desc">{{ block.settings.answer }}</p>
                 </div>
               </div>
-              </faq-accordion>
+              </accordion-item>
           {% endcase %}
         {% endfor %}
         {% if opened_category or default_category_opened %}
@@ -171,10 +143,10 @@
           "default": "How long does shipping take?"
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "answer",
           "label": "Answer",
-          "default": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+          "default": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.</p>"
         }
       ]
     }

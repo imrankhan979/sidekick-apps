@@ -4399,3 +4399,14 @@ body.drawer-open{
 .underline-line-hover:hover  .inner-text{  
   background-size: 100% 100%;  
 } 
+
+/* accordion */
+accordion-item .accordion_content {
+    opacity: 0;
+    overflow: hidden;
+    transition: all .3s;
+    will-change: opacity, max-height;
+  }
+  accordion-item button[aria-expanded='true'] + .accordion_content{
+    opacity: 1;
+  }

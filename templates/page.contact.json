@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "bread": {
       "type": "s-page-breadcrumb",
@@ -19,16 +19,10 @@
         "padding_bottom": 200
       }
     },
-    "contact_form_WRUeHY": {
+    "contact_form_hnhAt6": {
       "type": "contact-form",
       "blocks": {
-        "social_share_8WgF6U": {
-          "type": "social_share",
-          "settings": {
-            "social_title": "Socials"
-          }
-        },
-        "contact_address_h47QhV": {
+        "contact_address_4apiep": {
           "type": "contact_address",
           "settings": {
             "contact_title": "Contact",
@@ -39,13 +33,19 @@
             "phone_title": "Hotline",
             "phone": "+1 914 677 07777"
           }
+        },
+        "social_share_ADaB9X": {
+          "type": "social_share",
+          "settings": {
+            "social_title": "Socials"
+          }
         }
       },
       "block_order": [
-        "social_share_8WgF6U",
-        "contact_address_h47QhV"
+        "contact_address_4apiep",
+        "social_share_ADaB9X"
       ],
-      "name": "Contact Form Section",
+      "name": "Contact form",
       "settings": {
         "color_scheme": "",
         "section_title": "Contact Us",
@@ -54,10 +54,10 @@
         "padding_bottom": 120
       }
     },
-    "location_ebiTTA": {
+    "location_MbLaea": {
       "type": "location",
       "blocks": {
-        "location_DVRFGV": {
+        "location_gQ6dde": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -65,7 +65,7 @@
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_9BPeUa": {
+        "location_artLj8": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -73,7 +73,7 @@
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_DAzMmw": {
+        "location_UYyhKF": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -81,7 +81,7 @@
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_HRjbja": {
+        "location_gpFU6M": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -91,25 +91,25 @@
         }
       },
       "block_order": [
-        "location_DVRFGV",
-        "location_9BPeUa",
-        "location_DAzMmw",
-        "location_HRjbja"
+        "location_gQ6dde",
+        "location_artLj8",
+        "location_UYyhKF",
+        "location_gpFU6M"
       ],
-      "name": "Location section",
+      "name": "Location with map",
       "settings": {
+        "section_color_scheme": "",
         "location_iframe": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d848300.8253314648!2d150.27255546310082!3d-33.84648855820782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sbd!4v1745469404037!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
         "stores_location": "Stores location",
-        "section_color_scheme": "",
-        "accordion_open": true,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "first_item_open": true,
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     }
   },
   "order": [
     "bread",
-    "contact_form_WRUeHY",
-    "location_ebiTTA"
+    "contact_form_hnhAt6",
+    "location_MbLaea"
   ]
 }

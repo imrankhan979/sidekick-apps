@@ -75,10 +75,10 @@
           padding: 18px;
         }
   }
-    .faq_main_wrapper faq-accordion{
+    .faq_main_wrapper accordion-item{
       display: block;
     }
-  .faq_main_wrapper faq-accordion:not(:last-child) {
+  .faq_main_wrapper accordion-item:not(:last-child) {
     margin-bottom: 16px;
   }
   
@@ -152,10 +152,6 @@
   }
   }
   .faq_main_wrapper .faq_tabs .accordion_content {
-    opacity: 0;
-    overflow: hidden;
-    transition: all .3s;
-    will-change: opacity, max-height;
     margin-top: 0;
   }
   
