@@ -87,6 +87,10 @@
     position: relative;
     z-index: 9;
   }
+   .slider_item .slider-images img{
+    object-fit: cover;
+   }
+
   @media (max-width: 767px) {
     .slider_item .slider_item_content{
       padding-top: calc((var(--observed-height) / 2) + 24px);

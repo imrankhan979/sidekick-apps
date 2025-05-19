@@ -1,9 +1,10 @@
 {{ 'our-journey.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'media-tab.js' | asset_url }}" defer></script>
 
 {%- style -%}
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
 
     @media screen and (min-width: 800px) {
@@ -23,69 +24,75 @@
 <section class="our-journey-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
   <div class="page-width">
     <div class="heading-area">
-      <h2 class="our_journey_main_title">{{ section.settings.section_title }}</h2>
+      <h1 class="our_journey_main_title">{{ section.settings.section_title }}</h1>
       <h5 class="our_journey_title">{{ section.settings.section_description }}</h5>
     </div>
-    <div class="our_journey_main_wrapper" style="background-color: {{ block.settings.collection_bg_color }};">
-      {%- for block in section.blocks -%}
-        <div class="our_journey_images flex">
-          {%- if block.settings.tab_image != blank -%}
-            {{
-              block.settings.tab_image
-              | image_url: width: 1500
-              | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-            }}
-          {%- else -%}
-            {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-            {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-            {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endif -%}
+    <media-tab>
+      <div class="our_journey_main_wrapper">
+        <div class="our_journey_image_wrapper">
+          {%- for block in section.blocks -%}
+            <div class="our_journey_images flex">
+              {%- if block.settings.tab_image != blank -%}
+                {{
+                  block.settings.tab_image
+                  | image_url: width: 1500
+                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                }}
+              {%- else -%}
+                {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
         </div>
-      {%- endfor -%}
-      <div class="our_journey_tabs">
-        <div class="our_journey_tab" id="our-journey-tab">
-          <div class="our_journey_menu">
-            <ul class="tabs_menu">
+        <div class="our_journey_tabs h-full">
+          <div class="our_journey_tab" id="our-journey-tab">
+            <div class="our_journey_menu">
+              <ul class="tabs_menu">
+                {%- for block in section.blocks -%}
+                  <li class="{% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
+                    <span class="journey_anim"> 
+                      <span class="journey_text">
+                        {%- if block.settings.tab_button != blank -%}
+                          {{ block.settings.tab_button }}
+                        {%- else -%}
+                          Tab {{ forloop.index }}
+                        {%- endif -%}
+                      </span>
+                    </span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="our_journey_content">
               {%- for block in section.blocks -%}
-                <li class="{% if forloop.first %}active{% endif %}">
-                  {%- if block.settings.tab_button != blank -%}
-                    {{ block.settings.tab_button }}
-                  {%- else -%}
-                    2024
-                  {%- endif -%}
-                </li>
+                <div class="tab-pane">
+                  <h3 class="our_journey_title">
+                    {%- if block.settings.tab_heading != blank -%}
+                      {{ block.settings.tab_heading }}
+                    {%- else -%}
+                      Title for tab {{ forloop.index  }}
+                    {%- endif -%}
+                  </h3>
+                  <div class="our_journey_desc">
+                    {%- if block.settings.tab_description != blank -%}
+                      {{ block.settings.tab_description }}
+                    {%- else -%}
+                      <p>Content for tab {{ forloop.index  }} goes here. Add description or details.</p>
+                    {%- endif -%}
+                  </div>
+                </div>
               {% endfor %}
-            </ul>
-          </div>
-          <div class="our_journey_content">
-            {%- for block in section.blocks -%}
-              <div class="tab-pane">
-                <h3 class="our_journey_title">
-                  {%- if block.settings.tab_heading != blank -%}
-                    {{ block.settings.tab_heading }}
-                  {%- else -%}
-                    The Humble Beginnings
-                  {%- endif -%}
-                </h3>
-                <p class="our_journey_desc">
-                  {%- if block.settings.tab_description != blank -%}
-                    {{ block.settings.tab_description }}
-                  {%- else -%}
-                    Dapper was born in New York from a shared passion for urban fashion. Founded by Ryan Davis, a
-                    visionary with a keen eye for style, the brand quickly gained traction among local streetwear
-                    enthusiasts.
-                  {%- endif -%}
-                </p>
-              </div>
-            {% endfor %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </media-tab>
   </div>
 </section>
 <!-- end: Journey Section -->
-<script>
+{% comment %} <script>
   document.addEventListener('DOMContentLoaded', function () {
     let tabWrapper = document.getElementById('our-journey-tab');
     if (!tabWrapper) return;
@@ -126,28 +133,28 @@
 
     tabMnu[0].classList.add('active');
   });
-</script>
+</script> {% endcomment %}
 {% schema %}
 {
-  "name": "Tab Section",
+  "name": "Timeline tabs",
   "settings": [
-    {
-      "type": "text",
-      "id": "section_title",
-      "default": "Section Title",
-      "label": "Section Title"
-    },
-    {
-      "type": "text",
-      "id": "section_description",
-      "default": "Section Description",
-      "label": "Section Description"
-    },
-    {
+        {
       "type": "color_scheme",
       "id": "section_color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "default": "Our journey",
+      "label": "Section title"
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "default": " <p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>",
+      "label": "Section description"
     },
     {
       "type": "header",
@@ -157,27 +164,27 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding Top",
-      "default": 352
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding Bottom",
-      "default": 352
+      "default": 120
     }
   ],
   "blocks": [
     {
       "type": "tab",
-      "name": "Tab Section",
+      "name": "Item",
       "settings": [
         {
           "type": "image_picker",
@@ -195,7 +202,7 @@
           "label": "Heading"
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "tab_description",
           "label": "Description"
         }
@@ -204,14 +211,11 @@
   ],
   "presets": [
     {
-      "name": "Tab Section",
+      "name": "Timeline tabs",
       "blocks": [
         {
           "type": "tab"
-        },
-        {
-          "type": "tab"
-        },
+        }, 
         {
           "type": "tab"
         },

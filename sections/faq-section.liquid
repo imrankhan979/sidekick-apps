@@ -1,110 +1,100 @@
 {{ 'component-faq.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'accordion-item.js' | asset_url }}" defer></script>
 
 {%- style -%}
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-    }
-
-    @media screen and (min-width: 800px) {
-      .tab_main_wrapper {
-      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
-    }
 
-    @media screen and (min-width: 750px) {
-      .section-{{ section.id }}-padding {
-        padding-top: {{ section.settings.padding_top }}px;
-        padding-bottom: {{ section.settings.padding_bottom }}px;
-      }
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
 {%- endstyle -%}
-<!-- start: FAQ Section -->
-<section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+
+{% assign opened_category = false %}
+{% assign default_category_opened = false %}
+<section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     <div class="faq_main_wrapper">
-      {%- if section.settings.section_heading != blank and section.settings.section_description != blank -%}
+
+       {% if section.settings.left_title != blank or section.settings.left_paragraph != blank %}
         <div class="faq_left_content">
-          <h3 class="faq_left_title">{{ section.settings.section_heading }}</h3>
+          <h3 class="faq_left_title">{{ section.settings.left_title }}</h3>
           <div class="faq_left_desc">
-            <div class="faq__desc">{{ section.settings.section_description }}</div>
+            <div class="faq__desc">{{ section.settings.left_paragraph}}</div>
           </div>
         </div>
-      {%- endif -%}
+       {% endif %}
 
       <div class="accordion_main_content">
-        <div class="accordion faq_tabs">
-          {%- if section.settings.faq_title != blank -%}
-            <h4 class="faq_title">{{ section.settings.faq_title }}</h4>
-          {%- endif -%}
-          {%- for block in section.blocks -%}
-            {%- if block.settings.faq_heading != blank and block.settings.faq_description != blank -%}
-              <div class="accordion-style-2">
-                <button id="accordion-button-1" aria-expanded="false">
-                  <span class="accordion-title">
-                    {%- if block.settings.faq_heading != blank -%}
-                      {{ block.settings.faq_heading }}
-                    {%- endif -%}
-                  </span>
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'faq_category_title' %}
+              {% if opened_category or default_category_opened %}
+                </div> 
+              {% endif %}
+              <div class="accordion faq_tabs">
+                <h4 class="faq_title" {{ block.shopify_attributes }}>{{ block.settings.category_title }}</h4>
+              {% assign opened_category = true %}
+              {% assign default_category_opened = false %}
+
+            {% when 'faq_item' %}
+              {% unless opened_category %}
+                {% unless default_category_opened %}
+                  <div class="accordion faq_tabs">
+                  {% assign default_category_opened = true %}
+                {% endunless %}
+              {% endunless %}
+              <accordion-item>
+              <div class="accordion-wrapper" {{ block.shopify_attributes }}>
+                <button id="accordion-button-{{ forloop.index }}" aria-expanded="false">
+                  <span class="accordion-title">{{ block.settings.question }}</span>
                   <span class="icon" aria-hidden="true"></span>
                 </button>
                 <div class="accordion_content">
-                  <div class="accordion_desc">{{ block.settings.faq_description }}</div>
+                  <p class="accordion_desc">{{ block.settings.answer }}</p>
                 </div>
               </div>
-            {%- endif -%}
-          {% endfor %}
-        </div>
+              </accordion-item>
+          {% endcase %}
+        {% endfor %}
+        {% if opened_category or default_category_opened %}
+          </div> 
+        {% endif %}
       </div>
     </div>
   </div>
 </section>
-<!-- end: FAQ Section -->
-<script>
-  const items = document.querySelectorAll('.accordion button');
-  function toggleAccordion() {
-    const itemToggle = this.getAttribute('aria-expanded');
-
-    for (i = 0; i < items.length; i++) {
-      items[i].setAttribute('aria-expanded', 'false');
-    }
-
-    if (itemToggle == 'false') {
-      this.setAttribute('aria-expanded', 'true');
-    }
-  }
-  items.forEach((item) => item.addEventListener('click', toggleAccordion));
-</script>
 
 {% schema %}
 {
-  "name": "FAQ Section",
+  "name": "FAQ",
+  "tag": "section",
+  "class": "faq-main-section",
   "settings": [
-    {
-      "type": "text",
-      "id": "section_heading",
-      "default": "NEED HELP",
-      "label": "Section Heading"
-    },
-    {
-      "type": "richtext",
-      "id": "section_description",
-      "default": "<p>If you have an issue or question that requires immediate assistance, you can Contact to chat with a Customer Service representative.Please allow 06 - 12 business days from the time your package arrives back to us for a refund to be issued.</p>",
-      "label": "Section Description"
-    },
-    {
-      "type": "text",
-      "id": "faq_title",
-      "label": "FAQ Information",
-      "default": "Shipping Information"
-    },
-    {
+        {
       "type": "color_scheme",
-      "id": "section_color_scheme",
+      "id": "color_scheme",
       "label": "Color scheme",
       "default": "scheme-1"
     },
     {
+      "type": "text",
+      "id": "left_title",
+      "label": "Section title",
+      "default": "Need help?"
+    },
+    {
+      "type": "richtext",
+      "id": "left_paragraph",
+      "label": "Section description",
+      "default": "<p>If you have an issue or question that requires immediate assistance, you can <a href=\"#\">contact us</a> to chat with a customer service representative.</p>"
+    },
+        {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -112,58 +102,71 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 360,
+      "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
-      "default": 352
+      "label": "Padding top",
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 360,
+      "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
-      "default": 352
+      "label": "Padding bottom",
+      "default": 120
     }
   ],
   "blocks": [
     {
-      "type": "faq",
-      "name": "FAQ Section",
+      "type": "faq_category_title",
+      "name": "Title",
       "settings": [
         {
           "type": "text",
-          "id": "faq_heading",
-          "label": "FAQ Subtitle",
-          "default": "How long does it take to get my products?"
+          "id": "category_title",
+          "label": "Category Title",
+          "default": "Category Title"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How long does shipping take?"
         },
         {
           "type": "richtext",
-          "id": "faq_description",
-          "label": "FAQ Description",
-          "default": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.</p>"
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.</p>"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "FAQ Section",
+      "name": "FAQ",
+      "category": "Section",
       "blocks": [
         {
-          "type": "faq"
+          "type": "faq_category_title"
         },
         {
-          "type": "faq"
+          "type": "faq_item"
         },
         {
-          "type": "faq"
+          "type": "faq_category_title"
         },
         {
-          "type": "faq"
+          "type": "faq_item"
         }
       ]
     }

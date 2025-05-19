@@ -26,7 +26,3 @@
   padding: 0 0.8rem;
   height: 3.8rem;
 }
-
-.list-social__link:hover .icon {
-  transform: scale(1.07);
-}

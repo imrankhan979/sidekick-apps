@@ -131,7 +131,7 @@
     fill: #ffffff;
 }
 
-.anim-item.reveal {
+/* .anim-item.reveal {
     opacity: 1;
     transform: translateY(0);
 }
@@ -139,4 +139,4 @@
 .anim-item {
     transform: translateY(30px);
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-}
+} */

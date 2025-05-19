@@ -2,8 +2,8 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
  
   @media screen and (min-width: 992px) { 
@@ -19,7 +19,6 @@
   }
 
 {%- endstyle -%}
-   <!-- start: Material Section -->
    <section class="icon-with-text color-{{ section.settings.color_scheme }}">
     <div class="page-width">
       <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
@@ -30,7 +29,7 @@
         {% endif %}
          <div class="material_main_wrapper">
           {%- for block in section.blocks -%}
-            <div class="material_item"  {{ block.shopify_attributes }}>
+            <div class="material_item" {{ block.shopify_attributes }}>
                <div class="material_icons">
                       {%- if block.settings.material_image != blank -%}
                         {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
@@ -67,7 +66,6 @@
       </div>
     </div>
  </section>
- <!-- end: Material Section -->
 
 {% schema %}
 {
@@ -81,15 +79,23 @@
     },
     {
       "type": "checkbox",
+      "id": "show_border",
+      "label": "Border",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "border_top",
       "label": "Border top",
-      "default": false
+      "default": false,
+      "visible_if": "{{ section.settings.show_border }}"
     },
     {
       "type": "checkbox",
       "id": "border_bottom",
       "label": " Border bottom",
-      "default": false
+      "default": false,
+      "visible_if": "{{ section.settings.show_border }}"
     },
     {
       "type": "text",

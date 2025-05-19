@@ -2,8 +2,8 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
   .grid-colums {
     grid-template-columns: 1fr 2fr; 
@@ -23,6 +23,13 @@
   }
   }
 {%- endstyle -%}
+
+{%- liquid
+  assign social_icons = true
+  if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+    assign social_icons = false
+  endif
+-%}
 
 <section class="contact-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
@@ -229,7 +236,7 @@
   "blocks": [
     {
       "type": "contact_address",
-      "name": "Contact Address",
+      "name": "Contact information",
       "limit": 1,
       "settings": [
         {
@@ -239,46 +246,58 @@
           "default": "Contact"
         },
         {
+          "type": "header",
+          "content": "Address"
+        },
+        {
           "type": "text",
           "id": "address_title",
-          "label": "Address Title",
+          "label": "Title",
           "default": "Address"
         },
         {
           "type": "text",
           "id": "address",
-          "label": "Address",
+          "label": "Details",
           "default": "141 Duane St, New York, NY 10013"
+        },
+                {
+          "type": "header",
+          "content": "Email"
         },
         {
           "type": "text",
           "id": "email_title",
-          "label": "Email Title",
+          "label": "Title",
           "default": "E-mail"
         },
         {
           "type": "text",
           "id": "email",
-          "label": "Email",
+          "label": "Details",
           "default": "helpcenter@dapper.com"
+        },
+                {
+          "type": "header",
+          "content": "Phone"
         },
         {
           "type": "text",
           "id": "phone_title",
-          "label": "Phone Title",
+          "label": "Title",
           "default": "Hotline"
         },
         {
           "type": "text",
           "id": "phone",
-          "label": "Phone",
+          "label": "Details",
           "default": "+1 914 677 07777"
         }
       ]
     },
     {
       "type": "social_share",
-      "name": "Social Share",
+      "name": "Social link",
       "limit": 1,
       "settings": [
         {
@@ -292,7 +311,7 @@
   ],
   "presets": [
     {
-      "name": "Contact Form Section",
+      "name": "Contact form",
       "category": "Custom"
     }
   ]

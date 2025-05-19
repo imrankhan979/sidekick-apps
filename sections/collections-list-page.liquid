@@ -2,8 +2,8 @@
 
 {%- style -%}
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+       padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
     }
 
     @media screen and (min-width: 1199px) {
@@ -37,7 +37,7 @@
     {%- paginate collections by section.settings.columns_by_page -%}
       <div class="shop_collection_wrapper">
         {% for collection in collections %}
-          <div class="collection-card-wrapper" style="background-color: {{ collection.metafields.custom.additional_color }}">
+          <div class="collection-card-wrapper" {% if collection.metafields.custom.additional_color != blank %} style="background-color: {{ collection.metafields.custom.additional_color }}"{% endif %}>
             {% render 'collection-card-list',
               card_collection: collection,
               ratio_h: section.settings.ratio,

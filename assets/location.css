@@ -29,7 +29,7 @@ START: Contact maps CSS
     width: 100%;
     max-height: 75%;
     overflow: auto;
-    background: rgba(var(--color-secondary-background));
+    background: #fff;
     padding: 30px 48px;
     border-radius: 16px;
   }
@@ -40,11 +40,12 @@ START: Contact maps CSS
     color: rgba(var(--color-foreground));
   }
   
-  .accordion .accordion-item {
+  .accordion accordion-item {
     border-bottom: 1px solid #DDDDDD;
+    display: block;
   }
   
-  .accordion .accordion-item:last-child {
+  .accordion accordion-item:last-child {
     border-bottom: none;
   }
   
@@ -122,6 +123,8 @@ START: Contact maps CSS
     width: 2px;
     height: 13px;
     background: rgba(var(--color-button));
+    transition: .3s;
+    transform: scale(1);
   }
   
   .contact_map_wrapper .accordion button[aria-expanded='true'] .icon::after {
@@ -141,6 +144,7 @@ START: Contact maps CSS
     overflow: hidden;
     transition: opacity 200ms linear, max-height 200ms linear;
     will-change: opacity, max-height;
+        transform: scale(0);
   }
   
   @media (max-width: 767px) {
@@ -173,6 +177,11 @@ START: Contact maps CSS
       line-height: 32px;
     }
   }
-  
-  /* !END: Contact maps CSS *
-  
+  .contact-tabs-section accordion-item button[aria-expanded=true]+.accordion_content {
+    margin-bottom: 24px;
+}
+  .accordion accordion-item .faq_timer{
+    color: #808080;
+    display: block;
+    margin-top: 20px;
+  }

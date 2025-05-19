@@ -23,7 +23,18 @@
   ],
   "blog": [],
   "brand": [],
-  "collection": [],
+  "collection": [
+    {
+      "key": "additional_color",
+      "namespace": "custom",
+      "name": "Additional color",
+      "description": "",
+      "type": {
+        "name": "color",
+        "category": "COLOR"
+      }
+    }
+  ],
   "company": [],
   "company_location": [],
   "location": [],

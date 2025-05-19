@@ -1,8 +1,8 @@
 .icon-with-text .border-inline-top{
-  border-top: 1px solid rgb(var(--color-secondary-background));
+  border-top: 1px solid #DDDDDD;
 }
 .icon-with-text .border-inline-bottom{
-  border-bottom: 1px solid rgb(var(--color-secondary-background));
+  border-bottom: 1px solid #DDDDDD;
 }
 .icon-with-text-section-heading {
   max-width: 700px;
@@ -85,6 +85,7 @@
   
     .material_item .material_item_title {
       font-size: 20px;
+      line-height: 28px;
     }
   
     .material_main_wrapper {

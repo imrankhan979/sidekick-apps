@@ -1,15 +1,11 @@
 {{ 'location.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'accordion-item.js' | asset_url }}" defer></script>
+
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
-  }
- 
-  @media screen and (min-width: 800px) { 
-    .tab_main_wrapper {
-    grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
-}
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -21,47 +17,51 @@
 
 {%- endstyle -%}
 
-<!-- start: Contact Section -->
   <section class="contact-tabs-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
     <div class="page-width">
        <div class="contact_map_wrapper">
         {%- if section.settings.location_iframe != blank -%}
             {{ section.settings.location_iframe }}
         {%- endif -%}
-          <div class="accordion contact_tabs">
+          <div class="accordion contact_tabs" open-first-item="{{ section.settings.first_item_open }}">
             {%- if section.settings.stores_location != blank -%}
                 <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
             {%- endif -%}
             <accordion-item>
              {%- for block in section.blocks -%}
-             <div class="accordion-item">
-              <button id="accordion-button-{{ forloop.index }}" aria-expanded="false"><span class="accordion-title">
-                    {%- if block.settings.location_title != blank -%}
-                        {{ block.settings.location_title }}
+              <accordion-item>
+                <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}"><span class="accordion-title">
+                  {%- if block.settings.location_title != blank -%}
+                    {{ block.settings.location_title }}
+                  {%- endif -%}
+                  </span>
+                  <span class="icon" aria-hidden="true"></span></button>
+                  <div class="accordion_content">
+                    {%- if block.settings.location_description != blank -%}
+                      <span class="faq_location">{{ block.settings.location_description }}</span>
                     {%- endif -%}
-                      </span>
-                   <span class="icon" aria-hidden="true"></span></button>
-                <div class="accordion_content">
-                   {%- if block.settings.location_description != blank -%}
-                    <span class="faq_location">{{ block.settings.location_description }}</span>
-                   {%- endif -%}
-                   {%- if block.settings.store_timing != blank -%}
-                    <span class="faq_timer">{{ block.settings.store_timing }}</span>
-                   {%- endif -%}
-                </div>
-             </div>
+                    {%- if block.settings.store_timing != blank -%}
+                      <span class="faq_timer">{{ block.settings.store_timing }}</span>
+                    {%- endif -%}
+                    </div>
+                    </accordion-item>
             {% endfor %}
           </accordion-item>
           </div>
        </div>
     </div>
  </section>
-<!-- end: Contact Section -->
 
 {% schema %}
 {
-  "name": "Location section",
+  "name": "Location with map",
   "settings": [
+        {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
     {
       "type": "textarea",
       "id": "location_iframe",
@@ -72,13 +72,13 @@
       "type": "text",
       "id": "stores_location",
       "default": "Stores location",
-      "label": "Location title"
+      "label": "Title"
     },
     {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
+      "type": "checkbox",
+      "id": "first_item_open",
+      "label": "Open the first accordion item by default",
+      "default": true
     },
     {
       "type": "header",
@@ -88,27 +88,27 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 352
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
-      "default": 352
+      "default": 120
     }
   ],
   "blocks": [
     {
       "type": "location",
-      "name": "Location section",
+      "name": "Location",
       "settings": [
         {
           "type": "text",
@@ -133,7 +133,7 @@
   ],
   "presets": [
     {
-      "name": "Location section",
+      "name": "Location with map",
       "blocks": [
         {
           "type": "location"

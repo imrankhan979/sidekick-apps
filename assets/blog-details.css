@@ -387,10 +387,10 @@
     animation-name: hover-underline;
 }
 
-.anim-item.reveal {
+/* .anim-item.reveal {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 .blog_category {
     margin: 0;
