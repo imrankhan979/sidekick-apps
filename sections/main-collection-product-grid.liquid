@@ -22,8 +22,8 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -37,9 +37,10 @@
   grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
 }
 @media screen and (max-width: 750px) {
-  .search_results_product_box {
-  grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
-}
+    .search_results_product_box {
+      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+    }
+    
   }
 {%- endstyle -%}
 
@@ -174,6 +175,9 @@
                         section_id: section.id
                       %}
                       </li>
+                      {% if section.settings.show_promo_banner and  forloop.index == section.settings.banner_position %}
+                        {% render 'promo-banner' %}
+                      {% endif %}
                       {%- assign skip_card_product_styles = true -%}
                     {%- endfor -%}
                   </ul>
@@ -198,6 +202,13 @@
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
   "settings": [
+        {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
     {
       "type": "range",
       "id": "products_per_page",
@@ -215,13 +226,6 @@
       "step": 1,
       "default": 3,
       "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
     },
     {
       "type": "header",
@@ -385,6 +389,60 @@
           "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
         }
       ]
+    },
+    
+       {
+      "type": "header",
+      "content": "Promo banner"
+    },
+       {
+      "type": "checkbox",
+      "id": "show_promo_banner",
+      "default": true,
+      "label": "Show promo banner"
+    },
+     {
+      "type": "range",
+      "id": "banner_position",
+      "label": "Show promo banner after how many products?",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 4,
+      "visible_if": "{{ section.settings.show_promo_banner }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image",
+      "visible_if": "{{ section.settings.show_promo_banner }}"
+    },
+    {
+      "type": "text",
+      "id": "banner_title",
+      "label": "Title",
+      "default": "Dapper’s Accessories",
+      "visible_if": "{{ section.settings.show_promo_banner }}"
+    },
+    {
+      "type": "textarea",
+      "id": "banner_description",
+      "label": "Description",
+      "default": "Unique designs, rebellious spirit, and urban attitude.",
+      "visible_if": "{{ section.settings.show_promo_banner }}"
+    },
+    {
+      "type": "text",
+      "id": "banner_button_text",
+      "label": "Button Text",
+      "default": "Discover More",
+      "visible_if": "{{ section.settings.show_promo_banner }}"
+    },
+    {
+      "type": "url",
+      "id": "banner_link",
+      "label": "Banner Link",
+      "visible_if": "{{ section.settings.show_promo_banner }}"
     },
     {
       "type": "header",

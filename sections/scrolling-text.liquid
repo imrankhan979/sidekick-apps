@@ -1,9 +1,11 @@
 {{ 'scrolling-text.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'scrolling-text.js' | asset_url }}" defer></script>
+
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -18,73 +20,21 @@
 <section class="marquee-section color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
     <div class="marquee_slider">
-      <div class="marquee_wrapper marquee_box_revers" style="--scroll-duration: {{ section.settings.scroll_duration }}s">
-        {% assign block_count = section.blocks.size %}
-
-        {% if block_count < 3 %}
-          {% assign repeat_count = 10 %}
-        {% else %}
-          {% assign repeat_count = 1 %} 
-        {% endif %}
-
-        {% for i in (1..repeat_count) %} 
-          {% for block in section.blocks %}
-            {% if block.type == 'marquee_item' %}
-              <div class="marquee_item" {{ block.shopify_attributes }}>
-                <div class="marquee_title">
-                  <h3 class="title">{{ block.settings.title }}</h3>
-                </div>
-              </div>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-
-        {% for i in (1..repeat_count) %} 
-          {% for block in section.blocks %}
-            {% if block.type == 'marquee_item' %}
-              <div class="marquee_item" {{ block.shopify_attributes }}>
-                <div class="marquee_title">
-                  <h3 class="title">{{ block.settings.title }}</h3>
-                </div>
-              </div>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-      </div>
-
-      <div class="marquee_wrapper marquee_box_revers" style="--scroll-duration: {{ section.settings.scroll_duration }}s">
-        {% assign block_count = section.blocks.size %}
-
-        {% if block_count < 3 %}
-          {% assign repeat_count = 5 %}
-        {% else %}
-          {% assign repeat_count = 1 %} 
-        {% endif %}
-
-        {% for i in (1..repeat_count) %} 
-          {% for block in section.blocks %}
-            {% if block.type == 'marquee_item' %}
-              <div class="marquee_item" {{ block.shopify_attributes }}>
-                <div class="marquee_title">
-                  <h3 class="title">{{ block.settings.title }}</h3>
-                </div>
-              </div>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-
-        {% for i in (1..repeat_count) %}
-          {% for block in section.blocks %}
-            {% if block.type == 'marquee_item' %}
-              <div class="marquee_item" {{ block.shopify_attributes }}>
-                <div class="marquee_title">
-                  <h3 class="title">{{ block.settings.title }}</h3>
-                </div>
-              </div>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-      </div>
+      <scrolling-text data-speed="{{ section.settings.speed }}" data-direction="{{ section.settings.direction }}" data-pause-on-hover="{{ section.settings.pause_on_hover }}">
+          <div class="modern-marquee">
+            <div class="marquee-track">
+                  {% for block in section.blocks %}
+                    {% if block.type == 'marquee_item' %}
+                      <div class="marquee_item marquee-item" {{ block.shopify_attributes }}>
+                        <div class="marquee_title">
+                          <h3 class="title">{{ block.settings.title }}</h3>
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+            </div>
+          </div>
+        </scrolling-text>
     </div>
 
     <div class="marquee_sm_slider">
@@ -117,10 +67,36 @@
             "default": "scheme-1"
         },
         {
-            "type": "number",
-            "id": "scroll_duration",
-            "label": "Scroll duration (seconds)",
-            "default": 60
+          "type": "range",
+          "id": "speed",
+          "label": "Marquee Speed",
+          "min": 10,
+          "max": 500,
+          "step": 10,
+          "default": 100,
+          "unit": "ms"
+        },
+        {
+          "type": "select",
+          "id": "direction",
+          "label": "Marquee Direction",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        },
+        {
+          "type": "checkbox",
+          "id": "pause_on_hover",
+          "label": "Pause on Hover",
+          "default": true
         },
         {
             "type": "range",

@@ -1,0 +1,143 @@
+<style>
+    .category_banner_item {
+  width: 100%;
+}
+
+.category_banner_item .category_banner_box {
+  position: relative;
+}
+
+.category_banner_item .category_banner_box::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 24px;
+  z-index: 2;
+}
+
+.category_banner_item .category_banner_box .category-images {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+
+.category_banner_item .category_banner_box .category_banner_content {
+  position: relative;
+  text-align: center;
+  padding: 120px 55px 120px;
+  z-index: 2;
+  display: flex;
+  gap: 147px;
+flex-direction: column;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category_banner_text .category_banner_title {
+  font-size: 48px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category_banner_text .category_banner_desc {
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category_banner_button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category-banner-btn {
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  font-size: 18px;
+  font-family: var(--sds-ff-heading);
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 18px 28px;
+  line-height: 1;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category-banner-btn .category-anim {
+  display: block;
+  overflow: hidden;
+  text-shadow: 0 23px 0 #ffffff;
+  transition: all ease 0.3s;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category-banner-btn .category-anim>.anim-text {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  backface-visibility: hidden;
+  transform: translateY(0);
+  transition: all ease 0.3s;
+}
+
+.category_banner_item .category_banner_box .category_banner_content .category-banner-btn:hover .category-anim>.anim-text {
+  text-shadow: 0 23px 0 #ffffff;
+  transform: translateY(-23px);
+}
+
+@media (max-width: 767px) {
+  .category_banner_item {
+    max-width: 100%;
+    grid-column: span 2;
+  }
+
+  .category_banner_item .category_banner_box .category_banner_content {
+    padding: 80px 20px;
+  }
+}
+</style>
+<div class="category_banner_item">
+  <a class="category_banner_box" href="{{ section.settings.banner_link }}">
+    <div class="category_banner_images">
+        {% if section.settings.banner_image != blank %}
+            <img
+                class="category-images"
+                src="{{ section.settings.banner_image | image_url }}"
+                {% if section.settings.banner_image.alt != blank %}
+                alt="{{ section.settings.banner_image.alt | escape }}"
+                {% else %}
+                role="presentation"
+                {% endif %}
+                height="auto"
+                width="auto"
+                loading="lazy"
+            >
+            {% else %}
+                 {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      <div class="category_banner_content">
+        <div class="category_banner_text">
+          <h2 class="category_banner_title">{{ section.settings.banner_title }}</h2>
+          <div class="category_banner_desc">{{ section.settings.banner_description }}</div>
+        </div>
+        <div class="category_banner_button">
+          <span class="category-banner-btn">
+            <span class="category-anim">
+              <span class="anim-text">{{ section.settings.banner_button_text }}</span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
