@@ -1,5 +1,6 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
-
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
 
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
 
@@ -415,6 +416,16 @@
       "type": "image_picker",
       "id": "banner_image",
       "label": "Banner Image",
+      "visible_if": "{{ section.settings.show_promo_banner }}"
+    },
+         {
+      "type": "range",
+      "id": "banner_overlay",
+      "label": "Overlay opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 50,
       "visible_if": "{{ section.settings.show_promo_banner }}"
     },
     {

@@ -1,6 +1,8 @@
 <style>
     .category_banner_item {
   width: 100%;
+  border-radius: 24px;
+overflow: hidden;
 }
 
 .category_banner_item .category_banner_box {
@@ -14,19 +16,19 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 24px;
+  background: rgba(0, 0, 0, var(--overlay-opacity));
   z-index: 2;
 }
 
-.category_banner_item .category_banner_box .category-images {
+.category_banner_item .category_banner_box .category-images, .category_banner_item  .category_banner_images > svg{
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  height: 100%;
+  inset: 0;
   object-fit: cover;
-  border-radius: 24px;
+}
+.category_banner_item:hover .category_banner_box .category-images, .category_banner_item:hover  .category_banner_images > svg{
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
 }
 
 
@@ -39,7 +41,11 @@
   gap: 147px;
 flex-direction: column;
 }
-
+@media (max-width: 1400px) {
+    .category_banner_item .category_banner_box .category_banner_content {
+      padding: 80px 20px ;
+    }
+}
 .category_banner_item .category_banner_box .category_banner_content .category_banner_text .category_banner_title {
   font-size: 48px;
   color: #ffffff;
@@ -100,14 +106,10 @@ flex-direction: column;
     max-width: 100%;
     grid-column: span 2;
   }
-
-  .category_banner_item .category_banner_box .category_banner_content {
-    padding: 80px 20px;
-  }
 }
 </style>
-<div class="category_banner_item">
-  <a class="category_banner_box" href="{{ section.settings.banner_link }}">
+<div class="category_banner_item"  style="--overlay-opacity: {{ section.settings.banner_overlay | divided_by: 100.0 }};">
+  <a class="category_banner_box" {% if section.settings.banner_link == blank %}  role="link" aria-disabled="true" {% else %} href="{{ section.settings.banner_link.url }}" {% endif %}>
     <div class="category_banner_images">
         {% if section.settings.banner_image != blank %}
             <img
