@@ -1,6 +1,9 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
+{% if section.settings.show_promo_banner %}
+  {{ 'component-promo-banner.css' | asset_url | stylesheet_tag }}
+{% endif %}
 
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
 

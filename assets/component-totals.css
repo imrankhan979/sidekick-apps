@@ -3,6 +3,7 @@
   justify-content: center;
   justify-content: flex-start;
   align-items: center;
+  gap: 10px;
 }
 
 .totals > * {
@@ -11,23 +12,18 @@
 }
 
 .totals > h2 {
-  font-size: calc(var(--font-heading-scale) * 1.6rem);
+  font-size: 16px;
+  font-family: var(--font-family-body);
+  font-weight: 700;
 }
 
 .totals * {
   line-height: 1;
 }
 
-.totals > * + * {
-  margin-left: 2rem;
-}
-
-.totals__total {
-  margin-top: .5rem;
-}
 
 .totals__total-value {
-  font-size: 1.8rem;
+  font-size: 16px;
 }
 
 .cart__ctas + .totals {
