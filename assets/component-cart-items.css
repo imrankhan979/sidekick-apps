@@ -288,7 +288,6 @@ cart-remove-button .icon-remove {
 
   .cart-items td {
     vertical-align: top;
-    padding-top: 4rem;
   }
 
   .cart-item {
@@ -303,13 +302,10 @@ cart-remove-button .icon-remove {
     width: 35rem;
   }
 
-  .cart-item__media {
+  /* .cart-item__media {
     width: 20rem;
-  }
+  } */
 
-  .cart-item__price-wrapper>*:only-child:not(.cart-item__discounted-prices) {
-    margin-top: 1rem;
-  }
 
   .cart-item__error {
     margin-left: 0.3rem;
