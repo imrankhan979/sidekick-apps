@@ -4,7 +4,9 @@ START: Contact maps CSS
 .contact-tabs-section {
     padding-bottom: 120px;
   }
-  
+  .accordion_content.active {
+
+  }
   .contact-tabs-section .page-width {
     max-width: 1296px;
   }
@@ -22,8 +24,7 @@ START: Contact maps CSS
   .contact_map_wrapper .contact_tabs {
     position: absolute;
     right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 13%;
     max-width: 395px;
     width: 100%;
     max-height: 75%;
@@ -53,7 +54,7 @@ START: Contact maps CSS
     display: block;
     text-align: left;
     width: 100%;
-    padding: 18px 0;
+    padding: 20px 0;
     color: #7288a2;
     font-weight: 400;
     border: none;
@@ -90,12 +91,13 @@ START: Contact maps CSS
     font-weight: 400;
     color: rgba(var(--color-secondary-foreground));
     margin-top: 6px;
+    margin-bottom: 20px;
   }
   
   .contact_map_wrapper .accordion button .icon {
     display: inline-block;
     position: absolute;
-    top: 18px;
+    top: 20px;
     right: 0;
     width: 22px;
     height: 22px;
@@ -126,6 +128,22 @@ START: Contact maps CSS
   }
   
   .contact_map_wrapper .accordion button[aria-expanded='true'] .icon::after {
+    width: 0;
+  }
+  
+  .contact_map_wrapper .accordion button[aria-expanded='true']+.accordion_content {
+    opacity: 1;
+    max-height: 0;
+    transition: all 200ms linear;
+    will-change: opacity, max-height;
+  }
+  
+  .contact_map_wrapper .accordion .accordion_content {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 200ms linear, max-height 200ms linear;
+    will-change: opacity, max-height;
         transform: scale(0);
   }
   
@@ -149,8 +167,7 @@ START: Contact maps CSS
     }
   
     .contact_map_wrapper .contact_tabs {
-      left: 50%;
-      transform: translate(-50%, -50%);
+      left: 2%;
       max-width: 300px;
       padding: 25px 20px;
     }

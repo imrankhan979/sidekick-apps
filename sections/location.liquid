@@ -27,6 +27,7 @@
             {%- if section.settings.stores_location != blank -%}
                 <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
             {%- endif -%}
+            <accordion-item>
              {%- for block in section.blocks -%}
               <accordion-item>
                 <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}"><span class="accordion-title">
@@ -45,11 +46,11 @@
                     </div>
                     </accordion-item>
             {% endfor %}
+          </accordion-item>
           </div>
        </div>
     </div>
  </section>
-
 
 {% schema %}
 {

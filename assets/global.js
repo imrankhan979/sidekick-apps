@@ -1858,7 +1858,47 @@ if (!customElements.get('renders-sub-popup')) {
   );
 }
 
+class CustomAccordion extends HTMLElement {
+  constructor() {
+    super();
+  }
 
+  connectedCallback() {
+    const accordionButtons = document.querySelectorAll('.accordion button');
+
+if (accordionButtons.length > 0) {
+  const firstButton = accordionButtons[0];
+  const firstContent = firstButton.nextElementSibling;
+  firstButton.setAttribute('aria-expanded', 'true');
+  firstContent.style.maxHeight = firstContent.scrollHeight + 'px';
+}
+
+accordionButtons.forEach(button => {
+  button.addEventListener('click', function () {
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    const content = this.nextElementSibling;
+
+    accordionButtons.forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+      const c = btn.nextElementSibling;
+      c.style.maxHeight = null;
+      c.classList.remove('active');
+    });
+
+    if (!expanded) {
+      this.setAttribute('aria-expanded', 'true');
+      content.style.maxHeight = content.scrollHeight + 'px';
+      content.classList.add('active');
+    }
+  });
+});
+
+  }
+}
+
+if (!customElements.get('accordion-item')) {
+  customElements.define('accordion-item', CustomAccordion);
+}
 // Back to top
 const backToTop = document.getElementById('back-to-top');
 if (backToTop) {
