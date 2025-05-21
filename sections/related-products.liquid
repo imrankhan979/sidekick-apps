@@ -49,26 +49,22 @@
         role="list"
       >
         <items-carousel>
-          <div
-            class="carousel items-carousel-selector"
-            data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
-          >
-            {% assign skip_card_product_styles = false %}
-            {% for recommendation in recommendations.products %}
-              <div class="product-item">
-                {% render 'card-product',
-                  card_product: recommendation,
-                  media_aspect_ratio: section.settings.image_ratio,
-                  image_shape: section.settings.image_shape,
-                  show_secondary_image: section.settings.show_secondary_image,
-                  show_vendor: section.settings.show_vendor,
-                  show_rating: section.settings.show_rating,
-                  skip_styles: skip_card_product_styles
-                %}
-              </div>
-              {%- assign skip_card_product_styles = true -%}
-            {% endfor %}
+          <div class="carousel related-product-item items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
+        {% assign skip_card_product_styles = false %}
+        {% for recommendation in recommendations.products %}
+          <div class="product-item">
+            {% render 'card-product',
+              card_product: recommendation,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: section.settings.image_shape,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating,
+              skip_styles: skip_card_product_styles
+            %}
           </div>
+        {% endfor %}
+      </div>
         </items-carousel>
       </div>
     {% endif %}

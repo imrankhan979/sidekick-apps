@@ -1,6 +1,14 @@
 {{ 'location.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'accordion-item.js' | asset_url }}" defer></script>
+
 
 {%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.50 | round: 0 }}px;
@@ -20,63 +28,52 @@
     }
 {%- endstyle -%}
 
-<section class="contact-tabs-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
-  <div class="page-width">
-    <div class="contact_map_wrapper">
-      {%- if section.settings.location_iframe != blank -%}
-        {{ section.settings.location_iframe }}
-      {%- endif -%}
-      <div class="accordion contact_tabs">
-        {%- if section.settings.stores_location != blank -%}
-          <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
+  <section class="contact-tabs-section section-{{ section.id }}-padding color-{{ section.settings.section_color_scheme }}">
+    <div class="page-width">
+       <div class="contact_map_wrapper">
+        {%- if section.settings.location_iframe != blank -%}
+            {{ section.settings.location_iframe }}
         {%- endif -%}
-        {%- for block in section.blocks -%}
-          <div class="accordion-item anim-item">
-            <button
-              id="accordion-button-{{ forloop.index }}"
-              aria-expanded="{% if forloop.index == 1 and section.settings.accordion_open %}true{% else %}false{% endif %}"
-            >
-              <span class="accordion-title">
-                {%- if block.settings.location_title != blank -%}
-                  {{ block.settings.location_title }}
-                {%- endif -%}
-              </span>
-              <span class="icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion_content">
-              {%- if block.settings.location_description != blank -%}
-                <span class="faq_location">{{ block.settings.location_description }}</span>
-              {%- endif -%}
-              {%- if block.settings.store_timing != blank -%}
-                <span class="faq_timer">{{ block.settings.store_timing }}</span>
-              {%- endif -%}
-            </div>
+          <div class="accordion contact_tabs" open-first-item="{{ section.settings.first_item_open }}">
+            {%- if section.settings.stores_location != blank -%}
+                <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
+            {%- endif -%}
+            <accordion-item>
+             {%- for block in section.blocks -%}
+              <accordion-item>
+                <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}"><span class="accordion-title">
+                  {%- if block.settings.location_title != blank -%}
+                    {{ block.settings.location_title }}
+                  {%- endif -%}
+                  </span>
+                  <span class="icon" aria-hidden="true"></span></button>
+                  <div class="accordion_content">
+                    {%- if block.settings.location_description != blank -%}
+                      <span class="faq_location">{{ block.settings.location_description }}</span>
+                    {%- endif -%}
+                    {%- if block.settings.store_timing != blank -%}
+                      <span class="faq_timer">{{ block.settings.store_timing }}</span>
+                    {%- endif -%}
+                    </div>
+                    </accordion-item>
+            {% endfor %}
+          </accordion-item>
           </div>
         {% endfor %}
       </div>
     </div>
-  </div>
-</section>
-<script>
-  const items = document.querySelectorAll('.accordion button');
-  function toggleAccordion() {
-    const itemToggle = this.getAttribute('aria-expanded');
-
-    for (i = 0; i < items.length; i++) {
-      items[i].setAttribute('aria-expanded', 'false');
-    }
-
-    if (itemToggle == 'false') {
-      this.setAttribute('aria-expanded', 'true');
-    }
-  }
-  items.forEach((item) => item.addEventListener('click', toggleAccordion));
-</script>
+ </section>
 
 {% schema %}
 {
-  "name": "Map",
+  "name": "Location with map",
   "settings": [
+        {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
     {
       "type": "textarea",
       "id": "location_iframe",
@@ -87,18 +84,12 @@
       "type": "text",
       "id": "stores_location",
       "default": "Stores location",
-      "label": "Location title"
-    },
-    {
-      "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
+      "label": "Title"
     },
     {
       "type": "checkbox",
-      "id": "accordion_open",
-      "label": "Open first accordion",
+      "id": "first_item_open",
+      "label": "Open the first accordion item by default",
       "default": true
     },
     {
@@ -109,17 +100,17 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding top",
-      "default": 0
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 360,
+      "max": 120,
       "step": 4,
       "unit": "px",
       "label": "Padding bottom",
@@ -154,7 +145,7 @@
   ],
   "presets": [
     {
-      "name": "Map",
+      "name": "Location with map",
       "blocks": [
         {
           "type": "location"

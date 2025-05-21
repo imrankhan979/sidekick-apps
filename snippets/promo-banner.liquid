@@ -1,0 +1,36 @@
+
+<div class="category_banner_item"  style="--overlay-opacity: {{ section.settings.banner_overlay | divided_by: 100.0 }};">
+  <a class="category_banner_box" {% if section.settings.banner_link == blank %}  role="link" aria-disabled="true" {% else %} href="{{ section.settings.banner_link.url }}" {% endif %}>
+    <div class="category_banner_images">
+        {% if section.settings.banner_image != blank %}
+            <img
+                class="category-images"
+                src="{{ section.settings.banner_image | image_url }}"
+                {% if section.settings.banner_image.alt != blank %}
+                alt="{{ section.settings.banner_image.alt | escape }}"
+                {% else %}
+                role="presentation"
+                {% endif %}
+                height="auto"
+                width="auto"
+                loading="lazy"
+            >
+            {% else %}
+                 {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      <div class="category_banner_content">
+        <div class="category_banner_text">
+          <h2 class="category_banner_title">{{ section.settings.banner_title }}</h2>
+          <div class="category_banner_desc">{{ section.settings.banner_description }}</div>
+        </div>
+        <div class="category_banner_button">
+          <span class="category-banner-btn">
+            <span class="category-anim">
+              <span class="anim-text">{{ section.settings.banner_button_text }}</span>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>

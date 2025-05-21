@@ -56,6 +56,7 @@
       "name": "Icon with text",
       "settings": {
         "color_scheme": "",
+        "show_border": false,
         "border_top": false,
         "border_bottom": false,
         "section_title": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable.",
@@ -96,10 +97,10 @@
         "padding_bottom": 0
       }
     },
-    "tab_section_8gkQEf": {
-      "type": "tab-section",
+    "timeline_tab_naxp44": {
+      "type": "timeline-tab",
       "blocks": {
-        "tab_YCkTVU": {
+        "tab_atkiDj": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -107,7 +108,7 @@
             "tab_description": ""
           }
         },
-        "tab_TYWrCi": {
+        "tab_4PK3fh": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -115,15 +116,7 @@
             "tab_description": ""
           }
         },
-        "tab_VFChjC": {
-          "type": "tab",
-          "settings": {
-            "tab_button": "",
-            "tab_heading": "",
-            "tab_description": ""
-          }
-        },
-        "tab_yztLE6": {
+        "tab_mhefxh": {
           "type": "tab",
           "settings": {
             "tab_button": "",
@@ -133,17 +126,16 @@
         }
       },
       "block_order": [
-        "tab_YCkTVU",
-        "tab_TYWrCi",
-        "tab_VFChjC",
-        "tab_yztLE6"
+        "tab_atkiDj",
+        "tab_4PK3fh",
+        "tab_mhefxh"
       ],
-      "name": "Image with tabbed content",
+      "name": "Timeline tabs",
       "settings": {
-        "section_title": "Section Title",
-        "section_description": "Section Description",
         "section_color_scheme": "",
-        "padding_top": 60,
+        "section_title": "Our journey",
+        "section_description": "<p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>",
+        "padding_top": 120,
         "padding_bottom": 120
       }
     },
@@ -192,35 +184,28 @@
     "gallery_section_jnyrnQ": {
       "type": "gallery-section",
       "blocks": {
-        "item_WUww49": {
+        "gallery_bLHCqj": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "item_ifXzVC": {
+        "gallery_BaKDAK": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "item_6Mgm3i": {
+        "gallery_R36XQj": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "item_akmDMR": {
-          "type": "Item",
-          "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
-            "icon_link": ""
-          }
-        },
-        "item_neFwGU": {
+        "gallery_FmV6Jr": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
@@ -239,7 +224,7 @@
       "settings": {
         "section_color_scheme": "",
         "columns_desktop": 5,
-        "tab_button": "EXPLORE MORE",
+        "tab_button": "@DAPPER ON INSTAGRAM",
         "button_link": "",
         "overlay_opacity": 70,
         "padding_top": 120,
@@ -251,7 +236,7 @@
     "bread",
     "icon_with_text_mrYi8P",
     "image_with_text_zj9Uzp",
-    "tab_section_8gkQEf",
+    "timeline_tab_naxp44",
     "scrolling_text_6NYCg7",
     "gallery_section_jnyrnQ"
   ]

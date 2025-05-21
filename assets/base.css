@@ -4300,7 +4300,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 
 /* Collection anim CSS */
-.anim-item {
+/* .anim-item {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -4309,7 +4309,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 .anim-item.reveal {
   opacity: 1 !important;
   transform: translateY(0) !important;
-}
+} */
 
 /* Collection anim CSS */
 
@@ -4399,3 +4399,14 @@ body.drawer-open{
 .underline-line-hover:hover  .inner-text{  
   background-size: 100% 100%;  
 } 
+
+/* accordion */
+accordion-item .accordion_content {
+    opacity: 0;
+    overflow: hidden;
+    transition: all .3s;
+    will-change: opacity, max-height;
+  }
+  accordion-item button[aria-expanded='true'] + .accordion_content{
+    opacity: 1;
+  }

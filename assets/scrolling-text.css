@@ -132,3 +132,42 @@
   .icon-with-text .flickity-page-dots li.is-selected{
     background: rgb(var(--color-foreground));
   }
+  .modern-marquee {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.marquee-item {
+  white-space: nowrap;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.modern-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}

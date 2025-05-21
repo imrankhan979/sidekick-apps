@@ -25,7 +25,7 @@
                 {%- if section.settings.bg_image -%}
                     {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                {%- elsif video_url -%}
-                    <video src="{{ video_url }}"playsinline controls muted {% if section.settings.video_loop %}loop{% endif %} {% if section.settings.video_autoplay %}autoplay{% endif %}></video>
+                    <video src="{{ video_url }}"playsinline controls muted {% if section.settings.video_loop %}loop{% endif %} autoplay></video>
                         {% else %} 
                         {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
@@ -73,13 +73,6 @@
         "label": "Loop video",
         "default": true,
         "info": "Enable to play the video in a continuous loop."
-    },
-    {
-        "type": "checkbox",
-        "id": "video_autoplay",
-        "label": "Autoplay video",
-        "default": true,
-        "info": "Enable to start playing the video automatically when loaded."
     },
     {
         "type": "header",

@@ -9,11 +9,11 @@
     text-transform: uppercase;
     line-height: 1;
 }
-
+/* 
 .anim-item {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 .breadcrumb-content-area {
     position: relative;
@@ -86,13 +86,13 @@
     transition: transform 0.3s ease-in-out;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media  (max-width: 991px) {
     .breadcrumb-content-area .breadcrumb-title {
         font-size: 90px;
     }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 767px) {
     .breadcrumb-content-area .breadcrumb-title {
         font-size: 64px;
         letter-spacing: -0.03em;

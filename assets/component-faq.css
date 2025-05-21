@@ -1,12 +1,4 @@
-/**----------------------------------------
-START: FAQ CSS
-----------------------------------------*/
-.faq-main-section {
-    padding-top: 120px;
-    padding-bottom: 120px;
-  }
-  
-  .faq-main-section .page-width {
+.faq-main-section .page-width {
     max-width: 1296px;
   }
   
@@ -15,8 +7,6 @@ START: FAQ CSS
     display: block;
     text-align: left;
     width: 100%;
-    padding: 18px 0;
-    color: #7288a2;
     font-weight: 400;
     border: none;
     background: none;
@@ -29,7 +19,6 @@ START: FAQ CSS
   }
   
   .faq_main_wrapper .faq_tabs {
-    max-width: 770px;
     width: 100%;
     margin-bottom: 80px;
   }
@@ -51,12 +40,12 @@ START: FAQ CSS
     color: rgba(var(--color-foreground));
   }
   
-  .faq_main_wrapper .faq_left_content .faq_left_desc .faq__desc {
+  .faq_main_wrapper .faq_left_content .faq_left_desc .faq__desc  p{
     color: rgba(var(--color-highlight-text));
     margin-bottom: 25px;
   }
   
-  .faq_main_wrapper .faq_left_content .faq_left_desc .faq__desc:last-child {
+  .faq_main_wrapper .faq_left_content .faq_left_desc .faq__desc p:last-child {
     margin-bottom: 0;
   }
   
@@ -70,33 +59,43 @@ START: FAQ CSS
     text-transform: uppercase;
     line-height: 64px;
     margin-bottom: 48px;
-    color: rgba(var(--color-foreground));
+    color: #000;
   }
   
-  .faq_main_wrapper .accordion-style-2 {
-    border: 1px solid rgba(var(--color-button-border));
+  .faq_main_wrapper .accordion-wrapper {
+    border: 1px solid #000;
     border-radius: 16px;
+    padding: 28px 24px;
+  }
+      .faq_main_wrapper .accordion_main_content {
+        flex: 1;
+      }
+  @media (max-width: 767px) {
+        .faq_main_wrapper .accordion-wrapper {
+          padding: 18px;
+        }
+  }
+    .faq_main_wrapper accordion-item{
+      display: block;
+    }
+  .faq_main_wrapper accordion-item:not(:last-child) {
     margin-bottom: 16px;
   }
   
-  .faq_main_wrapper .accordion-style-2:last-child {
-    margin-bottom: 0;
-  }
-  
-  .faq_main_wrapper .accordion-style-2 .accordion_content .accordion_desc {
+  .faq_main_wrapper .accordion-wrapper .accordion_content .accordion_desc {
     color: rgba(var(--color-highlight-text));
     font-size: 18px;
     font-weight: 400;
     line-height: 28px;
   }
   
-  .faq_main_wrapper .accordion-style-2 button {
-    padding: 28px 50px 28px 24px;
+  .faq_main_wrapper .accordion-wrapper button {
     text-align: left;
+    padding-right: 30px;
   }
   
   .faq_main_wrapper .faq_tabs button .accordion-title {
-    color: rgba(var(--color-secondary-foreground));
+    color: #000000;
     font-size: 18px;
     font-weight: 700;
     text-transform: capitalize;
@@ -106,7 +105,8 @@ START: FAQ CSS
   .faq_main_wrapper .faq_tabs button .icon {
     display: inline-block;
     position: absolute;
-    top: 18px;
+    top: 50%;
+    transform: translateY(-50%);
     right: 0;
     width: 22px;
     height: 22px;
@@ -116,8 +116,9 @@ START: FAQ CSS
     display: block;
     position: absolute;
     content: '';
-    top: 20px;
-    left: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
     width: 14px;
     height: 2px;
     background: #000000;
@@ -127,32 +128,31 @@ START: FAQ CSS
     display: block;
     position: absolute;
     content: '';
-    top: 15px;
-    left: -10px;
+    top: 4px;
+    left: 6px;
     width: 2px;
-    height: 13px;
+    height: 14px;
     background: #000000;
+    transition: all .3s;
+    transform: scale(1);
   }
   
   .faq_main_wrapper .faq_tabs button[aria-expanded='true'] .icon::after {
-    width: 0;
+    transform: scale(0);
   }
   
   .faq_main_wrapper .faq_tabs button[aria-expanded='true']+.accordion_content {
     opacity: 1;
-    max-height: 9em;
-    transition: all 200ms linear;
     will-change: opacity, max-height;
-    padding: 0 24px 25px;
+    margin-top: 28px;
   }
-  
+  @media (max-width: 767px) {
+        .faq_main_wrapper .faq_tabs button[aria-expanded='true']+.accordion_content {
+    margin-top: 18px;
+  }
+  }
   .faq_main_wrapper .faq_tabs .accordion_content {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 200ms linear, max-height 200ms linear;
-    will-change: opacity, max-height;
-    padding: 0 24px 0;
+    margin-top: 0;
   }
   
   @media (max-width: 1199px) {
@@ -176,11 +176,7 @@ START: FAQ CSS
   }
   
   @media (max-width: 991px) {
-    .faq-main-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-  
+
     .faq_main_wrapper {
       column-gap: 25px;
       flex-direction: column;
@@ -216,11 +212,6 @@ START: FAQ CSS
   }
   
   @media (max-width: 767px) {
-    .faq-main-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
-  
     .faq_main_wrapper {
       column-gap: 25px;
       flex-direction: column;
@@ -253,25 +244,10 @@ START: FAQ CSS
       max-width: 100%;
       margin-bottom: 60px;
     }
-  
-    .faq_main_wrapper .accordion-style-2 button {
-      padding: 16px 45px 16px 20px;
-    }
-  
-    .faq_main_wrapper .faq_tabs button .icon::before {
-      top: 13px;
-    }
-  
-    .faq_main_wrapper .faq_tabs button .icon::after {
-      top: 8px;
-    }
+
   }
   
   @media (max-width: 575px) {
-    .faq-main-section {
-      padding-top: 80px;
-      padding-bottom: 80px;
-    }
   
     .faq_main_wrapper {
       column-gap: 25px;
@@ -308,26 +284,9 @@ START: FAQ CSS
       max-width: 100%;
       margin-bottom: 50px;
     }
-  
-    .faq_main_wrapper .accordion-style-2 button {
-      padding: 20px 50px 20px 20px;
-    }
-  
-    .faq_main_wrapper .faq_tabs button .icon::before {
-      top: 13px;
-    }
-  
-    .faq_main_wrapper .faq_tabs button .icon::after {
-      top: 8px;
-    }
-  
-    .faq_main_wrapper .accordion-style-2 .accordion_content .accordion_desc {
+    .faq_main_wrapper .accordion-wrapper .accordion_content .accordion_desc {
       font-size: 16px;
     }
-  
-    .faq_main_wrapper .faq_tabs button[aria-expanded='true']+.accordion_content {
-      max-height: 12em;
-    }
+
   }
   
-  /* !END: FAQ CSS *
