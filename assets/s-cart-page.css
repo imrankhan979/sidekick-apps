@@ -271,13 +271,14 @@ small.tax-note.caption-large.rte {
 	font-weight: 700;
 	font-size: 16px;
 	text-transform: uppercase;
-	margin-bottom: 10px;
 	line-height: 20px;
 }
 
 .checkout-box .cart__note {
-	margin-bottom: 50px;
 	top: 0px;
+}
+.isolate.isolate >  * + *{
+margin-top: 48px;
 }
 
 .checkout-box .cart__note .field__input {
@@ -350,10 +351,6 @@ small.tax-note.caption-large.rte {
 	display: block;
 	right: 0px;
 	top: 13px;
-}
-
-h2.totals__total {
-	font-weight: 500;
 }
 
 cart-note.cart__note.field {
@@ -485,4 +482,9 @@ free-shipping-bar {
   height: 100%;
   width: 0%;
   transition: width 0.3s ease-in-out;
+}
+.cart-page-wrapper{
+	display: flex;
+	gap: 110px;
+	margin-top: 120px;
 }
