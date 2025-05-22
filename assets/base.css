@@ -230,7 +230,9 @@ img {
   height: auto;
   display: flex;
 }
-
+.text-center{
+  text-align: center;
+}
 .uppercase {
   text-transform: uppercase;
 }
@@ -4410,3 +4412,21 @@ accordion-item .accordion_content {
   accordion-item button[aria-expanded='true'] + .accordion_content{
     opacity: 1;
   }
+  .shadow-anim-btn > span{
+    display: inline-block;
+    overflow: hidden;
+    text-shadow: 0 23px 0 #ffffff;
+    transition: all ease 0.3s;
+  }
+  .shadow-anim-btn > span > span{
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: translateY(0);
+    transition: all ease 0.3s;
+  }
+    .shadow-anim-btn:hover span > span{
+      text-shadow: 0 23px 0 #ffffff;
+      transform: translateY(-23px);
+    }
