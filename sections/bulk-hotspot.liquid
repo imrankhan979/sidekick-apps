@@ -129,42 +129,42 @@
 
 {% schema %}
 {
-  "name": "Image hotspot",
+  "name": "t:sections.image-hotspot.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.image-hotspot.settings.color_scheme.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "section_title",
-      "label": "Section title",
-      "default": "Your next favorite outfit"
+      "label": "t:sections.image-hotspot.settings.section_title.label",
+      "default": "t:sections.image-hotspot.settings.section_title.default"
     },
     {
       "type": "text",
       "id": "hotspot_title",
-      "label": "Hotspot title",
-      "default": "Editor’s Picked Look"
+      "label": "t:sections.image-hotspot.settings.hotspot_title.label",
+      "default": "t:sections.image-hotspot.settings.hotspot_title.default"
     },
     {
       "type": "text",
       "id": "hotspot_subtitle",
-      "label": "Hotspot subtitle",
-      "default": "Including 3 Items: Shirt, T-Shirt, Pant"
+      "label": "t:sections.image-hotspot.settings.hotspot_subtitle.label",
+      "default": "t:sections.image-hotspot.settings.hotspot_subtitle.default"
     },
     {
       "type": "text",
       "id": "cart_button_text",
-      "label": "Cart button text",
-      "default": "ADD ALL TO CART"
+      "label": "t:sections.image-hotspot.settings.cart_button_text.label",
+      "default": "t:sections.image-hotspot.settings.cart_button_text.default"
     },
     {
       "type": "image_picker",
       "id": "hotspot_image",
-      "label": "Hotspot image"
+      "label": "t:sections.image-hotspot.settings.hotspot_image.label"
     },
     {
       "type": "header",
@@ -177,7 +177,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -187,23 +187,23 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "product",
-      "name": "Product",
+      "name": "t:sections.image-hotspot.blocks.product.name",
       "settings": [
         {
           "type": "product",
-          "label": "Choose product",
+          "label": "t:sections.image-hotspot.blocks.product.settings.selected_product.label",
           "id": "selected_product"
         },
         {
           "type": "header",
-          "content": "Hotspot point position"
+          "content": "t:sections.image-hotspot.blocks.product.settings.position_header.content"
         },
         {
           "type": "range",
@@ -212,7 +212,7 @@
           "max": 100,
           "step": 1,
           "unit": "%",
-          "label": "Top",
+          "label": "t:sections.image-hotspot.blocks.product.settings.pointer_position_top.label",
           "default": 0
         },
         {
@@ -222,7 +222,7 @@
           "max": 100,
           "step": 1,
           "unit": "%",
-          "label": "Left",
+          "label": "t:sections.image-hotspot.blocks.product.settings.pointer_position_left.label",
           "default": 0
         }
       ]
@@ -230,7 +230,7 @@
   ],
   "presets": [
     {
-      "name": "Image hotspot",
+      "name": "t:sections.image-hotspot.presets.name",
       "blocks": [
         {
           "type": "product",

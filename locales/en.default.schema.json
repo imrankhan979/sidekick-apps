@@ -842,6 +842,52 @@
       }
     },
 
+    "collection-carousel": {
+      "name": "Collection carousel",
+      "settings": {
+        "section_color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Padding top"
+        },
+        "padding_bottom": {
+          "label": "Padding bottom"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection carousel",
+          "settings": {
+            "collection_select": {
+              "label": "Select collection"
+            },
+            "collection_bg_color": {
+              "label": "Background color"
+            },
+            "collection_image": {
+              "label": "Collection image"
+            },
+            "collection_heading": {
+              "label": "Heading",
+              "info": "If left blank, the collection name will be used.",
+              "default": "Collection title"
+            },
+            "collection_featured": {
+              "label": "Badge",
+              "default": "Featured collection"
+            },
+            "collection_button": {
+              "label": "Button Label",
+              "default": "Shop now"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Collection carousel"
+      }
+    },
     "product-carousel": {
       "name": "Product carousel",
       "settings": {
@@ -849,17 +895,18 @@
           "label": "Color scheme"
         },
         "community_heading": {
-          "label": "Title"
+          "label": "Heading",
+          "default": "Product carousel"
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Number of columns on desktop"
         },
         "ratio": {
           "label": "Image ratio",
           "options": {
             "auto": "Adapt to image",
-            "square": "Square",
-            "portrait": "Portrait"
+            "square": "Square (1:1)",
+            "portrait": "Portrait (2:3)"
           }
         }
       },
@@ -871,19 +918,19 @@
               "label": "Select product"
             },
             "overlay_opacity": {
-              "label": "Opacity"
+              "label": "Overlay opacity"
             },
             "product_image": {
-              "label": "Image",
-              "info": "Image will replace product image."
+              "label": "Custom image",
+              "info": "Optional custom image to show instead of the product's default image."
             },
             "product_video": {
-              "label": "Video",
-              "info": "Video will replace all (Image and product image)."
+              "label": "Custom video",
+              "info": "Optional video file to show instead of the image."
             },
             "video_loop": {
               "label": "Loop video",
-              "info": "Enable to play the video in a continuous loop."
+              "info": "If enabled, video will loop continuously."
             }
           }
         }
@@ -892,7 +939,59 @@
         "name": "Product carousel"
       }
     },
-  
+    "testimonial": {
+      "name": "Testimonial",
+      "settings": {
+        "section_color_scheme": {
+          "label": "Color scheme"
+        },
+        "testimonial_heading": {
+          "label": "Heading"
+        },
+        "columns_desktop": {
+          "label": "Number of columns on desktop"
+        }
+      },
+      "blocks": {
+        "testimonial": {
+          "name": "Testimonial item",
+          "settings": {
+            "testimonial_image": {
+              "label": "Image",
+              "info": "Size 430 x 575 recommended"
+            },
+            "client_review_title": {
+              "label": "Title",
+              "default": "levated streetwear"
+            },
+            "client_review_text": {
+              "label": "Text",
+              "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+            },
+            "client_image": {
+              "label": "Avatar"
+            },
+            "client_name": {
+              "label": "Name",
+              "default": "Anya Petrova"
+            },
+            "client_location": {
+              "label": "Location",
+              "default": "paris, france"
+            },
+            "show_product": {
+              "label": "Show product"
+            },
+            "testimonial_product": {
+              "label": "Select product"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Testimonial"
+      }
+    },
     "featured-product": {
       "name": "Featured product",
       "blocks": {
@@ -1430,170 +1529,101 @@
     "image-with-text": {
       "name": "Image with text",
       "settings": {
-        "image": {
-          "label": "Image"
+        "main_heading": {
+          "label": "Heading",
+          "default": "REDEFINE YOUR URBAN STYLE"
         },
-        "height": {
-          "options__1": {
-            "label": "Adapt to image"
-          },
-          "options__2": {
-            "label": "Small"
-          },
-          "options__3": {
-            "label": "Medium"
-          },
-          "options__4": {
-            "label": "Large"
-          },
-          "label": "Image height"
-        },
-        "desktop_image_width": {
-          "options__1": {
-            "label": "Small"
-          },
-          "options__2": {
-            "label": "Medium"
-          },
-          "options__3": {
-            "label": "Large"
-          },
-          "label": "Desktop image width",
-          "info": "Image is automatically optimized for mobile."
-        },
-        "layout": {
-          "options__1": {
-            "label": "Image first"
-          },
-          "options__2": {
-            "label": "Image second"
-          },
-          "label": "Desktop image placement",
-          "info": "Image first is the default mobile layout."
-        },
-        "desktop_content_alignment": {
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Center"
-          },
-          "options__3": {
-            "label": "Right"
-          },
-          "label": "Desktop content alignment"
-        },
-        "desktop_content_position": {
-          "options__1": {
-            "label": "Top"
-          },
-          "options__2": {
-            "label": "Middle"
-          },
-          "options__3": {
-            "label": "Bottom"
-          },
-          "label": "Desktop content position"
-        },
-        "content_layout": {
-          "options__1": {
-            "label": "No overlap"
-          },
-          "options__2": {
-            "label": "Overlap"
-          },
-          "label": "Content layout"
-        },
-        "mobile_content_alignment": {
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Center"
-          },
-          "options__3": {
-            "label": "Right"
-          },
-          "label": "Mobile content alignment"
+        "bg_image": {
+          "label": "Background image"
         }
       },
       "blocks": {
-        "heading": {
-          "name": "Heading",
+        "redefine_images": {
+          "name": "Image",
           "settings": {
-            "heading": {
-              "label": "Heading",
-              "default": "Image with text"
+            "main_image": {
+              "label": "Image"
+            },
+            "shape_image_one": {
+              "label": "Shape image"
+            },
+            "card_image_rotation": {
+              "label": "Item rotation"
             }
           }
         },
-        "caption": {
-          "name": "Caption",
-          "settings": {
-            "text": {
-              "label": "Text",
-              "default": "Add a tagline"
-            },
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Subtitle"
-              },
-              "options__2": {
-                "label": "Uppercase"
-              }
-            },
-            "caption_size": {
-              "label": "Text size",
-              "options__1": {
-                "label": "Small"
-              },
-              "options__2": {
-                "label": "Medium"
-              },
-              "options__3": {
-                "label": "Large"
-              }
-            }
-          }
-        },
-        "text": {
+        "redefine_content": {
           "name": "Text",
           "settings": {
-            "text": {
-              "label": "Content",
-              "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+            "sub_heading": {
+              "label": "Title",
+              "default": "DAPPER IS MORE THAN JUST CLOTHES. WE'RE A MOVEMENT. A CULTURE"
             },
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Body"
-              },
-              "options__2": {
-                "label": "Subtitle"
-              }
-            }
-          }
-        },
-        "button": {
-          "name": "Button",
-          "settings": {
-            "button_label": {
-              "label": "Button label",
-              "info": "Leave the label blank to hide the button.",
-              "default": "Button label"
+            "paragraph_one": {
+              "label": "Text",
+              "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+            },
+            "button_text": {
+              "label": "Button text",
+              "default": "Shop now"
             },
             "button_link": {
               "label": "Button link"
             },
-            "outline_button": {
-              "label": "Use outline button style"
+            "shape_image_two": {
+              "label": "Shape image right"
+            },
+            "shape_image_three": {
+              "label": "Shape image left"
+            },
+            "card_content_rotation": {
+              "label": "Item rotation"
             }
           }
         }
       },
       "presets": {
         "name": "Image with text"
+      }
+    },
+    "collection-tab": {
+      "name": "Collection tab",
+      "settings": {
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "section_heading": {
+          "label": "Section heading"
+        },
+        "ratio": {
+          "label": "Image ratio",
+          "options__auto": { "label": "Adapt to image" },
+          "options__1": { "label": "Square" },
+          "options__2": { "label": "Portrait" }
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection",
+          "settings": {
+            "collection_handle": {
+              "label": "Collection"
+            },
+            "tab_title": {
+              "label": "Tab Title",
+              "info": "Optional. Defaults to collection title."
+            },
+            "item_total": {
+              "label": "Maximum number of products to show"
+            },
+            "item_count": {
+              "label": "Number of products to show in a row"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Collection tab"
       }
     },
     "multirow": {
@@ -1739,6 +1769,55 @@
       },
       "presets": {
         "name": "Multirow"
+      }
+    },
+    "image-hotspot": {
+      "name": "Image hotspot",
+      "settings": {
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "section_title": {
+          "label": "Section title",
+          "default": "Your next favorite outfit"
+        },
+        "hotspot_title": {
+          "label": "Hotspot title",
+          "default": "Editor's picked look"
+        },
+        "hotspot_subtitle": {
+          "label": "Hotspot subtitle",
+          "default": "Including 3 Items: Shirt, T-Shirt, Pant"
+        },
+        "cart_button_text": {
+          "label": "Cart button text",
+          "default": "ADD ALL TO CART"
+        },
+        "hotspot_image": {
+          "label": "Hotspot image"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Product",
+          "settings": {
+            "selected_product": {
+              "label": "Choose product"
+            },
+            "position_header": {
+              "content": "Hotspot point position"
+            },
+            "pointer_position_top": {
+              "label": "Top"
+            },
+            "pointer_position_left": {
+              "label": "Left"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Image hotspot"
       }
     },
     "main-account": {
