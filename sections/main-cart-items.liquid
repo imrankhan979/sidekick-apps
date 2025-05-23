@@ -10,7 +10,6 @@
 {% endif %}
   {% if section.settings.enable_calculate %}
     <script>window.allCountryOptionTags = {{ all_country_option_tags | json }};</script>
-
     <script src="{{ 'shipping-calculate.js' | asset_url }}" defer="defer"></script>
   {% endif %}
 
@@ -34,7 +33,7 @@
 
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
-<div class="cart-page color-{{ section.settings.color_scheme }} isolate {% if cart == empty %} is-empty{% else %} {% endif %} section-{{ section.id }}-padding">
+<div class="main-cart-page color-{{ section.settings.color_scheme }} isolate {% if cart == empty %} is-empty{% else %} {% endif %} section-{{ section.id }}-padding">
   <div class="custom-cartpage-width">
   {% if cart != empty %}
       <div class="title-wrapper-with-link text-center">
