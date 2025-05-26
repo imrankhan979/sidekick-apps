@@ -199,7 +199,7 @@ a.button.button--tertiary:before {
 	height: 1px;
 	min-height: 1px;
 	right: 0;
-	bottom: 16px;
+	bottom: 13px;
 	left: 0;
 	background: gray;
 	will-change: transform;
@@ -450,75 +450,15 @@ p.caption-with-letter-spacing {
 
 
 
-
-/* Free shipping bar */
-free-shipping-bar {
+    /* Free shipping bar */
+.main-cart-page free-shipping-bar {
 	display: block;
     margin-top: 80px;
     margin-bottom: 48px;
 }
 @media (max-width: 767px) {
-free-shipping-bar {
+.main-cart-page free-shipping-bar {
     margin-top: 24px;
     margin-bottom: 24px;
 }	
 }
- .shipping-bar {
-  padding: 24px 32px;
-  border-radius: 8px;
-  background: #F6F6F6;
-  max-width: 684px;
-  margin: 0 auto;
-}
-
-.free-shipping-text {
-	color: #000000;
-	margin-bottom: 14px;
-	text-align: left;
-}
-
-.free-shipping-progress-container {
-  background: #DDDDDD;
-  height: 8px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.free-shipping-progress {
-  background: #51942B;
-  height: 100%;
-  width: 0%;
-  transition: width 0.3s ease-in-out;
-}
-.cart-page-wrapper{
-	display: flex;
-	gap: 110px;
-	margin-top: 120px;
-}
-@media (max-width: 1200px) {
-	.cart-page-wrapper{
-		flex-direction: column;
-		gap: 48px;
-		margin-top: 80px;
-}
-}
-#estimate-shipping-btn.shadow-anim-btn:hover span > span{
-      text-shadow: 0 23px 0 #000000;
-    }
-	#shipping-rates-result  p{
-			color: #000;
-			font-weight: 700;
-			font-size: 18px;
-			margin-bottom: 8px;
-	}
-	#shipping-rates-result  .rate-item{
-
-			color: #000;
-			font-size: 16px;
-	}
-
-	@media (max-width: 1199px) {
-		.main-cart-page .cart-page{
-			justify-content: center;
-		}
-	}

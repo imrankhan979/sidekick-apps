@@ -764,7 +764,7 @@ table:not([class]) th {
 
 
 .light {
-  opacity: 0.7;
+  color: #808080;
 }
 
 .link,
@@ -4430,3 +4430,66 @@ accordion-item .accordion_content {
       text-shadow: 0 23px 0 #ffffff;
       transform: translateY(-23px);
     }
+
+
+
+    /* Free shipping bar */
+ .shipping-bar {
+  padding: 24px 32px;
+  border-radius: 8px;
+  background: #F6F6F6;
+  max-width: 684px;
+  margin: 0 auto;
+}
+
+.free-shipping-text {
+	color: #000000;
+	margin-bottom: 14px;
+	text-align: left;
+}
+
+.free-shipping-progress-container {
+  background: #DDDDDD;
+  height: 8px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.free-shipping-progress {
+  background: #51942B;
+  height: 100%;
+  width: 0%;
+  transition: width 0.3s ease-in-out;
+}
+.cart-page-wrapper{
+	display: flex;
+	gap: 110px;
+	margin-top: 120px;
+}
+@media (max-width: 1200px) {
+	.cart-page-wrapper{
+		flex-direction: column;
+		gap: 48px;
+		margin-top: 80px;
+}
+}
+#estimate-shipping-btn.shadow-anim-btn:hover span > span{
+      text-shadow: 0 23px 0 #000000;
+    }
+	#shipping-rates-result  p{
+			color: #000;
+			font-weight: 700;
+			font-size: 18px;
+			margin-bottom: 8px;
+	}
+	#shipping-rates-result  .rate-item{
+
+			color: #000;
+			font-size: 16px;
+	}
+
+	@media (max-width: 1199px) {
+		.main-cart-page .cart-page{
+			justify-content: center;
+		}
+	}

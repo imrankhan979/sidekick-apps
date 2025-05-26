@@ -1526,13 +1526,9 @@
           {
             "value": "page",
             "label": "t:settings_schema.cart.settings.cart_type.page.label"
-          },
-          {
-            "value": "notification",
-            "label": "t:settings_schema.cart.settings.cart_type.notification.label"
           }
         ],
-        "default": "notification",
+        "default": "drawer",
         "label": "t:settings_schema.cart.settings.cart_type.label"
       },
       {
@@ -1549,19 +1545,51 @@
       },
       {
         "type": "header",
-        "content": "t:settings_schema.cart.settings.cart_drawer.header"
+        "content": "t:settings_schema.cart.settings.cart_drawer.header",
+        "visible_if": "{{ settings.cart_type == 'drawer' }}"
       },
-      {
-        "type": "collection",
-        "id": "cart_drawer_collection",
-        "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
-        "info": "t:settings_schema.cart.settings.cart_drawer.collection.info"
-      },
-      {
+          {
         "type": "color_scheme",
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
-        "default": "scheme-1"
+        "default": "scheme-1",
+        "visible_if": "{{ settings.cart_type == 'drawer' }}"
+      },
+        {
+        "type": "checkbox",
+        "id": "show_recommended_collection",
+        "label": "Show recommended product",
+        "default": true,
+        "visible_if": "{{ settings.cart_type == 'drawer' }}"
+      },
+      {
+        "type": "collection",
+        "id": "recommended_collection",
+        "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
+        "visible_if": "{{ settings.show_recommended_collection == true and settings.cart_type == 'drawer' }}"
+      },
+      {
+        "type": "range",
+        "id": "product_limit",
+        "label": "Number of products to show",
+        "default": 8,
+        "min": 1,
+        "max": 20,
+        "visible_if": "{{ settings.show_recommended_collection and settings.cart_type == 'drawer' }}"
+      },
+            {
+        "type": "checkbox",
+        "id": "enable_free_shipping_bar",
+        "label": "Enable free shipping bar",
+        "default": true,
+        "visible_if": "{{ settings.cart_type == 'drawer' }}"
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold (in store currency)",
+        "default": 200,
+        "visible_if": "{{ settings.enable_free_shipping_bar and settings.cart_type == 'drawer' }}"
       }
     ]
   }

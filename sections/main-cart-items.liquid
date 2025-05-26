@@ -5,9 +5,6 @@
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 's-cart-page.css' | asset_url | stylesheet_tag }}
-{% if section.settings.enable_free_shipping_bar %}
-  <script src="{{ 'free-shipping.js' | asset_url }}" defer="defer"></script>
-{% endif %}
   {% if section.settings.enable_calculate %}
     <script>window.allCountryOptionTags = {{ all_country_option_tags | json }};</script>
     <script src="{{ 'shipping-calculate.js' | asset_url }}" defer="defer"></script>
