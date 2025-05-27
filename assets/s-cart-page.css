@@ -49,7 +49,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .you-cart-shop-btn {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	column-gap: 12px;
@@ -311,14 +311,14 @@ margin-top: 48px;
 .subtotal-calculate {
 	margin-top: 20px;
 }
-
+.accordion-content {
+	display: none;
+}
 .show .accordion-content {
 	display: block;
 }
 
-.accordion-content {
-	display: none;
-}
+
 
 .cart-page .checkout-box {
 	max-width: 330px;
@@ -488,3 +488,17 @@ free-shipping-bar {
 	gap: 110px;
 	margin-top: 120px;
 }
+#estimate-shipping-btn.shadow-anim-btn:hover span > span{
+      text-shadow: 0 23px 0 #000000;
+    }
+	#shipping-rates-result  p{
+			color: #000;
+			font-weight: 700;
+			font-size: 18px;
+			margin-bottom: 8px;
+	}
+	#shipping-rates-result  .rate-item{
+
+			color: #000;
+			font-size: 16px;
+	}
