@@ -1899,6 +1899,28 @@ accordionButtons.forEach(button => {
 if (!customElements.get('accordion-item')) {
   customElements.define('accordion-item', CustomAccordion);
 }
+
+function initAccordions(scope = document) {
+  const titles = scope.querySelectorAll('.accordion-title');
+  titles.forEach(title => {
+    title.addEventListener('click', () => {
+      const item = title.parentElement;
+      item.classList.toggle('show');
+    });
+  });
+}
+
+// Run on initial load
+document.addEventListener('DOMContentLoaded', () => {
+  initAccordions();
+});
+
+// Re-run when a section is loaded in the customizer
+document.addEventListener('shopify:section:load', (event) => {
+  initAccordions(event.target);
+});
+
+
 // Back to top
 const backToTop = document.getElementById('back-to-top');
 if (backToTop) {

@@ -10,6 +10,8 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+ <script>window.allCountryOptionTags = {{ all_country_option_tags | json }};</script>
+    <script src="{{ 'shipping-calculate.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
@@ -439,42 +441,52 @@
             </div>
             <div id="CartDrawer-CartErrors" role="alert"></div>
           </form>
-          {% if settings.recommended_collection == true %}
+          {% if settings.show_recommended_collection == true %}
             <div class="cart_product_carousel_wrapper">
-                      <h5 class="cart_product_carousel_title">You May Also Like</h5>
+                      <h5 class="cart_product_carousel_title">{{ settings.recommended_collection_title }}</h5>
                       <items-carousel>
                         <div class="carousel items-carousel-selector"
                            data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'>
-                           {% assign products = collections[settings.recommended_collection].products | slice: 0, settings.product_limit %}
-                           {% for product in products %}
-                            <div class="cart_product_carousel_item">
-                                <div class="collection_carousel_images">
-                                  <a href="{{ product.url }}">
-                                    <img loading="lazy" src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}">
-                                  </a>
-                                </div>
-                                <div class="cart_product_content">
-                                  <div class="cart_product_text">
-                                    <h6 class="sub-title">
-                                      <a href="{{ product.url }}">{{ product.title }}</a>
-                                    </h6>
-                                    <span class="cart_product_discount">
-                                      {{ product.price | money }}
-                                    </span>
-                                  </div>
-                                  <div class="cart_product_carousel_button">
-                                    <form method="post" action="/cart/add">
-                                      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                                      <button type="submit" class="cart-product-btn" aria-label="Add {{ product.title }} to cart">
-                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                          <path d="M9.375 4.375H5.625V0.625H4.375V4.375H0.625V5.625H4.375V9.375H5.625V5.625H9.375V4.375Z" fill="white"/>
-                                        </svg>
-                                      </button>
-                                    </form>
-                                  </div>
-                                </div>
-                            </div>
-                           {% endfor %}
+                           {% assign products = collections[settings.recommended_collection].products %}
+                           {% if products.size != 0 %}
+                            {% for product in products limit: settings.product_limit %}
+                             <div class="cart_product_carousel_item">
+                                 <div class="collection_carousel_images">
+                                   <a href="{{ product.url }}">
+                                   <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | image_url: width: 300 }}" width="" height="" alt="{{ product.title }}">
+                                   </a>
+                                 </div>
+                                 <div class="cart_product_content">
+                                   <div class="cart_product_text">
+                                     <h6 class="sub-title">
+                                       <a href="{{ product.url }}">{{ product.title }}</a>
+                                     </h6>
+                                     <span class="cart_product_discount">
+                                       {{ product.price | money }}
+                                     </span>
+                                   </div>
+                                   <div class="cart_product_carousel_button">
+                                    <a href="{{ product.url }}" class="cart-product-btn">{{- 'icon-plus.svg' | inline_asset_content -}}</a>
+                                   </div>
+                                 </div>
+                             </div>
+                            {% endfor %}
+                            {% else %}
+                            {% for i in (1..settings.product_limit) %}
+                                      <div class="cart_product_carousel_item placeholder-product">
+                                          <div class="collection_carousel_images">
+                                            {%- assign placeholder_image_index = i | modulo: 4 | plus: 1 -%}
+                                            {%- assign placeholder_image = 'product-' | append: placeholder_image_index -%}
+                                            {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                                          </div>
+                                          <div class="cart_product_content">
+                                            <div class="cart_product_text">
+                                              <h6 class="sub-title">Example product title</h6>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      {% endfor %}
+                           {% endif %}
                         </div>
                       </items-carousel>
                    </div>
@@ -482,8 +494,146 @@
         </cart-drawer-items>
          
       </div>
+        <div class="cart_product_button">
+              <button class="cart-product-btn note-btn">
+                  {{- 'icon-note.svg' | inline_asset_content -}}
+                  <span>Order note</span></button>
+              <button class="cart-product-btn shipping-btn">
+                  {{- 'icon-parcel.svg' | inline_asset_content -}}
+                  <span>Shipping Rates</span>
+              </button>
+        </div>
+        <div class="cart-btn-popup">
+          <div class="popup-overlay"></div>
+          <div class="note-item">
+               <cart-note class="cart__note field">
+                <div class="note-header">
+                  <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+                  <button class="close">x</button>
+                </div>
+              <textarea
+                id="CartDrawer-Note"
+                class="text-area text-area--resize-vertical field__input"
+                name="note"
+                placeholder="{{ 'sections.cart.note' | t }}"
+              >{{ cart.note }}</textarea>
+            </cart-note>
+          </div>
+          <div class="shipping-item">
+            <div class="shipping-estimator-container shipping-estimator">
+                <div class="country-wrapper">
+                  <label for="shipping-country-2 sub-title">Country/region</label>
+                  <select id="shipping-country-2" class="shipping-country-select" name="country" required>
+                    {{ country_option_tags }}
+                  </select>
+                </div>
+                <div class="shipping-province-wrapper" id="shipping-province-wrapper-2">
+                  <label for="shipping-province-2">Province</label>
+                  <select id="shipping-province-2" class="shipping-province-select" name="province"></select>
+                </div>
+                <div class="zip-wrapper">
+                  <label for="shipping-zip-2">Postal / ZIP Code</label>
+                  <input type="text" id="shipping-zip-2" class="shipping-zip-input" name="zip" placeholder="e.g. 10001" required>
+                </div>
+                <button id="estimate-shipping-btn-2" class="shadow-anim-btn estimate-shipping-btn" type="button"><span><span>Estimate</span></span></button>
+                <div id="shipping-rates-result-2" class="shipping-rates-result"></div>
+            </div>
+                {% comment %} <div id="shipping-estimator">
+                            <div class="shipping-item-header">
+                              <p>ESTIMATE SHIPPING RATES</p>
+                              <button class="close">x</button>
+                            </div>
+                          <div class="country-wrapper">
+                            <label for="shipping-country sub-title">Country/region</label>
+                            <select id="shipping-country" name="country" required>
+                              {{ country_option_tags }}
+                            </select>
+                          </div>
+                          <div id="shipping-province-wrapper">
+                            <label for="shipping-province">Province</label>
+                            <select id="shipping-province" name="province"></select>
+                        </div>
+                          <div class="zip-wrapper">
+                            <label for="shipping-zip">Postal / ZIP Code</label>
+                            <input type="text" id="shipping-zip" name="zip" placeholder="e.g. 10001" required>
+                          </div>
+                          <button id="estimate-shipping-btn" class="shadow-anim-btn" type="button"><span ><span>Estimate</span></span></button>
+                          <div id="shipping-rates-result"></div>
+                        </div> {% endcomment %}
+          </div>
+        </div>
+        <style>
+          .cart-btn-popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+.cart-btn-popup.active {
+  display: block;
+}
+.popup-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.note-item,
+.shipping-item {
+  background: #fff;
+  max-width: 500px;
+  margin: 10% auto;
+  padding: 20px;
+  position: relative;
+  z-index: 10000;
+}
+
+        </style>
+        <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          const noteBtn = document.querySelector('.note-btn');
+          const shippingBtn = document.querySelector('.shipping-btn');
+          const popup = document.querySelector('.cart-btn-popup');
+          const overlay = document.querySelector('.popup-overlay');
+          const notePopup = document.querySelector('.note-item');
+          const shippingPopup = document.querySelector('.shipping-item');
+          const closeButtons = popup.querySelectorAll('.close');
+
+          noteBtn?.addEventListener('click', () => {
+            popup.classList.add('active');
+            notePopup.style.display = 'block';
+            shippingPopup.style.display = 'none';
+            console.log("note click");
+          });
+
+          shippingBtn?.addEventListener('click', () => {
+            popup.classList.add('active');
+            shippingPopup.style.display = 'block';
+            notePopup.style.display = 'none';
+            console.log("shipping click");
+
+          });
+
+          closeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+              popup.classList.remove('active');
+              notePopup.style.display = 'none';
+              shippingPopup.style.display = 'none';
+            });
+          });
+
+          overlay?.addEventListener('click', () => {
+            popup.classList.remove('active');
+            notePopup.style.display = 'none';
+            shippingPopup.style.display = 'none';
+          });
+        });
+</script>
+
       <div class="drawer__footer">
-        {%- if settings.show_cart_note -%}
+        {% comment %} {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>
               <span class="summary__title">
@@ -501,7 +651,7 @@
               >{{ cart.note }}</textarea>
             </cart-note>
           </details>
-        {%- endif -%}
+        {%- endif -%} {% endcomment %}
 
         <!-- Start blocks -->
         <!-- Subtotals -->

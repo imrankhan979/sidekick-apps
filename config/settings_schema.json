@@ -1531,23 +1531,6 @@
         "default": "drawer",
         "label": "t:settings_schema.cart.settings.cart_type.label"
       },
-      {
-        "type": "checkbox",
-        "id": "show_vendor",
-        "label": "t:settings_schema.cart.settings.show_vendor.label",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "show_cart_note",
-        "label": "t:settings_schema.cart.settings.show_cart_note.label",
-        "default": true
-      },
-      {
-        "type": "header",
-        "content": "t:settings_schema.cart.settings.cart_drawer.header",
-        "visible_if": "{{ settings.cart_type == 'drawer' }}"
-      },
           {
         "type": "color_scheme",
         "id": "cart_color_scheme",
@@ -1563,6 +1546,13 @@
         "visible_if": "{{ settings.cart_type == 'drawer' }}"
       },
       {
+        "type": "text",
+        "id": "recommended_collection_title",
+        "label": "Recommended collection title",
+        "visible_if": "{{ settings.show_recommended_collection == true and settings.cart_type == 'drawer' }}",
+        "default": "YOU MAY ALSO LIKE"
+      },
+      {
         "type": "collection",
         "id": "recommended_collection",
         "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
@@ -1571,7 +1561,7 @@
       {
         "type": "range",
         "id": "product_limit",
-        "label": "Number of products to show",
+        "label": "Max products to show",
         "default": 8,
         "min": 1,
         "max": 20,
@@ -1587,9 +1577,21 @@
       {
         "type": "number",
         "id": "free_shipping_threshold",
-        "label": "Free shipping threshold (in store currency)",
+        "label": "Free shipping threshold",
         "default": 200,
         "visible_if": "{{ settings.enable_free_shipping_bar and settings.cart_type == 'drawer' }}"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "t:settings_schema.cart.settings.show_vendor.label",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_note",
+        "label": "t:settings_schema.cart.settings.show_cart_note.label",
+        "default": true
       }
     ]
   }

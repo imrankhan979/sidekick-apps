@@ -217,14 +217,14 @@ cart-items {
     gap: 1rem;
   }
 }
-#shipping-estimator label{
+.shipping-estimator label{
   display: block;
     color: #000000;
     font-weight: 700;
     font-size: 16px;
     margin-bottom: 8px;
 }
-#shipping-estimator select, #shipping-estimator input{
+.shipping-estimator select, .shipping-estimator input{
     text-transform: capitalize;
     font-weight: 400;
     font-size: 16px;
@@ -234,15 +234,15 @@ cart-items {
     border-radius: 10px;
     width: 100%;
 }
-#shipping-estimator #shipping-rates-result.shipping-result-show{
+.shipping-estimator .shipping-rates-result.shipping-result-show{
   background: #F6F6F6;
     padding: 24px;
     border-radius: 10px;
 }
-#shipping-estimator > * + *{
+.shipping-estimator > * + *{
     margin-top: 24px;
 }
-#estimate-shipping-btn{
+.estimate-shipping-btn{
    width: 100%; 
     color: #000000;
     font-family: var(--font-family-heading);
@@ -254,7 +254,11 @@ cart-items {
     text-align: center;
     padding: 13px 15px;
 }
-#estimate-shipping-btn:disabled{
+.estimate-shipping-btn:disabled{
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.estimate-shipping-btn.shadow-anim-btn:hover span > span {
+    text-shadow: rgb(0, 0, 0) 0px 23px 0px;
 }

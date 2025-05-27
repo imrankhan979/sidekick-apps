@@ -190,6 +190,7 @@ quantity-input.quantity.cart-quantity {
 a.button.button--tertiary {
 	font-size: 16px;
 	color: #808080;
+	padding: 0;
 }
 
 a.button.button--tertiary:before {
