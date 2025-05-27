@@ -69,7 +69,7 @@
               {% if collection.products.size > maximum_product_show %}
                 <div class="view-all-btn-wrapper flex justify-content-center">
                   <a class="snazzy-icon-btn btn-with-border" href="{{ collection.url }}"
-                    >VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+                    >{{ 'sections.collection_tab.title' | t }}<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                   >
                 </div>
               {% endif %}

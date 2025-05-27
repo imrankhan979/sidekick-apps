@@ -1181,6 +1181,26 @@
               "default": "<p>Share contact information, store details, and brand content with your customers.</p>"
             }
           }
+        },
+        "newsletter": {
+          "name": "Newsletter",
+          "settings": {
+            "newsletter_heading": {
+              "label": "Newsletter heading",
+              "default": "GET 15% OFF ON YOUR FIRST ORDER"
+            }
+          }
+        },
+        "logo": {
+          "name": "Logo",
+          "settings": {
+            "logo_image": {
+              "label": "Logo image"
+            },
+            "logo_width": {
+              "label": "Logo width"
+            }
+          }
         }
       },
       "settings": {
@@ -1884,11 +1904,25 @@
         }
       }
     },
-    "main-blog": {
-      "name": "Blog posts",
+    "blog_post": {
+      "name": "Blog Post",
       "settings": {
-        "header": {
-          "content": "Blog post card"
+        "color_scheme": {
+          "label": "Color scheme",
+          "info": "This section supports cards with background colors."
+        }, 
+        "heading_text": {
+          "label": "Heading",
+          "default": "LATEST FASHION NEWS"
+        },
+        "blog": {
+          "label": "Select blog"
+        },
+        "post_limit": {
+          "label": "Post limit"
+        },
+        "columns_desktop": {
+          "label": "Desktop columns"
         },
         "show_image": {
           "label": "Show featured image"
@@ -1899,34 +1933,60 @@
         "show_author": {
           "label": "Show author"
         },
-        "paragraph": {
-          "content": "Change excerpts by editing your blog posts. [Learn more](https://help.shopify.com/manual/online-store/blogs/writing-blogs#display-an-excerpt-from-a-blog-post)"
+        "show_tags": {
+          "label": "Show tags"
         },
-        "layout": {
-          "label": "Desktop layout",
-          "options__1": {
-            "label": "Grid"
-          },
-          "options__2": {
-            "label": "Collage"
-          },
-          "info": "Posts are stacked on mobile."
+        "btn_text": {
+          "label": "Button label",
+          "info": "Leave the label blank to hide the button.",
+          "default": "EXPLORE MORE"
         },
-        "image_height": {
-          "label": "Featured image height",
-          "options__1": {
-            "label": "Adapt to image"
-          },
-          "options__2": {
-            "label": "Small"
-          },
-          "options__3": {
-            "label": "Medium"
-          },
-          "options__4": {
-            "label": "Large"
-          },
-          "info": "For best results, use an image with a 3:2 aspect ratio. [Learn more](https://help.shopify.com/manual/shopify-admin/productivity-tools/image-editor#understanding-image-aspect-ratio)"
+        "btn_url": {
+          "label": "Button link"
+      },
+    },
+    "presets": {
+        "name": "Blog Post"
+      }
+  },
+    "main-blog": {
+      "name": "Blog Section",
+      "settings": {
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "heading_text": {
+          "label": "Heading",
+          "info": "Leave it blank to show the default heading."
+        },
+        "item_total": {
+          "label": "Maximum number of article to show"
+        },
+        "item_count": {
+          "label": "Number of article to show in a row"
+        },
+        "show_image": {
+          "label": "Show blog image"
+        },
+        "show_excerpt": {
+          "label": "Show excerpt"
+        },
+        "show_tags": {
+          "label": "Show tags"
+        },
+        "show_date": {
+          "label": "Show published date"
+        },
+        "show_author": {
+          "label": "Show author name"
+        },
+        "ratio": {
+          "label": "Image ratio",
+          "options": {
+            "auto": "Adapt to image",
+            "square": "Square",
+            "portrait": "Portrait"
+          }
         }
       }
     },
@@ -3155,49 +3215,164 @@
     "video": {
       "name": "Video",
       "settings": {
-        "heading": {
-          "label": "Heading",
-          "default": "Video"
+        "section_color_scheme": {
+          "label": "Color scheme"
         },
-        "cover_image": {
-          "label": "Cover image"
+        "video_header": {
+          "content": "Video"
         },
-        "video": {
-          "label": "Video"
+        "bg_video": {
+          "label": "Upload video"
         },
-        "enable_video_looping": {
-          "label": "Play video on loop"
+        "video_loop": {
+          "label": "Loop video",
+          "info": "Enable to play the video in a continuous loop."
         },
-        "header__1": {
-          "content": "Shopify-hosted video"
+        "cover_image_header": {
+          "content": "Cover image"
         },
-        "header__2": {
-          "content": "Or embed video from URL"
+        "bg_image": {
+          "label": "Image",
+          "info": "This image will override the video"
         },
-        "header__3": {
-          "content": "Style"
+        "overlay_header": {
+          "content": "Overlay"
         },
-        "paragraph": {
-          "content": "Shows when no Shopify-hosted video is selected."
+        "overlay_opacity": {
+          "label": "Opacity"
         },
-        "video_url": {
-          "label": "URL",
-          "info": "Use a YouTube or Vimeo URL"
+        "padding_header": {
+          "content": "Section padding"
         },
-        "description": {
-          "label": "Video alt text",
-          "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video)"
+        "padding_top": {
+          "label": "Padding top"
         },
-        "image_padding": {
-          "label": "Add image padding",
-          "info": "Select image padding if you don't want your cover image to be cropped."
+        "padding_bottom": {
+          "label": "Padding bottom"
+        }
+      },
+      "blocks": {
+        "title_content": {
+          "name": "Title content",
+          "settings": {
+            "main_heading": {
+              "label": "Title",
+              "default": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+            }
+          }
         },
-        "full_width": {
-          "label": "Make section full width"
+        "subtile_content": {
+          "name": "Sub heading content",
+          "settings": {
+            "sub_heading": {
+              "label": "Sub heading",
+              "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+            }
+          }
         }
       },
       "presets": {
         "name": "Video"
+      }
+    },
+    "scrolling_text": {
+      "name": "Scrolling text",
+      "settings": {
+        "speed": {
+          "label": "Marquee speed"
+        },
+        "direction": {
+          "label": "Marquee direction",
+          "options": {
+            "left": "Left",
+            "right": "Right"
+          }
+        },
+        "pause_on_hover": {
+          "label": "Pause on hover"
+        }
+      },
+      "blocks": {
+        "marquee_item": {
+          "name": "Marquee item",
+          "settings": {
+            "title": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Scrolling text"
+      }
+    },
+    "image_gallery": {
+      "name": "Image gallery",
+      "settings":{
+        "tab_button":{
+          "label": "Tab button",
+          "default": "EXPLORE MORE"
+      },
+      "button_link":{
+        "label": "Button link"
+      },
+      "overlay_opacity": {
+        "label": "Overlay opacity",
+      },
+    },
+    "blocks": {
+        "item": {
+          "name": "Image",
+          "settings": {
+            "gallery_image": {
+              "label": "Image"
+            },
+            "button_icon_svg":{
+              "label": "Button icon SVG"
+            },
+            "icon_link":{
+              "label": "Icon link"
+            }
+          }
+        }
+    },
+    "presets": {
+      "name": "Image gallery"
+    }
+  },
+    "product_bundle": {
+      "name": "Product bundle",
+      "settings": {
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "heading_text": {
+          "label": "Heading",
+          "default": "BUILD YOUR BUNDLE"
+        },
+        "collection": {
+          "label": "Choose collection"
+        },
+        "ratio": {
+          "label": "Image ratio",
+          "options": {
+            "auto": "Adapt to image",
+            "square": "Square",
+            "portrait": "Portrait"
+          }
+        },
+        "bundle_cart_header": "Bundle cart",
+        "bundle_cart_heading": {
+          "label": "Bundle cart heading",
+          "default": "BUNDLE CART"
+        },
+        "bundle_cart_subheading": {
+          "label": "Bundle cart subheading",
+          "default": "Add at least 3 items to get 30% OFF"
+        }
+      },
+      "presets": {
+        "name": "Product bundle"
       }
     },
     "slideshow": {

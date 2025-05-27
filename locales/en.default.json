@@ -330,10 +330,21 @@
       "view_all": "View all",
       "collections_text": "Collections"
     },
+    "collection_tab": {
+      "title": "Collection" 
+    },
+    "image_hotspot": {
+      "subtotal": "Subtotal:",
+      "product_title": "Product title"
+    },
     "collection_template": {
       "empty": "No products found",
       "title": "Collection",
       "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
+    },
+    "collection_carousel": {
+      "item" : "Item",
+      "items": "Items"
     },
     "video": {
       "load_video": "Load video: {{ description }}"
@@ -349,6 +360,15 @@
     },
     "page": {
       "title": "Page title"
+    },
+    "product_carousel": {
+      "product_title": "Example product title"
+    },
+    "product_bundle": {
+      "product_title": "Product title",
+      "add_to_bundle": "Add to bundle",
+      "subtotal": "SUBTOTAL",
+      "add_to_cart": "Add to cart"
     },
     "quick_order_list": {
       "product_total": "Product subtotal",

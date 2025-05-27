@@ -86,12 +86,12 @@
                     {{- block.settings.collection_select.products_count }}
                     {%- if block.settings.collection_select != blank -%}
                       {%- if block.settings.collection_select.products_count <= 1 -%}
-                        Item
+                        {{ 'sections.collection_carousel.item' | t }}
                       {%- else -%}
-                        Items
+                        {{ 'sections.collection_carousel.items' | t }}
                       {%- endif -%}
                     {%- else -%}
-                      0 Item
+                      0 {{ 'sections.collection_carousel.item' | t }}
                     {%- endif -%}
                   </span>
                 </div>
