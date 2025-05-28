@@ -5,7 +5,14 @@
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 's-cart-page.css' | asset_url | stylesheet_tag }}
+{% if section.settings.enable_free_shipping_bar %}
   <script src="{{ 'free-shipping.js' | asset_url }}" defer="defer"></script>
+{% endif %}
+  {% if section.settings.enable_calculate %}
+    <script>window.allCountryOptionTags = {{ all_country_option_tags | json }};</script>
+
+    <script src="{{ 'shipping-calculate.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -29,45 +36,48 @@
 
 <div class="cart-page color-{{ section.settings.color_scheme }} isolate {% if cart == empty %} is-empty{% else %} {% endif %} section-{{ section.id }}-padding">
   <div class="custom-cartpage-width">
-          <div class="title-wrapper-with-link">
-        <div class="breadcrumb-link">
-          <ul>
-            <li><a href="{{ request.origin }}">Home </a></li>
-            <li>/</li>
-            <li>{{ 'sections.cart.title' | t }}</li>
-          </ul>
-        </div>
-        <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
-        {% if section.settings.enable_free_shipping_bar %}
-          <free-shipping-bar
-            threshold="{{ section.settings.free_shipping_threshold }}">
-            <div class="shipping-bar">
-              <div class="free-shipping-text"></div>
-              <div class="free-shipping-progress-container">
-                <div class="free-shipping-progress"></div>
-              </div>
-            </div>
-          </free-shipping-bar>
-        {% endif %}
-  
-        <a href="{{ routes.all_products_collection_url }}" class="underlined-link you-cart-shop-btn">
-          {{- 'general.continue_shopping' | t -}}
-          <span>
-            <svg
-              class="icon icon-caret"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                 d="M6.29303 10.707L12 16.414L17.707 10.707L16.293 9.29297L12 13.586L7.70703 9.29297L6.29303 10.707Z"
-                 fill="black"></path>
-            </svg>
-          </span>
-        </a>
+  {% if cart != empty %}
+      <div class="title-wrapper-with-link text-center">
+      <div class="breadcrumb-link">
+        <ul>
+          <li><a href="{{ request.origin }}">Home </a></li>
+          <li>/</li>
+          <li>{{ 'sections.cart.title' | t }}</li>
+        </ul>
       </div>
+      <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
+      {% if section.settings.enable_free_shipping_bar %}
+        <free-shipping-bar
+          threshold="{{ section.settings.free_shipping_threshold }}">
+          <div class="shipping-bar">
+            <div class="free-shipping-text"></div>
+            <div class="free-shipping-progress-container">
+              <div class="free-shipping-progress"></div>
+            </div>
+          </div>
+        </free-shipping-bar>
+      {% endif %}
+
+      <a href="{{ routes.all_products_collection_url }}" class="underlined-link you-cart-shop-btn">
+        {{- 'general.continue_shopping' | t -}}
+        <span>
+          <svg
+            class="icon icon-caret"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.29303 10.707L12 16.414L17.707 10.707L16.293 9.29297L12 13.586L7.70703 9.29297L6.29303 10.707Z"
+              fill="black"></path>
+          </svg>
+        </span>
+      </a>
+    </div>
+  {% endif %}
+
 <div class="cart-page-wrapper">
   <cart-items class="gradient ">
       <div class="cart__warnings">
@@ -520,102 +530,32 @@
                   </div>
                 </cart-note>
               {%- endif -%}
-              <div class="accordion-item">
-                <div class="accordion-title">Estimate shipping rates</div>
-                <div class="accordion-content">
-                  <div id="shipping-estimator" style="margin-top: 2rem;">
-                    <h3>Estimate Shipping</h3>
-  
-                    <label for="shipping-country">Country:</label>
-                    <select id="shipping-country" name="country" required>
-                      {{ country_option_tags }}
-                    </select>
-  
-                    <div id="shipping-province-wrapper">
-                    <label for="shipping-province">Province/State:</label>
-                    <select id="shipping-province" name="province"></select>
+              {% if section.settings.enable_calculate %}
+                <div class="accordion-item">
+                  <div class="accordion-title">Estimate shipping rates</div>
+                  <div class="accordion-content">
+                    <div id="shipping-estimator">
+                      <div class="country-wrapper">
+                        <label for="shipping-country sub-title">Country/region</label>
+                        <select id="shipping-country" name="country" required>
+                          {{ country_option_tags }}
+                        </select>
+                      </div>
+                      <div id="shipping-province-wrapper">
+                        <label for="shipping-province">Province</label>
+                        <select id="shipping-province" name="province"></select>
+                    </div>
+                      <div class="zip-wrapper">
+                        <label for="shipping-zip">Postal / ZIP Code</label>
+                        <input type="text" id="shipping-zip" name="zip" placeholder="e.g. 10001" required>
+                      </div>
+                      <button id="estimate-shipping-btn" class="shadow-anim-btn" type="button"><span ><span>Estimate</span></span></button>
+                      <div id="shipping-rates-result"></div>
+                    </div>
+       
                   </div>
-  
-  
-                    <label for="shipping-zip" style="margin-top: 1rem; display: block;">Postal / ZIP Code:</label>
-                    <input type="text" id="shipping-zip" name="zip" placeholder="e.g. 10001" required style="width: 100%; padding: 6px; margin-top: 4px;">
-  
-                    <button id="estimate-shipping-btn" type="button" style="margin-top: 10px; padding: 8px 16px;">Estimate</button>
-  
-                    <div id="shipping-rates-result" style="margin-top: 1rem;"></div>
-                  </div>
-  
-                    <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                      const countries = {{ all_country_option_tags | json }};
-                      const countrySelect = document.getElementById('shipping-country');
-                      const provinceSelect = document.getElementById('shipping-province');
-                      const zipInput = document.getElementById('shipping-zip');
-                      const estimateBtn = document.getElementById('estimate-shipping-btn');
-                      const resultDiv = document.getElementById('shipping-rates-result');
-  
-                      // Country → Load provinces dynamically
-                      countrySelect.addEventListener('change', function () {
-                        const selectedCountry = countrySelect.value;
-  
-                        fetch(`/meta.json`) // Shopify doesn't expose province data in theme JS — so we fallback below
-                          .finally(() => {
-                            Shopify.CountryProvinceSelector && new Shopify.CountryProvinceSelector(
-                              'shipping-country', 'shipping-province',
-                              { hideElement: 'shipping-province-wrapper' }
-                            );
-                          });
-                      });
-  
-                      // Trigger manually on page load
-                      countrySelect.dispatchEvent(new Event('change'));
-  
-                      estimateBtn.addEventListener('click', function (e) {
-                        e.preventDefault();
-  
-                        const country = countrySelect.value;
-                        const province = provinceSelect.value;
-                        const zip = zipInput.value.trim();
-  
-                        if (!country || !zip) {
-                          alert('Please enter country and ZIP/postal code.');
-                          return;
-                        }
-  
-                        resultDiv.textContent = 'Loading shipping rates...';
-  
-                        const data = new URLSearchParams();
-                        data.append('shipping_address[country]', country);
-                        if (province) data.append('shipping_address[province]', province);
-                        data.append('shipping_address[zip]', zip);
-  
-                        fetch('/cart/shipping_rates.json', {
-                          method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                          },
-                          body: data.toString()
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                          console.log(data);
-                          if (data.shipping_rates?.length > 0) {
-                            const ratesHtml = data.shipping_rates.map(rate =>
-                              `<div><strong>${rate.name}</strong>: ${rate.price}${rate.currency}</div>`
-                            ).join('');
-                            resultDiv.innerHTML = `<h4>Available Shipping Rates:</h4>${ratesHtml}`;
-                          } else {
-                            resultDiv.textContent = 'No shipping rates available for this location.';
-                          }
-                        })
-                        .catch(() => {
-                          resultDiv.textContent = 'Error fetching shipping rates.';
-                        });
-                      });
-                    });
-                    </script>
                 </div>
-              </div>
+              {% endif %}
               <div class="cart__blocks">
                     {% for block in section.blocks %}
                       {%- case block.type -%}
@@ -697,15 +637,15 @@
                             <button
                               type="submit"
                               id="checkout"
-                              class="cart__checkout-button button cart-checkout-btn"
+                              class="cart__checkout-button button cart-checkout-btn shadow-anim-btn"
                               name="checkout"
                               {% if cart == empty %}
                                 disabled
                               {% endif %}
                               form="cart"
                             >
-                              <span class="check_anim">
-                                <span class="anim_text">{{ 'sections.cart.checkout' | t }}</span>
+                              <span >
+                                <span >{{ 'sections.cart.checkout' | t }}</span>
                               </span>
                             </button>
                           </div>
@@ -749,6 +689,12 @@
         "label": "Free shipping threshold (in store currency)",
         "default": 200,
         "visible_if": "{{ section.settings.enable_free_shipping_bar }}"
+      },
+         {
+        "type": "checkbox",
+        "id": "enable_calculate",
+        "label": "Enable shipping estimator",
+        "default": true
       },
     {
       "type": "header",

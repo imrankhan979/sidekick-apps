@@ -42,10 +42,6 @@ cart-items.is-empty .title-wrapper-with-link,
 }
 
 @media screen and (min-width: 990px) {
-  .cart__warnings {
-    padding: 7rem 0 1rem;
-  }
-
   .cart__empty-text {
     margin: 0 0 3rem;
   }
@@ -220,4 +216,45 @@ cart-items {
     display: flex;
     gap: 1rem;
   }
+}
+#shipping-estimator label{
+  display: block;
+    color: #000000;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+#shipping-estimator select, #shipping-estimator input{
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: initial;
+    border: 1px solid #000000;
+    padding: 20px 48px 20px 24px;
+    border-radius: 10px;
+    width: 100%;
+}
+#shipping-estimator #shipping-rates-result.shipping-result-show{
+  background: #F6F6F6;
+    padding: 24px;
+    border-radius: 10px;
+}
+#shipping-estimator > * + *{
+    margin-top: 24px;
+}
+#estimate-shipping-btn{
+   width: 100%; 
+    color: #000000;
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    background: #F6F6F6;
+    border-radius: 10px;
+    text-align: center;
+    padding: 13px 15px;
+}
+#estimate-shipping-btn:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
 }

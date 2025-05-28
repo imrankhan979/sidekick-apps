@@ -312,7 +312,7 @@ cart-remove-button .icon-remove {
   }
 }
 
-@media screen and (min-width: 990px) {
+@media screen and (min-width: 1200px) {
 
   .cart-item .cart-item__quantity,
   .cart-items .cart-items__heading--wide {
