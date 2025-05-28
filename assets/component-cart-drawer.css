@@ -30,14 +30,6 @@
 
 }
 
-.drawer__inner-empty {
-  height: 100%;
-  padding: 0 1.5rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
 .cart-drawer__warnings {
   display: flex;
   flex-direction: column;
@@ -45,7 +37,7 @@
   justify-content: center;
 }
 
-cart-drawer.is-empty .drawer__inner {
+/* cart-drawer.is-empty .drawer__inner {
   display: grid;
   grid-template-rows: 1fr;
   align-items: center;
@@ -54,7 +46,7 @@ cart-drawer.is-empty .drawer__inner {
 
 cart-drawer.is-empty .drawer__header {
   display: none;
-}
+} */
 
 cart-drawer:not(.is-empty) .cart-drawer__warnings,
 cart-drawer:not(.is-empty) .cart-drawer__collection {
@@ -174,7 +166,6 @@ cart-drawer {
 cart-drawer-items {
   overflow: auto;
   flex: 1;
-  padding-bottom: 24px;
 }
 
 @media screen and (max-height: 650px) {
@@ -412,6 +403,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   height: 100vh;
   position: relative;
   z-index: 5;
+  overflow: hidden;
 }
 
 .cart_main_wrapper .cart_product_item:last-child {
@@ -675,7 +667,7 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 }
 
 .cart_product_carousel_wrapper {
-  margin-top: 45px;
+  margin-top: 35px;
 }
 
 .cart_product_carousel_wrapper .flickity-enabled.is-draggable .flickity-viewport {
@@ -691,7 +683,11 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   margin-bottom: 30px;
   padding-right: 90px;
 }
-
+@media (max-width: 767px) {
+    .cart_product_carousel_wrapper .cart_product_carousel_title {
+    font-size: 18px;
+  }
+}
 .cart_product_carousel_item {
   display: flex;
   column-gap: 24px;
@@ -895,7 +891,12 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   font-size: 16px;
   margin-top: 16px;
 }
-
+@media (max-width: 767px) {
+    .cart_main_wrapper .cart_product_desc {
+     font-size: 14px;
+      line-height: 1;
+  }
+}
 .cart_main_wrapper .cart_product_desc a {
   position: relative;
   color: #000000;
@@ -989,4 +990,27 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .shipping-bar {
     padding: 18px;
 }
+}
+.drawer.is-empty .drawer__inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 45px;
+}
+.continue-shopping-button{
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-heading);
+font-weight: 700;
+font-size: 16px;
+line-height: 24px;
+border-radius: 10px;
+border: 1px solid #000000;
+  background: #FFFFFF;
+  color: #000000;
+  text-transform: uppercase;
+  transition: all .3s ease-in-out;  
+      padding: 11px 24px;
 }

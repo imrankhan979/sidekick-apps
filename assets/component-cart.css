@@ -22,7 +22,13 @@ cart-items.is-empty .title-wrapper-with-link,
 }
 
 .cart__empty-text {
-  margin: 4.5rem 0 2rem;
+  font-family: var(--font-family-body);
+font-weight: 400;
+font-size: 20px;
+line-height: 28px;
+letter-spacing: -1%;
+text-align: center;
+vertical-align: middle;
 }
 
 .cart__contents > * + * {
@@ -41,11 +47,6 @@ cart-items.is-empty .title-wrapper-with-link,
   font-size: inherit;
 }
 
-@media screen and (min-width: 990px) {
-  .cart__empty-text {
-    margin: 0 0 3rem;
-  }
-}
 
 cart-items {
   display: block;

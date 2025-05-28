@@ -165,7 +165,15 @@ cart-items .cart__warnings button {
 	border: none;
 	background: transparent;
 }
-
+.cart-page free-shipping-bar{
+	display: block;
+	margin-bottom: 48px;
+}
+@media (max-width: 767px) {
+	.cart-page free-shipping-bar{
+	margin-bottom: 24px;
+}
+}
 .cart-item__image-container img.cart-item__image {
 	border-radius: 12px;
 }

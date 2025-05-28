@@ -2,6 +2,7 @@
     constructor() {
       super();
       this.threshold = parseFloat(this.getAttribute('threshold')) || 200;
+      this.currencySymbol = window.currencySymbol || "$";
     }
 
     connectedCallback() {
@@ -28,7 +29,7 @@
 
       this.messageEl.innerHTML =
         amountLeft > 0
-          ? `You’re <strong>$${amountLeft.toFixed(2)}</strong> away from free shipping.`
+          ? `You’re <strong>${this.currencySymbol + amountLeft.toFixed(2)}</strong> away from free shipping.`
           : `You’ve qualified for free shipping! 🎉`;
 
       this.progressEl.style.width = percent + '%';
