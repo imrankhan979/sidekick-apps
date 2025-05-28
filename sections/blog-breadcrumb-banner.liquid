@@ -26,7 +26,7 @@
       {% if section.settings.enable_breadcrumb_navigation == true %}
         <div class="anim-item breadcrumb-link">
           <ul>
-            <li><a href="{{ routes.root_url }}">Home</a></li>
+            <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.blog_home' | t }}</a></li>
             <li>{{ blog.title | escape }}</li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
 </section>
 {% schema %}
 {
-  "name": "Blog breadcrumb banner",
+  "name": "t:sections.blog-breadcrumb-banner.name",
   "tag": "section",
   "class": "blog-breadcrumb-banner",
   "settings": [
@@ -59,17 +59,17 @@
     {
       "type": "text",
       "id": "custom_text",
-      "label": "Custom title page"
+      "label": "t:sections.blog-breadcrumb-banner.settings.custom_text.label"
     },
     {
       "type": "checkbox",
       "id": "enable_breadcrumb_navigation",
       "default": true,
-      "label": "Enable breadcrumb navigation"
+      "label": "t:sections.blog-breadcrumb-banner.settings.enable_breadcrumb_navigation.label"
     },
     {
       "type": "header",
-      "content": "Section padding"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -78,7 +78,7 @@
       "max": 250,
       "step": 5,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.all.padding.padding_top",
       "default": 200
     },
     {
@@ -88,13 +88,13 @@
       "max": 250,
       "step": 5,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 250
     }
   ],
   "presets": [
     {
-      "name": "Blog breadcrumb banner"
+      "name": "t:sections.blog-breadcrumb-banner.presets.name"
     }
   ]
 }

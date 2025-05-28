@@ -704,37 +704,33 @@
       }
     },
     "featured-blog": {
-      "name": "Blog posts",
+      "name": "Featured Blog",
       "settings": {
-        "heading": {
-          "default": "Blog posts",
-          "label": "Heading"
+        "section_button": {
+          "label": "Section button",
+          "default": "READ MORE"
         },
-        "blog": {
-          "label": "Blog"
+        "color_scheme": {
+          "label": "Color scheme"
         },
-        "post_limit": {
-          "label": "Number of blog posts to show"
-        },
-        "columns_desktop": {
-          "label": "Number of columns on desktop"
-        },
-        "show_view_all": {
-          "label": "Enable \"View all\" button if blog includes more blog posts than shown"
+        "selected_article": {
+          "label": "Select a Blog Post"
         },
         "show_image": {
-          "label": "Show featured image",
-          "info": "For best results, use an image with a 3:2 aspect ratio. [Learn more](https://help.shopify.com/manual/shopify-admin/productivity-tools/image-editor#understanding-image-aspect-ratio)"
+          "label": "Show image"
         },
         "show_date": {
           "label": "Show date"
         },
-        "show_author": {
-          "label": "Show author"
+        "show_tags": {
+          "label": "Show tags"
+        },
+        "show_excerpt": {
+          "label": "Show excerpt"
         }
       },
       "presets": {
-        "name": "Blog posts"
+        "name": "Featured Blog"
       }
     },
     "featured-collection": {
@@ -841,7 +837,20 @@
         "name": "Featured collection"
       }
     },
-
+    "blog-breadcrumb-banner": {
+      "name": "Blog breadcrumb banner",
+      "settings": {
+        "custom_text": {
+          "label": "Custom title page"
+        },
+        "enable_breadcrumb_navigation": {
+          "label": "Enable breadcrumb navigation"
+        }
+      },
+      "presets": {
+        "name": "Blog breadcrumb banner"
+      }
+    },
     "collection-carousel": {
       "name": "Collection carousel",
       "settings": {
@@ -1850,57 +1859,29 @@
       "name": "Addresses"
     },
     "main-article": {
-      "name": "Blog post",
-      "blocks": {
-        "featured_image": {
-          "name": "Featured image",
-          "settings": {
-            "image_height": {
-              "label": "Featured image height",
-              "options__1": {
-                "label": "Adapt to image"
-              },
-              "options__2": {
-                "label": "Small"
-              },
-              "options__3": {
-                "label": "Medium"
-              },
-              "options__4": {
-                "label": "Large"
-              },
-              "info": "For best results, use an image with a 16:9 aspect ratio. [Learn more](https://help.shopify.com/manual/shopify-admin/productivity-tools/image-editor#understanding-image-aspect-ratio)"
-            }
-          }
+      "name": "Main article",
+      "settings": {
+        "show_breadcrumb": {
+          "label": "Show breadcrumb"
         },
-        "title": {
-          "name": "Title",
-          "settings": {
-            "blog_show_date": {
-              "label": "Show date"
-            },
-            "blog_show_author": {
-              "label": "Show author"
-            }
-          }
+        "show_date": {
+          "label": "Show date"
         },
-        "content": {
-          "name": "Content"
+        "show_tag": {
+          "label": "Show tag"
         },
-        "share": {
-          "name": "Share",
-          "settings": {
-            "text": {
-              "label": "Text",
-              "default": "Share"
-            },
-            "featured_image_info": {
-              "content": "If you include a link in social media posts, the page’s featured image will be shown as the preview image. [Learn more](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images)."
-            },
-            "title_info": {
-              "content": "A store title and description are included with the preview image. [Learn more](https://help.shopify.com/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)."
-            }
-          }
+        "show_social_share": {
+          "label": "Show social share"
+        },
+        "author_info_header": "Author information",
+        "show_author_information": {
+          "label": "Show author information"
+        },
+        "author_image": {
+          "label": "Author image"
+        },
+        "author_designation": {
+          "label": "Author designation"
         }
       }
     },
