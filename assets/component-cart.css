@@ -23,7 +23,7 @@ cart-items.is-empty .title-wrapper-with-link,
 
 .cart__empty-text {
   font-family: var(--font-family-body);
-font-weight: 400;
+/* font-weight: 400; */
 font-size: 20px;
 line-height: 28px;
 letter-spacing: -1%;
@@ -79,6 +79,9 @@ cart-items {
 .cart__note {
   height: fit-content;
   top: 2.5rem;
+}
+cart-drawer .cart__note {
+  top: 0;
 }
 
 .cart__note label {

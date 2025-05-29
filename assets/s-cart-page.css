@@ -208,7 +208,7 @@ a.button.button--tertiary:before {
 	height: 1px;
 	min-height: 1px;
 	right: 0;
-	bottom: 13px;
+	bottom: 0;
 	left: 0;
 	background: gray;
 	will-change: transform;
