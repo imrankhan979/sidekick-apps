@@ -110,7 +110,7 @@
   {% endif %}
     <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
       <div class="page-width">
-        <div class="product_single_wrapper product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }}  grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+        <div class="product_single_wrapper gallery-viewer-motions product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }}  grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
           <div class="product_single_left_thumb">
             {% render 'product-media-gallery', variant_images: variant_images %}
              

@@ -8,27 +8,43 @@ if (!customElements.get('media-gallery')) {
           liveRegion: this.querySelector('[id^="GalleryStatus"]'),
           viewer: this.querySelector('[id^="GalleryViewer"]'),
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
+          trps: this.querySelector('[id^="Slider-Gallery-template"]'),
+          thumbnail: this.querySelector('.thumbnail-slider'),
         };
         this.mql = window.matchMedia('(min-width: 750px)');
         if (!this.elements.thumbnails) return;
-
+        this.trpsGain()
+        this.elements.thumbnail && this.thumbnail()
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
-        this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch) => {
+        this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch, index) => {
           mediaToSwitch
             .querySelector('button')
-            .addEventListener('click', this.setActiveMedia.bind(this, mediaToSwitch.dataset.target, false));
+            .addEventListener('click', this.setActiveMedia.bind(this, mediaToSwitch.dataset.target, false, index));
         });
         if (this.dataset.desktopLayout.includes('thumbnail') && this.mql.matches) this.removeListSemantic();
       }
-
+      thumbnail(){
+        false && this.elements.thumbnail.querySelectorAll('button').forEach((button) => {
+          button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const mediaId = button.dataset.target;
+            this.setActiveMedia(mediaId, false);
+          });
+        }
+        );
+      }
+      trpsGain() {
+        this.ity = new Flickity(this.elements.trps, {});
+        this.elements.trps.style.display = 'block';
+      }
       onSlideChanged(event) {
         const thumbnail = this.elements.thumbnails.querySelector(
-          `[data-target="${event.detail.currentElement.dataset.mediaId}"]`
+          `[data-target="${event.detail.currentElement?.dataset.mediaId}"]`
         );
         this.setActiveThumbnail(thumbnail);
       }
-
-      setActiveMedia(mediaId, prepend) {
+      setActiveMedia(mediaId, prepend, index) {
+        this.ity.select(index)
         const activeMedia =
           this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`) ||
           this.elements.viewer.querySelector('[data-media-id]');
