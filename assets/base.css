@@ -1938,8 +1938,9 @@ details[open]>.share-button__fallback {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
-  min-height: 10rem;
+  min-height: 12rem;
   resize: none;
+  font-size: 18px;
 }
 
 input[type='checkbox'] {
@@ -2447,7 +2448,7 @@ input[type='checkbox'] {
   z-index: 99;
 }
 
-.snazzy-header:hover {
+.snazzy-header:hover ,.snazzy-header.menu-active {
   background-color: white;
 }
 

@@ -1289,28 +1289,91 @@ customElements.define("observed-height", ObservedDiv);
 
 
 // header overlay
+// document.addEventListener('DOMContentLoaded', () => {
+//   const disclosureButtons = document.querySelectorAll('.disclosure');
+//   const menuItems = document.querySelectorAll('.header-menu ul li .main-menu-has-sub-menu');
+//   const headerBgOverlay = document.querySelector('.header-bg-overlay');
+//   const toggleOverlayClass = (add) => {
+//     if (headerBgOverlay) {
+//       if (add) {
+//         headerBgOverlay.classList.add('active');
+//       } else {
+//         headerBgOverlay.classList.remove('active');
+//       }
+//     }
+//   };
+//   disclosureButtons.forEach((button) => {
+//     button.addEventListener('mouseenter', () => toggleOverlayClass(true));
+//     button.addEventListener('mouseleave', () => toggleOverlayClass(false));
+//   });
+//   menuItems.forEach((item) => {
+//     item.addEventListener('mouseenter', () => toggleOverlayClass(true));
+//     item.addEventListener('mouseleave', () => toggleOverlayClass(false));
+//   });
+// });
 document.addEventListener('DOMContentLoaded', () => {
-  const disclosureButtons = document.querySelectorAll('.disclosure');
-  const menuItems = document.querySelectorAll('.header-menu ul li .main-menu-has-sub-menu');
+  const disclosureButtons = Array.from(document.querySelectorAll('.disclosure__button'));
+  const menuItems = Array.from(document.querySelectorAll('.header-menu ul li .main-menu-has-sub-menu'));
   const headerBgOverlay = document.querySelector('.header-bg-overlay');
-  const toggleOverlayClass = (add) => {
-    if (headerBgOverlay) {
-      if (add) {
-        headerBgOverlay.classList.add('active');
-      } else {
-        headerBgOverlay.classList.remove('active');
-      }
-    }
+  const headerMenu = document.querySelector('.snazzy-header');
+
+  let isOverlayActive = false;
+  const activeParentClass = 'menu-open';
+  const activeHeaderClass = 'menu-active'; // Class added to headerMenu
+  const activeDisclosureParentClass = 'menu-active'; // Class added to disclosure parent
+
+  const closeAll = () => {
+    isOverlayActive = false;
+    if (headerBgOverlay) headerBgOverlay.classList.remove('active');
+    if (headerMenu) headerMenu.classList.remove(activeHeaderClass);
+    document.querySelectorAll(`.disclosure-wrapper.${activeDisclosureParentClass}`).forEach(el => {
+      el.classList.remove(activeDisclosureParentClass);
+    });
+    document.querySelectorAll(`.header-menu li.${activeParentClass}`).forEach(li => {
+      li.classList.remove(activeParentClass);
+    });
   };
-  disclosureButtons.forEach((button) => {
-    button.addEventListener('mouseenter', () => toggleOverlayClass(true));
-    button.addEventListener('mouseleave', () => toggleOverlayClass(false));
+
+const toggleOverlayAndParent = (element) => {
+  if (!headerBgOverlay) return;
+
+  const parentLi = element.closest('li');
+  const currentlyActive = parentLi && parentLi.classList.contains(activeParentClass);
+
+  if (currentlyActive) {
+    closeAll();
+  } else {
+    closeAll();
+
+    if (parentLi) parentLi.classList.add(activeParentClass);
+    headerBgOverlay.classList.add('active');
+    if (headerMenu) headerMenu.classList.add(activeHeaderClass);  // always add here
+    isOverlayActive = true;
+
+    if (disclosureButtons.includes(element)) {
+      const disclosureParent = element.closest('.disclosure'); // adjust selector as needed
+      if (disclosureParent) disclosureParent.classList.add(activeDisclosureParentClass);
+    }
+  }
+};
+
+
+  [...disclosureButtons, ...menuItems].forEach(element => {
+    element.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleOverlayAndParent(element);
+    });
   });
-  menuItems.forEach((item) => {
-    item.addEventListener('mouseenter', () => toggleOverlayClass(true));
-    item.addEventListener('mouseleave', () => toggleOverlayClass(false));
+
+  document.addEventListener('click', () => {
+    if (isOverlayActive) closeAll();
   });
 });
+
+
+
+
+
  
 
 // menu dropdown
