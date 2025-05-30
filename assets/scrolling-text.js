@@ -1,4 +1,4 @@
-class ScrollingText extends HTMLElement {
+class MarqueeComponent extends HTMLElement {
   constructor() {
     super();
   }
@@ -54,4 +54,4 @@ class ScrollingText extends HTMLElement {
   }
 }
 
-customElements.define("scrolling-text", ScrollingText);
+customElements.define("marquee-component", MarqueeComponent);
