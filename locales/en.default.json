@@ -274,8 +274,9 @@
       }
     },
     "404": {
-      "title": "Page not found",
-      "subtext": "404"
+      "title": "Great things take time… and some pages just take a wrong turn.",
+      "subtext": "404",
+      "button_text": "Back to home"
     }
   },
   "sections": {

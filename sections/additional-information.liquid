@@ -73,12 +73,12 @@
 
 {% schema %}
 {
-  "name": "Additional information",
+  "name": "t:sections.additional_info.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
@@ -92,7 +92,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -102,37 +102,37 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "Item",
-      "name": "Item",
+      "name": "t:sections.additional_info.blocks.item.name",
       "settings": [
         {
           "type": "text",
           "id": "tab_title",
-          "label": "Tab Title",
-          "default": "Item"
+          "label": "t:sections.additional_info.blocks.item.settings.tab_title.label",
+          "default": "t:sections.additional_info.blocks.item.settings.tab_title.default"
         },
         {
           "type": "richtext",
           "id": "content_rich",
-          "label": "Content",
-          "info": "Text from here describes your description."
+          "label": "t:sections.additional_info.blocks.item.settings.content_rich.label",
+          "info": "t:sections.additional_info.blocks.item.settings.content_rich.info"
         },
         {
           "type": "page",
           "id": "page",
-          "label": "Content from page"
+          "label": "t:sections.additional_info.blocks.item.settings.page.label"
         },
         {
           "type": "liquid",
           "id": "custom_liquid",
-          "label": "Custom liquid",
-          "info": "Add app snippets or other Liquid code to create advanced customizations. For product additional description, you can use {{ product.description }}",
+          "label": "t:sections.additional_info.blocks.item.settings.custom_liquid.label",
+          "info": "t:sections.additional_info.blocks.item.settings.custom_liquid.info",
           "default": "{{ product.description }}"
         }
       ]
@@ -140,24 +140,24 @@
   ],
   "presets": [
     {
-      "name": "Additional information",
+      "name": "t:sections.additional_info.presets.name",
       "blocks": [
         {
           "type": "Item",
           "settings": {
-            "tab_title": "DESCRIPTION"
+            "tab_title": "t:sections.additional_info.presets.tabs.description"
           }
         },
         {
           "type": "Item",
           "settings": {
-            "tab_title": "FABRIC & CARE"
+            "tab_title": "t:sections.additional_info.presets.tabs.fabric"
           }
         },
         {
           "type": "Item",
           "settings": {
-            "tab_title": "SHIPPING"
+            "tab_title": "t:sections.additional_info.presets.tabs.shipping"
           }
         }
       ]

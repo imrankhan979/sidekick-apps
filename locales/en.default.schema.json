@@ -1459,7 +1459,6 @@
         }
       }
     },
-    
     "image-banner": {
       "name": "Image banner",
       "settings": {
@@ -1718,6 +1717,40 @@
         "name": "Collection tab"
       }
     },
+    "all-collection": {
+      "name": "All Collections",
+      "settings": {
+        "heading_tag": {
+          "label": "Heading tag"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection carousel",
+          "settings": {
+            "collection_select": {
+              "label": "Select collection"
+            },
+            "collection_bg_color": {
+              "label": "Background color"
+            },
+            "collection_image": {
+              "label": "Collection image"
+            },
+            "collection_heading": {
+              "label": "Heading",
+              "info": "If left blank, the collection name will be used."
+            },
+            "collection_button_link": {
+              "label": "Button link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "All collection"
+      }
+    },
     "faq": {
       "name": "FAQ Section",
       "settings": {
@@ -1767,7 +1800,40 @@
         }
       }
     },
- 
+    "additional_info": {
+      "name": "Additional information",
+      "blocks": {
+        "item": {
+          "name": "Item",
+          "settings": {
+            "tab_title": {
+              "label": "Tab Title",
+              "default": "Item"
+            },
+            "content_rich": {
+              "label": "Content",
+              "info": "Text from here describes your description."
+            },
+            "page": {
+              "label": "Content from page"
+            },
+            "custom_liquid": {
+              "label": "Custom liquid",
+              "info": "Add app snippets or other Liquid code to create advanced customizations. For product additional description, you can use {{ product.description }}"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Additional information",
+        "tabs": {
+          "description": "DESCRIPTION",
+          "fabric": "FABRIC & CARE",
+          "shipping": "SHIPPING"
+        }
+      }
+    },
+
 
     "multirow": {
       "name": "Multirow",
@@ -3406,6 +3472,14 @@
         "name": "Product bundle"
       }
     },
+    "404_page": {
+      "name": "404 page",
+      "settings": {
+        "background_image": {
+          "label": "Background Image"
+        },
+      },
+    },
     "slideshow": {
       "name": "Slideshow",
       "blocks": {
@@ -3697,6 +3771,6 @@
       "presets": {
         "name": "Collapsible content"
       }
-    }
+    },
   },
 }
