@@ -908,13 +908,15 @@ summary {
   list-style: none;
   position: relative;
 }
-
+/* 
 summary .icon-caret {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+} */
+summary .svg-wrapper{
+  display: flex;
 }
-
 summary::-webkit-details-marker {
   display: none;
 }
@@ -2217,6 +2219,9 @@ input[type='checkbox'] {
   border-radius: 100%;
   font-size: 12px;
   line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* utility-bar */
@@ -2538,6 +2543,22 @@ input[type='checkbox'] {
   gap: 4px;
   word-break: break-word;
 }
+.snazzy-header .header-inner .header-menu-item span, .snazzy-header .header-inner .disclosure__button > span{
+  position: relative;
+}
+.snazzy-header .header-inner .header-menu-item span:after, .snazzy-header .header-inner .disclosure__button > span:after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: rgb(var(--color-foreground));
+  transition: .4s;
+}
+.snazzy-header .header-inner .menu-open .header-menu-item span:after, .snazzy-header .header-inner .menu-active .disclosure__button > span:after{
+  width: 100%;
+}
 
 .snazzy-header .header-inner .header-icons-group {
   gap: 48px;
@@ -2608,7 +2629,7 @@ input[type='checkbox'] {
 }
 
 .snazzy-header .menu-drawer-header {
-  grid-template-columns: 24px 60px 1fr;
+  grid-template-columns: 24px 80px 1fr;
   gap: 24px;
   padding: 24px 0;
 }
@@ -2647,6 +2668,7 @@ input[type='checkbox'] {
   padding: 48px 24px 48px 24px;
   transition: transform .4s ease-in-out;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .snazzy-header header-menu-drawer .menu-opening .drawer-menu {
@@ -2669,6 +2691,12 @@ input[type='checkbox'] {
 .snazzy-header header-menu-drawer .header-icons .header-cart {
   gap: 6px;
 }
+.snazzy-header header-menu-drawer .header-icons .svg-wrapper {
+  display: flex;    
+  align-items: center;  
+  justify-content: center;
+}
+
 
 .snazzy-header header-menu-drawer .main-menu-item-list>li {
   padding: 24px 0;
@@ -2683,7 +2711,7 @@ input[type='checkbox'] {
 }
 
 .snazzy-header header-menu-drawer .main-menu-item-list>li details summary .icon-caret {
-  transform: translateY(-50%) rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .snazzy-header .header-inner header-menu-drawer .list-menu>li>* {
@@ -3080,7 +3108,10 @@ details[open] .modal-overlay::after {
   transform: scale(1);
   transition: transform 150ms ease, opacity 150ms ease;
 }
-
+#header-menu-icon{
+  padding: 5px 0;
+    cursor: pointer;
+}
 details:not([open])>.header__icon--menu .icon-close,
 details[open]>.header__icon--menu .icon-hamburger {
   visibility: hidden;

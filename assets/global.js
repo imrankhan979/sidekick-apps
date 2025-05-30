@@ -1312,61 +1312,51 @@ customElements.define("observed-height", ObservedDiv);
 //   });
 // });
 document.addEventListener('DOMContentLoaded', () => {
-  const disclosureButtons = Array.from(document.querySelectorAll('.disclosure__button'));
-  const menuItems = Array.from(document.querySelectorAll('.header-menu ul li .main-menu-has-sub-menu'));
+  const disclosureButtons = document.querySelectorAll(' .disclosure__button');
+  const menuItems = document.querySelectorAll('.header-menu ul li .main-menu-has-sub-menu');
   const headerBgOverlay = document.querySelector('.header-bg-overlay');
   const headerMenu = document.querySelector('.snazzy-header');
 
-  let isOverlayActive = false;
   const activeParentClass = 'menu-open';
-  const activeHeaderClass = 'menu-active'; // Class added to headerMenu
-  const activeDisclosureParentClass = 'menu-active'; // Class added to disclosure parent
+  const activeHeaderClass = 'menu-active';
+  const activeDisclosureParentClass = 'menu-active';
 
   const closeAll = () => {
-    isOverlayActive = false;
-    if (headerBgOverlay) headerBgOverlay.classList.remove('active');
-    if (headerMenu) headerMenu.classList.remove(activeHeaderClass);
-    document.querySelectorAll(`.disclosure-wrapper.${activeDisclosureParentClass}`).forEach(el => {
-      el.classList.remove(activeDisclosureParentClass);
-    });
-    document.querySelectorAll(`.header-menu li.${activeParentClass}`).forEach(li => {
-      li.classList.remove(activeParentClass);
-    });
+    headerBgOverlay?.classList.remove('active');
+    headerMenu?.classList.remove(activeHeaderClass);
+    document.querySelectorAll(`.${activeDisclosureParentClass}`).forEach(el => el.classList.remove(activeDisclosureParentClass));
+    document.querySelectorAll(`.${activeParentClass}`).forEach(li => li.classList.remove(activeParentClass));
   };
 
-const toggleOverlayAndParent = (element) => {
-  if (!headerBgOverlay) return;
-
-  const parentLi = element.closest('li');
-  const currentlyActive = parentLi && parentLi.classList.contains(activeParentClass);
-
-  if (currentlyActive) {
+  const toggleClasses = (element, parentClass) => {
+    const isActive = element.classList.contains(parentClass);
     closeAll();
-  } else {
-    closeAll();
-
-    if (parentLi) parentLi.classList.add(activeParentClass);
-    headerBgOverlay.classList.add('active');
-    if (headerMenu) headerMenu.classList.add(activeHeaderClass);  // always add here
-    isOverlayActive = true;
-
-    if (disclosureButtons.includes(element)) {
-      const disclosureParent = element.closest('.disclosure'); // adjust selector as needed
-      if (disclosureParent) disclosureParent.classList.add(activeDisclosureParentClass);
+    if (!isActive) {
+      element.classList.add(parentClass);
+      headerBgOverlay?.classList.add('active');
+      headerMenu?.classList.add(activeHeaderClass);
     }
-  }
-};
+  };
 
-
-  [...disclosureButtons, ...menuItems].forEach(element => {
-    element.addEventListener('click', e => {
+  disclosureButtons.forEach(button => {
+    button.addEventListener('click', e => {
       e.stopPropagation();
-      toggleOverlayAndParent(element);
+      toggleClasses(button.closest('.disclosure'), activeDisclosureParentClass);
+    });
+  });
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleClasses(item.closest('li'), activeParentClass);
     });
   });
 
   document.addEventListener('click', () => {
-    if (isOverlayActive) closeAll();
+    // Only close if an overlay or menu is visibly active
+    if (headerBgOverlay?.classList.contains('active')) {
+      closeAll();
+    }
   });
 });
 
