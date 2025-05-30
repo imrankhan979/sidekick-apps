@@ -57,7 +57,7 @@
                         {%- if block.settings.tab_button != blank -%}
                           {{ block.settings.tab_button }}
                         {%- else -%}
-                          Tab {{ forloop.index }}
+                          {{ 'sections.timeline_tab.tab' | t }} {{ forloop.index }}
                         {%- endif -%}
                       </span>
                     </span>
@@ -72,14 +72,14 @@
                     {%- if block.settings.tab_heading != blank -%}
                       {{ block.settings.tab_heading }}
                     {%- else -%}
-                      Title for tab {{ forloop.index  }}
+                      {{ 'sections.timeline_tab.tab_title' | t }}
                     {%- endif -%}
                   </h3>
                   <div class="our_journey_desc">
                     {%- if block.settings.tab_description != blank -%}
                       {{ block.settings.tab_description }}
                     {%- else -%}
-                      <p>Content for tab {{ forloop.index  }} goes here. Add description or details.</p>
+                      <p>{{ 'sections.timeline_tab.tab_content' | t }}</p>
                     {%- endif -%}
                   </div>
                 </div>
@@ -136,25 +136,25 @@
 </script> {% endcomment %}
 {% schema %}
 {
-  "name": "Timeline tabs",
+  "name": "t:sections.timeline-tabs.name",
   "settings": [
-        {
+    {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "section_title",
       "default": "Our journey",
-      "label": "Section title"
+      "label": "t:sections.timeline-tabs.settings.section_title.label"
     },
     {
       "type": "richtext",
       "id": "section_description",
-      "default": " <p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>",
-      "label": "Section description"
+      "default": "t:sections.timeline-tabs.settings.section_description.default",
+      "label": "t:sections.timeline-tabs.settings.section_description.label"
     },
     {
       "type": "header",
@@ -167,7 +167,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -177,51 +177,45 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "tab",
-      "name": "Item",
+      "name": "t:sections.timeline-tabs.blocks.tab.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "tab_image",
-          "label": "Tab Image"
+          "label": "t:sections.timeline-tabs.blocks.tab.settings.tab_image.label"
         },
         {
           "type": "text",
           "id": "tab_button",
-          "label": "Button Text"
+          "label": "t:sections.timeline-tabs.blocks.tab.settings.tab_button.label"
         },
         {
           "type": "text",
           "id": "tab_heading",
-          "label": "Heading"
+          "label": "t:sections.timeline-tabs.blocks.tab.settings.tab_heading.label"
         },
         {
           "type": "richtext",
           "id": "tab_description",
-          "label": "Description"
+          "label": "t:sections.timeline-tabs.blocks.tab.settings.tab_description.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Timeline tabs",
+      "name": "t:sections.timeline-tabs.presets.name",
       "blocks": [
-        {
-          "type": "tab"
-        }, 
-        {
-          "type": "tab"
-        },
-        {
-          "type": "tab"
-        }
+        { "type": "tab" },
+        { "type": "tab" },
+        { "type": "tab" }
       ]
     }
   ]

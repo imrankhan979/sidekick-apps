@@ -620,6 +620,17 @@
         "name": "Collage"
       }
     },
+    "collection-list-banner": {
+      "name": "Collection list banner",
+      "settings": {
+        "custom_text": {
+          "label": "Custom title page"
+        }, 
+        "breadcrumb_navigation": {
+          "label": "Enable breadcrumb navigation"
+        },
+      }
+    },
     "collection-list": {
       "name": "Collection list",
       "settings": {
@@ -680,17 +691,69 @@
       }
     },
     "contact-form": {
-      "name": "Contact Form",
+      "name": "Contact Form Section",
+      "settings": {
+        "section_title": {
+          "label": "Section Title",
+          "default": "send us message"
+        },
+        "section_description": {
+          "label": "Section Description",
+          "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
+        }
+      },
+      "blocks": {
+        "contact_address": {
+          "name": "Contact information",
+          "settings": {
+            "contact_title": {
+              "label": "Section Title",
+              "default": "Contact"
+            },
+            "address_header": "Address",
+            "address_title": {
+              "label": "Title",
+              "default": "Address"
+            },
+            "address": {
+              "label": "Details",
+              "default": "141 Duane St, New York, NY 10013"
+            },
+            "email_header": "Email",
+            "email_title": {
+              "label": "Title",
+              "default": "E-mail"
+            },
+            "email": {
+              "label": "Details",
+              "default": "helpcenter@dapper.com"
+            },
+            "phone_header": "Phone",
+            "phone_title": {
+              "label": "Title",
+              "default": "Hotline"
+            },
+            "phone": {
+              "label": "Details",
+              "default": "+1 914 677 07777"
+            }
+          }
+        },
+        "social_share": {
+          "name": "Social link",
+          "settings": {
+            "social_title": {
+              "label": "Social Title",
+              "default": "Socials"
+            }
+          }
+        }
+      },
       "presets": {
         "name": "Contact form"
-      },
-      "settings": {
-        "title": {
-          "default": "Contact form",
-          "label": "Heading"
-        }
       }
     },
+
     "custom-liquid": {
       "name": "Custom Liquid",
       "settings": {
@@ -1991,6 +2054,13 @@
         "paragraph": {
           "content": "Add a description or image by editing your collection. [Learn more](https://help.shopify.com/manual/products/collections/collection-layout)"
         },
+        "section_heading": {
+          "label": "Page heading",
+          "info": "Leave it blank to show the default heading."
+        },
+        "header_bg": {
+          "label": "Background image"
+        },
         "show_collection_description": {
           "label": "Show collection description"
         },
@@ -2125,6 +2195,9 @@
           },
           "info": "Add images by editing your collections. [Learn more](https://help.shopify.com/manual/products/collections)"
         },
+        "colums_by_page": {
+          "label": "Collections per page"
+        },
         "columns_desktop": {
           "label": "Number of columns on desktop"
         },
@@ -2168,8 +2241,53 @@
         }
       }
     },
+
     "main-product": {
-      "name": "Product information",
+      "name": "Product",
+      "settings": {
+        "header": {
+          "content": "Media",
+          "info": "Different media settings can be applied for different devices."
+        },
+        "constrain_to_viewport": {
+          "label": "Constrain media to viewport"
+        },
+        "gallery_layout": {
+          "label": "Media layout",
+          "options__1": "Stacked",
+          "options__2": "Columns",
+          "options__3": "Thumbnail",
+          "options__4": "Thumbnail slider"
+        },
+        "image_zoom": {
+          "label": "Image zoom",
+          "options__2": "On hover",
+          "options__3": "None",
+          "info": "Zoom may not apply to all media types."
+        },
+        "mobile_thumbnails": {
+          "label": "Mobile thumbnails",
+          "options__1": "Columns",
+          "options__2": "Show",
+          "options__3": "Hide"
+        },
+        "hide_variants":{ 
+        "label": "Hide variant media"
+        },
+        "enable_video_looping": {
+        "label": "Enable video looping"
+        },
+        "header_bc": {
+          "breadcrumb_settings": "Breadcrumb settings",
+          "product_details": "Product details"
+        },
+        "show_breadcrumb": {
+        "label" :"Show breadcrumb"
+        },
+        "header_bg": {
+          "label": "Header background image"
+        }
+      },
       "blocks": {
         "text": {
           "name": "Text",
@@ -2177,18 +2295,6 @@
             "text": {
               "label": "Text",
               "default": "Text block"
-            },
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Body"
-              },
-              "options__2": {
-                "label": "Subtitle"
-              },
-              "options__3": {
-                "label": "Uppercase"
-              }
             }
           }
         },
@@ -2198,28 +2304,27 @@
         "price": {
           "name": "Price"
         },
-        "inventory": {
-          "name": "Inventory status",
+        "sku": {
+          "name": "SKU",
           "settings": {
             "text_style": {
               "label": "Text style",
-              "options__1": {
-                "label": "Body"
-              },
-              "options__2": {
-                "label": "Subtitle"
-              },
-              "options__3": {
-                "label": "Uppercase"
-              }
-            },
-            "inventory_threshold": {
-              "label": "Low inventory threshold",
-              "info": "Choose 0 to always show in stock if available."
-            },
-            "show_inventory_quantity": {
-              "label": "Show inventory count"
+              "options__1": "Body text",
+              "options__2": "Subtitle",
+              "options__3": "Uppercase"
             }
+          }
+        },
+        "inventory": {
+          "name": "Inventory",
+          "settings": {
+            "inventory_threshold": {
+              "label": "Inventory threshold",
+              "info": "Show inventory count when stock is below this number."
+            },
+            "show_inventory_quantity": { 
+           "label": "Show inventory quantity"
+          },
           }
         },
         "quantity_selector": {
@@ -2229,26 +2334,16 @@
           "name": "Variant picker",
           "settings": {
             "picker_type": {
-              "label": "Style",
-              "options__1": {
-                "label": "Dropdown"
-              },
-              "options__2": {
-                "label": "Pills"
-              }
+              "label": "Picker type",
+              "options__1": "Dropdown",
+              "options__2": "Buttons"
             },
             "swatch_shape": {
-              "label": "Swatch",
-              "info": "Enable [swatches](https://help.shopify.com/en/manual/online-store/themes/theme-structure/theme-settings#options-with-swatches) on product options.",
-              "options__1": {
-                "label": "Circle"
-              },
-              "options__2": {
-                "label": "Square"
-              },
-              "options__3": {
-                "label": "None"
-              }
+              "label": "Swatch shape",
+              "options__1": "Circle",
+              "options__2": "Square",
+              "options__3": "None",
+              "info": "Applies only when using button picker type."
             }
           }
         },
@@ -2256,221 +2351,123 @@
           "name": "Buy buttons",
           "settings": {
             "show_dynamic_checkout": {
-              "label": "Show dynamic checkout buttons",
-              "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+              "label": "Show dynamic checkout button",
+              "info": "Using the payment methods available on your store, customers see their preferred option, like PayPal or Apple Pay."
             },
             "show_gift_card_recipient": {
-              "label": "Show recipient information form for gift cards",
-              "info": "Allows buyers to send gift cards on a scheduled date along with a personal message. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
+              "label": "Show gift card recipient form",
+              "info": "Allow customers to send gift cards to other people."
+            },
+            "payment_enable": {
+              "label": "Enable payment buttons"
             }
           }
         },
-        "pickup_availability": {
-          "name": "Pickup availability"
-        },
         "description": {
-          "name": "Description"
-        },
-        "sku": {
-          "name": "SKU",
+          "name": "Description",
           "settings": {
-            "text_style": {
-              "label": "Text style",
-              "options__1": {
-                "label": "Body"
-              },
-              "options__2": {
-                "label": "Subtitle"
-              },
-              "options__3": {
-                "label": "Uppercase"
-              }
+            "description": {
+              "label": "Description"
             }
           }
         },
         "share": {
           "name": "Share",
           "settings": {
-            "text": {
-              "label": "Text",
-              "default": "Share"
+            "show_facebook_share": {
+             "label": "Show Facebook share"
             },
-            "featured_image_info": {
-              "content": "If you include a link in social media posts, the page’s featured image will be shown as the preview image. [Learn more](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images)."
+            "show_pinterest_share":{ 
+            "label": "Show Pinterest share"
+          },
+            "show_twitter_share":{
+            "label": "Show Twitter share"
             },
-            "title_info": {
-              "content": "A store title and description are included with the preview image. [Learn more](https://help.shopify.com/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)."
-            }
+            "show_copy_link": {
+            "label": "Show copy link button"
+          },
           }
         },
         "collapsible_tab": {
-          "name": "Collapsible row",
+          "name": "Collapsible tab",
           "settings": {
             "heading": {
-              "info": "Include a heading that explains the content.",
               "label": "Heading",
-              "default": "Collapsible row"
-            },
-            "content": {
-              "label": "Row content"
-            },
-            "page": {
-              "label": "Row content from page"
+              "default": "Collapsible tab",
+              "info": "Include a heading that explains the content."
             },
             "icon": {
               "label": "Icon",
-              "options__1": {
-                "label": "None"
-              },
-              "options__2": {
-                "label": "Apple"
-              },
-              "options__3": {
-                "label": "Banana"
-              },
-              "options__4": {
-                "label": "Bottle"
-              },
-              "options__5": {
-                "label": "Box"
-              },
-              "options__6": {
-                "label": "Carrot"
-              },
-              "options__7": {
-                "label": "Chat bubble"
-              },
-              "options__8": {
-                "label": "Check mark"
-              },
-              "options__9": {
-                "label": "Clipboard"
-              },
-              "options__10": {
-                "label": "Dairy"
-              },
-              "options__11": {
-                "label": "Dairy free"
-              },
-              "options__12": {
-                "label": "Dryer"
-              },
-              "options__13": {
-                "label": "Eye"
-              },
-              "options__14": {
-                "label": "Fire"
-              },
-              "options__15": {
-                "label": "Gluten free"
-              },
-              "options__16": {
-                "label": "Heart"
-              },
-              "options__17": {
-                "label": "Iron"
-              },
-              "options__18": {
-                "label": "Leaf"
-              },
-              "options__19": {
-                "label": "Leather"
-              },
-              "options__20": {
-                "label": "Lightning bolt"
-              },
-              "options__21": {
-                "label": "Lipstick"
-              },
-              "options__22": {
-                "label": "Lock"
-              },
-              "options__23": {
-                "label": "Map pin"
-              },
-              "options__24": {
-                "label": "Nut free"
-              },
-              "options__25": {
-                "label": "Pants"
-              },
-              "options__26": {
-                "label": "Paw print"
-              },
-              "options__27": {
-                "label": "Pepper"
-              },
-              "options__28": {
-                "label": "Perfume"
-              },
-              "options__29": {
-                "label": "Plane"
-              },
-              "options__30": {
-                "label": "Plant"
-              },
-              "options__31": {
-                "label": "Price tag"
-              },
-              "options__32": {
-                "label": "Question mark"
-              },
-              "options__33": {
-                "label": "Recycle"
-              },
-              "options__34": {
-                "label": "Return"
-              },
-              "options__35": {
-                "label": "Ruler"
-              },
-              "options__36": {
-                "label": "Serving dish"
-              },
-              "options__37": {
-                "label": "Shirt"
-              },
-              "options__38": {
-                "label": "Shoe"
-              },
-              "options__39": {
-                "label": "Silhouette"
-              },
-              "options__40": {
-                "label": "Snowflake"
-              },
-              "options__41": {
-                "label": "Star"
-              },
-              "options__42": {
-                "label": "Stopwatch"
-              },
-              "options__43": {
-                "label": "Truck"
-              },
-              "options__44": {
-                "label": "Washing"
-              }
+              "options__1": "None",
+              "options__2": "Apple",
+              "options__3": "Banana",
+              "options__4": "Bottle",
+              "options__5": "Box",
+              "options__6": "Carrot",
+              "options__7": "Chat bubble",
+              "options__8": "Check mark",
+              "options__9": "Clipboard",
+              "options__10": "Dairy",
+              "options__11": "Dairy free",
+              "options__12": "Dryer",
+              "options__13": "Eye",
+              "options__14": "Fire",
+              "options__15": "Gluten free",
+              "options__16": "Heart",
+              "options__17": "Iron",
+              "options__18": "Leaf",
+              "options__19": "Leather",
+              "options__20": "Lightning bolt",
+              "options__21": "Lipstick",
+              "options__22": "Lock",
+              "options__23": "Map pin",
+              "options__24": "Nut free",
+              "options__25": "Pants",
+              "options__26": "Paw print",
+              "options__27": "Pepper",
+              "options__28": "Perfume",
+              "options__29": "Plane",
+              "options__30": "Plant",
+              "options__31": "Price tag",
+              "options__32": "Question mark",
+              "options__33": "Recycle",
+              "options__34": "Return",
+              "options__35": "Ruler",
+              "options__36": "Serving dish",
+              "options__37": "Shirt",
+              "options__38": "Shoe",
+              "options__39": "Silhouette",
+              "options__40": "Snowflake",
+              "options__41": "Star",
+              "options__42": "Stopwatch",
+              "options__43": "Truck",
+              "options__44": "Washing"
+            },
+            "content": {
+              "label": "Content"
+            },
+            "page": {
+              "label": "Page content"
             }
           }
         },
         "popup": {
-          "name": "Pop-up",
+          "name": "Popup",
           "settings": {
             "link_label": {
               "label": "Link label",
-              "default": "Pop-up link text"
+              "default": "Popup link text"
             },
             "page": {
-              "label": "Page"
+              "label": "Page content"
             }
           }
         },
         "rating": {
-          "name": "Product rating",
+          "name": "Rating",
           "settings": {
             "paragraph": {
-              "content": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/page-types#product-rating-block)"
+              "content": "To display a rating, add a product rating app."
             }
           }
         },
@@ -2478,44 +2475,17 @@
           "name": "Complementary products",
           "settings": {
             "paragraph": {
-              "content": "To select complementary products, add the Search & Discovery app. [Learn more](https://help.shopify.com/manual/online-store/search-and-discovery/product-recommendations)"
+              "content": "To select complementary products, add the Search & Discovery app."
             },
             "heading": {
               "label": "Heading",
               "default": "Pairs well with"
             },
-            "make_collapsible_row": {
-              "label": "Show as collapsible row"
-            },
-            "icon": {
-              "info": "Visible when collapsible row is displayed."
-            },
             "product_list_limit": {
               "label": "Maximum products to show"
             },
             "products_per_page": {
-              "label": "Number of products per page"
-            },
-            "pagination_style": {
-              "label": "Pagination style",
-              "options": {
-                "option_1": "Dots",
-                "option_2": "Counter",
-                "option_3": "Numbers"
-              }
-            },
-            "product_card": {
-              "heading": "Product card"
-            },
-            "image_ratio": {
-              "label": "Image ratio",
-              "options": {
-                "option_1": "Portrait",
-                "option_2": "Square"
-              }
-            },
-            "enable_quick_add": {
-              "label": "Enable quick add button"
+              "label": "Products per page (desktop)"
             }
           }
         },
@@ -2524,19 +2494,12 @@
           "settings": {
             "layout": {
               "label": "Layout",
-              "options__1": {
-                "label": "Horizontal"
-              },
-              "options__2": {
-                "label": "Vertical"
-              }
+              "options__1": "Horizontal",
+              "options__2": "Vertical"
             },
             "content": {
               "label": "Content",
-              "info": "Choose an icon or add an image for each column or row."
-            },
-            "heading": {
-              "info": "Leave the heading label blank to hide the icon column."
+              "info": "Add up to 3 items with icons and text."
             },
             "icon_1": {
               "label": "First icon"
@@ -2546,7 +2509,8 @@
             },
             "heading_1": {
               "label": "First heading",
-              "default": "Heading"
+              "default": "Heading",
+              "info": "Keep headings short and descriptive."
             },
             "icon_2": {
               "label": "Second icon"
@@ -2569,96 +2533,24 @@
               "default": "Heading"
             }
           }
-        }
-      },
-      "settings": {
-        "header": {
-          "content": "Media",
-          "info": "Learn more about [media types.](https://help.shopify.com/manual/products/product-media)"
         },
-        "enable_sticky_info": {
-          "label": "Enable sticky content on desktop"
-        },
-        "gallery_layout": {
-          "label": "Desktop layout",
-          "options__1": {
-            "label": "Stacked"
-          },
-          "options__2": {
-            "label": "2 columns"
-          },
-          "options__3": {
-            "label": "Thumbnails"
-          },
-          "options__4": {
-            "label": "Thumbnail carousel"
+        "product_countdown": {
+          "name": "Countdown timer",
+          "settings": {
+            "timer_title": {
+              "label": "Title",
+              "default": "Hurry Up!"
+            },
+            "timer_sub_title": {
+              "label": "Subtitle",
+              "default": "Sale ends in"
+            },
+            "countdown_end": {
+              "label": "End date/time",
+              "default": "2025-05-05T23:59:00",
+              "info": "Format: YYYY-MM-DDTHH:MM:SS"
+            }
           }
-        },
-        "constrain_to_viewport": {
-          "label": "Constrain media to screen height"
-        },
-        "media_size": {
-          "label": "Desktop media width",
-          "info": "Media is automatically optimized for mobile.",
-          "options__1": {
-            "label": "Small"
-          },
-          "options__2": {
-            "label": "Medium"
-          },
-          "options__3": {
-            "label": "Large"
-          }
-        },
-        "image_zoom": {
-          "label": "Image zoom",
-          "info": "Click and hover defaults to open lightbox on mobile.",
-          "options__1": {
-            "label": "Open lightbox"
-          },
-          "options__2": {
-            "label": "Click and hover"
-          },
-          "options__3": {
-            "label": "No zoom"
-          }
-        },
-        "media_position": {
-          "label": "Desktop media position",
-          "info": "Position is automatically optimized for mobile.",
-          "options__1": {
-            "label": "Left"
-          },
-          "options__2": {
-            "label": "Right"
-          }
-        },
-        "media_fit": {
-          "label": "Media fit",
-          "options__1": {
-            "label": "Original"
-          },
-          "options__2": {
-            "label": "Fill"
-          }
-        },
-        "mobile_thumbnails": {
-          "label": "Mobile layout",
-          "options__1": {
-            "label": "2 columns"
-          },
-          "options__2": {
-            "label": "Show thumbnails"
-          },
-          "options__3": {
-            "label": "Hide thumbnails"
-          }
-        },
-        "hide_variants": {
-          "label": "Hide other variants’ media after selecting a variant"
-        },
-        "enable_video_looping": {
-          "label": "Enable video looping"
         }
       }
     },
@@ -3321,6 +3213,109 @@
       "name": "Image gallery"
     }
   },
+    "timeline-tabs": {
+      "name": "Timeline tabs",
+      "settings": {
+        "section_title": {
+          "label": "Section title"
+        },
+        "section_description": {
+          "label": "Section description",
+          "default": "<p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>"
+        }
+      },
+      "blocks": {
+        "tab": {
+          "name": "Item",
+          "settings": {
+            "tab_image": {
+              "label": "Tab Image"
+            },
+            "tab_button": {
+              "label": "Button Text"
+            },
+            "tab_heading": {
+              "label": "Heading"
+            },
+            "tab_description": {
+              "label": "Description"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Timeline tabs"
+      }
+    },
+    "section-icon-with-text": {
+      "name": "Icon with text",
+      "settings": {
+        "show_border": {
+          "label": "Border"
+        },
+        "border_top": {
+          "label": "Border top"
+        },
+        "border_bottom": {
+          "label": "Border bottom"
+        },
+        "section_title": {
+          "label": "Description"
+        },
+        "columns_desktop": {
+          "label": "Number of columns on desktop"
+        }
+      },
+      "blocks": {
+        "item": {
+          "name": "Item",
+          "settings": {
+            "material_image": {
+              "label": "Icon"
+            },
+            "material_heading": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Icon with text"
+      }
+    },
+    "location_with_map": {
+      "name": "Location with map",
+      "settings": {
+        "map_iframe": {
+          "label": "Map iframe"
+        },
+        "title": {
+          "label": "Title"
+        },
+        "first_item_open": {
+          "label": "Open the first accordion item by default"
+        }
+      },
+      "blocks": {
+        "location": {
+          "name": "Location",
+          "settings": {
+            "location_title": {
+              "label": "Location title"
+            },
+            "location_description": {
+              "label": "Location description"
+            },
+            "store_timing": {
+              "label": "Store timing"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Location with map"
+      }
+    },
     "product_bundle": {
       "name": "Product bundle",
       "settings": {

@@ -118,7 +118,7 @@
 
           <div class="form_item">
             <div class="form-input ">
-              <label for="name">Name <span>*</span></label>
+              <label for="name">{{ 'templates.contact.form.name' | t }} <span>*</span></label>
               <input
                 autocomplete="name"
                 type="text"
@@ -130,11 +130,11 @@
                   aria-invalid="true"
                   aria-describedby="ContactForm-name-error"
                 {% endif %}
-                placeholder="{{ 'templates.contact.form.name' | t }}"
+                placeholder="{{ 'templates.contact.form.name_placeholder' | t }}"
               >
             </div>
             <div class="form-input ">
-              <label for="email">E-mail <span>*</span></label>
+              <label for="email">{{ 'templates.contact.form.email' | t }} <span>*</span></label>
               <input
                 autocomplete="email"
                 type="email"
@@ -148,7 +148,7 @@
                   aria-invalid="true"
                   aria-describedby="ContactForm-email-error"
                 {% endif %}
-                placeholder="Enter Your E-mail"
+                placeholder="{{ 'templates.contact.form.email_placeholder' | t }}"
               >
               {% if form.errors %}
                 <ul class="form-status-list caption-large" role="list">
@@ -162,13 +162,13 @@
               {% endif %}
             </div>
             <div class="form-input textarea_form ">
-              <label for="message">Message <span>*</span></label>
+              <label for="message">{{ 'templates.contact.form.message' | t }} <span>*</span></label>
               <textarea
                 rows="10"
                 id="ContactForm-body"
-                name="contact[{{ 'templates.contact.form.comment' | t }}]"
+                name="contact[{{ 'templates.contact.form.message' | t }}]"
                 aria-required="true"
-                placeholder="Write Your Massage"
+                placeholder="{{ 'templates.contact.form.message_placeholder' | t }}"
               >
             {{- form.body -}}
             </textarea>
@@ -188,130 +188,130 @@
 
 {% schema %}
   {
-    "name": "Contact Form Section",
-    "settings": [
-      {
-        "type": "color_scheme",
-        "id": "color_scheme",
-        "label": "Color Scheme",
-        "default": "scheme-1"
-      },
-      {
-        "type": "text",
-        "id": "section_title",
-        "label": "Section Title",
-        "default": "send us message"
-      },
-      {
-        "type": "richtext",
-        "id": "section_description",
-        "label": "Section Description",
-        "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
-      },
-      {
-          "type": "header",
-          "content": "t:sections.all.padding.section_padding_heading"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "min": 0,
-          "max": 120,
-          "step": 4,
-          "unit": "px",
-          "label": "Padding Top",
-          "default": 120
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "min": 0,
-          "max": 120,
-          "step": 4,
-          "unit": "px",
-          "label": "Padding Bottom",
-          "default": 120
-        }
+  "name": "t:sections.contact-form.name",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "t:sections.contact-form.settings.section_title.label",
+      "default": "t:sections.contact-form.settings.section_title.default"
+    },
+    {
+      "type": "richtext",
+      "id": "section_description",
+      "label": "t:sections.contact-form.settings.section_description.label",
+      "default": "t:sections.contact-form.settings.section_description.default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    }
   ],
   "blocks": [
     {
       "type": "contact_address",
-      "name": "Contact information",
+      "name": "t:sections.contact-form.blocks.contact_address.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "contact_title",
-          "label": "Section Title",
-          "default": "Contact"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.contact_title.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.contact_title.default"
         },
         {
           "type": "header",
-          "content": "Address"
+          "content": "t:sections.contact-form.blocks.contact_address.settings.address_header"
         },
         {
           "type": "text",
           "id": "address_title",
-          "label": "Title",
-          "default": "Address"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.address_title.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.address_title.default"
         },
         {
           "type": "text",
           "id": "address",
-          "label": "Details",
-          "default": "141 Duane St, New York, NY 10013"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.address.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.address.default"
         },
-                {
+        {
           "type": "header",
-          "content": "Email"
+          "content": "t:sections.contact-form.blocks.contact_address.settings.email_header"
         },
         {
           "type": "text",
           "id": "email_title",
-          "label": "Title",
-          "default": "E-mail"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.email_title.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.email_title.default"
         },
         {
           "type": "text",
           "id": "email",
-          "label": "Details",
-          "default": "helpcenter@dapper.com"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.email.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.email.default"
         },
-                {
+        {
           "type": "header",
-          "content": "Phone"
+          "content": "t:sections.contact-form.blocks.contact_address.settings.phone_header"
         },
         {
           "type": "text",
           "id": "phone_title",
-          "label": "Title",
-          "default": "Hotline"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.phone_title.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.phone_title.default"
         },
         {
           "type": "text",
           "id": "phone",
-          "label": "Details",
-          "default": "+1 914 677 07777"
+          "label": "t:sections.contact-form.blocks.contact_address.settings.phone.label",
+          "default": "t:sections.contact-form.blocks.contact_address.settings.phone.default"
         }
       ]
     },
     {
       "type": "social_share",
-      "name": "Social link",
+      "name": "t:sections.contact-form.blocks.social_share.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "social_title",
-          "label": "Social Title",
-          "default": "Socials"
+          "label": "t:sections.contact-form.blocks.social_share.settings.social_title.label",
+          "default": "t:sections.contact-form.blocks.social_share.settings.social_title.default"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Contact form",
+      "name": "t:sections.contact-form.presets.name",
       "category": "Custom"
     }
   ]

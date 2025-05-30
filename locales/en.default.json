@@ -261,9 +261,13 @@
       "form": {
         "title": "Contact form",
         "name": "Name",
+        "name_placeholder": "Your name",
         "email": "Email",
+        "email_placeholder": "Your email address",
         "phone": "Phone number",
-        "comment": "Comment",
+        "phone_placeholder": "Your phone number",
+        "message": "Message",
+        "message_placeholder": "Your message",
         "send": "Send",
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
@@ -333,7 +337,8 @@
       "blog_title": "Blog title",
     },
     "breadcrumb_banner": {
-      "blog_home": "Home"
+      "home": "Home",
+      "shop": "Shop"
     },
     "featured_collection": {
       "view_all": "View all",
@@ -342,6 +347,11 @@
     "collection_list": {
       "view_all": "View all",
       "collections_text": "Collections"
+    },
+    "timeline_tab": {
+      "tab": "Tab",
+      "tab_title": "Title for Tab",
+      "tab_content": "Content for tab goes here. Add description or details."
     },
     "collection_tab": {
       "title": "Collection" 
