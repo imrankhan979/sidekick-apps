@@ -1718,6 +1718,57 @@
         "name": "Collection tab"
       }
     },
+    "faq": {
+      "name": "FAQ Section",
+      "settings": {
+        "left_title": {
+          "label": "Section title",
+          "default": "Need help?"
+        },
+        "left_paragraph": {
+          "label": "Section description",
+          "default": "If you have an issue or question that requires immediate assistance, you can <a href=\"#\">contact us</a> to chat with a customer service representative."
+        },
+        "padding_top": {
+          "label": "Padding top"
+        },
+        "padding_bottom": {
+          "label": "Padding bottom"
+        }
+      },
+      "blocks": {
+        "faq_category_title": {
+          "name": "Title",
+          "settings": {
+            "category_title": {
+              "label": "Category Title",
+              "default": "Category Title"
+            }
+          }
+        },
+        "faq_item": {
+          "name": "Accordion",
+          "settings": {
+            "question": {
+              "label": "Question",
+              "default": "How long does shipping take?"
+            },
+            "answer": {
+              "label": "Answer",
+              "default": "Orders are typically processed within 1 to 3 business days. Delivery times vary based on the shipping method selected."
+            }
+          }
+        }
+      },
+      "presets": {
+        "faq": {
+          "name": "FAQ",
+          "category": "Section"
+        }
+      }
+    },
+ 
+
     "multirow": {
       "name": "Multirow",
       "settings": {
@@ -3290,7 +3341,8 @@
           "label": "Map iframe"
         },
         "title": {
-          "label": "Title"
+          "label": "Title",
+          "default": "Stores location"
         },
         "first_item_open": {
           "label": "Open the first accordion item by default"
@@ -3301,13 +3353,16 @@
           "name": "Location",
           "settings": {
             "location_title": {
-              "label": "Location title"
+              "label": "Location title",
+              "default": "Alabama"
             },
             "location_description": {
-              "label": "Location description"
+              "label": "Location description",
+              "default": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>"
             },
             "store_timing": {
-              "label": "Store timing"
+              "label": "Store timing",
+              "default": "Mon - Sun: 9.00AM - 7.00PM"
             }
           }
         }
