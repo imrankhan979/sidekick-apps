@@ -94,7 +94,7 @@
         "section_color_scheme": "",
         "main_heading": "REDEFINE YOUR URBAN STYLE",
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 0
       }
     },
     "timeline_tab_naxp44": {
@@ -181,7 +181,7 @@
         "padding_bottom": 0
       }
     },
-    "gallery_section_Q6afHe": {
+    "gallery_section_jnyrnQ": {
       "type": "gallery-section",
       "blocks": {
         "gallery_bLHCqj": {
@@ -214,12 +214,13 @@
         }
       },
       "block_order": [
-        "gallery_bLHCqj",
-        "gallery_BaKDAK",
-        "gallery_R36XQj",
-        "gallery_FmV6Jr"
+        "item_WUww49",
+        "item_ifXzVC",
+        "item_6Mgm3i",
+        "item_akmDMR",
+        "item_neFwGU"
       ],
-      "name": "Gallery Section",
+      "name": "Image gallery",
       "settings": {
         "section_color_scheme": "",
         "columns_desktop": 5,
@@ -237,6 +238,6 @@
     "image_with_text_zj9Uzp",
     "timeline_tab_naxp44",
     "scrolling_text_6NYCg7",
-    "gallery_section_Q6afHe"
+    "gallery_section_jnyrnQ"
   ]
 }

@@ -52,7 +52,7 @@
               <ul class="tabs_menu">
                 {%- for block in section.blocks -%}
                   <li class="{% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }}>
-                    <span class="journey_anim"> 
+                    <span class="journey_anim">
                       <span class="journey_text">
                         {%- if block.settings.tab_button != blank -%}
                           {{ block.settings.tab_button }}
@@ -92,48 +92,50 @@
   </div>
 </section>
 <!-- end: Journey Section -->
-{% comment %} <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    let tabWrapper = document.getElementById('our-journey-tab');
-    if (!tabWrapper) return;
-    let tabMnu = tabWrapper.querySelectorAll('.tabs_menu li'),
-      tabContent = tabWrapper.querySelectorAll('.our_journey_content > .tab-pane'),
-      tabImages = document.querySelectorAll('.our_journey_images');
+{% comment %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let tabWrapper = document.getElementById('our-journey-tab');
+      if (!tabWrapper) return;
+      let tabMnu = tabWrapper.querySelectorAll('.tabs_menu li'),
+        tabContent = tabWrapper.querySelectorAll('.our_journey_content > .tab-pane'),
+        tabImages = document.querySelectorAll('.our_journey_images');
 
-    if (tabMnu.length === 0 || tabContent.length === 0) return;
-    tabContent.forEach((content, index) => {
-      content.style.display = index === 0 ? 'block' : 'none';
-      content.setAttribute('data-tab', 'tab' + index);
-    });
-
-    tabMnu.forEach((item, index) => {
-      item.setAttribute('data-tab', 'tab' + index);
-    });
-
-    tabImages.forEach((image, index) => {
-      image.setAttribute('data-tab', 'tab' + index);
-      image.style.display = index === 0 ? 'block' : 'none';
-    });
-
-    tabMnu.forEach((item) => {
-      item.addEventListener('click', function () {
-        var tabData = this.getAttribute('data-tab');
-        tabContent.forEach((content) => {
-          content.style.display = content.getAttribute('data-tab') === tabData ? 'block' : 'none';
-        });
-
-        tabImages.forEach((image) => {
-          image.style.display = image.getAttribute('data-tab') === tabData ? 'block' : 'none';
-        });
-
-        tabMnu.forEach((tab) => tab.classList.remove('active'));
-        this.classList.add('active');
+      if (tabMnu.length === 0 || tabContent.length === 0) return;
+      tabContent.forEach((content, index) => {
+        content.style.display = index === 0 ? 'block' : 'none';
+        content.setAttribute('data-tab', 'tab' + index);
       });
-    });
 
-    tabMnu[0].classList.add('active');
-  });
-</script> {% endcomment %}
+      tabMnu.forEach((item, index) => {
+        item.setAttribute('data-tab', 'tab' + index);
+      });
+
+      tabImages.forEach((image, index) => {
+        image.setAttribute('data-tab', 'tab' + index);
+        image.style.display = index === 0 ? 'block' : 'none';
+      });
+
+      tabMnu.forEach((item) => {
+        item.addEventListener('click', function () {
+          var tabData = this.getAttribute('data-tab');
+          tabContent.forEach((content) => {
+            content.style.display = content.getAttribute('data-tab') === tabData ? 'block' : 'none';
+          });
+
+          tabImages.forEach((image) => {
+            image.style.display = image.getAttribute('data-tab') === tabData ? 'block' : 'none';
+          });
+
+          tabMnu.forEach((tab) => tab.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      tabMnu[0].classList.add('active');
+    });
+  </script>
+{% endcomment %}
 {% schema %}
 {
   "name": "t:sections.timeline-tabs.name",
