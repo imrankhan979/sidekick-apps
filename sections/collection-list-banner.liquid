@@ -18,7 +18,7 @@
           padding-top: 100px;
           padding-bottom: 60px;
       }
-  }
+  } 
 {%- endstyle -%}
 <section class="breadcrumb-main-area section-{{ section.id }}-padding">
   <div class="page-width">
@@ -26,7 +26,7 @@
       {% if section.settings.enable_breadcrumb_navigation == true %}
         <div class="anim-item breadcrumb-link">
           <ul>
-            <li><a href="{{ routes.root_url }}">Home</a></li>
+            <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
             <li>{{- 'sections.collection_list.collections_text' | t -}}</li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
 </section>
 {% schema %}
 {
-  "name": "Collection list banner",
+  "name": "t:sections.collection-list-banner.name",
   "class": "collection-list-banner",
   "tag": "section",
   "settings": [
@@ -59,17 +59,17 @@
     {
       "type": "text",
       "id": "custom_text",
-      "label": "Custom title page"
+      "label": "t:sections.collection-list-banner.settings.custom_text.label"
     },
     {
       "type": "checkbox",
       "id": "enable_breadcrumb_navigation",
       "default": true,
-      "label": "Enable breadcrumb navigation"
+      "label": "t:sections.collection-list-banner.settings.enable_breadcrumb_navigation"
     },
     { 
       "type": "header",
-      "content": "Section padding"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -78,7 +78,7 @@
       "max": 250,
       "step": 5,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.all.padding.padding_top",
       "default": 200
     },
     {
@@ -88,13 +88,13 @@
       "max": 250,
       "step": 5,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 250
     }
   ],
   "presets": [
     {
-      "name": "Collection list banner"
+      "name": "t:sections.collection-list-banner.name"
     }
   ]
 }

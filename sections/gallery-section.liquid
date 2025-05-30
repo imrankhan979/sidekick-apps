@@ -110,12 +110,12 @@
 
 {% schema %}
 {
-  "name": "Image gallery",
+  "name": "t:sections.image_gallery.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
@@ -130,13 +130,13 @@
     {
       "type": "text",
       "id": "tab_button",
-      "label": "Button label",
-      "default": "EXPLORE MORE"
+      "label": "t:sections.image_gallery.settings.tab_button.label",
+      "default": "t:sections.image_gallery.settings.tab_button.default"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button link"
+      "label": "t:sections.image_gallery.settings.button_link.label"
     },
     {
       "type": "range",
@@ -144,7 +144,7 @@
       "min": 0,
       "max": 100,
       "step": 1,
-      "label": "Overlay opacity",
+      "label": "t:sections.image_gallery.settings.overlay_opacity.label",
       "default": 70,
       "unit": "%"
     },
@@ -159,7 +159,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -169,37 +169,37 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 0
     }
   ],
   "blocks": [
     {
       "type": "Item",
-      "name": "Image",
+      "name": "t:sections.image_gallery.blocks.item.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "gallery_image",
-          "label": "Image"
+          "label": "t:sections.image_gallery.blocks.item.settings.gallery_image.label"
         },
         {
           "type": "textarea",
           "id": "button_icon_svg",
-          "label": "Button Icon (SVG Code)",
+          "label": "t:sections.image_gallery.blocks.item.settings.button_icon_svg.label",
           "default": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z' fill='currentColor'/></svg>"
         },
         {
           "type": "url",
           "id": "icon_link",
-          "label": "Icon Link"
+          "label": "t:sections.image_gallery.blocks.item.settings.icon_link.label",
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Image gallery",
+      "name": "t:sections.image_gallery.presets.name",
       "blocks": [
         {
           "type": "Item"

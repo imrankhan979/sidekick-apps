@@ -62,7 +62,7 @@
 
 {% schema %}
 {
-  "name": "Scrolling text",
+  "name": "t:sections.scrolling_text.name",
   "settings": [
     {
       "type": "color_scheme",
@@ -72,14 +72,36 @@
       "default": "scheme-1"
     },
     {
-      "type": "number",
-      "id": "scroll_duration",
-      "label": "Scroll duration (seconds)",
-      "default": 60
+      "type": "range",
+      "id": "speed",
+      "label": "t:sections.scrolling_text.settings.speed.label",
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "default": 100,
+      "unit": "ms"
     },
     {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "type": "select",
+      "id": "direction",
+      "label": "t:sections.scrolling_text.settings.direction.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.scrolling_text.settings.direction.options.left"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.scrolling_text.settings.direction.options.right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "t:sections.scrolling_text.settings.pause_on_hover.label",
+      "default": true
     },
     {
       "type": "range",
@@ -105,73 +127,19 @@
   "blocks": [
     {
       "type": "marquee_item",
-      "name": "Marquee item",
+      "name": "t:sections.scrolling_text.blocks.marquee_item.name",
       "settings": [
         {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "t:sections.all.colors.label",
-          "info": "t:sections.all.colors.has_cards_info",
-          "default": "scheme-1"
-        },
-        {
-          "type": "range",
-          "id": "speed",
-          "label": "Marquee Speed",
-          "min": 10,
-          "max": 500,
-          "step": 10,
-          "default": 100,
-          "unit": "ms"
-        },
-        {
-          "type": "select",
-          "id": "direction",
-          "label": "Marquee Direction",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ],
-          "default": "right"
-        },
-        {
-          "type": "checkbox",
-          "id": "pause_on_hover",
-          "label": "Pause on Hover",
-          "default": true
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "min": 0,
-          "max": 200,
-          "step": 4,
-          "unit": "px",
-          "label": "t:sections.all.padding.padding_top",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "min": 0,
-          "max": 200,
-          "step": 4,
-          "unit": "px",
-          "label": "t:sections.all.padding.padding_bottom",
-          "default": 0
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.scrolling_text.blocks.marquee_item.settings.title.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Scrolling text",
+      "name": "t:sections.scrolling_text.presets.name",
       "blocks": [
         { "type": "marquee_item", "settings": { "title": "Worldwide Delivery" } },
         { "type": "marquee_item", "settings": { "title": "Flexible Payment" } },
@@ -181,4 +149,5 @@
     }
   ]
 }
+
 {% endschema %}

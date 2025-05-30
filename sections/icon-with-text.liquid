@@ -19,11 +19,11 @@
   }
 
 {%- endstyle -%}
-   <section class="icon-with-text color-{{ section.settings.color_scheme }}">
+   <section class="section-icon-with-text color-{{ section.settings.color_scheme }}">
     <div class="page-width">
       <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
         {% if section.settings.section_title != blank %}
-          <div class="heading-area icon-with-text-section-heading">
+          <div class="heading-area section-icon-with-text-section-heading">
              <h5 class="material_title">{{ section.settings.section_title }}</h5>
           </div>
         {% endif %}
@@ -69,39 +69,39 @@
 
 {% schema %}
 {
-  "name": "Icon with text",
+  "name": "t:sections.section-icon-with-text.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "checkbox",
       "id": "show_border",
-      "label": "Border",
+      "label": "t:sections.section-icon-with-text.settings.show_border.label",
       "default": false
     },
     {
       "type": "checkbox",
       "id": "border_top",
-      "label": "Border top",
+      "label": "t:sections.section-icon-with-text.settings.border_top.label",
       "default": false,
       "visible_if": "{{ section.settings.show_border }}"
     },
     {
       "type": "checkbox",
       "id": "border_bottom",
-      "label": " Border bottom",
+      "label": "t:sections.section-icon-with-text.settings.border_bottom.label",
       "default": false,
       "visible_if": "{{ section.settings.show_border }}"
     },
     {
       "type": "text",
       "id": "section_title",
-      "default": " We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable.",
-      "label": "Description"
+      "default": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable.",
+      "label": "t:sections.section-icon-with-text.settings.section_title.label"
     },
     {
       "type": "range",
@@ -110,7 +110,7 @@
       "max": 6,
       "step": 1,
       "default": 4,
-      "label": "Number of columns on desktop"
+      "label": "t:sections.section-icon-with-text.settings.columns_desktop.label"
     },
     {
       "type": "header",
@@ -123,7 +123,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -133,24 +133,24 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "item",
-      "name": "Item",
+      "name": "t:sections.section-icon-with-text.blocks.item.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "material_image",
-          "label": "Icon"
+          "label": "t:sections.section-icon-with-text.blocks.item.settings.material_image.label"
         },
         {
           "type": "text",
           "id": "material_heading",
-          "label": "Text",
+          "label": "t:sections.section-icon-with-text.blocks.item.settings.material_heading.label",
           "default": "Example text"
         }
       ]
@@ -158,7 +158,7 @@
   ],
   "presets": [
     {
-      "name": "Icon with text",
+      "name": "t:sections.section-icon-with-text.presets.name",
       "blocks": [
         {
           "type": "item"

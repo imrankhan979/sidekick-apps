@@ -21,7 +21,7 @@
       {% if section.settings.show_breadcrumb %}
         <div class=" breadcrumb-link">
           <ul>
-            <li><a href="{{ routes.root_url }}">Home</a></li>
+            <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
             <li>{{ blog.title }}</li>
           </ul>
         </div>
@@ -84,7 +84,7 @@
             {% if article.tags.size > 0 and section.settings.show_tag %}
               <div class="blog_details_tag">
                 <ul>
-                  <li><span>Tags:</span></li>
+                  <li><span>{{ 'sections.main_article.tag' | t }}</span></li>
                   {% for tag in article.tags %}
                     <li>
                       <a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
@@ -188,51 +188,51 @@
                 <h3 class="title">{{ 'blogs.article.comment_form_title' | t }}</h3>
                 <div class="comment-desc">
                   {% if blog.moderated? -%}
-                    Please note, comments need to be approved before they are published.
+                   {{ 'blogs.article.moderated' | t }}
                   {%- endif %}
-                  This site is protected by hCaptcha and the hCaptcha
-                  <a href="https://hcaptcha.com/privacy">Privacy Policy</a> and
-                  <a href="https://hcaptcha.com/terms">Terms of Service</a> apply.
+                  {{ 'blogs.article.moderated_captcha' | t }}
+                  <a href="https://hcaptcha.com/privacy">{{ 'blogs.article.privacy_policy' | t }}</a> {{ 'blogs.article.and' | t }} <div class="h-captcha" data-sitekey="{{ settings.hcaptcha_site_key }}" data-theme="light" data-size="normal" data-type="image"></div>
+            
+              </div><a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a> {{ 'blogs.article.apply' | t }}
                 </div>
-              </div>
               {% form 'new_comment', article %}
                 <!-- Success Message -->
                 {%- if form.posted_successfully? -%}
                   <div class="form-submit-status success-message" role="status">
-                    <p>Thank you! Your comment has been submitted successfully.</p>
+                    <p>{{ 'blogs.article.success' | t }}</p>
                   </div>
                 {%- endif -%}
 
                 <div class="comment_details_form">
                   <div class="form-input">
-                    <label for="CommentForm-author">Name <span>*</span></label>
+                    <label for="CommentForm-author">{{ 'blogs.article.name' | t }} <span>*</span></label>
                     <input
                       type="text"
                       id="CommentForm-author"
                       name="comment[author]"
-                      placeholder="Enter your name"
+                      placeholder="{{ 'blogs.article.name_placeholder' | t }}"
                       required
                     >
                   </div>
                   <div class="form-input">
-                    <label for="CommentForm-email">E-mail <span>*</span></label>
+                    <label for="CommentForm-email">{{ 'blogs.article.email' | t }} <span>*</span></label>
                     <input
                       type="email"
                       id="CommentForm-email"
                       name="comment[email]"
-                      placeholder="Enter your e-mail"
+                      placeholder="{{ 'blogs.article.email_placeholder' | t }}"
                       required
                     >
                   </div>
                   <div class="form-input comment-textarea">
-                    <label for="CommentForm-body">Message <span>*</span></label>
-                    <textarea id="CommentForm-body" name="comment[body]" placeholder="Write your message"></textarea>
+                    <label for="CommentForm-body">{{ 'blogs.article.message' | t }} <span>*</span></label>
+                    <textarea id="CommentForm-body" name="comment[body]" placeholder="{{ 'blogs.article.message_placeholder' | t }}"></textarea>
                   </div>
                   <div class="form-info w-full">
-                    <p>* is required field</p>
+                    <p>* {{ 'blogs.article.required' | t }}</p>
                   </div>
                   <button class="snazzy-icon-btn btn-with-border uppercase submit-btn" type="submit">
-                    Submit your comment <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                    {{ 'blogs.article.apply' | t }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
                   </button>
                 </div>
               {% endform %}
@@ -255,52 +255,52 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "checkbox",
       "id": "show_breadcrumb",
-      "label": "Show breadcrumb",
+      "label": "t:sections.main-article.settings.show_breadcrumb.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_date",
-      "label": "Show date",
+      "label": "t:sections.main-article.settings.show_date.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_tag",
-      "label": "Show tag",
+      "label": "t:sections.main-article.settings.show_tag.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_social_share",
-      "label": "Show social share",
+      "label": "t:sections.main-article.settings.show_social_share.label",
       "default": true
     },
     {
       "type": "header",
-      "content": "Author information"
+      "content": "t:sections.main-article.settings.author_info_header"
     },
     {
       "type": "checkbox",
       "id": "show_author_information",
-      "label": "Show author information",
+      "label": "t:sections.main-article.settings.show_author_information.label",
       "default": true
     },
     {
       "type": "image_picker",
       "id": "author_image",
-      "label": "Author image"
+      "label": "t:sections.main-article.settings.author_image.label"
     },
     {
       "type": "text",
       "id": "author_designation",
-      "label": "Author designation"
+      "label": "t:sections.main-article.settings.author_designation.label"
     },
     {
       "type": "header",
@@ -313,7 +313,7 @@
       "max": 200,
       "step": 5,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -323,7 +323,7 @@
       "max": 200,
       "step": 5,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ]

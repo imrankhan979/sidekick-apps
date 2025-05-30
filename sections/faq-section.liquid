@@ -70,27 +70,27 @@
 
 {% schema %}
 {
-  "name": "FAQ",
+  "name": "t:sections.faq.name",
   "tag": "section",
   "class": "faq-main-section",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "left_title",
-      "label": "Section title",
-      "default": "Need help?"
+      "label": "t:sections.faq.settings.left_title.label",
+      "default": "t:sections.faq.settings.left_title.default"
     },
     {
       "type": "richtext",
       "id": "left_paragraph",
-      "label": "Section description",
-      "default": "<p>If you have an issue or question that requires immediate assistance, you can <a href=\"#\">contact us</a> to chat with a customer service representative.</p>"
+      "label": "t:sections.faq.settings.left_paragraph.label",
+      "default": "t:sections.faq.settings.left_paragraph.default"
     },
     {
       "type": "header",
@@ -103,7 +103,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -113,59 +113,51 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "faq_category_title",
-      "name": "Title",
+      "name": "t:sections.faq.blocks.faq_category_title.name",
       "settings": [
         {
           "type": "text",
           "id": "category_title",
-          "label": "Category Title",
-          "default": "Category Title"
+          "label": "t:sections.faq.blocks.faq_category_title.settings.category_title.label",
+          "default": "t:sections.faq.blocks.faq_category_title.settings.category_title.default"
         }
       ]
     },
     {
       "type": "faq_item",
-      "name": "Accordion",
+      "name": "t:sections.faq.blocks.faq_item.name",
       "settings": [
         {
           "type": "text",
           "id": "question",
-          "label": "Question",
-          "default": "How long does shipping take?"
+          "label": "t:sections.faq.blocks.faq_item.settings.question.label",
+          "default": "t:sections.faq.blocks.faq_item.settings.question.default"
         },
         {
           "type": "richtext",
           "id": "answer",
-          "label": "Answer",
-          "default": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.</p>"
+          "label": "t:sections.faq.blocks.faq_item.settings.answer.label",
+          "default": "t:sections.faq.blocks.faq_item.settings.answer.default"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "FAQ",
-      "category": "Section",
+      "name": "t:sections.faq.presets.faq.name",
+      "category": "t:sections.faq.presets.faq.category",
       "blocks": [
-        {
-          "type": "faq_category_title"
-        },
-        {
-          "type": "faq_item"
-        },
-        {
-          "type": "faq_category_title"
-        },
-        {
-          "type": "faq_item"
-        }
+        { "type": "faq_category_title" },
+        { "type": "faq_item" },
+        { "type": "faq_category_title" },
+        { "type": "faq_item" }
       ]
     }
   ]

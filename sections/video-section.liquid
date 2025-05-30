@@ -50,43 +50,43 @@
 
 {% schema %}
 {
-  "name": "Video",
+  "name": "t:sections.video.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "t:sections.all.colors.label",
+      "label": "t:sections.video.settings.section_color_scheme.label",
       "default": "scheme-1"
     },
     {
-        "type": "header",
-        "content": "Video"
+      "type": "header",
+      "content": "t:sections.video.settings.video_header.content"
     },
     {
-        "type": "video",
-        "id": "bg_video",
-        "label": "Upload"
+      "type": "video",
+      "id": "bg_video",
+      "label": "t:sections.video.settings.bg_video.label"
     },
     {
-        "type": "checkbox",
-        "id": "video_loop",
-        "label": "Loop video",
-        "default": true,
-        "info": "Enable to play the video in a continuous loop."
+      "type": "checkbox",
+      "id": "video_loop",
+      "label": "t:sections.video.settings.video_loop.label",
+      "default": true,
+      "info": "t:sections.video.settings.video_loop.info"
     },
     {
-        "type": "header",
-        "content": "Cover image"
+      "type": "header",
+      "content": "t:sections.video.settings.cover_image_header.content"
     },
     {
       "type": "image_picker",
       "id": "bg_image",
-      "label": "Image",
-      "info": "This image will override the video"
+      "label": "t:sections.video.settings.bg_image.label",
+      "info": "t:sections.video.settings.bg_image.info"
     },
     {
-        "type": "header",
-        "content": "Overlay"
+      "type": "header",
+      "content": "t:sections.video.settings.overlay_header.content"
     },
     {
       "type": "range",
@@ -94,7 +94,7 @@
       "min": 0,
       "max": 100,
       "step": 1,
-      "label": "Opacity",
+      "label": "t:sections.video.settings.overlay_opacity.label",
       "default": 70,
       "unit": "%"
     },
@@ -126,45 +126,45 @@
   "blocks": [
     {
       "type": "title_content",
-      "name": "Title content",
-       "limit": 1,
+      "name": "t:sections.video.blocks.title_content.name",
+      "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "main_heading",
-          "label": "Title",
-          "default": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+          "label": "t:sections.video.blocks.title_content.settings.main_heading.label",
+          "default": "t:sections.video.blocks.title_content.settings.main_heading.default"
         }
       ]
     },
     {
       "type": "subtile_content",
-      "name": "Sub heading content",
-       "limit": 1,
+      "name": "t:sections.video.blocks.subtile_content.name",
+      "limit": 1,
       "settings": [
         {
           "type": "richtext",
           "id": "sub_heading",
-          "label": "Sub heading",
-          "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+          "label": "t:sections.video.blocks.subtile_content.settings.sub_heading.label",
+          "default": "t:sections.video.blocks.subtile_content.settings.sub_heading.default"
         }
       ]
     }
   ],
-"presets": [
-  {
-    "name": "Video",
-    "blocks": [
-      {
-        "type": "title_content",
-        "settings": {}
-      },
-      {
-        "type": "subtile_content",
-        "settings": {}
-      }
-    ]
-  }
-]
+  "presets": [
+    {
+      "name": "t:sections.video.presets.name",
+      "blocks": [
+        {
+          "type": "title_content",
+          "settings": {}
+        },
+        {
+          "type": "subtile_content",
+          "settings": {}
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

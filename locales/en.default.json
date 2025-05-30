@@ -89,14 +89,23 @@
         "other": "{{ count }} comments"
       },
       "moderated": "Please note, comments need to be approved before they are published.",
+      "moderated_captcha": "This site is protected by hCaptcha and the hCaptcha",
+      "privacy_policy": "Privacy Policy",
+      "and": "and",
+      "terms_of_service": "Terms of Service",
+      "apply": "Submit your comment",
       "comment_form_title": "Leave a comment",
       "name": "Name",
+      "name_placeholder": "Your name",
+      "email_placeholder": "Your email address",
+      "message_placeholder": "Your comment",
       "email": "Email",
       "message": "Comment",
       "post": "Post comment",
       "back_to_blog": "Back to blog",
       "share": "Share this article",
-      "success": "Your comment was posted successfully! Thank you!",
+      "required": "is required field",
+      "success": "Thank you! Your comment has been submitted successfully.",
       "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated."
     }
   },
@@ -252,9 +261,13 @@
       "form": {
         "title": "Contact form",
         "name": "Name",
+        "name_placeholder": "Your name",
         "email": "Email",
+        "email_placeholder": "Your email address",
         "phone": "Phone number",
-        "comment": "Comment",
+        "phone_placeholder": "Your phone number",
+        "message": "Message",
+        "message_placeholder": "Your message",
         "send": "Send",
         "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
         "error_heading": "Please adjust the following:"
@@ -320,7 +333,12 @@
     "featured_blog": {
       "view_all": "View all",
       "onboarding_title": "Blog post",
-      "onboarding_content": "Give your customers a summary of your blog post"
+      "onboarding_content": "Give your customers a summary of your blog post",
+      "blog_title": "Blog title",
+    },
+    "breadcrumb_banner": {
+      "home": "Home",
+      "shop": "Shop"
     },
     "featured_collection": {
       "view_all": "View all",
@@ -330,13 +348,32 @@
       "view_all": "View all",
       "collections_text": "Collections"
     },
+    "timeline_tab": {
+      "tab": "Tab",
+      "tab_title": "Title for Tab",
+      "tab_content": "Content for tab goes here. Add description or details."
+    },
+    "collection_tab": {
+      "title": "Collection" 
+    },
+    "image_hotspot": {
+      "subtotal": "Subtotal:",
+      "product_title": "Product title"
+    },
     "collection_template": {
       "empty": "No products found",
       "title": "Collection",
       "use_fewer_filters_html": "Use fewer filters or <a class=\"{{ class }}\" href=\"{{ link }}\">remove all</a>"
     },
+    "collection_carousel": {
+      "item" : "Item",
+      "items": "Items"
+    },
     "video": {
       "load_video": "Load video: {{ description }}"
+    },
+    "main_article": {
+      "tag": "Tags:"
     },
     "slideshow": {
       "load_slide": "Load slide",
@@ -349,6 +386,15 @@
     },
     "page": {
       "title": "Page title"
+    },
+    "product_carousel": {
+      "product_title": "Example product title"
+    },
+    "product_bundle": {
+      "product_title": "Product title",
+      "add_to_bundle": "Add to bundle",
+      "subtotal": "SUBTOTAL",
+      "add_to_cart": "Add to cart"
     },
     "quick_order_list": {
       "product_total": "Product subtotal",

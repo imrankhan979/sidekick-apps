@@ -76,7 +76,7 @@
                 {% if article.title != blank %}
                   {{ article.title }}
                 {% else %}
-                  Blog title
+                  {{ 'sections.featured_blog.blog_title' | t }}
                 {% endif %}
               </a>
             </h4>
@@ -121,7 +121,7 @@
 <!-- end: Blog Feature Section -->
 {% schema %}
 {
-  "name": "Featured blog",
+  "name": "t:sections.featured-blog.name",
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
@@ -130,48 +130,48 @@
     {
       "type": "text",
       "id": "section_button",
-      "label": "Section button",
-      "default": "READ MORE"
+      "label": "t:sections.featured-blog.settings.section_button.label",
+      "default": "t:sections.featured-blog.settings.section_button.default"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
     {
       "type": "article",
       "id": "selected_article",
-      "label": "Select a Blog Post"
+      "label": "t:sections.featured-blog.settings.selected_article.label"
     },
     {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
-      "label": "Show image"
+      "label": "t:sections.featured-blog.settings.show_image.label"
     },
     {
       "type": "checkbox",
       "id": "show_date",
       "default": true,
-      "label": "Show date"
+      "label": "t:sections.featured-blog.settings.show_date.label"
     },
     {
       "type": "checkbox",
       "id": "show_tags",
       "default": true,
-      "label": "Show tags"
+      "label": "t:sections.featured-blog.settings.show_tags.label"
     },
     {
       "type": "checkbox",
       "id": "show_excerpt",
       "default": true,
-      "label": "Show excerpt"
+      "label": "t:sections.featured-blog.settings.show_excerpt.label"
     },
     {
       "type": "header",
-      "content": "Padding Section"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -180,7 +180,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 36
     },
     {
@@ -190,13 +190,13 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 36
     }
   ],
   "presets": [
     {
-      "name": "Featured blog"
+      "name": "t:sections.featured-blog.presets.name"
     }
   ]
 }

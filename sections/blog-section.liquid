@@ -80,7 +80,7 @@
 </div>
 {% schema %}
 {
-  "name": "Blog posts",
+  "name": "t:sections.blog_post.name",
   "tag": "section",
   "disabled_on": {
     "groups": ["header", "footer"]
@@ -89,20 +89,20 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
-      "info": "t:sections.all.colors.has_cards_info",
+      "label": "t:sections.blog_post.settings.color_scheme.label",
+      "info": "t:sections.blog_post.settings.color_scheme.info",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "heading_text",
-      "label": "Heading",
-      "default": "LATEST FASHION NEWS"
+      "label": "t:sections.blog_post.settings.heading_text.label",
+      "default": "t:sections.blog_post.settings.heading_text.default"
     },
     {
       "type": "blog",
       "id": "blog",
-      "label": "Blog"
+      "label": "t:sections.blog_post.settings.blog.label"
     },
     {
       "type": "range",
@@ -111,7 +111,7 @@
       "max": 6,
       "step": 1,
       "default": 3,
-      "label": "Number of blog posts to show"
+      "label": "t:sections.blog_post.settings.post_limit.label"
     },
     {
       "type": "range",
@@ -120,47 +120,47 @@
       "max": 4,
       "step": 1,
       "default": 3,
-      "label": "Desktop columns"
+      "label": "t:sections.blog_post.settings.columns_desktop.label"
     },
     {
       "type": "checkbox",
       "id": "show_image",
       "default": true,
-      "label": "Show featured image"
+      "label": "t:sections.blog_post.settings.show_image.label"
     },
     {
       "type": "checkbox",
       "id": "show_date",
       "default": true,
-      "label": "Show date"
+      "label": "t:sections.blog_post.settings.show_date.label"
     },
     {
       "type": "checkbox",
       "id": "show_author",
       "default": false,
-      "label": "Show author"
+      "label": "t:sections.blog_post.settings.show_author.label"
     },
     {
       "type": "checkbox",
       "id": "show_tags",
       "default": true,
-      "label": "Show tags"
+      "label": "t:sections.blog_post.settings.show_tags.label"
     },
     {
       "type": "text",
       "id": "btn_text",
-      "default": "EXPLORE MORE",
-      "label": "Button label",
-      "info": "Leave the label blank to hide the button."
+      "label": "t:sections.blog_post.settings.btn_text.label",
+      "info": "t:sections.blog_post.settings.btn_text.info",
+      "default": "t:sections.blog_post.settings.btn_text.default"
     },
     {
       "type": "url",
       "id": "btn_url",
-      "label": "Button link"
+      "label": "t:sections.blog_post.settings.btn_url.label"
     },
     {
       "type": "header",
-      "content": "Section padding"
+      "content": "t:sections.all.padding.section_padding_heading"
     },
     {
       "type": "range",
@@ -169,8 +169,8 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Top",
-      "default": 120
+      "label": "t:sections.all.padding.padding_top",
+      "default": 100
     },
     {
       "type": "range",
@@ -179,13 +179,13 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Bottom",
-      "default": 120
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 100
     }
   ],
   "presets": [
     {
-      "name": "Blog posts"
+      "name": "t:sections.blog_post.presets.name"
     }
   ]
 }

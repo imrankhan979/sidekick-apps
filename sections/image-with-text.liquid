@@ -118,10 +118,9 @@
     </div>
   </div>
 </section>
-
 {% schema %}
 {
-  "name": "Image with text",
+  "name": "t:sections.image-with-text.name",
   "settings": [
     {
       "type": "color_scheme",
@@ -132,13 +131,13 @@
     {
       "type": "text",
       "id": "main_heading",
-      "label": "Heading",
-      "default": "REDEFINE YOUR URBAN STYLE"
+      "label": "t:sections.image-with-text.settings.main_heading.label",
+      "default": "t:sections.image-with-text.settings.main_heading.default"
     },
     {
       "type": "image_picker",
       "id": "bg_image",
-      "label": "Background image"
+      "label": "t:sections.image-with-text.settings.bg_image.label"
     },
     {
       "type": "header",
@@ -168,18 +167,18 @@
   "blocks": [
     {
       "type": "redefine_images",
-      "name": "Image",
+      "name": "t:sections.image-with-text.blocks.redefine_images.name",
       "limit": 1,
       "settings": [
         {
           "type": "image_picker",
           "id": "main_image",
-          "label": "Image"
+          "label": "t:sections.image-with-text.blocks.redefine_images.settings.main_image.label"
         },
         {
           "type": "image_picker",
           "id": "shape_image_one",
-          "label": "Shape image"
+          "label": "t:sections.image-with-text.blocks.redefine_images.settings.shape_image_one.label"
         },
         {
           "type": "range",
@@ -188,48 +187,48 @@
           "max": 45,
           "step": 1,
           "unit": "°",
-          "label": "Item rotation",
+          "label": "t:sections.image-with-text.blocks.redefine_images.settings.card_image_rotation.label",
           "default": -5
         }
       ]
     },
     {
       "type": "redefine_content",
-      "name": "Text",
+      "name": "t:sections.image-with-text.blocks.redefine_content.name",
       "limit": 1,
       "settings": [
         {
           "type": "text",
           "id": "sub_heading",
-          "label": "Title",
-          "default": "DAPPER IS MORE THAN JUST CLOTHES. WE'RE A MOVEMENT. A CULTURE"
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.sub_heading.label",
+          "default": "t:sections.image-with-text.blocks.redefine_content.settings.sub_heading.default"
         },
         {
           "type": "richtext",
           "id": "paragraph_one",
-          "label": "Text",
-          "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.paragraph_one.label",
+          "default": "t:sections.image-with-text.blocks.redefine_content.settings.paragraph_one.default"
         },
-        {
+        { 
           "type": "text",
           "id": "button_text",
-          "label": "Button text",
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.button_text.label",
           "default": "LEARN MORE"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "Button link"
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.button_link.label"
         },
         {
           "type": "image_picker",
           "id": "shape_image_two",
-          "label": "Shape image right"
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.shape_image_two.label"
         },
         {
           "type": "image_picker",
           "id": "shape_image_three",
-          "label": "Shape image left"
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.shape_image_three.label"
         },
         {
           "type": "range",
@@ -238,7 +237,7 @@
           "max": 45,
           "step": 1,
           "unit": "°",
-          "label": "Item rotation",
+          "label": "t:sections.image-with-text.blocks.redefine_content.settings.card_content_rotation.label",
           "default": 5
         }
       ]
@@ -246,7 +245,7 @@
   ],
   "presets": [
     {
-      "name": "Image with text",
+      "name": "t:sections.image-with-text.presets.name",
       "blocks": [
         {
           "type": "redefine_images",
