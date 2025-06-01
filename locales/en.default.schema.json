@@ -1120,7 +1120,8 @@
           "label": "Color scheme"
         },
         "testimonial_heading": {
-          "label": "Heading"
+          "label": "Heading",
+          "default": "Customer reviews"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -3224,7 +3225,8 @@
       "name": "Related Blog Post",
       "settings": {
         "heading": {
-          "label": "Heading"
+          "label": "Heading",
+          "default": "RELATED POSTS"
         },
         "item_shows": {
           "label": "Number of posts to show"
@@ -3951,4 +3953,105 @@
       }
     },
   },
+  "blocks": {
+    "button": {
+      "name": "Button",
+      "settings": {
+        "button_text": {
+          "label": "Button label",
+          "default": "Learn More"
+        },
+        "button_link": {
+          "label": "Button link"
+        },
+      },
+      "presets": {
+        "name": "Button"
+      }
+    },
+    "description": {
+      "name": "Description",
+      "settings": {
+        "Description": {
+          "label": "Description",
+          "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+        }
+      },
+      "presets": {
+        "name": "Description"
+      }
+    },
+      "group": {
+      "name": "Group",
+      "settings": {
+        "inner_gap": {
+          "label": "Inside elements gap"
+        },
+        "max_width": {
+          "label": "Desktop max width"
+        },
+        "card_rotation": {
+          "label": "Item rotation"
+        },
+        "header_padding": {
+          "label": "Block padding"
+        },
+        "padding_horizontal": {
+          "label": "Horizontal padding"
+        },
+        "padding_vertical": {
+          "label": "Vertical padding"
+        },
+        "header_margin": {
+          "label": "Block margin"
+        }
+      }
+    },
+    "heading": {
+      "name": "Heading",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "Heading text"
+        },
+        "uppercase": {
+          "label": "Make heading uppercase"
+        }
+      },
+      "presets": {
+        "name": "Heading"
+      }
+    },
+    "image": {
+      "name": "Image",
+      "settings": {
+        "image": {
+          "label": "Image",
+        }
+      },
+      "presets": {
+        "name": "Image"
+      }
+    },
+    "shape_image": {
+      "name": "Shape image",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "max_width": {
+          "label": "Max width",
+        },
+        "top_offset": {
+          "label": "Top offset",
+        },
+        "left_offset": {
+          "label": "Left offset",
+        }
+      },
+      "presets": {
+        "name": "Shape image"
+      }
+    }
+  }
 }

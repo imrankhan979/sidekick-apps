@@ -27,7 +27,7 @@
               <span class="svg-wrapper flex">
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </span>
-              PREV
+              {{ 'pagination.previous' | t }}
             </a>
           </li>
         {%- endif -%}
@@ -67,7 +67,7 @@
               class="pagination_slide"
               aria-label="{{ 'general.pagination.next' | t }}"
             >
-            NEXT
+            {{ 'pagination.next' | t }}
               <span class="svg-wrapper flex">
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </span>

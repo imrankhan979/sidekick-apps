@@ -62,6 +62,10 @@
     "success": "Thanks for subscribing",
     "button_label": "Subscribe"
   },
+  "pagination": {
+    "previous": "PREV",
+    "next": "NEXT"
+  },
   "accessibility": {
     "skip_to_text": "Skip to content",
     "skip_to_product_info": "Skip to product information",
@@ -223,7 +227,10 @@
       "sort_by_label": "Sort by:",
       "to": "To",
       "clear_filter": "Remove filter"
-    }
+    },
+    "placeholder": {
+      "product_title": "Example product title",
+    },
   },
   "templates": {
     "search": {
@@ -580,6 +587,15 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "button": {
+    "buy_button": {
+      "guaranteed_safe": "Guaranteed safe checkout",
+    },
+    "share_button": {
+      "product_link": "Product link copied to clipboard!",
+      "product_link_error": "Failed to copy:",
     }
   }
 }

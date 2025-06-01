@@ -90,9 +90,9 @@
     function copyProductLink() {
       const url = "{{ shop.url }}{{ product.url }}";
       navigator.clipboard.writeText(url).then(() => {
-        alert('Product link copied to clipboard!');
+        alert('{{ 'button.share_button.product_link' | t }}');
       }).catch(err => {
-        console.error('Failed to copy: ', err);
+        console.error('{{ 'button.share_button.product_link_error' | t }} ', err);
       });
     }
   </script>

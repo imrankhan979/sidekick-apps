@@ -1,4 +1,4 @@
-{% stylesheet %}
+{% style %}
     .position-{{ block.id }}-top{
         top: {{ block.settings.top_offset }}%;
     }
@@ -8,7 +8,7 @@
     .block-shape-img{
         position: absolute;
     }
-{% endstylesheet %}
+{% endstyle %}
 <img 
   src="{{ block.settings.image | image_url: width: 1500 }}" 
   srcset="{{ block.settings.image | image_url: width: 165 }} 165w, 
@@ -24,17 +24,17 @@
         style="top: {{ block.settings.top_offset }}%;  left: {{ block.settings.left_offset }}%; max-width: {{ block.settings.max_width }}%">
 {% schema %}
     {
-        "name": "Shape image",
+        "name": "t:blocks.shape_image.name",
         "settings": [
             {
                 "type": "image_picker",
                 "id": "image",
-                "label": "Image"
+                "label": "t:blocks.shape_image.settings.image.label"
             },
             {
                 "type": "range",
                 "id": "max_width",
-                "label": "Max width",
+                "label": "t:blocks.shape_image.settings.max_width.label",
                 "default": 80,
                 "min": 0,
                 "max": 100,
@@ -44,7 +44,7 @@
             {
                 "type": "range",
                 "id": "top_offset",
-                "label": "Top offset",
+                "label": "t:blocks.shape_image.settings.top_offset.label",
                 "default": 0,
                 "min": -100,
                 "max": 100,
@@ -54,7 +54,7 @@
             {
                 "type": "range",
                 "id": "left_offset",
-                "label": "Left offset",
+                "label": "t:blocks.shape_image.settings.left_offset.label",
                 "default": 0,
                 "min": -100,
                 "max": 100,
@@ -64,7 +64,7 @@
         ],
         "presets": [
             {
-                "name": "Shape image"
+                "name": "t:blocks.shape_image.presets.name"
             }
         ]
     }

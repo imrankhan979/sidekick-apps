@@ -20,7 +20,7 @@
         {% endif %}
             <div class="badge sold-out-badge {% if product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ product.id }}">
               {% unless product.variants.first.available %}
-                SOLD OUT
+                {{ 'products.product.sold_out' | t }}
               {% endunless %}
             </div>
       </div>
