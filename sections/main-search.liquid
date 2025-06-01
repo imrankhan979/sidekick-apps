@@ -80,9 +80,9 @@
           <div class="breadcrumb-content-area-inner">
             <div class="breadcrumb-link">
               <ul>
-                <li><a href="{{ routes.root_url }}">Home</a></li>
+                <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
                 <li>
-                  SEARCH: "<strong>{{ search.terms }}</strong>"
+                  {{ 'general.search.search' | t }}: "<strong>{{ search.terms }}</strong>"
                 </li>
               </ul>
             </div>

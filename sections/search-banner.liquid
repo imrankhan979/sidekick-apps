@@ -19,9 +19,9 @@
     <div class="breadcrumb-content-area-inner">
       <div class="breadcrumb-link">
         <ul>
-          <li><a href="{{ routes.root_url }}">Home</a></li>
+          <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
           <li>
-            SEARCH: "<strong>{{ search.terms }}</strong>
+            {{ 'general.search.search' | t }}: "<strong>{{ search.terms }}</strong>
           </li>
           <li>{{ collection.title }}</li>
         </ul>
@@ -49,7 +49,7 @@
 
 {% schema %}
 {
-  "name": "Search banner",
+  "name": "t:sections.search_banner.name",
   "class": "section",
   "settings": [
     {
@@ -61,13 +61,13 @@
     {
       "type": "image_picker",
       "id": "header_bg",
-      "label": "Background image"
+      "label": "t:sections.search_banner.header_bg.label"
     },
     {
       "type": "text",
       "id": "section_heading",
-      "label": "Page heading",
-      "info": "Leave it blank to show the default heading."
+      "label": "t:sections.search_banner.section_heading.label",
+      "info": "t:sections.search_banner.section_heading.info"
     },
     {
       "type": "header",
@@ -80,7 +80,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top", 
       "default": 200
     },
     {
@@ -90,7 +90,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 200
     },
     {
@@ -113,7 +113,7 @@
   ],
   "presets": [
     {
-      "name": "Search banner"
+      "name": "t:sections.search_banner.presets.name"
     }
   ]
 }

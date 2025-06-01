@@ -118,6 +118,7 @@
       "add_to_cart": "Add to cart",
       "add_to_bundle": "Add to bundle",
       "choose_options": "Choose options",
+      "choose_variant": "Choose variant",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
       "inventory_in_stock": "In stock",
@@ -345,6 +346,11 @@
       "view_all": "View all",
       "view_all_label": "View all products in the {{ collection_name }} collection"
     },
+    "all-collection": {
+      "title": "Collection Name",
+      "item": "Item",
+      "items": "Items",
+    },
     "collection_list": {
       "view_all": "View all",
       "collections_text": "Collections"
@@ -417,6 +423,7 @@
       "remove_all_single_item_confirmation": "Remove 1 item from your cart?",
       "remove_all_items_confirmation": "Remove all {{ quantity }} items from your cart?",
       "remove_all": "Remove all",
+      "remove": "Remove",
       "cancel": "Cancel",
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",

@@ -141,39 +141,39 @@
 
 {% schema %}
 {
-  "name": "Newsletter popup",
+  "name": "t:settings_schema.newsletter-popup.name",
   "tag": "section",
   "class": "section",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
+      "label": "t:settings_schema.all.colors.label",
+      "info": "t:settings_schema.all.colors.has_cards_info",
       "default": "scheme-1"
     },
     {
       "type": "checkbox",
       "id": "enable_popuo",
       "default": false,
-      "label": "Enable popup"
+      "label": "t:settings_schema.newsletter-popup.settings.enable_popup.label"
     },
     {
       "type": "select",
       "id": "display_mode_popup",
-      "label": "Display mode",
+      "label": "t:settings_schema.newsletter-popup.settings.display_mode.label",
       "options": [
         {
           "value": "display_mode_popup_test_disable",
-          "label": "Disable"
+          "label": "t:settings_schema.newsletter-popup.settings.display_mode.options__disable.label"
         },
         {
           "value": "display_mode_popup_test_enable",
-          "label": "Enable"
+          "label": "t:settings_schema.newsletter-popup.settings.display_mode.options__enable.label"
         }
       ],
       "default": "display_mode_popup_test_disable",
-      "info": "You should only use this for editing the popup. Make sure 'Test mode' is disabled when publishing your theme."
+      "info": "t:settings_schema.newsletter-popup.settings.display_mode.info"
     },
     {
       "type": "range",
@@ -181,8 +181,8 @@
       "min": 1,
       "max": 30,
       "step": 1,
-      "label": "Show again after (days)",
-      "info": "Independent to each browser and device",
+      "label": "t:settings_schema.newsletter-popup.settings.show_again_after.label",
+      "info": "t:settings_schema.newsletter-popup.settings.show_again_after.info",
       "default": 30
     },
     {
@@ -192,65 +192,65 @@
       "max": 60,
       "step": 1,
       "unit": "sec",
-      "label": "Delay",
-      "info": "Delay is disabled in theme editor for visibility.",
+      "label": "t:settings_schema.newsletter-popup.settings.delay.label",
+      "info": "t:settings_schema.newsletter-popup.settings.delay.info",
       "default": 60
     },
     {
       "type": "image_picker",
       "id": "news_popup_image",
-      "label": "Image"
+      "label": "t:settings_schema.newsletter-popup.settings.image.label"
     }
   ],
   "blocks": [
     {
-      "name": "Heading",
+      "name": "t:settings_schema.newsletter-popup.blocks.heading.name",
       "limit": 1,
       "type": "news_popup_heading",
       "settings": [
         {
           "type": "textarea",
           "id": "popup_heading_title",
-          "label": "Heading",
-          "default": "Subscribe Newsletter"
+          "label": "t:settings_schema.newsletter-popup.blocks.heading.settings.title.label",
+          "default": "t:settings_schema.newsletter-popup.blocks.heading.settings.title.default"
         }
       ]
     },
     {
-      "name": "Text",
+      "name": "t:settings_schema.newsletter-popup.blocks.text.name",
       "limit": 1,
       "type": "news_popup_text",
       "settings": [
         {
           "type": "text",
           "id": "popup_text",
-          "label": "Subheading",
-          "default": "Subscribe now and receive a discount on your first order"
+          "label": "t:settings_schema.newsletter-popup.blocks.text.settings.subheading.label",
+          "default": "t:settings_schema.newsletter-popup.blocks.text.settings.subheading.default"
         }
       ]
     },
     {
-      "name": "Form",
+      "name": "t:settings_schema.newsletter-popup.blocks.form.name",
       "limit": 1,
       "type": "news_pop_form_area"
     },
     {
-      "name": "Additional description",
+      "name": "t:settings_schema.newsletter-popup.blocks.description.name",
       "limit": 1,
       "type": "news_pop_lower_content",
       "settings": [
         {
           "type": "textarea",
           "id": "news_pop_lower_content_text",
-          "label": "Description",
-          "default": "Subscribe and receive exclusive information and offers!"
+          "label": "t:settings_schema.newsletter-popup.blocks.description.settings.text.label",
+          "default": "t:settings_schema.newsletter-popup.blocks.description.settings.text.default"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Newsletter popup",
+      "name": "t:settings_schema.newsletter-popup.presets.name",
       "blocks": [
         {
           "type": "news_popup_heading"

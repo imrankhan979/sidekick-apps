@@ -219,11 +219,94 @@
       "name": "Dropdowns and pop-ups",
       "paragraph": "Affects areas like navigation dropdowns, pop-up modals, and cart pop-ups."
     },
+    "newsletter-popup": {
+    "name": "Newsletter popup",
+    "settings": {
+      "enable_popup": {
+        "label": "Enable popup"
+      },
+      "display_mode": {
+        "label": "Display mode",
+        "info": "You should only use this for editing the popup. Make sure 'Test mode' is disabled when publishing your theme.",
+        "options__disable": {
+          "label": "Disable"
+        },
+        "options__enable": {
+          "label": "Enable"
+        }
+      },
+      "show_again_after": {
+        "label": "Show again after (days)",
+        "info": "Independent to each browser and device"
+      },
+      "delay": {
+        "label": "Delay",
+        "info": "Delay is disabled in theme editor for visibility."
+      },
+      "image": {
+        "label": "Image"
+      }
+    },
+    "blocks": {
+      "heading": {
+        "name": "Heading",
+        "settings": {
+          "title": {
+            "label": "Heading",
+            "default": "Subscribe Newsletter"
+          }
+        }
+      },
+      "text": {
+        "name": "Text",
+        "settings": {
+          "subheading": {
+            "label": "Subheading",
+            "default": "Subscribe now and receive a discount on your first order"
+          }
+        }
+      },
+      "form": {
+        "name": "Form"
+      },
+      "description": {
+        "name": "Additional description",
+        "settings": {
+          "text": {
+            "label": "Description",
+            "default": "Subscribe and receive exclusive information and offers!"
+          }
+        }
+      }
+    },
+    "presets": {
+      "name": "Newsletter popup"
+    }
+     },
+ 
+    "breadcrumb_banner": {
+      "name": "Breadcrumb banner",
+      "settings": {
+        "custom_text": {
+          "label": "Custom title page"
+        },
+        "enable_breadcrumb_navigation": {
+          "label": "Enable breadcrumb navigation"
+        },
+      }
+    },
+
     "media": {
       "name": "Media"
     },
     "drawers": {
       "name": "Drawers"
+    },
+    "search_drawer": {
+      "name": "Search drawer",
+      "presets": {
+        "name": "Search drawer"
+      }
     },
     "animations": {
       "name": "Animations",
@@ -912,6 +995,25 @@
       },
       "presets": {
         "name": "Blog breadcrumb banner"
+      }
+    },
+    "page-header-section": {
+      "name": "Blog Page header",
+      "settings": {
+        "header_bg": {
+          "label": "Background image"
+        },
+        "section_heading": {
+          "label": "Page heading",
+          "info": "Leave it blank to show the default heading."
+        },
+        "page_header_image": {
+          "label": "Image",
+          "info": "Image will be cropped to fit the section."
+        },
+      },
+      "presets": {
+        "name": "Blog page header"
       }
     },
     "collection-carousel": {
@@ -1714,7 +1816,20 @@
         }
       },
       "presets": {
-        "name": "Collection tab"
+        "name": "Collection tab",
+        "block": {
+          "settings": {
+            "tab_title": {
+              "label": "Featured",
+            },
+            "best_seller": {
+              "label": "Best Sellers"
+            },
+            "new_arrivals": {
+              "label": "New arrivals"
+            }
+          }
+        }
       }
     },
     "all-collection": {
@@ -3090,6 +3205,50 @@
         }
       }
     },
+    "search_banner" : {
+      "name": "Search banner",
+      "settings": {
+        "header_bg": {
+          "label": "Background image"
+        },
+        "section_heading": {
+          "label": "Page heading",
+          "info": "Leave it blank to show the default heading."
+        },
+      },
+      "presets": {
+        "name": "Search banner"
+      }
+    },
+    "related_blog_post": {
+      "name": "Related Blog Post",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "item_shows": {
+          "label": "Number of posts to show"
+        },
+        "columns_desktop": {
+          "label": "Desktop Columns"
+        },
+        "show_image": {
+          "label": "Show Featured Image"
+        },
+        "show_date": {
+          "label": "Show Date"
+        },
+        "show_author": {
+          "label": "Show Author"
+        },
+        "show_tags": {
+          "label": "Show Tags"
+        }
+      },
+      "presets": {
+        "name": "Related Blog Post"
+      }
+    },
     "rich-text": {
       "name": "Rich text",
       "settings": {
@@ -3470,6 +3629,25 @@
       },
       "presets": {
         "name": "Product bundle"
+      }
+    },
+    "bundle": {
+      "name": "Multi-product add",
+      "blocks": {
+        "product": {
+          "name": "Product",
+          "settings": {
+            "product": {
+              "label": "Select product"
+            },
+            "quantity": {
+              "label": "Default quantity"
+            },
+          }
+        }
+      },
+      "presets": {
+        "name": "Multi-product add"
       }
     },
     "404_page": {

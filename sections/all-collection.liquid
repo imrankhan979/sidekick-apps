@@ -58,7 +58,7 @@
                   {%- elsif block.settings.collection_select.title != blank -%}
                     {{ block.settings.collection_select.title }}
                   {%- else -%}
-                    Collection Name
+                    {{ 'sections.all-collection.title' | t }}
                   {%- endif -%}
                 </a>
               </div>
@@ -66,12 +66,12 @@
                 {{ block.settings.collection_select.products_count }}
                 {%- if block.settings.collection_select != blank -%}
                   {%- if block.settings.collection_select.products_count <= 1 -%}
-                    Item
+                    {{ 'sections.all-collection.item' | t }}
                   {%- else -%}
-                    Items
+                    {{ 'sections.all-collection.items' | t }}
                   {%- endif -%}
                 {%- else -%}
-                  0 Item
+                  0 {{ 'sections.all-collection.item' | t }}
                 {%- endif -%}
               </span>
             </div>

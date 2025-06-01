@@ -1,21 +1,21 @@
 {% schema %}
     {
-      "name": "Multi-product add",
+      "name": "t:sections.bundle.name",
       "settings": [],
       "blocks": [
         {
           "type": "product",
-          "name": "Product",
+          "name": "t:sections.bundle.blocks.product.name",
           "settings": [
             {
               "type": "product",
               "id": "product",
-              "label": "Select product"
+              "label": "t:sections.bundle.blocks.product.settings.product.label"
             },
             {
               "type": "number",
               "id": "quantity",
-              "label": "Default quantity",
+              "label": "t:sections.bundle.blocks.product.settings.quantity.label",
               "default": 1
             }
           ]
@@ -23,7 +23,7 @@
       ],
       "presets": [
         {
-          "name": "Multi-product add"
+          "name": "t:sections.bundle.presets.name"
         }
       ]
     }

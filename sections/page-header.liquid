@@ -19,7 +19,7 @@
     <div class="breadcrumb-content-area-inner">
       <div class="breadcrumb-link">
         <ul>
-          <li><a href="{{ routes.root_url }}">Home</a></li>
+          <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
           <li>{{ blog.title }}</li>
         </ul>
       </div>
@@ -46,25 +46,25 @@
 
 {% schema %}
 {
-  "name": "Blog Page header",
+  "name": "t:sections.page-header-section.name",
   "class": "page-header-main",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "image_picker",
       "id": "header_bg",
-      "label": "Background image"
+      "label": "t:sections.page-header-section.settings.header_bg.label"
     },
     {
       "type": "text",
       "id": "section_heading",
-      "label": "Page heading",
-      "info": "Leave it blank to show the default heading."
+      "label": "t:sections.page-header-section.settings.section_heading.label",
+      "info": "t:sections.page-header-section.settings.section_heading.info"
     },
     {
       "type": "header",
@@ -77,7 +77,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 200
     },
     {
@@ -87,14 +87,14 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 200
     }
   ],
 
   "presets": [
     {
-      "name": "Blog page header"
+      "name": "t:sections.page-header-section.presets.name"
     }
   ]
 }
