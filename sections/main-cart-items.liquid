@@ -6,6 +6,9 @@
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 's-cart-page.css' | asset_url | stylesheet_tag }}
 {% if section.settings.enable_free_shipping_bar %}
+  <script>
+    window.currencySymbol = '{{ cart.currency.symbol }}';
+  </script>
   <script src="{{ 'free-shipping.js' | asset_url }}" defer="defer"></script>
 {% endif %}
   {% if section.settings.enable_calculate %}
@@ -534,7 +537,7 @@
                 <div class="accordion-item">
                   <div class="accordion-title">Estimate shipping rates</div>
                   <div class="accordion-content">
-                    <div id="shipping-estimator">
+                    {% comment %} <div id="shipping-estimator">
                       <div class="country-wrapper">
                         <label for="shipping-country sub-title">Country/region</label>
                         <select id="shipping-country" name="country" required>
@@ -551,7 +554,26 @@
                       </div>
                       <button id="estimate-shipping-btn" class="shadow-anim-btn" type="button"><span ><span>Estimate</span></span></button>
                       <div id="shipping-rates-result"></div>
-                    </div>
+                    </div> {% endcomment %}
+
+                                <div class="shipping-estimator-container shipping-estimator">
+                                  <div class="country-wrapper">
+                                    <label for="shipping-country-1 sub-title">Country/region</label>
+                                    <select id="shipping-country-1" class="shipping-country-select" name="country" required>
+                                      {{ country_option_tags }}
+                                    </select>
+                                  </div>
+                                  <div class="shipping-province-wrapper" id="shipping-province-wrapper-1">
+                                    <label for="shipping-province-1">Province</label>
+                                    <select id="shipping-province-1" class="shipping-province-select" name="province"></select>
+                                  </div>
+                                  <div class="zip-wrapper">
+                                    <label for="shipping-zip-1">Postal / ZIP Code</label>
+                                    <input type="text" id="shipping-zip-1" class="shipping-zip-input" name="zip" placeholder="e.g. 10001" required>
+                                  </div>
+                                  <button id="estimate-shipping-btn-1" class="shadow-anim-btn estimate-shipping-btn" type="button"><span><span>Estimate</span></span></button>
+                                  <div id="shipping-rates-result-1" class="shipping-rates-result"></div>
+                                </div>
        
                   </div>
                 </div>

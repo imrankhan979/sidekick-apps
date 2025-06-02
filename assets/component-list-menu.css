@@ -5,21 +5,21 @@
 .header__submenu {
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: auto;
   max-height: 300px;
   visibility: hidden;
   opacity: 0;
   transition: transform .4s ease;
-  transform: translate3d(-50%, 20px, 0);
   border-radius: 0px 0px 24px 24px;
   display: unset;
   background: #fff;
   padding: 24px 48px 48px;
+  transform: translateY(-20px);
 }
-.snazzy-header .header-menu .list-menu > li > .has-sub-menu:hover .header__submenu{
+.snazzy-header .header-menu .list-menu > li.menu-open > .has-sub-menu .header__submenu{
   visibility: visible;
   opacity: 1;
-  transform: translate3d(-50%, 0px, 0);
+  transform: translateY(0);
 }
 .list-menu--disclosure:focus {
   outline: none;

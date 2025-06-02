@@ -1,6 +1,4 @@
   .marquee-section .marquee_slider {
-    display: flex;
-    align-items: center;
     overflow: hidden;
     border-top: 2px solid rgb(var(--color-foreground));
     border-bottom: 2px solid rgb(var(--color-foreground));
