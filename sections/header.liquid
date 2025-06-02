@@ -119,7 +119,7 @@
                                     </a>
                                 {%- endif -%}
                     
-                                <a href="{{ routes.cart_url }}" class="header__icon--cart flex align-items-center" id="cart-icon-bubble">
+                                <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart flex align-items-center" id="cart-icon-bubble">
                                     {% if cart == empty %}
                                         <span class="flex">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
                                     {% else %}
