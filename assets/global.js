@@ -715,12 +715,12 @@ class ModalOpenerButton extends HTMLElement {
     const button = this.querySelector('button');
 
     if (!button) return;
+    const btnIsQick = button.classList.contains('quick-view-prg-have');
+    if (!btnIsQick) return;
+    
+
     button.addEventListener('click', () => {
-      
       const modal = document.querySelector(this.getAttribute('data-modal'));
-      console.log(this.getAttribute('data-modal'));
-      console.log(modal);
-      
       if (modal) modal.show(button);
     });
   }
