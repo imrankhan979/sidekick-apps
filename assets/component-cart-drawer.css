@@ -988,13 +988,6 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
 .cart-drawer free-shipping-bar {
     margin-bottom: 24px;
 }	
-.free-shipping-text {
-    font-size: 14px;
-    line-height: 1;
-}
-.shipping-bar {
-    padding: 18px;
-}
 }
 .drawer.is-empty .drawer__inner{
   display: flex;

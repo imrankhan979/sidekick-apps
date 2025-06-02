@@ -4460,7 +4460,15 @@ accordion-item .accordion_content {
 	margin-bottom: 14px;
 	text-align: left;
 }
-
+@media (max-width: 767px) {
+    .shipping-bar{
+      padding: 18px;
+  }
+    .free-shipping-text {
+      font-size: 14px;
+      line-height: 1;
+  }
+}
 .free-shipping-progress-container {
   background: #DDDDDD;
   height: 8px;
