@@ -1,4 +1,13 @@
-{{ 'component-product-carousel.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+
+{{ 'component-community-stories.css' | asset_url | stylesheet_tag }}
 {{ 'component-heading.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
@@ -34,10 +43,13 @@
       <items-carousel>
         <div
           class="carousel items-carousel-selector "
-          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false}'
+          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false, "draggable": false}'
         >
           {%- for block in section.blocks -%}
             <div class="slider_community_item id-{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- assign prd_crd = block.settings.product_select %}
+              {%- assign section_id = section.id %}
+              {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
               {%- assign ratio_setting = section.settings.ratio %}
               {%- assign placeholder_index = forloop.index0 | modulo: 4 | plus: 1 %}
               {%- assign placeholder_image = 'product-apparel-' | append: placeholder_index %}
@@ -65,7 +77,11 @@
                 {%- assign aspect_ratio_auto = 100 -%}
               {%- endif -%}
 
+              
+            
               <div class="slider_community_images flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
+
+
                 {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
                   {%- assign video_url = block.settings.product_video.sources[1].url %}
                   <video

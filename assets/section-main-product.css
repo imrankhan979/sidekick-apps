@@ -2642,3 +2642,10 @@ vertical-align: middle;
     height: 100%;
 }
 }
+
+.gallery-viewer-motions.product--thumbnail_slider .product__media-item:not(.is-active) {
+  display: block;
+}
+.product__media-list .product__media-item {
+  width: calc(100% - 0px );
+}

@@ -707,6 +707,28 @@ class DeferredMedia extends HTMLElement {
 
 customElements.define('deferred-media', DeferredMedia);
 
+
+class ModalOpenerButton extends HTMLElement {
+  constructor() {
+    super();
+
+    const button = this.querySelector('button');
+
+    if (!button) return;
+    const btnIsQick = button.classList.contains('quick-view-prg-have');
+    if (!btnIsQick) return;
+    
+
+    button.addEventListener('click', () => {
+      const modal = document.querySelector(this.getAttribute('data-modal'));
+      if (modal) modal.show(button);
+    });
+  }
+}
+customElements.define('popup-slide', ModalOpenerButton);
+
+
+
 class SliderComponent extends HTMLElement {
   constructor() {
     super();
