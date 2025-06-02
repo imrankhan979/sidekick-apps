@@ -69,7 +69,7 @@
               {% if collection.products.size > maximum_product_show %}
                 <div class="view-all-btn-wrapper flex justify-content-center">
                   <a class="snazzy-icon-btn btn-with-border" href="{{ collection.url }}"
-                    >VIEW ALL <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+                    >{{ 'sections.collection_tab.title' | t }}<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                   >
                 </div>
               {% endif %}
@@ -83,36 +83,36 @@
 
 {% schema %}
 {
-  "name": "Collection tab",
+  "name": "t:sections.collection-tab.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.collection-tab.settings.color_scheme.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "section_heading",
       "default": "PRODUCT",
-      "label": "Section heading"
+      "label": "t:sections.collection-tab.settings.section_heading.label"
     },
     {
       "type": "select",
       "id": "ratio",
-      "label": "Image ratio",
+      "label": "t:sections.collection-tab.settings.ratio.label",
       "options": [
         {
           "value": "auto",
-          "label": "Adapt to image"
+          "label": "t:sections.collection-tab.settings.ratio.options__auto.label"
         },
         {
           "value": "1",
-          "label": "Square"
+          "label": "t:sections.collection-tab.settings.ratio.options__1.label"
         },
         {
           "value": "2",
-          "label": "Portrait"
+          "label": "t:sections.collection-tab.settings.ratio.options__2.label"
         }
       ],
       "default": "auto"
@@ -128,7 +128,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -138,25 +138,25 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "collection",
-      "name": "Collection",
+      "name": "t:sections.collection-tab.blocks.collection.name",
       "settings": [
         {
           "type": "collection",
           "id": "collection_handle",
-          "label": "Collection"
+          "label": "t:sections.collection-tab.blocks.collection.settings.collection_handle.label"
         },
         {
           "type": "text",
           "id": "tab_title",
-          "label": "Tab Title",
-          "info": "Optional. Defaults to collection title.",
+          "label": "t:sections.collection-tab.blocks.collection.settings.tab_title.label",
+          "info": "t:sections.collection-tab.blocks.collection.settings.tab_title.info",
           "default": "Collection"
         },
         {
@@ -165,7 +165,7 @@
           "min": 2,
           "max": 12,
           "step": 1,
-          "label": "Maximum number of products to show",
+          "label": "t:sections.collection-tab.blocks.collection.settings.item_total.label",
           "default": 4
         },
         {
@@ -174,7 +174,7 @@
           "min": 2,
           "max": 6,
           "step": 1,
-          "label": "Number of products to show in a row",
+          "label": "t:sections.collection-tab.blocks.collection.settings.item_count.label",
           "default": 4
         }
       ]
@@ -182,7 +182,7 @@
   ],
   "presets": [
     {
-      "name": "Collection tab",
+      "name": "t:sections.collection-tab.presets.name",
       "blocks": [
         {
           "type": "collection",

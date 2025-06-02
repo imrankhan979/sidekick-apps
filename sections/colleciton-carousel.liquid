@@ -86,12 +86,12 @@
                     {{- block.settings.collection_select.products_count }}
                     {%- if block.settings.collection_select != blank -%}
                       {%- if block.settings.collection_select.products_count <= 1 -%}
-                        Item
+                        {{ 'sections.collection_carousel.item' | t }}
                       {%- else -%}
-                        Items
+                        {{ 'sections.collection_carousel.items' | t }}
                       {%- endif -%}
                     {%- else -%}
-                      0 Item
+                      0 {{ 'sections.collection_carousel.item' | t }}
                     {%- endif -%}
                   </span>
                 </div>
@@ -119,12 +119,12 @@
 </section>
 {% schema %}
 {
-  "name": "Collection carousel",
+  "name": "t:sections.collection-carousel.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.collection-carousel.settings.section_color_scheme.label",
       "default": "scheme-1"
     },
     {
@@ -138,7 +138,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -148,56 +148,56 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "collection",
-      "name": "Collection carousel",
+      "name": "t:sections.collection-carousel.blocks.collection.name",
       "settings": [
         {
           "type": "collection",
           "id": "collection_select",
-          "label": "Select collection"
+          "label": "t:sections.collection-carousel.blocks.collection.settings.collection_select.label"
         },
         {
           "type": "color",
           "id": "collection_bg_color",
-          "label": "Background color",
+          "label": "t:sections.collection-carousel.blocks.collection.settings.collection_bg_color.label",
           "default": "#f3f3f3"
         },
         {
           "type": "image_picker",
           "id": "collection_image",
-          "label": "Collection image"
+          "label": "t:sections.collection-carousel.blocks.collection.settings.collection_image.label"
         },
         {
           "type": "text",
           "id": "collection_heading",
-          "label": "Heading",
-          "default": "Collection title",
-          "info": "If left blank, the collection name will be used."
+          "label": "t:sections.collection-carousel.blocks.collection.settings.collection_heading.label",
+          "default": "t:sections.collection-carousel.blocks.collection.settings.collection_heading.default",
+          "info": "t:sections.collection-carousel.blocks.collection.settings.collection_heading.info"
         },
         {
           "type": "text",
           "id": "collection_featured",
-          "label": "Badge",
-          "default": "Featured Collection"
+          "label": "t:sections.collection-carousel.blocks.collection.settings.collection_featured.label",
+          "default": "t:sections.collection-carousel.blocks.collection.settings.collection_featured.default"
         },
         {
           "type": "text",
           "id": "collection_button",
-          "label": "Button Label",
-          "default": "Shop Now"
+          "label": "t:sections.collection-carousel.blocks.collection.settings.collection_button.label",
+          "default": "t:sections.collection-carousel.blocks.collection.settings.collection_button.default"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Collection carousel",
+      "name": "t:sections.collection-carousel.presets.name",
       "blocks": [
         {
           "type": "collection",

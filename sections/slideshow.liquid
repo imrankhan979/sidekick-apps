@@ -120,51 +120,51 @@
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
       "default": "scheme-1"
     }
   ],
   "blocks": [
     {
       "type": "slide",
-      "name": "Slide",
+      "name": "t:sections.slideshow.blocks.slide.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "bg_image",
-          "label": "Background image"
+          "label": "t:sections.slideshow.blocks.slide.settings.bg_image.label", 
         },
         {
           "type": "video",
           "id": "bg_video",
-          "label": "Background video"
+          "label": "t:sections.slideshow.blocks.slide.settings.bg_video.label"
         },
         {
           "type": "checkbox",
           "id": "video_loop",
-          "label": "Loop video",
+          "label": "t:sections.slideshow.blocks.slide.settings.video_loop.label",
           "default": true,
-          "info": "Enable to play the video in a continuous loop."
+          "info": "t:sections.slideshow.blocks.slide.settings.video_loop.info"
         },
         {
           "type": "checkbox",
           "id": "video_autoplay",
-          "label": "Autoplay video",
+          "label": "t:sections.slideshow.blocks.slide.settings.video_autoplay.label",
           "default": true,
-          "info": "Enable to start playing the video automatically when loaded."
+          "info": "t:sections.slideshow.blocks.slide.settings.video_autoplay.info"
         },
         {
           "type": "header",
-          "content": "Image content"
+          "content": "t:sections.slideshow.blocks.slide.settings.image_header.content"
         },
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Slide Image"
+          "label": "t:sections.slideshow.blocks.slide.settings.slide_image.label"
         },
         {
           "type": "header",
-          "content": "Text content"
+          "content": "t:sections.slideshow.blocks.slide.settings.text_header.content"
         },
         {
           "type": "range",
@@ -173,56 +173,56 @@
           "max": 100,
           "step": 1,
           "unit": "%",
-          "label": "Content width",
+          "label": "t:sections.slideshow.blocks.slide.settings.content_width.label",
           "default": 40
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Title",
-          "default": "Streetwise new way of style"
+          "label": "t:sections.slideshow.blocks.slide.settings.title_text.label",
+          "default": "t:sections.slideshow.blocks.slide.settings.title_text.default"
         },
         {
           "type": "text",
           "id": "cta_text",
-          "label": "CTA text",
-          "default": "collection",
-          "info": "CTA will be shown only if the title is not blank."
+          "label": "t:sections.slideshow.blocks.slide.settings.cta_text.label",
+          "default": "t:sections.slideshow.blocks.slide.settings.cta_text.default",
+          "info": "t:sections.slideshow.blocks.slide.settings.cta_text.info"
         },
         {
           "type": "url",
           "id": "cta_link",
-          "label": "CTA link"
+          "label": "t:sections.slideshow.blocks.slide.settings.cta_link.label"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Description",
-          "default": "Discover a new level of style, from bold streetwear to refined essentials."
+          "label": "t:sections.slideshow.blocks.slide.settings.description.label",
+          "default": "t:sections.slideshow.blocks.slide.settings.description.default"
         },
         {
           "type": "text",
           "id": "button_text",
-          "label": "Button text",
-          "default": "Shop now"
+          "label": "t:sections.slideshow.blocks.slide.settings.button_text.label",
+          "default": "t:sections.slideshow.blocks.slide.settings.button_text.default"
         },
         {
           "type": "url",
           "id": "button_link",
-          "label": "Button link"
+          "label": "t:sections.slideshow.blocks.slide.settings.button_link.label"
         },
         {
           "type": "header",
-          "content": "Slide padding"
+          "content": "t:sections.all.padding.section_padding_heading"
         },
         {
           "type": "range",
-          "id": "padding_top",
+          "id": "padding_top",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
           "min": 0,
           "max": 120,
           "step": 4,
           "unit": "px",
-          "label": "Top",
+          "label": "t:sections.all.padding.padding_top",
           "default": 60
         },
         {
@@ -232,15 +232,15 @@
           "max": 120,
           "step": 4,
           "unit": "px",
-          "label": "Bottom",
+          "label": "t:sections.all.padding.padding_bottom",
           "default": 120
         }
       ]
-    }
+    }               
   ],
   "presets": [
     {
-      "name": "Slideshow",
+      "name": "t:sections.slideshow.presets.name",
       "blocks": [
         {
           "type": "slide"

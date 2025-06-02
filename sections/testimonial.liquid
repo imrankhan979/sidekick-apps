@@ -16,103 +16,127 @@
   }
 {%- endstyle -%}
 
-
 <section class="testimonial-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-      {% if section.settings.testimonial_heading != blank %}
+    {% if section.settings.testimonial_heading != blank %}
       <div class="heading_area">
-      <h2 class="sec_title">{{ section.settings.testimonial_heading }}</h2>
+        <h2 class="sec_title">{{ section.settings.testimonial_heading }}</h2>
       </div>
-      {% endif %}
+    {% endif %}
     <div class="testimonial_erap">
-      <items-carousel> 
-      <div class="carousel items-carousel-selector" data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false}'>
-        {%- for block in section.blocks -%} 
-        <div class="testimonial-item" {{ block.shopify_attributes }}>
-
-            {% if block.settings.testimonial_image != blank %}
-              <div class="testimonial-images">
-                {{ block.settings.testimonial_image | image_url: width: 800 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-              </div>
-            {% endif %}
-                    
-          <div class="testimonial-content">
-            {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
-                <div class="testimonial-text">
-                {% if block.settings.client_review_title %}
-                  <h5 class="title">{{ block.settings.client_review_title }}</h5>
-                {% endif %}
-                {% if block.settings.client_review_text != blank %} 
-                  <div class="desc">
-                    <p>{{ block.settings.client_review_text }}</p>
-                  </div>
-                {% endif %}
+      <items-carousel>
+        <div
+          class="carousel items-carousel-selector"
+          data-flickity='{ "contain": true, "prevNextButtons": true, "pageDots": false}'
+        >
+          {%- for block in section.blocks -%}
+            <div class="testimonial-item" {{ block.shopify_attributes }}>
+              {% if block.settings.testimonial_image != blank %}
+                <div class="testimonial-images">
+                  {{
+                    block.settings.testimonial_image
+                    | image_url: width: 800
+                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                  }}
                 </div>
-            {% endif %}
-            {% if block.settings.client_image != blank  or  block.settings.client_name != blank or block.settings.client_location != blank %}
-               <div class="testimonial-author">
-                {%- if block.settings.client_image != blank -%}
-                  <div class="author-images">
-                    {% if block.settings.client_image != blank %}
-                      {{ block.settings.client_image | image_url: width: 48 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                    {% else %}
-                      {{ 'image' | placeholder_svg_tag }}
+              {% endif %}
+
+              <div class="testimonial-content">
+                {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
+                  <div class="testimonial-text">
+                    {% if block.settings.client_review_title %}
+                      <h5 class="title">{{ block.settings.client_review_title }}</h5>
+                    {% endif %}
+                    {% if block.settings.client_review_text != blank %}
+                      <div class="desc">
+                        <p>{{ block.settings.client_review_text }}</p>
+                      </div>
                     {% endif %}
                   </div>
-              {%- endif -%}
-                <div class="author-text">
-                  {% if block.settings.client_name != blank %}
-                    <h5 class="title">{{ block.settings.client_name }}</h5>
-                  {% endif %}
-                  {% if block.settings.client_location != blank %}
-                    <span class="designation">{{ block.settings.client_location }}</span>
-                  {% endif %}
-                </div>
-              </div>
-            {% endif %}
-            {% if block.settings.show_product != blank %}
-              <div class="testimonial-infos">
-                  <div class="infos-text">
+                {% endif %}
+                {% if block.settings.client_image != blank
+                  or block.settings.client_name != blank
+                  or block.settings.client_location != blank
+                %}
+                  <div class="testimonial-author">
+                    {%- if block.settings.client_image != blank -%}
+                      <div class="author-images">
+                        {% if block.settings.client_image != blank %}
+                          {{
+                            block.settings.client_image
+                            | image_url: width: 48
+                            | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                          }}
+                        {% else %}
+                          {{ 'image' | placeholder_svg_tag }}
+                        {% endif %}
+                      </div>
+                    {%- endif -%}
+                    <div class="author-text">
+                      {% if block.settings.client_name != blank %}
+                        <h5 class="title">{{ block.settings.client_name }}</h5>
+                      {% endif %}
+                      {% if block.settings.client_location != blank %}
+                        <span class="designation">{{ block.settings.client_location }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endif %}
+                {% if block.settings.show_product != blank %}
+                  <div class="testimonial-infos">
+                    <div class="infos-text">
                       <h6 class="title">
-                          <a  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
-                              {{ block.settings.testimonial_product.title | default: "Product title" }}
-                          </a>
+                        <a
+                          {% if block.settings.testimonial_product == blank %}
+                            role="link" aria-disabled="true"
+                          {% else %}
+                            href="{{ block.settings.testimonial_product.url }}"
+                          {% endif %}
+                        >
+                          {{ block.settings.testimonial_product.title | default: 'Product title' }}
+                        </a>
                       </h6>
                       <span class="price">
-                          {{ block.settings.testimonial_product.price | money | default: "0.00" }}
+                        {{ block.settings.testimonial_product.price | money | default: '0.00' }}
                       </span>
-                  </div>
-                  <div class="testimonial-button">
-                      <a class="link-btn"  {% if block.settings.testimonial_product == blank %} role="link" aria-disabled="true" {% else %} href="{{ block.settings.testimonial_product.url }}" {% endif %} >
-                          {{- 'icon-plus.svg' | inline_asset_content -}}
+                    </div>
+                    <div class="testimonial-button">
+                      <a
+                        class="link-btn"
+                        {% if block.settings.testimonial_product == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.testimonial_product.url }}"
+                        {% endif %}
+                      >
+                        {{- 'icon-plus.svg' | inline_asset_content -}}
                       </a>
+                    </div>
                   </div>
+                {% endif %}
               </div>
-            {% endif %}
-          </div> 
+            </div>
+          {%- endfor -%}
         </div>
-        {%- endfor -%}
-      </div>
       </items-carousel>
     </div>
   </div>
 </section>
 
-
 {% schema %}
 {
-  "name": "Testimonial",
+  "name": "t:sections.testimonial.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.testimonial.settings.section_color_scheme.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "testimonial_heading",
-      "label": "Heading",
+      "label": "t:sections.testimonial.settings.testimonial_heading.label",
       "default": "Customer reviews"
     },
     {
@@ -122,7 +146,7 @@
       "max": 4,
       "step": 1,
       "default": 2,
-      "label": "t:sections.collection-list.settings.columns_desktop.label"
+      "label": "t:sections.testimonial.settings.columns_desktop.label"
     },
     {
       "type": "header",
@@ -135,7 +159,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -145,79 +169,80 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Padding bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "testimonial",
-      "name": "Testimonial item",
+      "name": "t:sections.testimonial.blocks.testimonial.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "testimonial_image",
-          "label": "Image",
-          "info": "Size 430 x 575 recommended"
+          "label": "t:sections.testimonial.blocks.testimonial.settings.testimonial_image.label",
+          "info": "t:sections.testimonial.blocks.testimonial.settings.testimonial_image.info"
         },
         {
           "type": "text",
           "id": "client_review_title",
-          "label": "Title",
-          "default": "Elevated Streetwear"
+          "label": "t:sections.testimonial.blocks.testimonial.settings.client_review_title.label",
+          "default": "t:sections.testimonial.blocks.testimonial.settings.client_review_title.default"
         },
         {
           "type": "richtext",
           "id": "client_review_text",
-          "label": "Text",
-          "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+          "label": "t:sections.testimonial.blocks.testimonial.settings.client_review_text.label",
+          "default": "t:sections.testimonial.blocks.testimonial.settings.client_review_text.default"
         },
         {
           "type": "image_picker",
           "id": "client_image",
-          "label": "Avatar"
+          "label": "t:sections.testimonial.blocks.testimonial.settings.client_image.label"
         },
         {
           "type": "text",
           "id": "client_name",
-          "label": "Name",
-          "default": "Anya petrova"
+          "label": "t:sections.testimonial.blocks.testimonial.settings.client_name.label",
+          "default": "t:sections.testimonial.blocks.testimonial.settings.client_name.default"
         },
         {
           "type": "text",
           "id": "client_location",
-          "label": "Location",
-          "default": "Paris, France"
+          "label": "t:sections.testimonial.blocks.testimonial.settings.client_location.label",
+          "default": "t:sections.testimonial.blocks.testimonial.settings.client_location.default"
         },
         {
           "type": "checkbox",
           "id": "show_product",
-          "label": "Show product",
+          "label": "t:sections.testimonial.blocks.testimonial.settings.show_product.label",
           "default": true
         },
         {
-        "type": "product",
-        "id": "testimonial_product",
-        "label": "Select product"
+          "type": "product",
+          "id": "testimonial_product",
+          "label": "t:sections.testimonial.blocks.testimonial.settings.testimonial_product.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Testimonial",
+      "name": "t:sections.testimonial.presets.name",
       "blocks": [
-      {
-        "type": "testimonial"
-      },
-      {
-        "type": "testimonial"
-      },
-      {
-        "type": "testimonial"
-      }
-    ]
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
     }
   ]
 }
 {% endschema %}
+ 

@@ -152,7 +152,7 @@
 
                 <div class="slider_community_text">
                   <h6 class="slider_community_title">
-                    {{ block.settings.product_select.title | default: 'Product Name' }}
+                    {{ block.settings.product_select.title | default: 'sections.product_carousel.product_title' | t }}
                   </h6>
                   {%- if block.settings.product_select.price %}
                     {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
@@ -202,19 +202,19 @@
 
 {% schema %}
 {
-  "name": "Product carousel",
+  "name": "t:sections.product-carousel.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.product-carousel.settings.color_scheme.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "community_heading",
-      "label": "Title",
-      "default": "Product carousel"
+      "label": "t:sections.product-carousel.settings.community_heading.label",
+      "default": "t:sections.product-carousel.settings.community_heading.default"
     },
     {
       "type": "range",
@@ -223,24 +223,24 @@
       "max": 6,
       "step": 1,
       "default": 4,
-      "label": "t:sections.collection-list.settings.columns_desktop.label"
+      "label": "t:sections.product-carousel.settings.columns_desktop.label"
     },
     {
       "type": "select",
       "id": "ratio",
-      "label": "Image ratio",
+      "label": "t:sections.product-carousel.settings.ratio.label",
       "options": [
         {
           "value": "auto",
-          "label": "Adapt to image"
+          "label": "t:sections.product-carousel.settings.ratio.options.auto"
         },
         {
           "value": "1",
-          "label": "Square"
+          "label": "t:sections.product-carousel.settings.ratio.options.square"
         },
         {
           "value": "2",
-          "label": "Portrait"
+          "label": "t:sections.product-carousel.settings.ratio.options.portrait"
         }
       ],
       "default": "auto"
@@ -256,7 +256,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
     {
@@ -266,19 +266,19 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     }
   ],
   "blocks": [
     {
       "type": "product",
-      "name": "Product",
+      "name": "t:sections.product-carousel.blocks.product.name",
       "settings": [
         {
           "type": "product",
           "id": "product_select",
-          "label": "Select product"
+          "label": "t:sections.product-carousel.blocks.product.settings.product_select.label"
         },
         {
           "type": "range",
@@ -286,35 +286,35 @@
           "min": 0,
           "max": 100,
           "step": 1,
-          "label": "Opacity",
+          "label": "t:sections.product-carousel.blocks.product.settings.overlay_opacity.label",
           "default": 70,
           "unit": "%"
         },
         {
           "type": "image_picker",
           "id": "product_image",
-          "label": "Image",
-          "info": "Image will replace product image."
+          "label": "t:sections.product-carousel.blocks.product.settings.product_image.label",
+          "info": "t:sections.product-carousel.blocks.product.settings.product_image.info"
         },
         {
           "type": "video",
           "id": "product_video",
-          "label": "Video",
-          "info": "Video will replace all (Image and product image)."
+          "label": "t:sections.product-carousel.blocks.product.settings.product_video.label",
+          "info": "t:sections.product-carousel.blocks.product.settings.product_video.info"
         },
         {
           "type": "checkbox",
           "id": "video_loop",
-          "label": "Loop video",
+          "label": "t:sections.product-carousel.blocks.product.settings.video_loop.label",
           "default": true,
-          "info": "Enable to play the video in a continuous loop."
+          "info": "t:sections.product-carousel.blocks.product.settings.video_loop.info"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Product carousel",
+      "name": "t:sections.product-carousel.presets.name",
       "blocks": [
         {
           "type": "product"

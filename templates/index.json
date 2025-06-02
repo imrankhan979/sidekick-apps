@@ -129,7 +129,7 @@
       }
     },
     "community_stories_QyYUaW": {
-      "type": "community-stories",
+      "type": "product-carousel",
       "blocks": {
         "product_TV7Q4T": {
           "type": "product",
@@ -185,8 +185,8 @@
         "community_heading": "Product carousela",
         "columns_desktop": 4,
         "ratio": "auto",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "image_with_text_MWxqfX": {
@@ -322,6 +322,16 @@
     "colleciton_carousel_KzaLdn": {
       "type": "colleciton-carousel",
       "blocks": {
+        "collection_QDYJhG": {
+          "type": "collection",
+          "settings": {
+            "collection_select": "",
+            "collection_bg_color": "#f3f3f3",
+            "collection_heading": "Collection title",
+            "collection_featured": "Featured Collection",
+            "collection_button": "Shop Now"
+          }
+        },
         "collection_jCde4G": {
           "type": "collection",
           "settings": {
@@ -364,6 +374,7 @@
         }
       },
       "block_order": [
+        "collection_QDYJhG",
         "collection_jCde4G",
         "collection_w6ae8J",
         "collection_G8wFef",
@@ -376,10 +387,10 @@
         "padding_bottom": 60
       }
     },
-    "testimonial_xM4Wjg": {
+    "testimonial_RLAdxK": {
       "type": "testimonial",
       "blocks": {
-        "testimonial_x9VGbg": {
+        "testimonial_dt4P9Q": {
           "type": "testimonial",
           "settings": {
             "client_review_title": "Elevated Streetwear",
@@ -390,7 +401,7 @@
             "testimonial_product": ""
           }
         },
-        "testimonial_QBBVQq": {
+        "testimonial_XgJdfj": {
           "type": "testimonial",
           "settings": {
             "client_review_title": "Elevated Streetwear",
@@ -401,7 +412,7 @@
             "testimonial_product": ""
           }
         },
-        "testimonial_96fNqX": {
+        "testimonial_DenY4r": {
           "type": "testimonial",
           "settings": {
             "client_review_title": "Elevated Streetwear",
@@ -414,11 +425,11 @@
         }
       },
       "block_order": [
-        "testimonial_x9VGbg",
-        "testimonial_QBBVQq",
-        "testimonial_96fNqX"
+        "testimonial_dt4P9Q",
+        "testimonial_XgJdfj",
+        "testimonial_DenY4r"
       ],
-      "name": "Testimonial",
+      "name": "Testimonials",
       "settings": {
         "section_color_scheme": "",
         "testimonial_heading": "Customer reviews",
@@ -431,7 +442,7 @@
       "type": "video-section",
       "blocks": {
         "title_content_Fj3mn6": {
-          "type": "title_content", 
+          "type": "title_content",
           "settings": {
             "main_heading": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
           }
@@ -463,17 +474,17 @@
       "settings": {
         "color_scheme": "scheme-2",
         "heading_text": "BUILD YOUR BUNDLE",
-        "collection": "snazzy",
+        "collection": "",
         "ratio": "auto",
         "bundle_cart_heading": "BUNDLE CART",
         "bundle_cart_subheading": "Add at least 3 items to get 30% OFF",
-        "padding_top": 120,
+        "padding_top": 60,
         "padding_bottom": 120
       }
     },
-    "blog_section_XUCBMy": {
+    "blog_section_UQt9FA": {
       "type": "blog-section",
-      "name": "Blog Post",
+      "name": "Blog posts",
       "settings": {
         "color_scheme": "",
         "heading_text": "LATEST FASHION NEWS",
@@ -598,10 +609,10 @@
     "collection_tab_gT463q",
     "bulk_hotspot_JjfnHW",
     "colleciton_carousel_KzaLdn",
-    "testimonial_xM4Wjg",
+    "testimonial_RLAdxK",
     "video_section_4VCawk",
     "product_bundle_KaQ8BR",
-    "blog_section_XUCBMy",
+    "blog_section_UQt9FA",
     "scrolling_text_aNXVL6",
     "gallery_section_GYDCNF"
   ]

@@ -44,12 +44,12 @@
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                 </a>
                 <div class="product-content">
-                  <h5 class="product-title">Example product title</h5>
+                  <h5 class="product-title">{{ 'sections.product_bundle.product_title' | t }}</h5>
                   <div class="product-price-wrapper align-items-center flex no-compare">
                     <h6 class="product-price">{{ 00.00 | money }}</h6>
                   </div>
                 </div>
-                <button type="submit" class="product-btn add-to-bundle" disabled>Add to bundle</button>
+                <button type="submit" class="product-btn add-to-bundle" disabled>{{ 'sections.product_bundle.add_to_bundle' | t }}</button>
               </div>
             {% endfor %}
           {% endif %}
@@ -86,9 +86,9 @@
             <div class="bundle-list-footer">
               <div class="bundle-list-footer-inner">
                 <div class="bundle-total-price flex space-between align-items-center">
-                  <span>SUBTOTAL</span><span id="bundle-total">{{ 00.00 | money }}</span>
+                  <span>{{ 'sections.product_bundle.subtotal' | t }}</span><span id="bundle-total">{{ 00.00 | money }}</span>
                 </div>
-                <button class="add-to-cart">ADD TO CART</button>
+                <button class="add-to-cart">{{ 'sections.product_bundle.add_to_cart' | t }}</button>
               </div>
             </div>
           </div>
@@ -100,60 +100,60 @@
 
 {% schema %}
 {
-  "name": "Product bundle",
+  "name": "t:sections.product_bundle.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
+      "label": "t:sections.product_bundle.settings.color_scheme.label",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "heading_text",
-      "label": "Heading",
-      "default": "BUILD YOUR BUNDLE"
+      "label": "t:sections.product_bundle.settings.heading_text.label",
+      "default": "t:sections.product_bundle.settings.heading_text.default"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Chose collection"
+      "label": "t:sections.product_bundle.settings.collection.label"
     },
     {
       "type": "select",
       "id": "ratio",
-      "label": "Image ratio",
+      "label": "t:sections.product_bundle.settings.ratio.label",
       "options": [
         {
           "value": "auto",
-          "label": "Adapt to image"
+          "label": "t:sections.product_bundle.settings.ratio.options.auto"
         },
         {
           "value": "1",
-          "label": "Square"
+          "label": "t:sections.product_bundle.settings.ratio.options.square"
         },
         {
           "value": "2",
-          "label": "Portrait"
+          "label": "t:sections.product_bundle.settings.ratio.options.portrait"
         }
       ],
       "default": "auto"
     },
     {
       "type": "header",
-      "content": "Bundle cart"
+      "content": "t:sections.product_bundle.settings.bundle_cart_header"
     },
     {
       "type": "inline_richtext",
       "id": "bundle_cart_heading",
-      "label": "Bundle cart heading",
-      "default": "BUNDLE CART"
+      "label": "t:sections.product_bundle.settings.bundle_cart_heading.label",
+      "default": "t:sections.product_bundle.settings.bundle_cart_heading.default"
     },
     {
       "type": "inline_richtext",
       "id": "bundle_cart_subheading",
-      "label": "Bundle cart subheading",
-      "default": "Add at least 3 items to get 30% OFF"
+      "label": "t:sections.product_bundle.settings.bundle_cart_subheading.label",
+      "default": "t:sections.product_bundle.settings.bundle_cart_subheading.default"
     },
     {
       "type": "header",
@@ -182,7 +182,7 @@
   ],
   "presets": [
     {
-      "name": "Product bundle"
+      "name": "t:sections.product_bundle.presets.name"
     }
   ]
 }

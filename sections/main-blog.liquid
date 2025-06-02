@@ -87,15 +87,15 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.main-blog.settings.color_scheme.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
     {
       "type": "text",
       "id": "heading_text",
-      "label": "Heading",
-      "info": "Leave it blank to show the default heading."
+      "label": "t:sections.main-blog.settings.heading_text.label",
+      "info": "t:sections.main-blog.settings.heading_text.info"
     },
     {
       "type": "range",
@@ -103,7 +103,7 @@
       "min": 2,
       "max": 12,
       "step": 1,
-      "label": "Maximum number of article to show",
+      "label": "t:sections.main-blog.settings.item_total.label",
       "default": 9
     },
     {
@@ -112,7 +112,7 @@
       "min": 1,
       "max": 4,
       "step": 1,
-      "label": "Number of article to show in a row",
+      "label": "t:sections.main-blog.settings.item_count.label",
       "default": 3
     },
     {
@@ -125,13 +125,13 @@
       "type": "checkbox",
       "id": "show_excerpt",
       "default": false,
-      "label": "Show excerpt"
+      "label": "t:sections.main-blog.settings.show_excerpt.label"
     },
     {
       "type": "checkbox",
       "id": "show_tags",
       "default": true,
-      "label": "Show Tags"
+      "label": "t:sections.main-blog.settings.show_tags.label"
     },
     {
       "type": "checkbox",
@@ -148,19 +148,19 @@
     {
       "type": "select",
       "id": "ratio",
-      "label": "Image ratio",
+      "label": "t:sections.main-blog.settings.ratio.label",
       "options": [
         {
           "value": "auto",
-          "label": "Adapt to image"
+          "label": "t:sections.main-blog.settings.ratio.options.auto"
         },
         {
           "value": "1",
-          "label": "Square"
+          "label": "t:sections.main-blog.settings.ratio.options.square"
         },
         {
           "value": "2",
-          "label": "Portrait"
+          "label": "t:sections.main-blog.settings.ratio.options.portrait"
         }
       ],
       "default": "auto"
@@ -191,4 +191,5 @@
     }
   ]
 }
+
 {% endschema %}
