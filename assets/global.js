@@ -1334,7 +1334,7 @@ customElements.define("observed-height", ObservedDiv);
 //   });
 // });
 document.addEventListener('DOMContentLoaded', () => {
-  const disclosureButtons = document.querySelectorAll(' .disclosure__button');
+  const disclosureButtons = document.querySelectorAll('.disclosure__button');
   const menuItems = document.querySelectorAll('.header-menu ul li .main-menu-has-sub-menu');
   const headerBgOverlay = document.querySelector('.header-bg-overlay');
   const headerMenu = document.querySelector('.snazzy-header');
@@ -1346,8 +1346,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeAll = () => {
     headerBgOverlay?.classList.remove('active');
     headerMenu?.classList.remove(activeHeaderClass);
-    document.querySelectorAll(`.${activeDisclosureParentClass}`).forEach(el => el.classList.remove(activeDisclosureParentClass));
-    document.querySelectorAll(`.${activeParentClass}`).forEach(li => li.classList.remove(activeParentClass));
+
+    // Close all menu items
+    document.querySelectorAll(`.${activeParentClass}`).forEach(li => 
+      li.classList.remove(activeParentClass)
+    );
+
+    // Close all disclosure elements
+    document.querySelectorAll('.disclosure').forEach(disclosure => 
+      disclosure.classList.remove(activeDisclosureParentClass)
+    );
   };
 
   const toggleClasses = (element, parentClass) => {
@@ -1363,7 +1371,8 @@ document.addEventListener('DOMContentLoaded', () => {
   disclosureButtons.forEach(button => {
     button.addEventListener('click', e => {
       e.stopPropagation();
-      toggleClasses(button.closest('.disclosure'), activeDisclosureParentClass);
+      const parent = button.closest('.disclosure');
+      toggleClasses(parent, activeDisclosureParentClass);
     });
   });
 
@@ -1375,12 +1384,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.addEventListener('click', () => {
-    // Only close if an overlay or menu is visibly active
     if (headerBgOverlay?.classList.contains('active')) {
       closeAll();
     }
   });
 });
+
 
 
 
