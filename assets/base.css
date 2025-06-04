@@ -2453,6 +2453,7 @@ input[type='checkbox'] {
 .snazzy-header {
   transition: all .5s;
   z-index: 99;
+  position: relative;
 }
 
 .snazzy-header:hover ,.snazzy-header.menu-active {
