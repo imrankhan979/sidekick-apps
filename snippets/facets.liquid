@@ -551,14 +551,16 @@
                             {{ filter.label | escape }}
                           </button>
 
-                          {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
-                          <p class="mobile-facets__info">
-                            {{ 'products.facets.max_price' | t: price: max_price_amount }}
-                          </p>
-
-                          <price-range class="facets__price">
-                            {% render 'price-facet', filter: filter, id_prefix: 'Mobile-Filter-' %}
-                          </price-range>
+                          <div class="mobile-price-wrapper">
+                            {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
+                            <p class="mobile-facets__info">
+                              {{ 'products.facets.max_price' | t: price: max_price_amount }}
+                            </p>
+  
+                            <price-range class="facets__price">
+                              {% render 'price-facet', filter: filter, id_prefix: 'Mobile-Filter-' %}
+                            </price-range>
+                          </div>
                           <div class="mobile-facets__footer">
                             <facet-remove class="mobile-facets__clear-wrapper">
                               <a href="{{ filter.url_to_remove }}" class="mobile-facets__clear underlined-link">

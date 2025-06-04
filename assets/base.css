@@ -3960,9 +3960,11 @@ details[open]>.header__icon--menu .icon-hamburger {
     letter-spacing: 0%;
   }
 }
-.facets-wrapper{
-  position: sticky;
-  top: 0;
+@media (min-width: 991px) {
+  .facets-wrapper{
+    position: sticky;
+    top: 0;
+  }    
 }
 
 
