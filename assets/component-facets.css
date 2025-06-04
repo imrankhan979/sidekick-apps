@@ -864,7 +864,9 @@ a.active-facets__button.focused .active-facets__button-inner {
   margin: 0;
   flex-grow: 1;
 }
-
+.mobile-facets__header-inner >  *{
+  margin-top: 12px;
+}
 .mobile-facets__open-wrapper {
   display: inline-block;
 }
@@ -950,7 +952,13 @@ text-transform: uppercase;
   grid-template-columns: min-content 1fr;
   text-align: start;
 }
-
+.mobile-price-wrapper{
+  padding: 1.5rem 2rem 1.5rem 2.5rem;
+}
+.mobile-price-wrapper .mobile-facets__info{
+  padding: 0;
+  margin-bottom: 24px;
+}
 .mobile-facets__close-button > .facets__and-helptext {
   grid-column-start: 2;
 }
