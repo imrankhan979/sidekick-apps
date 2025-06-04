@@ -2428,7 +2428,7 @@
           },
           "info": "Add images by editing your collections. [Learn more](https://help.shopify.com/manual/products/collections)"
         },
-        "colums_by_page": {
+        "columns_by_page": {
           "label": "Collections per page"
         },
         "columns_desktop": {
