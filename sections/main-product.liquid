@@ -65,12 +65,7 @@
   {%- if request.design_mode -%}
     <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
-{% assign has_size_option = false %} 
-{% for option in product.options_with_values %}
-  {% if option.name == 'Size' %}
-    {% assign has_size_option = true %}
-  {% endif %}
-{% endfor %}
+
   {%- assign first_3d_model = product.media | where: 'media_type', 'model' | first -%}
   {%- if first_3d_model -%}
     {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
