@@ -219,11 +219,94 @@
       "name": "Dropdowns and pop-ups",
       "paragraph": "Affects areas like navigation dropdowns, pop-up modals, and cart pop-ups."
     },
+    "newsletter-popup": {
+    "name": "Newsletter popup",
+    "settings": {
+      "enable_popup": {
+        "label": "Enable popup"
+      },
+      "display_mode": {
+        "label": "Display mode",
+        "info": "You should only use this for editing the popup. Make sure 'Test mode' is disabled when publishing your theme.",
+        "options__disable": {
+          "label": "Disable"
+        },
+        "options__enable": {
+          "label": "Enable"
+        }
+      },
+      "show_again_after": {
+        "label": "Show again after (days)",
+        "info": "Independent to each browser and device"
+      },
+      "delay": {
+        "label": "Delay",
+        "info": "Delay is disabled in theme editor for visibility."
+      },
+      "image": {
+        "label": "Image"
+      }
+    },
+    "blocks": {
+      "heading": {
+        "name": "Heading",
+        "settings": {
+          "title": {
+            "label": "Heading",
+            "default": "Subscribe Newsletter"
+          }
+        }
+      },
+      "text": {
+        "name": "Text",
+        "settings": {
+          "subheading": {
+            "label": "Subheading",
+            "default": "Subscribe now and receive a discount on your first order"
+          }
+        }
+      },
+      "form": {
+        "name": "Form"
+      },
+      "description": {
+        "name": "Additional description",
+        "settings": {
+          "text": {
+            "label": "Description",
+            "default": "Subscribe and receive exclusive information and offers!"
+          }
+        }
+      }
+    },
+    "presets": {
+      "name": "Newsletter popup"
+    }
+     },
+ 
+    "breadcrumb_banner": {
+      "name": "Breadcrumb banner",
+      "settings": {
+        "custom_text": {
+          "label": "Custom title page"
+        },
+        "enable_breadcrumb_navigation": {
+          "label": "Enable breadcrumb navigation"
+        },
+      }
+    },
+
     "media": {
       "name": "Media"
     },
     "drawers": {
       "name": "Drawers"
+    },
+    "search_drawer": {
+      "name": "Search drawer",
+      "presets": {
+        "name": "Search drawer"
+      }
     },
     "animations": {
       "name": "Animations",
@@ -914,6 +997,25 @@
         "name": "Blog breadcrumb banner"
       }
     },
+    "page-header-section": {
+      "name": "Blog Page header",
+      "settings": {
+        "header_bg": {
+          "label": "Background image"
+        },
+        "section_heading": {
+          "label": "Page heading",
+          "info": "Leave it blank to show the default heading."
+        },
+        "page_header_image": {
+          "label": "Image",
+          "info": "Image will be cropped to fit the section."
+        },
+      },
+      "presets": {
+        "name": "Blog page header"
+      }
+    },
     "collection-carousel": {
       "name": "Collection carousel",
       "settings": {
@@ -1018,7 +1120,8 @@
           "label": "Color scheme"
         },
         "testimonial_heading": {
-          "label": "Heading"
+          "label": "Heading",
+          "default": "Customer reviews"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -1459,7 +1562,6 @@
         }
       }
     },
-    
     "image-banner": {
       "name": "Image banner",
       "settings": {
@@ -1715,7 +1817,54 @@
         }
       },
       "presets": {
-        "name": "Collection tab"
+        "name": "Collection tab",
+        "block": {
+          "settings": {
+            "tab_title": {
+              "label": "Featured",
+            },
+            "best_seller": {
+              "label": "Best Sellers"
+            },
+            "new_arrivals": {
+              "label": "New arrivals"
+            }
+          }
+        }
+      }
+    },
+    "all-collection": {
+      "name": "All Collections",
+      "settings": {
+        "heading_tag": {
+          "label": "Heading tag"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection carousel",
+          "settings": {
+            "collection_select": {
+              "label": "Select collection"
+            },
+            "collection_bg_color": {
+              "label": "Background color"
+            },
+            "collection_image": {
+              "label": "Collection image"
+            },
+            "collection_heading": {
+              "label": "Heading",
+              "info": "If left blank, the collection name will be used."
+            },
+            "collection_button_link": {
+              "label": "Button link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "All collection"
       }
     },
     "faq": {
@@ -1767,7 +1916,40 @@
         }
       }
     },
- 
+    "additional_info": {
+      "name": "Additional information",
+      "blocks": {
+        "item": {
+          "name": "Item",
+          "settings": {
+            "tab_title": {
+              "label": "Tab Title",
+              "default": "Item"
+            },
+            "content_rich": {
+              "label": "Content",
+              "info": "Text from here describes your description."
+            },
+            "page": {
+              "label": "Content from page"
+            },
+            "custom_liquid": {
+              "label": "Custom liquid",
+              "info": "Add app snippets or other Liquid code to create advanced customizations. For product additional description, you can use {{ product.description }}"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Additional information",
+        "tabs": {
+          "description": "DESCRIPTION",
+          "fabric": "FABRIC & CARE",
+          "shipping": "SHIPPING"
+        }
+      }
+    },
+
 
     "multirow": {
       "name": "Multirow",
@@ -2246,7 +2428,7 @@
           },
           "info": "Add images by editing your collections. [Learn more](https://help.shopify.com/manual/products/collections)"
         },
-        "colums_by_page": {
+        "columns_by_page": {
           "label": "Collections per page"
         },
         "columns_desktop": {
@@ -3024,6 +3206,51 @@
         }
       }
     },
+    "search_banner" : {
+      "name": "Search banner",
+      "settings": {
+        "header_bg": {
+          "label": "Background image"
+        },
+        "section_heading": {
+          "label": "Page heading",
+          "info": "Leave it blank to show the default heading."
+        },
+      },
+      "presets": {
+        "name": "Search banner"
+      }
+    },
+    "related_blog_post": {
+      "name": "Related Blog Post",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "RELATED POSTS"
+        },
+        "item_shows": {
+          "label": "Number of posts to show"
+        },
+        "columns_desktop": {
+          "label": "Desktop Columns"
+        },
+        "show_image": {
+          "label": "Show Featured Image"
+        },
+        "show_date": {
+          "label": "Show Date"
+        },
+        "show_author": {
+          "label": "Show Author"
+        },
+        "show_tags": {
+          "label": "Show Tags"
+        }
+      },
+      "presets": {
+        "name": "Related Blog Post"
+      }
+    },
     "rich-text": {
       "name": "Rich text",
       "settings": {
@@ -3406,6 +3633,33 @@
         "name": "Product bundle"
       }
     },
+    "bundle": {
+      "name": "Multi-product add",
+      "blocks": {
+        "product": {
+          "name": "Product",
+          "settings": {
+            "product": {
+              "label": "Select product"
+            },
+            "quantity": {
+              "label": "Default quantity"
+            },
+          }
+        }
+      },
+      "presets": {
+        "name": "Multi-product add"
+      }
+    },
+    "404_page": {
+      "name": "404 page",
+      "settings": {
+        "background_image": {
+          "label": "Background Image"
+        },
+      },
+    },
     "slideshow": {
       "name": "Slideshow",
       "blocks": {
@@ -3697,6 +3951,107 @@
       "presets": {
         "name": "Collapsible content"
       }
-    }
+    },
   },
+  "blocks": {
+    "button": {
+      "name": "Button",
+      "settings": {
+        "button_text": {
+          "label": "Button label",
+          "default": "Learn More"
+        },
+        "button_link": {
+          "label": "Button link"
+        },
+      },
+      "presets": {
+        "name": "Button"
+      }
+    },
+    "description": {
+      "name": "Description",
+      "settings": {
+        "Description": {
+          "label": "Description",
+          "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+        }
+      },
+      "presets": {
+        "name": "Description"
+      }
+    },
+      "group": {
+      "name": "Group",
+      "settings": {
+        "inner_gap": {
+          "label": "Inside elements gap"
+        },
+        "max_width": {
+          "label": "Desktop max width"
+        },
+        "card_rotation": {
+          "label": "Item rotation"
+        },
+        "header_padding": {
+          "label": "Block padding"
+        },
+        "padding_horizontal": {
+          "label": "Horizontal padding"
+        },
+        "padding_vertical": {
+          "label": "Vertical padding"
+        },
+        "header_margin": {
+          "label": "Block margin"
+        }
+      }
+    },
+    "heading": {
+      "name": "Heading",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "Heading text"
+        },
+        "uppercase": {
+          "label": "Make heading uppercase"
+        }
+      },
+      "presets": {
+        "name": "Heading"
+      }
+    },
+    "image": {
+      "name": "Image",
+      "settings": {
+        "image": {
+          "label": "Image",
+        }
+      },
+      "presets": {
+        "name": "Image"
+      }
+    },
+    "shape_image": {
+      "name": "Shape image",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "max_width": {
+          "label": "Max width",
+        },
+        "top_offset": {
+          "label": "Top offset",
+        },
+        "left_offset": {
+          "label": "Left offset",
+        }
+      },
+      "presets": {
+        "name": "Shape image"
+      }
+    }
+  }
 }

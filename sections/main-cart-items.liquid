@@ -43,7 +43,7 @@
       <div class="title-wrapper-with-link text-center">
       <div class="breadcrumb-link">
         <ul>
-          <li><a href="{{ request.origin }}">Home </a></li>
+          <li><a href="{{ request.origin }}">{{ 'sections.breadcrumb_banner.home' | t }} </a></li>
           <li>/</li>
           <li>{{ 'sections.cart.title' | t }}</li>
         </ul>
@@ -86,7 +86,7 @@
       <div class="cart__warnings">
         <div class="anim-item breadcrumb-link">
           <ul>
-            <li><a href="{{ request.origin }}">Home </a></li>
+            <li><a href="{{ request.origin }}">{{ 'sections.breadcrumb_banner.home' | t }} </a></li>
             <li>/</li>
             <li>{{ 'sections.cart.title' | t }}</li>
           </ul>
@@ -295,7 +295,7 @@
                                     class="button button--tertiary"
                                     aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
                                   >
-                                    <span class="svg-wrapper">Remove</span>
+                                    <span class="svg-wrapper">{{ 'sections.quick_order_list.remove' | t }}</span>
                                   </a>
                                 </cart-remove-button>
                               </div>

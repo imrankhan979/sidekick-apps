@@ -29,13 +29,13 @@
       <div class="page-width">
         <div class="breadcrumb-content-area error-content">
           <div class="breadcrumb-heading">
-            <h1 class="anim-item breadcrumb-title">404</h1>
+            <h1 class="anim-item breadcrumb-title">{{ 'templates.404.subtext' | t }}</h1>
             <div class="anim-item error_desc">
-              <span class="breadcrumb-desc">Great things take time… and some pages just take a wrong turn.</span>
+              <span class="breadcrumb-desc">{{ 'templates.404.title' | t }}</span>
             </div>
             <div class="anim-item breadcrumb_error_button">
               <a class="breadcrumb-error-btn" href="{{ routes.root_url }}"
-                >Back to home
+                >{{ 'templates.404.button_text' | t }}
                 <span>
                   {{- 'icon-caret.svg' | inline_asset_content -}}
                 </span>
@@ -51,18 +51,18 @@
 
 {% schema %}
 {
-  "name": "404 Page",
+  "name": "t:sections.404_page.name",
   "settings": [
     {
       "type": "color_scheme",
       "id": "section_color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "image_picker",
       "id": "background_image",
-      "label": "Background Image"
+      "label": "t:sections.404_page.settings.background_image.label"
     },
     {
       "type": "header",
@@ -75,7 +75,7 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 352
     },
     {
@@ -85,7 +85,7 @@
       "max": 360,
       "step": 4,
       "unit": "px",
-      "label": "Padding Bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 352
     }
   ]

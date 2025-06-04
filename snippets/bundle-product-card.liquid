@@ -244,12 +244,12 @@
       {% endif %}
        {% if card_product.available %}
         {% if card_product.variants.size > 1 %} 
-          <button class="add-to-bundle" data-available="true">Choose Variant</button>
+          <button class="add-to-bundle" data-available="true">{{ 'products.product.choose_variant' }}</button>
         {% else %}
-          <button class="add-to-bundle" data-available="true">Add to Bundle</button>
+          <button class="add-to-bundle" data-available="true">{{ 'products.product.add_to_bundle' }}</button>
         {% endif %}
       {% else %}
-        <button class="add-to-bundle" data-available="false" disabled>Sold Out</button>
+        <button class="add-to-bundle" data-available="false" disabled>{{ 'products.product.sold_out' }}</button>
       {% endif %}
       
      </div> 

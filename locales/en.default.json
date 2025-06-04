@@ -62,6 +62,10 @@
     "success": "Thanks for subscribing",
     "button_label": "Subscribe"
   },
+  "pagination": {
+    "previous": "PREV",
+    "next": "NEXT"
+  },
   "accessibility": {
     "skip_to_text": "Skip to content",
     "skip_to_product_info": "Skip to product information",
@@ -118,6 +122,7 @@
       "add_to_cart": "Add to cart",
       "add_to_bundle": "Add to bundle",
       "choose_options": "Choose options",
+      "choose_variant": "Choose variant",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
       "inventory_in_stock": "In stock",
@@ -222,7 +227,10 @@
       "sort_by_label": "Sort by:",
       "to": "To",
       "clear_filter": "Remove filter"
-    }
+    },
+    "placeholder": {
+      "product_title": "Example product title",
+    },
   },
   "templates": {
     "search": {
@@ -274,8 +282,9 @@
       }
     },
     "404": {
-      "title": "Page not found",
-      "subtext": "404"
+      "title": "Great things take time… and some pages just take a wrong turn.",
+      "subtext": "404",
+      "button_text": "Back to home"
     }
   },
   "sections": {
@@ -343,6 +352,11 @@
     "featured_collection": {
       "view_all": "View all",
       "view_all_label": "View all products in the {{ collection_name }} collection"
+    },
+    "all-collection": {
+      "title": "Collection Name",
+      "item": "Item",
+      "items": "Items",
     },
     "collection_list": {
       "view_all": "View all",
@@ -416,6 +430,7 @@
       "remove_all_single_item_confirmation": "Remove 1 item from your cart?",
       "remove_all_items_confirmation": "Remove all {{ quantity }} items from your cart?",
       "remove_all": "Remove all",
+      "remove": "Remove",
       "cancel": "Cancel",
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
@@ -572,6 +587,15 @@
       "max_characters": "{{ max_chars }} characters max",
       "send_on": "YYYY-MM-DD",
       "send_on_label": "Send on (optional)"
+    }
+  },
+  "button": {
+    "buy_button": {
+      "guaranteed_safe": "Guaranteed safe checkout",
+    },
+    "share_button": {
+      "product_link": "Product link copied to clipboard!",
+      "product_link_error": "Failed to copy:",
     }
   }
 }

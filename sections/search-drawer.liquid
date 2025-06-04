@@ -6,7 +6,7 @@
 
     <div class="search_top_header">
         <div class="search_top_title">
-            <h6 class="search_title">Search</h6>
+            <h6 class="search_title">{{ 'general.search.search' | t }}</h6>
         </div>
         <div class="search_close_button ">
             <button
@@ -121,7 +121,7 @@
 
 {% schema %}
     {
-      "name": "Search drawer",
+      "name": "t:settings_schema.search_drawer.name",
       "settings": [
         {
         "type": "color_scheme",
@@ -133,7 +133,7 @@
       ],
       "presets": [
         {
-          "name": "Search drawer"
+          "name": "t:settings_schema.search_drawer.presets.name",
         }
       ]
     }
