@@ -1,4 +1,4 @@
- class FreeShippingBar extends HTMLElement {
+class FreeShippingBar extends HTMLElement {
     constructor() {
       super();
       this.threshold = parseFloat(this.getAttribute('threshold')) || 200;
@@ -34,9 +34,12 @@
 
       this.progressEl.style.width = percent + '%';
     }
-  }
+}
 
+if (!customElements.get('free-shipping-bar')) {
   customElements.define('free-shipping-bar', FreeShippingBar);
+}
+
 
   // ✅ Event Delegation: Listen for any future .quantity__button clicks
 document.addEventListener('click', (e) => {
