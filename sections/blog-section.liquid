@@ -33,7 +33,6 @@
     </div>
   {% endif %}
 <div class="blog-section-inner">
-<<<<<<< HEAD
 
 {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
   {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
@@ -94,11 +93,6 @@
       </div>
   </div>
 </div>
-=======
-{%- if articles.size > 0 -%}
-  {%- for article in articles limit: section.settings.post_limit -%}
-    {% render "blog-item-card" article: article %}
->>>>>>> a43cba74741959f1d519a68d13351ead8d3f36ba
   {%- endfor -%}
 {%- else -%}
   {% for i in (1..section.settings.post_limit) -%}

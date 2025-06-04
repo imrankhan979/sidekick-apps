@@ -48,11 +48,6 @@ quick-order-list .quantity__button {
     background-color: rgb(var(--color-background));
   }
 
-  .variant-item__quantity-wrapper--no-info,
-  .variant-item__error {
-    padding-left: calc(15px + 3.4rem);
-  }
-
   .variant-item__error {
     margin-left: 0.3rem;
   }
@@ -70,6 +65,7 @@ quick-order-list .quantity__button {
 .quick-order-list__table th {
   padding: 0;
   border: none;
+  padding-left: 0;
 }
 
 .quick-order-list__table th {
@@ -475,11 +471,11 @@ quick-order-list-remove-button:hover .icon-remove {
   }
 
   .quick-order-list__table th + th {
-    padding-left: 5.4rem;
+    padding-left: 0rem;
   }
 
   .quick-order-list__table .quick-order-list__table-heading--wide + .quick-order-list__table-heading--wide {
-    padding-left: 10rem;
+    padding-left: 0;
     text-align: right;
   }
 
@@ -636,4 +632,73 @@ quick-order-list .tax-note {
   margin: 0 0 2rem;
   display: block;
   width: 100%;
+}
+
+/* ------- */
+.quick-add-modal__content-info--bulk .quick-add__info .product__view-details {
+    color: #000000;
+    font-family: var(--sds-ff-heading);
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.quick-add-modal__content-info--bulk .quick-add__product-container img {
+  border-radius: 15px;
+}
+.quick-add-modal__content-info .quick-add__content-info__media {
+    height: auto;
+    margin: 0 9px;
+    max-width: 100%;
+    width: 20%;
+}
+.quick-add-modal__content-info .quick-modal__list-wrapper {
+    max-width: 100%;
+    width: 100%;
+}
+.variant-item__quantity-wrapper .quick-order-list-remove-btn {
+    position: relative;
+    color: #808080;
+    font-size: 14px;
+    line-height: 1;
+    z-index: 1;
+}
+.variant-item__quantity-wrapper .quick-order-list-remove-btn::before {
+    position: absolute;
+    content: "";
+    display: block;
+    height: 1px;
+    min-height: 1px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #808080;
+    will-change: transform;
+    animation-duration: 0.9s;
+    animation-timing-function: ease;
+}
+.variant-item__quantity-wrapper .quick-order-list-remove-btn:hover:before {
+    animation-name: hover-underline;
+}
+.quick-order-list__container .variant-item__price  .price.discount{
+  color: red;
+}
+.quick-add-modal__content-info--bulk .quick-order-list__table th {
+    font-size: 13px;
+    color: rgb(126 126 126);
+}
+.quick-order-list__container .variant-item__quantity .quantity:before {
+    z-index: 0;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+}
+.quick-order-list__container .variant-item__quantity .quantity:after {
+  box-shadow: none;
+}
+.quick-order-list__container .variant-item__quantity .quantity__input {
+  font-size: 14px;
+  z-index: 1;
+}
+.quick-add-modal__content img {
+    border-radius: 5px;
 }
