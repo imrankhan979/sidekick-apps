@@ -17,7 +17,12 @@
     justify-content: center;
     align-items: center;
   }
-  
+    .snzz-video-img > *{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
   .snzz-video-img img {
     width: 100%;
     height: 100%;
@@ -98,3 +103,11 @@
       font-weight: 400;
     }
   }
+  .snzz-video-section .video-stream.html5-main-video{
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 2 !important;
+  } 

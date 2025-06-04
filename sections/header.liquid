@@ -1,6 +1,7 @@
 
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+
 {% style %}
     .snazzy-header .header-inner{
         padding: {{ section.settings.padding_top}}px 0 {{ section.settings.padding_bottom}}px 0;
@@ -118,7 +119,7 @@
                                     </a>
                                 {%- endif -%}
                     
-                                <a href="{{ routes.cart_url }}" class="header__icon--cart flex align-items-center" id="cart-icon-bubble">
+                                <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart flex align-items-center" id="cart-icon-bubble">
                                     {% if cart == empty %}
                                         <span class="flex">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
                                     {% else %}

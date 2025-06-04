@@ -21,12 +21,28 @@
 <section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
        <div class="snzz-video-inner">
         {% assign video_url = section.settings.bg_video.sources[1].url %}
+        {% assign youtube_url = section.settings.youtube_url %}
+        {% assign vimeo_id = section.settings.vimeo_url | split: '/' | last %}
             <div class="snzz-video-img">
                 {%- if section.settings.bg_image -%}
                     {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-               {%- elsif video_url -%}
-                    <video src="{{ video_url }}"playsinline controls muted {% if section.settings.video_loop %}loop{% endif %} autoplay></video>
-                        {% else %} 
+               {%- elsif video_url and section.settings.video_type == 'upload' -%}
+                    <video src="{{ video_url }}"playsinline muted loop autoplay></video>
+                {% elsif youtube_url != blank and section.settings.video_type == 'youtube' %}
+                      <iframe 
+                          src="{{ youtube_url | replace: 'watch?v=', 'embed/' }}?autoplay=1&mute=1&loop=1&playlist={{ youtube_url | split: 'v=' | last }}&controls=0&showinfo=0&rel=0&modestbranding=1"
+                          frameborder="0"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen
+                        ></iframe>
+                {% elsif vimeo_id != blank and section.settings.video_type == 'vimeo' %}
+                        <iframe 
+                          src="https://player.vimeo.com/video/{{ vimeo_id }}?background=1&autoplay=1&loop=1&byline=0&title=0"
+                          frameborder="0"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowfullscreen
+                        ></iframe>
+                    {% else %} 
                         {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
             </div>
@@ -63,16 +79,84 @@
       "content": "t:sections.video.settings.video_header.content"
     },
     {
-      "type": "video",
-      "id": "bg_video",
-      "label": "t:sections.video.settings.bg_video.label"
+      "type": "select",
+      "id": "video_type",
+      "label": "Video source",
+      "options": [
+        {
+          "value": "upload",
+          "label": "Upload video"
+        },
+        {
+          "value": "youtube",
+          "label": "YouTube"
+        },
+        {
+          "value": "vimeo",
+          "label": "Vimeo"
+        }
+      ],
+      "default": "upload"
+    },
+      {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL",
+      "info": "Example: https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "visible_if": "{{ section.settings.video_type == 'youtube' }}"
+    },
+      {
+      "type": "url",
+      "id": "vimeo_url",
+      "label": "Vimeo URL",
+      "info": "Example: https://vimeo.com/123456789",
+      "visible_if": "{{ section.settings.video_type == 'vimeo' }}"
     },
     {
-      "type": "checkbox",
-      "id": "video_loop",
-      "label": "t:sections.video.settings.video_loop.label",
-      "default": true,
-      "info": "t:sections.video.settings.video_loop.info"
+      "type": "select",
+      "id": "video_type",
+      "label": "Video source",
+      "options": [
+        {
+          "value": "upload",
+          "label": "Upload video"
+        },
+        {
+          "value": "youtube",
+          "label": "YouTube"
+        },
+        {
+          "value": "vimeo",
+          "label": "Vimeo"
+        }
+      ],
+      "default": "upload"
+    },
+      {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL",
+      "info": "Example: https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "visible_if": "{{ section.settings.video_type == 'youtube' }}"
+    },
+      {
+      "type": "url",
+      "id": "vimeo_url",
+      "label": "Vimeo URL",
+      "info": "Example: https://vimeo.com/123456789",
+      "visible_if": "{{ section.settings.video_type == 'vimeo' }}"
+    },
+    {
+        "type": "video",
+        "id": "bg_video",
+        "label": "Upload"
+    },
+    {
+        "type": "checkbox",
+        "id": "video_loop",
+        "label": "Loop video",
+        "default": true,
+        "info": "Enable to play the video in a continuous loop."
     },
     {
       "type": "header",

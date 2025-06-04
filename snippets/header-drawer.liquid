@@ -48,7 +48,7 @@
                       </a>
           </div>
           <div class="header-icons flex align-items-center justify-content-end">
-            {% render 'header-search', input_id: 'Search-In-Modal' %}
+            {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
   
             {%- if shop.customer_accounts_enabled -%}
                 <a
@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="menu-drawer__inner-container menu-drawer-nav">
-        <div class="menu-drawer__navigation-container">
+        <div class="menu-drawer__navigation-container no-scrollbar">
           <nav class="menu-drawer-navigation">
             <ul class="menu-drawer__menu has-submenu main-menu-item-list" role="list">
               {%- for link in section.settings.menu.links -%}
@@ -109,7 +109,7 @@
                         class="menu-drawer__menu-item list-menu__item {% if link.child_active %}menu-item-active{% endif %}"
                       >
                         {{ link.title | escape }}
-                        <span class="svg-wrapper">
+                        <span class="svg-wrapper flex">
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </span>
                       </summary>
@@ -118,9 +118,9 @@
                         class="menu-drawer__submenu has-submenu gradient motion-reduce"
                         tabindex="-1"
                       >
-                        <div class="menu-drawer__inner-submenu">
+                        <div class="menu-drawer__inner-submenu no-scrollbar">
                           <button class="menu-drawer__close-button" aria-expanded="true">
-                            <span class="svg-wrapper">
+                            <span class="svg-wrapper flex">
                               {{- 'icon-caret.svg' | inline_asset_content -}}
                             </span>
                             {{ link.title | escape }}

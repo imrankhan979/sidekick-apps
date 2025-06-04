@@ -2559,7 +2559,7 @@ vertical-align: middle;
 
 .product_single_wrapper .product-form__buttons > .product-form__submit .loading__spinner{
   display: flex;
-  position: static;
+  position: absolute;
 }
 .product_single_wrapper .product-form__buttons > .product-form__submit .loading__spinner.hidden{
   display: flex;
@@ -2641,4 +2641,11 @@ vertical-align: middle;
     width: 100%;
     height: 100%;
 }
+}
+
+.gallery-viewer-motions.product--thumbnail_slider .product__media-item:not(.is-active) {
+  display: block;
+}
+.product__media-list .product__media-item {
+  width: calc(100% - 0px );
 }

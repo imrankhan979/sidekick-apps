@@ -194,7 +194,8 @@ if (!customElements.get('product-info')) {
           
           
 
-          this.updateMedia(html, variant?.featured_media?.id);
+          this.updateMediaHook(html, variant?.featured_media?.id);
+          // this.updateMedia(html, variant?.featured_media?.id);
 
           const updateSourceFromDestination = (id, shouldHide = (source) => false) => {
             const source = html.getElementById(`${id}-${this.sectionId}`);
@@ -257,7 +258,30 @@ if (!customElements.get('product-info')) {
           .join(', ');
         document.querySelectorAll(selectors).forEach(({ classList }) => classList.add('hidden'));
       }
+      updateMediaHook(html, variantFeaturedMediaId){
+        if (!variantFeaturedMediaId) return;
+        const variMedia = this.querySelector('media-gallery').ity
+        const newVariMedia = html.querySelector('media-gallery [id^="Slider-Gallery-template"]') 
+        const newVarintMedia = this.getVarintMedia(newVariMedia, variantFeaturedMediaId); 
+        const sliderUp = Array.from(this.querySelector('media-gallery [id^="Slider-Gallery-template"]').querySelectorAll('.product__media-item')).findIndex(item => item.querySelector('.product__media-toggle').dataset.mediaId === newVarintMedia);
+        variMedia.select( sliderUp )
+      }
+      getVarintMedia(newVariMedia, variantFeaturedMediaId){
+        
+              
+        let getMedia = null
+        
+        newVariMedia.querySelectorAll('.product__media-item').forEach((cell, index) => {
+            if(cell.querySelector('.product__media-toggle').dataset.mediaId == variantFeaturedMediaId){
 
+            
+
+              getMedia = cell.querySelector('.product__media-toggle').dataset.mediaId
+            }
+          }
+        )
+        return getMedia
+      }
       updateMedia(html, variantFeaturedMediaId) {
         if (!variantFeaturedMediaId) return;
 

@@ -44,36 +44,44 @@
               </div>
         {% endif %} 
         {% if product.variants.size > 1 %}
-          <div class="variant-picker">
-            {% for option in product.options_with_values %}
-              <div class="variant-group{% if option.name == 'Color' %} color-swatch{% endif %}">
-                <p class="variant-group-name">{{ option.name }}</p>
-                <div class="variant-items">
-                {% for value in option.values %}
-                  {% assign variant_available = false %}
-                  {% for variant in product.variants %}
-                    {% if variant.available and variant.options contains value %}
-                      {% assign variant_available = true %}
-                    {% endif %}
-                  {% endfor %}
-                  {%- liquid
-                      assign swatch_value = null
-                      if value.swatch.image
-                        assign image_url = value.swatch.image | image_url: width: 50
-                        assign swatch_value = 'url(' | append: image_url | append: ')'
-                      elsif value.swatch.color
-                        assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
-                      endif
-                    -%}
-                <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% unless variant_available %}disabled{% endunless %}  style="--swatch-bg: {{ swatch_value }}">
-                  <label for="{{product.id}}-{{value}}"  style="--swatch-bg: {{ swatch_value }}" >
-                    {{ value }}
-                  </label>
-                {% endfor %}
-                </div>
-              </div>
-            {% endfor %}
-          </div>
+  <div class="variant-picker">
+  {% for option in product.options_with_values %}
+    {% if only_color_variant and option.name != 'Color' %}
+      {% continue %}
+    {% endif %}
+    
+    <div class="variant-group{% if option.name == 'Color' %} color-swatch{% endif %}">
+      <p class="variant-group-name">{{ option.name }}</p>
+      <div class="variant-items">
+        {% for value in option.values %}
+          {% assign variant_available = false %}
+          {% for variant in product.variants %}
+            {% if variant.available and variant.options contains value %}
+              {% assign variant_available = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {%- liquid
+            assign swatch_value = null
+            if value.swatch.image
+              assign image_url = value.swatch.image | image_url: width: 50
+              assign swatch_value = 'url(' | append: image_url | append: ')'
+            elsif value.swatch.color
+              assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+            endif
+          -%}
+
+          <input id="{{product.id}}-{{value}}" type="radio" name="option-{{product.id}}-{{ option.name | handleize }}" value="{{ value }}" data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value }}" data-product-id="{{ product.id }}" {% unless variant_available %}disabled{% endunless %}  style="--swatch-bg: {{ swatch_value }}">
+          <label for="{{product.id}}-{{value}}"  style="--swatch-bg: {{ swatch_value }}" >
+            {{ value }}
+          </label>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
         {% endif %}
       </div>
       <input class="product-variant-id" type="hidden" name="id" id="selected-variant-{{ product.id }}" value="{{ product.variants.first.id }}">
