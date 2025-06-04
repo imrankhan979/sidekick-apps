@@ -17,7 +17,6 @@
   }
 {%- endstyle -%}
 
-<!---- All Collection Section --->
 <section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
        <div class="snzz-video-inner">
         {% assign video_url = section.settings.bg_video.sources[1].url %}
@@ -62,7 +61,6 @@
           </div>           
        </div>
  </section>
- <!---- All Collection Section --->
 
 {% schema %}
 {
@@ -77,40 +75,6 @@
     {
       "type": "header",
       "content": "t:sections.video.settings.video_header.content"
-    },
-    {
-      "type": "select",
-      "id": "video_type",
-      "label": "Video source",
-      "options": [
-        {
-          "value": "upload",
-          "label": "Upload video"
-        },
-        {
-          "value": "youtube",
-          "label": "YouTube"
-        },
-        {
-          "value": "vimeo",
-          "label": "Vimeo"
-        }
-      ],
-      "default": "upload"
-    },
-      {
-      "type": "url",
-      "id": "youtube_url",
-      "label": "YouTube URL",
-      "info": "Example: https://www.youtube.com/watch?v=_9VUPq3SxOc",
-      "visible_if": "{{ section.settings.video_type == 'youtube' }}"
-    },
-      {
-      "type": "url",
-      "id": "vimeo_url",
-      "label": "Vimeo URL",
-      "info": "Example: https://vimeo.com/123456789",
-      "visible_if": "{{ section.settings.video_type == 'vimeo' }}"
     },
     {
       "type": "select",

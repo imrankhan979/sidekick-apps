@@ -6,6 +6,8 @@ overflow: hidden;
 
 .category_banner_item .category_banner_box {
   position: relative;
+  height: 100%;
+    display: block;
 }
 
 .category_banner_item .category_banner_box::before {

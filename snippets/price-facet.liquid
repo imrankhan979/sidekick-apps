@@ -1,4 +1,4 @@
-<span class="field-currency">{{ cart.currency.symbol }}</span>
+{% comment %} <span class="field-currency">{{ cart.currency.symbol }}</span>
 
 <div class="field">
   <input
@@ -38,4 +38,206 @@
   <label class="field__label" for="{{ id_prefix }}{{ filter.label | escape }}-LTE">
     {{- 'products.facets.to' | t -}}
   </label>
-</div>
+</div> {% endcomment %}
+<style>
+.price-slider {
+  position: relative;
+  height: 6px;
+  margin-bottom: 32px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #ddd var(--start, 0%), black var(--start, 0%), black var(--end, 100%), #ddd var(--end, 100%));
+}
+
+.price-slider input[type="range"] {
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+  background: none;
+  pointer-events: none;
+  top: -3px;
+  margin: 0;
+}
+
+.price-slider input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  -webkit-appearance: none;
+  height: 22px;
+  width: 22px;
+  border: 2px solid #ffffff;
+  background: black;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -6px;
+}
+
+.price-inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.price-inputs > div{
+  border: 1px solid #ddd;    
+  padding: 10px 16px 5px;
+  border-radius: 8px;
+}
+.price-inputs > div > label {
+font-size: 14px;
+line-height: 20px;
+color: #808080;
+  display: block;
+  margin-bottom: 3px;
+  margin-right: -2px;
+}
+.price-inputs > div > div {
+  display: flex;
+  align-items: center;
+}
+.price-inputs > div > div .field-currency {
+  font-size: 18px;
+  line-height: 28px;
+  color: #000000;
+  margin-right: 0;
+}
+.price-inputs input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  line-height: 1;
+  color: #000000;
+  padding: 0;
+}
+</style>
+  <!-- Range Slider -->
+  <div class="price-slider">
+    <input
+      type="range"
+      id="minRange"
+      min="0"
+      max="{{ filter.range_max | money_without_currency }}"
+      value="{{ filter.min_value.value | default: 0 | money_without_currency }}"
+      step="1"
+    >
+    <input
+      type="range"
+      id="maxRange"
+      min="0"
+      max="{{ filter.range_max | money_without_currency }}"
+      value="{{ filter.max_value.value | default: filter.range_max | money_without_currency }}"
+      step="1"
+    >
+  </div>
+
+  <!-- Input Fields -->
+  <div class="price-inputs">
+    <div>
+      <label for="min_price">Min price</label>
+      <div>
+        <span class="field-currency">{{ cart.currency.symbol }}</span>          
+        <input
+            id="min_price"
+            name="{{ filter.min_value.param_name }}"
+            min="0"
+            max="{{ filter.range_max | money_without_currency }}"
+            step="1"
+            value="{{ filter.min_value.value | money_without_currency | default: 0 }}"
+          >
+      </div>
+    </div>
+
+    <div>
+      <label for="max_price">Max price</label>
+      <div>
+        <span class="field-currency">{{ cart.currency.symbol }}</span>
+        <input
+            id="max_price"
+            name="{{ filter.max_value.param_name }}"
+            min="0"
+            max="{{ filter.range_max | money_without_currency }}"
+            step="1"
+            value="{{ filter.max_value.value | default: filter.range_max | money_without_currency }}"
+          >
+      </div>
+
+    </div>
+  </div>
+
+<script>
+  const minRange = document.getElementById("minRange");
+  const maxRange = document.getElementById("maxRange");
+  const minInput = document.getElementById("min_price");
+  const maxInput = document.getElementById("max_price");
+  const sliderContainer = document.querySelector(".price-slider");
+
+  // Sync number inputs from slider values
+  function syncInputsFromSlider() {
+    let minVal = parseFloat(minRange.value);
+    let maxVal = parseFloat(maxRange.value);
+
+    if (minVal > maxVal) {
+      [minVal, maxVal] = [maxVal, minVal];
+    }
+
+    minInput.value = minVal;
+    maxInput.value = maxVal;
+    updateSliderTrack();
+  }
+
+  // Sync slider values from number inputs
+  function syncSliderFromInputs() {
+    let minVal = parseFloat(minInput.value);
+    let maxVal = parseFloat(maxInput.value);
+
+    if (!isNaN(minVal) && !isNaN(maxVal)) {
+      minRange.value = minVal;
+      maxRange.value = maxVal;
+      updateSliderTrack();
+    }
+  }
+
+  // Prevent sliders from overlapping
+  minRange.addEventListener("input", () => {
+    if (parseFloat(minRange.value) >= parseFloat(maxRange.value)) {
+      minRange.value = parseFloat(maxRange.value) - 1;
+    }
+    syncInputsFromSlider();
+  });
+
+  maxRange.addEventListener("input", () => {
+    if (parseFloat(maxRange.value) <= parseFloat(minRange.value)) {
+      maxRange.value = parseFloat(minRange.value) + 1;
+    }
+    syncInputsFromSlider();
+  });
+
+  // Regular syncing
+  minInput.addEventListener("input", syncSliderFromInputs);
+  maxInput.addEventListener("input", syncSliderFromInputs);
+
+  // Update the slider background track between thumbs
+  function updateSliderTrack() {
+    const min = parseFloat(minRange.min);
+    const max = parseFloat(minRange.max);
+    const start = ((minRange.value - min) / (max - min)) * 100;
+    const end = ((maxRange.value - min) / (max - min)) * 100;
+
+    sliderContainer.style.setProperty('--start', `${start}%`);
+    sliderContainer.style.setProperty('--end', `${end}%`);
+  }
+
+  // Debounced form submission
+  let submitTimeout;
+  function submitForm() {
+    clearTimeout(submitTimeout);
+    submitTimeout = setTimeout(() => {
+      minInput.form.submit();
+    }, 300); // 300ms debounce delay
+  }
+
+  minRange.addEventListener("change", submitForm);
+  maxRange.addEventListener("change", submitForm);
+
+  // Initial sync on load
+  syncInputsFromSlider();
+</script>
+

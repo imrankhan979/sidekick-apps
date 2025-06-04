@@ -128,7 +128,6 @@
             class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
             {%- for block in section.blocks -%}
               {%- case block.type -%}
                 {%- when '@app' -%}
@@ -542,9 +541,8 @@
                 {%- when 'variant_picker' -%}
                   {% render 'product-variant-picker',
                     product: product,
-                    block: block,
-                    product_form_id: product_form_id,
-                    size_chart: true
+                    block: block, 
+                    product_form_id: product_form_id
                   %}
                   
                 {%- when 'buy_buttons' -%}
@@ -883,6 +881,38 @@
             }
           ],
           "default": "circle"
+        },
+        {
+          "type": "header",
+          "content": "Size chart"
+        },
+        {
+          "type": "text",      
+          "id": "chart_title",
+          "default": "Size chart",
+          "label": "Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "chart_desc",
+          "default": "Size conversions vary and may not fully match the conversions shown above. If you are not sure about your size, please contact us.",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "chart_btn_text",
+          "default": "CONTACT US",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "chart_btn_link",
+          "label": "Button link"
+        },
+        {
+          "type": "image_picker",
+          "id": "size_right_image",
+          "label": "Chart image"
         }
       ]
     },
