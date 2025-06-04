@@ -5,8 +5,8 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
   }
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -14,7 +14,83 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  @media screen and (min-width: 768px) {
+<<<<<<< HEAD
+  
+{% for block in section.blocks %}
+  .collection-tab .product-grid-{{block.id}}{
+    grid-template-columns: repeat({{block.settings.item_count}}, 1fr);
+  }
+{% endfor %}
+{%- endstyle -%}
+
+
+  <div class="blog-bundle-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+    <div class="tabs-section">
+      <snazzy-tab>
+        <div class="page-width">
+          <div class="tab-header flex wrap space-between align-items-center">
+            <div class="section-title">
+              <h1 class="sec_title">{{ section.settings.section_heading }}</h1>
+            </div>
+              <div class="scroller-wrapper">
+                <div class="scroll-width">
+                    <div class="snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
+                      <button role="tab" class="snazzy-tab-button active" data-tag="all">All</button>
+                      {% for tag in blog.all_tags %}
+                        <button role="tab" class="snazzy-tab-button" data-tag="{{ tag | handleize }}">{{ tag }}</button>
+                      {% endfor %}
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="page-width">
+          <div class="blog-section-inner">
+            <div class="blog-bundle-list">
+              {% for article in blog.articles %}
+                <div class="blog_bundle_cart_item" data-tags="{{ article.tags | join: ' ' | handleize }}">
+                  <div class="blog_inner_image_section">
+                    <div class="blog_item_img">
+                      <img
+                srcset="
+                  {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+                  {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                  {{ article.image.src | image_url }} {{ article.image.src.width }}w
+                "
+                src="{{ article.image.src | image_url: width: 533 }}"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                alt="{{ article.image.src.alt | escape }}"
+                {% unless lazy_load == false %}
+                  loading="lazy"
+                {% endunless %}
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                >
+                    </div>
+                  </div>
+                  <div class="blog_inner_content">
+                    <div class="blog_meta_section">
+                      <ul>
+                        <li>{{ article.tags | join: ', ' }}</li>
+                        <li>{{ article.published_at | date: "%b %d, %Y" }}</li>
+                      </ul>
+                    </div>
+                    <h3 class="blog_main_header">
+                      <a href="{{ article.url }}">{{ article.title }}</a>
+                    </h3>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </snazzy-tab>
+=======
+  @media screen and (min-width: 768px) { 
     .main-blog .blog-articles-grid {
         grid-template-columns: repeat( {{ section.settings.item_count }} , 1fr);
     }
@@ -27,64 +103,121 @@
 {% endif %}
 
 <div class="main-blog section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-  <div class="page-width">
-    <div class="main-blog-top flex align-items-center space-between wrap">
-      <div class="section-title">
-        <h1>
-          {% if section.settings.heading_text != blank %}
-            {{ section.settings.heading_text }}
-          {% else %}
-            {{ blog.title | escape }}
-          {% endif %}
-        </h1>
-      </div>
-      <div class="scroller-wrapper">
-        <div class="scroll-width">
-          <ul class="tags-list flex wrap align-items-center no-scrollbar">
-            <li>
-              <a href="{{ blog.url }}" class="flex {% if current_tags == blank %}active{% endif %}">All</a>
-            </li>
-            {% for tag in blog.all_tags %}
-              {% assign handled_tag = tag | handle %}
+    <div class="page-width">
+      <div class="main-blog-top flex align-items-center space-between wrap">
+        <div class="section-title">
+          <h1>
+            {% if section.settings.heading_text != blank %}
+              {{ section.settings.heading_text }}
+              {% else %}
+              {{ blog.title | escape }}
+            {% endif %}
+            </h1>
+        </div>
+        <div class="scroller-wrapper">
+          <div class="scroll-width">
+            <ul class="tags-list flex wrap align-items-center no-scrollbar">
               <li>
-                <a
-                  href="{{ blog.url }}/tagged/{{ handled_tag }}"
-                  class="flex {% if current_tags == handled_tag %}active{% endif %}"
-                >
-                  {{ tag }}
-                </a>
+                <a href="{{ blog.url }}" class="flex {% if current_tags == blank %}active{% endif %}">All</a>
               </li>
-            {% endfor %}
-          </ul>
+              {% for tag in blog.all_tags %}
+                  {% assign handled_tag = tag | handle %}
+                  <li>
+                    <a href="{{ blog.url }}/tagged/{{ handled_tag }}" class="flex {% if current_tags == handled_tag %}active{% endif %}">
+                      {{ tag }}
+                    </a>
+                  </li>
+              {% endfor %}
+            </ul>
+          </div>
         </div>
       </div>
+      {%- paginate blog.articles by section.settings.item_total -%}
+          <div class="blog-articles-grid grid">
+            {%- for article in blog.articles -%}
+                {%- render 'blog-item-card',
+                  article: article,
+                  show_image: section.settings.show_image,
+                  show_date: section.settings.show_date,
+                  show_author: section.settings.show_author,
+                  show_excerpt: section.settings.show_excerpt
+                -%}
+            {%- endfor -%}
+          </div>
+          {%- if paginate.pages > 1 -%}
+            {%- render 'pagination', paginate: paginate -%}
+          {%- endif -%}
+        {%- endpaginate -%}
     </div>
-    {%- paginate blog.articles by section.settings.item_total -%}
-      <div class="blog-articles-grid grid">
-        {%- for article in blog.articles -%}
-          {%- render 'blog-item-card',
-            article: article,
-            show_image: section.settings.show_image,
-            show_date: section.settings.show_date,
-            show_author: section.settings.show_author,
-            show_excerpt: section.settings.show_excerpt
-          -%}
-        {%- endfor -%}
-      </div>
-      {%- if paginate.pages > 1 -%}
-        {%- render 'pagination', paginate: paginate -%}
-      {%- endif -%}
-    {%- endpaginate -%}
   </div>
-</div>
 
-{% schema %}
-{
-  "name": "t:sections.main-blog.name",
-  "tag": "section",
-  "class": "section",
-  "settings": [
+  {% schema %}
     {
+<<<<<<< HEAD
+      "name": "Latest Article",
+      "settings": [
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "Color Scheme",
+          "default": "scheme-1"
+        },
+        {
+          "type": "text",
+          "id": "section_heading",
+          "default": "LATEST ARTICLE",
+          "label": "Section heading"
+        },
+        {
+          "type": "range",
+          "id": "item_total",
+          "min": 2,
+          "max": 9,
+          "step": 1,
+          "label": "Number of products to show",
+          "default": 8
+        },
+        {
+          "type": "range",
+          "id": "item_count",
+          "min": 2,
+          "max": 6,
+          "step": 1,
+          "label": "Number of products to show in a row",
+          "default": 4
+        },
+        {
+          "type": "header",
+          "content": "t:sections.all.padding.section_padding_heading"
+        },
+        {
+          "type": "range",
+          "id": "padding_top",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "label": "Padding Top",
+          "default": 120
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 120,
+          "step": 4,
+          "unit": "px",
+          "label": "Padding Bottom",
+          "default": 120
+        }
+      ],
+
+    "presets": [
+        {
+          "name": "Latest Article"
+        }
+      ]
+=======
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.main-blog.settings.color_scheme.label",
@@ -191,5 +324,4 @@
     }
   ]
 }
-
 {% endschema %}
