@@ -161,7 +161,7 @@
                   </div>  
                 {%- endif -%}
 
-                {%- if section.settings.copyright_bottom_text -%}
+                {%- if section.settings.copyright_bottom_text != blank -%}
                   <div class="copyright-bottom-text">
                     <p>{{ section.settings.copyright_bottom_text }}</p> 
                   </div>

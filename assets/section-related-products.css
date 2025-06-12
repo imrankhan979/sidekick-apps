@@ -5,3 +5,122 @@
 .related-products__heading {
   margin: 0 0 3rem;
 }
+.related-products  .product-item {
+    margin-inline: 12px;
+}
+.related-products  .product-item:first-child {
+  margin-inline-start: 0;
+}
+
+.related-products   .flickity-prev-next-button.previous {
+  left: auto;
+  right: 64px;
+  top: -60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: transparent;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+  .related-products   .flickity-prev-next-button.previous {
+    top: -60px;
+  }
+
+  .related-products   .flickity-prev-next-button.next {
+    top: -60px !important;
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .related-products   .flickity-prev-next-button.previous {
+    top: -42px;
+  }
+
+  .related-products   .flickity-prev-next-button.next {
+    top: -42px !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .related-products   .flickity-prev-next-button.previous {
+    top: 34%;
+    width: 50px;
+    right: 50px;
+    height: 50px;
+    left: 25px;
+    right: auto;
+  }
+
+  .related-products   .flickity-prev-next-button.next {
+    top: 34% !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .related-products   .flickity-prev-next-button.previous {
+    top: 34%;
+    width: 50px;
+    right: 50px;
+    height: 50px;
+    left: 25px;
+    right: auto;
+  }
+
+  .related-products   .flickity-prev-next-button.next {
+    top: 34% !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .related-products   .flickity-prev-next-button.previous {
+    top: 32%;
+    width: 40px;
+    right: 50px;
+    height: 40px;
+    left: 20px;
+    right: auto;
+  }
+
+  .related-products   .flickity-prev-next-button.next {
+    top: 32% !important;
+    width: 40px !important;
+    height: 40px !important;
+    right: 20px !important;
+  }
+
+  .related-products   .flickity-prev-next-button .flickity-button-icon {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+.related-products   .flickity-button:disabled {
+  opacity: 1;
+}
+
+.related-products   .flickity-prev-next-button .flickity-button-icon {
+  width: 15px;
+  height: 15px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.related-products   .flickity-prev-next-button.next {
+  right: 0;
+  top: -60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: transparent;
+}

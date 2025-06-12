@@ -21,8 +21,7 @@
 
     @media screen and (min-width: 750px) {
     .product-item {
-      width: {{ 100 | divided_by: section.settings.columns_desktop }}%;
-      padding-right: 10px;
+      width: calc((100% / {{ section.settings.columns_desktop }}) - 16px);
     }
   }
   @media screen and (max-width: 749px) {
