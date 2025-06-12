@@ -32,28 +32,28 @@
           "type": "faq_item",
           "settings": {
             "question": "How long does it take to get my products?",
-            "answer": "We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described."
+            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
           }
         },
         "faq_item_f3RnhF": {
           "type": "faq_item",
           "settings": {
             "question": "How do I set up a subscription order?",
-            "answer": "We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described."
+            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
           }
         },
         "faq_item_9cQHmw": {
           "type": "faq_item",
           "settings": {
             "question": "How much does it cost?",
-            "answer": "We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described."
+            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
           }
         },
         "faq_item_eRAzXx": {
           "type": "faq_item",
           "settings": {
             "question": "How to return my items?",
-            "answer": "We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described."
+            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
           }
         },
         "faq_category_title_rN96xd": {
@@ -66,28 +66,28 @@
           "type": "faq_item",
           "settings": {
             "question": "How can I choose the right size for me?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_item_yR3zy4": {
           "type": "faq_item",
           "settings": {
             "question": "How much can I get refunded?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_item_ANHeKt": {
           "type": "faq_item",
           "settings": {
             "question": "How long after I complete a purchase can I ask for a refund?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_item_KHrtbK": {
           "type": "faq_item",
           "settings": {
             "question": "Who pays the shipping costs in the case of a refund when the order has free shipping?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_category_title_kGFAjp": {
@@ -100,28 +100,28 @@
           "type": "faq_item",
           "settings": {
             "question": "Which payment methods do you accept?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_item_ByFpGH": {
           "type": "faq_item",
           "settings": {
             "question": "Do you accept online payments?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_item_fCEtPM": {
           "type": "faq_item",
           "settings": {
             "question": "What forms of payment do you accept?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         },
         "faq_item_Kbqhf9": {
           "type": "faq_item",
           "settings": {
             "question": "Is my payment data safe with you?",
-            "answer": "Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected."
+            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
           }
         }
       },

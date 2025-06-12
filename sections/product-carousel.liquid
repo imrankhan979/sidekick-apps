@@ -4,6 +4,7 @@
 {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'video-hover.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
 
@@ -80,8 +81,6 @@
               
             
               <div class="slider_community_images flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
-
-
                 {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
                   {%- assign video_url = block.settings.product_video.sources[1].url %}
                   <video
@@ -97,22 +96,21 @@
                     class="community-video {% unless forloop.first %}hover-play{% endunless %}"
                   ></video>
                 {%- elsif block.settings.product_image %}
-                  <div>
+   
                     {{
                       block.settings.product_image
                       | image_url: width: 1500
                       | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
                     }}
-                  </div>
 
                 {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
-                  <div>
+
                     {{
                       block.settings.product_select.featured_image
                       | image_url: width: 1500
                       | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
                     }}
-                  </div>
+
 
                 {%- else %}
                   <div class="placeholder-wrapper">
@@ -150,7 +148,7 @@
                   {%- endif %}
                 </div>
 
-                <div class="slider_community_text">
+                <div class="slider_community_text"> 
                   <h6 class="slider_community_title">
                     {{ block.settings.product_select.title | default: 'sections.product_carousel.product_title' | t }}
                   </h6>
@@ -178,27 +176,6 @@
   </div>
 </section>
 
-<script>
-  function setupCommunityVideoHover() {
-    const videos = document.querySelectorAll('.slider_community_images video');
-    videos.forEach((video) => {
-      const parent = video.parentElement;
-      if (!parent.classList.contains('hover-bound')) {
-        parent.classList.add('hover-bound');
-        parent.addEventListener('mouseenter', function () {
-          videos.forEach((v) => {
-            v.removeAttribute('autoplay');
-            v.pause();
-          });
-          video.setAttribute('autoplay', '');
-          video.play();
-        });
-      }
-    });
-  }
-  document.addEventListener('DOMContentLoaded', setupCommunityVideoHover);
-  document.addEventListener('shopify:section:load', setupCommunityVideoHover);
-</script>
 
 {% schema %}
 {
