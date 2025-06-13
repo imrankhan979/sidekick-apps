@@ -135,7 +135,7 @@
                 class="quick-order-list__button button button--secondary small-hide  medium-hide"
               >
                 <span class="cart_anim">
-                <span class="quick-order-list__button-text anim_text">{{- 'sections.quick_order_list.view_cart' | t -}}</span>
+                <span class="quick-order-list__button-text anim_text"><h6 class="add_to_all_cart">{{- 'sections.quick_order_list.add_all_to_cart' | t | upcase -}}</h6></span>
               </span>
               </a>
               <div class="variant-remove-total{% if items_in_cart == 0 %} variant-remove-total--empty{% endif %}">

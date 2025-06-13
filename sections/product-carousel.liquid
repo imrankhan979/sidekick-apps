@@ -150,7 +150,11 @@
 
                 <div class="slider_community_text"> 
                   <h6 class="slider_community_title">
-                    {{ block.settings.product_select.title | default: 'sections.product_carousel.product_title' | t }}
+                    {% if block.settings.product_select == blank %}
+                      {{ 'sections.product_carousel.product_title' | t }}
+                    {% else %}
+                      {{ block.settings.product_select.title }}
+                    {% endif %}
                   </h6>
                   {%- if block.settings.product_select.price %}
                     {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
