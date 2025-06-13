@@ -3,10 +3,21 @@
 }
 
 .related-products__heading {
-  margin: 0 0 3rem;
+  margin: 0 0 80px;
 }
 .related-products  .product-item {
     margin-inline: 12px;
+}
+@media (max-width: 767px) {
+    .related-products  .product-item {
+      margin-inline: 10px;
+    }
+    .related-products__heading {
+      margin: 0 0 48px;
+      font-size: 32px;
+      line-height: 40px;
+      text-align: center;
+    }
 }
 .related-products  .product-item:first-child {
   margin-inline-start: 0;
@@ -15,7 +26,7 @@
 .related-products   .flickity-prev-next-button.previous {
   left: auto;
   right: 64px;
-  top: -60px;
+  top: -112px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +35,7 @@
   background: transparent;
 }
 
-@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+/* @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .related-products   .flickity-prev-next-button.previous {
     top: -60px;
   }
@@ -32,10 +43,10 @@
   .related-products   .flickity-prev-next-button.next {
     top: -60px !important;
   }
-}
+} */
 
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+/* @media only screen and (min-width: 768px) and (max-width: 991px) {
   .related-products   .flickity-prev-next-button.previous {
     top: -42px;
   }
@@ -43,7 +54,7 @@
   .related-products   .flickity-prev-next-button.next {
     top: -42px !important;
   }
-}
+} */
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .related-products   .flickity-prev-next-button.previous {
@@ -116,11 +127,28 @@
 
 .related-products   .flickity-prev-next-button.next {
   right: 0;
-  top: -60px;
+  top: -112px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 64px;
   height: 64px;
   background: transparent;
+}
+.related-products   .flickity-prev-next-button svg path, .related-products   .flickity-prev-next-button {
+  transition: .3s ease;
+}
+.related-products   .flickity-prev-next-button:hover {
+  background: #000;
+}
+.related-products   .flickity-prev-next-button:hover svg path {
+  fill: #fff;
+}
+@media (max-width: 767px) {
+    .related-products   .flickity-prev-next-button {
+      background: #000 !important;
+    }
+    .related-products   .flickity-prev-next-button svg path {
+      fill: #fff;
+    }
 }

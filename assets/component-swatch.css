@@ -1,14 +1,19 @@
 /* swatch lives in its own file for reusability of the swatch in swatch-input and dropdown */
-.swatch {
-  display: block;
+.swatch-input__label{
   width: 30px;
   max-width: 100%;
   aspect-ratio: 1 / 1;
+  display: block;
+
+}
+.swatch {
+  display: block;
+  width: 100%;
+  height: 100%;
   background: var(--swatch--background);
   background-position: var(--swatch-focal-point, initial);
   background-size: cover;
   background-origin: border-box;
-  border: 0.1rem solid rgba(var(--color-foreground), 0.15);
   border-radius: 50%;
 }
 

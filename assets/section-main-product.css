@@ -147,6 +147,9 @@ product-info {
 variant-selects .product-form__input{
   gap: 10px;
 }
+.card variant-selects .product-form__input{
+  gap: 4px;
+}
 .product_single_wrapper .variant_group_wrapper > *+*{
 margin-top: 38px;
 }
@@ -2799,4 +2802,7 @@ variant-selects .product-popup-modal__opener button::before {
   .product_right_carousel_thumb  .slider--mobile:after {
     display: none;
     }
+}
+.product_left_carousel_thumb .slider-button{
+  display: none !important;
 }

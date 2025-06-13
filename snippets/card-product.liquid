@@ -145,7 +145,8 @@
       </div>
       <div class="card__content show-variant">
         <div class="card__information">
-          <h3
+          <p class="vendor-name">{{ card_product.vendor }}</p>
+          <h5
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
             {% if card_product.featured_media or settings.card_style == 'card' %}
               id="title-{{ section_id }}-{{ card_product.id }}"
@@ -159,7 +160,7 @@
             >
               {{ card_product.title | escape }}
             </a>
-          </h3>
+          </h5>
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
