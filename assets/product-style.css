@@ -155,7 +155,7 @@
   .product-content .variant-picker .variant-group .variant-items{
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 4px;
     flex-wrap: wrap;
   }
   .product-content .variant-picker .variant-group input{
@@ -234,8 +234,8 @@
     border-radius: 50%;
     background: none;
     cursor: pointer;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     appearance: none;
     background: var(--swatch-bg);
     margin: 0;
@@ -257,13 +257,6 @@
     border-radius: 50%;
   }
   @media (max-width: 767px) {
-     .product-content .variant-picker .variant-group .variant-items{
-      gap: 6px;
-    }
-     .product-content .variant-group.color-swatch input{
-      width: 16px;
-      height: 16px;
-    }
      .product-content .variant-group.color-swatch input[type=radio]:checked:before,    .product-content .variant-group.color-swatch input[type=radio]:hover:before{
       width: 20px;
       height: 20px;
@@ -312,3 +305,61 @@
   .placeholder-product .product-thumb{
     background: #DDDDDD;
   }
+  .product .product-thumb popup-slide{
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    width: calc(100% - 48px);
+    transform: scale(.95) translateY(100%);
+    opacity: 0;
+    transition: .3s all;
+  }
+  .product:hover .product-thumb popup-slide{
+    transform: scale(1) translateY(0%);
+    opacity: 1;
+  }
+  .product .product-thumb popup-slide button{
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: #000;
+    transition: .3s all;
+
+  }
+    .product .product-thumb popup-slide button.loading{
+      position: relative;
+      cursor: not-allowed;
+      pointer-events: none;
+      color: transparent;
+    }
+    .product .product-thumb popup-slide button.loading::after{
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border-radius: 50%;
+    }
+    .product .product-thumb popup-slide button.loading::after{
+      border: 2px solid rgba(var(--color-foreground), .6);
+      border-top-color: transparent;
+      animation: loading-spinner 1s linear infinite;
+    }
+@keyframes loading-spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
