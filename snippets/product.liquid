@@ -1,4 +1,10 @@
+   {%- assign prd_crd = product %}
+    {%- assign section_id = section.id %}
+    {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
+
+
 <div class="product content-grid-item"  data-title="{{ product.title }}">
+  <div class="product-thumb relative">
     <a href="{{ product.url }}" class="product-thumb flex">
       <img class="featured-image" id="featured-image-{{ product.id }}" src="{{ product.featured_image | img_url: 'large' }}" width="" height="" alt="{{ product.title }}">
       <div class="product-badge-wrapper flex wrap align-items-center">
@@ -24,7 +30,21 @@
               {% endunless %}
             </div>
       </div>
-    </a>
+      </a>
+      <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
+        <button
+          id="{{ pdfm }}-submit"
+          type="submit"
+          name="add"
+          class="quick-view-prg {% if prd_crd.id != blank %}quick-view-prg-have{% endif %}"
+          aria-haspopup="dialog"
+          aria-labelledby="{{ pdfm }}-submit title-{{ section_id }}-{{ prd_crd.id }}"
+          data-product-url="{{ prd_crd.url }}"
+        >
+        QUICK VIEW
+        </button>
+      </popup-slide>
+  </div>
       <div class="product-content">
           {% if product.vendor %}
             <p class="product-vendor">{{ product.vendor }}</p>
@@ -88,78 +108,99 @@
       {% if button %}
       <button type="submit" class="product-btn{% if product.variants.first.available %} add-to-bundle {% else %} sold-out{% endif %} " id="add-to-cart-{{ product.id }}" {% unless product.variants.first.available %}disabled{% endunless %}>{% if product.variants.first.available %} {% if product.variants.size > 1 %}Choose Variant {% else %}Add to bundle{% endif %} {% else %}Sold out{% endif %}</button>
       {% endif %}
-  <script>
-      document.addEventListener("DOMContentLoaded", () => {
-          document.querySelectorAll(".variant-picker input").forEach(input => {
-            input.addEventListener("change", () => {
-              const productId = input.dataset.productId;
-              const selectedOptions = [];
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".variant-picker input").forEach(input => {
+              input.addEventListener("change", () => {
+                const productId = input.dataset.productId;
+                const selectedOptions = [];
 
-              document.querySelectorAll(`[data-product-id='${productId}']`).forEach(option => {
-                if (option.checked) {
-                  selectedOptions[option.dataset.optionIndex] = option.dataset.value;
+                document.querySelectorAll(`[data-product-id='${productId}']`).forEach(option => {
+                  if (option.checked) {
+                    selectedOptions[option.dataset.optionIndex] = option.dataset.value;
+                  }
+                });
+                let variants = {{ product.variants | json }};
+                let selectedVariant = variants.find(variant =>
+                    JSON.stringify(variant.options) === JSON.stringify(selectedOptions)
+                );
+                if (selectedVariant) {
+                  const currencySymbol = "{{ cart.currency.symbol }}";
+                  const productPrice = document.getElementById(`product-price-${productId}`);
+                  const productPreviousPrice = document.getElementById(`product-previous-price-${productId}`);
+                  const priceWrappers = document.querySelectorAll(".product-price-wrapper");
+                  document.getElementById(`selected-variant-${productId}`).value = selectedVariant.id;
+                  const productImage = document.getElementById(`featured-image-${productId}`); // Use template literal
+                  if (productImage) { // Check if productImage exists
+                    if (selectedVariant && selectedVariant.featured_image) {
+                      productImage.src = selectedVariant.featured_image.src;
+                    } else {
+                      productImage.src = "{{ product.featured_image | img_url: 'large' }}"; // Revert to product image
+                    }
+                  }
+
+                  if (productPrice) {
+                    productPrice.innerText = `${currencySymbol}${(selectedVariant.price / 100).toFixed(2)}`;
+                    productPreviousPrice.innerText = selectedVariant.compare_at_price ? `${currencySymbol}${(selectedVariant.compare_at_price / 100).toFixed(2)}` : "";
+                    const priceWrapper = document.getElementById(`product-price-wrapper-${productId}`);
+                    if (priceWrapper) {
+                      priceWrapper.classList.toggle("no-compare", !selectedVariant.compare_at_price);
+                    } else {
+                      console.warn(`Price wrapper not found for product ${productId}`);
+                    }
+                  }
+                  const saleBadge = document.getElementById(`sale-badge-${productId}`);
+                  if (selectedVariant.compare_at_price > selectedVariant.price) {
+                    const discountPercentage = Math.round(((selectedVariant.compare_at_price - selectedVariant.price) / selectedVariant.compare_at_price) * 100);
+                    saleBadge.textContent = `${discountPercentage}% off`; // Show percentage
+                    saleBadge.style.display = "block";
+                  } else {
+                    saleBadge.style.display = "none";
+                  }
+                  const soldBadge = document.getElementById(`sold-out-badge-${productId}`);
+                    soldBadge.textContent = selectedVariant.available ? " " : "SOLD OUT"
+                  if(!selectedVariant.available){
+                    soldBadge.style.display = "block";
+                    soldBadge.textContent = "SOLD OUT";
+                  }
+                    else {
+                      soldBadge.style.display = "none";
+                    }
+                  
+                  document.querySelectorAll(`[data-option-index="1"][data-product-id='${productId}']`).forEach(colorInput => {
+                    const colorValue = colorInput.dataset.value;
+                    const variantForColor = variants.find(variant => variant.options[0] === selectedOptions[0] && variant.options[1] === colorValue);
+                    colorInput.disabled = !(variantForColor && variantForColor.available);
+                    colorInput.parentNode.classList.toggle('disabled', colorInput.disabled);
+                  });
+
+                  const addToCartButton = document.getElementById(`add-to-cart-${productId}`);
+                  addToCartButton.disabled = !selectedVariant.available;
+                  addToCartButton.textContent = addToCartButton.disabled ? "Sold out" : "Add to bundle";
                 }
               });
-              let variants = {{ product.variants | json }};
-              let selectedVariant = variants.find(variant =>
-                  JSON.stringify(variant.options) === JSON.stringify(selectedOptions)
-              );
-              if (selectedVariant) {
-                const currencySymbol = "{{ cart.currency.symbol }}";
-                const productPrice = document.getElementById(`product-price-${productId}`);
-                const productPreviousPrice = document.getElementById(`product-previous-price-${productId}`);
-                const priceWrappers = document.querySelectorAll(".product-price-wrapper");
-                document.getElementById(`selected-variant-${productId}`).value = selectedVariant.id;
-                const productImage = document.getElementById(`featured-image-${productId}`); // Use template literal
-                if (productImage) { // Check if productImage exists
-                  if (selectedVariant && selectedVariant.featured_image) {
-                    productImage.src = selectedVariant.featured_image.src;
-                  } else {
-                    productImage.src = "{{ product.featured_image | img_url: 'large' }}"; // Revert to product image
-                  }
-                }
-
-                if (productPrice) {
-                  productPrice.innerText = `${currencySymbol}${(selectedVariant.price / 100).toFixed(2)}`;
-                  productPreviousPrice.innerText = selectedVariant.compare_at_price ? `${currencySymbol}${(selectedVariant.compare_at_price / 100).toFixed(2)}` : "";
-                  const priceWrapper = document.getElementById(`product-price-wrapper-${productId}`);
-                  if (priceWrapper) {
-                    priceWrapper.classList.toggle("no-compare", !selectedVariant.compare_at_price);
-                  } else {
-                    console.warn(`Price wrapper not found for product ${productId}`);
-                  }
-                }
-                const saleBadge = document.getElementById(`sale-badge-${productId}`);
-                if (selectedVariant.compare_at_price > selectedVariant.price) {
-                  const discountPercentage = Math.round(((selectedVariant.compare_at_price - selectedVariant.price) / selectedVariant.compare_at_price) * 100);
-                  saleBadge.textContent = `${discountPercentage}% off`; // Show percentage
-                  saleBadge.style.display = "block";
-                } else {
-                  saleBadge.style.display = "none";
-                }
-                const soldBadge = document.getElementById(`sold-out-badge-${productId}`);
-                  soldBadge.textContent = selectedVariant.available ? " " : "SOLD OUT"
-                if(!selectedVariant.available){
-                  soldBadge.style.display = "block";
-                  soldBadge.textContent = "SOLD OUT";
-                }
-                  else {
-                    soldBadge.style.display = "none";
-                  }
-                
-                document.querySelectorAll(`[data-option-index="1"][data-product-id='${productId}']`).forEach(colorInput => {
-                  const colorValue = colorInput.dataset.value;
-                  const variantForColor = variants.find(variant => variant.options[0] === selectedOptions[0] && variant.options[1] === colorValue);
-                  colorInput.disabled = !(variantForColor && variantForColor.available);
-                  colorInput.parentNode.classList.toggle('disabled', colorInput.disabled);
-                });
-
-                const addToCartButton = document.getElementById(`add-to-cart-${productId}`);
-                addToCartButton.disabled = !selectedVariant.available;
-                addToCartButton.textContent = addToCartButton.disabled ? "Sold out" : "Add to bundle";
-              }
             });
           });
-        });
-  </script>
+    </script>
   </div>
+  <quick-add-modal id="QuickAdd-{{ prd_crd.id }}" class="quick-add-modal quick--view-area">
+    <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
+    <div
+      role="dialog"
+      aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
+      aria-modal="true"
+      class="quick-add-modal-content"
+      tabindex="-1"
+    >
+      <button
+        id="ModalClose-{{ prd_crd.id }}"
+        type="button"
+        class="quick-add-modal__toggle quick-view-close-btn"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </button>
+      <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
+      <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
+    </div>
+  </quick-add-modal>

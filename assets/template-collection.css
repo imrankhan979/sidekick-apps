@@ -290,10 +290,15 @@
 .search_results_product_box {
   display: grid;
   column-gap: 24px;
-  row-gap: 30px;
+  row-gap: 64px;
   padding-top: 48px;
 }
-
+@media (max-width: 767px) {
+    .search_results_product_box {
+      column-gap: 20px;
+      row-gap: 48px;
+    }
+}
 .search_results_product_item {
   position: relative;
   max-width: 425px;
@@ -523,13 +528,9 @@
   }
 }
 
-@media (max-width: 1399px) {
-  .search_results_filter__main {
-    column-gap: 35px;
-  }
-}
 
-@media (max-width: 1199px) {
+
+@media (max-width: 1600px) {
   .search_results_filter__main {
     column-gap: 35px;
   }
