@@ -61,7 +61,7 @@
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1;
-    color: rgb(var(--color-button-text));
+    color: #000;
   }
   
   .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn span {

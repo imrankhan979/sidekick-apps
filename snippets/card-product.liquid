@@ -28,6 +28,11 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
+
+     {%- assign prd_crd = card_product %}
+    {%- assign section_id = section.id %}
+    {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
+
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
@@ -40,6 +45,7 @@
       assign ratio = 1
     endif
   -%}
+
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
       class="
@@ -142,6 +148,40 @@
             {%- endif -%}
           </div>
         </div>
+        <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
+          <button
+            id="{{ pdfm }}-submit"
+            type="submit"
+            name="add"
+            class="quick-view-prg {% if prd_crd.id != blank %}quick-view-prg-have{% endif %}"
+            aria-haspopup="dialog"
+            aria-labelledby="{{ pdfm }}-submit title-{{ section_id }}-{{ prd_crd.id }}"
+            data-product-url="{{ prd_crd.url }}"
+          >
+          QUICK VIEW
+          </button>
+        </popup-slide>
+          <quick-add-modal id="QuickAdd-{{ prd_crd.id }}" class="quick-add-modal quick--view-area">
+    <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
+    <div
+      role="dialog"
+      aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
+      aria-modal="true"
+      class="quick-add-modal-content"
+      tabindex="-1"
+    >
+      <button
+        id="ModalClose-{{ prd_crd.id }}"
+        type="button"
+        class="quick-add-modal__toggle quick-view-close-btn"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        {{- 'icon-close.svg' | inline_asset_content -}}
+      </button>
+      <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
+      <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
+    </div>
+  </quick-add-modal>
       </div>
       <div class="card__content show-variant">
         <div class="card__information">
@@ -155,7 +195,7 @@
             <a
               href="{{ card_product.url }}"
               id="CardLink-{{ section_id }}-{{ card_product.id }}"
-              class="full-unstyled-link"
+              class="full-unstyled-link relative"
               aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }} Badge-{{ section_id }}-{{ card_product.id }}"
             >
               {{ card_product.title | escape }}

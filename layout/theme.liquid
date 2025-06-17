@@ -260,8 +260,13 @@
 
     {% comment %} quick view {% endcomment %}
     {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-      {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+    {{ 'component-slider.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+
+
+
+
 
 
     {%- unless settings.type_body_font.system? -%}
