@@ -15,9 +15,10 @@
         "slide_W6JWXC": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/Group_11.png",
+            "bg_image": "shopify://shop_images/getty-images-AdElIP_rygk-unsplash_1.png",
             "video_loop": false,
             "video_autoplay": false,
+            "image": "shopify://shop_images/slider-1.png",
             "content_width": 40,
             "title": "Streetwise new way of style",
             "cta_text": "collection",
