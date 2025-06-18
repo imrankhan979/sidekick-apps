@@ -34,7 +34,7 @@
           "type": "slide",
           "settings": {
             "bg_video": "shopify://files/videos/9951705-uhd_4096_2160_25fps.mp4",
-            "video_loop": false,
+            "video_loop": true,
             "video_autoplay": true,
             "content_width": 40,
             "title": "Streetwise new way of style",
