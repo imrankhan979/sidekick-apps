@@ -2116,3 +2116,19 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// Sticky header
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.section-header');
+  const stickyClass = 'sticky';
+  const headerHeight = header.offsetHeight;
+
+  const handleScroll = () => {
+    if (window.scrollY > headerHeight) {
+      header.classList.add(stickyClass);
+    } else {
+      header.classList.remove(stickyClass);
+    }
+  };
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Initial check on page load
+} );

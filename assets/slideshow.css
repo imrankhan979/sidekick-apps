@@ -1,7 +1,9 @@
 .slider-section .slider_item{
     /* background: linear-gradient(180deg, #0160A0 16.22%, #2992D9 50%); */
     position: relative;
-    height: 100%;
+    display: flex;
+    align-items: stretch;
+    min-height: 100%;
   }
   .slider-section .bg-media{
     position: absolute;

@@ -4580,3 +4580,17 @@ accordion-item .accordion_content {
     margin-bottom: 24px;
     gap: 16px;
   }
+
+  .section-header.sticky{
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #FFEC3E;
+  }
+  .section-header .snazzy-header{
+    transition: all .3s ease;
+  }
+  .section-header.sticky .snazzy-header{
+    background-color: #fff;
+  }

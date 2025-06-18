@@ -32,6 +32,8 @@
      {%- assign prd_crd = card_product %}
     {%- assign section_id = section.id %}
     {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
+            {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
 
 {%- if card_product and card_product != empty -%}
   {%- liquid
@@ -110,8 +112,9 @@
                 >
               {%- endif -%}
             </div>
-          </div>
-        {%- endif -%}
+            </div>
+          {%- endif -%}
+          <a class="product-card-url" href="{{ card_product.url }}"></a>
         <div class="card__content a">
           <div class="card__information">
             <h3
@@ -162,26 +165,28 @@
           </button>
         </popup-slide>
           <quick-add-modal id="QuickAdd-{{ prd_crd.id }}" class="quick-add-modal quick--view-area">
-    <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
-    <div
-      role="dialog"
-      aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
-      aria-modal="true"
-      class="quick-add-modal-content"
-      tabindex="-1"
-    >
-      <button
-        id="ModalClose-{{ prd_crd.id }}"
-        type="button"
-        class="quick-add-modal__toggle quick-view-close-btn"
-        aria-label="{{ 'accessibility.close' | t }}"
-      >
-        {{- 'icon-close.svg' | inline_asset_content -}}
-      </button>
-      <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
-      <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
-    </div>
-  </quick-add-modal>
+              <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
+              <div
+                role="dialog"
+                aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
+                aria-modal="true"
+                class="quick-add-modal-content"
+                tabindex="-1"
+              >
+                <button
+                  id="ModalClose-{{ prd_crd.id }}"
+                  type="button"
+                  class="quick-add-modal__toggle quick-view-close-btn"
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </button>
+                <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
+                <div>    
+                </div>
+                <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
+              </div>
+          </quick-add-modal>
       </div>
       <div class="card__content show-variant">
         <div class="card__information">

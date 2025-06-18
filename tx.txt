@@ -32,6 +32,7 @@
       <div class="product_page-lyer the-finos-sad-inner">
         <a class="quick-view-details" href="#_">view_details</a>
         <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
+        <div class="buy-buttons"></div>
       </div>
     </div>
   </div>
