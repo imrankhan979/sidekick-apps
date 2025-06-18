@@ -21,6 +21,7 @@
   width: 100%;
   background: rgba(var(--color-foreground), 0.2);
   height: 100%;
+  transition:  translate .3s;
 }
 
 .quick-add-modal[open] {
@@ -240,17 +241,11 @@
 }
 
 .quick-add-modal__toggle {
-  background-color: rgb(var(--color-background));
-  border: 0.1rem solid rgba(var(--color-foreground), 0.1);
-  border-radius: 50%;
-  color: rgba(var(--color-foreground), 0.55);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 1.2rem;
   z-index: 5;
-  width: 4rem;
   position: fixed;
   top: 1.5rem;
   right: 1.5rem;
@@ -409,9 +404,9 @@ quick-add-bulk .quantity__input {
   overflow-y: auto;
   border-radius: 40px 0 0 40px;
   transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
   background: #fff;
   padding: 48px;
+  transition: transform 0.3s ease-in-out;
 }
 .quick-add-modal[open] .quick-add-modal-content {
   transform: translateX(0);
@@ -448,3 +443,91 @@ quick-add-bulk .quantity__input {
 .quick-add-modal .product_left_carousel_thumb{
   display: none !important;
 }
+.quick-add-modal .view-details-btn {  
+  text-align: center;
+    display: block;
+    margin-top: 20px;
+    font-size: 16px;
+    text-decoration: underline;
+}
+.quick-add-modal .product--stacked .product__media-item{
+  max-width: 100%;
+}
+.quick-add-modal .product_single_wrapper .product__info-container .product__title{
+  margin: 0;
+}
+.quick-add-modal .product_single_wrapper .product__info-container .product__title > *{
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -1%;
+  vertical-align: middle;
+}
+.quick-add-modal .product_single_wrapper .product__description{
+  display: none;
+}
+.quick-add-modal .product_single_wrapper .product_single_timer_box{
+  display: none;
+}
+
+ .card .card__inner popup-slide{
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    width: calc(100% - 48px);
+    transform: scale(.95) translateY(100%);
+    opacity: 0;
+    transition: .3s all;
+  }
+  .card:hover popup-slide{
+    transform: scale(1) translateY(0%);
+    opacity: 1;
+  }
+  .card .card__inner popup-slide button{
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+    color: #000;
+    transition: .3s all;
+  }
+     .card .card__inner popup-slide button.loading{
+      position: relative;
+      cursor: not-allowed;
+      pointer-events: none;
+      color: transparent;
+    }
+     .card .card__inner popup-slide button.loading::after{
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -10px 0 0 -10px;
+      border-radius: 50%;
+    }
+     .card .card__inner popup-slide button.loading::after{
+      border: 2px solid rgba(var(--color-foreground), .6);
+      border-top-color: transparent;
+      animation: loading-spinner 1s linear infinite;
+    }
+@keyframes loading-spinner {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+      .card .card__inner popup-slide button:hover {
+        background-color: #000000;
+        color: #fff;
+      }
