@@ -33,10 +33,9 @@
         "slide_L8yCga": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/getty-images-AdElIP_rygk-unsplash_1.png",
+            "bg_video": "shopify://files/videos/9951705-uhd_4096_2160_25fps.mp4",
             "video_loop": false,
-            "video_autoplay": false,
-            "image": "shopify://shop_images/slider-1.png",
+            "video_autoplay": true,
             "content_width": 40,
             "title": "Streetwise new way of style",
             "cta_text": "collection",
