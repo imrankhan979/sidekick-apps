@@ -13,7 +13,7 @@
         }
     {%- endif -%}
 {% endstyle %}
-<header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %}">
+<header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %}" data-sticky="{{ section.settings.sticky_behavior }}">
     <div class="page-width">
         <observed-height>
             <div class="header-inner grid align-items-center">
@@ -232,6 +232,18 @@
       "name": "t:sections.header.name",
       "class": "section-header",
       "settings": [
+                {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "scheme-1"
+        },
+        { 
+          "type": "color_scheme",
+          "id": "menu_color_scheme",
+          "label": "t:sections.header.settings.menu_color_scheme.label",
+          "default": "scheme-1"
+        },
         {
           "type": "link_list", 
           "id": "menu",
@@ -245,20 +257,19 @@
         "label": "t:sections.header.settings.enable_overlay_header.label"
         },
         {
-          "type": "header",
-          "content": "t:sections.header.settings.header__1.content"
+        "type": "select",
+        "id": "sticky_behavior",
+        "label": "Sticky Header Behavior",
+        "default": "none",
+        "options": [
+            { "value": "none", "label": "None" },
+            { "value": "scroll-top", "label": "Always" },
+            { "value": "scroll-down", "label": "Scroll top" }
+        ]
         },
         {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "t:sections.all.colors.label",
-          "default": "scheme-1"
-        },
-        { 
-          "type": "color_scheme",
-          "id": "menu_color_scheme",
-          "label": "t:sections.header.settings.menu_color_scheme.label",
-          "default": "scheme-1"
+          "type": "header",
+          "content": "t:sections.header.settings.header__1.content"
         },
           {
       "type": "header",

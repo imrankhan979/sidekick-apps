@@ -4587,6 +4587,22 @@ accordion-item .accordion_content {
     z-index: 9999;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: #FFEC3E;
+    height: var(--observed-height);
+    animation: top-to-bottom .4s linear forwards;
+    transition: all .3s ease;
+  }
+  @keyframes top-to-bottom {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    1%{
+      transform: translateY(-100%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+    }
   }
   .section-header .snazzy-header{
     transition: all .3s ease;
