@@ -1,5 +1,6 @@
 {{ 'image-hotspot.css' | asset_url | stylesheet_tag }}
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
 {% comment %} {{ 'quick-add.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {% comment %}
@@ -65,6 +66,9 @@
           {% endif %}
           <!-- Hotspots -->
           {% for block in section.blocks %}
+              {%- assign prd_crd = block.settings.selected_product %}
+              {%- assign section_id = section.id %}
+              {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
             {% if block.type == 'product' %}
               <div
                 class="hotspot {% if forloop.first %} active{% endif %}"
@@ -85,10 +89,7 @@
                       <p>{{ 00.00 | money }}</p>
                     {% endif %}
                   </div>
-                  </div>
-                  {%- assign prd_crd = block.settings.selected_product %}
-                 {%- assign section_id = section.id %}
-                 {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
+                </div>
                  <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
                    <button
                      id="{{ pdfm }}-submit"
@@ -102,27 +103,6 @@
                    
                    </button>
                  </popup-slide>
-                  <quick-add-modal id="QuickAdd-{{ prd_crd.id }}" class="quick-add-modal quick--view-area">
-                    <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
-                    <div
-                      role="dialog"
-                      aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
-                      aria-modal="true"
-                      class="quick-add-modal-content"
-                      tabindex="-1"
-                    >
-                      <button
-                        id="ModalClose-{{ prd_crd.id }}"
-                        type="button"
-                        class="quick-add-modal__toggle quick-view-close-btn"
-                        aria-label="{{ 'accessibility.close' | t }}"
-                      >
-                        {{- 'icon-close.svg' | inline_asset_content -}}
-                      </button>
-                      <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
-                      <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
-                    </div>
-                  </quick-add-modal>
               </div>
             {% endif %}
           {% endfor %}
@@ -139,7 +119,7 @@
                   <div class="hotpot_slider_item" {{ block.shopify_attributes }}>
                     {% assign product = block.settings.selected_product %}
                     {% if product != blank %}
-                      {% render 'product', product: product, button: false %}
+                      {% render 'card-product', card_product: product, section_id: section.id %}
                     {% else %}
                       <div class="hotpot_slider_thumb flex">
                         {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}

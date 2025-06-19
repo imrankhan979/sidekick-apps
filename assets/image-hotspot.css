@@ -246,7 +246,7 @@
     }
   }
   @media (min-width: 768px) {
-      .bulk-hotspot-section popup-slide {
+      .bulk-hotspot-section .hotspot popup-slide {
         display: none;
       }
   }
@@ -508,4 +508,7 @@
   .bulk-hotspot-section items-carousel{
       display: none;
   } 
+}
+.bulk-hotspot-section  .variant-group:not(.color-swatch) {
+  display: none;
 }

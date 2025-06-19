@@ -133,7 +133,7 @@
               </a>
             </h3>
           </div>
-          <div class="card__badge {{ settings.badge_position }}">
+          {% comment %} <div class="card__badge {{ settings.badge_position }}">
             {%- if card_product.available == false -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
@@ -149,7 +149,30 @@
                 {{- 'products.product.on_sale' | t -}}
               </span>
             {%- endif -%}
-          </div>
+          </div> {% endcomment %}
+                <div class="product-badge-wrapper card__badge flex wrap align-items-center">
+                  {% if card_product.tags.size > 0 and card_product.variants.first.available %}
+                    <div class="badge tag-badge">{{ card_product.tags.first }}</div>
+                  {% endif %}
+                  {% if card_product.variants.size > 1 and card_product.variants.first.available %}
+                    <div class="badge sale-badge {% unless card_product.variants.first.compare_at_price > card_product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ card_product.id }}">
+                      {% assign discount_amount = card_product.variants.first.compare_at_price | minus: card_product.variants.first.price %}
+                      {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: card_product.variants.first.compare_at_price | round %}
+                      {{ discount_percentage }}% off
+                    </div>
+                    {% elsif card_product.variants.first.compare_at_price > card_product.variants.first.price %}
+                      <div class="badge sale-badge">
+                        {% assign discount_amount = card_product.compare_at_price | minus: card_product.price %}
+                        {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: card_product.compare_at_price | round %}
+                        {{ discount_percentage }}% off
+                      </div>
+                  {% endif %}
+                      <div class="badge sold-out-badge {% if card_product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ card_product.id }}">
+                        {% unless card_product.variants.first.available %}
+                          {{ 'products.product.sold_out' | t }}
+                        {% endunless %}
+                      </div>
+                </div>
         </div>
         <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
           <button

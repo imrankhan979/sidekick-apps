@@ -558,5 +558,5 @@ quick-add-bulk .quantity__input {
         z-index: 1;
       }
       .quick-add-modal .product_single_wrapper .product__info-container > .product-form__input.product-form__quantity{
-        padding-bottom: 54px;
+        padding-bottom: 80px;
       }
