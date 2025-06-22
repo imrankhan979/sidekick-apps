@@ -788,3 +788,14 @@ quick-order-list .tax-note {
     font-size: 16px;
     color: #808080;;
 }
+.price .badge {
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    background: #ff3e3e;
+    text-transform: uppercase;
+    border-radius: 24px;
+    padding: 6px 12px;
+    line-height: 1;
+}

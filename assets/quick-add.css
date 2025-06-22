@@ -397,3 +397,9 @@ quick-add-bulk .quantity__input {
 .quantity__input-disabled {
   pointer-events: none;
 }
+.price--on-sale .price-item--regular {
+    color: gray;
+}
+.price .price-item.quick_order_list_price {
+    color: red;
+}
