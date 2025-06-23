@@ -1,5 +1,6 @@
 {{ 'image-hotspot.css' | asset_url | stylesheet_tag }}
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
 {% comment %} {{ 'quick-add.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
 {% comment %}
@@ -65,6 +66,9 @@
           {% endif %}
           <!-- Hotspots -->
           {% for block in section.blocks %}
+              {%- assign prd_crd = block.settings.selected_product %}
+              {%- assign section_id = section.id %}
+              {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
             {% if block.type == 'product' %}
               <div
                 class="hotspot {% if forloop.first %} active{% endif %}"
@@ -86,6 +90,19 @@
                     {% endif %}
                   </div>
                 </div>
+                 <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
+                   <button
+                     id="{{ pdfm }}-submit"
+                     type="submit"
+                     name="add"
+                     class="quick-view-prg {% if prd_crd.id != blank %}quick-view-prg-have{% endif %}"
+                     aria-haspopup="dialog"
+                     aria-labelledby="{{ pdfm }}-submit title-{{ section_id }}-{{ prd_crd.id }}"
+                     data-product-url="{{ prd_crd.url }}"
+                   >
+                   
+                   </button>
+                 </popup-slide>
               </div>
             {% endif %}
           {% endfor %}
@@ -102,7 +119,7 @@
                   <div class="hotpot_slider_item" {{ block.shopify_attributes }}>
                     {% assign product = block.settings.selected_product %}
                     {% if product != blank %}
-                      {% render 'product', product: product, button: false %}
+                      {% render 'card-product', card_product: product, section_id: section.id %}
                     {% else %}
                       <div class="hotpot_slider_thumb flex">
                         {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}

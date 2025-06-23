@@ -32,6 +32,8 @@
      {%- assign prd_crd = card_product %}
     {%- assign section_id = section.id %}
     {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
+            {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
 
 {%- if card_product and card_product != empty -%}
   {%- liquid
@@ -110,8 +112,9 @@
                 >
               {%- endif -%}
             </div>
-          </div>
-        {%- endif -%}
+            </div>
+          {%- endif -%}
+          <a class="product-card-url" href="{{ card_product.url }}"></a>
         <div class="card__content a">
           <div class="card__information">
             <h3
@@ -130,7 +133,7 @@
               </a>
             </h3>
           </div>
-          <div class="card__badge {{ settings.badge_position }}">
+          {% comment %} <div class="card__badge {{ settings.badge_position }}">
             {%- if card_product.available == false -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
@@ -146,7 +149,30 @@
                 {{- 'products.product.on_sale' | t -}}
               </span>
             {%- endif -%}
-          </div>
+          </div> {% endcomment %}
+                <div class="product-badge-wrapper card__badge flex wrap align-items-center">
+                  {% if card_product.tags.size > 0 and card_product.variants.first.available %}
+                    <div class="badge tag-badge">{{ card_product.tags.first }}</div>
+                  {% endif %}
+                  {% if card_product.variants.size > 1 and card_product.variants.first.available %}
+                    <div class="badge sale-badge {% unless card_product.variants.first.compare_at_price > card_product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ card_product.id }}">
+                      {% assign discount_amount = card_product.variants.first.compare_at_price | minus: card_product.variants.first.price %}
+                      {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: card_product.variants.first.compare_at_price | round %}
+                      {{ discount_percentage }}% off
+                    </div>
+                    {% elsif card_product.variants.first.compare_at_price > card_product.variants.first.price %}
+                      <div class="badge sale-badge">
+                        {% assign discount_amount = card_product.compare_at_price | minus: card_product.price %}
+                        {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: card_product.compare_at_price | round %}
+                        {{ discount_percentage }}% off
+                      </div>
+                  {% endif %}
+                      <div class="badge sold-out-badge {% if card_product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ card_product.id }}">
+                        {% unless card_product.variants.first.available %}
+                          {{ 'products.product.sold_out' | t }}
+                        {% endunless %}
+                      </div>
+                </div>
         </div>
         <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
           <button
@@ -162,26 +188,28 @@
           </button>
         </popup-slide>
           <quick-add-modal id="QuickAdd-{{ prd_crd.id }}" class="quick-add-modal quick--view-area">
-    <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
-    <div
-      role="dialog"
-      aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
-      aria-modal="true"
-      class="quick-add-modal-content"
-      tabindex="-1"
-    >
-      <button
-        id="ModalClose-{{ prd_crd.id }}"
-        type="button"
-        class="quick-add-modal__toggle quick-view-close-btn"
-        aria-label="{{ 'accessibility.close' | t }}"
-      >
-        {{- 'icon-close.svg' | inline_asset_content -}}
-      </button>
-      <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
-      <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
-    </div>
-  </quick-add-modal>
+              <div id="quick-add-modal-overlay" class="quick--view-area-overlay"></div>
+              <div
+                role="dialog"
+                aria-label="{{ 'products.product.choose_product_options' | t: product_name: prd_crd.title | escape }}"
+                aria-modal="true"
+                class="quick-add-modal-content"
+                tabindex="-1"
+              >
+                <button
+                  id="ModalClose-{{ prd_crd.id }}"
+                  type="button"
+                  class="quick-add-modal__toggle quick-view-close-btn"
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </button>
+                <div id="QuickAddInfo-{{ prd_crd.id }}" class="quick-add-modal__content-info "></div>
+                <div>    
+                </div>
+                <a href="{{ prd_crd.url }}" class="view-details-btn">View full detail</a>
+              </div>
+          </quick-add-modal>
       </div>
       <div class="card__content show-variant">
         <div class="card__information">
