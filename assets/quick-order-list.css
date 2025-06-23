@@ -25,7 +25,6 @@ quick-order-list .quantity__button {
 
 .quick-order-list__total {
   padding-top: 2rem;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .variant-item__quantity .quantity:before {
@@ -798,4 +797,7 @@ quick-order-list .tax-note {
     border-radius: 24px;
     padding: 6px 12px;
     line-height: 1;
+}
+.quick-add-modal__content.global-settings-popup {
+  border-radius: 30px;
 }
