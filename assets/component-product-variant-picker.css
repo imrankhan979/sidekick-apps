@@ -173,4 +173,7 @@ padding: 11px 25px;
   }
 }
 /* End custom styles for Swatch display type */
- 
+ .product-form__input--pill__wrapper{
+  display: flex;
+  gap: 16px;
+ }

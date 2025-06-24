@@ -89,24 +89,25 @@
     width: 64px;
     height: 64px;
     transform: translateY(0);
+      transition: all .3s;
   }
   
   .bulk-hotspot-section .flickity-button {
-    background: rgb(var(--color-button));
-    color: rgb(var(--color-button-text));
+    background: transparent;
+    color: #000;
   }
   
   .bulk-hotspot-section .flickity-button svg path {
-    fill: rgb(var(--color-button-text));
+    fill: #000;
   }
   
   .bulk-hotspot-section .flickity-button:hover {
-    background-color: rgb(var(--color-button-hover));
-    color: rgb(var(--color-button-text-hover));
+    background-color: #000;
+    color: #fff;
   }
   
   .bulk-hotspot-section .flickity-button:hover svg path {
-    fill: rgb(var(--color-button-text-hover));
+    fill: #fff;
   }
   
   .bulk-hotspot-section .flickity-prev-next-button.previous {
@@ -303,6 +304,9 @@
       top: -65px;
       width: 40px;
       height: 40px;
+    }
+    .bulk-hotspot-section .flickity-prev-next-button.next {
+      left: 40px;
     }
   
     .bulk-hotspot-section .flickity-prev-next-button .flickity-button-icon {

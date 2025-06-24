@@ -645,3 +645,15 @@ letter-spacing: -0.01em;
     display: none;
   }
 }
+.bundle-section .product-content .variant-group.color-swatch input{
+  width: 30px ;
+  height: 30px ;
+  border-radius: 50%;
+}
+.bundle-section .product-content .variant-picker .variant-group .variant-items{
+  gap: 16px;
+}
+.bundle-section .product-content .variant-group.color-swatch input[type=radio]:checked:before, .product-content .variant-group.color-swatch input[type=radio]:hover:before{
+  width: 36px !important;
+  height: 36px !important;
+}
