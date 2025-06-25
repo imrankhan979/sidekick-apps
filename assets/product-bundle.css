@@ -483,8 +483,8 @@ letter-spacing: -0.01em;
     background: none;
     cursor: pointer;
     vertical-align: text-top;
-    height: 44px;
-    width: 68px;
+    /* height: 44px;
+    width: 68px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -495,8 +495,8 @@ letter-spacing: -0.01em;
 }
 @media (max-width: 767px) {
   .product-content .variant-picker .variant-group label{
-      height: 36px;
-      width: 60px;
+      /* height: 36px;
+      width: 60px; */
       font-size: 14px;
       line-height: 20px;
   }

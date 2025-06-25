@@ -1719,28 +1719,24 @@ vertical-align: middle;
 }
 
 .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
-  padding-right: 25px;
-  margin-right: 25px;
+  padding-left: 25px;
+  margin-left: 25px;
   position: relative;
   z-index: 1;
 }
 
-.product_single_wrapper .product_single_timer_wrapper .countdown_timer:last-child {
-  padding-right: 0;
-  margin-right: 0;
-}
 
 .product_single_wrapper .product_single_timer_wrapper .countdown_timer::before {
   position: absolute;
   content: ":";
   top: 50%;
-  right: 0;
+  left: -6%;
   transform: translateY(-50%);
   font-size: 40px;
   color: #000000;
 }
 
-.product_single_wrapper .product_single_timer_wrapper .countdown_timer:last-child::before {
+.product_single_wrapper .product_single_timer_wrapper .countdown_timer:first-child::before {
   display: none;
 }
 
@@ -2164,14 +2160,16 @@ vertical-align: middle;
   }
 
   .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
-    padding-right: 20px;
-    margin-right: 20px;
+    padding-left: 20px;
+    margin-left: 20px;
   }
 
   .product_single_wrapper .product_single_timer_wrapper .product_single_timer {
     font-size: 30px;
   }
-
+  .product_single_wrapper .product_single_timer_wrapper .countdown_timer::before{
+      font-size: 30px;
+  }
   .product_single_wrapper .product_single_timer_box {
     padding: 20px 5px;
   }
@@ -2207,8 +2205,8 @@ vertical-align: middle;
   }
 
   .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
-    padding-right: 14px;
-    margin-right: 14px;
+    padding-left: 14px;
+    margin-left: 14px;
   }
 
   .product_single_carusol_item {
@@ -2279,18 +2277,21 @@ vertical-align: middle;
   }
 
   .product_single_wrapper .product_single_timer_wrapper .countdown_timer {
-    padding-right: 10px;
-    margin-right: 10px;
+    padding:  0 5px;
+    margin-left: 0;
   }
-
+.product_single_wrapper .product_single_timer_wrapper .countdown_timer:first-child{
+    padding:  0 5px;
+}
   .product_single_wrapper .product_single_timer_wrapper .product_single_timer {
     font-size: 24px;
   }
 
   .product_single_wrapper .product_single_timer_wrapper .countdown_timer::before {
     font-size: 30px;
+    left: -4%;
   }
-}
+}     
 
 @media (max-width: 767px) {
   .product_single_wrapper .flickity-prev-next-button {
@@ -2522,6 +2523,10 @@ vertical-align: middle;
 }
 .product_single_wrapper .product-form__buttons > *{
   width: calc(50% - 8px);
+}
+.product_single_wrapper .product-form__buttons button[disabled="disabled"], .product_single_wrapper .product-form__buttons button[aria-disabled="true"], .product_single_wrapper .product-form__buttons button[disabled]{
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 .product_single_wrapper .product-form__buttons.hide-dynamic-checkout > *{
   width: 100%
