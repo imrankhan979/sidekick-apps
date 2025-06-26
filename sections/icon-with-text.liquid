@@ -19,11 +19,11 @@
   }
 
 {%- endstyle -%}
-   <section class="section-icon-with-text color-{{ section.settings.color_scheme }}">
+   <section class="icon-with-text color-{{ section.settings.color_scheme }}">
     <div class="page-width">
       <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
         {% if section.settings.section_title != blank %}
-          <div class="heading-area section-icon-with-text-section-heading">
+          <div class="heading-area icon-with-text-section-heading ">
              <h5 class="material_title">{{ section.settings.section_title }}</h5>
           </div>
         {% endif %}
