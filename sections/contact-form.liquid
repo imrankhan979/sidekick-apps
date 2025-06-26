@@ -39,23 +39,25 @@
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'contact_address' %}
-                <h4 class="contact_left_title">{{ block.settings.contact_title }}</h4>
-                <div class="contact_item_wrap">
-                  <div class="contact_item">
-                    <h6 class="contact_title">{{ block.settings.address_title }}</h6>
-                    <span class="contact_subTitle">{{ block.settings.address }}</span>
-                  </div>
-                  <div class="contact_item">
-                    <h6 class="contact_title">{{ block.settings.email_title }}</h6>
-                    <a class="contact_link" href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
-                  </div>
-                  <div class="contact_item">
-                    <h6 class="contact_title">{{ block.settings.phone_title }}</h6>
-                    <a class="contact_link" href="tel:{{ block.settings.phone }}">{{ block.settings.phone }}</a>
+                <div {{ block.shopify_attributes }}>
+                  <h4 class="contact_left_title">{{ block.settings.contact_title }}</h4>
+                  <div class="contact_item_wrap">
+                    <div class="contact_item">
+                      <h6 class="contact_title">{{ block.settings.address_title }}</h6>
+                      <span class="contact_subTitle">{{ block.settings.address }}</span>
+                    </div>
+                    <div class="contact_item">
+                      <h6 class="contact_title">{{ block.settings.email_title }}</h6>
+                      <a class="contact_link" href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                    </div>
+                    <div class="contact_item">
+                      <h6 class="contact_title">{{ block.settings.phone_title }}</h6>
+                      <a class="contact_link" href="tel:{{ block.settings.phone }}">{{ block.settings.phone }}</a>
+                    </div>
                   </div>
                 </div>
               {% when 'social_share' %}
-                <div class="contact_item_socials">
+                <div class="contact_item_socials" {{ block.shopify_attributes }}>
                   <h4 class="contact_left_title">{{ block.settings.social_title }}</h4>
                   <ul>
                     {% if settings.social_facebook_link != blank %}

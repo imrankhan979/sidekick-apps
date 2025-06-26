@@ -13,6 +13,11 @@
   margin-bottom: 120px;
   color: rgb(var(--color-foreground));
 }
+@media (max-width: 767px) {
+ .icon-with-text-section-heading {
+  margin-bottom: 60px;
+}   
+}
   .material_main_wrapper {
     display: grid;
     gap: 30px;

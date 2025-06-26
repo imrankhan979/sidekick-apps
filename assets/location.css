@@ -144,7 +144,6 @@ START: Contact maps CSS
     overflow: hidden;
     transition: opacity 200ms linear, max-height 200ms linear;
     will-change: opacity, max-height;
-        transform: scale(0);
   }
   
   @media (max-width: 767px) {
