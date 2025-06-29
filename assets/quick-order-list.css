@@ -799,5 +799,6 @@ quick-order-list .tax-note {
     line-height: 1;
 }
 .quick-add-modal__content.global-settings-popup {
-  border-radius: 30px;
+    border-radius: 30px;
+    padding: 10px 30px;
 }

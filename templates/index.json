@@ -15,56 +15,42 @@
         "slide_W6JWXC": {
           "type": "slide",
           "settings": {
+            "bg_image": "shopify://shop_images/getty-images-AdElIP_rygk-unsplash_1.png",
             "video_loop": false,
             "video_autoplay": false,
+            "image": "shopify://shop_images/slider-1.png",
             "content_width": 40,
             "title": "Streetwise new way of style",
             "cta_text": "collection",
-            "cta_link": "",
+            "cta_link": "shopify://collections/snazzy",
             "description": "Discover a new level of style, from bold streetwear to refined essentials.",
             "button_text": "Shop now",
-            "button_link": "",
+            "button_link": "shopify://products/arabica-specialty-ritus",
             "padding_top": 120,
-            "padding_bottom": 120
+            "padding_bottom": 0
           }
         },
-        "slide_MBk9zM": {
+        "slide_L8yCga": {
           "type": "slide",
           "settings": {
-            "video_loop": false,
-            "video_autoplay": false,
-            "content_width": 40,
-            "title": "Streetwise new way of style",
-            "cta_text": "collection",
-            "cta_link": "",
-            "description": "Discover a new level of style, from bold streetwear to refined essentials.",
-            "button_text": "Shop now",
-            "button_link": "",
-            "padding_top": 120,
-            "padding_bottom": 120
-          }
-        },
-        "slide_beAfBf": {
-          "type": "slide",
-          "settings": {
+            "bg_video": "shopify://files/videos/9951705-uhd_4096_2160_25fps.mp4",
             "video_loop": true,
             "video_autoplay": true,
             "content_width": 40,
             "title": "Streetwise new way of style",
             "cta_text": "collection",
-            "cta_link": "",
+            "cta_link": "shopify://collections/snazzy",
             "description": "Discover a new level of style, from bold streetwear to refined essentials.",
             "button_text": "Shop now",
-            "button_link": "",
+            "button_link": "shopify://products/arabica-specialty-ritus",
             "padding_top": 120,
-            "padding_bottom": 120
+            "padding_bottom": 0
           }
         }
       },
       "block_order": [
         "slide_W6JWXC",
-        "slide_MBk9zM",
-        "slide_beAfBf"
+        "slide_L8yCga"
       ],
       "name": "Slideshow",
       "settings": {
@@ -227,9 +213,9 @@
         "collection_z68pFW": {
           "type": "collection",
           "settings": {
-            "collection_handle": "",
+            "collection_handle": "snazzy",
             "tab_title": "Featured",
-            "item_total": 4,
+            "item_total": 8,
             "item_count": 4
           }
         },
@@ -461,8 +447,10 @@
       "name": "Video",
       "settings": {
         "section_color_scheme": "",
+        "video_type": "upload",
+        "youtube_url": "",
+        "vimeo_url": "",
         "video_loop": true,
-        "video_autoplay": true,
         "overlay_opacity": 70,
         "padding_top": 352,
         "padding_bottom": 352
@@ -538,7 +526,9 @@
       "name": "Scrolling text",
       "settings": {
         "color_scheme": "",
-        "scroll_duration": 60,
+        "speed": 100,
+        "direction": "right",
+        "pause_on_hover": true,
         "padding_top": 0,
         "padding_bottom": 0
       }

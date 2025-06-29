@@ -1,10 +1,14 @@
 .price {
-  font-size: 1.6rem;
-  letter-spacing: 0.1rem;
+  font-size: 20px;
   line-height: calc(1 + 0.5 / var(--font-body-scale));
   color: rgb(var(--color-foreground));
 }
-
+@media (max-width: 767px) {
+    .price {
+      font-size: 16px;
+      line-height: calc(1 + 0.5 / var(--font-body-scale));
+    }
+}
 .price > * {
   display: inline-block;
   vertical-align: top;
@@ -96,4 +100,10 @@
   margin-top: 0.2rem;
   text-transform: uppercase;
   color: rgba(var(--color-foreground), 0.7);
+}
+.price-item.price-item--sale.price-item--last.quick_order_list_price{
+  color: #FF3E3E;
+}
+.discount .price-item.price-item--regular{
+  color: #808080;
 }

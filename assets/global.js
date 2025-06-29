@@ -2116,3 +2116,56 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+// Sticky header
+function setupStickyHeader() {
+  const headerWrapper = document.querySelector('.section-header');
+  const headerInner = document.querySelector('.snazzy-header');
+  if (!headerWrapper || !headerInner) return;
+
+  const behavior = headerInner.dataset.sticky;
+  const stickyClass = 'sticky';
+  const headerHeight = headerInner.offsetHeight;
+  let lastScroll = window.scrollY;
+  const scrollThreshold = 10;
+
+  const handleScrollTop = () => {
+    if (window.scrollY > headerHeight) {
+      headerWrapper.classList.add(stickyClass);
+    } else {
+      headerWrapper.classList.remove(stickyClass);
+    }
+  };
+  const handleScrollDirection = () => {
+    const currentScroll = window.scrollY;
+    const scrollDiff = currentScroll - lastScroll;
+
+    if (currentScroll > headerHeight) {
+      if (scrollDiff < -scrollThreshold) {
+        headerWrapper.classList.add(stickyClass);
+      } else if (scrollDiff > scrollThreshold) {
+        headerWrapper.classList.remove(stickyClass);
+      }
+    } else {
+      headerWrapper.classList.remove(stickyClass);
+    }
+    lastScroll = currentScroll;
+  };
+  const scrollHandler = () => {
+    if (behavior === 'scroll-top') {
+      handleScrollTop();
+    } else if (behavior === 'scroll-down') {
+      handleScrollDirection();
+    }
+  };
+  window.removeEventListener('scroll', scrollHandler);
+  if (behavior !== 'none') {
+    window.addEventListener('scroll', scrollHandler);
+    scrollHandler(); 
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  setupStickyHeader();
+});
+document.addEventListener('shopify:section:load', () => {
+  setupStickyHeader();
+});

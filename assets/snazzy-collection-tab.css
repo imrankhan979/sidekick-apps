@@ -32,3 +32,31 @@
       margin-top: 48px;
     }
   }
+.collection-tab .product .variant-picker .variant-group:not(.color-swatch)  {
+  display: none;
+}
+.collection-tab .product .variant-picker .variant-group .variant-group-name  {
+  display: none;
+}
+.collection-tab .product .variant-picker {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.collection-tab .color-swatch .variant-items{
+  padding-bottom: 0 !important;
+}
+.collection-tab .product-content .variant-picker .variant-group {
+  margin-top: 25px;
+}
+@media (max-width: 767px) {
+.collection-tab .product-content .variant-picker .variant-group {
+  margin-top: 15px;
+}   
+}
+.collection-tab .product-content .variant-group.color-swatch input{
+  cursor: unset;
+}
+.collection-tab .product-content .variant-group.color-swatch input[type=radio]:checked:before, .collection-tab .product-content .variant-group.color-swatch input[type=radio]:hover:before{
+  display: none;
+}
