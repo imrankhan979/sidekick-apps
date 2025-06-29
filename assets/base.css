@@ -2671,8 +2671,6 @@ input[type='checkbox'] {
   justify-content: space-between;
   padding: 48px 24px 48px 24px;
   transition: transform .4s ease-in-out;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .snazzy-header header-menu-drawer .menu-opening .drawer-menu {
@@ -2681,6 +2679,7 @@ input[type='checkbox'] {
 
 .snazzy-header header-menu-drawer .menu-drawer-nav {
   flex-grow: 1;
+  overflow-y: auto;
 }
 
 .snazzy-header .menu-drawer-header svg {

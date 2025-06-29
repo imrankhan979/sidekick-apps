@@ -176,4 +176,5 @@ padding: 11px 25px;
  .product-form__input--pill__wrapper{
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
  }

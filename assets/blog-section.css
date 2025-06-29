@@ -15,4 +15,12 @@
     .blog_view-all-button {
         margin-top: 48px;
     }
+    .items-for-desktop {
+        display: none;
+    }
+  }
+  @media (min-width: 768px) {
+      .items-for-mobile {
+          display: none;
+      }
   }

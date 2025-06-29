@@ -75,7 +75,7 @@ START: Contact CSS
   justify-content: center;
   width: 36px;
   height: 36px;
-  border: 1px solid rgba(var(--color-secondary-button-border));
+  border: 1px solid #000;
   background: transparent;
   border-radius: 50%;
 }
@@ -167,7 +167,7 @@ START: Contact CSS
   padding: 20px 24px;
   font-size: 16px;
   background: transparent;
-  border: 1px solid rgba(var(--color-button-border));
+  border: 1px solid #000;
   border-radius: 10px;
   font-family: var(--sds-fs-body);
   color: #000000;
@@ -272,11 +272,11 @@ START: Contact CSS
   display: flex;
   align-items: center;
   column-gap: 12px;
-  font-family: var(--sds-ff-heading);
+  font-family: var(--font-family-heading);
   font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
-  color: rgba(var(--color-button-text));
+  color: #000;
 }
 
 .contact_form_box_one form .form_button .submit-btn span {
@@ -286,10 +286,13 @@ START: Contact CSS
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: rgba(var(--color-button));
+  background: #000;
+}
+.contact_form_box_one form .form_button .submit-btn span svg {
+  transform: rotate(-90deg);
 }
 .contact_form_box_one form .form_button .submit-btn span svg path {
-  fill: rgba(var(--color-button-border));
+  fill: #FFF;
 }
 @media (max-width: 991px) {
   .contact-main-section {
@@ -460,7 +463,7 @@ START: Contact CSS
   }
 
   .contact_form_box_one form .form_button {
-    margin-top: 25px;
+    margin-top: 0;
   }
 
   .contact_form_box_one form .form_item .form-input {
