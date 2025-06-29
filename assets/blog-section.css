@@ -24,3 +24,38 @@
           display: none;
       }
   }
+
+  .blog-post .blog-section-inner .flickity-prev-next-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+}
+  .blog-post .blog-section-inner .flickity-prev-next-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+  .blog-post .blog-section-inner .flickity-prev-next-button.previous {
+    left: 16px;
+}
+  .blog-post .blog-section-inner .flickity-prev-next-button.next {
+    right: 16px;
+}
+  .blog-post .blog-section-inner .flickity-prev-next-button  svg {
+  width: 10px;
+  height: 10px;
+      left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+  .blog-post .blog-section-inner  .flickity-prev-next-button svg path {
+  fill: #000;
+}
+  .blog-post .blog-section-inner  .flickity-prev-next-button:hover {
+  background-color: #000;
+}
+  .blog-post .blog-section-inner  .flickity-prev-next-button:hover svg path {
+  fill: #fff;
+}

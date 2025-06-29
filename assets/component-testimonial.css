@@ -116,7 +116,7 @@ START: Testimonial CSS
     width: 50px;
     right: 50px;
     height: 50px;
-    left: 25px;
+    left: 16px;
     right: auto;
   }
 
@@ -133,7 +133,7 @@ START: Testimonial CSS
     width: 50px;
     right: 50px;
     height: 50px;
-    left: 25px;
+    left: 16px;
     right: auto;
   }
 
@@ -148,9 +148,9 @@ START: Testimonial CSS
   .testimonial-section .page-width .flickity-prev-next-button.previous {
     top: 32%;
     width: 40px;
-    right: 50px;
+    right: 16px;
     height: 40px;
-    left: 20px;
+    left: 16px;
     right: auto;
   }
 
@@ -158,7 +158,7 @@ START: Testimonial CSS
     top: 32% !important;
     width: 40px !important;
     height: 40px !important;
-    right: 20px !important;
+    right: 16px !important;
   }
 
   .testimonial-section .page-width .flickity-prev-next-button .flickity-button-icon {
