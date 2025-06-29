@@ -253,7 +253,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid rgba(var(--color-button-border), 1);
+    border: 1px solid #000;
     border-radius: 50%;
   }
   @media (max-width: 767px) {
