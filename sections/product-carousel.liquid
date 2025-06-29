@@ -157,7 +157,7 @@
                     {% endif %}
                   </h6>
                   {%- if block.settings.product_select.price %}
-                    {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
+                    {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %} 
                       <div class="slider_community_percent active">
                         {{ block.settings.product_select.price | money }}
                         <span>{{ block.settings.product_select.compare_at_price | money }}</span>
