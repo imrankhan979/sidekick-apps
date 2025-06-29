@@ -117,7 +117,7 @@
     column-gap: 12px;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -128,20 +128,20 @@
     border-radius: 50%;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover {
     background-color: #000000;
     border-color: #000000;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg {
     animation: socailsMediaAnim 0.3s forwards;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a svg path {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li svg path {
     fill: #000000;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg path {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg path, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg path {
     fill: #ffffff;
 }
 

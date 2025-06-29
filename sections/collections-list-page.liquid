@@ -8,10 +8,14 @@
 
     @media screen and (min-width: 1199px) {
     .shop_collection_wrapper {
-      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
-  }
+          grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
+      }
     }
-
+  @media (max-width: 767px) {
+      .shop_collection_wrapper {
+          grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+      }
+  }
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top }}px;
@@ -34,7 +38,7 @@
 
 <section class="shop-collection-section section-{{ section.id }}-padding">
   <div class="page-width">
-    {%- paginate collections by section.settings.columns_by_page -%}
+    {% comment %} {%- paginate collections by section.settings.columns_by_page -%} {% endcomment %}
       <div class="shop_collection_wrapper">
         {% for collection in collections %}
           <div class="collection-card-wrapper" {% if collection.metafields.custom.additional_color != blank %} style="background-color: {{ collection.metafields.custom.additional_color }}"{% endif %}>
@@ -46,8 +50,8 @@
           </div>
         {% endfor %}
       </div>
-      {% render 'pagination', paginate: paginate %}
-    {%- endpaginate -%}
+      {% comment %} {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%} {% endcomment %}
   </div>
 </section>
 
@@ -62,15 +66,6 @@
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
-    {
-      "type": "range",
-      "id": "columns_by_page",
-      "min": 1,
-      "max": 12,
-      "step": 1,
-      "label": "t:sections.main-list-collections.settings.columns_by_page.label",
-      "default": 4
-    },
         {
       "type": "range",
       "id": "columns_desktop",
@@ -79,6 +74,22 @@
       "step": 1,
       "default": 2,
       "label": "t:sections.collection-list.settings.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Number of columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "2"
     },
     {
       "type": "select",

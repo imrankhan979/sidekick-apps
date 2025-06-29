@@ -41,7 +41,10 @@ START: Our journey CSS
     .our_journey_main_wrapper .our_journey_images {
       position: absolute;
       inset: 0;
-    }    
+    } 
+    .our_journey_image_wrapper{
+      border-radius: 24px;
+    }
   }
   .our_journey_main_wrapper .our_journey_images > * {
     display: flex;

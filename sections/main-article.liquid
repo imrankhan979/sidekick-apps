@@ -79,8 +79,8 @@
         <div class=" blog_details_content">
           {{ article.content }}
         </div>
+        {% if section.settings.show_tag or section.settings.show_social_share %}
         <div class=" blog_details_infos_box">
-          {% if section.settings.show_tag or section.settings.show_social_share %}
             {% if article.tags.size > 0 and section.settings.show_tag %}
               <div class="blog_details_tag">
                 <ul>
@@ -94,29 +94,54 @@
                 </ul>
               </div>
             {% endif %}
-          {% endif %}
+      
           {% if section.settings.show_social_share %}
             <div class="blog_details_socials">
               <ul>
                 <li>
-                  <a href="#">
-                    {{- 'icon-facebook.svg' | inline_asset_content -}}
+                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}"
+                      target="_blank"
+                      rel="noopener"
+                      class="facebook-share-button share-btn">
+                      {{ 'icon-facebook.svg' | inline_asset_content }}
+                    </a>
+                </li>
+                <li>
+                   <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&media={{ article.image | img_url: 'master' }}&description={{ article.title }}"
+                      target="_blank"
+                      rel="noopener"
+                      class="pinterest-share-button share-btn">
+                      {{ 'icon-pinterest.svg' | inline_asset_content }}
+                    </a>
+                </li>
+                <li>
+                   <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title }}"
+                    target="_blank"
+                    rel="noopener"
+                    class="share-btn">
+                    {{ 'icon-twitter.svg' | inline_asset_content }}
                   </a>
                 </li>
                 <li>
-                  <a href="#">
-                    {{- 'icon-pinterest.svg' | inline_asset_content -}}
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    {{- 'icon-link.svg' | inline_asset_content -}}
-                  </a>
+                  <button class="share-btn" onclick="copyArticleLink()">
+                  {{ 'icon-link.svg' | inline_asset_content }}
+                </button>
+                <script>
+                  function copyArticleLink() {
+                    const url = "{{ shop.url }}{{ article.url }}";
+                    navigator.clipboard.writeText(url).then(() => {
+                      alert('{{ 'button.share_button.product_link' | t }}');
+                    }).catch(err => {
+                      console.error('{{ 'button.share_button.product_link_error' | t }} ', err);
+                    });
+                  }
+                </script>
                 </li>
               </ul>
             </div>
           {% endif %}
         </div>
+            {% endif %}
 
         {% if section.settings.show_author_information %}
           <div class="blog_details_author">
