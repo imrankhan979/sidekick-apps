@@ -332,7 +332,10 @@
     vertical-align: middle;
     color: #000;
     transition: .3s all;
-
+  }
+  .product .product-thumb popup-slide button:hover{
+    background: #000000;
+    color: #fff;
   }
     .product .product-thumb popup-slide button.loading{
       position: relative;

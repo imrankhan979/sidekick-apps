@@ -6,6 +6,10 @@
     background: #ffffff;
     color: #000;
   }
+  .collection-carousel-section .flickity-button:hover {
+    background: #000000;
+    color: #ffffff;
+  }
   .collection-carousel-section .flickity-prev-next-button {
     width: 64px;
     height: 64px;

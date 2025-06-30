@@ -322,7 +322,7 @@
   right: 0;
   width: 100%;
   height: 1px;
-  background: rgb(var(--color-secondary-foreground));
+  background: #fff;
   transition: .3s;
 }
 .bundle-section .btn-line:hover:after{
