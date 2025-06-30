@@ -413,6 +413,7 @@
     "quick_order_list": {
       "product_total": "Product subtotal",
       "view_cart": "View cart",
+      "add_all_to_cart": "Add all to cart",
       "each": "{{ money }}/ea",
       "product": "Product",
       "variant": "Variant",

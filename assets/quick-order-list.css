@@ -25,7 +25,6 @@ quick-order-list .quantity__button {
 
 .quick-order-list__total {
   padding-top: 2rem;
-  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
 
 .variant-item__quantity .quantity:before {
@@ -637,11 +636,35 @@ quick-order-list .tax-note {
 /* ------- */
 .quick-add-modal__content-info--bulk .quick-add__info .product__view-details {
     color: #000000;
-    font-family: var(--sds-ff-heading);
+    font-family: var(--font-family-heading);
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase;
+    text-decoration: none;
     line-height: 1;
+    display: flex;
+    align-items: center;
+}
+.quick-add-modal__content-info--bulk .quick-add__info .product__view-details span {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #000000;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+}
+.quick-add-modal__content-info--bulk .quick-add__info .product__view-details svg{
+    transform: rotate(-90deg);
+}
+.quick-add-modal__content-info--bulk .quick-add__info .product__view-details svg path {
+    fill: #ffffff;
+}
+.quick-add-modal__content-info--bulk .quick-add__info .product__view-details:hover svg {
+    animation: arrow-move .4s linear;
 }
 .quick-add-modal__content-info--bulk .quick-add__product-container img {
   border-radius: 15px;
@@ -701,4 +724,81 @@ quick-order-list .tax-note {
 }
 .quick-add-modal__content img {
     border-radius: 5px;
+}
+.quick-order-list-buttons .quick-order-list__button {
+  position: relative;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 15px 24px;
+}
+.quick-order-list-buttons .quick-order-list__button .cart_anim {
+  display: block;
+  overflow: hidden;
+  text-shadow: 0 23px 0 #000000;
+  transition: all ease 0.3s;
+}
+.quick-order-list-buttons .quick-order-list__button .cart_anim>.anim_text {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    backface-visibility: hidden;
+    transform: translateY(0);
+    transition: all ease 0.3s;
+}
+.quick-order-list-buttons .quick-order-list__button:hover .cart_anim>.anim_text {
+    text-shadow: 0 25px 0 #000000;
+    transform: translateY(-25px);
+}
+.quick-order-list__button-text .add_to_all_cart {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+.quick-order-list-buttons .quick-order-list-remove-btn {
+  padding: 0 2rem;
+}
+.quick-order-list-buttons .quick-order-list-remove-btn span {
+  position: relative;
+  line-height: 1;
+}
+.quick-order-list-buttons .quick-order-list-remove-btn span::before {
+    position: absolute;
+    content: "";
+    display: block;
+    height: 1px;
+    min-height: 1px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: gray;
+    will-change: transform;
+    animation-duration: .9s;
+    animation-timing-function: ease;
+}
+.quick-order-list-buttons .quick-order-list-remove-btn span:hover:before {
+    animation-name: hover-underline;
+}
+.quick-order-list-total__price .totals__subtotal-value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+.quick-order-list-total__price .tax-note {
+    font-size: 16px;
+    color: #808080;;
+}
+.price .badge {
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+    background: #ff3e3e;
+    text-transform: uppercase;
+    border-radius: 24px;
+    padding: 6px 12px;
+    line-height: 1;
+}
+.quick-add-modal__content.global-settings-popup {
+    border-radius: 30px;
+    padding: 10px 30px;
 }

@@ -1818,19 +1818,6 @@
       },
       "presets": {
         "name": "Collection tab",
-        "block": {
-          "settings": {
-            "tab_title": {
-              "label": "Featured",
-            },
-            "best_seller": {
-              "label": "Best Sellers"
-            },
-            "new_arrivals": {
-              "label": "New arrivals"
-            }
-          }
-        }
       }
     },
     "all-collection": {
