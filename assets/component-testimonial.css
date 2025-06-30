@@ -331,18 +331,15 @@ START: Testimonial CSS
     text-align: start;
   }
 
-  .testimonial-item .testimonial-content .testimonial-infos .infos-text .title a::before {
-    position: absolute;
-    content: "";
-    bottom: 1px;
-    left: 0px;
-    right: 0px;
-    height: 1px;
-    width: 100%;
-    transform-origin: right center;
-    transform: scaleX(0);
-    background: rgb(0, 0, 0);
-    transition: transform 0.3s ease-in-out;
+  .testimonial-item .testimonial-content .testimonial-infos .infos-text .title a  span{
+    width: calc(100%);
+  background-image: linear-gradient(transparent calc(100% - 1px), rgba(var(--color-foreground)) 1px);
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size .4s;
+}
+  .testimonial-item .testimonial-content .testimonial-infos .infos-text:hover .title a span {
+    background-size: 100% 100%;  
 }
   .testimonial-section .testimonial-item .testimonial-content {
     text-align: center;
@@ -543,8 +540,8 @@ START: Testimonial CSS
     width: 28px;
     height: 28px;
     font-size: 14px;
-    color: rgb(var(--color-secondary-button-text));
-    background-color: rgb(var(--color-secondary-button));
+    color: #fff;
+    background-color: #000;
     border-radius: 50%;
     transition: 0.4s;
 }

@@ -62,8 +62,8 @@
     cursor: url('data:image/svg+xml;utf8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="64" y="64" width="64" height="64" rx="32" transform="rotate(-180 64 64)" fill="white"/><path d="M33.724 24.3907L26.1147 32L33.724 39.6094L35.6094 37.724L29.8854 32L35.6094 26.276L33.724 24.3907Z" fill="black"/></svg>') 64 64, auto;
   }
   .flickity-button:disabled {
-    opacity: 1;
-  
+    opacity: .5;
+    cursor: not-allowed;
   }
   .slider-section .flickity-prev-next-button svg {
     display: none;
@@ -187,9 +187,6 @@
     background: rgb(var(--color-button-text));
     transition: .3s;
     transform: translateY(0);
-  }
-  .slider_button .slider-btn:hover::before {
-    transform: translateY(-3px);
   }
   
   .slider_button .slider-btn span {

@@ -35,7 +35,7 @@ snazzy-tab .tab-header{
       letter-spacing: 0%;
       padding: 11px 16px;
       border-radius: 100px;
-      transition: .4s;
+      transition: .3s;
       color: rgb(var(--color-button-text));
       text-transform: uppercase;
     }
@@ -54,7 +54,7 @@ snazzy-tab .tab-header{
     snazzy-tab .snazzy-tab-content {
       max-height: 0;
       overflow: hidden;
-      transition: opacity .6s, transform .6s;
+      transition: opacity .4s, transform .4s;
       opacity: 0;
       visibility: hidden;
       transform: translateY(30px);

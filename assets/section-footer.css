@@ -170,7 +170,22 @@
   line-height: 24px;
   letter-spacing: -0.01em;
   color: #000;
+  position: relative;
 }
+.footer .footer-top-content .footer-navigation-links-list li a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: rgb(var(--color-foreground));
+  transition: .4s;
+}
+.footer .footer-top-content .footer-navigation-links-list li a:hover:after {
+  width: 100%;
+}
+
 @media (max-width: 991px) {
   .footer .footer-top-content .footer-navigation-links-list li a{
     font-size: 16px;
