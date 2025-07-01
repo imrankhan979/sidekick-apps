@@ -1980,9 +1980,9 @@ accordionButtons.forEach(button => {
   }
 }
 
-if (!customElements.get('accordion-item')) {
-  customElements.define('accordion-item', CustomAccordion);
-}
+// if (!customElements.get('accordion-item')) {
+//   customElements.define('accordion-item', CustomAccordion);
+// }
 
 function initAccordions(scope = document) {
   const titles = scope.querySelectorAll('.accordion-title');

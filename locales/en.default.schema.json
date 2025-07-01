@@ -2177,7 +2177,6 @@
         }, 
         "heading_text": {
           "label": "Heading",
-          "default": "LATEST FASHION NEWS"
         },
         "blog": {
           "label": "Select blog"
