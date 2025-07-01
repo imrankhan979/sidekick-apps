@@ -271,6 +271,7 @@
   line-height: 20px;
   color: #fff;
   transition: .3s;
+  transform: scale(1);
 }
 .bundle-section #bundle-items .item-info-btns button:hover{
   transform: scale(1.1);

@@ -176,7 +176,9 @@
       "name": "Scrolling text",
       "settings": {
         "color_scheme": "",
-        "scroll_duration": 60,
+        "speed": 100,
+        "direction": "right",
+        "pause_on_hover": true,
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -184,28 +186,35 @@
     "gallery_section_jnyrnQ": {
       "type": "gallery-section",
       "blocks": {
-        "gallery_bLHCqj": {
+        "item_xdrexy": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_BaKDAK": {
+        "item_M9L3FN": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_R36XQj": {
+        "item_7Yb6r9": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
             "icon_link": ""
           }
         },
-        "gallery_FmV6Jr": {
+        "item_E6WpLn": {
+          "type": "Item",
+          "settings": {
+            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_link": ""
+          }
+        },
+        "item_jmxkzh": {
           "type": "Item",
           "settings": {
             "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
@@ -214,11 +223,11 @@
         }
       },
       "block_order": [
-        "item_WUww49",
-        "item_ifXzVC",
-        "item_6Mgm3i",
-        "item_akmDMR",
-        "item_neFwGU"
+        "item_xdrexy",
+        "item_M9L3FN",
+        "item_7Yb6r9",
+        "item_E6WpLn",
+        "item_jmxkzh"
       ],
       "name": "Image gallery",
       "settings": {

@@ -148,7 +148,7 @@ START: Blog CSS
     height: 3px;
     bottom: -10px;
     left: 0;
-    background: rgba(var(--color-highlight-text));
+    background: #000;
   }
 
   .blog_feature_item .blog_feature_content .blog_feature_button .blog-feature-btn span {
