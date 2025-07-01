@@ -1345,6 +1345,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const closeAll = () => {
     headerBgOverlay?.classList.remove('active');
+    document.body.classList.remove('drawer-open');
     headerMenu?.classList.remove(activeHeaderClass);
 
     // Close all menu items
@@ -1364,6 +1365,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isActive) {
       element.classList.add(parentClass);
       headerBgOverlay?.classList.add('active');
+      document.body.classList.add('drawer-open');
       headerMenu?.classList.add(activeHeaderClass);
     }
   };
@@ -2129,9 +2131,9 @@ function setupStickyHeader() {
   const scrollThreshold = 10;
 
   const handleScrollTop = () => {
-    if (window.scrollY > headerHeight) {
+    if (window.pageYOffset > headerHeight + scrollThreshold) {
       headerWrapper.classList.add(stickyClass);
-    } else {
+    } if (window.pageYOffset <= headerHeight + scrollThreshold  + 10) {
       headerWrapper.classList.remove(stickyClass);
     }
   };
@@ -2144,6 +2146,7 @@ function setupStickyHeader() {
         headerWrapper.classList.add(stickyClass);
       } else if (scrollDiff > scrollThreshold) {
         headerWrapper.classList.remove(stickyClass);
+
       }
     } else {
       headerWrapper.classList.remove(stickyClass);
@@ -2152,7 +2155,8 @@ function setupStickyHeader() {
   };
   const scrollHandler = () => {
     if (behavior === 'scroll-top') {
-      handleScrollTop();
+      handleScrollTop(); //always
+      document.body.classList.add('sticky-header');
     } else if (behavior === 'scroll-down') {
       handleScrollDirection();
     }
