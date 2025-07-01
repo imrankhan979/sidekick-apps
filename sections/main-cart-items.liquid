@@ -5,12 +5,12 @@
 {{ 'component-discounts.css' | asset_url | stylesheet_tag }}
 {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {{ 's-cart-page.css' | asset_url | stylesheet_tag }}
-{% if section.settings.enable_free_shipping_bar %}
+{% comment %} {% if section.settings.enable_free_shipping_bar %}
   <script>
     window.currencySymbol = '{{ cart.currency.symbol }}';
   </script>
   <script src="{{ 'free-shipping.js' | asset_url }}" defer="defer"></script>
-{% endif %}
+{% endif %} {% endcomment %}
   {% if section.settings.enable_calculate %}
     <script>window.allCountryOptionTags = {{ all_country_option_tags | json }};</script>
 

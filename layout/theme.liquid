@@ -319,6 +319,7 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
+    <div class="header-bg-overlay"></div>
 
     <script>
       window.shopUrl = '{{ request.origin }}';
@@ -374,6 +375,9 @@
     {%- endif -%}
 
     {% if settings.enable_free_shipping_bar %}
+      <script>
+          window.currencySymbol = '{{ cart.currency.symbol }}';
+        </script>
       <script src="{{ 'free-shipping.js' | asset_url }}" defer="defer"></script>
     {% endif %}
   </body>
