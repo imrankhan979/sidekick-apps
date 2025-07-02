@@ -472,7 +472,7 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(var(--color-button-text), 1);
+  background-color: #000;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -480,13 +480,12 @@ img {
 .snazzy-icon-btn span svg {
   transform: rotate(-90deg);
 }
+.snazzy-icon-btn span svg path{
+  fill: #fff;
+}
 
 .snazzy-icon-btn:hover span svg {
   animation: arrow-move .4s linear;
-}
-
-.snazzy-icon-btn span svg path {
-  fill: rgba(var(--color-button), 1);
 }
 
 @keyframes arrow-move {

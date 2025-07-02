@@ -35,10 +35,24 @@ font-size: 18px;
 line-height: 28px;
 white-space: nowrap;
 color: #000;
-display: flex;
+display: inline-flex;
 align-items: center;
 justify-content: space-between;
+position: relative;
 } 
+.snazzy-header .header-inner .list-menu li .has-sub-menu .header__menu-item:after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width .3s ease;
+} 
+.snazzy-header .header-inner .list-menu li .has-sub-menu .header__menu-item:hover:after{
+  width: 100%;
+}
 .snazzy-header .has-sub-menu .header__submenu li:not(:last-child){
   margin-bottom: 18px;
 }

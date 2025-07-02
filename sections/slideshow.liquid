@@ -65,7 +65,7 @@
                     <div class="slider_button">
                       {% if block.settings.button_text %}
                         <a
-                          class="slider-btn"
+                          class="slider-btn snazzy-icon-btn"
                           {% if block.settings.button_link == blank %}
                             role="link" aria-disabled="true"
                           {% else %}
@@ -73,7 +73,7 @@
                           {% endif %}
                         >
                           {{- block.settings.button_text }}
-                          <span>{{- 'icon-arrow.svg' | inline_asset_content -}}</span></a
+                          <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                         >
                       {% endif %}
                     </div>

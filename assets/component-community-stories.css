@@ -10,6 +10,7 @@
   }
   .slider-community-section .flickity-button {
     background: rgb(var(--color-button));
+    transition: .3s;
   }
 
   .slider-community-section .flickity-button svg path {
