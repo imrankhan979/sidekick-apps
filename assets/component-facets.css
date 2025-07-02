@@ -1237,7 +1237,8 @@ text-transform: uppercase;
 
 
   .facets-vertical .facets-wrapper {
-    padding-right: 3rem;
+        width: 100%;
+    max-width: 320px;
   }
 
   .facets-vertical .facets-wrapper--no-filters {
