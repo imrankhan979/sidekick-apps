@@ -48,11 +48,11 @@
                     </div>
                     <div class="contact_item">
                       <h6 class="contact_title">{{ block.settings.email_title }}</h6>
-                      <a class="contact_link" href="mailto:{{ block.settings.email }}">{{ block.settings.email }}</a>
+                      <a class="contact_link" href="mailto:{{ block.settings.email }}"><span>{{ block.settings.email }}</span></a>
                     </div>
                     <div class="contact_item">
                       <h6 class="contact_title">{{ block.settings.phone_title }}</h6>
-                      <a class="contact_link" href="tel:{{ block.settings.phone }}">{{ block.settings.phone }}</a>
+                      <a class="contact_link" href="tel:{{ block.settings.phone }}"><span>{{ block.settings.phone }}</span></a>
                     </div>
                   </div>
                 </div>
@@ -224,7 +224,7 @@
             </textarea>
             </div>
             <div class="form_button ">
-              <button type="submit" class="submit-btn">
+              <button type="submit" class="submit-btn snazzy-icon-btn">
                 {{ 'templates.contact.form.send' | t }}
                 <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
               </button>

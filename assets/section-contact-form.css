@@ -53,6 +53,20 @@ START: Contact CSS
   color: rgba(var(--color-secondary-foreground));
 }
 
+.contact_item_wrap .contact_item .contact_link span{
+    width: calc(100%);
+    background-image: linear-gradient(transparent calc(100% - 1px), rgba(var(--color-foreground)) 1px);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size .4s;
+}
+.contact_item_wrap .contact_item .contact_link:hover span {
+    background-size: 100% 100%;  
+}
+
+
+
+
 .contact_main_wrapper .contact_item_socials .contact_left_title {
   margin-bottom: 28px;
   color: rgba(var(--color-foreground));
@@ -78,22 +92,24 @@ START: Contact CSS
   border: 1px solid #000;
   background: transparent;
   border-radius: 50%;
+  transition: .3s ease-in-out;
 }
 
 .contact_item_socials ul li a:hover {
-  background-color: rgba(var(--color-secondary-button-hover));
-  border-color: rgba(var(--color-secondary-button-border));
+  background-color: #000;
+  border-color: #000;
 }
 .contact_item_socials ul li svg {
   height: 22px;
   width: 22px;
 }
 .contact_item_socials ul li a svg path {
-  fill: rgba(var(--color-secondary-button-text));
+  fill: #000;
+  transition: .3s ease-in-out;
 }
 
 .contact_item_socials ul li a:hover svg path {
-  fill: rgba(var(--color-secondary-button-text-hover));
+  fill: #FFF;
 }
 
 .contact_form_box_one {
