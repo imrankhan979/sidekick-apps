@@ -2582,7 +2582,12 @@ input[type='checkbox'] {
 .snazzy-header.overlay-header:hover .header-heading-logo-wrapper.has-second-logo .header-heading-logo {
   display: block;
 }
-
+.section-header.sticky .snazzy-header.overlay-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
+  display: block;
+}
+.section-header.sticky .snazzy-header.overlay-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
+  display: none;
+}
 .snazzy-header .header-country-language {
   gap: 10px 20px;
 }
