@@ -1765,33 +1765,62 @@ document.addEventListener("DOMContentLoaded", () => {
     if (hotspots.length) updateActive(0);
   };
 
-  const updateSubtotal = () => {
-    const subtotal = Array.from(document.querySelectorAll(".bulk-hotspot-section .product-price"))
-      .reduce((acc, priceElement) => {
-        const price = parseFloat(priceElement.textContent.replace(/[^0-9.]/g, ""));
-        return acc + (isNaN(price) ? 0 : price);
-      }, 0);
-    const subtotalElement = document.querySelector(".hotspot-subtotal");
-    if (subtotalElement) subtotalElement.textContent = subtotal.toFixed(2);
-  };
+  // const updateSubtotal = () => {
+  //   const subtotal = Array.from(document.querySelectorAll(".bulk-hotspot-section .price-item"))
+  //     .reduce((acc, priceElement) => {
+  //       const price = parseFloat(priceElement.textContent.replace(/[^0-9.]/g, ""));
+  //       console.log(price);
+  //       return acc + (isNaN(price) ? 0 : price);
+  //     }, 0);
+  //   const subtotalElement = document.querySelector(".hotspot-subtotal");
+  //   if (subtotalElement) subtotalElement.textContent = subtotal.toFixed(2);
+  // };
 
-  const handleAddToCart = () => {
-    const items = Array.from(document.querySelectorAll('.bulk-hotspot-section .product-variant-id'))
-      .map(input => ({ id: input.value, quantity: 1 }));
-    if (items.length) {
-      fetch('/cart/add.js', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items }) })
-        .then(response => response.json())
-        .then(() => window.location.href = '/cart')
-        .catch(error => console.error("Error adding to cart:", error));
-    }
-  };
+const handleAddToCart = () => {
+  const btn = document.querySelector('.bulk-hotspot-btn');
+  const btnText = btn.querySelector('.btn-text');
+  const btnLoader = btn.querySelector('.btn-loader');
+
+  // Show loader
+  btn.disabled = true;
+  btnText.style.display = 'none';
+  btnLoader.style.display = 'inline-block';
+
+  const items = Array.from(document.querySelectorAll('.bulk-hotspot-section .product-variant-id'))
+    .map(input => ({ id: input.value, quantity: 1 }));
+
+  if (items.length) {
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items })
+    })
+      .then(response => response.json())
+      .then(() => {
+        window.location.href = '/cart';
+      })
+      .catch(error => {
+        console.error("Error adding to cart:", error);
+        // Reset UI on error
+        btn.disabled = false;
+        btnText.style.display = 'inline-block';
+        btnLoader.style.display = 'none';
+      });
+  } else {
+    // No items: reset loader
+    btn.disabled = false;
+    btnText.style.display = 'inline-block';
+    btnLoader.style.display = 'none';
+  }
+};
+
 
   initSlider();
-  updateSubtotal();
+  // updateSubtotal();
 
   document.addEventListener("shopify:section:load", () => {
     initSlider();
-    updateSubtotal();
+    // updateSubtotal();
   });
 
   const addAllToCartBtn = document.querySelector('.bulk-hotspot-btn');
