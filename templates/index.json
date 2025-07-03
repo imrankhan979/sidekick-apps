@@ -12,45 +12,42 @@
     "slideshow_6WrwVQ": {
       "type": "slideshow",
       "blocks": {
-        "slide_W6JWXC": {
+        "slide_CcBXwV": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/getty-images-AdElIP_rygk-unsplash_1.png",
-            "video_loop": false,
-            "video_autoplay": false,
-            "image": "shopify://shop_images/slider-1.png",
-            "content_width": 40,
-            "title": "Streetwise new way of style",
-            "cta_text": "collection",
-            "cta_link": "shopify://collections/snazzy",
-            "description": "Discover a new level of style, from bold streetwear to refined essentials.",
-            "button_text": "Shop now",
-            "button_link": "shopify://products/arabica-specialty-ritus",
-            "padding_top": 120,
-            "padding_bottom": 0
-          }
-        },
-        "slide_L8yCga": {
-          "type": "slide",
-          "settings": {
-            "bg_video": "shopify://files/videos/9951705-uhd_4096_2160_25fps.mp4",
             "video_loop": true,
             "video_autoplay": true,
             "content_width": 40,
             "title": "Streetwise new way of style",
-            "cta_text": "collection",
-            "cta_link": "shopify://collections/snazzy",
+            "cta_text": "Collection",
+            "cta_link": "",
             "description": "Discover a new level of style, from bold streetwear to refined essentials.",
             "button_text": "Shop now",
-            "button_link": "shopify://products/arabica-specialty-ritus",
-            "padding_top": 120,
-            "padding_bottom": 0
+            "button_link": "",
+            "padding_top": 60,
+            "padding_bottom": 120
+          }
+        },
+        "slide_p6RdQB": {
+          "type": "slide",
+          "settings": {
+            "video_loop": true,
+            "video_autoplay": true,
+            "content_width": 40,
+            "title": "Streetwise new way of style",
+            "cta_text": "Collection",
+            "cta_link": "",
+            "description": "Discover a new level of style, from bold streetwear to refined essentials.",
+            "button_text": "Shop now",
+            "button_link": "",
+            "padding_top": 60,
+            "padding_bottom": 120
           }
         }
       },
       "block_order": [
-        "slide_W6JWXC",
-        "slide_L8yCga"
+        "slide_CcBXwV",
+        "slide_p6RdQB"
       ],
       "name": "Slideshow",
       "settings": {
@@ -213,7 +210,7 @@
         "collection_z68pFW": {
           "type": "collection",
           "settings": {
-            "collection_handle": "snazzy",
+            "collection_handle": "",
             "tab_title": "Featured",
             "item_total": 8,
             "item_count": 4
