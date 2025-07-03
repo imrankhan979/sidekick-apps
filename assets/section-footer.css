@@ -159,8 +159,11 @@
   .footer .footer-top-content .footer-navigation-links-title.menu-list-open:after{
     transform: translateY(-50%) rotate(90deg) scale(0);
   }
-  .footer .footer-top-content .footer-navigation-links-title.menu-list-open + ul{
-    padding-top: 24px;
+  /* .footer .footer-top-content .footer-navigation-links-title.menu-list-open + ul{
+    margin-top: 24px;
+  } */
+  .footer .footer-top-content responsive-dropdown-menu .menu-list li:first-child {
+    margin-top: 24px;
   }
 }
 .footer .footer-top-content .footer-navigation-links-list li a {
