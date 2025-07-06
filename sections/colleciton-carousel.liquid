@@ -75,10 +75,10 @@
                         href="{{ block.settings.collection_select.url }}"
                       {% endif %}
                     >
-                      {%- if block.settings.collection_select.title != blank -%}
-                        {{ block.settings.collection_select.title }}
-                      {%- else -%}
+                      {%- if block.settings.collection_heading != blank -%}
                         {{ block.settings.collection_heading }}
+                      {%- else -%}
+                        {{ block.settings.collection_select.title }}
                       {%- endif -%}
                     </a>
                   </h2>
