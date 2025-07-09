@@ -62,15 +62,21 @@
     text-transform: uppercase;
     line-height: 1;
     color: #000;
+    position: relative;
+  }
+  .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn > div{
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   
-  .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn span {
+  .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn .btn-text {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 28px;
     height: 28px;
-    background: rgba(var(--color-button-text), 1);
+        background: #000;
     border-radius: 50%;
   }
   
@@ -83,7 +89,7 @@
   }
   
   .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn span svg path {
-    fill: rgba(var(--color-button), 1);;
+    fill: #fff;
   }
   
   /* hotpot slider */
@@ -223,7 +229,7 @@
     position: absolute;
     visibility: hidden;
     opacity: 0;
-    padding: 5px 16px;
+    padding: 16px;
     background-color: rgb(var(--color-background));
     border: 1px solid rgb(var(--color-foreground));
     z-index: 10;
@@ -234,6 +240,18 @@
     top: 35px;
     left: 50%;
     transition: all .3s;
+  }
+  .bulk-hotspot-section .hotspot-popup p:first-child {
+    font-family: var(--font-family-heading);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0%;
+  }
+  .bulk-hotspot-section .hotspot-popup p:last-child {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 8px;
   }
   @media (max-width: 767px) {
     .bulk-hotspot-section .hotspot-popup{
@@ -519,4 +537,23 @@
 }
 .bulk-hotspot-section  .variant-group:not(.color-swatch) {
   display: none;
+}
+.btn-loader {
+  border: 2px solid #fff;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite;
+  display: inline-flex;
+  margin-left: 8px;
+  vertical-align: middle;
+    position: absolute;
+    right: -35px;
+    top: 2px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

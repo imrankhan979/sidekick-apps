@@ -78,6 +78,7 @@ START: Testimonial CSS
   width: 64px;
   height: 64px;
   background: transparent;
+  transition: .3s;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
@@ -188,15 +189,16 @@ START: Testimonial CSS
   width: 64px;
   height: 64px;
   background: transparent;
+  transition: .3s;
 }
 .testimonial-section .page-width .flickity-prev-next-button svg path {
-  fill: rgb(var(--color-button-text));
+  fill: #000;
 }
 .testimonial-section .page-width .flickity-prev-next-button:hover {
-  background-color: rgb(var(--color-button-hover));
+  background-color: #000;
 }
 .testimonial-section .page-width .flickity-prev-next-button:hover svg path {
-  fill: rgb(var(--color-button-text-hover));
+  fill: #fff;
 }
 .testimonial-item {
   display: flex;

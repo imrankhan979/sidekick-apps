@@ -40,7 +40,7 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart__warnings .cart__empty-text {
-	font-size: 144px;
+	font-size: 80px;
 	letter-spacing: -.01em;
 	text-transform: uppercase;
 	line-height: 1;

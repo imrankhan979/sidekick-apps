@@ -21,6 +21,14 @@
     }
   }
 {%- endstyle -%}
+{% assign total_price = 0 %}
+
+{% for block in section.blocks %}
+  {% assign product = all_products[block.settings.selected_product] %}
+  {% if product %}
+    {% assign total_price = total_price | plus: product.price %}
+  {% endif %}
+{% endfor %}
 
 <section class="bulk-hotspot-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
@@ -40,15 +48,13 @@
             {{ 'sections.image_hotspot.subtotal' | t }}
             <strong>
               {{- cart.currency.symbol -}}
-              <span class="hotspot-subtotal"></span>
+              <span class="hotspot-subtotal">{{ total_price | money }}</span>
             </strong>
           </div>
           <div class="bulk_hotspot_button">
             <button class="bulk-hotspot-btn">
-              {{ section.settings.cart_button_text }}
-              <span>
-                {{- 'icon-plus.svg' | inline_asset_content -}}
-              </span>
+              <div> {{ section.settings.cart_button_text }} <span class="btn-text">{{- 'icon-plus.svg' | inline_asset_content -}}</span></div>
+              <span class="btn-loader" style="display: none;"></span>
             </button>
           </div>
         </div>
@@ -100,7 +106,6 @@
                      aria-labelledby="{{ pdfm }}-submit title-{{ section_id }}-{{ prd_crd.id }}"
                      data-product-url="{{ prd_crd.url }}"
                    >
-                   
                    </button>
                  </popup-slide>
               </div>

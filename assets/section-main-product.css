@@ -1197,11 +1197,11 @@ vertical-align: middle;
   margin-right: var(--icon-spacing);
 }
 
-.icon-with-text img {
+/* .icon-with-text img {
   height: var(--icon-size);
   width: var(--icon-size);
   object-fit: contain;
-}
+} */
 
 .icon-with-text--vertical img {
   margin-right: var(--icon-spacing);

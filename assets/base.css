@@ -2588,6 +2588,12 @@ input[type='checkbox'] {
 .section-header.sticky .snazzy-header.overlay-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
   display: none;
 }
+.section-header .snazzy-header.menu-active .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
+  display: block;
+}
+.section-header .snazzy-header.menu-active .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
+  display: none;
+}
 .snazzy-header .header-country-language {
   gap: 10px 20px;
 }
