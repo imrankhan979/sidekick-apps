@@ -1,8 +1,6 @@
 .snzz-video-section {
     width: 100%;
     overflow: hidden;
-    border-top-left-radius: 64px;
-    border-top-right-radius: 64px;
   }
   .snzz-video-inner {
     position: relative;
@@ -56,10 +54,6 @@
     margin-top: 20px;
   }
   @media (max-width: 768px) and (min-width: 574px) {
-    .snzz-video-section {
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-    } 
     .snzz-inner-content {
       padding-left: 20px;
       padding-right: 20px;
@@ -83,11 +77,6 @@
   }
   
   @media (max-width: 575px) {
-    
-    .snzz-video-section {
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-    } 
   
     .snzz-inner-content h3 {
       font-size: 20px; 

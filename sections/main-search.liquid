@@ -16,9 +16,9 @@
 <script src="{{ 'main-search.js' | asset_url }}" defer="defer"></script>
 
 <style>
-  .template-search__header {
+  /* .template-search__header {
     margin-bottom: 3rem;
-  }
+  } */
 
   .template-search__search {
     margin: 0 auto 3.5rem;
@@ -33,11 +33,11 @@
     padding-bottom: 18rem;
   }
 
-  @media screen and (min-width: 750px) {
+  /* @media screen and (min-width: 750px) {
     .template-search__header {
       margin-bottom: 5rem;
     }
-  }
+  } */
 
   .search__button .icon {
     height: 1.8rem;
@@ -83,7 +83,7 @@
 -%}
 
 {% paginate search.results by 24 %}
-  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} main-section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
     <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <div class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme_header }}">
         <div class="breadcrumb-content-area page-width">
@@ -213,7 +213,7 @@
       {%- if section.settings.enable_sorting and search.filters != empty -%}
       {%- endif -%}
       <div
-        class="facets-vertical page-width search_results_filter__main"
+        class="facets-vertical page-width search_results_filter__main {% if section.settings.enable_corner_round %}corner-round-for-search{% endif %} main-section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}"
       >
         {%- if search.filters != empty -%}
           {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
@@ -396,14 +396,8 @@
   "class": "section",
   "settings": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
-    },
-    {
       "type": "header",
-      "content": "Search banner"
+      "content": "Banner"
     },
     {
       "type": "color_scheme",
@@ -422,12 +416,12 @@
       "label": "Page heading",
       "info": "Leave it blank to show the default heading."
     },
-    {
+     {
       "type": "range",
       "id": "padding_top_header",
       "min": 0,
-      "max": 200,
-      "step": 4,
+      "max": 300,
+      "step": 5,
       "unit": "px",
       "label": "Banner padding top",
       "default": 200
@@ -436,11 +430,27 @@
       "type": "range",
       "id": "padding_bottom_header",
       "min": 0,
-      "max": 200,
-      "step": 4,
+      "max": 300,
+      "step": 5,
       "unit": "px",
       "label": "Banner padding bottom",
       "default": 200
+    },
+      {
+      "type": "header",
+      "content": "Results"
+    },
+        {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
     {
       "type": "range",
@@ -448,7 +458,7 @@
       "min": 1,
       "max": 6,
       "step": 1,
-      "default": 4,
+      "default": 3,
       "label": "t:sections.main-search.settings.columns_desktop.label"
     },
     {

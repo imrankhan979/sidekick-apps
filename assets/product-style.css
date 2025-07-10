@@ -163,7 +163,7 @@
   }
   .product-content .variant-picker .variant-group label{
     position: relative;
-      border: 1px solid rgba(var(--color-button-border), .3);
+      border: 1px solid #BBB;
       border-radius: 4px;
       background: none;
       cursor: pointer;
@@ -173,8 +173,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(var(--color-button), 1);
-      color: rgb(var(--color-button-text));
+      background: #fff;
+    color: #000;
       font-size: 20px;
       line-height: 28px;
       padding-inline: 20px;
@@ -189,23 +189,23 @@
 
     }
   }
-  .product-content .variant-picker .variant-group label:hover{
-    border-color: rgb(var(--color-button-border));
-  }
-  .product-content .variant-picker .variant-group input[type="radio"]:checked + label{
-    border-color: rgb(var(--color-button-border));
-    background-color: rgba(var(--color-button-hover), 1);
-    color: rgb(var(--color-button-text-hover));
-  }
-  .product-content .variant-picker .variant-group input[type="radio"]:disabled + label{
-    position: relative;
-    background: rgba(var(--color-secondary-button), 1);
-    color: rgb(var(--color-secondary-button-text));
-    border-color: rgb(var(--color-secondary-button-border));
-    position: relative;
-    overflow: hidden;
-    cursor: not-allowed;
-  }
+.product-content .variant-picker .variant-group label:hover{
+  border-color: #000;
+}
+.product-content .variant-picker .variant-group input[type="radio"]:checked + label{
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+.product-content .variant-picker .variant-group input[type="radio"]:disabled + label{
+  position: relative;
+  background: #F6F6F6;
+  color: #BBBBBB;
+  border-color: #F6F6F6;
+  position: relative;
+  overflow: hidden;
+  cursor: not-allowed;
+}
   .product-content .variant-picker .variant-group input[type="radio"]:disabled + label::before {
     /* position: absolute;
     content: "";

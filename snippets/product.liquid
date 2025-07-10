@@ -89,6 +89,9 @@
               assign swatch_value = 'url(' | append: image_url | append: ')'
             elsif value.swatch.color
               assign swatch_value = 'rgb(' | append: value.swatch.color.rgb | append: ')'
+              else
+              assign fallback_color = value | downcase
+              assign swatch_value = fallback_color
             endif
           -%}
 

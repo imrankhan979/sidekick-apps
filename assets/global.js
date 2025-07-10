@@ -2202,3 +2202,14 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('shopify:section:load', () => {
   setupStickyHeader();
 });
+
+
+// Corner rounding
+function setupCornerRoundWatcher() {
+  document.querySelectorAll(".corner-round").forEach((el) => {
+    el.closest(".shopify-section")?.classList.add("mt-minus");
+  });
+}
+document.addEventListener('DOMContentLoaded', setupCornerRoundWatcher);
+document.addEventListener('shopify:section:load', setupCornerRoundWatcher);
+document.addEventListener('shopify:section:select', setupCornerRoundWatcher);

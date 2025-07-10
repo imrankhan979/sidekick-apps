@@ -36,7 +36,7 @@
   endif
 -%}
 
-<section class="shop-collection-section section-{{ section.id }}-padding">
+<section class="shop-collection-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="page-width">
     {% comment %} {%- paginate collections by section.settings.columns_by_page -%} {% endcomment %}
       <div class="shop_collection_wrapper">
@@ -65,6 +65,12 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
         {
       "type": "range",

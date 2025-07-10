@@ -17,7 +17,7 @@
 
 {% assign opened_category = false %}
 {% assign default_category_opened = false %}
-<section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+<section class="faq-main-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="page-width">
     <div class="faq_main_wrapper">
       {% if section.settings.left_title != blank or section.settings.left_paragraph != blank %}
@@ -79,6 +79,12 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
     {
       "type": "text",
