@@ -372,7 +372,6 @@
   text-transform: uppercase;
   background: rgba(var(--color-background),1);
   color: rgb(var(--color-foreground));
-  height: 26px;
 }
 .product-thumb .product-badge-wrapper .badge.sale-badge{
     background: #FF3E3E;

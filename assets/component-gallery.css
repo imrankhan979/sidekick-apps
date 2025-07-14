@@ -133,6 +133,12 @@
   margin-top: 50px;
   text-align: center;
 }
+@media (max-width: 767px) {
+    .gallery_button {
+      opacity: 0;
+      height: 0;
+    }
+}
 
 .gallery_button .gallery-btn {
   position: relative;
