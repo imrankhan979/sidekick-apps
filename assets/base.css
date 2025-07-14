@@ -4655,33 +4655,3 @@ accordion-item .accordion_content {
   margin-top: -24px;
 }
 }
-.custom-scroller-wrapper{
-  position: relative;
-}
-.custom-scroller {
-  overflow-x: auto;
-  scrollbar-width: none;
-   margin: 0 -24px;
-}
-.custom-scroller.has-scrollbar {
-  padding-bottom: 28px; 
-}
-.scrollbar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 4px;
-  width: 100%;
-  background: #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  display: none; /* Hidden by default */
-  overflow: hidden;
-}
-
-.scroll-thumb {
-  height: 100%;
-  width: 126px;
-  background: #000;
-  border-radius: 4px;
-}
