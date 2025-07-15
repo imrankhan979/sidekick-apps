@@ -589,10 +589,6 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   }
 }
 
-.background-secondary {
-  background-color: rgba(var(--color-foreground), 0.04);
-}
-
 .grid-auto-flow {
   display: grid;
   grid-auto-flow: column;

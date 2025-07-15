@@ -68,11 +68,11 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
-  <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
+  <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %} background-secondary{% endif %}">
     <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
-      <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="featured-product product product--{{ section.settings.media_size }} grid">
         <div class="grid__item product__media-wrapper">
-          {%- unless placeholder -%}
+          {%- if product.media.size > 0 -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
           {%- else -%}
             <div class="product__media-item">
@@ -83,7 +83,7 @@
                 {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
             </div>
-          {%- endunless -%}
+          {%- endif -%}
         </div>
         <div class="product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
@@ -1350,28 +1350,28 @@
       "default": false,
       "label": "t:sections.featured-product.settings.secondary_background.label"
     },
-    {
-      "type": "header",
-      "content": "t:sections.featured-product.settings.header.content",
-      "info": "t:sections.featured-product.settings.header.info"
-    },
-    {
-      "type": "select",
-      "id": "media_position",
-      "options": [
-        {
-          "value": "left",
-          "label": "t:sections.featured-product.settings.media_position.options__1.label"
-        },
-        {
-          "value": "right",
-          "label": "t:sections.featured-product.settings.media_position.options__2.label"
-        }
-      ],
-      "default": "left",
-      "label": "t:sections.featured-product.settings.media_position.label",
-      "info": "t:sections.featured-product.settings.media_position.info"
-    },
+    // {
+    //   "type": "header",
+    //   "content": "t:sections.featured-product.settings.header.content",
+    //   "info": "t:sections.featured-product.settings.header.info"
+    // },
+    // {
+    //   "type": "select",
+    //   "id": "media_position",
+    //   "options": [
+    //     {
+    //       "value": "left",
+    //       "label": "t:sections.featured-product.settings.media_position.options__1.label"
+    //     },
+    //     {
+    //       "value": "right",
+    //       "label": "t:sections.featured-product.settings.media_position.options__2.label"
+    //     }
+    //   ],
+    //   "default": "left",
+    //   "label": "t:sections.featured-product.settings.media_position.label",
+    //   "info": "t:sections.featured-product.settings.media_position.info"
+    // },
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
@@ -1380,21 +1380,21 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 120
     }
   ],
   "presets": [

@@ -2,6 +2,16 @@
 {{ 'breadcrumb.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  .main-section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.main_padding_top | times: 0.65 | round: 0 }}px;
+    padding-bottom: {{ section.settings.main_padding_bottom | times: 0.65 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .main-section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.main_padding_top }}px;
+      padding-bottom: {{ section.settings.main_padding_bottom }}px;
+    }
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
@@ -15,9 +25,9 @@
   }
 {%- endstyle -%}
 
-<section class="breadcrumb-main-area blog-inner-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+<section class="breadcrumb-main-area blog-inner-area color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="breadcrumb-content-area blog-style">
+    <div class="breadcrumb-content-area blog-style section-{{ section.id }}-padding">
       {% if section.settings.show_breadcrumb %}
         <div class=" breadcrumb-link">
           <ul>
@@ -50,7 +60,7 @@
     </div>
   </div>
 </section>
-<section class="blog-details-section">
+<section class="blog-details-section main-section-{{ section.id }}-padding">
   <div class="page-width">
     <div class="blog_details_main">
       {% if article.image != blank %}
@@ -284,6 +294,34 @@
       "default": "scheme-1"
     },
     {
+      "type": "header",
+      "content": "Banner"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 120
+    },
+        {
+      "type": "header",
+      "content": "Article"
+    },
+    {
       "type": "checkbox",
       "id": "show_breadcrumb",
       "label": "t:sections.main-article.settings.show_breadcrumb.label",
@@ -334,7 +372,7 @@
     },
     {
       "type": "range",
-      "id": "padding_top",
+      "id": "main_padding_top",
       "min": 0,
       "max": 200,
       "step": 5,
@@ -344,7 +382,7 @@
     },
     {
       "type": "range",
-      "id": "padding_bottom",
+      "id": "main_padding_bottom",
       "min": 0,
       "max": 200,
       "step": 5,
