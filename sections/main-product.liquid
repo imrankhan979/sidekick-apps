@@ -118,9 +118,19 @@
   {% endif %}
   <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
     <div class="page-width">
-      <div class="product_single_wrapper gallery-viewer-motions product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }}  grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+      <div class="product_single_wrapper gallery-viewer-motions product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }}  grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% endif %}">
         <div class="product_single_left_thumb">
-          {% render 'product-media-gallery', variant_images: variant_images %}
+          {% if product.media.size > 0 %}
+            {% render 'product-media-gallery', variant_images: variant_images %}
+            {% else %}
+            {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% comment %} <div class="product__media-wrapper">
+              <div class="product__media">
+                <div class="media media--transparent media--hover-effect">
+                </div>
+              </div>
+              </div> {% endcomment %}
+          {% endif %}
         </div>
         <div class="product_single_right_content {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
