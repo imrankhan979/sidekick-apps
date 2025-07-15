@@ -28,7 +28,7 @@
 .swatch-input__input:checked + .swatch-input__label .swatch{
   position: relative;
 }
-.product_single_right_content .swatch-input__input:checked + .swatch-input__label .swatch::after {
+ .swatch-input__input:checked + .swatch-input__label .swatch::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -40,5 +40,4 @@
   height: calc(100% + 6px);
   transition: .3s ease-in-out;
   box-sizing: border-box;
-
 }
