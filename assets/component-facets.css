@@ -755,6 +755,7 @@ a.active-facets__button.focused .active-facets__button-inner {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 32px;
 }
 
 .facets-vertical .active-facets-vertical-filter .active-facets__button-wrapper {

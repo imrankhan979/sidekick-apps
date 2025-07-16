@@ -49,17 +49,16 @@
     padding-bottom: {{ section.settings.padding_bottom_header | times: 0.45 | round: 0 }}px;
   }
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top_header }}px;
-      padding-bottom: {{ section.settings.padding_bottom_header }}px;
-    }
-  .main-section-{{ section.id }}-padding {
+    .main-section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_header }}px;
+      padding-bottom: {{ section.settings.padding_bottom_header }}px;
+    }
     .main-section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
@@ -86,7 +85,7 @@
   <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
     <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <div class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme_header }}">
-        <div class="4">
+        <div class="breadcrumb-content-area page-width">
           <div class="breadcrumb-content-area-inner">
             <div class="breadcrumb-link">
               <ul>
