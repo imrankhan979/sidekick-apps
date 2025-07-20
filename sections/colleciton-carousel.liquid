@@ -57,13 +57,7 @@
               {%- endif -%}
             </div>
             <div class="collection_carousel_content">
-              <span class="subTitle">
-                <span class="collection_anim">
-                  <span class="anim_text">
-                    {{ block.settings.collection_featured }}
-                  </span>
-                </span>
-              </span>
+              <span class="subTitle">{{ block.settings.collection_featured }}</span>
 
               {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
                 <div class="collection_carousel_text">

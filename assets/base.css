@@ -4587,14 +4587,15 @@ accordion-item .accordion_content {
   }
 
   .section-header.sticky{
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 9999;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: #FFEC3E;
     height: var(--observed-height);
-    animation: top-to-bottom .4s linear forwards;
-    transition: all .3s ease;
+    animation: top-to-bottom 500ms cubic-bezier(.03, .93, .97, 1);;
+    transition: .3s all;
+    width: 100%;
   }
   @keyframes top-to-bottom {
     0% {
