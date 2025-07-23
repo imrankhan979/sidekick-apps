@@ -55,7 +55,7 @@
     transition: background-size .4s;
     font-family:  var(--font-family-heading);
 }
-.blog_item:hover .blog_main_header .title {
+ .blog_main_header:hover .title {
     background-size: 100% 100%;  
 }
 

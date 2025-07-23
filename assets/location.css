@@ -133,14 +133,14 @@ START: Contact maps CSS
   
   .contact_map_wrapper .accordion button[aria-expanded='true']+.accordion_content {
     opacity: 1;
-    max-height: 0;
+    height: 0;
     transition: all 200ms linear;
     will-change: opacity, max-height;
   }
   
   .contact_map_wrapper .accordion .accordion_content {
     opacity: 0;
-    max-height: 0;
+    height: 0;
     overflow: hidden;
     transition: opacity 200ms linear, max-height 200ms linear;
     will-change: opacity, max-height;

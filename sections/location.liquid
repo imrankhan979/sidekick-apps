@@ -38,7 +38,7 @@
             {%- if section.settings.stores_location != blank -%}
                 <h4 class="faq_title">{{ section.settings.stores_location }}</h4>
             {%- endif -%}
-            <accordion-item>
+            {% comment %} <accordion-item> {% endcomment %}
              {%- for block in section.blocks -%}
               <accordion-item {{ block.shopify_attributes }}>
                 <button id="accordion-button-{{ forloop.index }}" aria-expanded="{% if forloop.index == 1 %}true{% else %}false{% endif %}"><span class="accordion-title">
@@ -57,7 +57,7 @@
                     </div>
                     </accordion-item>
             {% endfor %}
-          </accordion-item>
+          {% comment %} </accordion-item> {% endcomment %}
           </div>
       </div>
     </div>

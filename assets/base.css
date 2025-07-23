@@ -23,7 +23,7 @@
 }
 
 .collection-card-wrapper .card,
-.contains-card--collection {
+.contains-card--collection { 
   --border-radius: var(--collection-card-corner-radius);
   --border-width: var(--collection-card-border-width);
   --border-opacity: var(--collection-card-border-opacity);
@@ -2582,7 +2582,18 @@ input[type='checkbox'] {
 .snazzy-header.overlay-header:hover .header-heading-logo-wrapper.has-second-logo .header-heading-logo {
   display: block;
 }
-
+.section-header.sticky .snazzy-header.overlay-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
+  display: block;
+}
+.section-header.sticky .snazzy-header.overlay-header .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
+  display: none;
+}
+.section-header .snazzy-header.menu-active .header-heading-logo-wrapper.has-second-logo .header-heading-logo{
+  display: block;
+}
+.section-header .snazzy-header.menu-active .header-heading-logo-wrapper.has-second-logo .header-heading-logo-two{
+  display: none;
+}
 .snazzy-header .header-country-language {
   gap: 10px 20px;
 }

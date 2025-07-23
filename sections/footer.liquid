@@ -4,6 +4,7 @@
 {%- style -%}
     .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -17,7 +18,6 @@
 <footer class="footer rounded-top-corner color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="footer-inner">
     <div class="footer-top-content page-width">
-
         {%- assign newsletter = false -%} 
         {%- assign logo = false -%}
         {%- for block in section.blocks -%} 

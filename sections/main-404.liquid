@@ -31,16 +31,21 @@
           <div class="breadcrumb-heading">
             <h1 class="anim-item breadcrumb-title">{{ 'templates.404.subtext' | t }}</h1>
             <div class="anim-item error_desc">
-              <span class="breadcrumb-desc">{{ 'templates.404.title' | t }}</span>
+              <span class="breadcrumb-desc">
+                {% if section.settings.error_text != blank %} {{ section.settings.error_text }}{% endif %}
+                </span>
             </div>
+            {% if section.settings.btn_text != blank %}
             <div class="anim-item breadcrumb_error_button">
               <a class="breadcrumb-error-btn" href="{{ routes.root_url }}"
-                >{{ 'templates.404.button_text' | t }}
-                <span>
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </span>
-              </a>
-            </div>
+                >
+                  {{ section.settings.btn_text }}
+                  <span>
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                    </a>
+                    </div>
+                  {% endif %}
           </div>
         </div>
       </div>
@@ -63,6 +68,18 @@
       "type": "image_picker",
       "id": "background_image",
       "label": "t:sections.404_page.settings.background_image.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "error_text",
+      "label": "Subtitle text",
+      "default": "Great things take time… and some pages just take a wrong turn."
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button text",
+      "default": "Back to home"
     },
     {
       "type": "header",

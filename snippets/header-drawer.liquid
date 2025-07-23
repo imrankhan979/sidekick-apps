@@ -79,7 +79,7 @@
                 </a>
             {%- endif -%}
   
-            <a href="{{ routes.cart_url }}" class="header-cart flex align-items-center" id="cart-icon-bubble">
+            {% comment %} <a href="{{ routes.cart_url }}" class="header-cart flex align-items-center" id="cart-icon-bubble">
                 {% if cart == empty %}
                     <span class="flex">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
                 {% else %}
@@ -92,7 +92,7 @@
                     {%- endif -%}
                 </div>
                 {%- endif -%}
-            </a>
+            </a> {% endcomment %}
         </div>
         </div>
       </div>

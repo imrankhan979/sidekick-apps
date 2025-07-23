@@ -27,7 +27,7 @@
 .quick-add-modal[open] {
   opacity: 1;
   visibility: visible;
-  z-index: 101;
+  z-index: 9999;
 }
 
 .quick-add-modal .scroll-trigger.scroll-trigger {
@@ -403,7 +403,6 @@ quick-add-bulk .quantity__input {
 .quantity__input-disabled {
   pointer-events: none;
 }
-<<<<<<< HEAD
 .price--on-sale .price-item--regular {
     color: gray;
 }
@@ -413,7 +412,6 @@ quick-add-bulk .quantity__input {
 .quick-order-list__container .variant-item__quantity-wrapper button:first-child span svg {
   display: block;
 }
-=======
 .quick-add-modal-content {
   width: 532px;
   position: absolute;
@@ -571,4 +569,3 @@ quick-add-bulk .quantity__input {
       .quick-add-modal .product_single_wrapper .product__info-container > .product-form__input.product-form__quantity{
         padding-bottom: 80px;
       }
->>>>>>> 36ea9847805e5f0c55ad8cc4f1528feb27b4bbb6

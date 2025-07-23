@@ -1,8 +1,10 @@
-{{ 'snazzy-tab.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
+{{ 'snazzy-tab.css' | asset_url | stylesheet_tag }}
 {{ 'snazzy-collection-tab.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'snazzy-tab.js' | asset_url }}" defer></script>
-
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 
 {%- style -%}
@@ -60,7 +62,7 @@
               <div class="product-grid product-grid-{{ block.id }}">
                 {% if collection.products.size > 0 %}
                   {% for product in collection.products limit: maximum_product_show %}
-                    {% render 'product', button: false, product: product %}
+                     {% render 'card-product', card_product: product, section_id: section.id %}
                   {% endfor %}
                 {% else %}
                   {% for i in (1..maximum_product_show) %}

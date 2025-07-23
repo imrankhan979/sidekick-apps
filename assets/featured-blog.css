@@ -7,12 +7,20 @@ START: Blog CSS
   }
   
   .blog_feature_item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     column-gap: 25px;
     background-color: #FFEC3E;
     border-radius: 40px;
+    align-items: stretch;
+    overflow: hidden;
   }
+@media (max-width: 767px) {
+      .blog_feature_item {
+    grid-template-columns: 1fr;
+  }
+}
   
   .blog_feature_item .blog_feature_images {
     display: flex;
@@ -32,6 +40,12 @@ START: Blog CSS
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: absolute;
+  }
+  @media (max-width: 767px) {
+        .blog_feature_item .blog_feature_images a {
+          position: static;
+        }
   }
   .blog_feature_item .blog_feature_images a > *{
     width: 100%;
@@ -39,6 +53,7 @@ START: Blog CSS
     transform: scale(1.2);
     border-radius: 0px 40px 40px 0px;
     transition: 0.6s;
+    object-fit: cover;
   }
   .blog_feature_item .blog_feature_images a:hover > *{
     transition: .4s;
@@ -148,7 +163,7 @@ START: Blog CSS
     height: 3px;
     bottom: -10px;
     left: 0;
-    background: rgba(var(--color-highlight-text));
+    background: #000;
   }
 
   .blog_feature_item .blog_feature_content .blog_feature_button .blog-feature-btn span {
@@ -218,7 +233,6 @@ START: Blog CSS
 
   .blog_feature_item .blog_feature_images {
     border-radius: 0px 0px 24px 24px;
-    margin-top: 30px;
   }
 
   .blog_feature_item .blog_feature_images a img {

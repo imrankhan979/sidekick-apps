@@ -271,6 +271,7 @@
   line-height: 20px;
   color: #fff;
   transition: .3s;
+  transform: scale(1);
 }
 .bundle-section #bundle-items .item-info-btns button:hover{
   transform: scale(1.1);
@@ -374,12 +375,12 @@
   height: 26px;
 }
 .product-thumb .product-badge-wrapper .badge.sale-badge{
-  background: rgb(var(--color-highlight-text));
-  color: rgb(var(--color-secondary-foreground));
+    background: #FF3E3E;
+    color: #fff;
 }
 .product-thumb .product-badge-wrapper .badge.sold-out-badge{
-  background: rgba(var(--color-foreground),1);
-  color: rgba(var(--color-background),1);
+    background: #000;
+    color: #fff;
   }
 .product-content{
   margin-top: 26px;

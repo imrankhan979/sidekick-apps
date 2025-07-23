@@ -27,13 +27,18 @@ overflow: hidden;
   position: absolute;
   inset: 0;
   object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.category_banner_item .category_banner_box .category_banner_images{
+  height: 100%;
+  width: 100%;
 }
 .category_banner_item:hover .category_banner_box .category-images, .category_banner_item:hover  .category_banner_images > svg{
   position: absolute;
   inset: 0;
   object-fit: cover;
 }
-
 
 .category_banner_item .category_banner_box .category_banner_content {
   position: relative;

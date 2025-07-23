@@ -117,10 +117,10 @@ START: Our journey CSS
   transition: all ease 0.3s;
 }
 
-.our_journey_main_wrapper .our_journey_tab .tabs_menu li.active .journey_anim .journey_text {
+/* .our_journey_main_wrapper .our_journey_tab .tabs_menu li.active .journey_anim .journey_text {
   text-shadow: 0 23px 0 #ffffff;
   transform: translateY(-23px);
-}
+} */
 
   
   .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
