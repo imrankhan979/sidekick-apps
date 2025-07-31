@@ -57,6 +57,7 @@
               {%- endif -%}
             </div>
             <div class="collection_carousel_content">
+              {% if block.settings.collection_featured != blank %}
               <span class="subTitle">
                 <span class="collection_anim">
                   <span class="anim_text">
@@ -64,6 +65,7 @@
                   </span>
                 </span>
               </span>
+              {% endif %}
 
               {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
                 <div class="collection_carousel_text">
@@ -96,7 +98,7 @@
                   </span>
                 </div>
               {%- endif -%}
-
+              {% if block.settings.collection_button != blank %}
               <div class="collection_carousel_button">
                 <a
                   class="collection_carousel_btn"
@@ -110,6 +112,8 @@
                   <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
                 </a>
               </div>
+              {% endif %}
+              
             </div>
           </div>
         {% endfor %}

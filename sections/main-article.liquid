@@ -165,8 +165,8 @@
         {% endif %}
         {%- if blog.comments_enabled? -%}
           <div class="comments-container">
+            {%- if article.comments_count > 0 -%}
             <div class="comments-wrap">
-              {%- if article.comments_count > 0 -%}
                 <div class="comments-title">
                   <h2 class="title">
                     {{ article.comments_count }} Comment{% if article.comments_count > 1 %}s{% endif %}
@@ -204,8 +204,8 @@
                     {% endpaginate %}
                   </ul>
                 </div>
-              {%- endif -%}
-            </div>
+              </div>
+            {%- endif -%}
 
             <!-- Comment Form -->
             <div class="comment-respond">

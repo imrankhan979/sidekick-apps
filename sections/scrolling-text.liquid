@@ -15,9 +15,9 @@
   }
 {%- endstyle -%}
 
-<section class="marquee-section color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+<section class="marquee-section color-{{ section.settings.color_scheme }}">
   <div class="page-width">
-    <div class="marquee_slider">
+    <div class="marquee_slider section-{{ section.id }}-padding">
       <marquee-component data-speed="{{ section.settings.speed }}" data-direction="{{ section.settings.direction }}" data-pause-on-hover="{{ section.settings.pause_on_hover }}">
           <div class="modern-marquee">
             <div class="marquee-track">
