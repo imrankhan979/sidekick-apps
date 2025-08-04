@@ -11,14 +11,6 @@
             display: block;
             margin-bottom: calc(var(--observed-height)* -1);
         }
-        .section-header{
-            height: var(--observed-height);
-            transition: all .3s ease;
-            background: transparent;
-        }
-        .section-header:hover{
-            background-color: #FFEC3E;
-        }
     {%- endif -%}
 {% endstyle %}
 <header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %}" data-sticky="{{ section.settings.sticky_behavior }}">

@@ -4618,10 +4618,10 @@ accordion-item .accordion_content {
   }
 
   /* corner round */
-  .corner-round {
+.corner-round {
   border-top-left-radius: 64px;
   border-top-right-radius: 64px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .mt-minus {
   margin-top: -64px;

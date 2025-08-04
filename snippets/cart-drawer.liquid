@@ -506,13 +506,17 @@
             <div class="shipping-estimator-container shipping-estimator">
                 <div class="country-wrapper">
                   <label for="shipping-country-2 sub-title">Country/region</label>
-                  <select id="shipping-country-2" class="shipping-country-select" name="country" required>
+                  <div class="select-wrapper">
+                    <select id="shipping-country-2" class="shipping-country-select" name="country" required>
                     {{ country_option_tags }}
                   </select>
+                  </div>
                 </div>
                 <div class="shipping-province-wrapper" id="shipping-province-wrapper-2">
                   <label for="shipping-province-2">Province</label>
-                  <select id="shipping-province-2" class="shipping-province-select" name="province"></select>
+                  <div class="select-wrapper">
+                    <select id="shipping-province-2" class="shipping-province-select" name="province"></select>
+                  </div>
                 </div>
                 <div class="zip-wrapper">
                   <label for="shipping-zip-2">Postal / ZIP Code</label>
