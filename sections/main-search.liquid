@@ -59,10 +59,6 @@
       padding-top: {{ section.settings.padding_top_header }}px;
       padding-bottom: {{ section.settings.padding_bottom_header }}px;
     }
-    .main-section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
   }
 
   .template-search .search_results_product_box{
@@ -82,7 +78,7 @@
 -%}
 
 {% paginate search.results by 24 %}
-  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
+  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} color-{{ section.settings.color_scheme }}">
     <div class="template-search__header {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <div class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme_header }}">
         <div class="breadcrumb-content-area page-width">

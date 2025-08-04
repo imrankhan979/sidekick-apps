@@ -52,12 +52,14 @@
               <span class="hotspot-subtotal">{{ total_price | money }}</span>
             </strong>
           </div>
+          {% if section.settings.cart_button_text != blank %}
           <div class="bulk_hotspot_button">
             <button class="bulk-hotspot-btn">
               <div> {{ section.settings.cart_button_text }} <span class="btn-text">{{- 'icon-plus.svg' | inline_asset_content -}}</span></div>
               <span class="btn-loader" style="display: none;"></span>
             </button>
           </div>
+          {% endif %}
         </div>
       </div>
       <div class="bulk_hotspot_box bulk_hotspot_slider">

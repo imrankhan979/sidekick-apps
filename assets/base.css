@@ -23,7 +23,7 @@
 }
 
 .collection-card-wrapper .card,
-.contains-card--collection {
+.contains-card--collection { 
   --border-radius: var(--collection-card-corner-radius);
   --border-width: var(--collection-card-border-width);
   --border-opacity: var(--collection-card-border-opacity);
