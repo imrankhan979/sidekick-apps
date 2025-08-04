@@ -23,11 +23,13 @@
           <h2 class="category_banner_title">{{ section.settings.banner_title }}</h2>
           <div class="category_banner_desc">{{ section.settings.banner_description }}</div>
         </div>
+        {% if section.settings.banner_link != blank %}
         <div class="category_banner_button">
           <span class="category-banner-btn">
             {{ section.settings.banner_button_text }}
           </span>
         </div>
+        {% endif %}
       </div>
     </div>
   </a>
