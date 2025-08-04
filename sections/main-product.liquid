@@ -613,7 +613,7 @@
                               >
                                 <div class="product_single_thumb">
 
-                                  <a class="product_single_carusoel_title" href="{{ product.url }}">
+                                  <a class="product_single_carusoel_title" href="{{ product.url | escape }}">
                                     {{
                                       product.featured_image
                                       | image_url: width: 1500
