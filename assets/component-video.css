@@ -1,8 +1,6 @@
 .snzz-video-section {
     width: 100%;
     overflow: hidden;
-    border-top-left-radius: 64px;
-    border-top-right-radius: 64px;
   }
   .snzz-video-inner {
     position: relative;
@@ -49,17 +47,19 @@
     color: rgb(var(--color-secondary-foreground));
     position: relative;
     z-index: 2;
-    max-width: 900px;
+    max-width: 850px;
     margin: 0 auto;
   }
   .snzz-inner-content > * + *{
-    margin-top: 20px;
+    margin-top: 38px;
+    justify-content: center;
+  }
+  @media (max-width: 767px) {
+        .snzz-inner-content > * + *{
+            margin-top: 20px;
+          }
   }
   @media (max-width: 768px) and (min-width: 574px) {
-    .snzz-video-section {
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-    } 
     .snzz-inner-content {
       padding-left: 20px;
       padding-right: 20px;
@@ -83,11 +83,6 @@
   }
   
   @media (max-width: 575px) {
-    
-    .snzz-video-section {
-      border-top-left-radius: 24px;
-      border-top-right-radius: 24px;
-    } 
   
     .snzz-inner-content h3 {
       font-size: 20px; 

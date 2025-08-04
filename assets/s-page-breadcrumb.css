@@ -1,6 +1,4 @@
-.breadcrumb-main-area {
-    background: linear-gradient(180deg, #0160A0 0%, #2992D9 100%);
-}
+
 
 .breadcrumb-content-area .breadcrumb-title {
     font-size: 144px;
@@ -96,10 +94,5 @@
     .breadcrumb-content-area .breadcrumb-title {
         font-size: 64px;
         letter-spacing: -0.03em;
-    }
-
-    .breadcrumb-main-area {
-        padding-top: 80px;
-        padding-bottom: 108px;
     }
 }

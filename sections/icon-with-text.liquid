@@ -19,7 +19,7 @@
   }
 
 {%- endstyle -%}
-   <section class="icon-with-text color-{{ section.settings.color_scheme }}">
+   <section class="icon-with-text color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
     <div class="page-width">
       <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
         {% if section.settings.section_title != blank %}
@@ -76,6 +76,12 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
     {
       "type": "checkbox",

@@ -36,12 +36,12 @@
   endif
 -%}
 
-<section class="shop-collection-section section-{{ section.id }}-padding">
+<section class="shop-collection-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="page-width">
     {% comment %} {%- paginate collections by section.settings.columns_by_page -%} {% endcomment %}
       <div class="shop_collection_wrapper">
         {% for collection in collections %}
-          <div class="collection-card-wrapper" {% if collection.metafields.custom.additional_color != blank %} style="background-color: {{ collection.metafields.custom.additional_color }}"{% endif %}>
+          <div class="collection-card-wrapper {% if section.settings.columns_mobile == "1" %}single-column{% endif %}" {% if collection.metafields.custom.additional_color != blank %} style="background-color: {{ collection.metafields.custom.additional_color }}"{% endif %}>
             {% render 'collection-card-list',
               card_collection: collection,
               ratio_h: section.settings.ratio,
@@ -65,6 +65,12 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
         {
       "type": "range",

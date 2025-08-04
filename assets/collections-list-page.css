@@ -72,6 +72,9 @@
     .shop_collection_item .shop_collection_content .shop_collection_button{
         display: none;
     }
+    .shop-collection-section .collection-card-wrapper.single-column .shop_collection_button{
+        display: flex;
+    }
 
 }
 .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {

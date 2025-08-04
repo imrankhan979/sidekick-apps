@@ -220,11 +220,6 @@
 
 
 
-.breadcrumb-main-area {
-  padding-top: 200px;
-  padding-bottom: 250px;
-  background: linear-gradient(180deg, #0160A0 0%, #2992D9 100%);
-}
 
 .breadcrumb-main-area.blog-inner-area {
   padding-top: 80px;
@@ -486,10 +481,6 @@
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-  .breadcrumb-main-area {
-    padding-top: 180px;
-    padding-bottom: 220px;
-  }
 
   .breadcrumb-content-area .breadcrumb-title {
     font-size: 120px;
@@ -497,10 +488,6 @@
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .breadcrumb-main-area {
-    padding-top: 160px;
-    padding-bottom: 200px;
-  }
 
   .breadcrumb-content-area .breadcrumb-title {
     font-size: 100px;
@@ -508,10 +495,7 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .breadcrumb-main-area {
-    padding-top: 140px;
-    padding-bottom: 180px;
-  }
+
 
   .breadcrumb-content-area .breadcrumb-title {
     font-size: 90px;
@@ -519,10 +503,6 @@
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-  .breadcrumb-main-area {
-    padding-top: 100px;
-    padding-bottom: 150px;
-  }
 
   .breadcrumb-content-area .breadcrumb-title {
     font-size: 74px;
@@ -534,10 +514,6 @@
 }
 
 @media (max-width: 575px) {
-  .breadcrumb-main-area {
-    padding-top: 80px;
-    padding-bottom: 108px;
-  }
 
   .breadcrumb-content-area .breadcrumb-title {
     font-size: 64px;

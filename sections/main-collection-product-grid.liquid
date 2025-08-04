@@ -48,7 +48,7 @@
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="page-width">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
@@ -213,6 +213,12 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
     {
       "type": "range",
@@ -467,21 +473,21 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 120
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 120
     }
   ]
 }

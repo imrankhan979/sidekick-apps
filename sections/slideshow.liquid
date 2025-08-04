@@ -15,7 +15,7 @@
   {% endfor %}
 {%- endstyle -%}
 
-<section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}">
+<section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}  {% if section.settings.enable_corner_round %}corner-rounded{% endif %}">
   <div class="slider_wrapper">
     <items-carousel>
       <div class="carousel items-carousel-selector" data-flickity='{"prevNextButtons": true, "pageDots": true}'>
@@ -122,6 +122,12 @@
       "id": "section_color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     }
   ], 
   "blocks": [
@@ -219,7 +225,7 @@
           "type": "range",
           "id": "padding_top",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
           "min": 0,
-          "max": 120,
+          "max": 200,
           "step": 4,
           "unit": "px",
           "label": "t:sections.all.padding.padding_top",
@@ -229,7 +235,7 @@
           "type": "range",
           "id": "padding_bottom",
           "min": 0,
-          "max": 120,
+          "max": 200,
           "step": 4,
           "unit": "px",
           "label": "t:sections.all.padding.padding_bottom",

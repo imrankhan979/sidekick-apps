@@ -569,7 +569,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   z-index: 0;
 }
 
-.section+.section {
+/* .section+.section {
   margin-top: var(--spacing-sections-mobile);
 }
 
@@ -577,7 +577,7 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   .section+.section {
     margin-top: var(--spacing-sections-desktop);
   }
-}
+} */
 
 .element-margin-top {
   margin-top: 5rem;
@@ -587,10 +587,6 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   .element-margin {
     margin-top: calc(5rem + var(--page-width-margin));
   }
-}
-
-.background-secondary {
-  background-color: rgba(var(--color-foreground), 0.04);
 }
 
 .grid-auto-flow {
@@ -4591,14 +4587,15 @@ accordion-item .accordion_content {
   }
 
   .section-header.sticky{
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 9999;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: #FFEC3E;
     height: var(--observed-height);
-    animation: top-to-bottom .4s linear forwards;
-    transition: all .3s ease;
+    animation: top-to-bottom 500ms cubic-bezier(.03, .93, .97, 1);;
+    transition: .3s all;
+    width: 100%;
   }
   @keyframes top-to-bottom {
     0% {
@@ -4619,3 +4616,39 @@ accordion-item .accordion_content {
   .section-header.sticky .snazzy-header{
     background-color: #fff;
   }
+
+  /* corner round */
+.corner-round {
+  border-top-left-radius: 64px;
+  border-top-right-radius: 64px;
+  overflow: hidden;
+}
+.mt-minus {
+  margin-top: -64px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .corner-round {
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+  }
+  .mt-minus {
+    margin-top: -24px;
+  }
+}
+.corner-round-for-search{
+   border-top-left-radius: 64px;
+  border-top-right-radius: 64px;
+  overflow: hidden;
+  margin-top: -64px;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+    .corner-round-for-search{
+   border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  margin-top: -24px;
+}
+}

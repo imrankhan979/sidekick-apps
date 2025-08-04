@@ -2,8 +2,8 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.45 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.45 | round: 0 }}px;
   }
 
   @media screen and (min-width: 750px) {
@@ -12,7 +12,7 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-{%- endstyle -%}
+{%- endstyle -%}     
 
 <section class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="breadcrumb-content-area page-width">
@@ -75,8 +75,8 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 200,
-      "step": 4,
+      "max": 300,
+      "step": 5,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
       "default": 200
@@ -85,8 +85,8 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 200,
-      "step": 4,
+      "max": 300,
+      "step": 5,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 200

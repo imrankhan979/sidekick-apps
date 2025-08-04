@@ -29,7 +29,7 @@
 {% else %}
   {% assign article = blogs.news.articles.first %}
 {% endif %}
-<section class="blog-feature-section section-{{ section.id }}-padding">
+<section class="blog-feature-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="page-width">
     <div class="blog_feature_wrapper">
       {%- if article -%}
@@ -130,17 +130,17 @@
   },
   "settings": [
     {
-      "type": "text",
-      "id": "section_button",
-      "label": "t:sections.featured-blog.settings.section_button.label",
-      "default": "t:sections.featured-blog.settings.section_button.default"
-    },
-    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
     {
       "type": "article",
@@ -170,6 +170,12 @@
       "id": "show_excerpt",
       "default": true,
       "label": "t:sections.featured-blog.settings.show_excerpt.label"
+    },
+        {
+      "type": "text",
+      "id": "section_button",
+      "label": "t:sections.featured-blog.settings.section_button.label",
+      "default": "t:sections.featured-blog.settings.section_button.default"
     },
     {
       "type": "header",

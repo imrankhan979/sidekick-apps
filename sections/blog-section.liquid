@@ -66,20 +66,22 @@
           
             <div class="blog_inner_content">
                 <div class="blog_meta_section">
-                  {%- if section.settings.show_author == true or section.settings.tags == true or section.settings.show_date == true -%}
+                  {%- if section.settings.show_author == true or section.settings.show_tags == true or section.settings.show_date == true -%}
                     <ul>
                       {%- if section.settings.show_author == true and article.author -%}
                         <li>{{ article.author | upcase }}</li>
                       {% endif %}
+
                       {%- if section.settings.show_tags == true -%}
-                      {% if article.tags.size > 0 %}
-                        {% for tag in article.tags %}
-                        <li>
-                        <span class="blog-tag">{{ tag | upcase }}</span>{% unless forloop %}, {% endunless %}
-                      </li>
-                    {% endfor %}
+                        {% if article.tags.size > 0 %}
+                          {% for tag in article.tags %}
+                            <li>
+                            <span class="blog-tag">{{ tag | upcase }}</span>{% unless forloop %}, {% endunless %}
+                          </li>
+                          {% endfor %}
+                        {% endif %}
                       {% endif %}
-                      {% endif %}
+
                         {%- if section.settings.show_date == true and article.published_at -%}
                           <li>{{ article.published_at | date: "%b %d, %Y" | upcase }}</li>
                         {%- endif -%}
@@ -317,7 +319,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 120,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
@@ -327,7 +329,7 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 120,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",

@@ -1,9 +1,10 @@
 {{ 's-page-breadcrumb.css' | asset_url | stylesheet_tag }}
+{{ 'page-header.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
     .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+      padding-top: {{ section.settings.padding_top | times: 0.45 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.45 | round: 0 }}px;
     }
 
     @media screen and (min-width: 750px) {
@@ -12,17 +13,11 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
-
-    @media (max-width: 575px) {
-      .breadcrumb-main-area {
-          padding-top: 100px;
-          padding-bottom: 60px;
-      }
   }
 {%- endstyle -%}
-<section class="breadcrumb-main-area section-{{ section.id }}-padding">
-  <div class="page-width">
-    <div class="breadcrumb-content-area">
+<section class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+
+    <div class="breadcrumb-content-area page-width">
       {% if section.settings.enable_breadcrumb_navigation == true %}
         <div class="anim-item breadcrumb-link">
           <ul>
@@ -41,7 +36,16 @@
         </h1>
       </div>
     </div>
-  </div>
+      {% if section.settings.header_bg %}
+    <div class="page-header-bg">
+      <img
+        src="{{ section.settings.header_bg | image_url: width: 533 }}"
+        loading="lazy"
+        width="{{ section.settings.header_bg.width }}"
+        height="{{ section.settings.header_bg.height }}"
+      >
+    </div>
+  {% endif %}
 </section>
 {% schema %}
 {
@@ -55,6 +59,11 @@
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
+    },
+       {
+      "type": "image_picker",
+      "id": "header_bg",
+      "label": "t:sections.main-collection-banner.settings.header_bg.label"
     },
     {
       "type": "text",
@@ -75,7 +84,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 250,
+      "max": 300,
       "step": 5,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
@@ -85,7 +94,7 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 250,
+      "max": 300,
       "step": 5,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",

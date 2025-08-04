@@ -17,7 +17,7 @@
   }
 {%- endstyle -%}
 
-<section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }}">
+<section class="snzz-video-section id-{{ section.id }} color-{{ section.settings.section_color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
        <div class="snzz-video-inner">
         {% assign video_url = section.settings.bg_video.sources[1].url %}
         {% assign youtube_url = section.settings.youtube_url %}
@@ -71,6 +71,12 @@
       "id": "section_color_scheme",
       "label": "t:sections.video.settings.section_color_scheme.label",
       "default": "scheme-1"
+    },
+        {
+      "type": "checkbox",
+      "id": "enable_corner_round",
+      "label": "Enable top corner rounding",
+      "default": true
     },
     {
       "type": "header",

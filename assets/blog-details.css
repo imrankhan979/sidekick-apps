@@ -605,7 +605,7 @@
     }
 
     .breadcrumb-content-area.blog-style .breadcrumb-link {
-        margin-bottom: 30px;
+        margin-bottom: 30px !important;
     }
 
     .breadcrumb-content-area.blog-style .blog_category {
@@ -685,13 +685,6 @@
 }
 
 @media (max-width: 575px) {
-    .blog-details-section {
-        padding-bottom: 80px;
-    }
-
-    .breadcrumb-main-area.blog-inner-area {
-        padding-bottom: 80px;
-    }
 
     .comment-respond .comment_details_form .form-input {
         width: 100%;
@@ -702,7 +695,7 @@
     }
 
     .breadcrumb-content-area.blog-style .breadcrumb-link {
-        margin-bottom: 22px;
+        margin-bottom: 22px !important;
     }
 
     .breadcrumb-content-area.blog-style .blog_category {
