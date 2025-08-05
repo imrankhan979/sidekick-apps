@@ -53,12 +53,15 @@
             </strong>
           </div>
           {% if section.settings.cart_button_text != blank %}
-          <div class="bulk_hotspot_button">
-            <button class="bulk-hotspot-btn">
-              <div> {{ section.settings.cart_button_text }} <span class="btn-text">{{- 'icon-plus.svg' | inline_asset_content -}}</span></div>
-              <span class="btn-loader" style="display: none;"></span>
-            </button>
-          </div>
+            <div class="bulk_hotspot_button">
+              <button class="bulk-hotspot-btn">
+                <div>
+                  {{- section.settings.cart_button_text -}}
+                  <span class="btn-text">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
+                </div>
+                <span class="btn-loader" style="display: none;"></span>
+              </button>
+            </div>
           {% endif %}
         </div>
       </div>
@@ -75,9 +78,9 @@
           {% endif %}
           <!-- Hotspots -->
           {% for block in section.blocks %}
-              {%- assign prd_crd = block.settings.selected_product %}
-              {%- assign section_id = section.id %}
-              {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
+            {%- assign prd_crd = block.settings.selected_product %}
+            {%- assign section_id = section.id %}
+            {% assign pdfm = 'quick-add-' | append: section_id | append: prd_crd.id %}
             {% if block.type == 'product' %}
               <div
                 class="hotspot {% if forloop.first %} active{% endif %}"
@@ -99,18 +102,17 @@
                     {% endif %}
                   </div>
                 </div>
-                 <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
-                   <button
-                     id="{{ pdfm }}-submit"
-                     type="submit"
-                     name="add"
-                     class="quick-view-prg {% if prd_crd.id != blank %}quick-view-prg-have{% endif %}"
-                     aria-haspopup="dialog"
-                     aria-labelledby="{{ pdfm }}-submit title-{{ section_id }}-{{ prd_crd.id }}"
-                     data-product-url="{{ prd_crd.url }}"
-                   >
-                   </button>
-                 </popup-slide>
+                <popup-slide data-modal="#QuickAdd-{{ prd_crd.id }}">
+                  <button
+                    id="{{ pdfm }}-submit"
+                    type="submit"
+                    name="add"
+                    class="quick-view-prg {% if prd_crd.id != blank %}quick-view-prg-have{% endif %}"
+                    aria-haspopup="dialog"
+                    aria-labelledby="{{ pdfm }}-submit title-{{ section_id }}-{{ prd_crd.id }}"
+                    data-product-url="{{ prd_crd.url }}"
+                  ></button>
+                </popup-slide>
               </div>
             {% endif %}
           {% endfor %}
@@ -135,7 +137,9 @@
                         {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
                       </div>
                       <div class="hotpot_slider_content">
-                        <h5 class="hotpot_slider_title" href="{{product.url}}">{{ 'sections.image_hotspot.product_title' | t }}</h5>
+                        <h5 class="hotpot_slider_title" href="{{product.url}}">
+                          {{ 'sections.image_hotspot.product_title' | t }}
+                        </h5>
                         <p class="hotpot_slider_amount">{{ 0.00 | money }}</p>
                       </div>
                     {% endif %}

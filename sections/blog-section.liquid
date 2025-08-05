@@ -25,23 +25,22 @@
   {% assign articles = blogs.news.articles %}
 {% endif %}
 
-<div class="blog-post color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding"> 
-<div class="page-width">
-  {% if section.settings.heading_text != blank %}
-    <div class="section_title text-center">
-      <h1>{{ section.settings.heading_text }}</h1>
-    </div>
-  {% endif %}
-<div class="blog-section-inner items-for-desktop">
-
-  {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
-  {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
-      <div class="blog-bundle-list">
-        <div class="blog_bundle_cart_item">
-          {%- if section.settings.show_image == true -%}
-            <div class="blog_inner_image_section">
-                <div class="blog_item_img">
-                  <img
+<div class="blog-post color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.heading_text != blank %}
+      <div class="section_title text-center">
+        <h1>{{ section.settings.heading_text }}</h1>
+      </div>
+    {% endif %}
+    <div class="blog-section-inner items-for-desktop">
+      {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+        {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
+          <div class="blog-bundle-list">
+            <div class="blog_bundle_cart_item">
+              {%- if section.settings.show_image == true -%}
+                <div class="blog_inner_image_section">
+                  <div class="blog_item_img">
+                    <img
                       srcset="
                         {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
                         {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
@@ -60,13 +59,16 @@
                       width="{{ article.image.width }}"
                       height="{{ article.image.height }}"
                     >
+                  </div>
                 </div>
-            </div>
-          {%- endif -%}
-          
-            <div class="blog_inner_content">
+              {%- endif -%}
+
+              <div class="blog_inner_content">
                 <div class="blog_meta_section">
-                  {%- if section.settings.show_author == true or section.settings.show_tags == true or section.settings.show_date == true -%}
+                  {%- if section.settings.show_author == true
+                    or section.settings.show_tags == true
+                    or section.settings.show_date == true
+                  -%}
                     <ul>
                       {%- if section.settings.show_author == true and article.author -%}
                         <li>{{ article.author | upcase }}</li>
@@ -76,29 +78,132 @@
                         {% if article.tags.size > 0 %}
                           {% for tag in article.tags %}
                             <li>
-                            <span class="blog-tag">{{ tag | upcase }}</span>{% unless forloop %}, {% endunless %}
-                          </li>
+                              <span class="blog-tag">{{ tag | upcase }}</span>
+                              {%- unless forloop %}, {% endunless %}
+                            </li>
                           {% endfor %}
                         {% endif %}
                       {% endif %}
 
-                        {%- if section.settings.show_date == true and article.published_at -%}
-                          <li>{{ article.published_at | date: "%b %d, %Y" | upcase }}</li>
-                        {%- endif -%}
+                      {%- if section.settings.show_date == true and article.published_at -%}
+                        <li>{{ article.published_at | date: '%b %d, %Y' | upcase }}</li>
+                      {%- endif -%}
                     </ul>
                   {%- endif -%}
                 </div>
                 <h6 class="blog_main_header">
-                  <a href="{{ article.url }}"><span class="title">{{ article.title | upcase }}</span></a>
+                  <a href="{{ article.url }}"
+                    ><span class="title">{{ article.title | upcase }}</span></a
+                  >
                 </h6>
+              </div>
             </div>
-        </div>
-      </div>
-    {%- endfor -%}
-    {%- else -%}
-      {% for i in (1..section.settings.post_limit) -%}
-        {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
-        {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {% for i in (1..section.settings.post_limit) -%}
+          {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
+          {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
+          <div class="blog-bundle-list">
+            <div class="blog_bundle_cart_item">
+              {%- if section.settings.show_image == true -%}
+                <div class="blog_inner_image_section">
+                  <div class="blog_item_img">
+                    {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
+                  </div>
+                </div>
+              {%- endif -%}
+              <div class="blog_inner_content">
+                <h6 class="blog_main_header">
+                  {{ 'sections.featured_blog.onboarding_title' | t }}
+                </h6>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <div class="blog-section-inner items-for-mobile">
+      {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
+        <items-carousel>
+          <div
+            class="carousel items-carousel-selector"
+            data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'
+          >
+            {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
+              <div class="blog-bundle-list">
+                <div class="blog_bundle_cart_item">
+                  {%- if section.settings.show_image == true -%}
+                    <div class="blog_inner_image_section">
+                      <div class="blog_item_img">
+                        <img
+                          srcset="
+                            {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
+                            {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
+                            {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
+                            {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
+                            {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
+                            {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
+                            {{ article.image.src | image_url }} {{ article.image.src.width }}w
+                          "
+                          src="{{ article.image.src | image_url: width: 533 }}"
+                          sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
+                          alt="{{ article.image.src.alt | escape }}"
+                          {% unless lazy_load == false %}
+                            loading="lazy"
+                          {% endunless %}
+                          width="{{ article.image.width }}"
+                          height="{{ article.image.height }}"
+                        >
+                      </div>
+                    </div>
+                  {%- endif -%}
+
+                  <div class="blog_inner_content">
+                    <div class="blog_meta_section">
+                      {%- if section.settings.show_author == true
+                        or section.settings.tags == true
+                        or section.settings.show_date == true
+                      -%}
+                        <ul>
+                          {%- if section.settings.show_author == true and article.author -%}
+                            <li>{{ article.author | upcase }}</li>
+                          {% endif %}
+                          {%- if section.settings.show_tags == true -%}
+                            {% if article.tags.size > 0 %}
+                              {% for tag in article.tags %}
+                                <li>
+                                  <span class="blog-tag">{{ tag | upcase }}</span>
+                                  {%- unless forloop %}, {% endunless %}
+                                </li>
+                              {% endfor %}
+                            {% endif %}
+                          {% endif %}
+                          {%- if section.settings.show_date == true and article.published_at -%}
+                            <li>{{ article.published_at | date: '%b %d, %Y' | upcase }}</li>
+                          {%- endif -%}
+                        </ul>
+                      {%- endif -%}
+                    </div>
+                    <h3 class="blog_main_header">
+                      <a href="{{ article.url }}">{{ article.title | upcase }}</a>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </items-carousel>
+      {%- else -%}
+        <items-carouseL>
+          <div
+            class="carousel items-carousel-selector"
+            data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'
+          >
+            {% for i in (1..section.settings.post_limit) -%}
+              {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
+              {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
               <div class="blog-bundle-list">
                 <div class="blog_bundle_cart_item">
                   {%- if section.settings.show_image == true -%}
@@ -115,102 +220,10 @@
                   </div>
                 </div>
               </div>
-        {%- endfor -%}
-      {%- endif -%}
-  </div>
-
-    <div class="blog-section-inner items-for-mobile">
-      {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
-        <items-carousel>
-          <div class="carousel items-carousel-selector"
-          data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'>
-      {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
-            <div class="blog-bundle-list">
-              <div class="blog_bundle_cart_item">
-                {%- if section.settings.show_image == true -%}
-                  <div class="blog_inner_image_section">
-                      <div class="blog_item_img">
-                        <img
-                            srcset="
-                              {%- if article.image.src.width >= 165 -%}{{ article.image.src | image_url: width: 165 }} 165w,{%- endif -%}
-                              {%- if article.image.src.width >= 360 -%}{{ article.image.src | image_url: width: 360 }} 360w,{%- endif -%}
-                              {%- if article.image.src.width >= 533 -%}{{ article.image.src | image_url: width: 533 }} 533w,{%- endif -%}
-                              {%- if article.image.src.width >= 720 -%}{{ article.image.src | image_url: width: 720 }} 720w,{%- endif -%}
-                              {%- if article.image.src.width >= 1000 -%}{{ article.image.src | image_url: width: 1000 }} 1000w,{%- endif -%}
-                              {%- if article.image.src.width >= 1500 -%}{{ article.image.src | image_url: width: 1500 }} 1500w,{%- endif -%}
-                              {{ article.image.src | image_url }} {{ article.image.src.width }}w
-                            "
-                            src="{{ article.image.src | image_url: width: 533 }}"
-                            sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
-                            alt="{{ article.image.src.alt | escape }}"
-                            {% unless lazy_load == false %}
-                              loading="lazy"
-                            {% endunless %}
-                            width="{{ article.image.width }}"
-                            height="{{ article.image.height }}"
-                          >
-                      </div>
-                  </div>
-                {%- endif -%}
-                
-                  <div class="blog_inner_content">
-                      <div class="blog_meta_section">
-                        {%- if section.settings.show_author == true or section.settings.tags == true or section.settings.show_date == true -%}
-                          <ul>
-                            {%- if section.settings.show_author == true and article.author -%}
-                              <li>{{ article.author | upcase }}</li>
-                            {% endif %}
-                            {%- if section.settings.show_tags == true -%}
-                            {% if article.tags.size > 0 %}
-                              {% for tag in article.tags %}
-                              <li>
-                              <span class="blog-tag">{{ tag | upcase }}</span>{% unless forloop %}, {% endunless %}
-                            </li>
-                          {% endfor %}
-                            {% endif %}
-                            {% endif %}
-                              {%- if section.settings.show_date == true and article.published_at -%}
-                                <li>{{ article.published_at | date: "%b %d, %Y" | upcase }}</li>
-                              {%- endif -%}
-                          </ul>
-                        {%- endif -%}
-                      </div>
-                      <h3 class="blog_main_header">
-                        <a href="{{ article.url }}">{{ article.title | upcase }}</a>
-                      </h3>
-                  </div>
-              </div>
-            </div>
-          {%- endfor -%}
+            {%- endfor -%}
           </div>
-        </items-carousel>
-        {%- else -%}
-        <items-carouseL>
-          <div class="carousel items-carousel-selector"
-              data-flickity='{ "freeScroll": true, "contain": true, "prevNextButtons": true, "pageDots": false}'>
-              {% for i in (1..section.settings.post_limit) -%}
-                {%- assign placeholder_image_index = forloop.index0 | modulo: 3 | plus: 1 -%}
-                {%- assign placeholder_image = 'blog-apparel-' | append: placeholder_image_index -%}
-                        <div class="blog-bundle-list">
-                          <div class="blog_bundle_cart_item">
-                            {%- if section.settings.show_image == true -%}
-                              <div class="blog_inner_image_section">
-                                <div class="blog_item_img">
-                                  {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
-                                </div>
-                              </div>
-                            {%- endif -%}
-                            <div class="blog_inner_content">
-                              <h6 class="blog_main_header">
-                                {{ 'sections.featured_blog.onboarding_title' | t }}
-                              </h6>
-                            </div>
-                          </div>
-                        </div>
-                      {%- endfor -%}
-                  </div>
-              </items-carouseL>
-          {%- endif -%}
+        </items-carouseL>
+      {%- endif -%}
     </div>
 
     {%- if section.settings.btn_text != blank -%}
@@ -223,14 +236,14 @@
             href="{{ section.settings.btn_url }}"
           {% endif %}
         >
-          {{- section.settings.btn_text }}
+          {{- section.settings.btn_text -}}
           <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
         >
       </div>
     {% endif %}
   </div>
-   </div>
-   
+</div>
+
 {% schema %}
 {
   "name": "t:sections.blog_post.name",

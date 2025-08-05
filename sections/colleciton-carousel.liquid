@@ -58,13 +58,13 @@
             </div>
             <div class="collection_carousel_content">
               {% if block.settings.collection_featured != blank %}
-              <span class="subTitle">
-                <span class="collection_anim">
-                  <span class="anim_text">
-                    {{ block.settings.collection_featured }}
+                <span class="subTitle">
+                  <span class="collection_anim">
+                    <span class="anim_text">
+                      {{ block.settings.collection_featured }}
+                    </span>
                   </span>
                 </span>
-              </span>
               {% endif %}
 
               {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
@@ -99,21 +99,20 @@
                 </div>
               {%- endif -%}
               {% if block.settings.collection_button != blank %}
-              <div class="collection_carousel_button">
-                <a
-                  class="collection_carousel_btn"
-                  {% if block.settings.collection_select == blank %}
-                    role="link" aria-disabled="true"
-                  {% else %}
-                    href="{{ block.settings.collection_select.url }}"
-                  {% endif %}
-                >
-                  {{ block.settings.collection_button }}
-                  <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-                </a>
-              </div>
+                <div class="collection_carousel_button">
+                  <a
+                    class="collection_carousel_btn"
+                    {% if block.settings.collection_select == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.collection_select.url }}"
+                    {% endif %}
+                  >
+                    {{- block.settings.collection_button -}}
+                    <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                  </a>
+                </div>
               {% endif %}
-              
             </div>
           </div>
         {% endfor %}

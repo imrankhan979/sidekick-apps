@@ -79,7 +79,7 @@
                   {% if block.settings.button_text != blank %}
                     <div class="redefine_button">
                       <a class="snazzy-icon-btn" href="{{ block.settings.button_link }}">
-                        {{- block.settings.button_text }}
+                        {{- block.settings.button_text -}}
                         <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                       >
                     </div>
@@ -209,7 +209,7 @@
           "label": "t:sections.image-with-text.blocks.redefine_content.settings.paragraph_one.label",
           "default": "t:sections.image-with-text.blocks.redefine_content.settings.paragraph_one.default"
         },
-        { 
+        {
           "type": "text",
           "id": "button_text",
           "label": "t:sections.image-with-text.blocks.redefine_content.settings.button_text.label",

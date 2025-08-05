@@ -55,9 +55,10 @@
                     <span class="journey_anim">
                       <span class="journey_text">
                         {%- if block.settings.tab_button != blank -%}
-                          {{ block.settings.tab_button }}
+                          {{- block.settings.tab_button -}}
                         {%- else -%}
-                          {{ 'sections.timeline_tab.tab' | t }} {{ forloop.index }}
+                          {{ 'sections.timeline_tab.tab' | t }}
+                          {{ forloop.index }}
                         {%- endif -%}
                       </span>
                     </span>
@@ -217,11 +218,7 @@
   "presets": [
     {
       "name": "t:sections.timeline-tabs.presets.name",
-      "blocks": [
-        { "type": "tab" },
-        { "type": "tab" },
-        { "type": "tab" }
-      ]
+      "blocks": [{ "type": "tab" }, { "type": "tab" }, { "type": "tab" }]
     }
   ]
 }
