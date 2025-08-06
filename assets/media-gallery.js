@@ -9,11 +9,20 @@ if (!customElements.get('media-gallery')) {
           viewer: this.querySelector('[id^="GalleryViewer"]'),
           thumbnails: this.querySelector('[id^="GalleryThumbnails"]'),
           trps: this.querySelector('[id^="Slider-Gallery-template"]'),
+          trpsQuickadd: this.querySelector('[id^="Slider-Gallery-quickadd-template"]'),
           thumbnail: this.querySelector('.thumbnail-slider'),
         };
         this.mql = window.matchMedia('(min-width: 750px)');
         if (!this.elements.thumbnails) return;
-        this.trpsGain()
+        if(this.elements.trps != null){
+          this.trpsGain()
+        }
+        if(this.elements.trpsQuickadd != null){
+          this.trpsGainQuickadd()
+        }
+        
+
+
         this.elements.thumbnail && this.thumbnail()
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
         this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch, index) => {
@@ -34,7 +43,10 @@ if (!customElements.get('media-gallery')) {
         }
         );
       }
-
+      trpsGainQuickadd(){
+        this.ityQuickadd = new Flickity(this.elements.trpsQuickadd, {});
+        this.elements.trpsQuickadd.style.display = 'block';
+      }
       trpsGain() {
         this.ity = new Flickity(this.elements.trps, {});
         this.elements.trps.style.display = 'block';
