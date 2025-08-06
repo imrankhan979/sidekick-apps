@@ -27,6 +27,7 @@
               <div class="scroll-width">
                 <ul class="tabs_menu snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
                   {% for block in section.blocks %}
+                    {% if block.settings.tab_title != blank %}
                     <li
                       class="snazzy-tab-button {% if forloop.first %}active{% endif %}"
                       {{ block.shopify_attributes }}
@@ -37,7 +38,8 @@
                         </span>
                       </span>
                     </li>
-                  {% endfor %}
+                  {% endif %}
+                {% endfor %}
                 </ul>
               </div>
             </div>
@@ -151,19 +153,19 @@
         {
           "type": "Item",
           "settings": {
-            "tab_title": "t:sections.additional_info.presets.tabs.description"
+            "tab_title": "Description"
           }
         },
         {
           "type": "Item",
           "settings": {
-            "tab_title": "t:sections.additional_info.presets.tabs.fabric"
+            "tab_title": "Fabric"
           }
         },
         {
           "type": "Item",
           "settings": {
-            "tab_title": "t:sections.additional_info.presets.tabs.shipping"
+            "tab_title": "Shipping"
           }
         }
       ]

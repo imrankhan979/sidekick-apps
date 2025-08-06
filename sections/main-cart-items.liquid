@@ -61,7 +61,7 @@
         </free-shipping-bar>
       {% endif %}
 
-      <a href="{{ routes.all_products_collection_url }}" class="underlined-link you-cart-shop-btn">
+      <a href="{{ routes.all_products_collection_url }}" class="snazzy-icon-btn you-cart-shop-btn">
         {{- 'general.continue_shopping' | t -}}
         <span>
           <svg
@@ -84,18 +84,18 @@
 <div class="cart-page-wrapper">
   <cart-items class="gradient ">
       <div class="cart__warnings">
-        <div class="anim-item breadcrumb-link">
+        {% comment %} <div class="anim-item breadcrumb-link">
           <ul>
             <li><a href="{{ request.origin }}">{{ 'sections.breadcrumb_banner.home' | t }} </a></li>
             <li>/</li>
             <li>{{ 'sections.cart.title' | t }}</li>
           </ul>
-        </div>
+        </div> {% endcomment %}
         <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
-        <a href="{{ routes.all_products_collection_url }}" class="button you-cart-shop-btn">
+        {% comment %} <a href="{{ routes.all_products_collection_url }}" class="button you-cart-shop-btn">
           {{ 'general.continue_shopping' | t }}
           <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-        </a>
+        </a> {% endcomment %}
   
         {%- if shop.customer_accounts_enabled and customer == null -%}
           <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
@@ -559,13 +559,17 @@
                                 <div class="shipping-estimator-container shipping-estimator">
                                   <div class="country-wrapper">
                                     <label for="shipping-country-1 sub-title">Country/region</label>
-                                    <select id="shipping-country-1" class="shipping-country-select" name="country" required>
-                                      {{ country_option_tags }}
-                                    </select>
+                                    <div class="select-wrapper">
+                                      <select id="shipping-country-1" class="shipping-country-select" name="country" required>
+                                        {{ country_option_tags }}
+                                      </select>
+                                    </div>
                                   </div>
                                   <div class="shipping-province-wrapper" id="shipping-province-wrapper-1">
                                     <label for="shipping-province-1">Province</label>
-                                    <select id="shipping-province-1" class="shipping-province-select" name="province"></select>
+                                    <div class="select-wrapper">
+                                      <select id="shipping-province-1" class="shipping-province-select" name="province"></select>
+                                    </div>
                                   </div>
                                   <div class="zip-wrapper">
                                     <label for="shipping-zip-1">Postal / ZIP Code</label>

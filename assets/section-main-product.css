@@ -2496,7 +2496,7 @@ vertical-align: middle;
 .product_single_wrapper .product-form__quantity quantity-input .quantity__button{
   width: unset;
   height: 56px;
-  padding: 17px 22px;
+  padding: 17px 18px;
 }
 @media (max-width: 767px) {
   .product_single_wrapper .product-form__quantity quantity-input{
@@ -2810,4 +2810,7 @@ variant-selects .product-popup-modal__opener button::before {
 }
 .product_left_carousel_thumb .slider-button{
   display: none !important;
+}
+.product_single_wrapper .product_single_left_thumb > svg{
+  border-radius: 24px ;
 }

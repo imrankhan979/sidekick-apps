@@ -41,7 +41,7 @@
     {% comment %} {%- paginate collections by section.settings.columns_by_page -%} {% endcomment %}
       <div class="shop_collection_wrapper">
         {% for collection in collections %}
-          <div class="collection-card-wrapper" {% if collection.metafields.custom.additional_color != blank %} style="background-color: {{ collection.metafields.custom.additional_color }}"{% endif %}>
+          <div class="collection-card-wrapper {% if section.settings.columns_mobile == "1" %}single-column{% endif %}" {% if collection.metafields.custom.additional_color != blank %} style="background-color: {{ collection.metafields.custom.additional_color }}"{% endif %}>
             {% render 'collection-card-list',
               card_collection: collection,
               ratio_h: section.settings.ratio,
@@ -76,7 +76,7 @@
       "type": "range",
       "id": "columns_desktop",
       "min": 1,
-      "max": 4,
+      "max": 3,
       "step": 1,
       "default": 2,
       "label": "t:sections.collection-list.settings.columns_desktop.label"

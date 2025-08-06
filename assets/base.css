@@ -23,7 +23,7 @@
 }
 
 .collection-card-wrapper .card,
-.contains-card--collection {
+.contains-card--collection { 
   --border-radius: var(--collection-card-corner-radius);
   --border-width: var(--collection-card-border-width);
   --border-opacity: var(--collection-card-border-opacity);
@@ -587,10 +587,6 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
   .element-margin {
     margin-top: calc(5rem + var(--page-width-margin));
   }
-}
-
-.background-secondary {
-  background-color: rgba(var(--color-foreground), 0.04);
 }
 
 .grid-auto-flow {
@@ -4591,14 +4587,15 @@ accordion-item .accordion_content {
   }
 
   .section-header.sticky{
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 9999;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background: #FFEC3E;
     height: var(--observed-height);
-    animation: top-to-bottom .4s linear forwards;
-    transition: all .3s ease;
+    animation: top-to-bottom 500ms cubic-bezier(.03, .93, .97, 1);;
+    transition: .3s all;
+    width: 100%;
   }
   @keyframes top-to-bottom {
     0% {
@@ -4621,7 +4618,7 @@ accordion-item .accordion_content {
   }
 
   /* corner round */
-  .corner-round {
+.corner-round {
   border-top-left-radius: 64px;
   border-top-right-radius: 64px;
   overflow: hidden;
