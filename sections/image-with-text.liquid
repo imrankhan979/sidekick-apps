@@ -78,7 +78,12 @@
                   {% endif %}
                   {% if block.settings.button_text != blank %}
                     <div class="redefine_button">
-                      <a class="snazzy-icon-btn" href="{{ block.settings.button_link }}">
+                      <a class="snazzy-icon-btn" 
+                        {% if block.settings.button_link == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ block.settings.button_link }}"
+                        {% endif %}>
                         {{- block.settings.button_text }}
                         <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                       >
