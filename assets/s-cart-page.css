@@ -174,7 +174,7 @@ cart-items .cart__warnings button {
 	margin-bottom: 24px;
 }
 }
-.cart-item__image-container img.cart-item__image {
+.cart-item__image-container img.cart-item__image, .cart-item__image-container .placeholder-svg {
 	border-radius: 12px;
 }
 
