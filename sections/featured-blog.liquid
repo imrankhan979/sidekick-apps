@@ -22,6 +22,11 @@
     overflow: hidden;
     position: relative;
   } */
+   {%- if section.settings.show_image  == false -%}
+      .blog_feature_item {
+          grid-template-columns: 1fr;
+      }
+    {%- endif -%}
 {%- endstyle -%}
 <!-- start: Blog Feature Section -->
 {% if section.settings.selected_article != blank %}
@@ -35,7 +40,7 @@
       {%- if article -%}
         <div class="blog_feature_item grid color-{{ section.settings.color_scheme }}">
           <div class="blog_feature_content">
-            {% if section.settings.show_tags or section.settings.show_date %}
+            {% if section.settings.show_tags < 0 or section.settings.show_date == true %}
               <div class="anim-item blog_category">
                 {%- if section.settings.show_tags -%}
                   {% if article.tags.size > 0 and section.settings.show_tags %}
@@ -84,12 +89,12 @@
               <p class="anim-item blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
             {% endif %}
             {% if section.settings.section_button != blank %}
-            <div class="anim-item blog_feature_button">
-              <a class="blog-feature-btn" href="{{ article.url }}">
-                {{ section.settings.section_button }}
-                <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
-              >
-            </div>
+              <div class="anim-item blog_feature_button">
+                <a class="blog-feature-btn" href="{{ article.url }}">
+                  {{ section.settings.section_button }}
+                  <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+                >
+              </div>
             {% endif %}
           </div>
           {%- if section.settings.show_image -%}
