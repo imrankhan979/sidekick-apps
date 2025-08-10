@@ -2213,3 +2213,24 @@ function setupCornerRoundWatcher() {
 document.addEventListener('DOMContentLoaded', setupCornerRoundWatcher);
 document.addEventListener('shopify:section:load', setupCornerRoundWatcher);
 document.addEventListener('shopify:section:select', setupCornerRoundWatcher);
+
+
+// Overlay header
+function applyOverlayHeaderClass() {
+  const header = document.querySelector(".snazzy-header.overlay-header");
+  const sectionHeader = document.querySelector(".section-header");
+
+  if (header && sectionHeader) {
+    sectionHeader.classList.add("overlay-header-active");
+  }
+}
+
+// Run when page loads
+document.addEventListener("DOMContentLoaded", applyOverlayHeaderClass);
+
+// Run again if Shopify uses any dynamic content loading
+document.addEventListener("shopify:section:load", applyOverlayHeaderClass);
+document.addEventListener("shopify:section:select", applyOverlayHeaderClass);
+document.addEventListener("shopify:section:deselect", applyOverlayHeaderClass);
+document.addEventListener("shopify:block:select", applyOverlayHeaderClass);
+document.addEventListener("shopify:block:deselect", applyOverlayHeaderClass);
