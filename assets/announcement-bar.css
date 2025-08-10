@@ -1,23 +1,25 @@
-  .announce_item {
-    text-align: center;
-    width: 100%;
-  }
+.announce_item {
+  text-align: center;
+  width: 100%;
+}
   .announce_item_title {
-    font-size: 14px;
-    line-height: 20px;
-    padding-inline: 30px;
-  }
+  font-size: 14px;
+  line-height: 20px;
+  padding-inline: 30px;
+}
   .section-announcement .flickity-prev-next-button{
-      align-items: center; 
-      display: flex;
-    }
-    .section-announcement .flickity-prev-next-button .flickity-button-icon{
-        width: 12px;
-        position: static;
-    }
-    .section-announcement .flickity-prev-next-button.next{
-        justify-content: flex-end;
-    }
-    .section-announcement .flickity-button:disabled{
-    opacity: 0.5;
-    }
+  align-items: center; 
+  display: flex;
+  background: transparent;
+}
+.section-announcement .flickity-prev-next-button .flickity-button-icon{
+  width: 12px;
+  position: static;
+  color: var(--color-foreground);
+}
+.section-announcement .flickity-prev-next-button.next{
+  justify-content: flex-end;
+}
+.section-announcement .flickity-button:disabled{
+  opacity: 0.5;
+} 

@@ -237,12 +237,7 @@
 .footer .footer-copyright-inner > * + *{
   margin-top: 26px;
 }
-@media (max-width: 575px) {
-  .footer .footer-heading-logo-wrapper {
-    max-width: 100% !important;
-  }
 
-}
 .footer .copyright-bottom-text{
   font-family: var(--font-family-body);
   font-size: 20px;
