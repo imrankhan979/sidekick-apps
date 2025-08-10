@@ -48,15 +48,20 @@
           <div class="hotspot_percent">
             {{ 'sections.image_hotspot.subtotal' | t }}
             <strong>
-              {{- cart.currency.symbol -}}
+              {% comment %} {{- cart.currency.symbol -}} {% endcomment %}
               <span class="hotspot-subtotal">{{ total_price | money }}</span>
             </strong>
           </div>
           {% if section.settings.cart_button_text != blank %}
             <div class="bulk_hotspot_button">
-              <button class="bulk-hotspot-btn">
+              <button
+                class="bulk-hotspot-btn"
+                {% if total_price == 0 %}
+                  disabled
+                {% endif %}
+              >
                 <div>
-                  {{- section.settings.cart_button_text -}}
+                  {{ section.settings.cart_button_text }}
                   <span class="btn-text">{{- 'icon-plus.svg' | inline_asset_content -}}</span>
                 </div>
                 <span class="btn-loader" style="display: none;"></span>
@@ -76,7 +81,6 @@
           {% else %}
             {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
-          <!-- Hotspots -->
           {% for block in section.blocks %}
             {%- assign prd_crd = block.settings.selected_product %}
             {%- assign section_id = section.id %}
@@ -117,7 +121,6 @@
             {% endif %}
           {% endfor %}
         </div>
-
         {% if section.blocks.size > 0 %}
           <items-carousel>
             <div
@@ -153,8 +156,6 @@
     </div>
   </div>
 </section>
-
-<script></script>
 
 {% schema %}
 {

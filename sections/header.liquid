@@ -13,7 +13,7 @@
         }
     {%- endif -%}
 {% endstyle %}
-<header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %}" data-sticky="{{ section.settings.sticky_behavior }}">
+<header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %} color-{{ section.settings.color_scheme }}" data-sticky="{{ section.settings.sticky_behavior }}">
     <div class="page-width">
         <observed-height>
             <div class="header-inner grid align-items-center">
