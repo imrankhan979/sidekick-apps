@@ -27,7 +27,7 @@ class BundleManager extends HTMLElement {
     if (button.getAttribute('data-disabled') === 'true') return;
 
     const productElem = button.closest('.product');
-    const productId = productElem.querySelector('.product-variant-id').value;
+    const productId = productElem.querySelector('.product-variant-id')?.value;
     const productTitle = productElem.dataset.title;
     const productPrice = parseFloat(productElem.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
     const productImage = productElem.querySelector('.featured-image')?.src;
@@ -74,7 +74,7 @@ class BundleManager extends HTMLElement {
     const addButtons = document.querySelectorAll('.add-to-bundle');
     addButtons.forEach(button => {
       const productElem = button.closest('.product');
-      const productId = productElem.querySelector('.product-variant-id').value;
+      const productId = productElem.querySelector('.product-variant-id')?.value;
       if (productId === itemId) {
         button.classList.remove('disabled');
         button.removeAttribute('data-disabled');
@@ -173,7 +173,7 @@ class BundleManager extends HTMLElement {
     const addButtons = document.querySelectorAll('.add-to-bundle');
     addButtons.forEach(button => {
       const productElem = button.closest('.product');
-      const productId = productElem.querySelector('.product-variant-id').value;
+      const productId = productElem.querySelector('.product-variant-id')?.value;
       const isDisabled = this.bundleItems.length >= this.BUNDLE_LIMIT || this.bundleItems.some(item => item.id === productId);
       button.classList.toggle('disabled', isDisabled);
       button.setAttribute('data-disabled', isDisabled);
