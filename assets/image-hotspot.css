@@ -64,6 +64,9 @@
     color: #000;
     position: relative;
   }
+  .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn[disabled ]{
+    cursor: not-allowed;
+  }
   .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn > div{
     display: flex;
     align-items: center;
