@@ -6,7 +6,6 @@
 <script src="{{ 'snazzy-tab.js' | asset_url }}" defer></script>
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
-
 {%- style -%}
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
@@ -62,7 +61,7 @@
               <div class="product-grid product-grid-{{ block.id }}">
                 {% if collection.products.size > 0 %}
                   {% for product in collection.products limit: maximum_product_show %}
-                     {% render 'card-product', card_product: product, section_id: section.id %}
+                    {% render 'card-product', card_product: product, section_id: section.id %}
                   {% endfor %}
                 {% else %}
                   {% for i in (1..maximum_product_show) %}
@@ -72,8 +71,9 @@
               </div>
               {% if collection.products.size > maximum_product_show %}
                 <div class="view-all-btn-wrapper flex justify-content-center">
-                  <a class="snazzy-icon-btn btn-with-border" href="{{ collection.url }}"
-                    >{{ 'sections.collection_tab.title' | t }}<span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+                  <a class="snazzy-icon-btn btn-with-border" href="{{ collection.url }}">
+                    {{- 'sections.collection_tab.title' | t -}}
+                    <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                   >
                 </div>
               {% endif %}
@@ -98,8 +98,8 @@
     {
       "type": "text",
       "id": "section_heading",
-      "default": "PRODUCT",
-      "label": "t:sections.collection-tab.settings.section_heading.label"
+      "label": "t:sections.collection-tab.settings.section_heading.label",
+      "default": "t:sections.collection-tab.settings.section_heading.default"
     },
     {
       "type": "select",
@@ -161,7 +161,7 @@
           "id": "tab_title",
           "label": "t:sections.collection-tab.blocks.collection.settings.tab_title.label",
           "info": "t:sections.collection-tab.blocks.collection.settings.tab_title.info",
-          "default": "Collection"
+          "default": "t:sections.collection-tab.blocks.collection.settings.tab_title.default"
         },
         {
           "type": "range",
