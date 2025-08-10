@@ -9,31 +9,31 @@
     margin-bottom: 30px;
   }
 
-    @media screen and (max-width: 991px){
-        .block_desc{
-            font-size: 14px;
-            line-height: 20px;
-        }
+  @media screen and (max-width: 991px) {
+    .block_desc {
+      font-size: 14px;
+      line-height: 20px;
     }
+  }
 {% endstylesheet %}
 
 <div class="block_desc" {{ block.shopify_attributes }}>{{ block.settings.description }}</div>
 
 {% schema %}
+{
+  "name": "t:blocks.description.name",
+  "settings": [
     {
-        "name": "t:blocks.description.name",
-        "settings": [
-            {
-                    "type": "richtext",
-                    "id": "description",
-                    "label": "t:blocks.description.settings.description.label",
-                   "default": "t:blocks.description.settings.description.default",
-            }
-        ],
-        "presets": [
-            {
-                "name": "t:blocks.description.presets.name"
-            }
-        ]
+      "type": "richtext",
+      "id": "description",
+      "label": "t:blocks.description.settings.description.label",
+      "default": "t:blocks.description.settings.description.default"
     }
-{% endschema %} 
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.description.presets.name"
+    }
+  ]
+}
+{% endschema %}

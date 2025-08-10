@@ -78,12 +78,14 @@
                   {% endif %}
                   {% if block.settings.button_text != blank %}
                     <div class="redefine_button">
-                      <a class="snazzy-icon-btn" 
+                      <a
+                        class="snazzy-icon-btn"
                         {% if block.settings.button_link == blank %}
                           role="link" aria-disabled="true"
                         {% else %}
                           href="{{ block.settings.button_link }}"
-                        {% endif %}>
+                        {% endif %}
+                      >
                         {{- block.settings.button_text }}
                         <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
                       >
@@ -214,11 +216,11 @@
           "label": "t:sections.image-with-text.blocks.redefine_content.settings.paragraph_one.label",
           "default": "t:sections.image-with-text.blocks.redefine_content.settings.paragraph_one.default"
         },
-        { 
+        {
           "type": "text",
           "id": "button_text",
           "label": "t:sections.image-with-text.blocks.redefine_content.settings.button_text.label",
-          "default": "LEARN MORE"
+          "default": "t:sections.image-with-text.blocks.redefine_content.settings.button_text.default"
         },
         {
           "type": "url",

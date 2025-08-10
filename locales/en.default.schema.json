@@ -487,6 +487,9 @@
         "margin_bottom": "Bottom margin"
       },
       "spacing": "Spacing",
+      "corner_rounding": {
+        "label": "Enable top corner rounding",
+      },
       "colors": {
         "label": "Color scheme",
         "has_cards_info": "To change the card color scheme, update your theme settings."
@@ -754,7 +757,10 @@
         },
         "swipe_on_mobile": {
           "label": "Enable swipe on mobile"
-        }
+        },
+          "corner_rounding": {
+          "label": "Enable top corner rounding",
+       }
       },
       "blocks": {
         "featured_collection": {
@@ -1757,9 +1763,10 @@
               "label": "Text",
               "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
             },
+
             "button_text": {
               "label": "Button text",
-              "default": "Shop now"
+              "default": "LEARN MORE"
             },
             "button_link": {
               "label": "Button link"
@@ -1787,7 +1794,8 @@
           "label": "Color scheme"
         },
         "section_heading": {
-          "label": "Section heading"
+          "label": "Section heading",
+          "default": "PRODUCT"
         },
         "ratio": {
           "label": "Image ratio",
@@ -1805,7 +1813,8 @@
             },
             "tab_title": {
               "label": "Tab Title",
-              "info": "Optional. Defaults to collection title."
+              "info": "Optional. Defaults to collection title.",
+              "default": "Collection"
             },
             "item_total": {
               "label": "Maximum number of products to show"
@@ -3648,6 +3657,11 @@
     },
     "slideshow": {
       "name": "Slideshow",
+      "settings": {
+        "corner_rounding": {
+           "label": "Enable top corner rounding",
+        },
+      },
       "blocks": {
         "slide": {
           "name": "Slide",

@@ -54,10 +54,10 @@
                     {% endif %}
                   >
                     {% if block.settings.icon_selection != 'other' %}
-                    {{ block.settings.icon_selection | inline_asset_content }}
-                  {% else %}
-                    {{ block.settings.svg_code }}
-                  {% endif %}
+                      {{ block.settings.icon_selection | inline_asset_content }}
+                    {% else %}
+                      {{ block.settings.svg_code }}
+                    {% endif %}
                   </a>
                 </div>
               </div>
@@ -76,7 +76,7 @@
                     | image_url: width: 1500
                     | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
                   }}
-                {%- else -%} 
+                {%- else -%}
                   {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                   {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
@@ -90,14 +90,14 @@
                     {% endif %}
                   >
                     {% if block.settings.icon_selection != 'other' %}
-                    {{ block.settings.icon_selection | inline_asset_content }}
-                  {% else %}
-                    {{ block.settings.svg_code }}
-                  {% endif %}
+                      {{ block.settings.icon_selection | inline_asset_content }}
+                    {% else %}
+                      {{ block.settings.svg_code }}
+                    {% endif %}
                   </a>
                 </div>
               </div>
-            </div> 
+            </div>
           {% endfor %}
         </div>
         <div class="scrollbar"><div class="scroll-thumb"></div></div>
@@ -186,7 +186,7 @@
       "type": "Item",
       "name": "t:sections.image_gallery.blocks.item.name",
       "settings": [
-        {       
+        {
           "type": "image_picker",
           "id": "gallery_image",
           "label": "t:sections.image_gallery.blocks.item.settings.gallery_image.label"
@@ -235,12 +235,12 @@
           "type": "textarea",
           "id": "svg_code",
           "label": "SVG Code",
-          "visible_if": "{{ block.settings.icon_selection == 'other' }}",
+          "visible_if": "{{ block.settings.icon_selection == 'other' }}"
         },
         {
           "type": "url",
           "id": "icon_link",
-          "label": "t:sections.image_gallery.blocks.item.settings.icon_link.label",   
+          "label": "t:sections.image_gallery.blocks.item.settings.icon_link.label"
         }
       ]
     }
