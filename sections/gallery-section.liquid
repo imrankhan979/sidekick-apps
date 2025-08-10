@@ -53,7 +53,11 @@
                       href="{{ block.settings.icon_link}}"
                     {% endif %}
                   >
-                    {{ block.settings.button_icon_svg }}
+                    {% if block.settings.icon_selection != 'other' %}
+                    {{ block.settings.icon_selection | inline_asset_content }}
+                  {% else %}
+                    {{ block.settings.svg_code }}
+                  {% endif %}
                   </a>
                 </div>
               </div>
@@ -72,7 +76,7 @@
                     | image_url: width: 1500
                     | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
                   }}
-                {%- else -%}
+                {%- else -%} 
                   {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                   {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
                   {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
@@ -85,11 +89,15 @@
                       href="{{ block.settings.icon_link}}"
                     {% endif %}
                   >
-                    {{ block.settings.button_icon_svg }}
+                    {% if block.settings.icon_selection != 'other' %}
+                    {{ block.settings.icon_selection | inline_asset_content }}
+                  {% else %}
+                    {{ block.settings.svg_code }}
+                  {% endif %}
                   </a>
                 </div>
               </div>
-            </div>
+            </div> 
           {% endfor %}
         </div>
         <div class="scrollbar"><div class="scroll-thumb"></div></div>
@@ -178,21 +186,61 @@
       "type": "Item",
       "name": "t:sections.image_gallery.blocks.item.name",
       "settings": [
-        {
+        {       
           "type": "image_picker",
           "id": "gallery_image",
           "label": "t:sections.image_gallery.blocks.item.settings.gallery_image.label"
         },
         {
-          "type": "textarea",
-          "id": "button_icon_svg",
+          "type": "select",
+          "id": "icon_selection",
           "label": "t:sections.image_gallery.blocks.item.settings.button_icon_svg.label",
-          "default": "<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z' fill='currentColor'/></svg>"
+          "options": [
+            {
+              "value": "icon-instagram.svg",
+              "label": "Instagram"
+            },
+            {
+              "value": "icon-twitter.svg",
+              "label": "Twitter"
+            },
+            {
+              "value": "icon-facebook.svg",
+              "label": "Facebook"
+            },
+            {
+              "value": "icon-pinterest.svg",
+              "label": "Pinterest"
+            },
+            {
+              "value": "icon-tiktok.svg",
+              "label": "TikTok"
+            },
+            {
+              "value": "icon-linkedin.svg",
+              "label": "LinkedIn"
+            },
+            {
+              "value": "icon-youtube.svg",
+              "label": "YouTube"
+            },
+            {
+              "value": "other",
+              "label": "Others"
+            }
+          ],
+          "default": "icon-instagram.svg"
+        },
+        {
+          "type": "textarea",
+          "id": "svg_code",
+          "label": "SVG Code",
+          "visible_if": "{{ block.settings.icon_selection == 'other' }}",
         },
         {
           "type": "url",
           "id": "icon_link",
-          "label": "t:sections.image_gallery.blocks.item.settings.icon_link.label",
+          "label": "t:sections.image_gallery.blocks.item.settings.icon_link.label",   
         }
       ]
     }
