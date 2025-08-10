@@ -1120,7 +1120,7 @@
       }
     },
     "testimonial": {
-      "name": "Testimonial",
+      "name": "Testimonials",
       "settings": {
         "section_color_scheme": {
           "label": "Color scheme"
@@ -2178,7 +2178,7 @@
       }
     },
     "blog_post": {
-      "name": "Blog Post",
+      "name": "Blog posts",
       "settings": {
         "color_scheme": {
           "label": "Color scheme",
@@ -2186,6 +2186,7 @@
         }, 
         "heading_text": {
           "label": "Heading",
+          "default": "LATEST FASHION NEWS"
         },
         "blog": {
           "label": "Select blog"
@@ -3443,13 +3444,15 @@
           "name": "Marquee item",
           "settings": {
             "title": {
-              "label": "Text"
+              "label": "Text",
+              "default": "Your scrolling text here"
             }
           }
         }
       },
       "presets": {
-        "name": "Scrolling text"
+        "name": "Scrolling text",
+        "default": "Your scrolling text here"
       }
     },
     "image_gallery": {
