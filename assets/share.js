@@ -5,7 +5,7 @@ if (!customElements.get('share-button')) {
       constructor() {
         super();
 
-        this.elements = {
+        this.elements = { 
           shareButton: this.querySelector('button'),
           shareSummary: this.querySelector('summary'),
           closeButton: this.querySelector('.share-button__close'),
