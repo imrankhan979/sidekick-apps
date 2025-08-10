@@ -754,7 +754,10 @@
         },
         "swipe_on_mobile": {
           "label": "Enable swipe on mobile"
-        }
+        },
+          "corner_rounding": {
+          "label": "Enable top corner rounding",
+       }
       },
       "blocks": {
         "featured_collection": {
@@ -3648,6 +3651,11 @@
     },
     "slideshow": {
       "name": "Slideshow",
+      "settings": {
+        "corner_rounding": {
+           "label": "Enable top corner rounding",
+        },
+      },
       "blocks": {
         "slide": {
           "name": "Slide",
