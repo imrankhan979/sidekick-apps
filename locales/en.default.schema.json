@@ -1864,7 +1864,7 @@
       }
     },
     "faq": {
-      "name": "FAQ Section",
+      "name": "FAQ",
       "settings": {
         "left_title": {
           "label": "Section title",
@@ -1906,10 +1906,8 @@
         }
       },
       "presets": {
-        "faq": {
-          "name": "FAQ",
-          "category": "Section"
-        }
+        "name": "FAQ",
+        "category": "Section"
       }
     },
     "additional_info": {
@@ -3534,13 +3532,16 @@
               "label": "Tab Image"
             },
             "tab_button": {
-              "label": "Button Text"
+              "label": "Button Text",
+              "default": "Tab Button"
             },
             "tab_heading": {
-              "label": "Heading"
+              "label": "Heading",
+              "default": "Title For Tab"
             },
             "tab_description": {
-              "label": "Description"
+              "label": "Description",
+              "default": "<p>Content for tab goes here. Add description or details.</p>"
             }
           }
         }
@@ -3562,7 +3563,8 @@
           "label": "Border bottom"
         },
         "section_title": {
-          "label": "Description"
+          "label": "Description",
+          "default": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable."
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
