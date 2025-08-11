@@ -40,12 +40,24 @@
   .search_results_product_box {
   grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
 }
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
     .search_results_product_box {
       grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
     }
-    
-  }
+  } */
+@media screen and (max-width: 767px) {
+  {% if section.settings.columns_mobile == "2" %}
+      .search_results_product_box {
+        grid-template-columns: repeat(2, 1fr);
+      } 
+  {% else %}
+      .search_results_product_box {
+        display: flex;
+        flex-direction: column;
+      } 
+  {% endif %}
+}
+
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
