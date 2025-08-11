@@ -12,7 +12,7 @@ snazzy-tab .tab-header{
     }
     snazzy-tab .snazzy-tab-buttons{
       overflow-x: auto;
-      flex-wrap: nowrap !important;
+      flex-wrap: nowrap;
       white-space: nowrap;
       gap: 12px;
     }

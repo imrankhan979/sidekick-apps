@@ -16,7 +16,11 @@
     row-gap: 16px;
     list-style: none;
   }
-  
+  @media (max-width: 767px) {
+      .product_details_tabs .product_details_menu .tabs_menu{
+        flex-wrap: nowrap;
+      }
+  }
   .product_details_tabs .product_details_menu .tabs_menu li {
     display: inline-block;
     text-transform: uppercase;

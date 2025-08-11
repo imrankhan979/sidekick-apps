@@ -4621,7 +4621,7 @@ accordion-item .accordion_content {
     background: #FFEC3E;
     z-index: -1;
   } */
-  .section-header.overlay-header-active .snazzy-header:hover{
+  .section-header.overlay-header-active .snazzy-header:hover, .section-header.overlay-header-active .snazzy-header.menu-active{
     background: #ffffff;
   }
   .section-header.sticky.overlay-header-active{
