@@ -49,7 +49,9 @@
                     <h6 class="product-price">{{ 00.00 | money }}</h6>
                   </div>
                 </div>
-                <button type="submit" class="product-btn add-to-bundle" disabled>{{ 'sections.product_bundle.add_to_bundle' | t }}</button>
+                <button type="submit" class="product-btn add-to-bundle" disabled>
+                  {{ 'sections.product_bundle.add_to_bundle' | t }}
+                </button>
               </div>
             {% endfor %}
           {% endif %}
@@ -86,7 +88,8 @@
             <div class="bundle-list-footer">
               <div class="bundle-list-footer-inner">
                 <div class="bundle-total-price flex space-between align-items-center">
-                  <span>{{ 'sections.product_bundle.subtotal' | t }}</span><span id="bundle-total">{{ 00.00 | money }}</span>
+                  <span>{{ 'sections.product_bundle.subtotal' | t }}</span
+                  ><span id="bundle-total">{{ 00.00 | money }}</span>
                 </div>
                 <button class="add-to-cart">{{ 'sections.product_bundle.add_to_cart' | t }}</button>
               </div>
@@ -108,10 +111,10 @@
       "label": "t:sections.product_bundle.settings.color_scheme.label",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_corner_round",
-      "label": "Enable top corner rounding",
+      "label": "t:sections.all.corner_rounding.label",
       "default": true
     },
     {
@@ -175,7 +178,7 @@
       "label": "t:sections.all.padding.padding_top",
       "default": 120
     },
-    
+
     {
       "type": "range",
       "id": "padding_bottom",

@@ -5,10 +5,10 @@
     padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
   }
- 
-  @media screen and (min-width: 992px) { 
+
+  @media screen and (min-width: 992px) {
     .material_main_wrapper {
-      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr); 
+      grid-template-columns: repeat( {{ section.settings.columns_desktop }} , 1fr);
     }
   }
   @media screen and (min-width: 991px) {
@@ -17,55 +17,65 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
 {%- endstyle -%}
-   <section class="icon-with-text color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
-    <div class="page-width">
-      <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
-        {% if section.settings.section_title != blank %}
-          <div class="heading-area icon-with-text-section-heading ">
-             <h5 class="material_title">{{ section.settings.section_title }}</h5>
-          </div>
-        {% endif %}
-         <div class="material_main_wrapper">
-          {%- for block in section.blocks -%}
-            <div class="material_item" {{ block.shopify_attributes }}>
-               <div class="material_icons">
-                      {%- if block.settings.material_image != blank -%}
-                        {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        {%- else -%}
-                          {{- 'icon-care.svg' | inline_asset_content -}}
-                      {%- endif -%}
-               </div>
-               {%- if block.settings.material_heading != blank -%}
-                <h5 class="anim-item material_item_title">{{ block.settings.material_heading }}</h5>
-                {%- endif -%}
+<section class="icon-with-text color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
+  <div class="page-width">
+    <div class="section-inner {% if section.settings.border_top %}border-inline-top{% endif %} {% if section.settings.border_bottom %}border-inline-bottom{% endif %} section-{{ section.id }}-padding">
+      {% if section.settings.section_title != blank %}
+        <div class="heading-area icon-with-text-section-heading ">
+          <h5 class="material_title">{{ section.settings.section_title }}</h5>
+        </div>
+      {% endif %}
+      <div class="material_main_wrapper">
+        {%- for block in section.blocks -%}
+          <div class="material_item" {{ block.shopify_attributes }}>
+            <div class="material_icons">
+              {%- if block.settings.material_image != blank -%}
+                {{
+                  block.settings.material_image
+                  | image_url: width: 1500
+                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                }}
+              {%- else -%}
+                {{- 'icon-care.svg' | inline_asset_content -}}
+              {%- endif -%}
             </div>
-          {% endfor %}
-         </div>
-         <div class="material_slider_wrapper material_slider_section">
-          <items-carousel>
-            <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'>
-                {%- for block in section.blocks -%} 
+            {%- if block.settings.material_heading != blank -%}
+              <h5 class="anim-item material_item_title">{{ block.settings.material_heading }}</h5>
+            {%- endif -%}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="material_slider_wrapper material_slider_section">
+        <items-carousel>
+          <div
+            class="carousel items-carousel-selector"
+            data-flickity='{"contain": true, "prevNextButtons": false, "pageDots": true }'
+          >
+            {%- for block in section.blocks -%}
               <div class="material_item">
-                  <div class="material_icons">
-                    {%- if block.settings.material_image != blank -%}
-                        {{ block.settings.material_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
-                        {%- else -%}
-                          {{- 'icon-care.svg' | inline_asset_content -}}
-                      {%- endif -%}
-                 </div>
-                  {%- if block.settings.material_heading != blank -%}
-                      <h5 class="material_item_title">{{ block.settings.material_heading }}</h5>
-                    {%- endif -%}
+                <div class="material_icons">
+                  {%- if block.settings.material_image != blank -%}
+                    {{
+                      block.settings.material_image
+                      | image_url: width: 1500
+                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                    }}
+                  {%- else -%}
+                    {{- 'icon-care.svg' | inline_asset_content -}}
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.material_heading != blank -%}
+                  <h5 class="material_item_title">{{ block.settings.material_heading }}</h5>
+                {%- endif -%}
               </div>
             {% endfor %}
-            </div>
-          </items-carousel>
-       </div>
+          </div>
+        </items-carousel>
       </div>
     </div>
- </section>
+  </div>
+</section>
 
 {% schema %}
 {
@@ -77,10 +87,10 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_corner_round",
-      "label": "Enable top corner rounding",
+      "label": "t:sections.all.corner_rounding.labe",
       "default": true
     },
     {
@@ -183,4 +193,3 @@
   ]
 }
 {% endschema %}
- 
