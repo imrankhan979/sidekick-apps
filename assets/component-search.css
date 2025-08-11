@@ -73,5 +73,5 @@ input::-webkit-search-decoration {
   position: relative;
 }
 .template-search .status-message{
-  margin:  48px 0;
+  margin-bottom: 60px;
 }
