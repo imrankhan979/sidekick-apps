@@ -3479,6 +3479,32 @@
             "button_icon_svg":{
               "label": "Select Icon"
             },
+            "options": {
+              "instagram": {
+                "label": "Instagram"
+              },
+              "twitter": {
+                "label": "Twitter"
+              },
+              "facebook": {
+                "label": "Facebook"
+              },
+              "pinterest": {
+                "label": "Pinterest"
+              },
+              "tiktok": {
+                "label": "TikTok"
+              },
+              "linkedin": {
+                "label": "LinkedIn"
+              },
+              "youtube": {
+                "label": "YouTube"
+              },
+              "others": {
+                "label": "Others"
+              }
+            },
             "icon_link":{
               "label": "Icon link"
             }
