@@ -48,7 +48,7 @@
         "show_author": false,
         "ratio": "auto",
         "padding_top": 36,
-        "padding_bottom": 36
+        "padding_bottom": 200
       }
     }
   },
