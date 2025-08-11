@@ -1,4 +1,7 @@
 
+footer.footer {
+  background: #ddd;
+}
 .footer .footer-top-content .footer-top-content-inner{
   display: grid;
 }
