@@ -2171,7 +2171,14 @@
           "label": "Author image"
         },
         "author_designation": {
-          "label": "Author designation"
+          "label": "Author designation",
+          "default": "Fashion Blogger"
+        },
+        "header_article1": {
+           "content": "Banner"
+        },
+        "header_article2": {
+           "content": "Article"
         }
       }
     },
