@@ -29,9 +29,9 @@
     margin-top: 3rem;
   }
 
-  .template-search--empty {
+  /* .template-search--empty {
     padding-bottom: 18rem;
-  }
+  } */
 
   /* @media screen and (min-width: 750px) {
     .template-search__header {
@@ -59,9 +59,10 @@
       padding-top: {{ section.settings.padding_top_header }}px;
       padding-bottom: {{ section.settings.padding_bottom_header }}px;
     }
-  .main-section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+    .main-section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -210,27 +211,28 @@
         {% endif %}
       </div>
 
-      {%- if search.performed -%}
-        {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
-          {%- if search.results_count > 0 -%}
-            <p role="status" class="text-center status-message">
-              {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
-            </p>
-          {%- endif -%}
-        {%- endunless -%}
-        {%- if search.results_count == 0 and search.filters == empty -%}
-          <p role="status" class="text-center status-message">
-            {{ 'templates.search.no_results' | t: terms: search.terms }}
-          </p>
-        {%- endif -%}
-      {%- endif -%}
+ 
     </div>
     {%- if search.performed -%}
       {%- if section.settings.enable_sorting and search.filters != empty -%}
       {%- endif -%}
       <div class="{% if section.settings.enable_corner_round %}corner-round-for-search{% endif %} main-section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+
+        {%- if search.performed -%}
+          {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
+            {%- if search.results_count > 0 -%}
+              <p role="status" class="page-width text-center status-message">
+                {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
+              </p>
+            {%- endif -%}
+          {%- endunless -%}
+          {%- if search.results_count == 0 and search.filters == empty -%}
+            <p role="status" class="page-width text-center status-message">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+          {%- endif -%}
+        {%- endif -%}
+
         <div
-          class="facets-vertical  page-width search_results_filter__main "
+          class="facets-vertical  page-width search_results_filter__main" {% if search.results_count == 0 %}style="display: none;"{% endif %} 
         >
           {%- if search.filters != empty -%}
             {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
