@@ -84,7 +84,7 @@
   .slider_item .slider_item_content{
     position: relative;
     z-index: 9;
-    padding-top: calc(var(--observed-height) + 20px);
+    padding-top: calc(var(--observed-height) + 0px);
   }
  .slider_item .slider-images{
     position: relative;
