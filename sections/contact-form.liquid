@@ -48,11 +48,15 @@
                     </div>
                     <div class="contact_item">
                       <h6 class="contact_title">{{ block.settings.email_title }}</h6>
-                      <a class="contact_link" href="mailto:{{ block.settings.email }}"><span>{{ block.settings.email }}</span></a>
+                      <a class="contact_link" href="mailto:{{ block.settings.email }}"
+                        ><span>{{ block.settings.email }}</span></a
+                      >
                     </div>
                     <div class="contact_item">
                       <h6 class="contact_title">{{ block.settings.phone_title }}</h6>
-                      <a class="contact_link" href="tel:{{ block.settings.phone }}"><span>{{ block.settings.phone }}</span></a>
+                      <a class="contact_link" href="tel:{{ block.settings.phone }}"
+                        ><span>{{ block.settings.phone }}</span></a
+                      >
                     </div>
                   </div>
                 </div>
@@ -168,7 +172,10 @@
 
           <div class="form_item">
             <div class="form-input ">
-              <label for="name">{{ 'templates.contact.form.name' | t }} <span>*</span></label>
+              <label for="name">
+                {{- 'templates.contact.form.name' | t }}
+                <span>*</span></label
+              >
               <input
                 autocomplete="name"
                 type="text"
@@ -184,7 +191,10 @@
               >
             </div>
             <div class="form-input ">
-              <label for="email">{{ 'templates.contact.form.email' | t }} <span>*</span></label>
+              <label for="email">
+                {{- 'templates.contact.form.email' | t }}
+                <span>*</span></label
+              >
               <input
                 autocomplete="email"
                 type="email"
@@ -212,7 +222,10 @@
               {% endif %}
             </div>
             <div class="form-input textarea_form ">
-              <label for="message">{{ 'templates.contact.form.message' | t }} <span>*</span></label>
+              <label for="message">
+                {{- 'templates.contact.form.message' | t }}
+                <span>*</span></label
+              >
               <textarea
                 rows="10"
                 id="ContactForm-body"
@@ -237,7 +250,7 @@
 </section>
 
 {% schema %}
-  {
+{
   "name": "t:sections.contact-form.name",
   "settings": [
     {
@@ -246,10 +259,10 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_corner_round",
-      "label": "Enable top corner rounding",
+      "label": "t:sections.all.corner_rounding.label",
       "default": true
     },
     {

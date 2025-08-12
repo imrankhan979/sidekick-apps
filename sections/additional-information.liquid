@@ -28,18 +28,18 @@
                 <ul class="tabs_menu snazzy-tab-buttons flex wrap align-items-center no-scrollbar">
                   {% for block in section.blocks %}
                     {% if block.settings.tab_title != blank %}
-                    <li
-                      class="snazzy-tab-button {% if forloop.first %}active{% endif %}"
-                      {{ block.shopify_attributes }}
-                    >
-                      <span class="product_anim">
-                        <span class="anim_text">
-                          {{ block.settings.tab_title }}
+                      <li
+                        class="snazzy-tab-button {% if forloop.first %}active{% endif %}"
+                        {{ block.shopify_attributes }}
+                      >
+                        <span class="product_anim">
+                          <span class="anim_text">
+                            {{ block.settings.tab_title }}
+                          </span>
                         </span>
-                      </span>
-                    </li>
-                  {% endif %}
-                {% endfor %}
+                      </li>
+                    {% endif %}
+                  {% endfor %}
                 </ul>
               </div>
             </div>
@@ -83,10 +83,10 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_corner_round",
-      "label": "Enable top corner rounding",
+      "label": "t:sections.all.corner_rounding.label",
       "default": true
     },
     {

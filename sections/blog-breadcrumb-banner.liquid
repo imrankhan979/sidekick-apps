@@ -16,27 +16,28 @@
   }
 {%- endstyle -%}
 <section class="page-header breadcrumb-main-area section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-
-    <div class="breadcrumb-content-area page-width">
-      {% if section.settings.enable_breadcrumb_navigation == true %}
-        <div class="anim-item breadcrumb-link">
-          <ul>
-            <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
-            <li>{{ blog.title | escape }}</li>
-          </ul>
-        </div>
-      {% endif %}
-      <div class="anim-item breadcrumb-heading">
-        <h1 class="breadcrumb-title">
-          {% if section.settings.custom_text != blank %}
-            {{ section.settings.custom_text }}
-          {% else %}
-            {{ blog.title | escape }}
-          {% endif %}
-        </h1>
+  <div class="breadcrumb-content-area page-width">
+    {% if section.settings.enable_breadcrumb_navigation == true %}
+      <div class="anim-item breadcrumb-link">
+        <ul>
+          <li>
+            <a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a>
+          </li>
+          <li>{{ blog.title | escape }}</li>
+        </ul>
       </div>
+    {% endif %}
+    <div class="anim-item breadcrumb-heading">
+      <h1 class="breadcrumb-title">
+        {% if section.settings.custom_text != blank %}
+          {{ section.settings.custom_text }}
+        {% else %}
+          {{ blog.title | escape }}
+        {% endif %}
+      </h1>
     </div>
-      {% if section.settings.header_bg %}
+  </div>
+  {% if section.settings.header_bg %}
     <div class="page-header-bg">
       <img
         src="{{ section.settings.header_bg | image_url: width: 533 }}"
@@ -60,7 +61,7 @@
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
-       {
+    {
       "type": "image_picker",
       "id": "header_bg",
       "label": "t:sections.main-collection-banner.settings.header_bg.label"

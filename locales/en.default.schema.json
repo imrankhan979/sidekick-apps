@@ -1120,7 +1120,7 @@
       }
     },
     "testimonial": {
-      "name": "Testimonial",
+      "name": "Testimonials",
       "settings": {
         "section_color_scheme": {
           "label": "Color scheme"
@@ -1864,7 +1864,7 @@
       }
     },
     "faq": {
-      "name": "FAQ Section",
+      "name": "FAQ",
       "settings": {
         "left_title": {
           "label": "Section title",
@@ -1906,10 +1906,8 @@
         }
       },
       "presets": {
-        "faq": {
-          "name": "FAQ",
-          "category": "Section"
-        }
+        "name": "FAQ",
+        "category": "Section"
       }
     },
     "additional_info": {
@@ -2173,12 +2171,19 @@
           "label": "Author image"
         },
         "author_designation": {
-          "label": "Author designation"
+          "label": "Author designation",
+          "default": "Fashion Blogger"
+        },
+        "header_article1": {
+           "content": "Banner"
+        },
+        "header_article2": {
+           "content": "Article"
         }
       }
     },
     "blog_post": {
-      "name": "Blog Post",
+      "name": "Blog posts",
       "settings": {
         "color_scheme": {
           "label": "Color scheme",
@@ -2186,6 +2191,7 @@
         }, 
         "heading_text": {
           "label": "Heading",
+          "default": "LATEST FASHION NEWS"
         },
         "blog": {
           "label": "Select blog"
@@ -3443,13 +3449,15 @@
           "name": "Marquee item",
           "settings": {
             "title": {
-              "label": "Text"
+              "label": "Text",
+              "default": "Your scrolling text here"
             }
           }
         }
       },
       "presets": {
-        "name": "Scrolling text"
+        "name": "Scrolling text",
+        "default": "Your scrolling text here"
       }
     },
     "image_gallery": {
@@ -3475,6 +3483,32 @@
             },
             "button_icon_svg":{
               "label": "Select Icon"
+            },
+            "options": {
+              "instagram": {
+                "label": "Instagram"
+              },
+              "twitter": {
+                "label": "Twitter"
+              },
+              "facebook": {
+                "label": "Facebook"
+              },
+              "pinterest": {
+                "label": "Pinterest"
+              },
+              "tiktok": {
+                "label": "TikTok"
+              },
+              "linkedin": {
+                "label": "LinkedIn"
+              },
+              "youtube": {
+                "label": "YouTube"
+              },
+              "others": {
+                "label": "Others"
+              }
             },
             "icon_link":{
               "label": "Icon link"
@@ -3505,13 +3539,16 @@
               "label": "Tab Image"
             },
             "tab_button": {
-              "label": "Button Text"
+              "label": "Button Text",
+              "default": "Tab Button"
             },
             "tab_heading": {
-              "label": "Heading"
+              "label": "Heading",
+              "default": "Title For Tab"
             },
             "tab_description": {
-              "label": "Description"
+              "label": "Description",
+              "default": "<p>Content for tab goes here. Add description or details.</p>"
             }
           }
         }
@@ -3533,7 +3570,8 @@
           "label": "Border bottom"
         },
         "section_title": {
-          "label": "Description"
+          "label": "Description",
+          "default": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable."
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
