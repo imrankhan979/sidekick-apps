@@ -78,8 +78,6 @@
                 {%- assign aspect_ratio_auto = 100 -%}
               {%- endif -%}
 
-              
-            
               <div class="slider_community_images flex" style="--aspect-ratio: {{ aspect_ratio_auto }}%;">
                 {%- if block.settings.product_video and block.settings.product_video.sources.size > 0 -%}
                   {%- assign video_url = block.settings.product_video.sources[1].url %}
@@ -96,21 +94,18 @@
                     class="community-video {% unless forloop.first %}hover-play{% endunless %}"
                   ></video>
                 {%- elsif block.settings.product_image %}
-   
-                    {{
-                      block.settings.product_image
-                      | image_url: width: 1500
-                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
-                    }}
+                  {{
+                    block.settings.product_image
+                    | image_url: width: 1500
+                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
+                  }}
 
                 {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
-
-                    {{
-                      block.settings.product_select.featured_image
-                      | image_url: width: 1500
-                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
-                    }}
-
+                  {{
+                    block.settings.product_select.featured_image
+                    | image_url: width: 1500
+                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: block.settings.product_select.title
+                  }}
 
                 {%- else %}
                   <div class="placeholder-wrapper">
@@ -148,7 +143,7 @@
                   {%- endif %}
                 </div>
 
-                <div class="slider_community_text"> 
+                <div class="slider_community_text">
                   <h6 class="slider_community_title">
                     {% if block.settings.product_select == blank %}
                       {{ 'sections.product_carousel.product_title' | t }}
@@ -157,7 +152,7 @@
                     {% endif %}
                   </h6>
                   {%- if block.settings.product_select.price %}
-                    {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %} 
+                    {%- if block.settings.product_select.compare_at_price > block.settings.product_select.price %}
                       <div class="slider_community_percent active">
                         {{ block.settings.product_select.price | money }}
                         <span>{{ block.settings.product_select.compare_at_price | money }}</span>
@@ -168,7 +163,7 @@
                       </div>
                     {%- endif %}
                   {%- else %}
-                    <div class="slider_community_percent">$00.00</div>
+                    <div class="slider_community_percent">{{ 'sections.product_carousel.product_price' | t }}</div>
                   {%- endif %}
                 </div>
               </a>
@@ -179,7 +174,6 @@
     </div>
   </div>
 </section>
-
 
 {% schema %}
 {

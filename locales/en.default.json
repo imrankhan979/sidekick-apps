@@ -402,7 +402,8 @@
       "title": "Page title"
     },
     "product_carousel": {
-      "product_title": "Example product title"
+      "product_title": "Example product title",
+      "product_price": "$20.00"
     },
     "product_bundle": {
       "product_title": "Product title",
