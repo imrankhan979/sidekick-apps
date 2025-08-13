@@ -42,7 +42,8 @@
     "cart": {
       "view": "View cart ({{ count }})",
       "view_empty_cart": "View cart",
-      "item_added": "Item added to your cart"
+      "item_added": "Item added to your cart",
+      "estimate_shipping_rates": "Estimate shipping rates"
     },
     "share": {
       "close": "Close share",
@@ -337,7 +338,8 @@
       }
     },
     "footer": {
-      "payment": "Payment methods"
+      "payment": "Payment methods",
+      "back_to_top": "Back to top"
     },
     "featured_blog": {
       "view_all": "View all",
