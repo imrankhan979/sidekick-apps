@@ -26,7 +26,7 @@
                 {%- if section.settings.bg_image -%}
                     {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
                {%- elsif video_url and section.settings.video_type == 'upload' -%}
-                    <video src="{{ video_url }}"playsinline muted  autoplay {% if section.settings.video_loop %}loop {% endif %}></video>
+                    <video src="{{ video_url }}"playsinline muted loop autoplay></video>
                 {% elsif youtube_url != blank and section.settings.video_type == 'youtube' %}
                       <iframe 
                           src="{{ youtube_url | replace: 'watch?v=', 'embed/' }}?autoplay=1&mute=1&loop=1&playlist={{ youtube_url | split: 'v=' | last }}&controls=0&showinfo=0&rel=0&modestbranding=1"
