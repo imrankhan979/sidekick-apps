@@ -457,7 +457,7 @@
       "type": "product-bundle",
       "name": "Product bundle",
       "settings": {
-        "color_scheme": "scheme-2",
+        "color_scheme": "scheme-1",
         "heading_text": "BUILD YOUR BUNDLE",
         "collection": "",
         "ratio": "auto",
