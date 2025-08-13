@@ -87,7 +87,7 @@
       padding-bottom: 35px;
     }
     .marquee-section .flickity-page-dots {
-      bottom: -80px;
+      bottom: -35px;
     }
   
     .marquee-section .marquee_slider {
@@ -102,7 +102,6 @@
       display: block;
       border-top: 2px solid rgb(var(--color-foreground));
       border-bottom: 2px solid rgb(var(--color-foreground));
-      padding: 43px 0;
     }
   
     .marquee_item .marquee_title::before {

@@ -104,7 +104,13 @@
       </div>
       {%- if section.settings.tab_button != blank -%}
         <div class="gallery_button">
-          <a class="gallery-btn" href="{{ section.settings.button_link }}">
+          <a class="gallery-btn"
+            {% if section.settings.button_link == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ section.settings.button_link }}"
+            {% endif %}
+             >
             {{- section.settings.tab_button -}}
             <span>
               {{- 'icon-caret.svg' | inline_asset_content -}}
