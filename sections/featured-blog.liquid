@@ -92,12 +92,12 @@
               <p class="anim-item blog_desc">{{ article.excerpt | strip_html | truncatewords: 20 }}</p>
             {% endif %}
             {% if section.settings.section_button != blank %}
-              <div class="anim-item blog_feature_button">
-                <a class="blog-feature-btn" href="{{ article.url }}">
-                  {{ section.settings.section_button }}
-                  <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
-                >
-              </div>
+            <div class="anim-item blog_feature_button">
+              <a class="blog-feature-btn" href="{{ article.url }}">
+                {{ section.settings.section_button }}
+                <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span></a
+              >
+            </div>
             {% endif %}
           </div>
           {%- if section.settings.show_image -%}
