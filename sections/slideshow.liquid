@@ -99,8 +99,8 @@
               {% elsif block.settings.bg_image != blank %}
                 {{
                   block.settings.bg_image
-                  | image_url: width: 48
-                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
+                  | image_url: width: 3840
+                  | image_tag: widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
                 }}
               {% else %}
                 {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}

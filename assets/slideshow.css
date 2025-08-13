@@ -98,7 +98,6 @@
     .slider_item .slider_item_content{
       padding-top: calc((var(--observed-height) / 2) + 24px);
     }
-    
   }
 
 
@@ -137,6 +136,7 @@
   .slider_item .slider_item_content > * + * {
     margin-top: 50px;
   }
+  
   .slider_item .slider_item_content .slider_item_text {
     max-width: 336px;
     width: 100%;
