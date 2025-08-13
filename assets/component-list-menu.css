@@ -6,7 +6,7 @@
   position: absolute;
   top: 100%;
   left: auto;
-  max-height: 300px;
+  max-width: 300px;
   visibility: hidden;
   opacity: 0;
   transition: transform .4s ease;

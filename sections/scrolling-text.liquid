@@ -41,7 +41,7 @@
       </marquee-component>
     </div>
 
-    <div class="marquee_sm_slider">
+    <div class="marquee_sm_slider ">
       <items-carousel>
         <div
           class="scroll_text_carousel items-carousel-selector"
@@ -49,7 +49,7 @@
         >
           {% for block in section.blocks %}
             {% if block.type == 'marquee_item' %}
-              <div class="marquee_item" {{ block.shopify_attributes }}>
+              <div class="marquee_item section-{{ section.id }}-padding" {{ block.shopify_attributes }}>
                 <div class="marquee_title">
                   <h3 class="title">{{ block.settings.title }}</h3>
                 </div>
