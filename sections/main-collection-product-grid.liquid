@@ -7,7 +7,6 @@
 
 {{ 'product-style.css' | asset_url | stylesheet_tag }}
 
-
 {%- unless section.settings.quick_add == 'none' -%}
   {{ 'quick-add.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
@@ -25,39 +24,31 @@
 {%- endif -%}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
-  }
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
+        padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
+      }
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  .search_results_product_box {
-  grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
-}
-/* @media screen and (max-width: 767px) {
     .search_results_product_box {
-      grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
-    }
-  } */
-@media screen and (max-width: 767px) {
-  {% if section.settings.columns_mobile == "2" %}
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
+  }
+  /* @media screen and (max-width: 767px) {
       .search_results_product_box {
-        grid-template-columns: repeat(2, 1fr);
-      } 
-  {% else %}
-      .search_results_product_box {
-        display: flex;
-        flex-direction: column;
-      } 
-  {% endif %}
-}
-
+        grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+      }
+    } */
+  @media screen and (max-width: 767px) {
+    {% if section.settings.columns_mobile == "2" %}
+        .search_results_product_box {
+          grid-template-columns: repeat(2, 1fr);
+        }
+    {% else %}
+        .search_results_product_box {
+          display: flex;
+          flex-direction: column;
+        }
+    {% endif %}
+  }
 {%- endstyle -%}
 
 <div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
@@ -113,7 +104,7 @@
               <div class="search_results_select_box">
                 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                 <select
-                  name="sort_by" 
+                  name="sort_by"
                   class="facet-filters__sort select__select select-box__input-text"
                   id="SortBy"
                   aria-describedby="a11y-refresh-page-message"
@@ -134,50 +125,51 @@
                 </span>
               </div>
             </form>
-            
           </facet-filters-form>
-          <div class="product-grid-container "
-            id="ProductGridContainer">
-              {%- if collection.products.size == 0 -%}
-                <div class="collection " id="product-grid" data-id="{{ section.id }}">
-                  <div class="loading-overlay gradient"></div>
-                  <div class="title-wrapper center">
-                    <h2 class="title title--primary">
-                      {{ 'sections.collection_template.empty' | t -}}
-                      <br>
-                      {{
-                        'sections.collection_template.use_fewer_filters_html'
-                        | t: link: collection.url, class: 'underlined-link link'
-                      }}
-                    </h2>
-                  </div>
+          <div
+            class="product-grid-container "
+            id="ProductGridContainer"
+          >
+            {%- if collection.products.size == 0 -%}
+              <div class="collection " id="product-grid" data-id="{{ section.id }}">
+                <div class="loading-overlay gradient"></div>
+                <div class="title-wrapper center">
+                  <h2 class="title title--primary">
+                    {{ 'sections.collection_template.empty' | t -}}
+                    <br>
+                    {{
+                      'sections.collection_template.use_fewer_filters_html'
+                      | t: link: collection.url, class: 'underlined-link link'
+                    }}
+                  </h2>
                 </div>
-              {%- else -%}
-                <div
-                  class="collection"
+              </div>
+            {%- else -%}
+              <div
+                class="collection"
+              >
+                <div class="loading-overlay gradient"></div>
+                <ul
+                  id="product-grid"
+                  data-id="{{ section.id }}"
+                  class="
+                    grid product-grid search_results_product_box
+                    {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
+                  "
                 >
-                  <div class="loading-overlay gradient"></div>
-                  <ul
-                    id="product-grid"
-                    data-id="{{ section.id }}"
-                    class="
-                      grid product-grid search_results_product_box
-                      {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
-                    "
-                  >
-                    {% assign skip_card_product_styles = false %}
-                    {%- for product in collection.products -%}
-                      {% assign lazy_load = false %}
-                      {%- if forloop.index > 2 -%}
-                        {%- assign lazy_load = true -%}
-                      {%- endif -%}
-                      <li
-                        class="{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                        {% if settings.animations_reveal_on_scroll %}
-                          data-cascade
-                          style="--animation-order: {{ forloop.index }};"
-                        {% endif %}
-                      >
+                  {% assign skip_card_product_styles = false %}
+                  {%- for product in collection.products -%}
+                    {% assign lazy_load = false %}
+                    {%- if forloop.index > 2 -%}
+                      {%- assign lazy_load = true -%}
+                    {%- endif -%}
+                    <li
+                      class="{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                      {% if settings.animations_reveal_on_scroll %}
+                        data-cascade
+                        style="--animation-order: {{ forloop.index }};"
+                      {% endif %}
+                    >
                       {% comment %} {% render "product", product: product, button: true %}  {% endcomment %}
                       {% render 'card-product',
                         card_product: product,
@@ -191,19 +183,19 @@
                         quick_add: section.settings.quick_add,
                         section_id: section.id
                       %}
-                      </li>
-                      {% if section.settings.show_promo_banner and  forloop.index == section.settings.banner_position %}
-                        {% render 'promo-banner' %}
-                      {% endif %}
-                      {%- assign skip_card_product_styles = true -%}
-                    {%- endfor -%}
-                  </ul>
-    
-                  {%- if paginate.pages > 1 -%}
-                    {% render 'pagination', paginate: paginate, anchor: '' %}
-                  {%- endif -%}
-                </div>
-              {%- endif -%}
+                    </li>
+                    {% if section.settings.show_promo_banner and forloop.index == section.settings.banner_position %}
+                      {% render 'promo-banner' %}
+                    {% endif %}
+                    {%- assign skip_card_product_styles = true -%}
+                  {%- endfor -%}
+                </ul>
+
+                {%- if paginate.pages > 1 -%}
+                  {% render 'pagination', paginate: paginate, anchor: '' %}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
           </div>
         </div>
       </div>
@@ -219,17 +211,17 @@
   "name": "t:sections.main-collection-product-grid.name",
   "class": "section",
   "settings": [
-        {
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "checkbox",
       "id": "enable_corner_round",
-      "label": "Enable top corner rounding",
+      "label": "t:sections.all.corner_rounding.label",
       "default": true
     },
     {
@@ -413,18 +405,18 @@
         }
       ]
     },
-    
-       {
+
+    {
       "type": "header",
       "content": "Promo banner"
     },
-       {
+    {
       "type": "checkbox",
       "id": "show_promo_banner",
       "default": true,
       "label": "Show promo banner"
     },
-     {
+    {
       "type": "range",
       "id": "banner_position",
       "label": "Show promo banner after how many products?",
@@ -440,7 +432,7 @@
       "label": "Banner Image",
       "visible_if": "{{ section.settings.show_promo_banner }}"
     },
-         {
+    {
       "type": "range",
       "id": "banner_overlay",
       "label": "Overlay opacity",

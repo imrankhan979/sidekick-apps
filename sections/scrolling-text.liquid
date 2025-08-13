@@ -18,23 +18,27 @@
 <section class="marquee-section color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     <div class="marquee_slider section-{{ section.id }}-padding">
-      <marquee-component data-speed="{{ section.settings.speed }}" data-direction="{{ section.settings.direction }}" data-pause-on-hover="{{ section.settings.pause_on_hover }}">
-          <div class="modern-marquee">
-            <div class="marquee-track">
-                  {% for block in section.blocks %}
-                    {% if block.type == 'marquee_item' %}
-                      <div class="marquee-item marquee_item" {{ block.shopify_attributes }}>
-                        <div class="marquee_title">
-                          <h3 class="title">
-                            {{ block.settings.title }}
-                          </h3>
-                        </div>
-                      </div>
-                    {% endif %}
-                  {% endfor %}
-            </div>
+      <marquee-component
+        data-speed="{{ section.settings.speed }}"
+        data-direction="{{ section.settings.direction }}"
+        data-pause-on-hover="{{ section.settings.pause_on_hover }}"
+      >
+        <div class="modern-marquee">
+          <div class="marquee-track">
+            {% for block in section.blocks %}
+              {% if block.type == 'marquee_item' %}
+                <div class="marquee-item marquee_item" {{ block.shopify_attributes }}>
+                  <div class="marquee_title">
+                    <h3 class="title">
+                      {{ block.settings.title }}
+                    </h3>
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
           </div>
-        </marquee-component>
+        </div>
+      </marquee-component>
     </div>
 
     <div class="marquee_sm_slider">
@@ -59,48 +63,32 @@
 </section>
 
 {% schema %}
-  {
-    "name": "Scrolling text",
-    "settings": [
+{
+  "name": "t:sections.scrolling_text.name",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "t:sections.scrolling_text.settings.speed.label",
+      "min": 10,
+      "max": 500,
+      "step": 10,
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "t:sections.scrolling_text.settings.direction.label",
+      "options": [
         {
-            "type": "color_scheme",
-            "id": "color_scheme",
-            "label": "t:sections.all.colors.label",
-            "info": "t:sections.all.colors.has_cards_info",
-            "default": "scheme-1"
-        },
-        {
-          "type": "range",
-          "id": "speed",
-          "label": "Marquee Speed",
-          "min": 10,
-          "max": 500,
-          "step": 10,
-          "default": 100
-        },
-        {
-          "type": "select",
-          "id": "direction",
-          "label": "Marquee Direction",
-          "options": [
-            {
-              "value": "left",
-              "label": "Left"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ],
-          "default": "right"
-        },
-        {
-          "type": "checkbox",
-          "id": "pause_on_hover",
-          "label": "Pause on Hover",
-          "default": true
-        },
-        {
+<<<<<<< HEAD
             "type": "range",
             "id": "padding_top",
             "min": 0,
@@ -119,32 +107,69 @@
             "unit": "px",
             "label": "t:sections.all.padding.padding_bottom",
             "default": 50
-        }
-    ],
-    "blocks": [
-      {
-        "type": "marquee_item",
-        "name": "Marquee Item",
-        "settings": [
-         {
-            "type": "text",
-            "id": "title",
-            "label": "Text",
-            "default": "Your scrolling text here"
-          }
-        ]
-      }
-    ],
-    "presets": [
+=======
+          "value": "left",
+          "label": "t:sections.scrolling_text.settings.direction.options.left"
+        },
         {
-            "name": "Scrolling text",
-            "blocks": [
-                {"type": "marquee_item", "settings": {"title": "Worldwide Delivery"}},
-                {"type": "marquee_item", "settings": {"title": "Flexible Payment"}},
-                {"type": "marquee_item", "settings": {"title": "30-Day Free Return"}},
-                {"type": "marquee_item", "settings": {"title": "Quick Support 24/7"}}
-            ]
+          "value": "right",
+          "label": "t:sections.scrolling_text.settings.direction.options.right"
+>>>>>>> 5b4683ceb052597c99ad4c16b7ab1cf8d0036b6c
         }
-    ]
-  }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "t:sections.scrolling_text.settings.pause_on_hover.label",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "type": "marquee_item",
+      "name": "t:sections.scrolling_text.blocks.marquee_item.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.scrolling_text.blocks.marquee_item.settings.title.label",
+          "default": "t:sections.scrolling_text.blocks.marquee_item.settings.title.default"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.scrolling_text.presets.name",
+      "blocks": [
+        { "type": "marquee_item", "settings": { "title": "Worldwide Delivery" } },
+        { "type": "marquee_item", "settings": { "title": "Flexible Payment" } },
+        { "type": "marquee_item", "settings": { "title": "30-Day Free Return" } },
+        { "type": "marquee_item", "settings": { "title": "Quick Support 24/7" } }
+      ]
+    }
+  ]
+}
 {% endschema %}

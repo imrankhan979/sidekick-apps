@@ -32,7 +32,9 @@
       {% if section.settings.show_breadcrumb %}
         <div class=" breadcrumb-link">
           <ul>
-            <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
+            <li>
+              <a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a>
+            </li>
             <li>{{ blog.title }}</li>
           </ul>
         </div>
@@ -91,11 +93,13 @@
           {{ article.content }}
         </div>
         {% if section.settings.show_tag or section.settings.show_social_share %}
-        <div class=" blog_details_infos_box">
+          <div class=" blog_details_infos_box">
             {% if article.tags.size > 0 and section.settings.show_tag %}
               <div class="blog_details_tag">
                 <ul>
-                  <li><span>{{ 'sections.main_article.tag' | t }}</span></li>
+                  <li>
+                    <span>{{ 'sections.main_article.tag' | t }}</span>
+                  </li>
                   {% for tag in article.tags %}
                     <li>
                       <a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
@@ -105,54 +109,60 @@
                 </ul>
               </div>
             {% endif %}
-      
-          {% if section.settings.show_social_share %}
-            <div class="blog_details_socials">
-              <ul>
-                <li>
-                  <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}"
+
+            {% if section.settings.show_social_share %}
+              <div class="blog_details_socials">
+                <ul>
+                  <li>
+                    <a
+                      href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}"
                       target="_blank"
                       rel="noopener"
-                      class="facebook-share-button share-btn">
+                      class="facebook-share-button share-btn"
+                    >
                       {{ 'icon-facebook.svg' | inline_asset_content }}
                     </a>
-                </li>
-                <li>
-                   <a href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&media={{ article.image | img_url: 'master' }}&description={{ article.title }}"
+                  </li>
+                  <li>
+                    <a
+                      href="https://pinterest.com/pin/create/button/?url={{ shop.url }}{{ article.url }}&media={{ article.image | img_url: 'master' }}&description={{ article.title }}"
                       target="_blank"
                       rel="noopener"
-                      class="pinterest-share-button share-btn">
+                      class="pinterest-share-button share-btn"
+                    >
                       {{ 'icon-pinterest.svg' | inline_asset_content }}
                     </a>
-                </li>
-                <li>
-                   <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title }}"
-                    target="_blank"
-                    rel="noopener"
-                    class="share-btn">
-                    {{ 'icon-twitter.svg' | inline_asset_content }}
-                  </a>
-                </li>
-                <li>
-                  <button class="share-btn" onclick="copyArticleLink()">
-                  {{ 'icon-link.svg' | inline_asset_content }}
-                </button>
-                <script>
-                  function copyArticleLink() {
-                    const url = "{{ shop.url }}{{ article.url }}";
-                    navigator.clipboard.writeText(url).then(() => {
-                      alert('{{ 'button.share_button.product_link' | t }}');
-                    }).catch(err => {
-                      console.error('{{ 'button.share_button.product_link_error' | t }} ', err);
-                    });
-                  }
-                </script>
-                </li>
-              </ul>
-            </div>
-          {% endif %}
-        </div>
+                  </li>
+                  <li>
+                    <a
+                      href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title }}"
+                      target="_blank"
+                      rel="noopener"
+                      class="share-btn"
+                    >
+                      {{ 'icon-twitter.svg' | inline_asset_content }}
+                    </a>
+                  </li>
+                  <li>
+                    <button class="share-btn" onclick="copyArticleLink()">
+                      {{ 'icon-link.svg' | inline_asset_content }}
+                    </button>
+                    <script>
+                      function copyArticleLink() {
+                        const url = "{{ shop.url }}{{ article.url }}";
+                        navigator.clipboard.writeText(url).then(() => {
+                          alert('{{ 'button.share_button.product_link' | t }}');
+                        }).catch(err => {
+                          console.error('{{ 'button.share_button.product_link_error' | t }} ', err);
+                        });
+                      }
+                    </script>
+                  </li>
+                </ul>
+              </div>
             {% endif %}
+          </div>
+        {% endif %}
 
         {% if section.settings.show_author_information %}
           <div class="blog_details_author">
@@ -177,7 +187,7 @@
         {%- if blog.comments_enabled? -%}
           <div class="comments-container">
             {%- if article.comments_count > 0 -%}
-            <div class="comments-wrap">
+              <div class="comments-wrap">
                 <div class="comments-title">
                   <h2 class="title">
                     {{ article.comments_count }} Comment{% if article.comments_count > 1 %}s{% endif %}
@@ -224,13 +234,22 @@
                 <h3 class="title">{{ 'blogs.article.comment_form_title' | t }}</h3>
                 <div class="comment-desc">
                   {% if blog.moderated? -%}
-                   {{ 'blogs.article.moderated' | t }}
+                    {{ 'blogs.article.moderated' | t }}
                   {%- endif %}
                   {{ 'blogs.article.moderated_captcha' | t }}
-                  <a href="https://hcaptcha.com/privacy">{{ 'blogs.article.privacy_policy' | t }}</a> {{ 'blogs.article.and' | t }} <div class="h-captcha" data-sitekey="{{ settings.hcaptcha_site_key }}" data-theme="light" data-size="normal" data-type="image"></div>
-            
-              </div><a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a> {{ 'blogs.article.apply' | t }}
+                  <a href="https://hcaptcha.com/privacy">{{ 'blogs.article.privacy_policy' | t }}</a>
+                  {{ 'blogs.article.and' | t }}
+                  <div
+                    class="h-captcha"
+                    data-sitekey="{{ settings.hcaptcha_site_key }}"
+                    data-theme="light"
+                    data-size="normal"
+                    data-type="image"
+                  ></div>
                 </div>
+                <a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a>
+                {{ 'blogs.article.apply' | t }}
+              </div>
               {% form 'new_comment', article %}
                 <!-- Success Message -->
                 {%- if form.posted_successfully? -%}
@@ -241,7 +260,10 @@
 
                 <div class="comment_details_form">
                   <div class="form-input">
-                    <label for="CommentForm-author">{{ 'blogs.article.name' | t }} <span>*</span></label>
+                    <label for="CommentForm-author">
+                      {{- 'blogs.article.name' | t }}
+                      <span>*</span></label
+                    >
                     <input
                       type="text"
                       id="CommentForm-author"
@@ -251,7 +273,10 @@
                     >
                   </div>
                   <div class="form-input">
-                    <label for="CommentForm-email">{{ 'blogs.article.email' | t }} <span>*</span></label>
+                    <label for="CommentForm-email">
+                      {{- 'blogs.article.email' | t }}
+                      <span>*</span></label
+                    >
                     <input
                       type="email"
                       id="CommentForm-email"
@@ -261,14 +286,22 @@
                     >
                   </div>
                   <div class="form-input comment-textarea">
-                    <label for="CommentForm-body">{{ 'blogs.article.message' | t }} <span>*</span></label>
-                    <textarea id="CommentForm-body" name="comment[body]" placeholder="{{ 'blogs.article.message_placeholder' | t }}"></textarea>
+                    <label for="CommentForm-body">
+                      {{- 'blogs.article.message' | t }}
+                      <span>*</span></label
+                    >
+                    <textarea
+                      id="CommentForm-body"
+                      name="comment[body]"
+                      placeholder="{{ 'blogs.article.message_placeholder' | t }}"
+                    ></textarea>
                   </div>
                   <div class="form-info w-full">
                     <p>* {{ 'blogs.article.required' | t }}</p>
                   </div>
                   <button class="snazzy-icon-btn btn-with-border uppercase submit-btn" type="submit">
-                    {{ 'blogs.article.apply' | t }} <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                    {{ 'blogs.article.apply' | t }}
+                    <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
                   </button>
                 </div>
               {% endform %}
@@ -296,7 +329,7 @@
     },
     {
       "type": "header",
-      "content": "Banner"
+      "content": "t:sections.main-article.settings.header_article1.content"
     },
     {
       "type": "range",
@@ -318,9 +351,9 @@
       "label": "t:sections.all.padding.padding_bottom",
       "default": 120
     },
-        {
+    {
       "type": "header",
-      "content": "Article"
+      "content": "t:sections.main-article.settings.header_article2.content"
     },
     {
       "type": "checkbox",
@@ -365,7 +398,7 @@
       "type": "text",
       "id": "author_designation",
       "label": "t:sections.main-article.settings.author_designation.label",
-      "default": "Fashion Blogger",
+      "default": "t:sections.main-article.settings.author_designation.default"
     },
     {
       "type": "header",
