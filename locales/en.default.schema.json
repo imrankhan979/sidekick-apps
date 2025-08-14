@@ -2282,6 +2282,20 @@
     "main-cart-items": {
       "name": "Items"
     },
+    "cart-page": {
+     "name": "Cart page",
+      "settings": {
+        "enable-free-shipping": {
+          "label": "Enable free shipping bar",
+        },
+        "free-shipping-threshold": {
+          "label": "Free shipping threshold (in store currency)",
+        },
+        "enable-shipping-estimator": {
+         "label": "Enable shipping estimator",
+        }
+      }
+   },
     "main-collection-banner": {
       "name": "Collection banner",
       "settings": {
