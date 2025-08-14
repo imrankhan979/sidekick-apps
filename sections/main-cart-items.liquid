@@ -578,7 +578,7 @@
 
                     <div class="shipping-estimator-container shipping-estimator">
                       <div class="country-wrapper">
-                        <label for="shipping-country-1 sub-title">Country/region</label>
+                        <label for="shipping-country-1 sub-title"> {{ 'localization.country_label' | t }}</label>
                         <div class="select-wrapper">
                           <select id="shipping-country-1" class="shipping-country-select" name="country" required>
                             {{ country_option_tags }}
@@ -586,13 +586,13 @@
                         </div>
                       </div>
                       <div class="shipping-province-wrapper" id="shipping-province-wrapper-1">
-                        <label for="shipping-province-1">Province</label>
+                        <label for="shipping-province-1">{{ 'customer.addresses.province' | t }}</label>
                         <div class="select-wrapper">
                           <select id="shipping-province-1" class="shipping-province-select" name="province"></select>
                         </div>
                       </div>
                       <div class="zip-wrapper">
-                        <label for="shipping-zip-1">Postal / ZIP Code</label>
+                        <label for="shipping-zip-1">{{ 'customer.addresses.zip' | t }}</label>
                         <input
                           type="text"
                           id="shipping-zip-1"
@@ -603,7 +603,9 @@
                         >
                       </div>
                       <button id="estimate-shipping-btn-1" class="shadow-anim-btn estimate-shipping-btn" type="button">
-                        <span><span>Estimate</span></span>
+                        <span
+                          ><span>{{ 'sections.cart.estimate' | t }}</span></span
+                        >
                       </button>
                       <div id="shipping-rates-result-1" class="shipping-rates-result"></div>
                     </div>
