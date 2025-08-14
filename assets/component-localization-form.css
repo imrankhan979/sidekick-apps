@@ -34,12 +34,24 @@
 .disclosure__list-wrapper li > a.active{
   font-weight: 700;
 }   
-.disclosure__list-wrapper li > a:hover{
-  text-decoration: underline;
-}
 .disclosure__list-wrapper li > a > span{
   white-space: nowrap;
+  position: relative;
 }
+.disclosure__list-wrapper li > a > span::after{
+  content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: rgb(var(--color-foreground));
+    transition: .4s;
+}
+.disclosure__list-wrapper li > a:hover > span::after{
+  width: 100%;
+}
+
 .disclosure__button{
   text-decoration: none;
 font-weight: 700;
