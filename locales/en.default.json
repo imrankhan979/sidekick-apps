@@ -267,6 +267,9 @@
       "cart": "Cart"
     },
     "contact": {
+      "social": {
+        "description": "No social links available right now."
+      },
       "form": {
         "title": "Contact form",
         "name": "Name",

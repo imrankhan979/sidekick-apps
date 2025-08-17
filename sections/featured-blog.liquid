@@ -43,7 +43,7 @@
       {%- if article -%}
         <div class="blog_feature_item grid color-{{ section.settings.color_scheme }}">
           <div class="blog_feature_content">
-            {% if section.settings.show_tags < 0 or section.settings.show_date == true %}
+            {% if section.settings.show_tags < 0 or section.settings.show_tags == true or section.settings.show_date == true %}
               <div class="anim-item blog_category">
                 {%- if section.settings.show_tags -%}
                   {% if article.tags.size > 0 and section.settings.show_tags %}

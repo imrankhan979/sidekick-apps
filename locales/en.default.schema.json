@@ -780,14 +780,14 @@
       }
     },
     "contact-form": {
-      "name": "Contact Form Section",
+      "name": "Contact form section",
       "settings": {
         "section_title": {
           "label": "Section Title",
           "default": "send us message"
         },
         "section_description": {
-          "label": "Section Description",
+          "label": "Section description",
           "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
         }
       },
@@ -796,7 +796,7 @@
           "name": "Contact information",
           "settings": {
             "contact_title": {
-              "label": "Section Title",
+              "label": "Section title",
               "default": "Contact"
             },
             "address_header": "Address",
@@ -832,7 +832,7 @@
           "name": "Social link",
           "settings": {
             "social_title": {
-              "label": "Social Title",
+              "label": "Social title",
               "default": "Socials"
             }
           }
@@ -844,7 +844,7 @@
     },
 
     "custom-liquid": {
-      "name": "Custom Liquid",
+      "name": "Custom liquid",
       "settings": {
         "custom_liquid": {
           "label": "Liquid code",
@@ -852,11 +852,11 @@
         }
       },
       "presets": {
-        "name": "Custom Liquid"
+        "name": "Custom liquid"
       }
     },
     "featured-blog": {
-      "name": "Featured Blog",
+      "name": "Featured blog",
       "settings": {
         "section_button": {
           "label": "Section button",
@@ -866,7 +866,7 @@
           "label": "Color scheme"
         },
         "selected_article": {
-          "label": "Select a Blog Post"
+          "label": "Select a blog post"
         },
         "show_image": {
           "label": "Show image"
@@ -882,7 +882,7 @@
         }
       },
       "presets": {
-        "name": "Featured Blog"
+        "name": "Featured blog"
       }
     },
     "featured-collection": {
@@ -1058,7 +1058,7 @@
               "default": "Featured collection"
             },
             "collection_button": {
-              "label": "Button Label",
+              "label": "Button label",
               "default": "Shop now"
             }
           }
@@ -1642,7 +1642,7 @@
           "label": "Desktop content alignment"
         },
         "mobile": {
-          "content": "Mobile Layout"
+          "content": "Mobile layout"
         },
         "mobile_content_alignment": {
           "options__1": {
@@ -1886,8 +1886,8 @@
           "name": "Title",
           "settings": {
             "category_title": {
-              "label": "Category Title",
-              "default": "Category Title"
+              "label": "Category title",
+              "default": "Category title"
             }
           }
         },
@@ -2224,11 +2224,11 @@
       },
     },
     "presets": {
-        "name": "Blog Post"
+        "name": "Blog post"
       }
   },
     "main-blog": {
-      "name": "Blog Section",
+      "name": "Blog section",
       "settings": {
         "color_scheme": {
           "label": "Color scheme"
@@ -2389,7 +2389,7 @@
           }
         },
         "header_mobile": {
-          "content": "Mobile Layout"
+          "content": "Mobile layout"
         },
         "columns_mobile": {
           "label": "Number of columns on mobile",
@@ -2450,7 +2450,7 @@
           "label": "Number of columns on desktop"
         },
         "header_mobile": {
-          "content": "Mobile Layout"
+          "content": "Mobile layout"
         },
         "columns_mobile": {
           "label": "Number of columns on mobile",
@@ -2926,7 +2926,7 @@
           "label": "Button link"
         },
         "header_mobile": {
-          "content": "Mobile Layout"
+          "content": "Mobile layout"
         },
         "columns_mobile": {
           "label": "Number of columns on mobile",
@@ -3208,7 +3208,7 @@
           "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/page-types#product-recommendations-section-settings)"
         },
         "header_mobile": {
-          "content": "Mobile Layout"
+          "content": "Mobile layout"
         },
         "columns_mobile": {
           "label": "Number of columns on mobile",
@@ -3237,7 +3237,7 @@
       }
     },
     "related_blog_post": {
-      "name": "Related Blog Post",
+      "name": "Related blog post",
       "settings": {
         "heading": {
           "label": "Heading",
@@ -3247,23 +3247,23 @@
           "label": "Number of posts to show"
         },
         "columns_desktop": {
-          "label": "Desktop Columns"
+          "label": "Desktop columns"
         },
         "show_image": {
-          "label": "Show Featured Image"
+          "label": "Show featured image"
         },
         "show_date": {
-          "label": "Show Date"
+          "label": "Show date"
         },
         "show_author": {
-          "label": "Show Author"
+          "label": "Show author"
         },
         "show_tags": {
-          "label": "Show Tags"
+          "label": "Show tags"
         }
       },
       "presets": {
-        "name": "Related Blog Post"
+        "name": "Related blog post"
       }
     },
     "rich-text": {
@@ -3550,15 +3550,15 @@
           "name": "Item",
           "settings": {
             "tab_image": {
-              "label": "Tab Image"
+              "label": "Tab image"
             },
             "tab_button": {
-              "label": "Button Text",
-              "default": "Tab Button"
+              "label": "Button text",
+              "default": "Tab button"
             },
             "tab_heading": {
               "label": "Heading",
-              "default": "Title For Tab"
+              "default": "Title for tab"
             },
             "tab_description": {
               "label": "Description",
@@ -3703,7 +3703,7 @@
       "name": "404 page",
       "settings": {
         "background_image": {
-          "label": "Background Image"
+          "label": "Background image"
         },
       },
     },

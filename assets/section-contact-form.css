@@ -285,6 +285,7 @@ START: Contact CSS
 }
 
 .contact_form_box_one form .form_button .submit-btn {
+  position: relative;
   display: flex;
   align-items: center;
   column-gap: 12px;
@@ -294,7 +295,15 @@ START: Contact CSS
   text-transform: uppercase;
   color: #000;
 }
-
+.contact_form_box_one form .form_button .submit-btn::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    bottom: -10px;
+    left: 0;
+    background: #000;
+}
 .contact_form_box_one form .form_button .submit-btn span {
   display: inline-flex;
   align-items: center;
