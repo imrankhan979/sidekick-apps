@@ -67,8 +67,6 @@ position: relative;
   transform: translate3d(0, 20px, 0) !important;
   visibility: hidden !important;
   opacity: 0 !important;
-  overflow-y: auto;
-  max-height: 40vh;
 }
 .snazzy-header .header-inner .list-menu .has-sub-menu  .has-sub-menu:hover .header__submenu{
   visibility: visible !important;
