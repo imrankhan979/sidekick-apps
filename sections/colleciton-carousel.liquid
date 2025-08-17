@@ -58,13 +58,13 @@
             </div>
             <div class="collection_carousel_content">
               {% if block.settings.collection_featured != blank %}
-              <span class="subTitle">
-                <span class="collection_anim">
-                  <span class="anim_text">
-                    {{ block.settings.collection_featured }}
+                <span class="subTitle">
+                  <span class="collection_anim">
+                    <span class="anim_text">
+                      {{ block.settings.collection_featured }}
+                    </span>
                   </span>
                 </span>
-              </span>
               {% endif %}
 
               {%- if block.settings.collection_heading != blank or block.settings.collection_select != blank -%}
@@ -78,7 +78,7 @@
                       {% endif %}
                     >
                       {%- if block.settings.collection_heading != blank -%}
-                         {{ block.settings.collection_heading }}
+                        {{ block.settings.collection_heading }}
                       {%- else -%}
                         {{ block.settings.collection_select.title }}
                       {%- endif -%}
@@ -126,8 +126,8 @@
   "settings": [
     {
       "type": "color_scheme",
-      "id": "section_color_scheme",
-      "label": "t:sections.collection-carousel.settings.section_color_scheme.label",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
