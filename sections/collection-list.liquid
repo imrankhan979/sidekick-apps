@@ -22,8 +22,10 @@
 <section class="collection-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="page-width">
     {% if section.settings.section_title != blank %}
-      <div class="section_title">
-        <h1>{{ section.settings.section_title }}</h1>
+      <div class="heading_area">
+        <div class="section_title text-center">
+          <h2 class="sec_title">{{ section.settings.section_title }}</h2>
+        </div>
       </div>
     {% endif %}
     <div class="custom-scroller-wrapper carousel-wrapper">
@@ -111,18 +113,12 @@
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
-    {
-      "type": "checkbox",
-      "id": "enable_corner_round",
-      "label": "t:sections.collection-list.settings.corner_rounding.label",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_corner_round",
-      "label": "Enable top corner rounding",
-      "default": true
-    },
+    // {
+    //   "type": "checkbox",
+    //   "id": "enable_corner_round",
+    //   "label": "t:sections.collection-list.settings.corner_rounding.label",
+    //   "default": true
+    // },
     {
       "type": "text",
       "id": "section_title",

@@ -1,19 +1,18 @@
-
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
 
 {% style %}
-    .snazzy-header .header-inner{
-        padding: {{ section.settings.padding_top}}px 0 {{ section.settings.padding_bottom}}px 0;
-    }
-    {%- if section.settings.enable_overlay_header == true -%}
-        .snazzy-header observed-height{
-            display: block;
-            margin-bottom: calc(var(--observed-height)* -1);
-        }
-    {%- endif -%}
+  .snazzy-header .header-inner{
+      padding: {{ section.settings.padding_top}}px 0 {{ section.settings.padding_bottom}}px 0;
+  }
+  {%- if section.settings.enable_overlay_header == true -%}
+      .snazzy-header observed-height{
+          display: block;
+          margin-bottom: calc(var(--observed-height)* -1);
+      }
+  {%- endif -%}
 {% endstyle %}
-<header class="snazzy-header rounded-top-corner header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %} color-{{ section.settings.color_scheme }}" data-sticky="{{ section.settings.sticky_behavior }}">
+<header class="snazzy-header  header-wrapper {% if section.settings.enable_overlay_header == true %} overlay-header{% endif %} color-{{ section.settings.color_scheme }}" data-sticky="{{ section.settings.sticky_behavior }}">
     <div class="page-width">
         <observed-height>
             <div class="header-inner grid align-items-center">
@@ -163,7 +162,7 @@
                                     sizes: sizes,
                                     preload: true
                                     }}
-                                    
+
                                 {% endif %}
                             </div>
                             {%- else -%}
@@ -173,7 +172,7 @@
             </div>
             <div class="header-icons flex align-items-center justify-content-end">
               {% render 'header-search', input_id: 'Search-In-Modal' %}
-  
+
               {%- if shop.customer_accounts_enabled -%}
                   <a
                   href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
@@ -202,7 +201,7 @@
                   </span>
                   </a>
               {%- endif -%}
-  
+
               <a href="{{ routes.cart_url }}" class="header__icon--cart link focus-inset" id="cart-icon-bubble">
                   {% if cart == empty %}
                       <span class="">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
@@ -223,55 +222,56 @@
           </div>
           <div class="menu-drawer-body"></div>
           <div class="menu-drawer-body"></div>
-    </menu-drawer> {% endcomment %}
-    </header>
- 
+    </menu-drawer>
+  {% endcomment %}
+</header>
+
 {% schema %}
+{
+  "name": "t:sections.header.name",
+  "class": "section-header",
+  "settings": [
     {
-      "name": "t:sections.header.name",
-      "class": "section-header",
-      "settings": [
-        {
-          "type": "link_list", 
-          "id": "menu",
-          "default": "main-menu",
-          "label": "t:sections.header.settings.menu.label"
-        },
-        {
-        "type": "checkbox",
-        "id": "enable_overlay_header",
-        "default": true,
-        "label": "t:sections.header.settings.enable_overlay_header.label"
-        },
-        {
-        "type": "select",
-        "id": "sticky_behavior",
-        "label": "Sticky Header Behavior",
-        "default": "none",
-        "options": [
-            { "value": "none", "label": "None" },
-            { "value": "scroll-top", "label": "Always" },
-            { "value": "scroll-down", "label": "Scroll top" }
-        ]
-        },
-           {
-          "type": "header",
-          "content": "t:sections.header.settings.header__1.content"
-        },
-                {
-          "type": "color_scheme",
-          "id": "color_scheme",
-          "label": "t:sections.all.colors.label",
-          "default": "scheme-1"
-        },
-        { 
-          "type": "color_scheme",
-          "id": "menu_color_scheme",
-          "label": "t:sections.header.settings.menu_color_scheme.label",
-          "default": "scheme-1"
-        },
-     
-          {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_overlay_header",
+      "default": true,
+      "label": "t:sections.header.settings.enable_overlay_header.label"
+    },
+    {
+      "type": "select",
+      "id": "sticky_behavior",
+      "label": "Sticky Header Behavior",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "t:sections.header.settings.sticky_header_type.options__1.label" },
+        { "value": "scroll-top", "label": "t:sections.header.settings.sticky_header_type.options__3.label" },
+        { "value": "scroll-down", "label": "t:sections.header.settings.sticky_header_type.options__2.label" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__1.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "menu_color_scheme",
+      "label": "t:sections.header.settings.menu_color_scheme.label",
+      "default": "scheme-1"
+    },
+
+    {
       "type": "header",
       "content": "t:sections.header.settings.header__3.content",
       "info": "t:sections.header.settings.header__4.info"
@@ -293,47 +293,47 @@
       "default": false,
       "label": "t:sections.header.settings.enable_language_selector.label"
     },
-        {
-          "type": "header",
-          "content": "t:sections.header.settings.header__7.content",
-          "info": "t:sections.header.settings.header__7.info"
-        },
-        {
-          "type": "checkbox",
-          "id": "enable_customer_avatar",
-          "default": true,
-          "label": "t:sections.header.settings.enable_customer_avatar.label",
-          "info": "t:sections.header.settings.enable_customer_avatar.info"
-        },
-        {
-          "type": "header",
-          "content": "t:sections.all.padding.section_padding_heading"
-        },
-        {
-          "type": "range",
-          "id": "padding_top",
-          "min": 0,
-          "max": 60,
-          "step": 1,
-          "unit": "px",
-          "label": "t:sections.all.padding.padding_top",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "padding_bottom",
-          "min": 0,
-          "max": 60,
-          "step": 1,
-          "unit": "px",
-          "label": "t:sections.all.padding.padding_bottom",
-          "default": 0
-        }
-      ],
-      "blocks": [
-        {
-          "type": "@app"
-        }
-      ]
+    {
+      "type": "header",
+      "content": "t:sections.header.settings.header__7.content",
+      "info": "t:sections.header.settings.header__7.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_customer_avatar",
+      "default": true,
+      "label": "t:sections.header.settings.enable_customer_avatar.label",
+      "info": "t:sections.header.settings.enable_customer_avatar.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
     }
-    {% endschema %}
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

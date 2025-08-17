@@ -112,6 +112,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 header-menu-drawer .menu-drawer__menu-item{
   position: relative;
   width: 100%;
+  padding-right: 26px;
 }
 .menu-drawer summary.menu-drawer__menu-item {
   padding-right: 5.2rem;

@@ -19,7 +19,10 @@
       <h2>
         <a class="shop_collection_title" href="{{ card_collection.url }}">{{ card_collection.title }}</a>
       </h2>
-      <span class="shop_collection_subTitle">{{ card_collection.all_products_count }} Items</span>
+      <span class="shop_collection_subTitle">
+        {{- card_collection.all_products_count }}
+        {{ 'sections.all-collection.items' | t }}
+      </span>
     </div>
     <div class="shop_collection_button">
       <a class="shop-collection-btn" href="{{ card_collection.url }}">

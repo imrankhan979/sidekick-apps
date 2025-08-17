@@ -15,6 +15,7 @@
   background: #fff;
   padding: 24px 48px 48px;
   transform: translateY(-20px);
+  width: 100%;
 }
 .snazzy-header .header-menu .list-menu > li.menu-open > .has-sub-menu .header__submenu{
   visibility: visible;
@@ -31,7 +32,7 @@ font-family: var(--font-body-family);
 font-weight: 400;
 font-size: 18px;
 line-height: 28px;
-white-space: nowrap;
+/* white-space: nowrap; */
 color: #000;
 display: inline-flex;
 align-items: center;

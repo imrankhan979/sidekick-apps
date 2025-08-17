@@ -202,7 +202,8 @@
             </div>
           {%- endif -%}
           <button class="back-to-top uppercase flex align-items-center" id="back-to-top">
-            BACK TO TOP <span class="flex center">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+            {{ 'sections.footer.back_to_top' | t }}
+            <span class="flex center">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
           </button>
         </div>
       </div>
@@ -277,12 +278,12 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-    {
-      "type": "checkbox",
-      "id": "enable_corner_round",
-      "label": "t:sections.all.corner_rounding.label",
-      "default": true
-    },
+    // {
+    //   "type": "checkbox",
+    //   "id": "enable_corner_round",
+    //   "label": "t:sections.all.corner_rounding.label",
+    //   "default": true
+    // },
     {
       "type": "header",
       "content": "t:sections.footer.settings.header__10.content"

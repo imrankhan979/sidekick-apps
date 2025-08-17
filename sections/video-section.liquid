@@ -26,7 +26,8 @@
       {%- if section.settings.bg_image -%}
         {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
       {%- elsif video_url and section.settings.video_type == 'upload' -%}
-        <video src="{{ video_url }}" playsinline muted loop autoplay></video>
+      <video src="{{ video_url }}"playsinline muted  autoplay {% if section.settings.video_loop %}loop {% endif %}></video>
+
       {% elsif youtube_url != blank and section.settings.video_type == 'youtube' %}
         <iframe
           src="{{ youtube_url | replace: 'watch?v=', 'embed/' }}?autoplay=1&mute=1&loop=1&playlist={{ youtube_url | split: 'v=' | last }}&controls=0&showinfo=0&rel=0&modestbranding=1"
@@ -72,12 +73,12 @@
       "label": "t:sections.video.settings.section_color_scheme.label",
       "default": "scheme-1"
     },
-    {
-      "type": "checkbox",
-      "id": "enable_corner_round",
-      "label": "t:sections.all.corner_rounding.label",
-      "default": true
-    },
+    // {
+    //   "type": "checkbox",
+    //   "id": "enable_corner_round",
+    //   "label": "t:sections.all.corner_rounding.label",
+    //   "default": true
+    // },
     {
       "type": "header",
       "content": "t:sections.video.settings.video_header.content"
