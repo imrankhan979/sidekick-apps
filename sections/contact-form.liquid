@@ -63,6 +63,7 @@
               {% when 'social_share' %}
                 <div class="contact_item_socials" {{ block.shopify_attributes }}>
                   <h4 class="contact_left_title">{{ block.settings.social_title }}</h4>
+                  {% if social_icons == true %}
                   <ul>
                     {% if settings.social_facebook_link != blank %}
                       <li>
@@ -146,6 +147,9 @@
                       </li>
                     {% endif %}
                   </ul>
+                  {% else %}
+                    <p>{{ 'templates.contact.social.description' | t }}</p>
+                    {% endif %}
                 </div>
             {% endcase %}
           {% endfor %}
