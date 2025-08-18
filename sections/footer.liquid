@@ -116,6 +116,8 @@
                           | image_url: width: 1200
                           | image_tag: class: 'footer-logo-img', preload: true
                         }}
+                        {% else %}
+                         <span class="h4">{{ shop.name }}</span>
                       {% endif %}
                     </div>
                   </a>
@@ -278,12 +280,6 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-    // {
-    //   "type": "checkbox",
-    //   "id": "enable_corner_round",
-    //   "label": "t:sections.all.corner_rounding.label",
-    //   "default": true
-    // },
     {
       "type": "header",
       "content": "t:sections.footer.settings.header__10.content"

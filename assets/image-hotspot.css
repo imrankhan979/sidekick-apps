@@ -88,7 +88,7 @@
     transition: .4s;
   }
   .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn:hover span svg  {
-    transform: rotate(180deg);
+    animation: arrow-move .4s linear;
   }
   
   .bulk_hotspot_wrapper .bulk_hotspot_left_content .bulk_hotspot_left_text .bulk_hotspot_button .bulk-hotspot-btn span svg path {

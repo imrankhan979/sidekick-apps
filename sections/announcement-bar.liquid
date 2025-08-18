@@ -39,6 +39,11 @@
           <div class="announce_item_title">{{ block.settings.announce_heading }}</div>
           {% if block.settings.announce_link != blank %}</a>{% endif %}
         {% endif %}
+        {% if block.settings.announce_heading != blank %}
+          {% if block.settings.announce_link != blank %}<a href="{{ block.settings.announce_link }}">{% endif %}
+          <div class="announce_item_title">{{ block.settings.announce_heading }}</div>
+          {% if block.settings.announce_link != blank %}</a>{% endif %}
+        {% endif %}
       </div>
     {% endif %}
   </div>
@@ -46,10 +51,17 @@
 
 {% schema %}
 {
-  "name": "t:sections.announcement-bar.name",
+  "name": "t:sections.announcement-bar.presets.name",
   "tag": "section",
   "max_blocks": 10,
   "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
     {
       "type": "color_scheme",
       "id": "color_scheme",
@@ -84,25 +96,25 @@
   "blocks": [
     {
       "type": "announcement",
-      "name": "Announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
       "settings": [
         {
           "type": "inline_richtext",
           "id": "announce_heading",
-          "label": "Text",
-          "default": "FREE SHIPPING FOR ORDER <strong>OVER $699</strong>"
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label",
+          "default": "t:sections.announcement-bar.blocks.announcement.settings.text.default"
         },
         {
           "type": "url",
           "id": "announce_link",
-          "label": "Link"
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.announcement-bar.presets.name",
+      "name": "t:sections.announcement-bar.name",
       "category": "Custom"
     }
   ]
