@@ -242,6 +242,22 @@ footer.footer {
   gap: 0 5px;
   word-break: break-word;
 }
+.footer .footer-copyright-inner .copyright-content a{
+  position: relative;
+}
+.footer .footer-copyright-inner .copyright-content a:before{
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: .3s;
+}
+.footer .footer-copyright-inner .copyright-content a:hover:before{
+  width: 100%;
+}
 .footer .footer-copyright-inner .policies li a{
   font-family: var(--font-family-body);
   font-size: 18px;
