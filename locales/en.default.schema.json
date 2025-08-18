@@ -1367,7 +1367,7 @@
           "name": "Newsletter",
           "settings": {
             "newsletter_heading": {
-              "label": "Newsletter heading",
+              "label": "Heading",
               "default": "GET 15% OFF ON YOUR FIRST ORDER"
             }
           }

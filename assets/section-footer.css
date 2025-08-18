@@ -90,6 +90,28 @@ footer.footer {
   position: absolute;
   top: 0;
   right: 0;
+  overflow: hidden;
+}
+.footer .footer-newsletter .field-inner .newsletter-form-button:hover svg{
+    animation: nl-arrow-move .4s linear;
+}
+
+@keyframes nl-arrow-move {
+  0% {
+    transform: translateX(0%) ;
+  }
+
+  50% {
+    transform: translateX(100%);
+  }
+
+  51% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0) ;
+  }
 }
 .footer .footer-top-content .footer-navigation-link-wrapper{
   display: grid;
