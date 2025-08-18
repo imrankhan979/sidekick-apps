@@ -235,11 +235,6 @@ a.product__text {
   margin-top: 0;
 }
 
-.product__accordion .accordion__content {
-  padding: 0 1rem;
-}
-
-
 .product .price--sold-out .price__badge-sale {
   display: none;
 }
@@ -712,7 +707,7 @@ a.product__text {
 }
 
 .product-popup-modal__content {
-  border-radius: var(--popup-corner-radius);
+  border-radius: 40px;
   background-color: rgb(var(--color-background));
   overflow: auto;
   height: 80%;

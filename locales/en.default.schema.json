@@ -2566,9 +2566,9 @@
         "inventory": {
           "name": "Inventory",
           "settings": {
-            "inventory_threshold": {
-              "label": "Inventory threshold",
-              "info": "Show inventory count when stock is below this number."
+            "inventory_threshold": { 
+              "label": "Low inventory threshold",
+              "info": "Choose 0 to always show in stock if available."
             },
             "show_inventory_quantity": { 
            "label": "Show inventory quantity"
