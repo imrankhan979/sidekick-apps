@@ -20,10 +20,6 @@
           class="carousel items-carousel-selector"
           data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false,  "autoplay": true}'
         >
-        <div
-          class="carousel items-carousel-selector"
-          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false,  "autoplay": true}'
-        >
           {%- for block in section.blocks -%}
             <div class="announce_item" {{ block.shopify_attributes }}>
               {% if block.settings.announce_heading != blank %}
@@ -55,8 +51,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.announcement-bar.name",
-  "name": "t:sections.announcement-bar.name",
+  "name": "t:sections.announcement-bar.presets.name",
   "tag": "section",
   "max_blocks": 10,
   "settings": [
