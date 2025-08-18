@@ -16,12 +16,15 @@
   <div class="page-width">
     {% if section.blocks.size > 1 %}
       <items-carousel>
-        <div class="carousel items-carousel-selector" data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false,  "autoplay": true}'>
+        <div
+          class="carousel items-carousel-selector"
+          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false,  "autoplay": true}'
+        >
           {%- for block in section.blocks -%}
             <div class="announce_item" {{ block.shopify_attributes }}>
               {% if block.settings.announce_heading != blank %}
                 {% if block.settings.announce_link != blank %}<a href="{{ block.settings.announce_link }}">{% endif %}
-                  <div class="announce_item_title">{{ block.settings.announce_heading }}</div>
+                <div class="announce_item_title">{{ block.settings.announce_heading }}</div>
                 {% if block.settings.announce_link != blank %}</a>{% endif %}
               {% endif %}
             </div>
@@ -31,11 +34,11 @@
     {% elsif section.blocks.size == 1 %}
       {%- assign block = section.blocks[0] -%}
       <div class="announce_item" {{ block.shopify_attributes }}>
-          {% if block.settings.announce_heading != blank %}
-            {% if block.settings.announce_link != blank %}<a href="{{ block.settings.announce_link }}">{% endif %}
-              <div class="announce_item_title">{{ block.settings.announce_heading }}</div>
-            {% if block.settings.announce_link != blank %}</a>{% endif %}
-          {% endif %}
+        {% if block.settings.announce_heading != blank %}
+          {% if block.settings.announce_link != blank %}<a href="{{ block.settings.announce_link }}">{% endif %}
+          <div class="announce_item_title">{{ block.settings.announce_heading }}</div>
+          {% if block.settings.announce_link != blank %}</a>{% endif %}
+        {% endif %}
       </div>
     {% endif %}
   </div>
@@ -43,17 +46,17 @@
 
 {% schema %}
 {
-  "name": "Announcement bar",
+  "name": "t:sections.announcement-bar.name",
   "tag": "section",
   "max_blocks": 10,
   "settings": [
-        {
-        "type": "color_scheme",
-        "id": "color_scheme",
-        "label": "t:sections.all.colors.label",
-        "default": "scheme-1"
-      },
-          {
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -99,7 +102,7 @@
   ],
   "presets": [
     {
-      "name": "Announce Bar",
+      "name": "t:sections.announcement-bar.presets.name",
       "category": "Custom"
     }
   ]
