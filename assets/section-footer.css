@@ -354,3 +354,44 @@ footer.footer {
 .footer .footer-bottom-content {
   margin-top: 64px;
 }
+
+
+.footer .footer-top-content .footer-social-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  flex-wrap: wrap;
+  row-gap: 10px;
+}
+
+.footer .footer-top-content .footer-social-links ul li a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #000;
+  background: transparent;
+  border-radius: 50%;
+  transition: .3s ease-in-out;
+}
+
+.footer .footer-top-content .footer-social-links ul li a:hover {
+  background-color: #000;
+  border-color: #000;
+}
+.footer .footer-top-content .footer-social-links ul li svg {
+  height: 22px;
+  width: 22px;
+}
+.footer .footer-top-content .footer-social-links ul li a svg path {
+  fill: #000;
+  transition: .3s ease-in-out;
+}
+
+.footer .footer-top-content .footer-social-links ul li a:hover svg path {
+  fill: #FFF;
+}
