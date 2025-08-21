@@ -44,7 +44,7 @@
   gap: 12px 24px;
   align-items: center;
 }
-.section-announcement .show-social-icon > items-carousel{
+.section-announcement .show-social-icon > *:not(ul){
   flex-grow: 1;
   display: block;
 }
@@ -58,6 +58,7 @@
   column-gap: 12px;
   flex-wrap: wrap;
   row-gap: 10px;
+  min-width: max-content;
 }
 .section-announcement .show-social-icon ul li {
   display: flex;
