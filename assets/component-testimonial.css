@@ -482,7 +482,7 @@ START: Testimonial CSS
 }
 
 .testimonial-item .testimonial-content .testimonial-infos {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   column-gap: 24px;
 }
@@ -548,6 +548,6 @@ START: Testimonial CSS
     transition: 0.4s;
 }
 
-.testimonial-item .testimonial-content .testimonial-infos .testimonial-button .link-btn:hover {
-  transform: rotate(180deg);
+.testimonial-item .testimonial-content .testimonial-infos:hover .testimonial-button .link-btn svg {
+  animation: arrow-move .4s linear;
 }

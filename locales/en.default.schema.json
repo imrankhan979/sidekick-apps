@@ -497,19 +497,22 @@
       "heading_size": {
         "label": "Heading size",
         "options__1": {
-          "label": "Small"
+          "label": "H1"
         },
         "options__2": {
-          "label": "Medium"
+          "label": "H2"
         },
         "options__3": {
-          "label": "Large"
+          "label": "H3"
         },
         "options__4": {
-          "label": "Extra large"
+          "label": "H4"
         },
         "options__5": {
-          "label": "Extra extra large"
+          "label": "H5"
+        },
+        "options__6": {
+          "label": "H6"
         }
       },
       "image_shape": {
@@ -1367,7 +1370,7 @@
           "name": "Newsletter",
           "settings": {
             "newsletter_heading": {
-              "label": "Newsletter heading",
+              "label": "Heading",
               "default": "GET 15% OFF ON YOUR FIRST ORDER"
             }
           }
@@ -2410,7 +2413,7 @@
           "default": "Collections"
         },
         "sort": {
-          "label": "Sort collections by:",
+          "label": "Sort collections",
           "options__1": {
             "label": "Alphabetically, A-Z"
           },

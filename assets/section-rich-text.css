@@ -84,3 +84,22 @@
 .rich-text__blocks.right .rich-text__buttons {
   justify-content: flex-end;
 }
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+.rich-text__heading  a {
+  text-decoration: underline;
+  text-decoration-thickness: .2rem;
+}
+.rich-text__heading  a:hover {
+  text-decoration-thickness: .2rem;
+}

@@ -7,6 +7,13 @@ slider-component {
   display: block;
 }
 
+.product-grid.featured-collection {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
 slider-component.slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
