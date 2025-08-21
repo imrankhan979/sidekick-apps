@@ -392,9 +392,9 @@ height: 100%;
 }
 @media (max-width: 767px) {
   .popup_newsletter_text > * + * {
-  margin-top: 12px;
-} 
-.popup_newsletter_text .large-top-margin{
-  margin-top: 48px;
-}   
+    margin-top: 12px;
+  } 
+  .popup_newsletter_text .large-top-margin{
+    margin-top: 48px;
+  }
 }
