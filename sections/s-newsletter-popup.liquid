@@ -26,7 +26,7 @@
   >
     <div class="page-width">
       <div class="popup_newsletter_main">
-        <div class="popup_newsletter_wrapper {{ image_class }}">
+        <div class="popup_newsletter_wrapper {{ image_class }} {% if section.settings.news_popup_image != blank %}image-{{ section.settings.image_position }}{% endif %}">
           {%- if section.settings.news_popup_image != blank -%}
             <div class="popup_newsletter_images">
               {{
@@ -36,7 +36,7 @@
               }}
             </div>
           {%- endif -%}
-          <div class="popup_newsletter_content">
+          <div class="popup_newsletter_content" style="text-align: {{ section.settings.content_alignment }};">
             <div class="popup_newsletter_close">
               <button data-close="close-btn">
                 <svg
@@ -56,13 +56,17 @@
               {% for block in section.blocks %}
                 {% case block.type %}
                   {% when 'news_popup_heading' %}
-                    <h2 class="popup_newsletter_title">{{ block.settings.popup_heading_title }}</h2>
+                    {% if block.settings.popup_heading_title != blank %}
+                      <h2 {{ block.shopify_attributes }} class="popup_newsletter_title">{{ block.settings.popup_heading_title }}</h2>
+                    {% endif %}
                   {% when 'news_popup_text' %}
-                    <div class="popup_newsletter_desc">
-                      {{ block.settings.popup_text }}
-                    </div>
+                    {% if block.settings.popup_text != blank %}
+                      <div class="popup_newsletter_desc" {{ block.shopify_attributes }}>
+                        {{ block.settings.popup_text }}
+                      </div>
+                    {% endif %}
                   {% when 'news_pop_form_area' %}
-                    <div class="contact_form_box_three">
+                    <div class="contact_form_box_three" {{ block.shopify_attributes }}>
                       {% form 'customer', class: 'newsletter-form-x' %}
                         <div class="newsletter-form-field">
                           <label class="field__label" for="NewsletterForm--{{ block.id }}">
@@ -126,9 +130,11 @@
                       {% endform %}
                     </div>
                   {% when 'news_pop_lower_content' %}
-                    <div class="popup_lower_content">
-                      <p>{{ block.settings.news_pop_lower_content_text }}</p>
-                    </div>
+                    {% if block.settings.news_pop_lower_content_text != blank %}
+                      <div class="popup_lower_content" {{ block.shopify_attributes }}>
+                        <p>{{ block.settings.news_pop_lower_content_text }}</p>
+                      </div>
+                    {% endif %}
                 {% endcase %}
               {% endfor %}
             </div>
@@ -199,6 +205,28 @@
       "type": "image_picker",
       "id": "news_popup_image",
       "label": "t:settings_schema.newsletter-popup.settings.image.label"
+    },
+    {
+      "type": "select",
+      "id":"image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"  
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text_alignment",
+      "id": "content_alignment",
+      "label": "Text alignment",
+      "default": "center"
     }
   ],
   "blocks": [
