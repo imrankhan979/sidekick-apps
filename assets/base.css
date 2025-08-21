@@ -211,11 +211,6 @@ a {
   color: currentColor;
   cursor: pointer;
 }
-p > a {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-  color: blue;
-}
 button {
   background: transparent;
   border: none;

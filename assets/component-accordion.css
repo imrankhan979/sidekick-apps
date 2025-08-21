@@ -11,7 +11,7 @@
 }
 
 .accordion .summary__title + .icon-caret {
-  height: calc(var(--font-heading-scale) * 0.6rem);
+  height: calc(var(--font-heading-scale) * 2.6rem);
 }
 
 .accordion + .accordion {
@@ -55,4 +55,12 @@
 
 .accordion__content img {
   max-width: 100%;
+}
+
+.product__accordion .accordion__content {
+  padding: 0;
+}
+
+.product__accordion summary {
+  align-items: center;
 }

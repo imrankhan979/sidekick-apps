@@ -497,19 +497,22 @@
       "heading_size": {
         "label": "Heading size",
         "options__1": {
-          "label": "Small"
+          "label": "H1"
         },
         "options__2": {
-          "label": "Medium"
+          "label": "H2"
         },
         "options__3": {
-          "label": "Large"
+          "label": "H3"
         },
         "options__4": {
-          "label": "Extra large"
+          "label": "H4"
         },
         "options__5": {
-          "label": "Extra extra large"
+          "label": "H5"
+        },
+        "options__6": {
+          "label": "H6"
         }
       },
       "image_shape": {
@@ -2410,7 +2413,7 @@
           "default": "Collections"
         },
         "sort": {
-          "label": "Sort collections by:",
+          "label": "Sort collections",
           "options__1": {
             "label": "Alphabetically, A-Z"
           },
@@ -2566,9 +2569,9 @@
         "inventory": {
           "name": "Inventory",
           "settings": {
-            "inventory_threshold": {
-              "label": "Inventory threshold",
-              "info": "Show inventory count when stock is below this number."
+            "inventory_threshold": { 
+              "label": "Low inventory threshold",
+              "info": "Choose 0 to always show in stock if available."
             },
             "show_inventory_quantity": { 
            "label": "Show inventory quantity"
