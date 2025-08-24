@@ -7,7 +7,22 @@
   justify-content: center;
   width: calc(100% - 4rem / var(--font-body-scale));
 }
-
+ .rich-text__text p a {
+    position: relative;
+  }
+  .rich-text__text p a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;    
+    width: 100%;    
+    height: 1px;    
+    background-color: #000;
+    transition:  0.4s ease-in-out;
+  }
+  .rich-text__text p a:hover::after {
+    width: 0%;
+  }
 .rich-text:not(.rich-text--full-width) .rich-text__wrapper {
   margin: auto;
   width: calc(100% - 8rem / var(--font-body-scale));
@@ -96,10 +111,20 @@
 .text-align-right {
   text-align: right;
 }
-.rich-text__heading  a {
-  text-decoration: underline;
-  text-decoration-thickness: .2rem;
+
+.rich-text__heading a {
+    position: relative;
 }
-.rich-text__heading  a:hover {
-  text-decoration-thickness: .2rem;
+.rich-text__heading a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;    
+    width: 100%;    
+    height: 2px;    
+    background-color: #000;
+    transition:  0.4s ease-in-out;
+}
+.rich-text__heading a:hover::after {
+    width: 0%;
 }

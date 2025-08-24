@@ -563,6 +563,12 @@
         "show_social": {
           "label": "Show icons on desktop"
         },
+        "show_social_icons": {
+          "label": "Show Social icons"
+        },
+        "show_navigation": {
+          "label": "Show navigation"
+        },
         "header__3": {
           "content": "Country/region selector",
           "info": "To add a country/region, go to your [market settings.](/admin/settings/markets)"
