@@ -22,6 +22,7 @@ renders-sub-popup.active {
   visibility: visible;
   opacity: 1;
   z-index: 99999;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .popup_newsletter_main {
@@ -38,47 +39,53 @@ renders-sub-popup.active {
 }
 
 .popup_newsletter_wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  column-gap: 33px;
   max-width: 905px;
   width: 100%;
   position: relative;
   background: #fff;
   border-radius: 40px;
   z-index: 2;
-  justify-content: center;
-  padding: 20px 30px;
+  overflow: hidden;
 }
 
 .popup_newsletter_wrapper .popup_newsletter_content {
-  padding: 30px 15px;
+  padding: 88px  48px;
 }
-
+@media (max-width: 767px) {
+  .popup_newsletter_wrapper{
+    grid-template-columns: 1fr;
+  }
+  .popup_newsletter_wrapper .popup_newsletter_content {
+    padding: 48px  24px;
+  }   
+  .popup_newsletter_wrapper .popup_newsletter_images{
+    order: 2;
+  }
+}
 .popup_newsletter_wrapper .popup_newsletter_images {
-  display: flex;
-  max-width: 450px;
+height: 100%;
   width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
 }
 
 .popup_newsletter_wrapper .popup_newsletter_images img {
-  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_title {
-  text-align: center;
   text-transform: uppercase;
-  margin-bottom: 14px;
-  font-family: var(--sds-ff-heading);
 }
-
 .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_desc {
-  max-width: 325px;
   width: 100%;
-  text-align: center;
   font-size: 16px;
   line-height: 24px;
-  margin-bottom: 100px;
   color: #494949;
 }
 
@@ -107,7 +114,6 @@ renders-sub-popup.active {
 }
 
 .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_text {
-  max-width: 350px;
   width: 100%;
 }
 
@@ -209,7 +215,6 @@ renders-sub-popup.active {
   font-family: var(--sds-ff-heading);
   font-weight: 700;
   font-size: 16px;
-  text-align: center;
   color: #ffffff;
   background-color: #000000;
   text-transform: uppercase;
@@ -242,14 +247,17 @@ renders-sub-popup.active {
 
 .popup_newsletter_wrapper.no-image {
   max-width: 400px;
-  padding: 50px 32px 54px 32px;
+  display: flex;
+}
+.popup_newsletter_wrapper.no-image  {
+  max-width: 400px;
+  display: flex;
 }
 
 .newsletter-form-field .submit-btn {
   font-family: var(--sds-ff-heading);
   font-weight: 700;
   font-size: 16px;
-  text-align: center;
   color: #ffffff;
   background-color: #000000;
   text-transform: uppercase;
@@ -297,17 +305,13 @@ renders-sub-popup.active {
 }
 
 .popup_newsletter_wrapper .popup_newsletter_content .popup_lower_content {
-  max-width: 325px;
   width: 100%;
-  text-align: center;
   font-size: 16px;
   line-height: 24px;
-  margin-top: 24px;
   color: #494949;
 }
 
 .popup_newsletter_wrapper .popup_newsletter_content .popup_lower_content p {
-  text-align: center;
   font-size: 16px;
   line-height: 24px;
   font-family: var(--sds-fs-body);
@@ -321,27 +325,17 @@ renders-sub-popup.active {
 }
 
 @media (max-width: 991px) {
-  .popup_newsletter_wrapper {
-    column-gap: 10px;
-  }
-
-  .popup_newsletter_wrapper .popup_newsletter_images {
-    max-width: 330px;
-  }
 
   .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_close {
     top: 20px;
     right: 20px;
   }
 
-  .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_desc {
-    margin-bottom: 45px;
-  }
 }
 
 @media (max-width: 767px) {
   .popup_newsletter_wrapper {
-    flex-direction: column-reverse;
+    border-radius: 24px;
   }
 
   .popup_newsletter_wrapper .popup_newsletter_images {
@@ -356,11 +350,11 @@ renders-sub-popup.active {
 
   .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_desc {
     max-width: 100%;
-    margin-bottom: 45px;
   }
 
   .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_title {
     line-height: 36px;
+    font-size: 24px;
   }
 }
 
@@ -381,10 +375,26 @@ renders-sub-popup.active {
 
   .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_desc {
     max-width: 100%;
-    margin-bottom: 35px;
   }
 
   .popup_newsletter_wrapper .popup_newsletter_content .popup_newsletter_title {
     line-height: 36px;
+  }
+}
+.popup_newsletter_wrapper.image-right .popup_newsletter_images{
+  order: 2;
+}
+.popup_newsletter_text > * + * {
+  margin-top: 24px;
+} 
+.popup_newsletter_text .large-top-margin{
+  margin-top: 100px;
+}
+@media (max-width: 767px) {
+  .popup_newsletter_text > * + * {
+    margin-top: 12px;
+  } 
+  .popup_newsletter_text .large-top-margin{
+    margin-top: 48px;
   }
 }
