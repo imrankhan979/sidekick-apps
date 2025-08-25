@@ -450,7 +450,12 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   will-change: transform;
   transform: scale(1) rotate(0deg);
 }
-
+@media (min-width: 768px) {
+    .cart_main_wrapper .cart_close_button button svg {
+      width: 40px;
+      height: 40px;
+    }
+}
 .cart_main_wrapper .cart_close_button:hover button svg {
   transform: scale(.8) rotate(90deg);
 }
