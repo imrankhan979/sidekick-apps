@@ -2,11 +2,48 @@ class CartDrawer extends HTMLElement {
   constructor() {
     super();
 
+    this.shippingBtnC = this.querySelector('.shipping-item .close')
+    this.shippingBtn = this.querySelector('.shipping-btn')
+
+    this.noteBtn = this.querySelector('.note-btn')
+    this.noteTtem = this.querySelector('.note-item')
+    this.applyBtn = this.querySelector('.apply-btn')
+
+    this.cartBtnPopup = this.querySelector('.cart-btn-popup')
+
     this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
     this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
-    this.setHeaderCartIconAccessibility();
-  }
 
+    this.setHeaderCartIconAccessibility();
+
+  }
+  connectedCallback() {
+    this.init();
+  }
+  init(){
+    this.applyBtn?.addEventListener('click', this.closeNote.bind(this));
+    this.noteTtem?.querySelector('.close')?.addEventListener('click', this.closeNote.bind(this));
+    this.noteBtn?.addEventListener('click', this.openNote.bind(this));
+
+    this.shippingBtn?.addEventListener('click', this.shNote.bind(this));
+    this.shippingBtnC?.addEventListener('click', this.shNoteClose.bind(this));
+  }
+  shNoteClose(){
+    this.querySelector('.shipping-item').classList.remove('active')
+    this.querySelector('.cart-btn-popup').classList.remove('active')
+  }
+  shNote(){
+    this.querySelector('.shipping-item').classList.add('active')
+    this.querySelector('.cart-btn-popup').classList.add('active')
+  }
+  openNote(){
+    this.noteTtem?.classList.add('active')
+    this.querySelector('.cart-btn-popup').classList.add('active')
+  }
+  closeNote(){
+    this.noteTtem?.classList.remove('active')
+    this.querySelector('.cart-btn-popup').classList.remove('active')
+  }
   setHeaderCartIconAccessibility() {
     const cartLink = document.querySelector('#cart-icon-bubble');
     if (!cartLink) return;
@@ -86,6 +123,7 @@ class CartDrawer extends HTMLElement {
     setTimeout(() => {
       this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
       this.open();
+  
     });
   }
 

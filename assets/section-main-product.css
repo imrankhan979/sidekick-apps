@@ -2827,3 +2827,24 @@ variant-selects .product-popup-modal__opener button:hover::before {
 .product_single_wrapper .product_single_left_thumb > svg{
   border-radius: 24px ;
 }
+
+.product_single_wrapper .product_single_left_thumb [data-desktop-layout="columns"] .grid,
+.product_single_wrapper .product_single_left_thumb [data-desktop-layout="stacked"] .grid {
+  display: -ms-grid!important;
+  display: grid!important;
+  -ms-grid-rows: auto;
+  -ms-grid-columns: 1fr 16px 1fr;
+  grid-template: auto/repeat(2,1fr);
+  gap: 16px;
+}
+.product_single_wrapper .product_single_left_thumb .product__media-list .product__media-item {
+  max-width: calc(100% + 0px);
+  width: calc(100% + 0px);
+}
+.product_single_wrapper .product_single_left_thumb [data-desktop-layout="stacked"] .product__media-list .product__media-item:nth-child(1) {
+  grid-area: span 1 / span 2;
+}
+
+
+
+
