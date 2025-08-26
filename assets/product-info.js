@@ -264,7 +264,8 @@ if (!customElements.get('product-info')) {
         const newVariMedia = html.querySelector('media-gallery [id^="Slider-Gallery-template"]') 
         const newVarintMedia = this.getVarintMedia(newVariMedia, variantFeaturedMediaId); 
         const sliderUp = Array.from(this.querySelector('media-gallery [id^="Slider-Gallery-template"]').querySelectorAll('.product__media-item')).findIndex(item => item.querySelector('.product__media-toggle').dataset.mediaId === newVarintMedia);
-        variMedia.select( sliderUp )
+        
+        variMedia?.select( sliderUp )
       }
       getVarintMedia(newVariMedia, variantFeaturedMediaId){
         
