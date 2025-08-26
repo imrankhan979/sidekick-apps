@@ -288,3 +288,13 @@ cart-drawer .cart__note {
 .estimate-shipping-btn.shadow-anim-btn:hover span > span {
     text-shadow: rgb(0, 0, 0) 0px 23px 0px;
 }
+.cart-page .cart-page-wrapper-inner{
+  flex-grow: 1;
+}
+
+.custom-cartpage-width.is-empty .cart-page-wrapper-inner, .cart-page.is-empty .cart-page-wrapper-inner{
+  width: 100%;
+}
+.custom-cartpage-width.is-empty .checkout-box{
+  display: none;
+}
