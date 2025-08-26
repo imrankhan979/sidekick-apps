@@ -4,6 +4,9 @@
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 
+{{ 'component-heading.css' | asset_url | stylesheet_tag }}
+
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -26,14 +29,19 @@
 
 {%- style -%}
   .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.65 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.65 | round: 0 }}px;
   }
-
+  .product-grid.featured-collection{
+    grid-template-columns: repeat({{ section.settings.columns_mobile }}, 1fr);
+  }
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .product-grid.featured-collection{
+      grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr);
     }
   }
 {%- endstyle -%}
@@ -66,26 +74,26 @@
     id="collection-{{ section.id }}"
     data-id="{{ section.id }}"
   >
-    <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
-      {%- if section.settings.title != blank -%}
-        <div class="heading_area">
-        <h2 class="title sec_title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.title }}
-        </h2>
+    <div class="collection__title text-center title-wrapper title-wrapper--no-top-margin page-width{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% endif %}{% if show_desktop_slider %} collection__title--desktop-slider{% endif %}">
+      <div class="heading_area">
+          {%- if section.settings.title != blank -%}
+            <h2 class="sec_title {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+          {%- if section.settings.description != blank
+            or section.settings.show_description
+            and section.settings.collection.description != empty
+          -%}
+            <div class="collection__description {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              {%- if section.settings.show_description -%}
+                {{ section.settings.collection.description }}
+              {%- else -%}
+                {{ section.settings.description -}}
+              {%- endif %}
+            </div>
+          {%- endif -%}
         </div>
-      {%- endif -%}
-      {%- if section.settings.description != blank
-        or section.settings.show_description
-        and section.settings.collection.description != empty
-      -%}
-        <div class="collection__description {{ section.settings.description_style }} rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {%- if section.settings.show_description -%}
-            {{ section.settings.collection.description }}
-          {%- else -%}
-            {{ section.settings.description -}}
-          {%- endif %}
-        </div>
-      {%- endif -%}
     </div>
 
     <slider-component class="slider-mobile-gutter{% if section.settings.full_width %} slider-component-full-width{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
@@ -101,7 +109,7 @@
         {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
@@ -123,7 +131,7 @@
         {%- else -%}
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              class="{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
               {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"
@@ -185,13 +193,14 @@
     </slider-component>
 
     {%- if section.settings.show_view_all and more_in_collection -%}
-      <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="text-center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <a
           href="{{ section.settings.collection.url }}"
-          class="{% if section.settings.view_all_style == 'link' %}link underlined-link{% elsif section.settings.view_all_style == 'solid' %}button{% else %}button button--secondary{% endif %}"
+          class="snazzy-icon-btn"
           aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title | escape }}"
         >
           {{ 'sections.featured_collection.view_all' | t }}
+          <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
         </a>
       </div>
     {%- endif -%}
@@ -210,39 +219,18 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+        {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "info": "t:sections.all.colors.has_cards_info",
+      "default": "scheme-1"
+    },
     {
-      "type": "inline_richtext",
+      "type": "text",
       "id": "title",
       "default": "t:sections.featured-collection.settings.title.default",
       "label": "t:sections.featured-collection.settings.title.label"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
-        }
-      ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
     },
     {
       "type": "richtext",
@@ -254,26 +242,6 @@
       "id": "show_description",
       "label": "t:sections.featured-collection.settings.show_description.label",
       "default": false
-    },
-    {
-      "type": "select",
-      "id": "description_style",
-      "label": "t:sections.featured-collection.settings.description_style.label",
-      "options": [
-        {
-          "value": "body",
-          "label": "t:sections.featured-collection.settings.description_style.options__1.label"
-        },
-        {
-          "value": "subtitle",
-          "label": "t:sections.featured-collection.settings.description_style.options__2.label"
-        },
-        {
-          "value": "uppercase",
-          "label": "t:sections.featured-collection.settings.description_style.options__3.label"
-        }
-      ],
-      "default": "body"
     },
     {
       "type": "collection",
@@ -300,48 +268,9 @@
     },
     {
       "type": "checkbox",
-      "id": "full_width",
-      "label": "t:sections.featured-collection.settings.full_width.label",
-      "default": false
-    },
-    {
-      "type": "checkbox",
       "id": "show_view_all",
       "default": true,
       "label": "t:sections.featured-collection.settings.show_view_all.label"
-    },
-    {
-      "type": "select",
-      "id": "view_all_style",
-      "label": "t:sections.featured-collection.settings.view_all_style.label",
-      "options": [
-        {
-          "value": "link",
-          "label": "t:sections.featured-collection.settings.view_all_style.options__1.label"
-        },
-        {
-          "value": "outline",
-          "label": "t:sections.featured-collection.settings.view_all_style.options__2.label"
-        },
-        {
-          "value": "solid",
-          "label": "t:sections.featured-collection.settings.view_all_style.options__3.label"
-        }
-      ],
-      "default": "solid"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_desktop_slider",
-      "label": "t:sections.featured-collection.settings.enable_desktop_slider.label",
-      "default": false
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info",
-      "default": "scheme-1"
     },
     {
       "type": "header",
@@ -469,12 +398,6 @@
       ]
     },
     {
-      "type": "checkbox",
-      "id": "swipe_on_mobile",
-      "default": false,
-      "label": "t:sections.featured-collection.settings.swipe_on_mobile.label"
-    },
-    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },
@@ -482,21 +405,21 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 36
+      "default": 100
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
+      "max": 200,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "default": 100
     }
   ],
   "presets": [

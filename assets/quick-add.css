@@ -1,8 +1,8 @@
 .quick-add {
   position: relative;
   grid-row-start: 4;
-  margin: 0 0 1rem;
   z-index: 1;
+  margin-top: 24px;
 }
 
 .card--card .quick-add {
@@ -27,7 +27,7 @@
 .quick-add-modal[open] {
   opacity: 1;
   visibility: visible;
-  z-index: 9999;
+  z-index: 99.product-popup-modal[open]9;
 }
 
 .quick-add-modal .scroll-trigger.scroll-trigger {
@@ -39,7 +39,7 @@
 .quick-add-modal .quick-order-list__container {
   padding-bottom: 1.5rem;
 }
-
+ 
 .quick-add-modal__content.quick-add-modal__content--bulk {
   width: 90%;
 }

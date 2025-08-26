@@ -8,12 +8,13 @@ slider-component {
 }
 
 .product-grid.featured-collection {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
+      gap: 64px 24px;
 }
-
+@media (max-width: 767px) {
+    .product-grid.featured-collection {
+          gap: 48px 20px;
+    }
+}
 slider-component.slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
@@ -380,4 +381,7 @@ slider-component.slider-component-full-width {
 
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
+}
+.collection__description{
+  margin-top: 24px;
 }

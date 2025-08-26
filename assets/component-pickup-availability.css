@@ -38,9 +38,6 @@ pickup-availability[available] {
   color: rgb(var(--color-foreground));
   cursor: pointer;
   display: block;
-  height: 4.4rem;
-  padding: 1.2rem;
-  width: 4.4rem;
 }
 
 
@@ -118,10 +115,13 @@ pickup-availability[available] {
   transition: transform .25s ease;
   will-change: transform;
   transform: scale(1) rotate(0deg);
-  width: 40px;
-  height: 40px;
 }
-
+@media (min-width: 768px) {
+    .pickup_location_main_wrapper .pickup_location_top_header .search_close_button button svg {
+      width: 40px;
+      height: 40px;
+    }
+}
 .pickup_location_main_wrapper .pickup_location_top_header .search_close_button:hover button svg {
   transform: scale(.8) rotate(90deg);
 }

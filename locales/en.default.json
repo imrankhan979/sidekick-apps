@@ -356,7 +356,7 @@
       "shop": "Shop"
     },
     "featured_collection": {
-      "view_all": "View all",
+      "view_all": "VIEW ALL",
       "view_all_label": "View all products in the {{ collection_name }} collection"
     },
     "all-collection": {
