@@ -20,7 +20,7 @@
     visibility: hidden;
   }
 </style>
-<cart-drawer class="drawer{% if cart == empty %} empty-cart{% endif %}">
+<cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
     <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
     <div
@@ -436,14 +436,20 @@
                       <div class="cart_product_carousel_item">
                         <div class="collection_carousel_images">
                           <a href="{{ product.url }}">
-                            <img
-                              class="featured-image"
-                              id="featured-image-{{ product.id }}"
-                              src="{{ product.featured_image | image_url: width: 300 }}"
-                              width=""
-                              height=""
-                              alt="{{ product.title }}"
-                            >
+                            {% if product.featured_image != blank %}
+                              <img
+                                class="featured-image"
+                                id="featured-image-{{ product.id }}"
+                                src="{{ product.featured_image | image_url: width: 300 }}"
+                                width=""
+                                height=""
+                                alt="{{ product.title }}"
+                              >
+                              {% else %}
+                                {%- assign placeholder_image_index = forloop.index | modulo: 4 | plus: 1 -%}
+                                {%- assign placeholder_image = 'product-' | append: placeholder_image_index -%}
+                                {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                            {% endif %}
                           </a>
                         </div>
                         <div class="cart_product_content">

@@ -1045,3 +1045,7 @@ cart-drawer cart-note .apply-btn{
     line-height: 1;
     margin-top: 15px;
 }
+
+.drawer.is-empty .cart_main_wrapper .cart_product_button, .drawer.is-empty .cart_main_wrapper .cart_product_desc, .drawer.is-empty .cart_main_wrapper .cart_product_submit_button{
+  display: none;
+}

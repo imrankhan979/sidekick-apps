@@ -42,7 +42,7 @@
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
 <div class="cart-page color-{{ section.settings.color_scheme }} isolate {% if cart == empty %} is-empty{% else %} {% endif %} section-{{ section.id }}-padding">
-  <div class="custom-cartpage-width">
+  <cart-items class="custom-cartpage-width">
     {% if cart != empty %}
       <div class="title-wrapper-with-link text-center">
         <div class="breadcrumb-link">
@@ -89,7 +89,7 @@
     {% endif %}
 
     <div class="cart-page-wrapper">
-      <cart-items class="gradient ">
+      <div class="gradient cart-page-wrapper-inner">
         <div class="cart__warnings">
           {% comment %}
             <div class="anim-item breadcrumb-link">
@@ -527,7 +527,7 @@
             </form>
           </div>
         </div>
-      </cart-items>
+      </div>
       {%- if cart != empty -%}
         {% if section.blocks.size > 0 %}
           <div
@@ -555,27 +555,6 @@
                 <div class="accordion-item">
                   <div class="accordion-title">{{- 'general.cart.estimate_shipping_rates' | t -}}</div>
                   <div class="accordion-content">
-                    {% comment %}
-                      <div id="shipping-estimator">
-                        <div class="country-wrapper">
-                          <label for="shipping-country sub-title">Country/region</label>
-                          <select id="shipping-country" name="country" required>
-                            {{ country_option_tags }}
-                          </select>
-                        </div>
-                        <div id="shipping-province-wrapper">
-                          <label for="shipping-province">Province</label>
-                          <select id="shipping-province" name="province"></select>
-                      </div>
-                        <div class="zip-wrapper">
-                          <label for="shipping-zip">Postal / ZIP Code</label>
-                          <input type="text" id="shipping-zip" name="zip" placeholder="e.g. 10001" required>
-                        </div>
-                        <button id="estimate-shipping-btn" class="shadow-anim-btn" type="button"><span ><span>Estimate</span></span></button>
-                        <div id="shipping-rates-result"></div>
-                      </div>
-                    {% endcomment %}
-
                     <div class="shipping-estimator-container shipping-estimator">
                       <div class="country-wrapper">
                         <label for="shipping-country-1 sub-title"> {{ 'localization.country_label' | t }}</label>
@@ -716,7 +695,7 @@
         {%- endif -%}
       {%- endif -%}
     </div>
-  </div>
+  </cart-items>
 </div>
 
 {% schema %}
