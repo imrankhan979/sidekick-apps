@@ -25,8 +25,6 @@
 .list-menu--disclosure:focus {
   outline: none;
 }
-
-
 .snazzy-header .header-inner .list-menu li .has-sub-menu .header__menu-item{
 font-family: var(--font-body-family);
 font-weight: 400;

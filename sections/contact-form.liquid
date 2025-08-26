@@ -192,6 +192,7 @@
                   aria-describedby="ContactForm-name-error"
                 {% endif %}
                 placeholder="{{ 'templates.contact.form.name_placeholder' | t }}"
+                required
               >
             </div>
             <div class="form-input ">
@@ -236,6 +237,7 @@
                 name="contact[{{ 'templates.contact.form.message' | t }}]"
                 aria-required="true"
                 placeholder="{{ 'templates.contact.form.message_placeholder' | t }}"
+                required
               >
             {{- form.body -}}
             </textarea>
@@ -263,12 +265,6 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-    // {
-    //   "type": "checkbox",
-    //   "id": "enable_corner_round",
-    //   "label": "t:sections.all.corner_rounding.label",
-    //   "default": true
-    // },
     {
       "type": "text",
       "id": "section_title",

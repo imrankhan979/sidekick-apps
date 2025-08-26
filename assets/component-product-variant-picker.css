@@ -22,6 +22,9 @@ variant-selects {
   max-width: 100%;
 }
 
+.product-form__input input[type=radio].disabled + label {
+  text-decoration: line-through;
+}
 .product-form__input input[type='radio'] {
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
@@ -90,11 +93,11 @@ padding: 11px 25px;
 }
 
 .product-form__input--pill input[type='radio'] + label:hover {
-  border-color: rgb(var(--color-foreground));
+  border-color: red;
 }
  
 .product-form__input--pill input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
+  background-color: red;
   color: rgb(var(--color-background));
   border-color: #000;
 }

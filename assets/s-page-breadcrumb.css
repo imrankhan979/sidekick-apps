@@ -1,4 +1,6 @@
-
+.page-header.breadcrumb-main-area{
+    background: #ddd;
+}
 
 .breadcrumb-content-area .breadcrumb-title {
     font-size: 144px;

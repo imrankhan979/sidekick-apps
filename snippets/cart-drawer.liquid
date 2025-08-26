@@ -485,7 +485,7 @@
           {% endif %}
         </cart-drawer-items>
       </div>
-      {% if cart != empty %}
+      {% comment %} {% if cart != empty %} {% endcomment %}
         <div class="cart_product_button">
           <button class="cart-product-btn note-btn" id="Cart-Drawer-Note">
             {{- 'icon-note.svg' | inline_asset_content -}}
@@ -496,9 +496,9 @@
             <span>Shipping Rates</span>
           </button>
         </div>
-        <div class="cart-btn-popup active">
+        <div class="cart-btn-popup">
           <div class="popup-overlay"></div>
-          <div class="note-item popup-content active">
+          <div class="note-item popup-content">
             <div class="content-header">
               <h6>{{ 'sections.cart.note' | t }}</h6>
               <button class="close">{{- 'icon-close.svg' | inline_asset_content -}}</button>
@@ -631,7 +631,7 @@
             {%- endif -%}
           {%- endif -%}
         </div>
-      {% endif %}
+
     </div>
   </div>
 </cart-drawer>
