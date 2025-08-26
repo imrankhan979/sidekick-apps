@@ -1459,7 +1459,7 @@
           "default": "ALL RIGHTS RESERVED"
         },
         "copyright_bottom_text":{
-          "label": "Extra text under copyright",
+          "label": "Footer disclaimer",
           "default": "This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels"
         }
       }

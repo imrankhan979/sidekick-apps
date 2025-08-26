@@ -128,13 +128,15 @@ START: Contact maps CSS
   }
   
   .contact_map_wrapper .accordion button[aria-expanded='true'] .icon::after {
-    width: 0;
+    transform: scale(0);
   }
   
+  .contact_map_wrapper .accordion button + .accordion_content {
+    transition: all .3s;
+  }
   .contact_map_wrapper .accordion button[aria-expanded='true']+.accordion_content {
     opacity: 1;
     height: 0;
-    transition: all 200ms linear;
     will-change: opacity, max-height;
   }
   

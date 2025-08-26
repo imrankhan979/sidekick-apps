@@ -416,13 +416,15 @@
       "type": "inline_richtext",
       "id": "additional_copyright_text",
       "label": "t:sections.footer.settings.additional_copyright_text.label",
-      "default": "t:sections.footer.settings.additional_copyright_text.default"
+      "default": "t:sections.footer.settings.additional_copyright_text.default",
+      "visible_if": "{{ section.settings.show_copyright }}"
     },
     {
       "type": "richtext",
       "id": "copyright_bottom_text",
       "label": "t:sections.footer.settings.copyright_bottom_text.label",
-      "default": "t:sections.footer.settings.copyright_bottom_text.default"
+      "default": "t:sections.footer.settings.copyright_bottom_text.default",
+      "visible_if": "{{ section.settings.show_copyright }}"
     },
     {
       "type": "header",
