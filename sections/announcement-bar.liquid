@@ -27,7 +27,7 @@
       <items-carousel>
         <div
           class="carousel items-carousel-selector"
-          data-flickity='{"contain": true, "prevNextButtons": true, "pageDots": false,  "autoplay": true}'
+          data-flickity='{"contain": true, "prevNextButtons": {% if section.settings.show_navigation %} true {% else %} false {% endif %}, "pageDots": false,  "autoplay": true}'
         >
           {%- for block in section.blocks -%}
             <div class="announce_item" {{ block.shopify_attributes }}>
@@ -159,7 +159,13 @@
       "type": "checkbox",
       "id": "show_social_icons",
       "default": false,
-      "label": "Show social icons"
+      "label": "t:sections.announcement-bar.settings.show_social_icons.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.show_navigation.label"
     },
     {
       "type": "header",

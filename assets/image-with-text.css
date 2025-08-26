@@ -18,7 +18,22 @@
     left: 0;
     z-index: -1;
   }
-  
+  .desc p a {
+    position: relative;
+  }
+  .desc p a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;    
+    width: 100%;    
+    height: 1px;    
+    background-color: #000;
+    transition:  0.4s ease-in-out;
+  }
+  .desc p a:hover::after {
+    width: 0%;
+  }
   .redefine_wrapper .bg_images img {
     width: 100%;
     height: 100%;
