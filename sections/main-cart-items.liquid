@@ -101,7 +101,7 @@
             </div>
           {% endcomment %}
           <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
-            <a href="{{ routes.all_products_collection_url }}" class="button you-cart-shop-btn">
+            <a href="{{ routes.all_products_collection_url }}" class="button you-cart-shop-btn snazzy-icon-btn">
               {{ 'general.continue_shopping' | t }}
               <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
             </a>
@@ -579,7 +579,7 @@
                           required
                         >
                       </div>
-                      <button id="estimate-shipping-btn-1" class="shadow-anim-btn estimate-shipping-btn" type="button">
+                      <button id="estimate-shipping-btn-1" class="estimate-shipping-btn" type="button">
                         <span
                           ><span>{{ 'sections.cart.estimate' | t }}</span></span
                         >
