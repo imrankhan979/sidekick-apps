@@ -2835,6 +2835,9 @@
             "label": "Square"
           }
         },
+        "background_image": {
+          "label": "Background image"
+        },
         "show_secondary_image": {
           "label": "Show second image on hover"
         },
@@ -2844,6 +2847,9 @@
         "show_rating": {
           "label": "Show product rating",
           "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/page-types#search-results-section-settings)"
+        },
+        "page_heading": {
+          "label": "Page heading",
         },
         "header__1": {
           "content": "Product card"

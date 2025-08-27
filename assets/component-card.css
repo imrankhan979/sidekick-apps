@@ -276,6 +276,14 @@
     }
   }
 
+  @media screen and (max-width: 767px) {
+    .card__information {
+      padding-top: 12px;
+    }
+    
+
+  }
+
   .card__badge {
     display: flex;
     align-items: center;
@@ -361,7 +369,7 @@
     background-size: 0% 100%;
     transition: background-size .4s;
     font-family: var(--font-family-heading);
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     line-height: 32px;
     letter-spacing: -.01em;
@@ -605,7 +613,6 @@
   .card .vendor-name{
     font-size: 14px;
     line-height: 24px;
-    letter-spacing: 0%;
     vertical-align: middle;
     text-transform: uppercase;
     color: #808080;
@@ -630,4 +637,7 @@
     .card .variant_group_wrapper{
     margin-top: 12px;
 }
+   .card__heading a span {
+    font-size: 24px;
+ }
 }
