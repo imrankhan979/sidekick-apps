@@ -27,7 +27,7 @@
 .quick-add-modal[open] {
   opacity: 1;
   visibility: visible;
-  z-index: 99.product-popup-modal[open]9;
+  z-index: 999;
 }
 
 .quick-add-modal .scroll-trigger.scroll-trigger {
