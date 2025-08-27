@@ -27,7 +27,7 @@
 .quick-add-modal[open] {
   opacity: 1;
   visibility: visible;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .quick-add-modal .scroll-trigger.scroll-trigger {
@@ -71,6 +71,15 @@
     top: 2rem;
     right: 2rem;
   }
+   quick-add-modal .quick-add-modal__toggle > svg {
+    width: 40px;
+    height: 40px;
+        transition: transform .25s ease;
+    will-change: transform;
+    transform: scale(1) rotate(0);
+}
+.quick-add-modal .quick-add-modal__toggle:hover svg {
+    transform: scale(.8) rotate(90deg);
 }
 
 @media screen and (min-width: 990px) {
