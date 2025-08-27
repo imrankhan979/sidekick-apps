@@ -101,12 +101,10 @@
             </div>
           {% endcomment %}
           <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
-          {% comment %}
             <a href="{{ routes.all_products_collection_url }}" class="button you-cart-shop-btn">
               {{ 'general.continue_shopping' | t }}
               <span>{{- 'icon-caret.svg' | inline_asset_content -}}</span>
             </a>
-          {% endcomment %}
 
           {%- if shop.customer_accounts_enabled and customer == null -%}
             <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
@@ -669,7 +667,7 @@
                         <button
                           type="submit"
                           id="checkout"
-                          class="cart__checkout-button button cart-checkout-btn shadow-anim-btn"
+                          class="cart__checkout-button button cart-checkout-btn"
                           name="checkout"
                           {% if cart == empty %}
                             disabled
