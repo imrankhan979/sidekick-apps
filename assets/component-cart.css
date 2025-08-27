@@ -23,7 +23,7 @@ cart-items.is-empty .title-wrapper-with-link,
 
 .cart__empty-text {
   font-family: var(--font-family-body);
-/* font-weight: 400; */
+font-weight: 400;
 font-size: 20px;
 line-height: 28px;
 letter-spacing: -1%;
