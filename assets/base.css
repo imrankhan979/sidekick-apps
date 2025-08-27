@@ -2550,7 +2550,7 @@ input[type='checkbox'] {
 .snazzy-header .header-inner .header-menu-item span:after, .snazzy-header .header-inner .disclosure__button > span:after {
   content: "";
   position: absolute;
-  bottom: 3px;
+  bottom: 0;
   left: 0;
   width: 0%;
   height: 1px;

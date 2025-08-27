@@ -362,10 +362,6 @@
 }
 
 /* Hover/focus state */
-.facets-layout-list .facets__label:hover .facet-checkbox__text-label,
-.facets-layout-list input:focus ~ .facet-checkbox__text-label {
-  text-decoration: underline;
-}
 
 .facets-layout-grid > * {
   align-items: flex-start;
@@ -405,6 +401,22 @@
 
 .facets-layout-grid--image .facet-checkbox__text {
   padding: 0.4rem;
+}
+
+.facets-layout-list .facets__label:hover .facet-checkbox__text-label,
+.facets-layout-list input:focus ~ .facet-checkbox__text-label {
+  text-decoration: none;
+}
+
+.facet-checkbox__text span {
+    width: 100%;
+    background-image: linear-gradient(transparent calc(100% - 1px),rgba(var(--color-foreground)) 1px);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size .4s;
+}
+.facet-checkbox__text:hover span {
+    background-size: 100% 100%;
 }
 
 /* Active state */
@@ -1235,7 +1247,6 @@ text-transform: uppercase;
     font-size: 18px;
     line-height: 28px;
   }
-
 
   .facets-vertical .facets-wrapper {
         width: 100%;

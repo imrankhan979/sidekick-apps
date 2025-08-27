@@ -393,9 +393,13 @@
                                     </h3>
                                   </div>
                                   <div class="card__badge {{ settings.badge_position }}">
-                                    <span class="badge color-{{ settings.color_schemes | first }}">
-                                      {{- 'templates.search.page' | t -}}
-                                    </span>
+                                    {% for tag in product.tags %}
+                                      {% unless tag == 'page' %}
+                                        <span class="badge color-{{ settings.color_schemes | first }}">
+                                          {{- 'templates.search.page' | t -}}
+                                        </span>
+                                      {% endunless %}
+                                    {% endfor %}
                                   </div>
                                 </div>
                               </div>
@@ -436,18 +440,18 @@
     {
       "type": "color_scheme",
       "id": "color_scheme_header",
-      "label": "Banner color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     {
       "type": "image_picker",
       "id": "header_bg",
-      "label": "Background image"
+      "label": "t:sections.main-search.settings.background_image.label"
     },
     {
       "type": "text",
       "id": "section_heading",
-      "label": "Page heading",
+      "label": "t:sections.main-search.settings.page_heading.label",
       "info": "Leave it blank to show the default heading."
     },
     {
@@ -457,7 +461,7 @@
       "max": 300,
       "step": 5,
       "unit": "px",
-      "label": "Banner padding top",
+      "label": "t:sections.all.padding.padding_top",
       "default": 200
     },
     {
@@ -467,7 +471,7 @@
       "max": 300,
       "step": 5,
       "unit": "px",
-      "label": "Banner padding bottom",
+      "label": "t:sections.all.padding.padding_bottom",
       "default": 200
     },
     {
@@ -477,7 +481,7 @@
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
     // {
@@ -490,7 +494,7 @@
       "type": "range",
       "id": "columns_desktop",
       "min": 1,
-      "max": 6,
+      "max": 4,
       "step": 1,
       "default": 3,
       "label": "t:sections.main-search.settings.columns_desktop.label"
