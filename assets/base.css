@@ -2566,7 +2566,7 @@ input[type='checkbox'] {
 }
 
 .snazzy-header .header-inner .header-icons {
-  gap: 16px;
+  gap: 0px;
 }
 .snazzy-header .header-inner .header-icons > *  svg {
   transition: .4s ease-in-out;

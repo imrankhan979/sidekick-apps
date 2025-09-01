@@ -84,7 +84,7 @@
                                 {%- endif -%}
                             </div>
                             <div class="header-icons flex align-items-center">
-                                <button class="flex" id="search-toggle" role="button" aria-controls="search-drawer" aria-expanded="false" aria-label="Search">
+                                <button class="flex header__icon" id="search-toggle" role="button" aria-controls="search-drawer" aria-expanded="false" aria-label="Search">
                                     {{- 'icon-search.svg' | inline_asset_content -}}
                                   </button>
                                   {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
@@ -100,11 +100,9 @@
                                         {%- if customer and customer.has_avatar? -%}
                                             {{ customer | avatar }}
                                         {%- else -%}
-                                            <span class="flex">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                                            <span class="flex header__icon">{{ 'icon-account.svg' | inline_asset_content }}</span>
                                         {%- endif -%}
                                         </account-icon>
-                                    {%- else -%}
-                                        <span class="flex">{{ 'icon-account.svg' | inline_asset_content }}</span>
                                     {%- endif -%}
                                     <span class="visually-hidden">
                                         {%- liquid
