@@ -41,7 +41,7 @@
 .disclosure__list-wrapper li > a > span::after{
   content: "";
     position: absolute;
-    bottom: 3px;
+    bottom: 0;
     left: 0;
     width: 0%;
     height: 1px;
