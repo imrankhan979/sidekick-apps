@@ -1,4 +1,3 @@
-
 .blog_details_main .blog_details_lg_images img {
     border-radius: 40px;
 }
@@ -14,16 +13,18 @@
 .blog_details_content p a {
     position: relative;
 }
+
 .blog_details_content p a::after {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0;    
-    width: 100%;    
-    height: 1px;    
+    bottom: 0;
+    width: 100%;
+    height: 1px;
     background-color: #000;
-    transition:  0.4s ease-in-out;
+    transition: 0.4s ease-in-out;
 }
+
 .blog_details_content p a:hover::after {
     width: 0%;
 }
@@ -131,7 +132,8 @@
     column-gap: 12px;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a,
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -142,12 +144,14 @@
     border-radius: 50%;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover,
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover {
     background-color: #000000;
     border-color: #000000;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg,
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg {
     animation: socailsMediaAnim 0.3s forwards;
 }
 
@@ -155,7 +159,8 @@
     fill: #000000;
 }
 
-.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg path, .blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg path {
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li a:hover svg path,
+.blog_details_Wrapper .blog_details_infos_box .blog_details_socials ul li button:hover svg path {
     fill: #ffffff;
 }
 
@@ -164,6 +169,10 @@
     align-items: center;
     column-gap: 16px;
     margin-bottom: 120px;
+}
+
+.blog_details_main .blog_details_Wrapper .blog_details_author.comments-disable {
+    margin-bottom: 0px;
 }
 
 .blog_details_main .blog_details_Wrapper .blog_details_author .blog_thumb_images {
@@ -238,7 +247,7 @@
 .comments-wrap .latest-comments ul .comment .comment-content {
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 48px;
-    margin-bottom: 120px;
+    margin-bottom: 60px;
 }
 
 .comments-wrap .latest-comments ul .comment:last-child .comment-content {
@@ -441,6 +450,11 @@
     border: 1px solid #000000;
 }
 
+.comments-container .snazzy_pagination {
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
 /* feyframe CSS */
 
 @keyframes hover-underline {
@@ -535,6 +549,7 @@
     margin-top: 34px;
     position: relative;
     line-height: 1;
+    border-bottom: 3px solid #000000;
 }
 
 .comment_details_form .submit-btn span {
@@ -683,7 +698,7 @@
     }
 
     .blog_details_Wrapper .comment-respond {
-        padding-top: 50px;
+        padding-top: 20px;
     }
 
     .comment-respond .comment-header .title {
@@ -702,11 +717,22 @@
 }
 
 @media (max-width: 575px) {
-
+    .comments-container .snazzy_pagination {
+        margin-top: 60px;
+        margin-bottom: 40px;
+    }
+    .blog_details_main .blog_details_Wrapper .blog_details_author {
+        margin-bottom: 20px;
+    }
+    .blog_details_Wrapper .comment-respond {
+        padding-top: 20px;
+    }
+    .breadcrumb-main-area.blog-inner-area{
+        padding-bottom: 20px;
+    }
     .comment-respond .comment_details_form .form-input {
         width: 100%;
     }
-
     .breadcrumb-content-area.blog-style .breadcrumb-title {
         font-size: 32px;
     }
@@ -776,13 +802,8 @@
     }
 
     .comments-wrap .comments-title {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
     }
-
-    .blog_details_Wrapper .comment-respond {
-        padding-top: 50px;
-    }
-
     .comment-respond .comment-header .title {
         font-size: 32px;
         margin-bottom: 15px;

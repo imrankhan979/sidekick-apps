@@ -165,7 +165,7 @@
         {% endif %}
 
         {% if section.settings.show_author_information %}
-          <div class="blog_details_author">
+          <div class="blog_details_author  {% if blog.comments_enabled? %}comments-enabled{% else %} comments-disable{% endif %}">
             {% if section.settings.author_image != blank %}
               <div class="blog_thumb_images">
                 <img

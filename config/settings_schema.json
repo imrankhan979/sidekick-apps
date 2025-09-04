@@ -46,102 +46,102 @@
         "type": "color_scheme_group",
         "id": "color_schemes",
         "definition": [
-                    {
-                      "type": "header",
-                      "content": "Text"
-                    },
-                    {
-                      "type": "color",
-                      "id": "text",
-                      "label": "Primary"
-                    },
-                    {
-                      "type": "color",
-                      "id": "secondary_text",
-                      "label": "Secondary"
-                    },
-                    {
-                      "type": "header",
-                      "content": "Background"
-                    },
-                    {
-                      "type": "color",
-                      "id": "background",
-                      "label": "Primary"
-                    },
-               
-                    {
-                      "type": "color",
-                      "id": "secondary_background",
-                      "label": "Secondary"
-                    },
-                    {
-                      "type": "header",
-                      "content": "Highlight"
-                    },
-                    {
-                      "type": "color",
-                      "id": "highlight_text",
-                      "label": "Highlight text"
-                    },
-                    {
-                      "type": "header",
-                      "content": "Primary button"
-                    },
-                    {
-                      "type": "color",
-                      "id": "button",
-                      "label": "Background"
-                    },
-                    {
-                      "type": "color",
-                      "id": "button_label",
-                      "label": "Label"
-                    },
-                    {
-                      "type": "color",
-                      "id": "button_border",
-                      "label": "Border"
-                    },
-                    {
-                      "type": "color",
-                      "id": "button_hover",
-                      "label": "Background hover"
-                    },
-                    {
-                      "type": "color",
-                      "id": "button_label_hover",
-                      "label": "Label hover"
-                    },
-                    {
-                      "type": "header",
-                      "content": "Secondary button"
-                    },
-                    {
-                      "type": "color",
-                      "id": "secondary_button",
-                      "label": "Background"
-                    },
-                    {
-                      "type": "color",
-                      "id": "secondary_button_label",
-                      "label": "Label"
-                    },
-                    {
-                      "type": "color",
-                      "id": "secondary_button_border",
-                      "label": "Border"
-                    },
-                    {
-                      "type": "color",
-                      "id": "secondary_button_hover",
-                      "label": "Background hover"
-                    },
-                    {
-                      "type": "color",
-                      "id": "secondary_button_label_hover",
-                      "label": "Label hover"
-                    }
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Primary"
+          },
+          {
+            "type": "color",
+            "id": "secondary_text",
+            "label": "Secondary"
+          },
+          {
+            "type": "header",
+            "content": "Background"
+          },
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Primary"
+          },
+
+          {
+            "type": "color",
+            "id": "secondary_background",
+            "label": "Secondary"
+          },
+          {
+            "type": "header",
+            "content": "Highlight"
+          },
+          {
+            "type": "color",
+            "id": "highlight_text",
+            "label": "Highlight text"
+          },
+          {
+            "type": "header",
+            "content": "Primary button"
+          },
+          {
+            "type": "color",
+            "id": "button",
+            "label": "Background"
+          },
+          {
+            "type": "color",
+            "id": "button_label",
+            "label": "Label"
+          },
+          {
+            "type": "color",
+            "id": "button_border",
+            "label": "Border"
+          },
+          {
+            "type": "color",
+            "id": "button_hover",
+            "label": "Background hover"
+          },
+          {
+            "type": "color",
+            "id": "button_label_hover",
+            "label": "Label hover"
+          },
+          {
+            "type": "header",
+            "content": "Secondary button"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button",
+            "label": "Background"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label",
+            "label": "Label"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_border",
+            "label": "Border"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_hover",
+            "label": "Background hover"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label_hover",
+            "label": "Label hover"
+          }
           // {
           //   "type": "color",
           //   "id": "background",
@@ -264,7 +264,7 @@
         "type": "range",
         "id": "spacing_sections",
         "min": 0,
-        "max": 100, 
+        "max": 100,
         "step": 4,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_sections.label",
@@ -1531,32 +1531,28 @@
         "default": "drawer",
         "label": "t:settings_schema.cart.settings.cart_type.label"
       },
-          {
+      {
         "type": "color_scheme",
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
-        "default": "scheme-1",
-        "visible_if": "{{ settings.cart_type == 'drawer' }}"
+        "default": "scheme-1"
       },
-        {
+      {
         "type": "checkbox",
         "id": "show_recommended_collection",
         "label": "Show recommended product",
-        "default": true,
-        "visible_if": "{{ settings.cart_type == 'drawer' }}"
+        "default": true
       },
       {
         "type": "text",
         "id": "recommended_collection_title",
         "label": "Recommended collection title",
-        "visible_if": "{{ settings.show_recommended_collection == true and settings.cart_type == 'drawer' }}",
         "default": "YOU MAY ALSO LIKE"
       },
       {
         "type": "collection",
         "id": "recommended_collection",
-        "label": "t:settings_schema.cart.settings.cart_drawer.collection.label",
-        "visible_if": "{{ settings.show_recommended_collection == true and settings.cart_type == 'drawer' }}"
+        "label": "t:settings_schema.cart.settings.cart_drawer.collection.label"
       },
       {
         "type": "range",
@@ -1564,22 +1560,19 @@
         "label": "Max products to show",
         "default": 8,
         "min": 1,
-        "max": 20,
-        "visible_if": "{{ settings.show_recommended_collection and settings.cart_type == 'drawer' }}"
+        "max": 20
       },
-            {
+      {
         "type": "checkbox",
         "id": "enable_free_shipping_bar",
         "label": "Enable free shipping bar",
-        "default": true,
-        "visible_if": "{{ settings.cart_type == 'drawer' }}"
+        "default": true
       },
       {
         "type": "number",
         "id": "free_shipping_threshold",
         "label": "Free shipping threshold",
-        "default": 200,
-        "visible_if": "{{ settings.enable_free_shipping_bar and settings.cart_type == 'drawer' }}"
+        "default": 200
       },
       {
         "type": "checkbox",
