@@ -171,6 +171,10 @@
     margin-bottom: 120px;
 }
 
+.blog_details_main .blog_details_Wrapper .blog_details_author.comments-disable {
+    margin-bottom: 0px;
+}
+
 .blog_details_main .blog_details_Wrapper .blog_details_author .blog_thumb_images {
     width: 48px;
     height: 48px;
