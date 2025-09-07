@@ -19,6 +19,8 @@ class CartDrawer extends HTMLElement {
   }
   connectedCallback() {
     this.init();
+    console.log('cart');
+    
   }
   init(){
     this.applyBtn?.addEventListener('click', this.closeNote.bind(this));
@@ -123,7 +125,9 @@ class CartDrawer extends HTMLElement {
     setTimeout(() => {
       this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
       this.open();
-  
+      this.init();
+      console.log(this.init);
+      console.log(this.open);
     });
   }
 
