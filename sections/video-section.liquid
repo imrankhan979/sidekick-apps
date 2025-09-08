@@ -24,9 +24,17 @@
     {% assign vimeo_id = section.settings.vimeo_url | split: '/' | last %}
     <div class="snzz-video-img">
       {%- if section.settings.bg_image -%}
-        {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+        {% render 'the-img', image: section.settings.bg_image %}
       {%- elsif video_url and section.settings.video_type == 'upload' -%}
-      <video src="{{ video_url }}"playsinline muted  autoplay {% if section.settings.video_loop %}loop {% endif %}></video>
+        <video
+          src="{{ video_url }}"
+          playsinline
+          muted
+          autoplay
+          {% if section.settings.video_loop %}
+            loop
+          {% endif %}
+        ></video>
 
       {% elsif youtube_url != blank and section.settings.video_type == 'youtube' %}
         <iframe

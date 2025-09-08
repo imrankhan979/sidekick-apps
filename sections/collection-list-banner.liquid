@@ -13,7 +13,7 @@
       }
     }
 
-  } 
+  }
 {%- endstyle -%}
 <section class="breadcrumb-main-area  page-header section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
@@ -21,7 +21,9 @@
       {% if section.settings.enable_breadcrumb_navigation == true %}
         <div class="anim-item breadcrumb-link">
           <ul>
-            <li><a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a></li>
+            <li>
+              <a href="{{ routes.root_url }}">{{ 'sections.breadcrumb_banner.home' | t }}</a>
+            </li>
             <li>{{- 'sections.collection_list.collections_text' | t -}}</li>
           </ul>
         </div>
@@ -37,14 +39,9 @@
       </div>
     </div>
   </div>
-    {% if section.settings.header_bg %}
+  {% if section.settings.header_bg %}
     <div class="page-header-bg">
-      <img
-        src="{{ section.settings.header_bg | image_url: width: 533 }}"
-        loading="lazy"
-        width="{{ section.settings.header_bg.width }}"
-        height="{{ section.settings.header_bg.height }}"
-      >
+      {% render 'the-img', image: section.settings.header_bg %}
     </div>
   {% endif %}
 </section>
@@ -61,7 +58,7 @@
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
-        {
+    {
       "type": "image_picker",
       "id": "header_bg",
       "label": "t:sections.main-collection-banner.settings.header_bg.label"
@@ -77,7 +74,7 @@
       "default": true,
       "label": "t:sections.collection-list-banner.settings.breadcrumb_navigation.label"
     },
-    { 
+    {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
     },

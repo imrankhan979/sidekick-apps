@@ -38,26 +38,14 @@
                 style="transform: rotate({{ block.settings.card_image_rotation }}deg);"
               >
                 {%- if block.settings.main_image != blank -%}
-                  {%- capture sizes -%}
-                        (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px,
-                        (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)
-                      {%- endcapture -%}
-                  {{
-                    block.settings.main_image
-                    | image_url: width: 1500
-                    | image_tag: sizes: sizes, widths: '165, 360, 535, 750, 1070, 1500'
-                  }}
+                  {% render 'the-img', image: block.settings.main_image %}
                 {%- else -%}
                   {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}
 
                 {%- if block.settings.shape_image_one != blank -%}
                   <div class="shapes-1">
-                    {{
-                      block.settings.shape_image_one
-                      | image_url: width: 1500
-                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-                    }}
+                    {% render 'the-img', image: block.settings.shape_image_one %}
                   </div>
                 {%- endif -%}
               </div>

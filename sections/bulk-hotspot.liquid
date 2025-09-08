@@ -73,11 +73,7 @@
       <div class="bulk_hotspot_box bulk_hotspot_slider">
         <div class="bulk_hotspot_images">
           {% if section.settings.hotspot_image != blank %}
-            {{
-              section.settings.hotspot_image
-              | image_url: width: 1500
-              | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-            }}
+            {% render 'the-img', image: section.settings.hotspot_image %}
           {% else %}
             {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
