@@ -9,35 +9,35 @@
  */
 {
   "sections": {
-    "slideshow_6WrwVQ": {
+    "slideshow_ii8Vky": {
       "type": "slideshow",
       "blocks": {
-        "slide_CcBXwV": {
+        "slide_rN6egM": {
           "type": "slide",
           "settings": {
             "video_loop": true,
             "video_autoplay": true,
             "content_width": 40,
-            "title": "Streetwise new way of style",
+            "title": "Browse our latest products",
             "cta_text": "Collection",
             "cta_link": "",
-            "description": "Discover a new level of style, from bold streetwear to refined essentials.",
+            "description": "Use this text to share information about your brand with your customers.",
             "button_text": "Shop now",
             "button_link": "",
             "padding_top": 60,
             "padding_bottom": 120
           }
         },
-        "slide_p6RdQB": {
+        "slide_QpgzDn": {
           "type": "slide",
           "settings": {
             "video_loop": true,
             "video_autoplay": true,
             "content_width": 40,
-            "title": "Streetwise new way of style",
+            "title": "Browse our latest products",
             "cta_text": "Collection",
             "cta_link": "",
-            "description": "Discover a new level of style, from bold streetwear to refined essentials.",
+            "description": "Use this text to share information about your brand with your customers.",
             "button_text": "Shop now",
             "button_link": "",
             "padding_top": 60,
@@ -46,10 +46,10 @@
         }
       },
       "block_order": [
-        "slide_CcBXwV",
-        "slide_p6RdQB"
+        "slide_rN6egM",
+        "slide_QpgzDn"
       ],
-      "name": "Slideshow",
+      "name": "t:sections.slideshow.presets.name",
       "settings": {
         "section_color_scheme": ""
       }
@@ -165,27 +165,27 @@
       "name": "Product carousel",
       "settings": {
         "color_scheme": "",
-        "community_heading": "Product carousela",
+        "community_heading": "Best Sellers",
         "columns_desktop": 4,
         "ratio": "auto",
         "padding_top": 60,
         "padding_bottom": 60
       }
     },
-    "image_with_text_MWxqfX": {
+    "image_with_text_jN7gcC": {
       "type": "image-with-text",
       "blocks": {
-        "redefine_images_4CP4aq": {
+        "redefine_images_HykK3j": {
           "type": "redefine_images",
           "settings": {
             "card_image_rotation": -5
           }
         },
-        "redefine_content_PVEkhB": {
+        "redefine_content_Q9EtjY": {
           "type": "redefine_content",
           "settings": {
-            "sub_heading": "DAPPER IS MORE THAN JUST CLOTHES. WE'RE A MOVEMENT. A CULTURE",
-            "paragraph_one": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>",
+            "sub_heading": "Describe a product, make announcements, or welcome customers to your store.",
+            "paragraph_one": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "button_text": "LEARN MORE",
             "button_link": "",
             "card_content_rotation": 5
@@ -193,15 +193,15 @@
         }
       },
       "block_order": [
-        "redefine_images_4CP4aq",
-        "redefine_content_PVEkhB"
+        "redefine_images_HykK3j",
+        "redefine_content_Q9EtjY"
       ],
-      "name": "Image with text",
+      "name": "t:sections.image-with-text.presets.name",
       "settings": {
         "section_color_scheme": "",
-        "main_heading": "REDEFINE YOUR URBAN STYLE",
-        "padding_top": 60,
-        "padding_bottom": 60
+        "main_heading": "Image with text",
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     },
     "collection_tab_gT463q": {
@@ -211,7 +211,7 @@
           "type": "collection",
           "settings": {
             "collection_handle": "",
-            "tab_title": "Featured",
+            "tab_title": "Collection1",
             "item_total": 8,
             "item_count": 4
           }
@@ -220,7 +220,7 @@
           "type": "collection",
           "settings": {
             "collection_handle": "",
-            "tab_title": "Best Sellers",
+            "tab_title": "Collection2",
             "item_total": 4,
             "item_count": 4
           }
@@ -229,7 +229,7 @@
           "type": "collection",
           "settings": {
             "collection_handle": "",
-            "tab_title": "New Arrivals",
+            "tab_title": "Collection3",
             "item_total": 4,
             "item_count": 4
           }
@@ -243,7 +243,7 @@
       "name": "Collection tab",
       "settings": {
         "color_scheme": "",
-        "section_heading": "PRODUCT",
+        "section_heading": "Collection tab",
         "ratio": "auto",
         "padding_top": 60,
         "padding_bottom": 60
@@ -272,31 +272,22 @@
           "type": "product",
           "settings": {
             "selected_product": "",
-            "pointer_position_top": 85,
+            "pointer_position_top": 58,
             "pointer_position_left": 45
-          }
-        },
-        "product_yqRPFP": {
-          "type": "product",
-          "settings": {
-            "selected_product": "",
-            "pointer_position_top": 0,
-            "pointer_position_left": 0
           }
         }
       },
       "block_order": [
         "product_DA8Kpe",
         "product_qyJz6q",
-        "product_Q4AKer",
-        "product_yqRPFP"
+        "product_Q4AKer"
       ],
       "name": "Image hotspot",
       "settings": {
         "color_scheme": "",
-        "section_title": "Your next favorite outfit",
-        "hotspot_title": "Editor’s Picked Look",
-        "hotspot_subtitle": "Including 3 Items: Shirt, T-Shirt, Pant",
+        "section_title": "Shop the look",
+        "hotspot_title": "Talk about your brand",
+        "hotspot_subtitle": "Add a short description for this section",
         "cart_button_text": "ADD ALL TO CART",
         "padding_top": 60,
         "padding_bottom": 60
@@ -305,13 +296,13 @@
     "colleciton_carousel_KzaLdn": {
       "type": "colleciton-carousel",
       "blocks": {
-        "collection_QDYJhG": {
+        "collection_w6ae8J": {
           "type": "collection",
           "settings": {
             "collection_select": "",
-            "collection_bg_color": "#f3f3f3",
+            "collection_bg_color": "#399965",
             "collection_heading": "Collection title",
-            "collection_featured": "Featured Collection",
+            "collection_featured": "Badge",
             "collection_button": "Shop Now"
           }
         },
@@ -321,17 +312,7 @@
             "collection_select": "",
             "collection_bg_color": "#f88e24",
             "collection_heading": "Collection title",
-            "collection_featured": "Featured Collection",
-            "collection_button": "Shop Now"
-          }
-        },
-        "collection_w6ae8J": {
-          "type": "collection",
-          "settings": {
-            "collection_select": "",
-            "collection_bg_color": "#399965",
-            "collection_heading": "Collection title",
-            "collection_featured": "Featured Collection",
+            "collection_featured": "Badge",
             "collection_button": "Shop Now"
           }
         },
@@ -341,7 +322,7 @@
             "collection_select": "",
             "collection_bg_color": "#0183d5",
             "collection_heading": "Collection title",
-            "collection_featured": "Featured Collection",
+            "collection_featured": "Badge",
             "collection_button": "Shop Now"
           }
         },
@@ -351,21 +332,31 @@
             "collection_select": "",
             "collection_bg_color": "#fe3d83",
             "collection_heading": "Collection title",
-            "collection_featured": "Featured Collection",
+            "collection_featured": "Badge",
+            "collection_button": "Shop Now"
+          }
+        },
+        "collection_QDYJhG": {
+          "type": "collection",
+          "settings": {
+            "collection_select": "",
+            "collection_bg_color": "#f3f3f3",
+            "collection_heading": "Collection title",
+            "collection_featured": "Badge",
             "collection_button": "Shop Now"
           }
         }
       },
       "block_order": [
-        "collection_QDYJhG",
-        "collection_jCde4G",
         "collection_w6ae8J",
+        "collection_jCde4G",
         "collection_G8wFef",
-        "collection_9iGcth"
+        "collection_9iGcth",
+        "collection_QDYJhG"
       ],
       "name": "Collection carousel",
       "settings": {
-        "section_color_scheme": "",
+        "color_scheme": "",
         "padding_top": 60,
         "padding_bottom": 60
       }
@@ -414,7 +405,7 @@
       ],
       "name": "Testimonials",
       "settings": {
-        "section_color_scheme": "",
+        "color_scheme": "",
         "testimonial_heading": "Customer reviews",
         "columns_desktop": 2,
         "padding_top": 60,
@@ -472,7 +463,7 @@
       "name": "Blog posts",
       "settings": {
         "color_scheme": "",
-        "heading_text": "LATEST FASHION NEWS",
+        "heading_text": "Blog posts",
         "blog": "",
         "post_limit": 3,
         "columns_desktop": 3,
@@ -526,8 +517,8 @@
         "speed": 100,
         "direction": "right",
         "pause_on_hover": true,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "gallery_section_GYDCNF": {
@@ -536,35 +527,40 @@
         "item_jTH6Fr": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
         "item_KHkK9k": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
         "item_MdH9qk": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
         "item_ataexd": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
         "item_cMTzJ9": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         }
@@ -575,7 +571,7 @@
         "item_MdH9qk",
         "item_ataexd",
         "item_cMTzJ9"
-      ], 
+      ],
       "name": "Image gallery",
       "settings": {
         "section_color_scheme": "",
@@ -589,10 +585,10 @@
     }
   },
   "order": [
-    "slideshow_6WrwVQ",
+    "slideshow_ii8Vky",
     "collection_list_HGWihJ",
     "community_stories_QyYUaW",
-    "image_with_text_MWxqfX",
+    "image_with_text_jN7gcC",
     "collection_tab_gT463q",
     "bulk_hotspot_JjfnHW",
     "colleciton_carousel_KzaLdn",

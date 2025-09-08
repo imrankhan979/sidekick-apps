@@ -1,11 +1,11 @@
 <div class="product placeholder-product content-grid-item">
-    <div class="product-thumb flex">
-      {%- assign placeholder_image_index = index | modulo: 4 | plus: 1 -%}
-      {%- assign placeholder_image = 'product-' | append: placeholder_image_index -%}
-      {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-    </div>
-      <div class="product-content">
-            <h5 class="product-title">{{ 'products.placeholder.product_title' | t }}</h5>
-              <span class="product-price">{{ 0.00 | money }}</span>
-      </div>
+  <div class="product-thumb flex">
+    {%- assign placeholder_image_index = index | modulo: 4 | plus: 1 -%}
+    {%- assign placeholder_image = 'product-' | append: placeholder_image_index -%}
+    {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
   </div>
+  <div class="product-content">
+    <h5 class="product-title">{{ 'products.placeholder.product_title' | t }}</h5>
+    <span class="product-price">{{ 'sections.product_carousel.product_price' | t }}</span>
+  </div>
+</div>

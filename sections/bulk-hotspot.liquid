@@ -98,7 +98,7 @@
                     {% if block.settings.selected_product.price != blank %}
                       <p>{{ block.settings.selected_product.price | money }}</p>
                     {% else %}
-                      <p>{{ 00.00 | money }}</p>
+                      <p>{{ 'sections.product_carousel.product_price' | t }}</p>
                     {% endif %}
                   </div>
                 </div>
@@ -139,7 +139,7 @@
                         <h5 class="hotpot_slider_title" href="{{product.url}}">
                           {{ 'sections.image_hotspot.product_title' | t }}
                         </h5>
-                        <p class="hotpot_slider_amount">{{ 0.00 | money }}</p>
+                        <p class="hotpot_slider_amount">{{ 'sections.product_carousel.product_price' | t }}</p>
                       </div>
                     {% endif %}
                   </div>
