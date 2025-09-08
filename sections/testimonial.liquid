@@ -33,14 +33,9 @@
             <div class="testimonial-item" {{ block.shopify_attributes }}>
               {% if block.settings.testimonial_image != blank %}
                 <div class="testimonial-images">
-                  {{
-                    block.settings.testimonial_image
-                    | image_url: width: 800
-                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-                  }}
+                  {% render 'the-img', image: block.settings.testimonial_image %}
                 </div>
               {% endif %}
-
               <div class="testimonial-content">
                 {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
                   <div class="testimonial-text">

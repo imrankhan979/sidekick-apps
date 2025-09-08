@@ -73,11 +73,7 @@
       <div class="bulk_hotspot_box bulk_hotspot_slider">
         <div class="bulk_hotspot_images">
           {% if section.settings.hotspot_image != blank %}
-            {{
-              section.settings.hotspot_image
-              | image_url: width: 1500
-              | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-            }}
+            {% render 'the-img', image: section.settings.hotspot_image %}
           {% else %}
             {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
@@ -102,7 +98,7 @@
                     {% if block.settings.selected_product.price != blank %}
                       <p>{{ block.settings.selected_product.price | money }}</p>
                     {% else %}
-                      <p>{{ 00.00 | money }}</p>
+                      <p>{{ 'sections.product_carousel.product_price' | t }}</p>
                     {% endif %}
                   </div>
                 </div>
@@ -143,7 +139,7 @@
                         <h5 class="hotpot_slider_title" href="{{product.url}}">
                           {{ 'sections.image_hotspot.product_title' | t }}
                         </h5>
-                        <p class="hotpot_slider_amount">{{ 0.00 | money }}</p>
+                        <p class="hotpot_slider_amount">{{ 'sections.product_carousel.product_price' | t }}</p>
                       </div>
                     {% endif %}
                   </div>

@@ -33,11 +33,7 @@
           {%- for block in section.blocks -%}
             <div class="our_journey_images flex">
               {%- if block.settings.tab_image != blank -%}
-                {{
-                  block.settings.tab_image
-                  | image_url: width: 1500
-                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-                }}
+                {% render 'the-img', image: block.settings.tab_image %}
               {%- else -%}
                 {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
                 {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}

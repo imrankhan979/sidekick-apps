@@ -18,11 +18,7 @@
   <div class="breadcrumb-inner">
     {% if section.settings.background_image != blank %}
       <div class="breadcrumb-background-image">
-        {{
-          section.settings.background_image
-          | image_url: width: 1500
-          | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-        }}
+        {% render 'the-img', image: section.settings.background_image %}
       </div>
     {% endif %}
     <div class="section-{{ section.id }}-padding">
@@ -33,19 +29,18 @@
             <div class="anim-item error_desc">
               <span class="breadcrumb-desc">
                 {% if section.settings.error_text != blank %} {{ section.settings.error_text }}{% endif %}
-                </span>
+              </span>
             </div>
             {% if section.settings.btn_text != blank %}
-            <div class="anim-item breadcrumb_error_button">
-              <a class="breadcrumb-error-btn" href="{{ routes.root_url }}"
-                >
+              <div class="anim-item breadcrumb_error_button">
+                <a class="breadcrumb-error-btn" href="{{ routes.root_url }}">
                   {{ section.settings.btn_text }}
                   <span>
                     {{- 'icon-caret.svg' | inline_asset_content -}}
-                    </span>
-                    </a>
-                    </div>
-                  {% endif %}
+                  </span>
+                </a>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
