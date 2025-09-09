@@ -1136,7 +1136,7 @@
         },
         "testimonial_heading": {
           "label": "Heading",
-          "default": "Customer reviews"
+          "default": "Testimonials slider"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -1152,22 +1152,22 @@
             },
             "client_review_title": {
               "label": "Title",
-              "default": "levated streetwear"
+              "default": "Testimonials title"
             },
             "client_review_text": {
               "label": "Text",
-              "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+              "default": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
             },
             "client_image": {
               "label": "Avatar"
             },
             "client_name": {
               "label": "Name",
-              "default": "Anya Petrova"
+              "default": "Author name"
             },
             "client_location": {
               "label": "Location",
-              "default": "paris, france"
+              "default": "Location"
             },
             "show_product": {
               "label": "Show product"
@@ -3437,7 +3437,7 @@
           "settings": {
             "main_heading": {
               "label": "Title",
-              "default": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+              "default": "Video with text"
             }
           }
         },
@@ -3446,7 +3446,7 @@
           "settings": {
             "sub_heading": {
               "label": "Sub heading",
-              "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+              "default": "<p>Use video to showcase product features or to create a unique atmosphere on your store.</p>"
             }
           }
         }
