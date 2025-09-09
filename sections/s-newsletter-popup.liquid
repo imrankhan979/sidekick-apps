@@ -29,11 +29,7 @@
         <div class="popup_newsletter_wrapper {{ image_class }} {% if section.settings.news_popup_image != blank %}image-{{ section.settings.image_position }}{% endif %}">
           {%- if section.settings.news_popup_image != blank -%}
             <div class="popup_newsletter_images">
-              {{
-                section.settings.news_popup_image
-                | image_url: width: section.settings.news_popup_image.width
-                | image_tag: loading: 'lazy', class: 'lazyload'
-              }}
+              {% render 'the-img', image: section.settings.news_popup_image %}
             </div>
           {%- endif -%}
           <div class="popup_newsletter_content" style="text-align: {{ section.settings.content_alignment }};">
@@ -57,7 +53,9 @@
                 {% case block.type %}
                   {% when 'news_popup_heading' %}
                     {% if block.settings.popup_heading_title != blank %}
-                      <h2 {{ block.shopify_attributes }} class="popup_newsletter_title">{{ block.settings.popup_heading_title }}</h2>
+                      <h2 {{ block.shopify_attributes }} class="popup_newsletter_title">
+                        {{ block.settings.popup_heading_title }}
+                      </h2>
                     {% endif %}
                   {% when 'news_popup_text' %}
                     {% if block.settings.popup_text != blank %}
@@ -66,7 +64,10 @@
                       </div>
                     {% endif %}
                   {% when 'news_pop_form_area' %}
-                    <div class="contact_form_box_three {% if forloop.index > 1 %}large-top-margin{% endif %}" {{ block.shopify_attributes }}>
+                    <div
+                      class="contact_form_box_three {% if forloop.index > 1 %}large-top-margin{% endif %}"
+                      {{ block.shopify_attributes }}
+                    >
                       {% form 'customer', class: 'newsletter-form-x' %}
                         <div class="newsletter-form-field">
                           <label class="field__label" for="NewsletterForm--{{ block.id }}">
@@ -208,12 +209,12 @@
     },
     {
       "type": "select",
-      "id":"image_position",
+      "id": "image_position",
       "label": "Image position",
       "options": [
         {
           "value": "left",
-          "label": "Left"  
+          "label": "Left"
         },
         {
           "value": "right",
