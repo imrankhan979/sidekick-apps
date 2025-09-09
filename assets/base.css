@@ -3173,15 +3173,16 @@ details[open]>.header__icon--menu .icon-hamburger {
   left: 24px;
 }
 .card__badge .badge {
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 24px;
   font-family: var(--font-family-body);
   font-size: 14px;
   font-weight: 700;
-  line-height: 1;
+  line-height: 0.8;
   color: #FFFFFF;
   background: #000000;
   text-transform: uppercase;
+  text-align: center;
 }
 @media (max-width: 767px) {
     .card__badge {
@@ -3190,6 +3191,7 @@ details[open]>.header__icon--menu .icon-hamburger {
     }
     .card__badge .badge {
       font-size: 12px;
+      line-height: 12px;
     }
 }
 .gradient {

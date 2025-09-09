@@ -15,10 +15,10 @@
   {% endfor %}
 {%- endstyle -%}
 
-<section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}  {% if section.settings.enable_corner_round %}corner-rounded{% endif %}">
+<section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}  {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="slider_wrapper">
     <items-carousel>
-      <div class="carousel items-carousel-selector" data-flickity='{"prevNextButtons": true, "pageDots": true}'>
+      <div class="carousel items-carousel-selector" data-flickity='{"prevNextButtons":{% if section.settings.navigation %}true{% else %}false{% endif %}, "pageDots":{% if section.settings.dots %}true{% else %}false{% endif %}, "autoPlay":{% if section.settings.autoplay %}true{% else %}false{% endif %}}'>
         {% for block in section.blocks %}
           <div class="section-{{ block.id }}-padding slider_item" {{ block.shopify_attributes }}>
             {% comment %} {% if block.settings.image != blank %}  {% endcomment %}
@@ -118,6 +118,21 @@
       "id": "section_color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "navigation",
+      "label": "t:sections.slideshow.settings.show_navigation_arrows.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "dots",
+      "label": "t:sections.slideshow.settings.show_pagination_dots.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "t:sections.slideshow.settings.autoplay.label"
     }
   ],
   "blocks": [
@@ -230,7 +245,7 @@
           "step": 4,
           "unit": "px",
           "label": "t:sections.all.padding.padding_bottom",
-          "default": 120
+          "default": 60
         }
       ]
     }
