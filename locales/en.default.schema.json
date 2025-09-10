@@ -1574,7 +1574,8 @@
         "enable_customer_avatar": {
           "label": "Show avatar",
           "info": "Customers will only see their avatar when they're signed in with Shop"
-        }
+        },
+        "transparent_background": "Transparent background"
       }
     },
     "image-banner": {
