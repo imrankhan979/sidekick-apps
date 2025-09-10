@@ -135,7 +135,6 @@
 }
 @media (max-width: 767px) {
     .gallery_button {
-      opacity: 0;
       height: 0;
     }
 }
