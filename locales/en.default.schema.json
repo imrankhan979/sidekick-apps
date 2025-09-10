@@ -1378,7 +1378,7 @@
           "settings": {
             "newsletter_heading": {
               "label": "Heading",
-              "default": "GET 15% OFF ON YOUR FIRST ORDER"
+              "default": "Subscribe now and receive a discount on your first order"
             }
           }
         },
@@ -2238,7 +2238,7 @@
       }
     },
     "main-blog": {
-      "name": "Blog section",
+      "name": "Blog",
       "settings": {
         "color_scheme": {
           "label": "Color scheme"

@@ -7,15 +7,15 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "bread": {
       "type": "blog-breadcrumb-banner",
       "settings": {
-        "color_scheme": "",
-        "custom_text": "FASHION NEWS",
+        "color_scheme": "scheme-2",
+        "custom_text": "",
         "enable_breadcrumb_navigation": true,
-        "padding_top": 250,
+        "padding_top": 200,
         "padding_bottom": 200
       }
     },
@@ -23,15 +23,15 @@
       "type": "featured-blog",
       "name": "Featured blog",
       "settings": {
-        "section_button": "READ MORE",
         "color_scheme": "",
         "selected_article": "news-1/29-jul-2023by-tony-pham-young-hearts-run-free",
         "show_image": true,
         "show_date": true,
         "show_tags": true,
         "show_excerpt": true,
+        "section_button": "READ MORE",
         "padding_top": 112,
-        "padding_bottom": 36
+        "padding_bottom": 0
       }
     },
     "main": {
@@ -47,8 +47,8 @@
         "show_date": true,
         "show_author": false,
         "ratio": "auto",
-        "padding_top": 36,
-        "padding_bottom": 200
+        "padding_top": 120,
+        "padding_bottom": 120
       }
     }
   },
