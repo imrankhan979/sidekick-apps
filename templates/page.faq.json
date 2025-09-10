@@ -15,7 +15,7 @@
         "color_scheme": "",
         "custom_text": "",
         "enable_breadcrumb_navigation": true,
-        "padding_top": 250,
+        "padding_top": 200,
         "padding_bottom": 200
       }
     },
@@ -25,128 +25,73 @@
         "faq_category_title_g77piT": {
           "type": "faq_category_title",
           "settings": {
-            "category_title": "Shipping Information"
+            "category_title": "Frequently Asked Questions"
           }
         },
-        "faq_item_RVgymC": {
+        "faq_item_gUdiVq": {
           "type": "faq_item",
           "settings": {
-            "question": "How long does it take to get my products?",
-            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
+            "question": "Question title",
+            "answer": "<p>Question answer</p>"
           }
         },
-        "faq_item_f3RnhF": {
+        "faq_item_ddFh3a": {
           "type": "faq_item",
           "settings": {
-            "question": "How do I set up a subscription order?",
-            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
+            "question": "Question title",
+            "answer": "<p>Question answer</p>"
           }
         },
-        "faq_item_9cQHmw": {
+        "faq_item_AxU6ML": {
           "type": "faq_item",
           "settings": {
-            "question": "How much does it cost?",
-            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
-          }
-        },
-        "faq_item_eRAzXx": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How to return my items?",
-            "answer": "<p>We will deliver products to you as soon as reasonably possible. Orders are usually dispatched between 1-3 days from the date of the order being placed. Please contact us our customer service team if your delivery has not been received within the dates described.<p>"
+            "question": "Question title",
+            "answer": "<p>Question answer</p>"
           }
         },
         "faq_category_title_rN96xd": {
           "type": "faq_category_title",
           "settings": {
-            "category_title": "Order & Return"
+            "category_title": "Order"
           }
         },
-        "faq_item_e3Mpce": {
+        "faq_item_WhGAmW": {
           "type": "faq_item",
           "settings": {
-            "question": "How can I choose the right size for me?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
+            "question": "Question title",
+            "answer": "<p>Question answer</p>"
           }
         },
-        "faq_item_yR3zy4": {
+        "faq_item_GQ3YMC": {
           "type": "faq_item",
           "settings": {
-            "question": "How much can I get refunded?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
+            "question": "Question title",
+            "answer": "<p>Question answer</p>"
           }
         },
-        "faq_item_ANHeKt": {
+        "faq_item_7wXxzE": {
           "type": "faq_item",
           "settings": {
-            "question": "How long after I complete a purchase can I ask for a refund?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
-          }
-        },
-        "faq_item_KHrtbK": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Who pays the shipping costs in the case of a refund when the order has free shipping?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
-          }
-        },
-        "faq_category_title_kGFAjp": {
-          "type": "faq_category_title",
-          "settings": {
-            "category_title": "Payment"
-          }
-        },
-        "faq_item_7LkVEG": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Which payment methods do you accept?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
-          }
-        },
-        "faq_item_ByFpGH": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Do you accept online payments?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
-          }
-        },
-        "faq_item_fCEtPM": {
-          "type": "faq_item",
-          "settings": {
-            "question": "What forms of payment do you accept?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
-          }
-        },
-        "faq_item_Kbqhf9": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Is my payment data safe with you?",
-            "answer": "<p>Orders are typically processed within 1 to3 business days. Delivery times vary based on the shipping method selected.<p>"
+            "question": "Question title",
+            "answer": "<p>Question answer</p>"
           }
         }
       },
       "block_order": [
         "faq_category_title_g77piT",
-        "faq_item_RVgymC",
-        "faq_item_f3RnhF",
-        "faq_item_9cQHmw",
-        "faq_item_eRAzXx",
+        "faq_item_gUdiVq",
+        "faq_item_ddFh3a",
+        "faq_item_AxU6ML",
         "faq_category_title_rN96xd",
-        "faq_item_e3Mpce",
-        "faq_item_yR3zy4",
-        "faq_item_ANHeKt",
-        "faq_item_KHrtbK",
-        "faq_category_title_kGFAjp",
-        "faq_item_7LkVEG",
-        "faq_item_ByFpGH",
-        "faq_item_fCEtPM",
-        "faq_item_Kbqhf9"
+        "faq_item_WhGAmW",
+        "faq_item_GQ3YMC",
+        "faq_item_7wXxzE"
       ],
       "name": "FAQ",
       "settings": {
         "color_scheme": "",
         "left_title": "Need help?",
-        "left_paragraph": "<p>If you have an issue or question that requires immediate assistance, you can <a href=\"#\">contact us</a> to chat with a customer service representative.</p>",
+        "left_paragraph": "<p>Questions about our client services? Don't worry about a thing! We've got you via email or text. </p>",
         "padding_top": 120,
         "padding_bottom": 120
       }

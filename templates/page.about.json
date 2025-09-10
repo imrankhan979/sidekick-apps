@@ -15,238 +15,210 @@
         "color_scheme": "",
         "custom_text": "",
         "enable_breadcrumb_navigation": true,
-        "padding_top": 250,
+        "padding_top": 200,
         "padding_bottom": 200
       }
     },
-    "icon_with_text_mrYi8P": {
+    "icon_with_text_bMg4wg": {
       "type": "icon-with-text",
       "blocks": {
-        "item_6LQYee": {
+        "item_3PCfTW": {
           "type": "item",
           "settings": {
-            "material_heading": "Example text"
+            "material_heading": "Example title"
           }
         },
-        "item_q3UBtz": {
+        "item_tbtDj3": {
           "type": "item",
           "settings": {
-            "material_heading": "Example text"
+            "material_heading": "Example title"
           }
         },
-        "item_KXfYhp": {
+        "item_9phdaJ": {
           "type": "item",
           "settings": {
-            "material_heading": "Example text"
+            "material_heading": "Example title"
           }
         },
-        "item_76cJHg": {
+        "item_dAbBpY": {
           "type": "item",
           "settings": {
-            "material_heading": "Example text"
+            "material_heading": "Example title"
           }
         }
       },
       "block_order": [
-        "item_6LQYee",
-        "item_q3UBtz",
-        "item_KXfYhp",
-        "item_76cJHg"
+        "item_3PCfTW",
+        "item_tbtDj3",
+        "item_9phdaJ",
+        "item_dAbBpY"
       ],
-      "name": "Icon with text",
+      "name": "t:sections.section-icon-with-text.presets.name",
       "settings": {
         "color_scheme": "",
         "show_border": false,
         "border_top": false,
         "border_bottom": false,
-        "section_title": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable.",
+        "section_title": "Short content about your store",
         "columns_desktop": 4,
-        "padding_top": 120,
-        "padding_bottom": 60
-      }
-    },
-    "image_with_text_zj9Uzp": {
-      "type": "image-with-text",
-      "blocks": {
-        "redefine_images_QPHGA4": {
-          "type": "redefine_images",
-          "settings": {
-            "card_image_rotation": -5
-          }
-        },
-        "redefine_content_twWM68": {
-          "type": "redefine_content",
-          "settings": {
-            "sub_heading": "DAPPER IS MORE THAN JUST CLOTHES. WE'RE A MOVEMENT. A CULTURE",
-            "paragraph_one": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>",
-            "button_text": "LEARN MORE",
-            "button_link": "",
-            "card_content_rotation": 5
-          }
-        }
-      },
-      "block_order": [
-        "redefine_images_QPHGA4",
-        "redefine_content_twWM68"
-      ],
-      "name": "Image with text",
-      "settings": {
-        "section_color_scheme": "",
-        "main_heading": "REDEFINE YOUR URBAN STYLE",
-        "padding_top": 60,
-        "padding_bottom": 0
-      }
-    },
-    "timeline_tab_naxp44": {
-      "type": "timeline-tab",
-      "blocks": {
-        "tab_atkiDj": {
-          "type": "tab",
-          "settings": {
-            "tab_button": "",
-            "tab_heading": "",
-            "tab_description": ""
-          }
-        },
-        "tab_4PK3fh": {
-          "type": "tab",
-          "settings": {
-            "tab_button": "",
-            "tab_heading": "",
-            "tab_description": ""
-          }
-        },
-        "tab_mhefxh": {
-          "type": "tab",
-          "settings": {
-            "tab_button": "",
-            "tab_heading": "",
-            "tab_description": ""
-          }
-        }
-      },
-      "block_order": [
-        "tab_atkiDj",
-        "tab_4PK3fh",
-        "tab_mhefxh"
-      ],
-      "name": "Timeline tabs",
-      "settings": {
-        "section_color_scheme": "",
-        "section_title": "Our journey",
-        "section_description": "<p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>",
         "padding_top": 120,
         "padding_bottom": 120
       }
     },
-    "scrolling_text_6NYCg7": {
-      "type": "scrolling-text",
+    "timeline_tab_naCr8Y": {
+      "type": "timeline-tab",
       "blocks": {
-        "marquee_item_7TNdLc": {
-          "type": "marquee_item",
+        "tab_wcA47y": {
+          "type": "tab",
           "settings": {
-            "title": "Worldwide Delivery"
+            "tab_button": "Tab button",
+            "tab_heading": "Example title",
+            "tab_description": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store..</p>"
           }
         },
-        "marquee_item_mfndPH": {
-          "type": "marquee_item",
+        "tab_BJfTXw": {
+          "type": "tab",
           "settings": {
-            "title": "Flexible Payment"
+            "tab_button": "Tab button",
+            "tab_heading": "Example title",
+            "tab_description": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store..</p>"
           }
         },
-        "marquee_item_d8tPMT": {
-          "type": "marquee_item",
+        "tab_KghiNi": {
+          "type": "tab",
           "settings": {
-            "title": "30-Day Free Return"
-          }
-        },
-        "marquee_item_Dme4HR": {
-          "type": "marquee_item",
-          "settings": {
-            "title": "Quick Support 24/7"
+            "tab_button": "Tab button",
+            "tab_heading": "Example title",
+            "tab_description": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store..</p>"
           }
         }
       },
       "block_order": [
-        "marquee_item_7TNdLc",
-        "marquee_item_mfndPH",
-        "marquee_item_d8tPMT",
-        "marquee_item_Dme4HR"
+        "tab_wcA47y",
+        "tab_BJfTXw",
+        "tab_KghiNi"
       ],
-      "name": "Scrolling text",
+      "name": "t:sections.timeline-tabs.presets.name",
+      "settings": {
+        "section_color_scheme": "",
+        "section_title": "Our journey",
+        "section_description": "<p>Prefer to try things on? Visit us in store.</p>",
+        "padding_top": 0,
+        "padding_bottom": 120
+      }
+    },
+    "scrolling_text_H8Hh6X": {
+      "type": "scrolling-text",
+      "blocks": {
+        "marquee_item_3RCapq": {
+          "type": "marquee_item",
+          "settings": {
+            "title": "Welcome to store"
+          }
+        },
+        "marquee_item_9UMAxw": {
+          "type": "marquee_item",
+          "settings": {
+            "title": "Welcome to store"
+          }
+        },
+        "marquee_item_KVgYTp": {
+          "type": "marquee_item",
+          "settings": {
+            "title": "Welcome to store"
+          }
+        },
+        "marquee_item_AqRa3y": {
+          "type": "marquee_item",
+          "settings": {
+            "title": "Welcome to store"
+          }
+        }
+      },
+      "block_order": [
+        "marquee_item_3RCapq",
+        "marquee_item_9UMAxw",
+        "marquee_item_KVgYTp",
+        "marquee_item_AqRa3y"
+      ],
+      "name": "t:sections.scrolling_text.presets.name",
       "settings": {
         "color_scheme": "",
         "speed": 100,
         "direction": "right",
         "pause_on_hover": true,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
-    "gallery_section_jnyrnQ": {
+    "gallery_section_hP6yem": {
       "type": "gallery-section",
       "blocks": {
-        "item_xdrexy": {
+        "item_NfyHQQ": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
-        "item_M9L3FN": {
+        "item_efwVmp": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
-        "item_7Yb6r9": {
+        "item_FRcEhC": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
-        "item_E6WpLn": {
+        "item_AHxQHE": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         },
-        "item_jmxkzh": {
+        "item_Crfipq": {
           "type": "Item",
           "settings": {
-            "button_icon_svg": "<svg width=\"24\" height=\"24\" viewbox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z\" fill=\"currentColor\"></path></svg>",
+            "icon_selection": "icon-instagram.svg",
+            "svg_code": "",
             "icon_link": ""
           }
         }
       },
       "block_order": [
-        "item_xdrexy",
-        "item_M9L3FN",
-        "item_7Yb6r9",
-        "item_E6WpLn",
-        "item_jmxkzh"
+        "item_NfyHQQ",
+        "item_efwVmp",
+        "item_FRcEhC",
+        "item_AHxQHE",
+        "item_Crfipq"
       ],
-      "name": "Image gallery",
+      "name": "t:sections.image_gallery.presets.name",
       "settings": {
         "section_color_scheme": "",
         "columns_desktop": 5,
-        "tab_button": "@DAPPER ON INSTAGRAM",
+        "tab_button": "EXPLORE MORE",
         "button_link": "",
         "overlay_opacity": 70,
         "padding_top": 120,
-        "padding_bottom": 200
+        "padding_bottom": 120
       }
     }
   },
   "order": [
     "bread",
-    "icon_with_text_mrYi8P",
-    "image_with_text_zj9Uzp",
-    "timeline_tab_naxp44",
-    "scrolling_text_6NYCg7",
-    "gallery_section_jnyrnQ"
+    "icon_with_text_bMg4wg",
+    "timeline_tab_naCr8Y",
+    "scrolling_text_H8Hh6X",
+    "gallery_section_hP6yem"
   ]
 }

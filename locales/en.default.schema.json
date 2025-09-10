@@ -793,12 +793,12 @@
       "name": "Contact form section",
       "settings": {
         "section_title": {
-          "label": "Section Title",
-          "default": "send us message"
+          "label": "Heading",
+          "default": "Get in Touch"
         },
         "section_description": {
-          "label": "Section description",
-          "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
+          "label": "Description",
+          "default": "<p>Our friendly team would love to hear from you.</p>"
         }
       },
       "blocks": {
@@ -806,8 +806,8 @@
           "name": "Contact information",
           "settings": {
             "contact_title": {
-              "label": "Section title",
-              "default": "Contact"
+              "label": "Heading",
+              "default": "Contact info"
             },
             "address_header": "Address",
             "address_title": {
@@ -816,7 +816,7 @@
             },
             "address": {
               "label": "Details",
-              "default": "141 Duane St, New York, NY 10013"
+              "default": "Address: 123 Suspendis matti, Visaosang Building VST District, North American"
             },
             "email_header": "Email",
             "email_title": {
@@ -825,16 +825,16 @@
             },
             "email": {
               "label": "Details",
-              "default": "helpcenter@dapper.com"
+              "default": "support@domain.com"
             },
             "phone_header": "Phone",
             "phone_title": {
               "label": "Title",
-              "default": "Hotline"
+              "default": "Phone"
             },
             "phone": {
               "label": "Details",
-              "default": "+1 914 677 07777"
+              "default": "+881234567890"
             }
           }
         },
@@ -1137,7 +1137,7 @@
         },
         "testimonial_heading": {
           "label": "Heading",
-          "default": "Customer reviews"
+          "default": "Testimonials slider"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -1153,22 +1153,22 @@
             },
             "client_review_title": {
               "label": "Title",
-              "default": "levated streetwear"
+              "default": "Testimonials title"
             },
             "client_review_text": {
               "label": "Text",
-              "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+              "default": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
             },
             "client_image": {
               "label": "Avatar"
             },
             "client_name": {
               "label": "Name",
-              "default": "Anya Petrova"
+              "default": "Author name"
             },
             "client_location": {
               "label": "Location",
-              "default": "paris, france"
+              "default": "Location"
             },
             "show_product": {
               "label": "Show product"
@@ -1467,7 +1467,7 @@
         },
         "copyright_bottom_text": {
           "label": "Footer disclaimer",
-          "default": "This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels"
+          "default": "This demo store does not offer goods for purchase."
         }
       }
     },
@@ -1575,7 +1575,8 @@
         "enable_customer_avatar": {
           "label": "Show avatar",
           "info": "Customers will only see their avatar when they're signed in with Shop"
-        }
+        },
+        "transparent_background": "Transparent background"
       }
     },
     "image-banner": {
@@ -1877,12 +1878,12 @@
       "name": "FAQ",
       "settings": {
         "left_title": {
-          "label": "Section title",
+          "label": "Heading",
           "default": "Need help?"
         },
         "left_paragraph": {
-          "label": "Section description",
-          "default": "If you have an issue or question that requires immediate assistance, you can <a href=\"#\">contact us</a> to chat with a customer service representative."
+          "label": "Description",
+          "default": "Questions about our client services? Don't worry about a thing! We've got you via email or text. Order before 4pm for same day delivery in Palo Alto. Find out more"
         },
         "padding_top": {
           "label": "Padding top"
@@ -1897,7 +1898,7 @@
           "settings": {
             "category_title": {
               "label": "Category title",
-              "default": "Category title"
+              "default": "Frequently Asked Questions"
             }
           }
         },
@@ -1906,11 +1907,11 @@
           "settings": {
             "question": {
               "label": "Question",
-              "default": "How long does shipping take?"
+              "default": "Question title"
             },
             "answer": {
               "label": "Answer",
-              "default": "Orders are typically processed within 1 to 3 business days. Delivery times vary based on the shipping method selected."
+              "default": "Question answer"
             }
           }
         }
@@ -3438,7 +3439,7 @@
           "settings": {
             "main_heading": {
               "label": "Title",
-              "default": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+              "default": "Video with text"
             }
           }
         },
@@ -3447,7 +3448,7 @@
           "settings": {
             "sub_heading": {
               "label": "Sub heading",
-              "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+              "default": "<p>Use video to showcase product features or to create a unique atmosphere on your store.</p>"
             }
           }
         }
@@ -3553,11 +3554,12 @@
       "name": "Timeline tabs",
       "settings": {
         "section_title": {
-          "label": "Section title"
+          "label": "Heading",
+          "default": "Our journey"
         },
         "section_description": {
-          "label": "Section description",
-          "default": "<p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>"
+          "label": "Content",
+          "default": "<p>Prefer to try things on? Visit us in store.</p>"
         }
       },
       "blocks": {
@@ -3573,11 +3575,11 @@
             },
             "tab_heading": {
               "label": "Heading",
-              "default": "Title for tab"
+              "default": "Example title"
             },
             "tab_description": {
               "label": "Description",
-              "default": "<p>Content for tab goes here. Add description or details.</p>"
+              "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store..</p>"
             }
           }
         }
@@ -3600,7 +3602,7 @@
         },
         "section_title": {
           "label": "Description",
-          "default": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable."
+          "default": "Short content about your store"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -3614,7 +3616,8 @@
               "label": "Icon"
             },
             "material_heading": {
-              "label": "Text"
+              "label": "Text",
+              "default": "Example title"
             }
           }
         }
@@ -3630,7 +3633,7 @@
           "label": "Map iframe"
         },
         "title": {
-          "label": "Title",
+          "label": "Heading",
           "default": "Stores location"
         },
         "first_item_open": {
@@ -3647,7 +3650,7 @@
             },
             "location_description": {
               "label": "Location description",
-              "default": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>"
+              "default": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>"
             },
             "store_timing": {
               "label": "Store timing",
