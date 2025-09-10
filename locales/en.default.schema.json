@@ -3722,6 +3722,14 @@
       "settings": {
         "background_image": {
           "label": "Background image"
+        },
+        "404_content": {
+          "label": "Content",
+          "default": "Click the button below to view home page"
+        },
+        "404_button_label": {
+          "label": "Button label",
+          "default": "Back to home"
         }
       }
     },
@@ -3729,7 +3737,7 @@
       "name": "Slideshow",
       "settings": {
         "corner_rounding": {
-           "label": "Enable top corner rounding",
+          "label": "Enable top corner rounding"
         },
         "autoplay": {
           "label": "Autoplay slideshow"
