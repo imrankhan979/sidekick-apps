@@ -15,26 +15,26 @@
         "color_scheme": "",
         "custom_text": "",
         "enable_breadcrumb_navigation": true,
-        "padding_top": 250,
+        "padding_top": 200,
         "padding_bottom": 200
       }
     },
-    "contact_form_hnhAt6": {
+    "contact_form_GRDzTR": {
       "type": "contact-form",
       "blocks": {
-        "contact_address_4apiep": {
+        "contact_address_ftzwVJ": {
           "type": "contact_address",
           "settings": {
-            "contact_title": "Contact",
+            "contact_title": "Contact info",
             "address_title": "Address",
-            "address": "141 Duane St, New York, NY 10013",
+            "address": "Address: 123 Suspendis matti, Visaosang Building VST District, North American",
             "email_title": "E-mail",
-            "email": "helpcenter@dapper.com",
-            "phone_title": "Hotline",
-            "phone": "+1 914 677 07777"
+            "email": "support@domain.com",
+            "phone_title": "Phone",
+            "phone": "+881234567890"
           }
         },
-        "social_share_ADaB9X": {
+        "social_share_MM97az": {
           "type": "social_share",
           "settings": {
             "social_title": "Socials"
@@ -42,64 +42,64 @@
         }
       },
       "block_order": [
-        "contact_address_4apiep",
-        "social_share_ADaB9X"
+        "contact_address_ftzwVJ",
+        "social_share_MM97az"
       ],
-      "name": "Contact form",
+      "name": "t:sections.contact-form.presets.name",
       "settings": {
         "color_scheme": "",
-        "section_title": "Contact Us",
-        "section_description": "<p>If you have any questions, feel free to reach out to us.</p>",
+        "section_title": "Contact",
+        "section_description": "<p>Our friendly team would love to hear from you.</p>",
         "padding_top": 120,
-        "padding_bottom": 120
+        "padding_bottom": 0
       }
     },
-    "location_MbLaea": {
+    "location_7rAXLJ": {
       "type": "location",
       "blocks": {
-        "location_gQ6dde": {
+        "location_zwrHXR": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
-            "location_description": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>",
+            "location_description": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>",
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_artLj8": {
+        "location_9CzqHw": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
-            "location_description": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>",
+            "location_description": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>",
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_UYyhKF": {
+        "location_rhX9h6": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
-            "location_description": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>",
+            "location_description": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>",
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_gpFU6M": {
+        "location_jhYbGt": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
-            "location_description": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>",
+            "location_description": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>",
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         }
       },
       "block_order": [
-        "location_gQ6dde",
-        "location_artLj8",
-        "location_UYyhKF",
-        "location_gpFU6M"
+        "location_zwrHXR",
+        "location_9CzqHw",
+        "location_rhX9h6",
+        "location_jhYbGt"
       ],
-      "name": "Location with map",
+      "name": "t:sections.location_with_map.presets.name",
       "settings": {
         "section_color_scheme": "",
-        "location_iframe": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d848300.8253314648!2d150.27255546310082!3d-33.84648855820782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney%20NSW%2C%20Australia!5e0!3m2!1sen!2sbd!4v1745469404037!5m2!1sen!2sbd\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+        "location_iframe": "<iframe src=\"https://www.google.com/maps/embed?pb=...\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
         "stores_location": "Stores location",
         "first_item_open": true,
         "padding_top": 120,
@@ -109,7 +109,7 @@
   },
   "order": [
     "bread",
-    "contact_form_hnhAt6",
-    "location_MbLaea"
+    "contact_form_GRDzTR",
+    "location_7rAXLJ"
   ]
 }

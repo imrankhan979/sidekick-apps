@@ -792,12 +792,12 @@
       "name": "Contact form section",
       "settings": {
         "section_title": {
-          "label": "Section Title",
-          "default": "send us message"
+          "label": "Heading",
+          "default": "Get in Touch"
         },
         "section_description": {
-          "label": "Section description",
-          "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
+          "label": "Description",
+          "default": "<p>Our friendly team would love to hear from you.</p>"
         }
       },
       "blocks": {
@@ -805,8 +805,8 @@
           "name": "Contact information",
           "settings": {
             "contact_title": {
-              "label": "Section title",
-              "default": "Contact"
+              "label": "Heading",
+              "default": "Contact info"
             },
             "address_header": "Address",
             "address_title": {
@@ -815,7 +815,7 @@
             },
             "address": {
               "label": "Details",
-              "default": "141 Duane St, New York, NY 10013"
+              "default": "Address: 123 Suspendis matti, Visaosang Building VST District, North American"
             },
             "email_header": "Email",
             "email_title": {
@@ -824,16 +824,16 @@
             },
             "email": {
               "label": "Details",
-              "default": "helpcenter@dapper.com"
+              "default": "support@domain.com"
             },
             "phone_header": "Phone",
             "phone_title": {
               "label": "Title",
-              "default": "Hotline"
+              "default": "Phone"
             },
             "phone": {
               "label": "Details",
-              "default": "+1 914 677 07777"
+              "default": "+881234567890"
             }
           }
         },
@@ -1466,7 +1466,7 @@
         },
         "copyright_bottom_text": {
           "label": "Footer disclaimer",
-          "default": "This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels"
+          "default": "This demo store does not offer goods for purchase."
         }
       }
     },
@@ -3632,7 +3632,7 @@
           "label": "Map iframe"
         },
         "title": {
-          "label": "Title",
+          "label": "Heading",
           "default": "Stores location"
         },
         "first_item_open": {
@@ -3649,7 +3649,7 @@
             },
             "location_description": {
               "label": "Location description",
-              "default": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>"
+              "default": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>"
             },
             "store_timing": {
               "label": "Store timing",
