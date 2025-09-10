@@ -37,12 +37,14 @@ START: Quick order list CSS
     display: flex;
     align-items: center;
     column-gap: 11px;
-    color: #000000;
     font-family: var(--font-family-heading);
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase;
     line-height: 1;
+  }
+  .quick_order_list_sidebar_item .quick_order_list_button .quick-order-list-btn {
+    color: var(--color-black);
   }
   
   .quick_order_list_sidebar_item .quick_order_list_button {
@@ -56,9 +58,11 @@ START: Quick order list CSS
     justify-content: center;
     width: 24px;
     height: 24px;
-    background: #000000;
     border-radius: 50%;
     overflow: hidden;
+  }
+  .quick_order_list_sidebar_item .quick_order_list_button .quick-order-list-btn span {
+    background: var(--color-black);
   }
   
   .quick_order_list_sidebar_item .quick_order_list_button .quick-order-list-btn span svg {
@@ -70,7 +74,7 @@ START: Quick order list CSS
   }
   
   .quick_order_list_sidebar_item .quick_order_list_button .quick-order-list-btn span svg path {
-    fill: #ffffff;
+    fill: var(--color-white);
   }
 
   .quick_order_list_top_header .quick_order_list_top_text h5 {
@@ -103,21 +107,27 @@ START: Quick order list CSS
     flex-wrap: wrap;
     align-items: center;
     column-gap: 12px;
-    color: #808080;
     letter-spacing: -0.01em;
+  }
+    .variant-item__discounted-prices .quick_order_list_price {
+    color: var(--color-gray);
   }
 
   .quick-order-list-total__price .totals__subtotal-value {
-    color: black;
     font-weight: 700;
     font-size: 20px;
     letter-spacing: -0.01em;
+  }
+  .quick-order-list-total__price .totals__subtotal-value {
+    color: var(--color-black);
   }
   
 .quick-order-list-total__info .tax-note {
     margin: 0 0 5rem;
     font-size: 16px;
-    color: #808080;
+}
+.quick-order-list-total__info .tax-note {
+    color: var(--color-gray);
 }
 
 .quick-order-list-remove-btn.button--tertiary {
@@ -136,22 +146,28 @@ START: Quick order list CSS
 .variant-item__discounted-prices .discount {
     display: inline-block;
     position: relative;
-    color: #FF3E3E;
     z-index: 1;
     font-size: 18px;
+}
+.variant-item__discounted-prices .discount {
+    color: var(--color-red);
 }
   
 .variant-item__price .variant-item__discounted-prices .variant-item__old-price {
   font-size: 18px;
-  color: #808080;
+}
+.variant-item__price .variant-item__discounted-prices .variant-item__old-price {
+  color: var(--color-gray);
 }
 
 .quick_order_list_top_header .quick_order_list_top_text .discount {
     display: inline-block;
     position: relative;
-    color: #808080 ;
     z-index: 1;
     margin: 0 5px;
+}
+.quick_order_list_top_header .quick_order_list_top_text .discount {
+    color: var(--color-gray);
 }
 
 .variant-item__price .price, .variant-item__totals .price {
@@ -166,24 +182,28 @@ START: Quick order list CSS
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-    background: #808080;
+}
+  .quick_order_list_top_header .quick_order_list_top_text .discount::before {
+    background: var(--color-gray);
 }
 
 .quick_order_list_top_header .quick_order_list_price {
-  color: #FF3E3E;
+  color: var(--color-red);
 }
 
 .quick-order-list-total__column  .quick-order-list-buttons a {
     position: relative;
-    color: #000000;
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase;
-    border: 1px solid #000000;
+    border: 1px solid var(--color-black);
     border-radius: 10px;
     padding: 15px 24px;
     overflow: hidden;
     line-height: 1;
+}
+.quick-order-list-total__column  .quick-order-list-buttons a {
+    color: var(--color-black);
 }
 .quick-order-list-total__column  .quick-order-list-buttons .cart_anim>.anim_text {
   display: flex;
@@ -196,14 +216,14 @@ START: Quick order list CSS
   white-space: nowrap;
 }
 .quick-order-list-total__column  .quick-order-list-buttons a:hover .cart_anim .anim_text {
-  text-shadow: 0 23px 0 #000000;
+  text-shadow: 0 23px 0 var(--color-black);
   transform: translateY(-23px);
 }
 
 .quick-order-list-total__column  .quick-order-list-buttons .cart_anim {
   display: block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #000000;
+  text-shadow: 0 23px 0 var(--color-black);
   transition: all ease 0.3s;
 }
 
@@ -214,14 +234,16 @@ START: Quick order list CSS
 
 .quick_order_list_top_header .quick_order_list_top_text .percent {
     display: inline-block;
-    color: #ffffff;
     font-size: 14px;
     font-weight: 700;
-    background: #FF3E3E;
     border-radius: 24px;
     text-transform: uppercase;
     padding: 7px 12px 5px;
     line-height: 1;
+  }
+.quick_order_list_top_header .quick_order_list_top_text .percent {
+    color: var(--color-white);
+    background: var(--color-red);
   }
   .quick-add-modal__toggle.quick-order-list-close-btn {
     border: none;
@@ -250,15 +272,17 @@ START: Quick order list CSS
   }
   
    .quick_order_list_table_box table tr:first-child {
-    border-bottom: 1px solid #DDDDDD;
+    border-bottom: 1px solid var(--color-light-gray);
   }
   
    .quick_order_list_table_box table tr th {
-    color: #808080;
     font-size: 14px;
     text-align: start;
     font-weight: 400;
     text-transform: uppercase;
+  }
+   .quick_order_list_table_box table tr th {
+    color: var(--color-gray);
   }
   
    .quick_order_list_table_box table tr th:nth-child(4),
@@ -285,9 +309,11 @@ START: Quick order list CSS
   
   
 .quick_order_list_size span {
-    color: #000000;
     font-weight: 400;
     font-size: 18px;
+  }
+.quick_order_list_size span {
+    color: var(--color-black);
   }
 
   .variant-item__quantity .cart-quantity .quantity__button {
@@ -303,9 +329,11 @@ START: Quick order list CSS
     right: -3px;
     bottom: -3px;
     left: -3px;
-    background: #F6F6F6;
     border-radius: 10px;
     z-index: -1;
+}
+  .variant-item__quantity .cart-quantity.quantity::before {
+    background: var(--color-light-bg);
 }
 
   .variant-item__quantity .cart-quantity.quantity::after {
@@ -320,15 +348,19 @@ START: Quick order list CSS
     align-items: center;
     justify-content: end;
     column-gap: 8px;
-    color: #FF3E3E;
     width: 242px;
+  }
+   .quick_order_list_table_box table tr td .quick_order_list_price {
+    color: var(--color-red);
   }
   
    .quick_order_list_table_box table tr td .quick_order_list_price .discount {
     position: relative;
-    color: #808080;
     letter-spacing: -0.01em;
     z-index: 1;
+  }
+   .quick_order_list_table_box table tr td .quick_order_list_price .discount {
+    color: var(--color-gray);
   }
   
    .quick_order_list_table_box table tr td .quick_order_list_price .discount::before {
@@ -338,7 +370,9 @@ START: Quick order list CSS
     height: 1px;
     bottom: 12px;
     left: 0;
-    background: #808080;
+}
+   .quick_order_list_table_box table tr td .quick_order_list_price .discount::before {
+    background: var(--color-gray);
   }
   
    .quick_order_list_table_box table tr td .quick_order_list_quantity_box {
@@ -353,8 +387,10 @@ START: Quick order list CSS
     align-items: center;
     column-gap: 24px;
     padding: 10px 30px;
-    background: #F6F6F6;
     border-radius: 10px;
+  }
+   .quick_order_list_table_box table tr td .quick_order_list_quantity_box .quick_order_list_numbers {
+    background: var(--color-light-bg);
   }
   
    .quick_order_list_table_box table tr td .quick_order_list_quantity_box .quick_order_list_numbers span {
@@ -363,9 +399,11 @@ START: Quick order list CSS
   
   .quick-order-list-remove-btn {
     position: relative;
-    color: #808080;
     font-size: 14px;
     z-index: 1;
+  }
+  .quick-order-list-remove-btn {
+    color: var(--color-gray);
   }
   
   .quick-order-list-remove-btn::before {
@@ -377,10 +415,12 @@ START: Quick order list CSS
     right: 0;
     bottom: 0;
     left: 0;
-    background: #808080;
     will-change: transform;
     animation-duration: 0.9s;
     animation-timing-function: ease;
+  }
+  .quick-order-list-remove-btn::before {
+    background: var(--color-gray);
   }
   
   .quick-order-list-remove-btn:hover:before {
@@ -388,9 +428,11 @@ START: Quick order list CSS
   }
   
    .quick_order_list_table_box table tr td .quick_order_list_quantity_box .quick_order_list_sold {
-    color: #808080;
     width: 130px;
     text-align: center;
+  }
+   .quick_order_list_table_box table tr td .quick_order_list_quantity_box .quick_order_list_sold {
+    color: var(--color-gray);
   }
   
    .quick_order_list_table_box table tr td .quick_order_list_pricing {
@@ -431,22 +473,24 @@ START: Quick order list CSS
   
    .quick_order_list_left_button .quick-order-list-add-btn {
     position: relative;
-    color: #000000;
     font-family: var(--sds-ff-heading);
     font-weight: 700;
     font-size: 16px;
     text-transform: uppercase;
-    border: 1px solid #000000;
+    border: 1px solid var(--color-black);
     border-radius: 10px;
     padding: 15px 24px;
     overflow: hidden;
     line-height: 1;
   }
+   .quick_order_list_left_button .quick-order-list-add-btn {
+    color: var(--color-black);
+  }
   
    .quick_order_list_left_button .quick-order-list-add-btn .cart_anim {
     display: block;
     overflow: hidden;
-    text-shadow: 0 23px 0 #000000;
+    text-shadow: 0 23px 0 var(--color-black);
     transition: all ease 0.3s;
   }
   
@@ -460,16 +504,18 @@ START: Quick order list CSS
   }
   
    .quick_order_list_left_button .quick-order-list-add-btn:hover .cart_anim>.anim_text {
-    text-shadow: 0 23px 0 #000000;
+    text-shadow: 0 23px 0 var(--color-black);
     transform: translateY(-23px);
   }
   
    .button--tertiary .quick-order-list-remove-btn {
     position: relative;
-    color: #808080;
     font-size: 13px;
     line-height: 1;
     white-space: nowrap;
+  }
+   .button--tertiary .quick-order-list-remove-btn {
+    color: var(--color-gray);
   }
   
    .button--tertiary .quick-order-list-remove-btn::before {
@@ -481,10 +527,12 @@ START: Quick order list CSS
     right: 0;
     bottom: 0;
     left: 0;
-    background: #808080;
     will-change: transform;
     animation-duration: 0.9s;
     animation-timing-function: ease;
+  }
+   .button--tertiary .quick-order-list-remove-btn::before {
+    background: var(--color-gray);
   }
   
    .button--tertiary .quick-order-list-remove-btn:hover:before {
@@ -496,20 +544,26 @@ START: Quick order list CSS
   }
   
   .quick_order_list_discount_text .quick_order_list_price {
-    color: #000000;
     font-weight: 700;
     font-size: 20px;
     letter-spacing: -0.01em;
   }
+  .quick_order_list_discount_text .quick_order_list_price {
+    color: var(--color-black);
+  }
   
    .quick_order_list_discount_text .quick_order_list_desc {
-    color: #808080;
     font-size: 16px;
+  }
+   .quick_order_list_discount_text .quick_order_list_desc {
+    color: var(--color-gray);
   }
   
    .quick_order_list_discount_text .quick_order_list_desc a {
     position: relative;
-    color: #000000;
+  }
+   .quick_order_list_discount_text .quick_order_list_desc a {
+    color: var(--color-black);
   }
   
    .quick_order_list_discount_text .quick_order_list_desc a::before {
@@ -521,10 +575,12 @@ START: Quick order list CSS
     right: 0;
     bottom: 0;
     left: 0;
-    background: #000000;
     will-change: transform;
     animation-duration: 0.9s;
     animation-timing-function: ease;
+  }
+   .quick_order_list_discount_text .quick_order_list_desc a::before {
+    background: var(--color-black);
   }
   
    .quick_order_list_discount_text .quick_order_list_desc a:hover:before {
@@ -535,8 +591,10 @@ START: Quick order list CSS
     padding-top: 0;
     padding-bottom: 10px;
     font-size: 14px;
-    color: #808080;
     white-space: nowrap;
+  }
+  .quick-order-list-container .quick-order-list__table th {
+    color: var(--color-gray);
   }
 
   @media ( min-width: 767px ) {
@@ -598,14 +656,16 @@ START: Quick order list CSS
 
     .quick_order_list_top_header .quick_order_list_top_text .percent {
       display: inline-block;
-      color: #ffffff;
       font-size: 14px;
       font-weight: 700;
-      background: #FF3E3E;
       border-radius: 24px;
       text-transform: uppercase;
       padding: 7px 12px 5px;
       line-height: 1;
+    }
+    .quick_order_list_top_header .quick_order_list_top_text .percent {
+      color: var(--color-white);
+      background: var(--color-red);
     }
 
     .button--tertiary .quick-order-list-remove-button {
@@ -671,12 +731,16 @@ START: Quick order list CSS
   /* !END: Quick order list CSS */
 
   .card-information .quick_order_list_top_header .quick_order_list_price {
-    color: #ff0000;
+    letter-spacing: 0.01em;
+  }
+  .card-information .quick_order_list_top_header .quick_order_list_price {
+    color: var(--color-red);
+  }
+  .card-information .quick_order_list_top_header .discount .price-item {
     letter-spacing: 0.01em;
   }
   .card-information .quick_order_list_top_header .discount .price-item {
-    color: #808080;
-    letter-spacing: 0.01em;
+    color: var(--color-gray);
   }
   .card__content .h5 {
     font-size: 32px;
@@ -699,7 +763,7 @@ START: Quick order list CSS
   height: 20px;
   border-radius: 50%;
   margin-right: 6px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-light-gray);
   box-shadow: 0 0 2px rgba(0,0,0,0.2);
 }
 
@@ -716,7 +780,9 @@ START: Quick order list CSS
   justify-content: center;
   width: 44px;
   height: 44px;
-  background: #ffffff;
+}
+.related-product-item .flickity-prev-next-button.previous {
+  background: var(--color-white);
 }
 
 .related-product-item .flickity-prev-next-button.previous {
@@ -810,11 +876,11 @@ START: Quick order list CSS
 }
 
 .related-product-item .flickity-prev-next-button.previous:hover {
-  background-color: #000000;
+  background-color: var(--color-black);
 }
 
 .related-product-item .flickity-prev-next-button.previous:hover svg path {
-  fill: #ffffff;
+  fill: var(--color-white);
 }
 
 .related-product-item .flickity-button:disabled {
@@ -830,21 +896,21 @@ START: Quick order list CSS
 }
 
 .related-product-item .flickity-prev-next-button.previous svg path {
-  fill: #000000;   
+  fill: var(--color-black);   
 }
 
 .related-product-item .flickity-prev-next-button.next:hover {
-  background-color: #000000;
+  background-color: var(--color-black);
 }
 
 .related-product-item .flickity-prev-next-button.next svg path {
-  fill: #000000;
+  fill: var(--color-black);
 }
 
 .related-product-item .flickity-prev-next-button.next:hover svg path {
-  fill: #ffffff;
+  fill: var(--color-white);
 }
 
 .related-product-item .flickity-prev-next-button.next:hover svg path {
-  fill: #ffffff;
+  fill: var(--color-white);
 }

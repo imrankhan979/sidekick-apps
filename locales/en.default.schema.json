@@ -478,6 +478,7 @@
       },
       "padding": {
         "section_padding_heading": "Section padding",
+        "inner_padding": "Section inner padding",
         "padding_top": "Top padding",
         "padding_bottom": "Bottom padding"
       },
@@ -3728,7 +3729,16 @@
       "name": "Slideshow",
       "settings": {
         "corner_rounding": {
-          "label": "Enable top corner rounding"
+           "label": "Enable top corner rounding",
+        },
+        "autoplay": {
+          "label": "Autoplay slideshow"
+        },
+        "show_navigation_arrows": {
+          "label": "Show navigation arrows"
+        },
+        "show_pagination_dots": {
+          "label": "Show pagination dots"
         }
       },
       "blocks": {

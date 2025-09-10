@@ -49,9 +49,9 @@
     border-radius: 0;
     transform: translateY(0);
     opacity: 0;
-    z-index: 1;
+    z-index: 2;
     transition: .3s;
-    display: none;
+    background-color: transparent;
   }
   .slider-section .flickity-prev-next-button.next {
     right: 0;
@@ -69,7 +69,6 @@
     display: none;
   }
   
-
   /* navigation end */
   
   .slider_item {

@@ -615,8 +615,10 @@
     line-height: 24px;
     vertical-align: middle;
     text-transform: uppercase;
-    color: #808080;
     margin-bottom: 5px;
+  }
+  .card .vendor-name{
+    color: var(--color-gray);
   }
 .card variant-selects fieldset{
   border: 0;
