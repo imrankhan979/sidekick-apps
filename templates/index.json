@@ -169,7 +169,7 @@
         "columns_desktop": 4,
         "ratio": "auto",
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 120
       }
     },
     "image_with_text_jN7gcC": {
@@ -245,7 +245,7 @@
         "color_scheme": "",
         "section_heading": "Collection tab",
         "ratio": "auto",
-        "padding_top": 60,
+        "padding_top": 116,
         "padding_bottom": 60
       }
     },
@@ -361,78 +361,78 @@
         "padding_bottom": 60
       }
     },
-    "testimonial_RLAdxK": {
+    "testimonial_cxJyqD": {
       "type": "testimonial",
       "blocks": {
-        "testimonial_dt4P9Q": {
+        "testimonial_CVCqpH": {
           "type": "testimonial",
           "settings": {
-            "client_review_title": "Elevated Streetwear",
-            "client_review_text": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>",
-            "client_name": "Anya petrova",
-            "client_location": "Paris, France",
+            "client_review_title": "Testimonials title",
+            "client_review_text": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>",
+            "client_name": "Author name",
+            "client_location": "Location",
             "show_product": true,
             "testimonial_product": ""
           }
         },
-        "testimonial_XgJdfj": {
+        "testimonial_4JNWcQ": {
           "type": "testimonial",
           "settings": {
-            "client_review_title": "Elevated Streetwear",
-            "client_review_text": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>",
-            "client_name": "Anya petrova",
-            "client_location": "Paris, France",
+            "client_review_title": "Testimonials title",
+            "client_review_text": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>",
+            "client_name": "Author name",
+            "client_location": "Location",
             "show_product": true,
             "testimonial_product": ""
           }
         },
-        "testimonial_DenY4r": {
+        "testimonial_PhRkMC": {
           "type": "testimonial",
           "settings": {
-            "client_review_title": "Elevated Streetwear",
-            "client_review_text": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>",
-            "client_name": "Anya petrova",
-            "client_location": "Paris, France",
+            "client_review_title": "Testimonials title",
+            "client_review_text": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>",
+            "client_name": "Author name",
+            "client_location": "Location",
             "show_product": true,
             "testimonial_product": ""
           }
         }
       },
       "block_order": [
-        "testimonial_dt4P9Q",
-        "testimonial_XgJdfj",
-        "testimonial_DenY4r"
+        "testimonial_CVCqpH",
+        "testimonial_4JNWcQ",
+        "testimonial_PhRkMC"
       ],
-      "name": "Testimonials",
+      "name": "t:sections.testimonial.presets.name",
       "settings": {
         "color_scheme": "",
-        "testimonial_heading": "Customer reviews",
+        "testimonial_heading": "Testimonials slider",
         "columns_desktop": 2,
-        "padding_top": 60,
+        "padding_top": 56,
         "padding_bottom": 120
       }
     },
-    "video_section_4VCawk": {
+    "video_section_DXHJA6": {
       "type": "video-section",
       "blocks": {
-        "title_content_Fj3mn6": {
+        "title_content_rAp6tr": {
           "type": "title_content",
           "settings": {
-            "main_heading": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
+            "main_heading": "Video with text"
           }
         },
-        "subtile_content_pQ8FAi": {
+        "subtile_content_jqad9M": {
           "type": "subtile_content",
           "settings": {
-            "sub_heading": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+            "sub_heading": "<p>Use video to showcase product features or to create a unique atmosphere on your store.</p>"
           }
         }
       },
       "block_order": [
-        "title_content_Fj3mn6",
-        "subtile_content_pQ8FAi"
+        "title_content_rAp6tr",
+        "subtile_content_jqad9M"
       ],
-      "name": "Video",
+      "name": "t:sections.video.presets.name",
       "settings": {
         "section_color_scheme": "",
         "video_type": "upload",
@@ -449,12 +449,12 @@
       "name": "Product bundle",
       "settings": {
         "color_scheme": "scheme-1",
-        "heading_text": "BUILD YOUR BUNDLE",
+        "heading_text": "Build your Bundle",
         "collection": "",
         "ratio": "auto",
-        "bundle_cart_heading": "BUNDLE CART",
+        "bundle_cart_heading": "Your bundle",
         "bundle_cart_subheading": "Add at least 3 items to get 30% OFF",
-        "padding_top": 60,
+        "padding_top": 116,
         "padding_bottom": 120
       }
     },
@@ -480,36 +480,36 @@
     "scrolling_text_aNXVL6": {
       "type": "scrolling-text",
       "blocks": {
-        "marquee_item_RqgJ6w": {
+        "marquee_item_Y4dfBa": {
           "type": "marquee_item",
           "settings": {
-            "title": "Worldwide Delivery"
+            "title": "Welcome to store"
           }
         },
-        "marquee_item_mYTUW9": {
+        "marquee_item_pg4ppe": {
           "type": "marquee_item",
           "settings": {
-            "title": "Flexible Payment"
+            "title": "Welcome to store"
           }
         },
-        "marquee_item_9bqxBf": {
+        "marquee_item_YfFpz4": {
           "type": "marquee_item",
           "settings": {
-            "title": "30-Day Free Return"
+            "title": "Welcome to store"
           }
         },
-        "marquee_item_XCEnKx": {
+        "marquee_item_PaQHBR": {
           "type": "marquee_item",
           "settings": {
-            "title": "Quick Support 24/7"
+            "title": "Welcome to store"
           }
         }
       },
       "block_order": [
-        "marquee_item_RqgJ6w",
-        "marquee_item_mYTUW9",
-        "marquee_item_9bqxBf",
-        "marquee_item_XCEnKx"
+        "marquee_item_Y4dfBa",
+        "marquee_item_pg4ppe",
+        "marquee_item_YfFpz4",
+        "marquee_item_PaQHBR"
       ],
       "name": "Scrolling text",
       "settings": {
@@ -517,8 +517,8 @@
         "speed": 100,
         "direction": "right",
         "pause_on_hover": true,
-        "padding_top": 60,
-        "padding_bottom": 60
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "gallery_section_GYDCNF": {
@@ -580,7 +580,7 @@
         "button_link": "",
         "overlay_opacity": 70,
         "padding_top": 120,
-        "padding_bottom": 200
+        "padding_bottom": 120
       }
     }
   },
@@ -592,8 +592,8 @@
     "collection_tab_gT463q",
     "bulk_hotspot_JjfnHW",
     "colleciton_carousel_KzaLdn",
-    "testimonial_RLAdxK",
-    "video_section_4VCawk",
+    "testimonial_cxJyqD",
+    "video_section_DXHJA6",
     "product_bundle_KaQ8BR",
     "blog_section_UQt9FA",
     "scrolling_text_aNXVL6",
