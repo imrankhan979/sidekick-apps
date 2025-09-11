@@ -57,6 +57,7 @@
 
 .blog_main_header {
     color: rgba(var(--color-foreground));
+    margin-bottom: 10px;
 }
 
 .blog_main_header .title {

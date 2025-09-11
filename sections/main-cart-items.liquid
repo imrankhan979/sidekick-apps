@@ -88,7 +88,7 @@
       </div>
     {% endif %}
 
-    <div class="cart-page-wrapper">
+    <div class="cart-page-wrapper page-width">
       <div class="gradient cart-page-wrapper-inner">
         <div class="cart__warnings">
           {% comment %}
@@ -533,9 +533,9 @@
             id="cart-sub-total"
           >
             <div class="isolate isolate">
-              {%- if settings.show_cart_note -%}
+              {%- if section.settings.show_cart_note -%}
                 <cart-note class="cart__note field">
-                  <div class="accordion-item show">
+                  <div class="accordion-item">
                     <div for="Cart-note" class="accordion-title">{{ 'sections.cart.note' | t }}</div>
                     <div class="accordion-content ">
                       <textarea
@@ -723,6 +723,12 @@
       "type": "checkbox",
       "id": "enable_calculate",
       "label": "t:sections.cart-page.settings.enable-shipping-estimator.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "label": "t:sections.cart-page.settings.enable-order-note.label",
       "default": true
     },
     {
