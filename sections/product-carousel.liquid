@@ -94,12 +94,7 @@
                     class="community-video {% unless forloop.first %}hover-play{% endunless %}"
                   ></video>
                 {%- elsif block.settings.product_image %}
-                  {{
-                    block.settings.product_image
-                    | image_url: width: 1500
-                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
-                  }}
-
+                  {% render 'the-img', image: block.settings.product_image %}
                 {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
                   {{
                     block.settings.product_select.featured_image

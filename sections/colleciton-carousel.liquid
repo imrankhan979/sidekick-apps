@@ -37,11 +37,7 @@
                   {% endif %}
                 >
                   {%- if block.settings.collection_image != blank -%}
-                    {{
-                      block.settings.collection_image
-                      | image_url: width: 1500
-                      | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-                    }}
+                    {% render 'the-img', image: block.settings.collection_image %}
                   {%- else -%}
                     {{
                       block.settings.collection_select.image

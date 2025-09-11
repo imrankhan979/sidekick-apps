@@ -116,7 +116,7 @@
       </div>
       {%- if section.settings.bg_image != blank -%}
         <div class="bg_images">
-          {{ section.settings.bg_image | image_url: width: 1500 | image_tag: widths: '165, 360, 535, 750, 1070, 1500' }}
+          {% render 'the-img', image: section.settings.bg_image %}
         </div>
       {%- endif -%}
     </div>
