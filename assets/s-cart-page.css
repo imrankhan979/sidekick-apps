@@ -309,6 +309,10 @@ margin-top: 48px;
 	min-height: 177px;
 }
 
+.checkout-box .cart__note .field__input:focus {
+	box-shadow: none;
+}
+
 .cart__note label {
 	font-size: 16px;
 	font-family: var(--sds-fs-body);

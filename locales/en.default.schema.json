@@ -2303,6 +2303,9 @@
         },
         "enable-shipping-estimator": {
           "label": "Enable shipping estimator"
+        },
+        "enable-order-note": {
+          "label": "Enable order note"
         }
       }
     },
