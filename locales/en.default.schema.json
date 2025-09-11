@@ -780,7 +780,8 @@
               "label": "Collection"
             },
             "collection_img": {
-              "label": "Image"
+              "label": "Collection image",
+              "info": "Optional. The selected image will be displayed instead of the collection's image."
             }
           }
         }
@@ -3780,7 +3781,7 @@
               "label": "Content width"
             },
             "title_text": {
-              "label": "Title",
+              "label": "Heading",
               "default": "Browse our latest products"
             },
             "cta_text": {
