@@ -135,7 +135,7 @@
 }
 @media (max-width: 767px) {
     .gallery_button {
-      opacity: 0;
+      opacity: 1;
       height: 0;
     }
 }
@@ -288,7 +288,7 @@
   }
 
   .gallery_button {
-    margin-top: 25px;
+    margin-top: 44px;
   }
 
   .gallery_button .gallery-btn {

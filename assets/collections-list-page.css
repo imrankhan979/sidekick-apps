@@ -21,7 +21,22 @@
  .shop_collection_item:hover .shop_collection_images .collection_images img {
     transform: scale(1);
 }
-
+.shop_collection_item:hover .title {
+    background-size: 100% 100%;
+}
+.shop_collection_item .title {
+    width: 100%;
+    background-image: linear-gradient(transparent calc(100% - 2px),#ffffff 1px);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    transition: background-size .4s;
+    font-family: var(--font-family-heading);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -.01em;
+    text-align: center;
+}
 .shop_collection_item .shop_collection_content {
     display: flex;
     align-items: center;
@@ -82,20 +97,6 @@
     color: #ffffff;
     text-transform: uppercase;
     z-index: 1;
-}
-
-.shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title::before {
-    position: absolute;
-    content: "";
-    bottom: -2px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #ffffff;
-    width: 100%;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
 }
 
 .shop_collection_item .shop_collection_content .shop_collection_text .shop_collection_subTitle {

@@ -238,7 +238,7 @@
                   {%- endif %}
                   {{ 'blogs.article.moderated_captcha' | t }}
                   <a href="https://hcaptcha.com/privacy">{{ 'blogs.article.privacy_policy' | t }}</a>
-                  {{ 'blogs.article.and' | t }}
+                  {{ 'blogs.article.and' | t }} <a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a>
                   <div
                     class="h-captcha"
                     data-sitekey="{{ settings.hcaptcha_site_key }}"
@@ -247,8 +247,6 @@
                     data-type="image"
                   ></div>
                 </div>
-                <a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a>
-                {{ 'blogs.article.apply' | t }}
               </div>
               {% form 'new_comment', article %}
                 <!-- Success Message -->
@@ -294,6 +292,7 @@
                       id="CommentForm-body"
                       name="comment[body]"
                       placeholder="{{ 'blogs.article.message_placeholder' | t }}"
+                      required
                     ></textarea>
                   </div>
                   <div class="form-info w-full">
