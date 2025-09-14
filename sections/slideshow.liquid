@@ -18,15 +18,16 @@
 <section class="banner-slider slider-section color-{{ section.settings.section_color_scheme }}  {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="slider_wrapper">
     <items-carousel>
-      <div class="carousel items-carousel-selector" data-flickity='{"prevNextButtons":{% if section.settings.navigation %}true{% else %}false{% endif %}, "pageDots":{% if section.settings.dots %}true{% else %}false{% endif %}, "autoPlay":{% if section.settings.autoplay %}true{% else %}false{% endif %}}'>
+      <div
+        class="carousel items-carousel-selector"
+        data-flickity='{"prevNextButtons":{% if section.settings.navigation %}true{% else %}false{% endif %}, "pageDots":{% if section.settings.dots %}true{% else %}false{% endif %}, "autoPlay":{% if section.settings.autoplay %}true{% else %}false{% endif %}}'
+      >
         {% for block in section.blocks %}
           <div class="section-{{ block.id }}-padding slider_item" {{ block.shopify_attributes }}>
             {% comment %} {% if block.settings.image != blank %}  {% endcomment %}
             <div class="slider-images" style="width: calc(100% - {{ block.settings.content_width }}%);">
               {% if block.settings.image != blank %}
-                <img src="{{ block.settings.image | img_url: 'master' }}" width="" height="" alt="Slide Image">
-              {% else %}
-
+                {% render 'the-img', image: block.settings.image %}
               {% endif %}
             </div>
             {% comment %} {% endif %} {% endcomment %}
