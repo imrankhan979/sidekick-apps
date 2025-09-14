@@ -17,13 +17,12 @@
         "newsletter_twM9K3": {
           "type": "newsletter",
           "settings": {
-            "newsletter_heading": "GET 15% OFF ON YOUR FIRST ORDER"
+            "newsletter_heading": "Subscribe now and receive a discount on your first order"
           }
         },
         "logo_xbKkck": {
           "type": "logo",
           "settings": {
-            "logo": "shopify://shop_images/dapper_2ad1c71a-605d-4d74-8257-6e094be4a08a.png",
             "logo_width": 100
           }
         },
@@ -50,6 +49,8 @@
       ],
       "settings": {
         "color_scheme": "scheme-1",
+        "show_social": false,
+        "enable_follow_on_shop": true,
         "show_copyright": true,
         "additional_copyright_text": "ALL RIGHTS RESERVED",
         "copyright_bottom_text": "<p>This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels</p>",
