@@ -3571,7 +3571,7 @@
           "name": "Item",
           "settings": {
             "tab_image": {
-              "label": "Tab image"
+              "label": "Image"
             },
             "tab_button": {
               "label": "Button text",
@@ -3617,10 +3617,10 @@
           "name": "Item",
           "settings": {
             "material_image": {
-              "label": "Icon"
+              "label": "Image"
             },
             "material_heading": {
-              "label": "Text",
+              "label": "Heading",
               "default": "Example title"
             }
           }
