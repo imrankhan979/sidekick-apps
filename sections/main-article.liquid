@@ -168,12 +168,7 @@
           <div class="blog_details_author  {% if blog.comments_enabled? %}comments-enabled{% else %} comments-disable{% endif %}">
             {% if section.settings.author_image != blank %}
               <div class="blog_thumb_images">
-                <img
-                  src="{{ section.settings.author_image | image_url: width: 533 }}"
-                  loading="lazy"
-                  width="{{ section.settings.author_image.width }}"
-                  height="{{ section.settings.author_image.height }}"
-                >
+                {% render 'the-img', image: section.settings.author_image %}
               </div>
             {% endif %}
             <div class="blog_author_text">
@@ -238,7 +233,8 @@
                   {%- endif %}
                   {{ 'blogs.article.moderated_captcha' | t }}
                   <a href="https://hcaptcha.com/privacy">{{ 'blogs.article.privacy_policy' | t }}</a>
-                  {{ 'blogs.article.and' | t }} <a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a>
+                  {{ 'blogs.article.and' | t }}
+                  <a href="https://hcaptcha.com/terms">{{ 'blogs.article.terms_of_service' | t }}</a>
                   <div
                     class="h-captcha"
                     data-sitekey="{{ settings.hcaptcha_site_key }}"
