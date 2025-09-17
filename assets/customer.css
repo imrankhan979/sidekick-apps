@@ -52,16 +52,6 @@
   color: #808080;
 }
 
-.contact_form_box_two h1 {
-  font-size: 24px;
-  color: #000000;
-  margin-top: 0px;
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  line-height: 30px;
-}
-
 .contact_form_box_two form .submit-btn {
   position: relative;
   color: #ffffff;
@@ -724,7 +714,6 @@ a {
 
 .account h1+a {
   display: inline-flex;
-  align-items: center;
 }
 
 .account a .svg-wrapper {

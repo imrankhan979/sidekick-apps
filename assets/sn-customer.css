@@ -53,9 +53,11 @@
 }
 
 .contact_form_box_two h1 {
+    color: #000;
     font-size: 24px;
-    color: #000000;
-    margin-top: 0px;
+    font-weight: 700;
+    font-family: var(--font-family-heading);
+    margin-top: 0;
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 16px;
@@ -66,7 +68,7 @@
     position: relative;
     color: #ffffff;
     background-color: #000000;
-    font-family: var(--sds-ff-heading);
+    font-family: var(--font-family-heading);
     font-weight: 700;
     width: 100%;
     font-size: 18px;
@@ -314,6 +316,49 @@ a {
     font-family: var(--sds-fs-body);
     color: #000000;
 }
+
+.account .customer__title {
+    margin-bottom: 30px;
+}
+
+.account .order-history {
+    margin-top: 30px;
+}
+
+.customer.addresses {
+    text-align: center;
+}
+
+.addresses .address__title {
+    margin-bottom: 30px;
+}
+
+.addresses .address-btn {
+    border-bottom: 3px solid #000000;
+    text-decoration: none;
+}
+
+.account .address-btn {
+    border-bottom: 3px solid #000000;
+    text-decoration: none;
+}
+
+.update-btn,
+.addresses .add-btn,
+.addresses .edit-btn,
+.addresses .delete-btn {
+    position: relative;
+    color: #ffffff;
+    background-color: #000000;
+    font-family: var(--sds-ff-heading);
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 19px 15px;
+    line-height: 1;
+}
+
 
 @media (max-width: 575px) {
     .contact_form_box_two {
