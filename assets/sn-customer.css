@@ -225,18 +225,6 @@ a {
     display: block;
 }
 
-.field__label,
-.customer .field label {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
-    left: 0;
-    color: #000000;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-}
-
 .contact_form_box_two form .field input[type="email"],
 .contact_form_box_two form .field input[type="password"] {
     width: 100%;
@@ -326,7 +314,9 @@ a {
 }
 
 .customer.addresses {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .addresses .address__title {
@@ -343,7 +333,7 @@ a {
     text-decoration: none;
 }
 
-.update-btn,
+.addresses form .update-btn,
 .addresses .add-btn,
 .addresses .edit-btn,
 .addresses .delete-btn {
@@ -359,10 +349,80 @@ a {
     line-height: 1;
 }
 
+.addresses form button[type] {
+    color: #ffffff;
+    background-color: #000000;
+}
+
+.addresses form {
+    max-width: 500px;
+    padding: 0px 15px;
+}
+
+.field input[type=tel],
+.field input[type=text] {
+    width: 100%;
+    padding: 20px 24px;
+    font-size: 16px;
+    background: transparent;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-family: var(--sds-fs-body);
+    color: #000;
+}
+
+.select__select,
+.customer select {
+    width: 100%;
+    padding: 20px 24px;
+    font-size: 16px;
+    background: transparent;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-family: var(--sds-fs-body);
+    color: #000;
+}
+
+.select__select:focus-visible,
+.customer select:focus-visible {
+    border-radius: 10px
+}
+
+.edit-address .field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field__input:focus,
+.field__input:not(:placeholder-shown),
+.field__input:-webkit-autofill,
+.customer .field input:focus,
+.customer .field input:not(:placeholder-shown),
+.customer .field input:-webkit-autofill {
+    padding: 20px 24px;
+    border-radius: 10px;
+}
+
+.edit-address form .select svg,
+.add-address form .select svg {
+    position: absolute;
+    right: 15px;
+    top: -10px;
+    font-size: 15px;
+    color: rgb(var(--color-foreground));
+}
+
+.edit-address-heading {
+    margin-top: 30px;
+}
 
 @media (max-width: 575px) {
     .contact_form_box_two {
         max-width: 100%;
         padding: 30px 20px;
+    }
+
+    .addresses h2 {
+        padding-left: 15px;
     }
 }

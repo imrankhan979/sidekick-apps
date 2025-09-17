@@ -244,17 +244,6 @@ a {
   margin-top: 25px;
 }
 
-.contact_form_box_two form .field input[type=text] {
-  width: 100%;
-  padding: 20px 24px;
-  font-size: 16px;
-  background: transparent;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  font-family: var(--sds-fs-body);
-  color: gray;
-}
-
 .customer button:after {
   content: none;
 }
