@@ -71,14 +71,14 @@
                   -%}
                     <ul>
                       {%- if section.settings.show_author == true and article.author -%}
-                        <li>{{ article.author | upcase }}</li>
+                        <li>{{ article.author }}</li>
                       {% endif %}
 
                       {%- if section.settings.show_tags == true -%}
                         {% if article.tags.size > 0 %}
                           {% for tag in article.tags %}
                             <li>
-                              <span class="blog-tag">{{ tag | upcase }}</span>
+                              <span class="blog-tag">{{ tag }}</span>
                               {%- unless forloop %}, {% endunless %}
                             </li>
                           {% endfor %}
@@ -86,14 +86,14 @@
                       {% endif %}
 
                       {%- if section.settings.show_date == true and article.published_at -%}
-                        <li>{{ article.published_at | date: '%b %d, %Y' | upcase }}</li>
+                        <li>{{ article.published_at | date: '%b %d, %Y' }}</li>
                       {%- endif -%}
                     </ul>
                   {%- endif -%}
                 </div>
                 <h6 class="blog_main_header">
                   <a href="{{ article.url }}"
-                    ><span class="title">{{ article.title | upcase }}</span></a
+                    ><span class="title">{{ article.title }}</span></a
                   >
                 </h6>
               </div>
@@ -168,26 +168,26 @@
                       -%}
                         <ul>
                           {%- if section.settings.show_author == true and article.author -%}
-                            <li>{{ article.author | upcase }}</li>
+                            <li>{{ article.author }}</li>
                           {% endif %}
                           {%- if section.settings.show_tags == true -%}
                             {% if article.tags.size > 0 %}
                               {% for tag in article.tags %}
                                 <li>
-                                  <span class="blog-tag">{{ tag | upcase }}</span>
+                                  <span class="blog-tag">{{ tag }}</span>
                                   {%- unless forloop %}, {% endunless %}
                                 </li>
                               {% endfor %}
                             {% endif %}
                           {% endif %}
                           {%- if section.settings.show_date == true and article.published_at -%}
-                            <li>{{ article.published_at | date: '%b %d, %Y' | upcase }}</li>
+                            <li>{{ article.published_at | date: '%b %d, %Y' }}</li>
                           {%- endif -%}
                         </ul>
                       {%- endif -%}
                     </div>
                     <h3 class="blog_main_header">
-                      <a href="{{ article.url }}">{{ article.title | upcase }}</a>
+                      <a href="{{ article.url }}">{{ article.title }}</a>
                     </h3>
                   </div>
                 </div>

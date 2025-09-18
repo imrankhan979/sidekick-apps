@@ -37,7 +37,6 @@ snazzy-tab .tab-header{
       border-radius: 100px;
       transition: .3s;
       color: rgb(var(--color-button-text));
-      text-transform: uppercase;
     }
   @media (max-width: 991px) {
     snazzy-tab .snazzy-tab-button {

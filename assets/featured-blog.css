@@ -84,7 +84,6 @@ START: Blog CSS
   color: rgba(var(--color-secondary-foreground));
   font-size: 16px;
   font-weight: 700;
-  text-transform: uppercase;
   /* border: 1.35px solid rgba(var(--color-secondary-foreground)); */
   border: 1.35308px solid #000000;
   border-radius: 100px;
@@ -125,7 +124,6 @@ START: Blog CSS
     background-repeat: no-repeat;
     background-size: 0 2px;
     transition: all 0.3s, background-size 0.8s;
-    text-transform: uppercase;
     color: rgba(var(--color-foreground));
   }
   .blog_feature_item .blog_feature_content .blog_feature_title:hover {
@@ -151,7 +149,6 @@ START: Blog CSS
     font-family: var(--sds-ff-heading);
     font-size: 18px;
     font-weight: 700;
-    text-transform: uppercase;
     line-height: 1;
     z-index: 1;
     color: rgba(var(--color-secondary-button));

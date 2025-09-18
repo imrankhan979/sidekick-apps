@@ -16,7 +16,6 @@ START: Our journey CSS
   }
   
   .our-journey-section .heading-area .our_journey_main_title {
-    text-transform: uppercase;
     margin-bottom: 65px;
   }
   
@@ -125,7 +124,6 @@ START: Our journey CSS
 
   
   .our_journey_main_wrapper .our_journey_tab .tab-pane .our_journey_title {
-    text-transform: uppercase;
     margin-bottom: 50px;
     color: #000;
     transform: translateY(23px);

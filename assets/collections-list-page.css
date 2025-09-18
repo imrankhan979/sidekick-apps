@@ -95,7 +95,6 @@
 .shop_collection_item .shop_collection_content .shop_collection_text h2 .shop_collection_title {
     position: relative;
     color: #ffffff;
-    text-transform: uppercase;
     z-index: 1;
 }
 
