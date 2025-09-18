@@ -1824,7 +1824,7 @@
               "label": "Collection"
             },
             "tab_title": {
-              "label": "Tab Title",
+              "label": "Title",
               "info": "Optional. Defaults to collection title.",
               "default": "Collection"
             },
@@ -1929,7 +1929,7 @@
           "name": "Item",
           "settings": {
             "tab_title": {
-              "label": "Tab Title",
+              "label": "Title",
               "default": "Item"
             },
             "content_rich": {
@@ -3401,60 +3401,45 @@
     "video": {
       "name": "Video",
       "settings": {
-        "section_color_scheme": {
-          "label": "Color scheme"
+        "heading": {
+          "label": "Heading",
+          "default": "Video"
         },
-        "video_header": {
-          "content": "Video"
+        "cover_image": {
+          "label": "Cover image"
         },
-        "bg_video": {
-          "label": "Upload video"
+        "video": {
+          "label": "Video"
         },
-        "video_loop": {
-          "label": "Loop video",
-          "info": "Enable to play the video in a continuous loop."
+        "enable_video_looping": {
+          "label": "Play video on loop"
         },
-        "cover_image_header": {
-          "content": "Cover image"
+        "header__1": {
+          "content": "Shopify-hosted video"
         },
-        "bg_image": {
-          "label": "Image",
-          "info": "This image will override the video"
+        "header__2": {
+          "content": "Or embed video from URL"
         },
-        "overlay_header": {
-          "content": "Overlay"
+        "header__3": {
+          "content": "Style"
         },
-        "overlay_opacity": {
-          "label": "Opacity"
+        "paragraph": {
+          "content": "Shows when no Shopify-hosted video is selected."
         },
-        "padding_header": {
-          "content": "Section padding"
+        "video_url": {
+          "label": "URL",
+          "info": "Use a YouTube or Vimeo URL"
         },
-        "padding_top": {
-          "label": "Padding top"
+        "description": {
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video)"
         },
-        "padding_bottom": {
-          "label": "Padding bottom"
-        }
-      },
-      "blocks": {
-        "title_content": {
-          "name": "Title content",
-          "settings": {
-            "main_heading": {
-              "label": "Title",
-              "default": "Video with text"
-            }
-          }
+        "image_padding": {
+          "label": "Add image padding",
+          "info": "Select image padding if you don't want your cover image to be cropped."
         },
-        "subtile_content": {
-          "name": "Sub heading content",
-          "settings": {
-            "sub_heading": {
-              "label": "Sub heading",
-              "default": "<p>Use video to showcase product features or to create a unique atmosphere on your store.</p>"
-            }
-          }
+        "full_width": {
+          "label": "Make section full width"
         }
       },
       "presets": {
@@ -3498,7 +3483,7 @@
       "name": "Image gallery",
       "settings": {
         "tab_button": {
-          "label": "Tab button",
+          "label": "Button label",
           "default": "EXPLORE MORE"
         },
         "button_link": {
@@ -3571,7 +3556,7 @@
           "name": "Item",
           "settings": {
             "tab_image": {
-              "label": "Tab image"
+              "label": "Image"
             },
             "tab_button": {
               "label": "Button text",
@@ -3617,10 +3602,10 @@
           "name": "Item",
           "settings": {
             "material_image": {
-              "label": "Icon"
+              "label": "Image"
             },
             "material_heading": {
-              "label": "Text",
+              "label": "Heading",
               "default": "Example title"
             }
           }

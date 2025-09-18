@@ -1,4 +1,5 @@
 {{ 'customer.css' | asset_url | stylesheet_tag }}
+{{ 'sn-customer.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -56,13 +57,13 @@
               {{ form.errors.messages.form }}
             </small>
           {%- endif -%}
-          <button class="submit-btn space-gap">
+          <button class="submit-btn">
             <span class="submit_anim">
               <span class="anim_text"> {{ 'customer.login_page.submit' | t }}</span>
             </span>
           </button>
 
-          <a href="#login" class="cancle-btn">
+          <a href="#login">
             {{ 'customer.login_page.cancel' | t }}
           </a>
         {%- endform -%}
@@ -188,7 +189,7 @@
       "id": "padding_top",
       "min": 0,
       "max": 200,
-      "step": 5,
+      "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
       "default": 120
@@ -198,7 +199,7 @@
       "id": "padding_bottom",
       "min": 0,
       "max": 200,
-      "step": 5,
+      "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 120

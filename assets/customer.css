@@ -52,16 +52,6 @@
   color: #808080;
 }
 
-.contact_form_box_two h1 {
-  font-size: 24px;
-  color: #000000;
-  margin-top: 0px;
-  text-align: center;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  line-height: 30px;
-}
-
 .contact_form_box_two form .submit-btn {
   position: relative;
   color: #ffffff;
@@ -252,17 +242,6 @@ a {
 
 .contact_form_box_two form .submit-btn.space-gap {
   margin-top: 25px;
-}
-
-.contact_form_box_two form .field input[type=text] {
-  width: 100%;
-  padding: 20px 24px;
-  font-size: 16px;
-  background: transparent;
-  border: 1px solid #000000;
-  border-radius: 10px;
-  font-family: var(--sds-fs-body);
-  color: gray;
 }
 
 .customer button:after {
@@ -724,7 +703,6 @@ a {
 
 .account h1+a {
   display: inline-flex;
-  align-items: center;
 }
 
 .account a .svg-wrapper {
