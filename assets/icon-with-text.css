@@ -43,7 +43,6 @@
   
   .material_item .material_item_title {
     font-weight: 700;
-    text-transform: uppercase;
     color: rgb(var(--color-foreground));
   }
   .icon-with-text .flickity-page-dots li{

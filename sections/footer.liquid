@@ -46,7 +46,7 @@
                 <div class="footer-newsletter" {{ block.shopify_attributes }}>
                   <div class="newsletter">
                     {%- if block.settings.newsletter_heading != blank -%}
-                      <h6 class="newsletter-heading uppercase">{{ block.settings.newsletter_heading }}</h6>
+                      <h6 class="newsletter-heading">{{ block.settings.newsletter_heading }}</h6>
                     {%- endif -%}
                     {%- form 'customer', id: 'ContactFooter', class: 'footer-newsletter newsletter-form' -%}
                       <input type="hidden" name="contact[tags]" value="newsletter">
@@ -143,7 +143,7 @@
                       {% assign menu_title = block.settings.menu.title %}
                       {% assign display_title = block.settings.title | default: menu_title %}
                       <responsive-dropdown-menu>
-                        <h3 class="footer-navigation-links-title uppercase menu-btn">{{ display_title }}</h3>
+                        <h3 class="footer-navigation-links-title menu-btn">{{ display_title }}</h3>
                         <ul class="footer-navigation-links-list menu-list">
                           {% for link in block.settings.menu.links %}
                             <li>
@@ -252,7 +252,7 @@
             <div class="footer-copyright">
               <div class="footer-copyright-inner">
                 {%- if section.settings.show_copyright -%}
-                  <div class="copyright-content uppercase flex wrap">
+                  <div class="copyright-content flex wrap">
                     {{ shop.name | link_to: routes.root_url }} &copy; {{ 'now' | date: '%Y' }}.
                     {% if section.settings.additional_copyright_text != blank %}
                       {{ section.settings.additional_copyright_text -}}
