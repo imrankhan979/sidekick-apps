@@ -333,6 +333,7 @@ a {
     text-decoration: none;
 }
 
+.reset-password form .add-btn,
 .addresses form .update-btn,
 .addresses .add-btn,
 .addresses .edit-btn,
@@ -368,7 +369,7 @@ a {
     border: 1px solid #000000;
     border-radius: 10px;
     font-family: var(--sds-fs-body);
-    color: #000;
+    color: #000000;
 }
 
 .select__select,
@@ -416,10 +417,43 @@ a {
     margin-top: 30px;
 }
 
+.customer.reset-password {
+    text-align: center;
+}
+
+.reset-password .reset-pass-heading {
+    margin-bottom: 30px;
+}
+
+.reset-password form {
+    max-width: 465px;
+    width: 100%;
+    background-color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reset-password form .field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.reset-password form .field input {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 20px 24px;
+}
+
 @media (max-width: 575px) {
     .contact_form_box_two {
         max-width: 100%;
         padding: 30px 20px;
+    }
+
+    .reset-password form {
+        padding: 0 15px;
     }
 
     .addresses h2 {
