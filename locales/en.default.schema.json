@@ -791,11 +791,11 @@
       }
     },
     "contact-form": {
-      "name": "Contact form section",
+      "name": "Contact form",
       "settings": {
         "section_title": {
           "label": "Heading",
-          "default": "Get in Touch"
+          "default": "CONTACT"
         },
         "section_description": {
           "label": "Description",
@@ -808,7 +808,7 @@
           "settings": {
             "contact_title": {
               "label": "Heading",
-              "default": "Contact info"
+              "default": "CONTACT INFO"
             },
             "address_header": "Address",
             "address_title": {
@@ -844,7 +844,7 @@
           "settings": {
             "social_title": {
               "label": "Social title",
-              "default": "Socials"
+              "default": "SOCIAL LINK"
             }
           }
         }
@@ -1382,7 +1382,7 @@
           "settings": {
             "newsletter_heading": {
               "label": "Heading",
-              "default": "Subscribe now and receive a discount on your first order"
+              "default": "SUBSCRIBE NOW AND RECEIVE A DISCOUNT ON YOUR FIRST ORDER"
             }
           }
         },
@@ -1883,7 +1883,7 @@
       "settings": {
         "left_title": {
           "label": "Heading",
-          "default": "Need help?"
+          "default": "NEED HELP?"
         },
         "left_paragraph": {
           "label": "Description",
@@ -1902,7 +1902,7 @@
           "settings": {
             "category_title": {
               "label": "Category title",
-              "default": "Frequently Asked Questions"
+              "default": "FREQUENTLY ASKED QUESTIONS"
             }
           }
         },
@@ -3547,7 +3547,7 @@
       "settings": {
         "section_title": {
           "label": "Heading",
-          "default": "Our journey"
+          "default": "OUR JOURNEY"
         },
         "section_description": {
           "label": "Content",
@@ -3609,7 +3609,7 @@
             },
             "material_heading": {
               "label": "Heading",
-              "default": "Example title"
+              "default": "EXAMPLE TITLE"
             }
           }
         }
@@ -3626,7 +3626,7 @@
         },
         "title": {
           "label": "Heading",
-          "default": "Stores location"
+          "default": "STORES LOCATION"
         },
         "first_item_open": {
           "label": "Open the first accordion item by default"

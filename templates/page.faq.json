@@ -19,57 +19,30 @@
         "padding_bottom": 200
       }
     },
-    "faq_section_UtWia9": {
+    "faq_section_BFRm8q": {
       "type": "faq-section",
       "blocks": {
-        "faq_category_title_g77piT": {
+        "faq_category_title_iDp4e7": {
           "type": "faq_category_title",
           "settings": {
-            "category_title": "Frequently Asked Questions"
+            "category_title": "FREQUENTLY ASKED QUESTIONS"
           }
         },
-        "faq_item_gUdiVq": {
+        "faq_item_UERKe6": {
           "type": "faq_item",
           "settings": {
             "question": "Question title",
             "answer": "<p>Question answer</p>"
           }
         },
-        "faq_item_ddFh3a": {
+        "faq_item_4ehxq6": {
           "type": "faq_item",
           "settings": {
             "question": "Question title",
             "answer": "<p>Question answer</p>"
           }
         },
-        "faq_item_AxU6ML": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Question title",
-            "answer": "<p>Question answer</p>"
-          }
-        },
-        "faq_category_title_rN96xd": {
-          "type": "faq_category_title",
-          "settings": {
-            "category_title": "Order"
-          }
-        },
-        "faq_item_WhGAmW": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Question title",
-            "answer": "<p>Question answer</p>"
-          }
-        },
-        "faq_item_GQ3YMC": {
-          "type": "faq_item",
-          "settings": {
-            "question": "Question title",
-            "answer": "<p>Question answer</p>"
-          }
-        },
-        "faq_item_7wXxzE": {
+        "faq_item_FdPU7e": {
           "type": "faq_item",
           "settings": {
             "question": "Question title",
@@ -78,20 +51,16 @@
         }
       },
       "block_order": [
-        "faq_category_title_g77piT",
-        "faq_item_gUdiVq",
-        "faq_item_ddFh3a",
-        "faq_item_AxU6ML",
-        "faq_category_title_rN96xd",
-        "faq_item_WhGAmW",
-        "faq_item_GQ3YMC",
-        "faq_item_7wXxzE"
+        "faq_category_title_iDp4e7",
+        "faq_item_UERKe6",
+        "faq_item_4ehxq6",
+        "faq_item_FdPU7e"
       ],
-      "name": "FAQ",
+      "name": "t:sections.faq.presets.name",
       "settings": {
         "color_scheme": "",
-        "left_title": "Need help?",
-        "left_paragraph": "<p>Questions about our client services? Don't worry about a thing! We've got you via email or text. </p>",
+        "left_title": "NEED HELP?",
+        "left_paragraph": "<p>Questions about our client services? Don't worry about a thing! We've got you via email or text. Order before 4pm for same day delivery in Palo Alto. Find out more</p>",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -99,6 +68,6 @@
   },
   "order": [
     "bread",
-    "faq_section_UtWia9"
+    "faq_section_BFRm8q"
   ]
 }
