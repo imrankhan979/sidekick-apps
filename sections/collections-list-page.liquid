@@ -1,6 +1,7 @@
 {{ 'collections-list-page.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+    
     .section-{{ section.id }}-padding {
        padding-top: {{ section.settings.padding_top | times: 0.67 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.67 | round: 0 }}px;
@@ -36,7 +37,7 @@
   endif
 -%}
 
-<section class="shop-collection-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
+<section class="the-gplayer-list-page shop-collection-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
   <div class="page-width">
     {% comment %} {%- paginate collections by section.settings.columns_by_page -%} {% endcomment %}
     <div class="shop_collection_wrapper">

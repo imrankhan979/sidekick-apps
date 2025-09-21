@@ -56,10 +56,10 @@
   .slider-section .flickity-prev-next-button.next {
     right: 0;
     left: unset;
-    cursor: url('data:image/svg+xml;utf8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="32" fill="white"/><path d="M30.276 39.6094L37.8853 32L30.276 24.3907L28.3906 26.276L34.1146 32L28.3906 37.724L30.276 39.6094Z" fill="black"/></svg>') 64 64, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="64" height="64" rx="32" fill="white"/><path d="M30.276 39.6094L37.8853 32L30.276 24.3907L28.3906 26.276L34.1146 32L28.3906 37.724L30.276 39.6094Z" fill="currentColor"/></svg>') 64 64, auto;
   }
   .slider-section .flickity-prev-next-button.previous{
-    cursor: url('data:image/svg+xml;utf8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="64" y="64" width="64" height="64" rx="32" transform="rotate(-180 64 64)" fill="white"/><path d="M33.724 24.3907L26.1147 32L33.724 39.6094L35.6094 37.724L29.8854 32L35.6094 26.276L33.724 24.3907Z" fill="black"/></svg>') 64 64, auto;
+    cursor: url('data:image/svg+xml;utf8,<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="64" y="64" width="64" height="64" rx="32" transform="rotate(-180 64 64)" fill="white"/><path d="M33.724 24.3907L26.1147 32L33.724 39.6094L35.6094 37.724L29.8854 32L35.6094 26.276L33.724 24.3907Z" fill="currentColor"/></svg>') 64 64, auto;
   }
   .flickity-button:disabled {
     opacity: .5;
@@ -112,7 +112,7 @@
     z-index: 1;
     max-width: 700px;
   }
-  @media (max-width: 1600px) {
+  @media (max-width: 2000px) {
     .slider_item .slider_item_content .slider_title {
       font-size: 80px;
       line-height: 80px;
@@ -203,7 +203,7 @@
   .slider_button .slider-btn span svg path{
     fill: rgb(var(--color-button));
   }
-  @media only screen and (min-width: 1600px) and (max-width: 1770px) {
+  @media only screen and (min-width: 2000px) and (max-width: 1770px) {
   
     .slider_item .slider_item_content > * + * {
       margin-top: 30px;

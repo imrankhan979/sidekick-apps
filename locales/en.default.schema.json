@@ -1117,6 +1117,9 @@
               "label": "Custom video",
               "info": "Optional video file to show instead of the image."
             },
+            "product_video_bg": {
+              "label": "Background video",
+            },
             "video_loop": {
               "label": "Loop video",
               "info": "If enabled, video will loop continuously."
@@ -2528,7 +2531,7 @@
           "options__3": "Hide"
         },
         "hide_variants": {
-          "label": "Hide variant media"
+          "label": "Hide other variant media after one is selected"
         },
         "enable_video_looping": {
           "label": "Enable video looping"

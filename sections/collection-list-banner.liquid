@@ -1,6 +1,8 @@
-{{ 's-page-breadcrumb.css' | asset_url | stylesheet_tag }}
+
 {{ 'page-header.css' | asset_url | stylesheet_tag }}
+
 {%- style -%}
+
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.45 | round: 0 }}px;
       padding-bottom: {{ section.settings.padding_bottom | times: 0.45 | round: 0 }}px;
@@ -13,9 +15,9 @@
       }
     }
 
-  }
 {%- endstyle -%}
-<section class="breadcrumb-main-area  page-header section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+
+<section class="breadcrumb-main-area  page-header collections-list-page section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     <div class="breadcrumb-content-area">
       {% if section.settings.enable_breadcrumb_navigation == true %}

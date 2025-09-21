@@ -297,11 +297,11 @@
   
   @media (max-width: 1800px) {
     .bulk-hotspot-section .page-width {
-      margin-left: calc((100% - 1600px) / 2);
+      margin-left: calc((100% - 2000px) / 2);
     }
   }
   
-  @media (max-width: 1600px) {
+  @media (max-width: 2000px) {
     .bulk-hotspot-section .page-width {
       margin-left: calc((100% - 1400px) / 2);
     }

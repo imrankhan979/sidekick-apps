@@ -145,45 +145,105 @@
         "settings": {
           "text": "#121212",
           "background": "#FFFFFF",
-          "button": "#121212",
-          "button_label": "#FFFFFF",
-          "secondary_button_label": "#121212"
+          "secondary_background": "#F88E24",
+          "secondary_text": "#000000",
+          "highlight_text": "#ffec3e",
+          "button": "#FFFFFF",
+          "button_label": "#121212",
+          "button_border": "#121212",
+          "button_border_hover": "#121212",
+          "button_hover": "#121212",
+          "button_label_hover": "#FFFFFF",
+          "secondary_button": "#F6F6F6",
+          "secondary_button_hover": "#F6F6F6",
+          "secondary_button_label": "#BBBBBB",
+          "secondary_button_label_hover": "#121212",
+          "secondary_button_border": "#F6F6F6",
+          "secondary_button_border_hover": "#121212"
         }
       },
       "scheme-2": {
         "settings": {
-          "text": "#121212",
-          "background": "#F3F3F3",
-          "button": "#121212",
-          "button_label": "#F3F3F3",
-          "secondary_button_label": "#121212"
+          "text": "#FFFFFF",
+          "background": "#0D6FB1",
+          "secondary_background": "#F88E24",
+          "secondary_text": "#000000",
+          "highlight_text": "#ffec3e",
+          "button": "#FFFFFF",
+          "button_label": "#121212",
+          "button_border": "#FFFFFF",
+          "button_border_hover": "#121212",
+          "button_hover": "#121212",
+          "button_label_hover": "#FFFFFF",
+          "secondary_button": "#0D6FB1",
+          "secondary_button_hover": "#F6F6F6",
+          "secondary_button_label": "#FFFFFF",
+          "secondary_button_label_hover": "#000000",
+          "secondary_button_border": "#FFFFFF",
+          "secondary_button_border_hover": "#FFFFFF"
         }
       },
       "scheme-3": {
         "settings": {
-          "text": "#FFFFFF",
-          "background": "#242833",
+          "text": "#000000",
+          "background": "#FFFFFF",
+          "secondary_background": "#F88E24",
+          "secondary_text": "#FFFFFF",
+          "highlight_text": "#ffec3e",
           "button": "#FFFFFF",
-          "button_label": "#000000",
-          "secondary_button_label": "#FFFFFF"
+          "button_label": "#121212",
+          "button_border": "#121212",
+          "button_border_hover": "#121212",
+          "button_hover": "#121212",
+          "button_label_hover": "#FFFFFF",
+          "secondary_button": "#F6F6F6",
+          "secondary_button_hover": "#F6F6F6",
+          "secondary_button_label": "#BBBBBB",
+          "secondary_button_label_hover": "#121212",
+          "secondary_button_border": "#F6F6F6",
+          "secondary_button_border_hover": "#121212"
         }
       },
       "scheme-4": {
         "settings": {
-          "text": "#FFFFFF",
-          "background": "#121212",
+          "text": "#000000",
+          "background": "#FFFFFF",
+          "secondary_background": "#F88E24",
+          "secondary_text": "#000000",
+          "highlight_text": "#ffec3e",
           "button": "#FFFFFF",
           "button_label": "#121212",
-          "secondary_button_label": "#FFFFFF"
+          "button_border": "#121212",
+          "button_border_hover": "#121212",
+          "button_hover": "#121212",
+          "button_label_hover": "#FFFFFF",
+          "secondary_button": "#F6F6F6",
+          "secondary_button_hover": "#F6F6F6",
+          "secondary_button_label": "#BBBBBB",
+          "secondary_button_label_hover": "#121212",
+          "secondary_button_border": "#F6F6F6",
+          "secondary_button_border_hover": "#121212"
         }
       },
       "scheme-5": {
         "settings": {
           "text": "#FFFFFF",
           "background": "#334FB4",
+          "secondary_background": "#F88E24",
+          "secondary_text": "#000000",
+          "highlight_text": "#ffec3e",
           "button": "#FFFFFF",
-          "button_label": "#334FB4",
-          "secondary_button_label": "#FFFFFF"
+          "button_label": "#121212",
+          "button_border": "#121212",
+          "button_border_hover": "#121212",
+          "button_hover": "#121212",
+          "button_label_hover": "#FFFFFF",
+          "secondary_button": "#F6F6F6",
+          "secondary_button_hover": "#F6F6F6",
+          "secondary_button_label": "#BBBBBB",
+          "secondary_button_label_hover": "#121212",
+          "secondary_button_border": "#F6F6F6",
+          "secondary_button_border_hover": "#121212"
         }
       }
     }

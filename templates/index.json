@@ -412,38 +412,6 @@
         "padding_bottom": 120
       }
     },
-    "video_section_4VCawk": {
-      "type": "video-section",
-      "blocks": {
-        "title_content_Fj3mn6": {
-          "type": "title_content",
-          "settings": {
-            "main_heading": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
-          }
-        },
-        "subtile_content_pQ8FAi": {
-          "type": "subtile_content",
-          "settings": {
-            "sub_heading": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "title_content_Fj3mn6",
-        "subtile_content_pQ8FAi"
-      ],
-      "name": "Video",
-      "settings": {
-        "section_color_scheme": "",
-        "video_type": "upload",
-        "youtube_url": "",
-        "vimeo_url": "",
-        "video_loop": true,
-        "overlay_opacity": 70,
-        "padding_top": 352,
-        "padding_bottom": 352
-      }
-    },
     "product_bundle_KaQ8BR": {
       "type": "product-bundle",
       "name": "Product bundle",
@@ -593,7 +561,6 @@
     "bulk_hotspot_JjfnHW",
     "colleciton_carousel_KzaLdn",
     "testimonial_RLAdxK",
-    "video_section_4VCawk",
     "product_bundle_KaQ8BR",
     "blog_section_UQt9FA",
     "scrolling_text_aNXVL6",

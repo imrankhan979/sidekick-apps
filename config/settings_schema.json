@@ -48,32 +48,37 @@
         "definition": [
           {
             "type": "header",
-            "content": "Text"
+            "content": "Primary"
           },
           {
             "type": "color",
             "id": "text",
-            "label": "Primary"
-          },
-          {
-            "type": "color",
-            "id": "secondary_text",
-            "label": "Secondary"
-          },
-          {
-            "type": "header",
-            "content": "Background"
+            "label": "Text"
           },
           {
             "type": "color",
             "id": "background",
-            "label": "Primary"
+            "label": "Background"
           },
-
+          {
+            "type": "color_background",
+            "id": "background_gradient",
+            "label": "t:settings_schema.colors.settings.background_gradient.label",
+            "info": "t:settings_schema.colors.settings.background_gradient.info"
+          },
+          {
+            "type": "header",
+            "content": "Secondary"
+          },
+          {
+            "type": "color",
+            "id": "secondary_text",
+            "label": "Text"
+          },
           {
             "type": "color",
             "id": "secondary_background",
-            "label": "Secondary"
+            "label": "Background"
           },
           {
             "type": "header",
@@ -105,6 +110,11 @@
           },
           {
             "type": "color",
+            "id": "button_border_hover",
+            "label": "Border hover"
+          },
+          {
+            "type": "color",
             "id": "button_hover",
             "label": "Background hover"
           },
@@ -124,8 +134,18 @@
           },
           {
             "type": "color",
+            "id": "secondary_button_hover",
+            "label": "Background hover"
+          },
+          {
+            "type": "color",
             "id": "secondary_button_label",
             "label": "Label"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label_hover",
+            "label": "Label hover"
           },
           {
             "type": "color",
@@ -134,14 +154,9 @@
           },
           {
             "type": "color",
-            "id": "secondary_button_hover",
-            "label": "Background hover"
+            "id": "secondary_button_border_hover",
+            "label": "Border hover"
           },
-          {
-            "type": "color",
-            "id": "secondary_button_label_hover",
-            "label": "Label hover"
-          }
           // {
           //   "type": "color",
           //   "id": "background",
