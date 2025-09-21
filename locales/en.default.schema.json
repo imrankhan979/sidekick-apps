@@ -478,6 +478,7 @@
       },
       "padding": {
         "section_padding_heading": "Section padding",
+        "inner_padding": "Section inner padding",
         "padding_top": "Top padding",
         "padding_bottom": "Bottom padding"
       },
@@ -779,7 +780,8 @@
               "label": "Collection"
             },
             "collection_img": {
-              "label": "Image"
+              "label": "Collection image",
+              "info": "Optional. The selected image will be displayed instead of the collection's image."
             }
           }
         }
@@ -792,12 +794,12 @@
       "name": "Contact form section",
       "settings": {
         "section_title": {
-          "label": "Section Title",
-          "default": "send us message"
+          "label": "Heading",
+          "default": "Get in Touch"
         },
         "section_description": {
-          "label": "Section description",
-          "default": "<p>If you have any questions, you can take a look at our FAQ. Another questions? Please feel free to reach out to us. Our team is at your disposal to answer it.</p>"
+          "label": "Description",
+          "default": "<p>Our friendly team would love to hear from you.</p>"
         }
       },
       "blocks": {
@@ -805,8 +807,8 @@
           "name": "Contact information",
           "settings": {
             "contact_title": {
-              "label": "Section title",
-              "default": "Contact"
+              "label": "Heading",
+              "default": "Contact info"
             },
             "address_header": "Address",
             "address_title": {
@@ -815,7 +817,7 @@
             },
             "address": {
               "label": "Details",
-              "default": "141 Duane St, New York, NY 10013"
+              "default": "Address: 123 Suspendis matti, Visaosang Building VST District, North American"
             },
             "email_header": "Email",
             "email_title": {
@@ -824,16 +826,16 @@
             },
             "email": {
               "label": "Details",
-              "default": "helpcenter@dapper.com"
+              "default": "support@domain.com"
             },
             "phone_header": "Phone",
             "phone_title": {
               "label": "Title",
-              "default": "Hotline"
+              "default": "Phone"
             },
             "phone": {
               "label": "Details",
-              "default": "+1 914 677 07777"
+              "default": "+881234567890"
             }
           }
         },
@@ -1139,7 +1141,7 @@
         },
         "testimonial_heading": {
           "label": "Heading",
-          "default": "Customer reviews"
+          "default": "Testimonials slider"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -1155,22 +1157,22 @@
             },
             "client_review_title": {
               "label": "Title",
-              "default": "levated streetwear"
+              "default": "Testimonials title"
             },
             "client_review_text": {
               "label": "Text",
-              "default": "<p>I love the way this brand blends urban aesthetics with high-end fashion. Their attention to detail is unmatched.</p>"
+              "default": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
             },
             "client_image": {
               "label": "Avatar"
             },
             "client_name": {
               "label": "Name",
-              "default": "Anya Petrova"
+              "default": "Author name"
             },
             "client_location": {
               "label": "Location",
-              "default": "paris, france"
+              "default": "Location"
             },
             "show_product": {
               "label": "Show product"
@@ -1380,7 +1382,7 @@
           "settings": {
             "newsletter_heading": {
               "label": "Heading",
-              "default": "GET 15% OFF ON YOUR FIRST ORDER"
+              "default": "Subscribe now and receive a discount on your first order"
             }
           }
         },
@@ -1469,7 +1471,7 @@
         },
         "copyright_bottom_text": {
           "label": "Footer disclaimer",
-          "default": "This demo store does not offer goods for purchase. You can purchase similar products on Palm Angels"
+          "default": "This demo store does not offer goods for purchase."
         }
       }
     },
@@ -1577,7 +1579,8 @@
         "enable_customer_avatar": {
           "label": "Show avatar",
           "info": "Customers will only see their avatar when they're signed in with Shop"
-        }
+        },
+        "transparent_background": "Transparent background"
       }
     },
     "image-banner": {
@@ -1824,7 +1827,7 @@
               "label": "Collection"
             },
             "tab_title": {
-              "label": "Tab Title",
+              "label": "Title",
               "info": "Optional. Defaults to collection title.",
               "default": "Collection"
             },
@@ -1879,12 +1882,12 @@
       "name": "FAQ",
       "settings": {
         "left_title": {
-          "label": "Section title",
+          "label": "Heading",
           "default": "Need help?"
         },
         "left_paragraph": {
-          "label": "Section description",
-          "default": "If you have an issue or question that requires immediate assistance, you can <a href=\"#\">contact us</a> to chat with a customer service representative."
+          "label": "Description",
+          "default": "Questions about our client services? Don't worry about a thing! We've got you via email or text. Order before 4pm for same day delivery in Palo Alto. Find out more"
         },
         "padding_top": {
           "label": "Padding top"
@@ -1899,7 +1902,7 @@
           "settings": {
             "category_title": {
               "label": "Category title",
-              "default": "Category title"
+              "default": "Frequently Asked Questions"
             }
           }
         },
@@ -1908,11 +1911,11 @@
           "settings": {
             "question": {
               "label": "Question",
-              "default": "How long does shipping take?"
+              "default": "Question title"
             },
             "answer": {
               "label": "Answer",
-              "default": "Orders are typically processed within 1 to 3 business days. Delivery times vary based on the shipping method selected."
+              "default": "Question answer"
             }
           }
         }
@@ -1929,7 +1932,7 @@
           "name": "Item",
           "settings": {
             "tab_title": {
-              "label": "Tab Title",
+              "label": "Title",
               "default": "Item"
             },
             "content_rich": {
@@ -2239,7 +2242,7 @@
       }
     },
     "main-blog": {
-      "name": "Blog section",
+      "name": "Blog",
       "settings": {
         "color_scheme": {
           "label": "Color scheme"
@@ -2304,6 +2307,9 @@
         },
         "enable-shipping-estimator": {
           "label": "Enable shipping estimator"
+        },
+        "enable-order-note": {
+          "label": "Enable order note"
         }
       }
     },
@@ -3398,60 +3404,45 @@
     "video": {
       "name": "Video",
       "settings": {
-        "section_color_scheme": {
-          "label": "Color scheme"
+        "heading": {
+          "label": "Heading",
+          "default": "Video"
         },
-        "video_header": {
-          "content": "Video"
+        "cover_image": {
+          "label": "Cover image"
         },
-        "bg_video": {
-          "label": "Upload video"
+        "video": {
+          "label": "Video"
         },
-        "video_loop": {
-          "label": "Loop video",
-          "info": "Enable to play the video in a continuous loop."
+        "enable_video_looping": {
+          "label": "Play video on loop"
         },
-        "cover_image_header": {
-          "content": "Cover image"
+        "header__1": {
+          "content": "Shopify-hosted video"
         },
-        "bg_image": {
-          "label": "Image",
-          "info": "This image will override the video"
+        "header__2": {
+          "content": "Or embed video from URL"
         },
-        "overlay_header": {
-          "content": "Overlay"
+        "header__3": {
+          "content": "Style"
         },
-        "overlay_opacity": {
-          "label": "Opacity"
+        "paragraph": {
+          "content": "Shows when no Shopify-hosted video is selected."
         },
-        "padding_header": {
-          "content": "Section padding"
+        "video_url": {
+          "label": "URL",
+          "info": "Use a YouTube or Vimeo URL"
         },
-        "padding_top": {
-          "label": "Padding top"
+        "description": {
+          "label": "Video alt text",
+          "info": "Describe the video for customers using screen readers. [Learn more](https://help.shopify.com/manual/online-store/themes/theme-structure/theme-features#video)"
         },
-        "padding_bottom": {
-          "label": "Padding bottom"
-        }
-      },
-      "blocks": {
-        "title_content": {
-          "name": "Title content",
-          "settings": {
-            "main_heading": {
-              "label": "Title",
-              "default": "Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
-            }
-          }
+        "image_padding": {
+          "label": "Add image padding",
+          "info": "Select image padding if you don't want your cover image to be cropped."
         },
-        "subtile_content": {
-          "name": "Sub heading content",
-          "settings": {
-            "sub_heading": {
-              "label": "Sub heading",
-              "default": "<p>Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
-            }
-          }
+        "full_width": {
+          "label": "Make section full width"
         }
       },
       "presets": {
@@ -3495,7 +3486,7 @@
       "name": "Image gallery",
       "settings": {
         "tab_button": {
-          "label": "Tab button",
+          "label": "Button label",
           "default": "EXPLORE MORE"
         },
         "button_link": {
@@ -3555,11 +3546,12 @@
       "name": "Timeline tabs",
       "settings": {
         "section_title": {
-          "label": "Section title"
+          "label": "Heading",
+          "default": "Our journey"
         },
         "section_description": {
-          "label": "Section description",
-          "default": "<p>We’ve evolved from a small streetwear label to a recognized force in the industry, constantly pushing boundaries and setting new trends.</p>"
+          "label": "Content",
+          "default": "<p>Prefer to try things on? Visit us in store.</p>"
         }
       },
       "blocks": {
@@ -3567,7 +3559,7 @@
           "name": "Item",
           "settings": {
             "tab_image": {
-              "label": "Tab image"
+              "label": "Image"
             },
             "tab_button": {
               "label": "Button text",
@@ -3575,11 +3567,11 @@
             },
             "tab_heading": {
               "label": "Heading",
-              "default": "Title for tab"
+              "default": "Example title"
             },
             "tab_description": {
               "label": "Description",
-              "default": "<p>Content for tab goes here. Add description or details.</p>"
+              "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store..</p>"
             }
           }
         }
@@ -3602,7 +3594,7 @@
         },
         "section_title": {
           "label": "Description",
-          "default": "We combine high-quality materials with innovative design to create pieces that are as functional as they are fashionable."
+          "default": "Short content about your store"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -3613,10 +3605,11 @@
           "name": "Item",
           "settings": {
             "material_image": {
-              "label": "Icon"
+              "label": "Image"
             },
             "material_heading": {
-              "label": "Text"
+              "label": "Heading",
+              "default": "Example title"
             }
           }
         }
@@ -3632,7 +3625,7 @@
           "label": "Map iframe"
         },
         "title": {
-          "label": "Title",
+          "label": "Heading",
           "default": "Stores location"
         },
         "first_item_open": {
@@ -3649,7 +3642,7 @@
             },
             "location_description": {
               "label": "Location description",
-              "default": "<p>141 Duane St, New York, NY 10013 +1 914 677 0555</p>"
+              "default": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>"
             },
             "store_timing": {
               "label": "Store timing",
@@ -3721,6 +3714,14 @@
       "settings": {
         "background_image": {
           "label": "Background image"
+        },
+        "404_content": {
+          "label": "Content",
+          "default": "Click the button below to view home page"
+        },
+        "404_button_label": {
+          "label": "Button label",
+          "default": "Back to home"
         }
       }
     },
@@ -3729,6 +3730,15 @@
       "settings": {
         "corner_rounding": {
           "label": "Enable top corner rounding"
+        },
+        "autoplay": {
+          "label": "Autoplay slideshow"
+        },
+        "show_navigation_arrows": {
+          "label": "Show navigation arrows"
+        },
+        "show_pagination_dots": {
+          "label": "Show pagination dots"
         }
       },
       "blocks": {
@@ -3762,7 +3772,7 @@
               "label": "Content width"
             },
             "title_text": {
-              "label": "Title",
+              "label": "Heading",
               "default": "Browse our latest products"
             },
             "cta_text": {

@@ -2,7 +2,12 @@
     background: #ddd;
 }
 
-
+.breadcrumb-content-area .breadcrumb-title {
+    font-size: 144px;
+    color: #FFEC3E;
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
 /* 
 .anim-item {
     opacity: 1;

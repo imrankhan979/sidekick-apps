@@ -46,7 +46,6 @@
   
   .marquee_item .marquee_title .title {
     color: rgb(var(--color-foreground));
-    text-transform: uppercase;
     letter-spacing: -0.02em;
     line-height: 1;
   }

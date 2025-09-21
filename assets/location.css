@@ -35,7 +35,6 @@ START: Contact maps CSS
   }
   
   .contact_map_wrapper .contact_tabs .faq_title {
-    text-transform: uppercase;
     margin-bottom: 16px;
     color: rgba(var(--color-foreground));
   }
@@ -66,7 +65,6 @@ START: Contact maps CSS
     color: rgba(var(--color-foreground));
     font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
   }
   
   .accordion-item .accordion_content .faq_location {

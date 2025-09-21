@@ -52,7 +52,6 @@
   padding: 11px 16px;
   border-radius: 100px;
   transition: .4s;
-  text-transform: uppercase;
 }
 
 @media (max-width: 991px) {

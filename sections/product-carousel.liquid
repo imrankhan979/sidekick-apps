@@ -94,12 +94,7 @@
                     class="community-video {% unless forloop.first %}hover-play{% endunless %}"
                   ></video>
                 {%- elsif block.settings.product_image %}
-                  {{
-                    block.settings.product_image
-                    | image_url: width: 1500
-                    | image_tag: widths: '165, 360, 535, 750, 1070, 1500', alt: ''
-                  }}
-
+                  {% render 'the-img', image: block.settings.product_image %}
                 {%- elsif block.settings.product_select and block.settings.product_select.featured_image %}
                   {{
                     block.settings.product_select.featured_image
@@ -189,7 +184,7 @@
       "type": "text",
       "id": "community_heading",
       "label": "t:sections.product-carousel.settings.community_heading.label",
-      "default": "t:sections.product-carousel.settings.community_heading.default"
+      "default": "Communtiy Stories"
     },
     {
       "type": "range",
@@ -232,7 +227,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 120
+      "default": 60
     },
     {
       "type": "range",
@@ -242,7 +237,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 120
+      "default": 60
     }
   ],
   "blocks": [

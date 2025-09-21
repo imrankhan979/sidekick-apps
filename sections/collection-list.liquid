@@ -41,11 +41,7 @@
               class="item_inner"
             >
               {%- if block.settings.collection_img -%}
-                {{
-                  block.settings.collection_img
-                  | image_url: width: 1500
-                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-                }}
+                {% render 'the-img', image: block.settings.collection_img %}
               {%- elsif block.settings.collection.featured_image -%}
                 <img
                   srcset="
@@ -138,7 +134,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 120
+      "default": 60
     },
     {
       "type": "range",
@@ -148,7 +144,7 @@
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 120
+      "default": 60
     }
   ],
   "blocks": [
@@ -164,7 +160,8 @@
         {
           "type": "image_picker",
           "id": "collection_img",
-          "label": "t:sections.collection-list.blocks.featured_collection.settings.collection_img.label"
+          "label": "t:sections.collection-list.blocks.featured_collection.settings.collection_img.label",
+          "info": "t:sections.collection-list.blocks.featured_collection.settings.collection_img.info"
         }
       ]
     }

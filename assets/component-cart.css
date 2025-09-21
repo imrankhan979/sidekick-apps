@@ -45,10 +45,11 @@ vertical-align: middle;
 
 .cart__login-paragraph a {
   font-size: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.4rem;
 }
 
-
-cart-items {
+.cart-items {
   display: block;
 }
 

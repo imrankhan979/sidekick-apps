@@ -31,11 +31,7 @@
           <div class="material_item" {{ block.shopify_attributes }}>
             <div class="material_icons">
               {%- if block.settings.material_image != blank -%}
-                {{
-                  block.settings.material_image
-                  | image_url: width: 1500
-                  | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-                }}
+                {% render 'the-img', image: block.settings.material_image %}
               {%- else -%}
                 {{- 'icon-care.svg' | inline_asset_content -}}
               {%- endif -%}
@@ -161,7 +157,7 @@
           "type": "text",
           "id": "material_heading",
           "label": "t:sections.section-icon-with-text.blocks.item.settings.material_heading.label",
-          "default": "Example text"
+          "default": "t:sections.section-icon-with-text.blocks.item.settings.material_heading.default"
         }
       ]
     }

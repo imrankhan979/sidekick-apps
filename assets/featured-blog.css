@@ -84,7 +84,6 @@ START: Blog CSS
   color: rgba(var(--color-secondary-foreground));
   font-size: 16px;
   font-weight: 700;
-  text-transform: uppercase;
   /* border: 1.35px solid rgba(var(--color-secondary-foreground)); */
   border: 1.35308px solid #000000;
   border-radius: 100px;
@@ -95,11 +94,11 @@ START: Blog CSS
 .blog_category .category_text .blog_anim {
   display: block;
   overflow: hidden;
-  text-shadow: 0 23px 0 rgba(var(--color-secondary-foreground));
+  text-shadow: 0 23px 0 black;
   transition: all ease 0.3s;
 }
 
-.blog_category .category_text .blog_anim >.anim_text {
+.blog_category .category_text .blog_anim > .anim_text {
   display: flex;
   gap: 7px;
   align-items: center;
@@ -108,8 +107,8 @@ START: Blog CSS
   transition: all ease 0.3s;
 }
 
-.blog_category .category_text:hover .blog_anim>.anim_text {
-  text-shadow: 0 23px 0 rgba(var(--color-secondary-foreground-hover));
+.blog_category .category_text:hover .blog_anim > .anim_text {
+  text-shadow: 0 23px 0 black;
   transform: translateY(-23px);
 }
 
@@ -121,11 +120,10 @@ START: Blog CSS
   .blog_feature_item .blog_feature_content .blog_feature_title {
     display: inline;
     background-image: linear-gradient(to right, currentColor 0, currentColor 100%);
-    background-position: 0 90%;
+    background-position: 0 93%;
     background-repeat: no-repeat;
     background-size: 0 2px;
     transition: all 0.3s, background-size 0.8s;
-    text-transform: uppercase;
     color: rgba(var(--color-foreground));
   }
   .blog_feature_item .blog_feature_content .blog_feature_title:hover {
@@ -151,7 +149,6 @@ START: Blog CSS
     font-family: var(--sds-ff-heading);
     font-size: 18px;
     font-weight: 700;
-    text-transform: uppercase;
     line-height: 1;
     z-index: 1;
     color: rgba(var(--color-secondary-button));

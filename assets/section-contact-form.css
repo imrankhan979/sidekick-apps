@@ -18,7 +18,6 @@ START: Contact CSS
 }
 
 .contact_main_wrapper .contact_left_content .contact_left_title {
-  text-transform: uppercase;
   margin-bottom: 22px;
   color: rgba(var(--color-foreground));
 }
@@ -38,7 +37,6 @@ START: Contact CSS
 .contact_item_wrap .contact_item .contact_title {
   font-size: 16px;
   letter-spacing: initial;
-  text-transform: uppercase;
   line-height: 24px;
   color: rgba(var(--color-foreground));
 }
@@ -121,7 +119,6 @@ START: Contact CSS
   font-weight: 700;
   line-height: 64px;
   letter-spacing: -0.03em;
-  text-transform: uppercase;
   margin-bottom: 38px;
   color: rgba(var(--color-foreground));
 }

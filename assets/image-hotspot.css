@@ -15,7 +15,6 @@
     font-weight: 700;
     line-height: 64px;
     letter-spacing: -0.03em;
-    text-transform: uppercase;
     color: rgb(var(--color-foreground));
   }
   
@@ -59,7 +58,6 @@
     font-family: var(--font-family-heading);
     font-size: 18px;
     font-weight: 700;
-    text-transform: uppercase;
     line-height: 1;
     color: #000;
     position: relative;
