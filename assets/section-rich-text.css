@@ -17,7 +17,7 @@
     bottom: 0;    
     width: 100%;    
     height: 1px;    
-    background-color: #000;
+    background-color: currentColor;
     transition:  0.4s ease-in-out;
   }
   .rich-text__text p a:hover::after {
@@ -122,9 +122,47 @@
     bottom: 0;    
     width: 100%;    
     height: 2px;    
-    background-color: #000;
     transition:  0.4s ease-in-out;
 }
 .rich-text__heading a:hover::after {
     width: 0%;
+}
+
+.rich-text__buttons .snazzy-icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 17px 17px;
+}
+.rich-text-vide-banner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.rich-text {
+  overflow: hidden;
+}
+.rich-text__buttons .snazzy-icon-btn {
+  background: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  border: 1px solid rgb(var(--color-button-border));
+}
+.rich-text__buttons .snazzy-icon-btn:hover {
+  background: rgb(var(--color-button-hover));
+  color: rgb(var(--color-button-text-hover));
+  border: 1px solid rgb(var(--color-button-border-hover));
+}
+
+.rich-text__buttons .snazzy-icon-btn.button--secondary {
+  background: rgb(var(--color-secondary-button));
+  color: rgb(var(--color-secondary-button-text));
+  border: 1px solid rgb(var(--color-secondary-button-border));
+}
+.rich-text__buttons .snazzy-icon-btn.button--secondary:hover {
+  background: rgb(var(--color-secondary-button-hover));
+  color: rgb(var(--color-secondary-button-text-hover));
+  border: 1px solid rgb(var(--color-secondary-button-border-hover));
 }

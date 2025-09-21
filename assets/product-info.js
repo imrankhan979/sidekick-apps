@@ -194,8 +194,8 @@ if (!customElements.get('product-info')) {
           
           
 
-          this.updateMediaHook(html, variant?.featured_media?.id);
-          // this.updateMedia(html, variant?.featured_media?.id);
+          // this.updateMediaHook(html, variant?.featured_media?.id);
+          this.updateMedia(html, variant?.featured_media?.id);
 
           const updateSourceFromDestination = (id, shouldHide = (source) => false) => {
             const source = html.getElementById(`${id}-${this.sectionId}`);

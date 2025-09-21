@@ -185,7 +185,7 @@
     fill: #000;
   }
   
-  @media only screen and (min-width: 1600px) and (max-width: 1770px) {
+  @media only screen and (min-width: 2000px) and (max-width: 1770px) {
   
     .collection_carousel_item {
       width: 78%;

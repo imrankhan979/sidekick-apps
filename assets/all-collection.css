@@ -106,7 +106,7 @@ START: Shop Collection CSS
   fill: rgb(var(--color-button-text-hover));
 }
 
-@media only screen and (min-width: 1600px) and (max-width: 1770px) {
+@media only screen and (min-width: 2000px) and (max-width: 1770px) {
   .shop_collection_item {
     max-width: 764px;
   }

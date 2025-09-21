@@ -453,7 +453,8 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: var(--color-button-text);
+  color: rgb(var(--color-button-text));
+  cursor: pointer;
 }
 
 .snazzy-icon-btn.btn-with-border {
@@ -816,6 +817,7 @@ table:not([class]) th {
 
 a:not([href]) {
   cursor: not-allowed;
+  opacity: .8;
 }
 
 .circle-divider::after {
@@ -3435,14 +3437,32 @@ details[open]>.header__icon--menu .icon-hamburger {
   margin-bottom: var(--media-shadow-vertical-offset);
 }
 
-.rte ul,
-.rte ol {
-  list-style-position: inside;
-  padding-left: 2rem;
+.text-align-center .rte ul,
+.text-align-center .rte ol {
+  text-align: left;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.text-align-right .rte ul,
+.text-align-right .rte ol {
+  display: table;
+  margin-left: auto;
 }
 
-.rte li {
-  list-style: inherit;
+.rte ul,
+.rte ol {
+  padding: 0;
+  margin-top: 15px;
+}
+
+.rte ul li {
+  list-style-position: inside !important;
+  list-style: disc;
+}
+.rte ol li {
+  list-style-position: inside !important;
+  list-style: number;
 }
 
 .rte li:last-child {
@@ -3454,6 +3474,7 @@ details[open]>.header__icon--menu .icon-hamburger {
   text-underline-offset: 0.3rem;
   text-decoration-thickness: 0.1rem;
   transition: text-decoration-thickness var(--duration-short) ease;
+  text-decoration: underline;
 }
 
 .rte a:hover {

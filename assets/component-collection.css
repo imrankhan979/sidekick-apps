@@ -61,7 +61,7 @@
   background-size: 100% 100%;  
 } 
 
-@media (max-width: 1600px) {
+@media (max-width: 2000px) {
   .collection_item .item_inner {
     border-radius: 100px;
     padding: 38px 15px 20px;

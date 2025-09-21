@@ -253,7 +253,7 @@ START: Testimonial CSS
   }
 }
 
-@media only screen and (min-width: 1400px) and (max-width: 1600px) {
+@media only screen and (min-width: 1400px) and (max-width: 2000px) {
   .testimonial-section .testimonial-item {
     column-gap: 25px;
   }
@@ -437,7 +437,7 @@ START: Testimonial CSS
 .testimonial-item .testimonial-content > * + * {
   margin-top: 60px;
 }
-@media (max-width: 1600px) {
+@media (max-width: 2000px) {
   .testimonial-item .testimonial-content > * + * {
     margin-top: 36px;
   }
@@ -549,8 +549,8 @@ START: Testimonial CSS
 }
 
 .testimonial-item .testimonial-content .testimonial-infos .testimonial-button svg {
-  height: 10px;
-  width: 10px;
+  height: 15px;
+  width: 15px;
 }
 .testimonial-item .testimonial-content .testimonial-infos .testimonial-button .link-btn {
     display: inline-flex;
