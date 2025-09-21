@@ -24,7 +24,7 @@ START: Our journey CSS
     grid-template-columns: 1fr 1fr;
     align-items: center;
     column-gap: 64px;
-    background: #ddd; 
+    background: #ffffff; 
     border-radius: 64px;
     overflow: hidden;
   }
