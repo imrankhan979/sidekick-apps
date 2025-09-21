@@ -15,7 +15,12 @@
 {%- endstyle -%}
 
 <div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="rich-text content-container color-{{ section.settings.color_scheme }} gradient{% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+  <div class="rich-text content-container color-{{ section.settings.color_scheme }} {% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+    {% if section.settings.hosted_video != null %}
+      <div class="rich-text-vide-banner">
+        {{ section.settings.hosted_video | video_tag: autoplay: true, loop: true, muted: true }}
+      </div>
+    {% endif %}
     <div class="rich-text__wrapper text-align-{{ section.settings.content_alignment }}  rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
@@ -69,7 +74,7 @@
                     {% else %}
                       href="{{ block.settings.button_link }}"
                     {% endif %}
-                    class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+                    class="snazzy-icon-btn  button--primary"
                   >
                     {{- block.settings.button_label | escape -}}
                   </a>
@@ -81,7 +86,7 @@
                     {% else %}
                       href="{{ block.settings.button_link_2 }}"
                     {% endif %}
-                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                    class="snazzy-icon-btn button--secondary"
                   >
                     {{- block.settings.button_label_2 | escape -}}
                   </a>
@@ -103,6 +108,11 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "video",
+      "id": "hosted_video",
+      "label": "t:sections.product-carousel.blocks.product.settings.product_video_bg.label"
+    },
     {
       "type": "select",
       "id": "desktop_content_position",
@@ -164,21 +174,21 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 100,
-      "step": 4,
+      "max": 500,
+      "step": 10,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
-      "default": 40
+      "default": 360
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 100,
-      "step": 4,
+      "max": 500,
+      "step": 10,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
-      "default": 52
+      "default": 280
     }
   ],
   "blocks": [
@@ -188,7 +198,7 @@
       "limit": 3,
       "settings": [
         {
-          "type": "inline_richtext",
+          "type": "text",
           "id": "heading",
           "default": "t:sections.rich-text.blocks.heading.settings.heading.default",
           "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
@@ -307,12 +317,6 @@
           "label": "t:sections.rich-text.blocks.buttons.settings.button_link_1.label"
         },
         {
-          "type": "checkbox",
-          "id": "button_style_secondary",
-          "default": false,
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_1.label"
-        },
-        {
           "type": "text",
           "id": "button_label_2",
           "label": "t:sections.rich-text.blocks.buttons.settings.button_label_2.label",
@@ -322,12 +326,6 @@
           "type": "url",
           "id": "button_link_2",
           "label": "t:sections.rich-text.blocks.buttons.settings.button_link_2.label"
-        },
-        {
-          "type": "checkbox",
-          "id": "button_style_secondary_2",
-          "default": false,
-          "label": "t:sections.rich-text.blocks.buttons.settings.button_style_secondary_2.label"
         }
       ]
     }

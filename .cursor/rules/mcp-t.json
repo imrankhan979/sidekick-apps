@@ -1,0 +1,25 @@
+I have a CSS file with both layout rules and colors (color, background, border-color, etc.).  
+Please refactor it into **two clean sections**:  
+
+1. **Structure & Layout** → keep only positioning, spacing, typography, transforms, transitions, etc.  
+   ❌ No colors here.  
+
+2. **Colors & Theme** → move all color-related properties into this section.  
+   - Replace CSS variables with actual hex/rgb values if found.  
+   - Group similar color rules together if possible (backgrounds, text, borders, placeholders).  
+
+Make sure the final CSS is clean, readable, and keeps the original design intact.
+
+/* Structure */
+.my-class {
+    position: relative;
+    padding: 20px;
+    transition: all 0.3s;
+  }
+  
+  /* Colors */
+  .my-class {
+    background: #ffffff;
+    color: #000000;
+  }
+  
