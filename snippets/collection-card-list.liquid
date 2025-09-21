@@ -1,12 +1,26 @@
-<div class="anim-item shop_collection_item reveal" id="collection_item-{{ card_collection.id }}">
+
+{%- if ratio_h == 'auto' -%}
+  {%- assign aspect_ratio_auto = 1 | divided_by: card_collection.featured_image.aspect_ratio | times: 100 %}
+{%- elsif ratio_h == '1' -%}
+  {%- assign aspect_ratio_auto = '100' -%}
+{%- elsif ratio_h == '2' -%}
+  {%- assign aspect_ratio_auto = '125' -%}
+{%- else -%}
+  {%- assign aspect_ratio_auto = '100' -%}
+{%- endif -%}
+
+
+  {% style %}
+    #shopify-section-{{ section.id }} .the-gplayer-list-page #collection_item-{{ card_collection.id }} .shop_collection_images .collection_images:after {
+      padding-top: {{ aspect_ratio_auto }}%;
+    }
+  {% endstyle %}
+
+<div class="anim-item shop_collection_item reveal complex-img" id="collection_item-{{ card_collection.id }}">
   <div class="shop_collection_images">
     <a class="collection_images" href="{{card_collection.url}}">
       {%- if card_collection.featured_image != blank -%}
-        {{
-          card_collection.featured_image
-          | image_url: width: 1500
-          | image_tag: widths: '165, 360, 535, 750, 1070, 1500'
-        }}
+        {% render 'the-img', image: card_collection.featured_image %}
       {%- else -%}
         {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
         {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
@@ -35,7 +49,7 @@
         >
           <path
             d="M4.0445 27.0445L17.0891 13.9999L4.0445 0.955322L0.8125 4.18732L10.6251 13.9999L0.8125 23.8125L4.0445 27.0445Z"
-            fill="black" />
+            fill="currentColor" />
         </svg>
       </a>
     </div>
