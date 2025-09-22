@@ -19,13 +19,13 @@
         "padding_bottom": 200
       }
     },
-    "contact_form_GRDzTR": {
+    "contact_form_BKMVyx": {
       "type": "contact-form",
       "blocks": {
-        "contact_address_ftzwVJ": {
+        "contact_address_XbLpgk": {
           "type": "contact_address",
           "settings": {
-            "contact_title": "Contact info",
+            "contact_title": "CONTACT INFO",
             "address_title": "Address",
             "address": "Address: 123 Suspendis matti, Visaosang Building VST District, North American",
             "email_title": "E-mail",
@@ -34,30 +34,30 @@
             "phone": "+881234567890"
           }
         },
-        "social_share_MM97az": {
+        "social_share_BeqwP6": {
           "type": "social_share",
           "settings": {
-            "social_title": "Socials"
+            "social_title": "SOCIAL LINK"
           }
         }
       },
       "block_order": [
-        "contact_address_ftzwVJ",
-        "social_share_MM97az"
+        "contact_address_XbLpgk",
+        "social_share_BeqwP6"
       ],
       "name": "t:sections.contact-form.presets.name",
       "settings": {
         "color_scheme": "",
-        "section_title": "Contact",
+        "section_title": "CONTACT",
         "section_description": "<p>Our friendly team would love to hear from you.</p>",
         "padding_top": 120,
-        "padding_bottom": 0
+        "padding_bottom": 120
       }
     },
-    "location_7rAXLJ": {
+    "location_6wKBtd": {
       "type": "location",
       "blocks": {
-        "location_zwrHXR": {
+        "location_PBWp3w": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -65,7 +65,7 @@
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_9CzqHw": {
+        "location_zyx76T": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -73,7 +73,7 @@
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_rhX9h6": {
+        "location_eXAGNp": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -81,7 +81,7 @@
             "store_timing": "Mon - Sun: 9.00AM - 7.00PM"
           }
         },
-        "location_jhYbGt": {
+        "location_zqnVrc": {
           "type": "location",
           "settings": {
             "location_title": "Alabama",
@@ -91,25 +91,25 @@
         }
       },
       "block_order": [
-        "location_zwrHXR",
-        "location_9CzqHw",
-        "location_rhX9h6",
-        "location_jhYbGt"
+        "location_PBWp3w",
+        "location_zyx76T",
+        "location_eXAGNp",
+        "location_zqnVrc"
       ],
       "name": "t:sections.location_with_map.presets.name",
       "settings": {
         "section_color_scheme": "",
         "location_iframe": "<iframe src=\"https://www.google.com/maps/embed?pb=...\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
-        "stores_location": "Stores location",
+        "stores_location": "STORES LOCATION",
         "first_item_open": true,
-        "padding_top": 120,
+        "padding_top": 0,
         "padding_bottom": 120
       }
     }
   },
   "order": [
     "bread",
-    "contact_form_GRDzTR",
-    "location_7rAXLJ"
+    "contact_form_BKMVyx",
+    "location_6wKBtd"
   ]
 }

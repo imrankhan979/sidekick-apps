@@ -116,7 +116,7 @@
   },
   "onboarding": {
     "product_title": "Example product title",
-    "collection_title": "Collection"
+    "collection_title": "COLLECTION"
   },
   "products": {
     "product": {
@@ -349,9 +349,9 @@
     },
     "featured_blog": {
       "view_all": "View all",
-      "onboarding_title": "Blog post",
+      "onboarding_title": "TEST BLOG POST",
       "onboarding_content": "Give your customers a summary of your blog post",
-      "blog_title": "Blog title",
+      "blog_title": "TEST BLOG POST"
     },
     "breadcrumb_banner": {
       "home": "Home",

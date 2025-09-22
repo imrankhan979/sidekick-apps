@@ -1,6 +1,5 @@
-{{ 's-page-breadcrumb.css' | asset_url | stylesheet_tag }}
 {{ 'page-header.css' | asset_url | stylesheet_tag }}
-
+{{ 's-page-breadcrumb.css' | asset_url | stylesheet_tag }}
 {%- style -%}
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top | times: 0.45 | round: 0 }}px;

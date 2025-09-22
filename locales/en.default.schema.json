@@ -253,7 +253,7 @@
           "settings": {
             "title": {
               "label": "Heading",
-              "default": "Subscribe Newsletter"
+              "default": "GET 15% OFF"
             }
           }
         },
@@ -731,8 +731,8 @@
       "name": "Collection list",
       "settings": {
         "title": {
-          "default": "Collections",
-          "label": "Collection list"
+          "label": "Collection list",
+           "default": "COLLECTION"
         },
         "image_ratio": {
           "label": "Image ratio",
@@ -791,11 +791,11 @@
       }
     },
     "contact-form": {
-      "name": "Contact form section",
+      "name": "Contact form",
       "settings": {
         "section_title": {
           "label": "Heading",
-          "default": "Get in Touch"
+          "default": "CONTACT"
         },
         "section_description": {
           "label": "Description",
@@ -808,7 +808,7 @@
           "settings": {
             "contact_title": {
               "label": "Heading",
-              "default": "Contact info"
+              "default": "CONTACT INFO"
             },
             "address_header": "Address",
             "address_title": {
@@ -844,7 +844,7 @@
           "settings": {
             "social_title": {
               "label": "Social title",
-              "default": "Socials"
+              "default": "SOCIAL LINK"
             }
           }
         }
@@ -1048,7 +1048,7 @@
       },
       "blocks": {
         "collection": {
-          "name": "Collection carousel",
+          "name": "Collection",
           "settings": {
             "collection_select": {
               "label": "Select collection"
@@ -1062,15 +1062,15 @@
             "collection_heading": {
               "label": "Heading",
               "info": "If left blank, the collection name will be used.",
-              "default": "Collection title"
+              "default": "COLLECTION TITLE"
             },
             "collection_featured": {
               "label": "Badge",
-              "default": "Badge"
+              "default": "BADGE"
             },
             "collection_button": {
               "label": "Button label",
-              "default": "Shop now"
+              "default": "SHOP NOW"
             }
           }
         }
@@ -1087,7 +1087,7 @@
         },
         "community_heading": {
           "label": "Heading",
-          "default": "Product carousel"
+          "default": "BEST SELLERS"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -1141,7 +1141,7 @@
         },
         "testimonial_heading": {
           "label": "Heading",
-          "default": "Testimonials slider"
+          "default": "TESTIMONIALS SLIDER"
         },
         "columns_desktop": {
           "label": "Number of columns on desktop"
@@ -1382,7 +1382,7 @@
           "settings": {
             "newsletter_heading": {
               "label": "Heading",
-              "default": "Subscribe now and receive a discount on your first order"
+              "default": "SUBSCRIBE NOW AND RECEIVE A DISCOUNT ON YOUR FIRST ORDER"
             }
           }
         },
@@ -1746,7 +1746,7 @@
       "settings": {
         "main_heading": {
           "label": "Heading",
-          "default": "Image with text"
+          "default": "IMAGE WITH TEXT"
         },
         "bg_image": {
           "label": "Background image"
@@ -1772,7 +1772,7 @@
           "settings": {
             "sub_heading": {
               "label": "Title",
-              "default": "Describe a product, make announcements, or welcome customers to your store."
+              "default": "DESCRIBE A PRODUCT, MAKE ANNOUNCEMENTS, OR WELCOME CUSTOMERS TO YOUR STORE."
             },
             "paragraph_one": {
               "label": "Text",
@@ -1810,7 +1810,7 @@
         },
         "section_heading": {
           "label": "Heading",
-          "default": "Best Sellers"
+          "default": "COLLECTION TAB"
         },
         "ratio": {
           "label": "Image ratio",
@@ -1828,8 +1828,8 @@
             },
             "tab_title": {
               "label": "Title",
-              "info": "Optional. Defaults to collection title.",
-              "default": "Collection"
+              "info": "Optional Defaults to collection title.",
+              "default": "COLLECTION"
             },
             "item_total": {
               "label": "Maximum number of products to show"
@@ -1883,7 +1883,7 @@
       "settings": {
         "left_title": {
           "label": "Heading",
-          "default": "Need help?"
+          "default": "NEED HELP?"
         },
         "left_paragraph": {
           "label": "Description",
@@ -1902,7 +1902,7 @@
           "settings": {
             "category_title": {
               "label": "Category title",
-              "default": "Frequently Asked Questions"
+              "default": "FREQUENTLY ASKED QUESTIONS"
             }
           }
         },
@@ -2112,7 +2112,7 @@
         },
         "section_title": {
           "label": "Heading",
-          "default": "Shop the look"
+          "default": "SHOP THE LOOK"
         },
         "hotspot_title": {
           "label": "Hotspot title",
@@ -2205,7 +2205,7 @@
         },
         "heading_text": {
           "label": "Heading",
-          "default": "Blog posts"
+          "default": "BLOG POSTS"
         },
         "blog": {
           "label": "Select blog"
@@ -3472,7 +3472,7 @@
           "settings": {
             "title": {
               "label": "Text",
-              "default": "Welcome to store"
+              "default": "WELCOME TO STORE"
             }
           }
         }
@@ -3547,7 +3547,7 @@
       "settings": {
         "section_title": {
           "label": "Heading",
-          "default": "Our journey"
+          "default": "OUR JOURNEY"
         },
         "section_description": {
           "label": "Content",
@@ -3609,7 +3609,7 @@
             },
             "material_heading": {
               "label": "Heading",
-              "default": "Example title"
+              "default": "EXAMPLE TITLE"
             }
           }
         }
@@ -3626,7 +3626,7 @@
         },
         "title": {
           "label": "Heading",
-          "default": "Stores location"
+          "default": "STORES LOCATION"
         },
         "first_item_open": {
           "label": "Open the first accordion item by default"
@@ -3663,7 +3663,7 @@
         },
         "heading_text": {
           "label": "Heading",
-          "default": "Build your Bundle"
+          "default": "BUILD YOUR BUNDLE"
         },
         "collection": {
           "label": "Choose collection"
@@ -3773,12 +3773,12 @@
             },
             "title_text": {
               "label": "Heading",
-              "default": "Browse our latest products"
+              "default": "BROWSE OUR LATEST PRODUCTS"
             },
             "cta_text": {
               "label": "CTA text",
               "info": "CTA will be shown only if the title is not blank.",
-              "default": "Collection"
+              "default": "COLLECTION"
             },
             "cta_link": {
               "label": "CTA link"
@@ -3789,7 +3789,7 @@
             },
             "button_text": {
               "label": "Button text",
-              "default": "Shop now"
+              "default": "SHOP NOW"
             },
             "button_link": {
               "label": "Button link"
