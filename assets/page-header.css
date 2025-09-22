@@ -319,23 +319,6 @@
   margin-right: auto;
 }
 
-.breadcrumb-content-area .breadcrumb-title {
-  font-size: 144px;
-  color: #FFEC3E;
-  letter-spacing: -0.01em;
-  line-height: 1;
-}
-
-.breadcrumb-content-area .breadcrumb-link {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  margin-bottom: 30px;
-  z-index: 2;
-}
-
 .breadcrumb-content-area .breadcrumb-link ul {
   margin: 0;
   padding: 0;
@@ -816,3 +799,4 @@
   .breadcrumb-content-area .breadcrumb_form form .form-input input[type="search"]::-ms-input-placeholder {
     color: #808080;
   }
+}

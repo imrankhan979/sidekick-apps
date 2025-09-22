@@ -1,7 +1,6 @@
-<!-- start: Breadcrumb Area  -->
+<!-- start: Breadcrumb Area -->
 
 {{ '404.css' | asset_url | stylesheet_tag }}
-
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.50 | round: 0 }}px;
@@ -13,30 +12,36 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
 {%- endstyle -%}
 <section class="breadcrumb-main-area">
-    <div class="page-width">
-       <div class="breadcrumb-content-area error-content">
-          <div class="breadcrumb-heading">
-             <h1 class="anim-item breadcrumb-title">{{ 'templates.404.subtext' | t }}</h1>
-             <div class="anim-item error_desc">
-                <span class="breadcrumb-desc">{{ 'templates.404.title' | t }}</span>
-             </div>
-             <div class="anim-item breadcrumb_error_button">
-                <a class="breadcrumb-error-btn" href="#">{{ 'templates.404.button_text' | t }}
-                   <span>
-                      <svg class="icon icon-caret" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                         <path
-                            d="M6.29303 10.707L12 16.414L17.707 10.707L16.293 9.29297L12 13.586L7.70703 9.29297L6.29303 10.707Z"
-                            fill="currentColor"></path>
-                      </svg>
-                   </span>
-                </a>
-             </div>
-          </div>
-       </div>
+  <div class="page-width">
+    <div class="breadcrumb-content-area error-content">
+      <div class="breadcrumb-heading">
+        <h1 class="anim-item breadcrumb-title">{{ 'templates.404.subtext' | t }}</h1>
+        <div class="anim-item error_desc">
+          <span class="breadcrumb-desc">{{ 'templates.404.title' | t }}</span>
+        </div>
+        <div class="anim-item breadcrumb_error_button">
+          <a class="breadcrumb-error-btn" href="#">
+            {{- 'templates.404.button_text' | t }}
+            <span>
+              <svg
+                class="icon icon-caret"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                   d="M6.29303 10.707L12 16.414L17.707 10.707L16.293 9.29297L12 13.586L7.70703 9.29297L6.29303 10.707Z"
+                   fill="currentColor"></path>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
     </div>
- </section>
- <!-- end: Breadcrumb Area  -->
+  </div>
+</section>
+<!-- end: Breadcrumb Area -->
