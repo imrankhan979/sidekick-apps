@@ -57,7 +57,7 @@
     class="product__modal-opener product__modal-opener--{{ media.media_type }}"
     data-modal="#ProductModal-{{ modal_id }}"
   >
-    {%- render 'loading-spinner' -%}
+    {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
     <div class="product__media media media--transparent">
       {{
         media.preview_image

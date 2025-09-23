@@ -41,7 +41,6 @@ quick-order-list .quantity__button {
 
 @media screen and (min-width: 990px) {
   .quick-order-list__total {
-    position: sticky;
     bottom: 0;
     z-index: 2;
     background-color: rgb(var(--color-background));
@@ -559,9 +558,10 @@ quick-order-list-remove-button:hover .icon-remove {
 
 .quick-order-list-total__info {
   display: flex;
+  min-height: 8rem;
 }
 
-.quick-order-list-total__info,
+
 .quick-order-list-total__confirmation {
   min-height: 10rem;
 }
@@ -785,7 +785,8 @@ quick-order-list .tax-note {
 }
 .quick-order-list-total__price .tax-note {
     font-size: 16px;
-    color: #808080;;
+    color: #808080;
+    text-align: right;
 }
 .price .badge {
     color: #fff;

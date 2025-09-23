@@ -9,6 +9,18 @@
   margin: 0 1.3rem 1rem;
 }
 
+.quick-add__submit {
+    font-family: var(--font-family-heading);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 12px 16px;
+    min-width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid currentColor;
+    text-transform: uppercase;
+}
+
 .quick-add-modal {
   box-sizing: border-box;
   opacity: 0;
@@ -132,7 +144,6 @@
   }
 
   .quick-add-modal__content-info--bulk thead {
-    position: sticky;
     z-index: 3;
     top: 0;
     background-color: rgb(var(--color-background));
@@ -150,9 +161,9 @@
   padding-left: 1rem;
 }
 
-.quick-add-modal__content-info--bulk-details > a:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+.quick-add-modal__content-info--bulk-details .title {
+  font-size: 48px;
+  background-image: linear-gradient(transparent calc(100% - 2px),rgba(var(--color-foreground)) 1px);
 }
 
 @media screen and (min-width: 990px) {
@@ -264,8 +275,8 @@
   cursor: pointer;
   z-index: 5;
   position: fixed;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 3.5rem;
+  right: 3.5rem;
 }
 
 .quick-add-modal__toggle:hover {
@@ -357,11 +368,15 @@ quick-add-modal .product-form__buttons {
 }
 
 .quick-add__submit {
-  padding: 0.8rem;
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 16px;
   min-width: 100%;
   box-sizing: border-box;
   border-radius: 10px;
   border: 1px solid currentColor;
+  text-transform: uppercase;
 }
 
 quick-add-modal .product-media-container.constrain-height {
@@ -387,7 +402,21 @@ quick-add-bulk {
 }
 
 .card__content quick-add-bulk .quantity {
-  width: 100%;
+    width: 100%;
+    background-color: #F6F6F6;
+    margin-top: 24px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card__content quick-add-bulk .quantity .quantity__button .svg-wrapper {
+  width: 13px;
+  height: 13px;
+  display: flex;
 }
 
 quick-add-bulk .progress-bar-container {
@@ -518,7 +547,7 @@ quick-add-bulk .quantity__input {
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0%;
+    letter-spacing: 0;
     text-align: center;
     vertical-align: middle;
     color: #000;
