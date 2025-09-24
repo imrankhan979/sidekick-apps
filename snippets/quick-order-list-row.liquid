@@ -39,6 +39,8 @@
                 alt: image.alt
               | escape
             }}
+            {% else %}
+               {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
           {% endif %}
         </div>
       </div>
@@ -160,7 +162,7 @@
   </td>
 
   <td class="variant-item__totals right large-up-hide">
-    {%- render 'loading-spinner' -%}
+    {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
     <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money }}</span>
@@ -432,7 +434,7 @@
     {%- endif -%}
   </td>
   <td class="variant-item__totals right small-hide medium-hide">
-    {%- render 'loading-spinner' -%}
+    {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
     {% comment %} TODO: enable theme-check once `line_items_for` is accepted as valid filter {% endcomment %}
     {% # theme-check-disable %}
     <span class="price">{{ cart | line_items_for: item | sum: 'original_line_price' | money }}</span>

@@ -139,7 +139,7 @@
               </span>
               </a>
               <div class="variant-remove-total{% if items_in_cart == 0 %} variant-remove-total--empty{% endif %}">
-                {%- render 'loading-spinner' -%}
+                {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
                 <quick-order-list-remove-all-button
                   class="no-js-hidden"
                   data-action="confirm"
@@ -228,7 +228,7 @@
                 <span class="quick-order-list__button-text">{{- 'sections.quick_order_list.view_cart' | t -}}</span>
               </a>
               <div class="variant-remove-total">
-                {%- render 'loading-spinner' -%}
+                {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
                 <quick-order-list-remove-all-button
                   class="no-js-hidden"
                   data-action="confirm"
