@@ -29,7 +29,50 @@
   position: absolute;
   right: 0;
 }
+.search_results_filter__main .search_results_filter_top_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 
+}
+
+.search_results_filter__main .title-wrapper {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 50px;
+    height: 100%;
+}
+
+.search_results_filter__main .title-wrapper a {
+    display: block;
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    border: 1px solid;
+    width: 50%;
+    margin: 0  auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    padding: 10;
+}
+/* .title-wrapper a:hover:after {
+    width: 0%;
+}
+.title-wrapper a:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    transition: .4s ease-in-out;
+} */
 .search__button:focus-visible,
 .reset__button:focus-visible {
   background-color: rgb(var(--color-background));
@@ -64,6 +107,28 @@
   stroke-width: 0.1rem;
 }
 
+.article-card__info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.article-card__info ul li {
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000000;
+    padding: 7px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    border-radius: 100px;
+}
+
 /* Remove extra spacing for search inputs in Safari */
 input::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -71,7 +136,17 @@ input::-webkit-search-decoration {
 
 .template-search__results {
   position: relative;
+  height: 100%;
 }
 .template-search .status-message{
   margin-bottom: 60px;
+}
+
+@media screen and (max-width: 767px) {
+  .search_results_filter__main .title-wrapper a {
+    font-size: 14px;
+    width: 80%;
+    margin-top: 20px;
+    padding: 10px;
+}
 }

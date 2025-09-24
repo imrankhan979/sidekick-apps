@@ -404,7 +404,7 @@
                       {{- 'icon-arrow.svg' | inline_asset_content -}}
                     </span>
                   {%- endif -%}
-                  {%- render 'loading-spinner' -%}
+                  {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
                 </button>
               </modal-opener>
               <quick-add-modal id="QuickAdd-{{ card_product.id }}" class="quick-add-modal">
@@ -472,7 +472,7 @@
                         {{- 'icon-plus.svg' | inline_asset_content -}}
                       </span>
                     {%- endif -%}
-                    {%- render 'loading-spinner' -%}
+                    {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
                   </button>
                 {%- endform -%}
               </product-form>
@@ -528,7 +528,7 @@
                   data-product-url="{{ card_product.url }}"
                 >
                   {{ 'products.product.choose_options' | t }}
-                  {%- render 'loading-spinner' -%}
+                  {% comment %} {%- render 'loading-spinner' -%} {% endcomment %}
                 </button>
               </modal-opener>
               <modal-dialog
@@ -613,10 +613,10 @@
                       </div>
                     </div>
                     <div class="quick-modal__list-wrapper">
-                      <div class="quick-add-modal__content-info--bulk-details small-hide medium-hide">
+                      <div class="card__heading quick-add-modal__content-info--bulk-details small-hide medium-hide">
                         <a href="{{ card_product.url }}" class="full-unstyled-link">
-                          <h3 class="h2">
-                            {{ card_product.title | escape }}
+                          <h3>
+                            <span class="title h2">{{ card_product.title | escape }}</span>
                           </h3>
                         </a>
                         {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
@@ -705,7 +705,7 @@
         <div class="card__information">
           <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}">
             <a role="link" aria-disabled="true" class="full-unstyled-link">
-              {{ 'onboarding.product_title' | t }}
+              <span class="title">{{ 'onboarding.product_title' | t }}</span>
             </a>
           </h3>
           <div class="card-information">
