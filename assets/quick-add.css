@@ -21,6 +21,18 @@
     text-transform: uppercase;
 }
 
+.card__content quick-add-bulk .quantity {
+    width: 100%;
+    background-color: #F6F6F6;
+    margin-top: 24px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .quick-add-modal {
   box-sizing: border-box;
   opacity: 0;
@@ -377,6 +389,7 @@ quick-add-modal .product-form__buttons {
   border-radius: 10px;
   border: 1px solid currentColor;
   text-transform: uppercase;
+  margin-top: 24px;
 }
 
 quick-add-modal .product-media-container.constrain-height {
@@ -469,6 +482,17 @@ quick-add-bulk .quantity__input {
     .quick-add-modal-content {
       width: 100%;
     }
+    .card__content quick-add-bulk .quantity {
+    width: 100%;
+    background-color: #F6F6F6;
+    margin-top: 24px;
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 }
 .quick-add-modal .breadcrumb-content-area{
   display: none;
