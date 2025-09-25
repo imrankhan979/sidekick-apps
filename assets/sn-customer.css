@@ -388,7 +388,7 @@ a {
 .customer select:focus-visible {
     border-radius: 10px
 }
-
+.add-new-address .field,
 .edit-address .field {
     display: flex;
     flex-direction: column;
@@ -444,6 +444,12 @@ a {
     border: 1px solid #000000;
     border-radius: 10px;
     padding: 20px 24px;
+}
+
+.add-new-address .select .svg-wrapper{
+    position: absolute;
+    top: 40px;
+    right: 5px;
 }
 
 @media (max-width: 575px) {
