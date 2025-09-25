@@ -29,6 +29,7 @@
     font-weight: 700;
     line-height: 24px;
     font-family: var(--sds-ff-body);
+    letter-spacing: 0;
 }
 
 .contact_form_box_two .form-input label {
