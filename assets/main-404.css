@@ -72,8 +72,6 @@ START: 404 CSS
     font-weight: 700;
     position: relative;
     text-transform: uppercase;
-    border-bottom: 3px solid #000000;
-    padding-bottom: 12px;
 }
   
   .breadcrumb_error_button .breadcrumb-error-btn::before {
