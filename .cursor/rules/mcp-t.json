@@ -9,7 +9,12 @@ Please refactor it into **two clean sections**:
    - Group similar color rules together if possible (backgrounds, text, borders, placeholders).  
 
 Make sure the final CSS is clean, readable, and keeps the original design intact.
-
+rgba(var(--color-button), 1);
+rgba(var(--color-button-hover), 1);
+rgba(var(--color-button-border), 1);
+rgba(var(--color-button-border-hover), 1);
+rgba(var(--color-button-text), 1);
+rgba(var(--color-button-text-hover), 1);
 /* Structure */
 .my-class {
     position: relative;

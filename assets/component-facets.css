@@ -183,18 +183,15 @@
   font-size: 1.4rem;
   margin: -1.5rem 2rem 0 0;
 }
-
 .facets__reset {
   margin-left: auto;
 }
-
 .facets__disclosure {
   margin-right: 3.5rem;
 }
-
 .facets__summary {
   padding: 32px 0px 14px 0;
-  border-bottom: 1px solid #DDD;
+  border-bottom: 1px solid rgba(var(--color-foreground), .8);
 }
 .facets__summary svg{
   position: static;
@@ -223,7 +220,7 @@
   display: block;
   text-align: left;
   width: 100%;
-  color: #000000;
+  color: rgb(var(--color-foreground));
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -506,7 +503,7 @@
 }
 .facet-checkbox input[type=checkbox] {
   position: relative;
-    border: 1px solid #000;
+    border: 1px solid rgba(var(--color-foreground), 1);
     border-radius: 8px;
     background: none;
     cursor: pointer;
@@ -520,7 +517,10 @@
     top: 0;
 }
 .facet-checkbox input[type=checkbox]:checked {
-  background-color: #000;
+  /* background-color: rgba(var(--color-foreground), 1);
+  opacity: 1; */
+}
+.facet-checkbox input[type=checkbox]:checked:before {
   opacity: 1;
 }
 .facet-checkbox input[type=checkbox]:before {
@@ -530,11 +530,12 @@
     top: 50%;
     width: 6px;
     height: 12px;
-    border: solid #FFF;
+    border: solid rgba(var(--color-foreground), 1);
     border-width: 0 2px 2px 0;
     margin: -1px -1px 0 -1px;
     transform: rotate(45deg) translate(-50%, -50%);
     z-index: 2;
+    opacity: 0;
 }
 /* Hover, active, and focus states */
 .facets__label:hover,

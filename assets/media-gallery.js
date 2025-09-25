@@ -60,7 +60,7 @@ if (!customElements.get('media-gallery')) {
       }
 
       setActiveMedia(mediaId, prepend, index) {
-        this.ity.select(index)
+        this.ity?.select(index)
         const activeMedia =
           this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`) ||
           this.elements.viewer.querySelector('[data-media-id]');
