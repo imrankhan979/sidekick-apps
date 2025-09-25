@@ -193,9 +193,12 @@ if (!customElements.get('product-info')) {
           }
           
           
-
-          // this.updateMediaHook(html, variant?.featured_media?.id);
-          this.updateMedia(html, variant?.featured_media?.id);
+          if(this.querySelector('media-gallery').dataset.desktopLayout.includes('thumbnail_slider')){
+            this.updateMediaHook(html, variant?.featured_media?.id);
+          }else {
+            this.updateMedia(html, variant?.featured_media?.id);
+          }
+          
 
           const updateSourceFromDestination = (id, shouldHide = (source) => false) => {
             const source = html.getElementById(`${id}-${this.sectionId}`);

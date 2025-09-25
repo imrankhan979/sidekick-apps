@@ -18,7 +18,10 @@
   font-weight: 700;
   font-size: 18px;
   text-transform: uppercase;
-  color: #000000;
+  color: rgba(var(--color-foreground), 1);
+}
+.snazzy_pagination .pagination-list .pagination_slide:hover {
+  text-decoration: underline;
 }
 
 .snazzy_pagination .pagination-list li.pagination_slide_next,
@@ -29,7 +32,6 @@
 .snazzy_pagination .pagination-list li {
   display: flex;
   align-items: center;
-  border: 1px solid #000000;
   border-radius: 50%;
 }
 
@@ -49,30 +51,27 @@
   transform: rotate(-90deg);
 }
 
-.snazzy_pagination .pagination-list .pagination_slide svg path {
-  fill: #000000;
-}
-
 .snazzy_pagination .pagination-list .pagination-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   font-size: 18px;
-  color: #000000;
+  color: rgba(var(--color-button-text), 1);
   width: 40px;
   height: 40px;
   line-height: 1;
-  border: 1px solid rgba(var(--color-button-border), 1);
   border-radius: 50%;
   font-family: var(--font-family-heading);
   transition: .4s;
+  border: 1px solid rgba(var(--color-button-border), 1);
 }
 
 .snazzy_pagination .pagination-list .pagination-link:hover,
 .snazzy_pagination .pagination-list .pagination-link.current {
-  color: #ffffff;
-  background-color: #000000;
+  color: rgba(var(--color-button-text-hover), 1);
+  background-color: rgba(var(--color-button-hover), 1);
+  border-color: rgba(var(--color-button-border-hover), 1);
 }
 
 @media (max-width: 767px) {

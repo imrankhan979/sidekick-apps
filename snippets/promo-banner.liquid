@@ -3,20 +3,9 @@
   <a class="category_banner_box" {% if section.settings.banner_link == blank %}  role="link" aria-disabled="true" {% else %} href="{{ section.settings.banner_link.url }}" {% endif %}>
     <div class="category_banner_images">
         {% if section.settings.banner_image != blank %}
-            <img
-                class="category-images"
-                src="{{ section.settings.banner_image | image_url }}"
-                {% if section.settings.banner_image.alt != blank %}
-                alt="{{ section.settings.banner_image.alt | escape }}"
-                {% else %}
-                role="presentation"
-                {% endif %}
-                height="auto"
-                width="auto"
-                loading="lazy"
-            >
-            {% else %}
-                 {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% render 'the-img', image: section.settings.banner_image %}
+        {% else %}
+          {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
       <div class="category_banner_content">
         <div class="category_banner_text">

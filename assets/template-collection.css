@@ -33,12 +33,12 @@
   display: inline-flex;
   align-items: center;
   column-gap: 8px;
-  color: #000000;
+  color: rgba(var(--color-button-text), 1);
   font-weight: 400;
   font-size: 16px;
   line-height: 1;
   border-radius: 100px;
-  background: #F6F6F6;
+  background: rgba(var(--color-button), 1);
   padding: 12px 12px 12px 16px;
   transition: .4s;
 }
@@ -48,8 +48,8 @@
 }
 
 .filter_product_close_button .filter-product-close-btn:hover {
-  color: #ffffff;
-  background-color: #000000;
+  color: rgba(var(--color-button-text-hover), 1);
+  background-color: rgba(var(--color-button-hover), 1);
 }
 
 .filter_product_close_button .filter-product-close-btn svg path {
@@ -68,7 +68,7 @@
   display: inline-flex;
   align-items: center;
   column-gap: 12px;
-  color: #000000;
+  color: rgb(var(--color-foreground));
   font-family: var(--font-family-heading);
   font-weight: 700;
   font-size: 18px;
@@ -85,7 +85,7 @@
   height: 3px;
   bottom: -10px;
   left: 0;
-  background: #000000;
+  background: rgb(var(--color-foreground));
 }
 
  .filter-product-clear-btn span {
@@ -262,7 +262,7 @@
 }
 
 .search_results_filter_top_wrapper .search_results_product_title {
-  color: #000000;
+  color: rgb(var(--color-foreground));
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
@@ -275,7 +275,7 @@
   column-gap: 16px;
   row-gap: 12px;
   position: relative;
-  max-width: 320px;
+  max-width: max-content;
   width: 100%;
   z-index: 2;
 }
@@ -446,7 +446,7 @@
 .search_results_select_box .select-box__icon {
   position: absolute;
   top: 50%;
-  right: 6px;
+  right: 16px;
   transform: translateY(-50%);
   transition: 0.2s ease;
 }
@@ -459,25 +459,25 @@
   display: none;
 }
 
-.search_results_select_box 
-.select-box__input-text {
-  color: #000000;
+.search_results_select_box .select-box__input-text {
+  color: rgb(var(--color-foreground));
   display: block;
   font-weight: 700;
   font-size: 20px;
   letter-spacing: -0.01em;
-  border: 1px solid #000000;
+  border: 1px solid rgb(var(--color-foreground));
   border-radius: 100px;
-}
-
-.search_results_select_box .select-box__input-text {
   width: 100%;
   margin: 0;
-  padding: 9px 0 9px 9px;
+  padding:  14px 16px;
   line-height: 1;
-  background-color: #fff;
+  background-color: transparent;
+  z-index: 1;
+  padding-right: 48px;
 }
-
+.search_results_select_box .select-box__icon svg {
+  color: rgb(var(--color-foreground));
+}
 .search_results_select_box .select-box__list {
   position: absolute;
   width: 100%;
