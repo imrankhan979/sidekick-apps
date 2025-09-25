@@ -565,7 +565,8 @@
           "label": "Show icons on desktop"
         },
         "show_social_icons": {
-          "label": "Show Social icons"
+          "label": "Show Social icons",
+          "info": "To display your social media accounts, link them in your [theme settings](/editor?context=theme&category=social%20media)."
         },
         "show_navigation": {
           "label": "Show navigation"
@@ -591,7 +592,7 @@
           "settings": {
             "text": {
               "label": "Text",
-              "default": "Welcome to our store"
+              "default": "WELCOME TO OUR STORE"
             },
             "text_alignment": {
               "label": "Text alignment",
