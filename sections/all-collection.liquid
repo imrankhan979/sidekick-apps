@@ -71,7 +71,8 @@
                     {{ 'sections.all-collection.items' | t }}
                   {%- endif -%}
                 {%- else -%}
-                  0 {{ 'sections.all-collection.item' | t }}
+                  {{ 'sections.all-collection.zero' | t }}
+                  {{ 'sections.all-collection.item' | t }}
                 {%- endif -%}
               </span>
             </div>

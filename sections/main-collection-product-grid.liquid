@@ -52,7 +52,7 @@
   }
 {%- endstyle -%}
 
-<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
+<div class="section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="page-width">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
@@ -219,12 +219,6 @@
       "info": "t:sections.all.colors.has_cards_info",
       "default": "scheme-1"
     },
-    // {
-    //   "type": "checkbox",
-    //   "id": "enable_corner_round",
-    //   "label": "t:sections.all.corner_rounding.label",
-    //   "default": true
-    // },
     {
       "type": "range",
       "id": "products_per_page",
