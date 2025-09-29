@@ -20,7 +20,7 @@
   }
 {%- endstyle -%}
 
-<div class="bundle-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
+<div class="bundle-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     {% if section.settings.heading_text != blank %}
       <div class="section_title">
@@ -111,12 +111,6 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
     },
-    // {
-    //   "type": "checkbox",
-    //   "id": "enable_corner_round",
-    //   "label": "t:sections.all.corner_rounding.label",
-    //   "default": true
-    // },
     {
       "type": "text",
       "id": "heading_text",

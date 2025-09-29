@@ -17,7 +17,7 @@
   }
 {%- endstyle -%}
 
-<section class="product-details-tabs-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }} {% if section.settings.enable_corner_round %}corner-round{% endif %}">
+<section class="product-details-tabs-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     <snazzy-tab>
       <div class="product-details-tabs_wrapper">
@@ -77,7 +77,7 @@
 {
   "name": "t:sections.additional_info.name",
   "settings": [
-      {
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",

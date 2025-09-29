@@ -365,6 +365,7 @@
       "title": "Collection Name",
       "item": "Item",
       "items": "Items",
+      "zero": "0"
     },
     "collection_list": {
       "view_all": "View all",
