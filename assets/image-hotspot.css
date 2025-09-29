@@ -1,9 +1,15 @@
 .bulk-hotspot-section .page-width {
-    margin-left: calc((100% - var(--page-width)) / 2);
+    /* margin-left: calc((100% - var(--page-width)) / 2); */
+    /* width: auto;
+    min-width: auto;
+    max-width: inherit;
+    padding-right: 0; */
+    /* padding-right: 0; */
     width: auto;
     min-width: auto;
     max-width: inherit;
-    padding-right: 0;
+    padding: 0;
+    padding-left: 80px;
   }
   
   .bulk_hotspot_wrapper .bulk_hotspot_left_content {
@@ -152,6 +158,13 @@
     grid-template-columns: 4fr 3fr;
   }
   
+  .bulk_hotspot_box .bulk_hotspot_images:after {
+    padding-top: 100%;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0;
+  }
   .bulk_hotspot_box .bulk_hotspot_images {
     position: relative;
     max-width: 640px;
@@ -160,7 +173,11 @@
   
   .bulk_hotspot_box .bulk_hotspot_images img {
     width: 100%;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
   
   .bulk_hotspot_images .hotspot {
@@ -295,13 +312,13 @@
   
   @media (max-width: 1800px) {
     .bulk-hotspot-section .page-width {
-      margin-left: calc((100% - 2000px) / 2);
+      /* margin-left: calc((100% - 2000px) / 2); */
     }
   }
   
   @media (max-width: 2000px) {
     .bulk-hotspot-section .page-width {
-      margin-left: calc((100% - 1400px) / 2);
+      /* margin-left: calc((100% - 1400px) / 2); */
       /* margin-left: calc((100% - var(--page-width)) / 2); */
     }
   
@@ -316,7 +333,7 @@
   
   @media (max-width: 1399px) {
     .bulk-hotspot-section .page-width {
-      margin-left: calc((100% - 1200px) / 2);
+      /* margin-left: calc((100% - 1200px) / 2); */
     }
   
     .hotpot_slider_item .hotpot_slider_content .hotpot_slider_title {
@@ -353,7 +370,7 @@
   
   @media (max-width: 1199px) {
     .bulk-hotspot-section .page-width {
-      margin-left: calc((100% - 992px) / 2);
+      /* margin-left: calc((100% - 992px) / 2); */
     }
   
     .hotpot_slider_item .hotpot_slider_content .hotpot_slider_title {
@@ -384,7 +401,7 @@
       color: #000;
     }
     .bulk-hotspot-section .page-width {
-      margin-left: calc((100% - 768px) / 2);
+      /* margin-left: calc((100% - 768px) / 2); */
     }
   
     .bulk_hotspot_wrapper {
@@ -558,4 +575,31 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.bulk_hotspot_box .flickity-viewport {
+  overflow: visible;
+}
+
+.bulk-hotspot-section {
+  overflow: hidden;
+}
+.bulk_hotspot_box .hotpot_slider_wrapper {
+  overflow-x: hidden;
+}
+.bulk_hotspot_images_carosel {
+  height: 100%;
+  display: flex;
+  align-items: end;
+}
+.bulk_hotspot_images_carosel_init {
+  width: 100%;
+  display: block;
+}
+.hotpot_slider_item popup-slide {
+  display: none;
+}
+.hotpot_slider_item .card__badge {
+  position: relative;
+  top: 0;
+  left: 0;
 }
