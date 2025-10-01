@@ -96,7 +96,7 @@
                               <div class="popup_size_cart_text">
                                {% if block.settings.chart_desc != blank %}
                                  <div class="popup_size_cart_desc">
-                                  {{ block.settings.chart_desc | escape }}
+                                  {{ block.settings.chart_desc }}
                                  </div>
                                {% endif %}
                                {% if block.settings.chart_btn_text != blank %}
@@ -133,10 +133,10 @@
         </fieldset>
       {%- else -%}
         <div class="product-form__input product-form__input--dropdown">
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+          <label class="form__label snzz-variant-label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
-          <div class="select">
+          <div class="select snzz-variant-select">
             {%- if picker_type == 'swatch_dropdown' -%}
               <span
                 data-selected-value
