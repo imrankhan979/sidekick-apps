@@ -161,6 +161,23 @@ margin-top: 38px;
 .product-btn-wrapper{
   margin-top: 0;
 }
+
+.product-form__input .form__label.snzz-variant-label {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.product-form__input .snzz-variant-select .select__select {
+    font-size: 18px;
+    border: 1px solid;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.product-form__input .snzz-variant-select .select__select:focus {
+  box-shadow: none;
+}
 .product-form__input .form__label {
   color: #808080;
   font-weight: 400;
@@ -182,6 +199,7 @@ margin-top: 38px;
 
 .product-form__input .svg-wrapper {
   right: 1.5rem;
+  top: 30px;
 }
 
 .product-form__submit {
@@ -2725,6 +2743,25 @@ variant-selects .product-popup-modal__opener button:hover::before {
 .popup_size_cart_wrapper .popup_size_cart_desc {
   font-size: 14px;
   color: #000000;
+}
+
+.popup_size_cart_wrapper .popup_size_cart_desc a {
+  position: relative;
+}
+
+.popup_size_cart_wrapper .popup_size_cart_desc a::after {
+  content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    transition: .4s ease-in-out;
+}
+
+.popup_size_cart_wrapper .popup_size_cart_desc a:hover::after {
+    width: 0%;
 }
 
 .popup_size_cart_wrapper .popup_size_cart_top .popup_size_cart_close button {
