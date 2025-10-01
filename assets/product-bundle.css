@@ -684,3 +684,7 @@ letter-spacing: -0.01em;
   width: 36px !important;
   height: 36px !important;
 }
+
+.bundle-section .product-thumb {
+  position: relative;
+}

@@ -101,7 +101,7 @@ flex-direction: column;
 .category_banner_item .category_banner_box .category_banner_content .category-banner-btn .category-anim {
   display: block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #ffffff;
+  text-shadow: 0 0px 0 #ffffff;
   transition: all ease 0.3s;
 }
 
@@ -115,7 +115,7 @@ flex-direction: column;
 }
 
 .category_banner_item .category_banner_box .category_banner_content .category-banner-btn:hover .category-anim>.anim-text {
-  text-shadow: 0 23px 0 #ffffff;
+  text-shadow: 0 0px 0 #ffffff;
   transform: translateY(-23px);
 }
 

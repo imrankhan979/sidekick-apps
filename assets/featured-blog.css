@@ -94,7 +94,7 @@ START: Blog CSS
 .blog_category .category_text .blog_anim {
   display: block;
   overflow: hidden;
-  text-shadow: 0 23px 0 black;
+  text-shadow: 0 0px 0 black;
   transition: all ease 0.3s;
 }
 
@@ -108,8 +108,8 @@ START: Blog CSS
 }
 
 .blog_category .category_text:hover .blog_anim > .anim_text {
-  text-shadow: 0 23px 0 black;
-  transform: translateY(-23px);
+  text-shadow: 0 0px 0 black;
+  /* transform: translateY(-23px); */
 }
 
 .blog_feature_item .blog_feature_content h4 {

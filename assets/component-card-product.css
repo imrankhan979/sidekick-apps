@@ -216,14 +216,14 @@ START: Quick order list CSS
   white-space: nowrap;
 }
 .quick-order-list-total__column  .quick-order-list-buttons a:hover .cart_anim .anim_text {
-  text-shadow: 0 23px 0 var(--color-black);
-  transform: translateY(-23px);
+  text-shadow: 0 0px 0 var(--color-black);
+  /* transform: translateY(-23px); */
 }
 
 .quick-order-list-total__column  .quick-order-list-buttons .cart_anim {
   display: block;
   overflow: hidden;
-  text-shadow: 0 23px 0 var(--color-black);
+  text-shadow: 0 0px 0 var(--color-black);
   transition: all ease 0.3s;
 }
 
@@ -490,7 +490,7 @@ START: Quick order list CSS
    .quick_order_list_left_button .quick-order-list-add-btn .cart_anim {
     display: block;
     overflow: hidden;
-    text-shadow: 0 23px 0 var(--color-black);
+    text-shadow: 0 0px 0 var(--color-black);
     transition: all ease 0.3s;
   }
   
@@ -504,8 +504,8 @@ START: Quick order list CSS
   }
   
    .quick_order_list_left_button .quick-order-list-add-btn:hover .cart_anim>.anim_text {
-    text-shadow: 0 23px 0 var(--color-black);
-    transform: translateY(-23px);
+    text-shadow: 0 0px 0 var(--color-black);
+    /* transform: translateY(-23px); */
   }
   
    .button--tertiary .quick-order-list-remove-btn {

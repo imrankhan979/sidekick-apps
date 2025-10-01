@@ -12,7 +12,7 @@
   transition: transform .4s ease;
   border-radius: 0px 0px 24px 24px;
   display: unset;
-  background: #fff;
+  background: rgb(var(--color-background));
   padding: 24px 48px 48px;
   transform: translateY(-20px);
   width: 100%;
@@ -30,8 +30,7 @@ font-family: var(--font-body-family);
 font-weight: 400;
 font-size: 18px;
 line-height: 28px;
-/* white-space: nowrap; */
-color: #000;
+color: rgb(var(--color-foreground));
 display: inline-flex;
 align-items: center;
 justify-content: space-between;
@@ -44,7 +43,7 @@ position: relative;
   bottom: 0;
   width: 0;
   height: 1px;
-  background: #000;
+  background: rgb(var(--color-foreground));
   transition: width .3s ease;
 } 
 .snazzy-header .header-inner .list-menu li .has-sub-menu .header__menu-item:hover:after{

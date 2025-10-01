@@ -26,11 +26,13 @@ class BundleManager extends HTMLElement {
   handleAddToBundle(button) {
     if (button.getAttribute('data-disabled') === 'true') return;
 
+    
     const productElem = button.closest('.product');
+
     const productId = productElem.querySelector('.product-variant-id')?.value;
     const productTitle = productElem.dataset.title;
     const productPrice = parseFloat(productElem.querySelector('.product-price').textContent.replace(/[^0-9.-]+/g, ""));
-    const productImage = productElem.querySelector('.featured-image')?.src;
+    const productImage = productElem.querySelector('img')?.src
     const variantGroups = productElem.querySelectorAll('.variant-group');
     let selectedVariants = [];
 

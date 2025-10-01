@@ -227,7 +227,7 @@ height: 100%;
 .contact_form_box_three form .form_button .submit-btn .submit_anim {
   display: inline-block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #ffffff;
+  text-shadow: 0 0px 0 #ffffff;
   transition: all ease 0.3s;
 }
 
@@ -241,8 +241,8 @@ height: 100%;
 }
 
 .contact_form_box_three form .form_button .submit-btn:hover .submit_anim>.anim_text {
-  text-shadow: 0 23px 0 #ffffff;
-  transform: translateY(-23px);
+  text-shadow: 0 0px 0 #ffffff;
+  /* transform: translateY(-23px); */
 }
 
 .popup_newsletter_wrapper.no-image {
@@ -270,12 +270,12 @@ height: 100%;
 .newsletter-form-field .submit-btn .submit_anim {
   display: inline-block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #ffffff;
+  text-shadow: 0 0px 0 #ffffff;
   transition: all ease 0.3s;
 }
 
 .newsletter-form-field .submit-btn:hover .submit_anim>.anim_text {
-  text-shadow: 0 23px 0 #ffffff;
+  text-shadow: 0 0px 0 #ffffff;
   transform: translateY(-23px);
 }
 

@@ -323,6 +323,7 @@
   width: 100%;
   height: 0;
 }
+.galley_item .gallery_images .placeholder-svg,
 .galley_item .gallery_images img {
   width: 100%;
   height: 100%;

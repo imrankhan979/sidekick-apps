@@ -118,33 +118,35 @@
           {% endfor %}
         </div>
         {% if section.blocks.size > 0 %}
-          <items-carousel>
-            <div
-              class="carousel items-carousel-selector hotpot_slider_wrapper"
-              data-flickity='{"contain": true, "prevNextButtons": {% if section.blocks.size > 1 %}true {% else %}false{% endif %}, "pageDots": false }'
-            >
-              {% for block in section.blocks %}
-                {% if block.type == 'product' %}
-                  <div class="hotpot_slider_item" {{ block.shopify_attributes }}>
-                    {% assign product = block.settings.selected_product %}
-                    {% if product != blank %}
-                      {% render 'card-product', card_product: product, section_id: section.id %}
-                    {% else %}
-                      <div class="hotpot_slider_thumb flex">
-                        {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-                        {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
-                        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
-                      </div>
-                      <div class="hotpot_slider_content">
-                        <h5 class="hotpot_slider_title" href="{{product.url}}">
-                          {{ 'sections.image_hotspot.product_title' | t }}
-                        </h5>
-                        <p class="hotpot_slider_amount">{{ 'sections.product_carousel.product_price' | t }}</p>
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endif %}
-              {% endfor %}
+          <items-carousel class="bulk_hotspot_images_carosel" >
+            <div class="bulk_hotspot_images_carosel_init" >
+              <div
+                class="carousel items-carousel-selector hotpot_slider_wrapper"
+                data-flickity='{"contain": true, "prevNextButtons": {% if section.blocks.size > 1 %}true {% else %}false{% endif %}, "pageDots": false }'
+              >
+                {% for block in section.blocks %}
+                  {% if block.type == 'product' %}
+                    <div class="hotpot_slider_item" {{ block.shopify_attributes }}>
+                      {% assign product = block.settings.selected_product %}
+                      {% if product != blank %}
+                        {% render 'card-product', card_product: product, section_id: section.id %}
+                      {% else %}
+                        <div class="hotpot_slider_thumb flex">
+                          {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+                          {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
+                          {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                        </div>
+                        <div class="hotpot_slider_content">
+                          <h5 class="hotpot_slider_title" href="{{product.url}}">
+                            {{ 'sections.image_hotspot.product_title' | t }}
+                          </h5>
+                          <p class="hotpot_slider_amount">{{ 'sections.product_carousel.product_price' | t }}</p>
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
             </div>
           </items-carousel>
         {% endif %}

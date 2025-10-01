@@ -11,12 +11,20 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-  .testimonial-item{
+  .section-{{ section.id }}-area .testimonial-item{
     width: calc((100% / {{section.settings.columns_desktop}}));
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1440px) {
+    .section-{{ section.id }}-area .testimonial-item {
+        width: 100%;
+    }
+    .section-{{ section.id }}-area .testimonial-item .testimonial-content {
+      max-width: 100%;
+    }
   }
 {%- endstyle -%}
 
-<section class="testimonial-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+<section class="section-{{ section.id }}-area testimonial-section section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="page-width">
     {% if section.settings.testimonial_heading != blank %}
       <div class="heading_area">
@@ -31,85 +39,85 @@
         >
           {%- for block in section.blocks -%}
             <div class="testimonial-item" {{ block.shopify_attributes }}>
-              {% if block.settings.testimonial_image != blank %}
-                <div class="testimonial-images">
-                  {% render 'the-img', image: block.settings.testimonial_image %}
-                </div>
-              {% endif %}
-              <div class="testimonial-content">
-                {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
-                  <div class="testimonial-text">
-                    {% if block.settings.client_review_title %}
-                      <h5 class="title">{{ block.settings.client_review_title }}</h5>
-                    {% endif %}
-                    {% if block.settings.client_review_text != blank %}
-                      <div class="desc">
-                        <p>{{ block.settings.client_review_text }}</p>
-                      </div>
-                    {% endif %}
+                {% if block.settings.testimonial_image != blank %}
+                  <div class="testimonial-images">
+                    {% render 'the-img', image: block.settings.testimonial_image %}
                   </div>
                 {% endif %}
-                {% if block.settings.client_image != blank
-                  or block.settings.client_name != blank
-                  or block.settings.client_location != blank
-                %}
-                  <div class="testimonial-author">
-                    {%- if block.settings.client_image != blank -%}
-                      <div class="author-images">
-                        {% if block.settings.client_image != blank %}
-                          {% render 'the-img', image: block.settings.client_image %}
-                        {% else %}
-                          {{ 'image' | placeholder_svg_tag }}
-                        {% endif %}
-                      </div>
-                    {%- endif -%}
-                    <div class="author-text">
-                      {% if block.settings.client_name != blank %}
-                        <h5 class="title">{{ block.settings.client_name }}</h5>
+                <div class="testimonial-content">
+                  {% if block.settings.client_review_title != blank or block.settings.client_review_text != blank %}
+                    <div class="testimonial-text">
+                      {% if block.settings.client_review_title %}
+                        <h5 class="title">{{ block.settings.client_review_title }}</h5>
                       {% endif %}
-                      {% if block.settings.client_location != blank %}
-                        <span class="designation">{{ block.settings.client_location }}</span>
+                      {% if block.settings.client_review_text != blank %}
+                        <div class="desc">
+                          <p>{{ block.settings.client_review_text }}</p>
+                        </div>
                       {% endif %}
                     </div>
-                  </div>
-                {% endif %}
-                {% if block.settings.show_product != blank %}
-                  <div class="testimonial-infos">
-                    <div class="infos-text">
-                      <h6 class="title">
+                  {% endif %}
+                  {% if block.settings.client_image != blank
+                    or block.settings.client_name != blank
+                    or block.settings.client_location != blank
+                  %}
+                    <div class="testimonial-author">
+                      {%- if block.settings.client_image != blank -%}
+                        <div class="author-images">
+                          {% if block.settings.client_image != blank %}
+                            {% render 'the-img', image: block.settings.client_image %}
+                          {% else %}
+                            {{ 'image' | placeholder_svg_tag }}
+                          {% endif %}
+                        </div>
+                      {%- endif -%}
+                      <div class="author-text">
+                        {% if block.settings.client_name != blank %}
+                          <h5 class="title">{{ block.settings.client_name }}</h5>
+                        {% endif %}
+                        {% if block.settings.client_location != blank %}
+                          <span class="designation">{{ block.settings.client_location }}</span>
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                  {% if block.settings.show_product != blank %}
+                    <div class="testimonial-infos">
+                      <div class="infos-text">
+                        <h6 class="title">
+                          <a
+                            {% if block.settings.testimonial_product == blank %}
+                              role="link" aria-disabled="true"
+                            {% else %}
+                              href="{{ block.settings.testimonial_product.url }}"
+                            {% endif %}
+                          >
+                            <span
+                              ><span>
+                                {{- block.settings.testimonial_product.title | default: 'Product title' -}}
+                              </span></span
+                            >
+                          </a>
+                        </h6>
+                        <span class="price">
+                          {{ block.settings.testimonial_product.price | money | default: '0.00' }}
+                        </span>
+                      </div>
+                      <div class="testimonial-button">
                         <a
+                          class="link-btn"
                           {% if block.settings.testimonial_product == blank %}
                             role="link" aria-disabled="true"
                           {% else %}
                             href="{{ block.settings.testimonial_product.url }}"
                           {% endif %}
                         >
-                          <span
-                            ><span>
-                              {{- block.settings.testimonial_product.title | default: 'Product title' -}}
-                            </span></span
-                          >
+                          {{- 'icon-plus.svg' | inline_asset_content -}}
                         </a>
-                      </h6>
-                      <span class="price">
-                        {{ block.settings.testimonial_product.price | money | default: '0.00' }}
-                      </span>
+                      </div>
                     </div>
-                    <div class="testimonial-button">
-                      <a
-                        class="link-btn"
-                        {% if block.settings.testimonial_product == blank %}
-                          role="link" aria-disabled="true"
-                        {% else %}
-                          href="{{ block.settings.testimonial_product.url }}"
-                        {% endif %}
-                      >
-                        {{- 'icon-plus.svg' | inline_asset_content -}}
-                      </a>
-                    </div>
-                  </div>
-                {% endif %}
-              </div>
+                  {% endif %}
+                </div>
             </div>
           {%- endfor -%}
         </div>

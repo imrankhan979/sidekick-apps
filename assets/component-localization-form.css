@@ -14,7 +14,7 @@
   transform: translateY(-20px);
 }
 .disclosure__list-wrapper ul{
-  background: #fff;
+  background: rgb(var(--color-background));
   padding: 24px 48px 48px;
 
 }
@@ -27,7 +27,7 @@
   text-decoration: none;
   font-size: 18px;
   line-height: 28px;
-  color: #000000;
+  color: rgb(var(--color-foreground));
   font-family: var(--font-family-body);
   gap: 10px;
 }   
@@ -57,7 +57,7 @@
 font-weight: 700;
 font-size: 16px;
 line-height: 24px;
-color: #000000;
+color: rgb(var(--color-foreground));
 text-transform: uppercase;
 font-family:  var(--font-family-body);
 display: flex;

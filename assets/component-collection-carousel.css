@@ -131,7 +131,7 @@
   .collection_carousel_item.is-selected .collection_carousel_content .subTitle .collection_anim {
     display: block;
     overflow: hidden;
-    text-shadow: 0 23px 0 #ffffff;
+    text-shadow: 0 0px 0 #ffffff;
     transition: all ease 0.3s;
   }
   
@@ -145,8 +145,8 @@
   }
   
   .collection_carousel_item.is-selected .collection_carousel_content .subTitle:hover .collection_anim .anim_text {
-    text-shadow: 0 23px 0 #ffffff;
-    transform: translateY(-23px);
+    text-shadow: 0 0px 0 #ffffff;
+    /* transform: translateY(-23px); */
   }
 
   .collection_carousel_item.is-selected .collection_carousel_button {
