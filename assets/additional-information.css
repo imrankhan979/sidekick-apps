@@ -45,7 +45,7 @@
   .product_details_tabs .product_details_menu .tabs_menu li .product_anim {
     display: block;
     overflow: hidden;
-    text-shadow: 0 23px 0 #ffffff;
+    text-shadow: 0 0px 0 #ffffff;
     transition: all ease 0.3s;
   }
   
@@ -59,8 +59,8 @@
   }
   
   .product_details_tabs .product_details_menu .tabs_menu li.active .product_anim .anim_text {
-    text-shadow: 0 23px 0 #ffffff;
-    transform: translateY(-23px);
+    text-shadow: 0 0px 0 #ffffff;
+    /* transform: translateY(-23px); */
   }
   .product_details_tabs .product_details_content_box {
     border-top: 1px solid #DDDDDD;

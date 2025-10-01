@@ -2781,7 +2781,7 @@ variant-selects .product-popup-modal__opener button:hover::before {
 .popup_size_cart_wrapper .popup_size_cart_text .popup_size_cart_button .popup_size_cart_btn .cart_anim {
   display: inline-block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #000000;
+  text-shadow: 0 0px 0 #000000;
   transition: all ease 0.3s;
 }
 
@@ -2795,8 +2795,8 @@ variant-selects .product-popup-modal__opener button:hover::before {
 }
 
 .popup_size_cart_wrapper .popup_size_cart_text .popup_size_cart_button .popup_size_cart_btn:hover .cart_anim>.anim_text {
-  text-shadow: 0 23px 0 #000000;
-  transform: translateY(-23px);
+  text-shadow: 0 0px 0 #000000;
+  /* transform: translateY(-23px); */
 }
 
 .popup_size_cart_wrapper .popup_size_cart_table_main {
@@ -2878,5 +2878,6 @@ variant-selects .product-popup-modal__opener button:hover::before {
 }
 
 
-
-
+.icon-with-text--horizontal .svg-wrapper  {
+  position: relative;
+}

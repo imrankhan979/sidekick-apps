@@ -1757,10 +1757,10 @@
           "name": "Image",
           "settings": {
             "main_image": {
-              "label": "Image"
+              "label": "Image 1"
             },
             "shape_image_one": {
-              "label": "Shape image"
+              "label": "Image 2"
             },
             "card_image_rotation": {
               "label": "Item rotation"
@@ -1787,10 +1787,10 @@
               "label": "Button link"
             },
             "shape_image_two": {
-              "label": "Shape image right"
+              "label": "Image 1"
             },
             "shape_image_three": {
-              "label": "Shape image left"
+              "label": "Image 2"
             },
             "card_content_rotation": {
               "label": "Item rotation"

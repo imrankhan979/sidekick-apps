@@ -734,7 +734,7 @@ quick-order-list .tax-note {
 .quick-order-list-buttons .quick-order-list__button .cart_anim {
   display: block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #000000;
+  text-shadow: 0 0px 0 #000000;
   transition: all ease 0.3s;
 }
 .quick-order-list-buttons .quick-order-list__button .cart_anim>.anim_text {
@@ -747,7 +747,7 @@ quick-order-list .tax-note {
 }
 .quick-order-list-buttons .quick-order-list__button:hover .cart_anim>.anim_text {
     text-shadow: 0 25px 0 #000000;
-    transform: translateY(-25px);
+    /* transform: translateY(-25px); */
 }
 .quick-order-list__button-text .add_to_all_cart {
   font-size: 18px;

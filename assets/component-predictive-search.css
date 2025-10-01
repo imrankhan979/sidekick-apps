@@ -23,7 +23,7 @@
 
 .predictive-search__results-groups-wrapper {
   display: flex;
-  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.7);
 }
 #search-drawer .predictive-search__results-groups-wrapper{
   flex-direction: column;
@@ -81,7 +81,7 @@ predictive-search[loading] .predictive-search {
 .predictive-search__result-group > div{
   padding-top: 40px;
   padding-bottom: 40px;
-  border-top: 1px solid #DDDDDD;
+  border-top: 1px solid rgba(var(--color-foreground), 0.7);
 }
 @media (max-width: 767px) {
   .predictive-search__result-group > div{
@@ -203,7 +203,6 @@ predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predict
   font-weight: 400;
   font-size: 20px;
   line-height: 28px;
-  letter-spacing: 0%;
   font-family: var(--font-family-heading);
 }
 #predictive-search-results-pages-list-mobile .predictive-search__item-heading, #predictive-search-results-pages-list-desktop .predictive-search__item-heading {

@@ -108,15 +108,12 @@
                 {% else %}
                   href="{{ article.url }}"
                 {% endif %}
+                class="media-img-abs"
               >
                 {%- if article.image != blank -%}
-                  <img
-                    src="{{ article.image | image_url: width: 533 }}"
-                    alt="{{ article.image.alt | escape }}"
-                    loading="lazy"
-                    width="{{ article.image.width }}"
-                    height="{{ article.image.height }}"
-                  >
+     
+                    {% render 'the-img', image: article.image %}
+            
                 {%- else -%}
                   {{ 'collection-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
                 {%- endif -%}

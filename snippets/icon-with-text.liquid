@@ -45,17 +45,9 @@
       {%- if block.settings.image_1 == null -%}
         {%- render 'icon-accordion', icon: block.settings.icon_1 -%}
       {%- else -%}
-        <img
-          src="{{ block.settings.image_1 | image_url }}"
-          {% if block.settings.image_1.alt != blank %}
-            alt="{{ block.settings.image_1.alt | escape }}"
-          {% else %}
-            role="presentation"
-          {% endif %}
-          height="auto"
-          width="auto"
-          loading="lazy"
-        >
+        <div class="media-img-abs">
+          {% render 'the-img', image: block.settings.image_1 %}
+        </div>
       {%- endif -%}
       <span class="h4 inline-richtext">
         {{- block.settings.heading_1 -}}
@@ -67,17 +59,9 @@
       {%- if block.settings.image_2 == null -%}
         {% render 'icon-accordion', icon: block.settings.icon_2 -%}
       {%- else -%}
-        <img
-          src="{{ block.settings.image_2 | image_url }}"
-          {% if block.settings.image_2.alt != blank %}
-            alt="{{ block.settings.image_2.alt | escape }}"
-          {% else %}
-            role="presentation"
-          {% endif %}
-          height="auto"
-          width="auto"
-          loading="lazy"
-        >
+        <div class="media-img-abs">
+        {% render 'the-img', image: block.settings.image_2 %}
+        </div>
       {%- endif -%}
       <span class="h4 inline-richtext">
         {{- block.settings.heading_2 -}}
@@ -89,17 +73,9 @@
       {%- if block.settings.image_3 == null -%}
         {% render 'icon-accordion', icon: block.settings.icon_3 -%}
       {%- else -%}
-        <img
-          src="{{ block.settings.image_3 | image_url }}"
-          {% if block.settings.image_3.alt != blank %}
-            alt="{{ block.settings.image_3.alt | escape }}"
-          {% else %}
-            role="presentation"
-          {% endif %}
-          height="auto"
-          width="auto"
-          loading="lazy"
-        >
+        <div class="media-img-abs">
+          {% render 'the-img', image: block.settings.image_3 %}
+        </div>
       {%- endif -%}
       <span class="h4 inline-richtext">
         {{- block.settings.heading_3 -}}

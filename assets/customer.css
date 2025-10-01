@@ -111,13 +111,13 @@
 .contact_form_box_two .submit-btn .submit_anim {
   display: inline-block;
   overflow: hidden;
-  text-shadow: 0 23px 0 #ffffff;
+  text-shadow: 0 0px 0 #ffffff;
   transition: all ease 0.3s;
 }
 
 .contact_form_box_two .submit-btn:hover .submit_anim>.anim_text {
-  text-shadow: 0 23px 0 #ffffff;
-  transform: translateY(-23px);
+  text-shadow: 0 0px 0 #ffffff;
+  /* transform: translateY(-23px); */
 }
 
 .contact_form_box_two .submit-btn .submit_anim>.anim_text {

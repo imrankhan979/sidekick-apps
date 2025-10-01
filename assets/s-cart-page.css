@@ -265,7 +265,7 @@ span.price.price--end {
 .cart__ctas .cart-checkout-btn .check_anim {
 	display: inline-block;
 	overflow: hidden;
-	text-shadow: 0 23px 0 #ffffff;
+	text-shadow: 0 0px 0 #ffffff;
 	transition: all ease 0.3s;
 }
 

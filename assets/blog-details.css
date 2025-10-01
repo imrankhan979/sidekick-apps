@@ -432,7 +432,7 @@
 .blog_category .category_text .blog_anim {
     display: block;
     overflow: hidden;
-    text-shadow: 0 23px 0 #000000;
+    text-shadow: 0 0px 0 #000000;
     transition: all ease 0.3s;
 }
 
@@ -446,8 +446,8 @@
 }
 
 .blog_category .category_text:hover .blog_anim > .anim_text {
-  text-shadow: 0 23px 0 black;
-  transform: translateY(-23px);
+  text-shadow: 0 0px 0 black;
+  /* transform: translateY(-23px); */
 }
 
 .pagination ul li .pagination-link.current {

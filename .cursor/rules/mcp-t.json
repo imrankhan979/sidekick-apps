@@ -15,6 +15,15 @@ rgba(var(--color-button-border), 1);
 rgba(var(--color-button-border-hover), 1);
 rgba(var(--color-button-text), 1);
 rgba(var(--color-button-text-hover), 1);
+
+rgba(var(--color-secondary-button), 1);
+rgba(var(--color-secondary-button-hover), 1);
+rgba(var(--color-secondary-button-border), 1);
+rgba(var(--color-secondary-button-border-hover), 1);
+rgba(var(--color-secondary-button-text), 1);
+rgba(var(--color-secondary-button-text-hover), 1);
+
+
 /* Structure */
 .my-class {
     position: relative;
