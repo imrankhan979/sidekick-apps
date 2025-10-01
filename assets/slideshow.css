@@ -129,7 +129,7 @@
     position: absolute;
     top: 110px;
     right: 45px;
-    line-height: 32px;
+    line-height: 28px;
   }
   .slider_item .slider_item_content > * + * {
     margin-top: 50px;

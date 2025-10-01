@@ -1,7 +1,6 @@
-.product--no-media .rating-wrapper {
+.product--no-media .rating-wrapper{
   text-align: center;
 }
-
 .rating {
   display: inline-block;
   margin: 0;
@@ -40,8 +39,6 @@
     var(--color-rating-star) var(--percent),
     rgba(var(--color-foreground), 0.15) var(--percent)
   );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .rating-text {
@@ -51,6 +48,10 @@
 .rating-count {
   display: inline-block;
   margin: 0;
+}
+
+.rating-wrapper {
+  margin-top: 16px !important;
 }
 
 @media (forced-colors: active) {
