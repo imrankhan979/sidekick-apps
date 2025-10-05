@@ -484,15 +484,15 @@
   
   .card-information > * {
     line-height: calc(1 + 0.4 / var(--font-body-scale));
-    color: rgb(var(--color-foreground));
+    color: rgba(var(--color-highlight-text), 1);
   }
   
   .card-information > .price {
-    color: rgb(var(--color-foreground));
+    color: rgba(var(--color-highlight-text), 1);
   }
   
   .card--horizontal .card-information > .price {
-    color: rgba(var(--color-foreground), 0.75);
+    color: rgba(var(--color-highlight-text), .75);
   }
   
   .card-information > .rating {
@@ -618,7 +618,7 @@
     margin-bottom: 5px;
   }
   .card .vendor-name{
-    color: var(--color-gray);
+    color: rgba(var(--color-foreground), .5);
   }
 .card variant-selects fieldset{
   border: 0;
@@ -643,3 +643,35 @@
     font-size: 24px;
  }
 }
+
+.card-wrapper .card__badge {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.card-wrapper .card--standard {
+  background: transparent;
+}
+.card-wrapper .card--standard .card__inner {
+  background: rgba(var(--color-background), 1);
+}
+.card-wrapper .card--standard.card .card__inner popup-slide button {
+  color: rgba(var(--color-button-text), 1);
+  border: 1px solid rgba(var(--color-button-border), 1);
+  background: rgba(var(--color-button), 1);
+}
+.card-wrapper .card--standard.card .card__inner popup-slide button:hover {
+  color: rgba(var(--color-button-text-hover), 1);
+  border: 1px solid rgba(var(--color-button-border-hover), 1);
+  background: rgba(var(--color-button-hover), 1);
+}
+.card-wrapper .card--card .card__content_bottom {
+  padding: 15px;
+  padding-top: 0;
+}
+.card-wrapper .card--card .card__media,
+.card-wrapper .card--card {
+  border-radius: 25px;
+} 
+
+
