@@ -453,7 +453,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: rgb(var(--color-button-text));
+  color: rgb(var(--color-foreground));
   cursor: pointer;
 }
 
@@ -486,16 +486,24 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-black);
   border-radius: 50%;
   overflow: hidden;
+  background-color: rgba(var(--color-button),1);
+  border: 1px solid rgba(var(--color-button-border), 1);
+}
+.snazzy-icon-btn:hover span {
+  border: 1px solid rgba(var(--color-button-border-hover), 1);
+  background: rgba(var(--color-button-hover), 1);
+}
+.snazzy-icon-btn span svg path{
+  fill:  rgba(var(--color-button-text),1);
+}
+.snazzy-icon-btn:hover span svg path {
+  fill:  rgba(var(--color-button-text-hover),1);
 }
 
 .snazzy-icon-btn span svg {
   transform: rotate(-90deg);
-}
-.snazzy-icon-btn span svg path{
-  fill: var(--color-white);
 }
 
 .snazzy-icon-btn:hover span svg {
@@ -3185,8 +3193,6 @@ details[open]>.header__icon--menu .icon-hamburger {
   font-size: 14px;
   font-weight: 700;
   line-height: 18px;
-  color: #FFFFFF;
-  background: #000000;
   text-transform: uppercase;
   text-align: center;
 }
@@ -4767,3 +4773,6 @@ accordion-item .accordion_content {
   background: rgba(var(--color-button-hover),1);
   color: rgba(var(--color-button-text-hover),1);
 }
+
+
+

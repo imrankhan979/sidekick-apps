@@ -455,10 +455,10 @@ quick-add-bulk .quantity__input {
   pointer-events: none;
 }
 .price--on-sale .price-item--regular {
-    color: gray;
+    color: rgba(var(--color-highlight-text), 0.7);
 }
 .price .price-item.quick_order_list_price {
-    color: red;
+    color: rgba(var(--color-highlight-text), 1);
 }
 .quick-order-list__container .variant-item__quantity-wrapper button:first-child span svg {
   display: block;

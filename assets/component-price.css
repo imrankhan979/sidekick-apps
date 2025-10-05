@@ -90,11 +90,11 @@
   text-transform: uppercase;
   color: rgba(var(--color-foreground), 0.7);
 }
-.price-item.price-item--sale.price-item--last.quick_order_list_price{
-  color: #FF3E3E;
+.price-item.price-item--sale.price-item--last.quick_order_list_price {
+  color: rgba(var(--color-highlight-text), 1);
 }
 .discount .price-item.price-item--regular{
-  color: #808080;
+  color: rgba(var(--color-highlight-text), 0.7);
 }
 @media (max-width: 767px) {
     .price {
