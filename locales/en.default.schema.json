@@ -932,7 +932,7 @@
           "label": "Number of columns on desktop"
         },
         "show_view_all": {
-          "label": "Enable \"View all\" if collection has more products than shown"
+          "label": "\"View all\" Button"
         },
         "view_all_style": {
           "label": "\"View all\" style",
@@ -1306,7 +1306,7 @@
           "label": "Product"
         },
         "secondary_background": {
-          "label": "Show secondary background"
+          "label": "Enable box layout"
         },
         "header": {
           "content": "Media",
@@ -1747,7 +1747,7 @@
       "settings": {
         "main_heading": {
           "label": "Heading",
-          "default": "IMAGE WITH TEXT"
+          "default": "Discover our brands"
         },
         "bg_image": {
           "label": "Background image"
@@ -1773,16 +1773,16 @@
           "settings": {
             "sub_heading": {
               "label": "Title",
-              "default": "DESCRIBE A PRODUCT, MAKE ANNOUNCEMENTS, OR WELCOME CUSTOMERS TO YOUR STORE."
+              "default": "Image with text."
             },
             "paragraph_one": {
               "label": "Text",
-              "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+              "default": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
             },
 
             "button_text": {
-              "label": "Button text",
-              "default": "LEARN MORE"
+              "label": "Button label",
+              "default": "Button label"
             },
             "button_link": {
               "label": "Button link"
@@ -2124,7 +2124,7 @@
           "default": "Add a short description for this section"
         },
         "cart_button_text": {
-          "label": "Cart button text",
+          "label": "Cart Button label",
           "default": "ADD ALL TO CART"
         },
         "hotspot_image": {
@@ -3563,7 +3563,7 @@
               "label": "Image"
             },
             "tab_button": {
-              "label": "Button text",
+              "label": "Button label",
               "default": "Tab button"
             },
             "tab_heading": {
@@ -3777,7 +3777,7 @@
               "default": "BROWSE OUR LATEST PRODUCTS"
             },
             "cta_text": {
-              "label": "CTA text",
+              "label": "Badges label",
               "info": "CTA will be shown only if the title is not blank.",
               "default": "COLLECTION"
             },
@@ -3789,7 +3789,7 @@
               "default": "Use this text to share information about your brand with your customers."
             },
             "button_text": {
-              "label": "Button text",
+              "label": "Button label",
               "default": "SHOP NOW"
             },
             "button_link": {

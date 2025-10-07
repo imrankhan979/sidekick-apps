@@ -9,6 +9,17 @@ Please refactor it into **two clean sections**:
    - Group similar color rules together if possible (backgrounds, text, borders, placeholders).  
 
 Make sure the final CSS is clean, readable, and keeps the original design intact.
+rgba(var(--color-foreground), 1);
+
+
+rgba(var(--color-secondary-background), 1);
+rgba(var(--color-secondary-foreground), 1);
+
+
+
+rgba(var(--color-highlight-text), 1);
+
+
 rgba(var(--color-button), 1);
 rgba(var(--color-button-hover), 1);
 rgba(var(--color-button-border), 1);
@@ -22,6 +33,19 @@ rgba(var(--color-secondary-button-border), 1);
 rgba(var(--color-secondary-button-border-hover), 1);
 rgba(var(--color-secondary-button-text), 1);
 rgba(var(--color-secondary-button-text-hover), 1);
+
+
+
+
+document.querySelectorAll('.badge').forEach(badge => {
+   badge.innerHTML = 'cxvcxvcxvcxvcxvcxvbcxjvxcvxcvjkcvxcvkbcxkvb;dskf;dl';
+});
+document.querySelectorAll('.title').forEach(title => {
+   title.innerHTML = 'cxvcxvcxvcxvcxvcxvbcxjvxcvxcvjkcvxcvkbcxkvb;dskf;dl';
+});
+document.querySelectorAll('.vendor-name').forEach(vendor => {
+   vendor.innerHTML = 'cxvcxvcxvcxvcxvcxvbcxjvxcvxcvjkcvxcvkbcxkvb;dskf;dl';
+});
 
 
 /* Structure */

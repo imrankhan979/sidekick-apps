@@ -110,7 +110,7 @@ class PredictiveSearch extends SearchForm {
     const currentButtonText = searchForTextElement?.innerText;
     if (currentButtonText) {
       if (currentButtonText.match(new RegExp(previousTerm, 'g'))?.length > 1) {
-        // The new term matches part of the button text and not just the search term, do not replace to avoid mistakes
+        // The new term matches part of the Button label and not just the search term, do not replace to avoid mistakes
         return;
       }
       const newButtonText = currentButtonText.replace(previousTerm, newTerm);

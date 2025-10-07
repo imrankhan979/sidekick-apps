@@ -33,7 +33,7 @@
         <div id="product-list" class="bundle-products grid">
           {% if section.settings.collection != blank %}
             {% for product in section.settings.collection.products limit: section.settings.products_to_show %}
-              {% render 'product', product: product, button: true, only_color_variant: false %}
+              {% render 'product-bndl', product: product, button: true, only_color_variant: false %}
             {% endfor %}
           {% else %}
             {% for i in (1..6) limit: section.settings.products_to_show %}
