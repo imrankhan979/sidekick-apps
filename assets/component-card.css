@@ -655,15 +655,9 @@
 .card-wrapper .card--standard .card__inner {
   background: rgba(var(--color-background), 1);
 }
-.card-wrapper .card--standard.card .card__inner popup-slide button {
-  color: rgba(var(--color-button-text), 1);
-  border: 1px solid rgba(var(--color-button-border), 1);
-  background: rgba(var(--color-button), 1);
-}
-.card-wrapper .card--standard.card .card__inner popup-slide button:hover {
-  color: rgba(var(--color-button-text-hover), 1);
-  border: 1px solid rgba(var(--color-button-border-hover), 1);
-  background: rgba(var(--color-button-hover), 1);
+.card-wrapper .card--card .card__content-placeholder {
+  padding: 15px;
+  padding-top: 0;
 }
 .card-wrapper .card--card .card__content_bottom {
   padding: 15px;
@@ -674,4 +668,45 @@
   border-radius: 25px;
 } 
 
+.card-wrapper .card--standard.card .card__inner popup-slide button {
+  color: rgba(var(--color-button-text), 1);
+  border: 1px solid rgba(var(--color-button-border), 1);
+  background: rgba(var(--color-button), 1);
+}
+.card-wrapper .card--standard.card .card__inner popup-slide button:hover {
+  color: rgba(var(--color-button-text-hover), 1);
+  border: 1px solid rgba(var(--color-button-border-hover), 1);
+  background: rgba(var(--color-button-hover), 1);
+}
+.card-wrapper .card--standard .card__content_bottom button {
+  color: rgba(var(--color-button-text), 1);
+  border: 1px solid rgba(var(--color-button-border), 1);
+  background: rgba(var(--color-button), 1);
+}
+.card-wrapper .card--standard .card__content_bottom button:hover {
+  color: rgba(var(--color-button-text-hover), 1);
+  border: 1px solid rgba(var(--color-button-border-hover), 1);
+  background: rgba(var(--color-button-hover), 1);
+}
 
+.card-wrapper .card--card .card__content_bottom button {
+  color: rgba(var(--color-button-text), 1);
+  border: 1px solid rgba(var(--color-button-border), 1);
+  background: rgba(var(--color-button), 1);
+}
+.card-wrapper .card--card .card__content_bottom button:hover {
+  color: rgba(var(--color-button-text-hover), 1);
+  border: 1px solid rgba(var(--color-button-border-hover), 1);
+  background: rgba(var(--color-button-hover), 1);
+}
+
+.card-wrapper .card--card .card__inner popup-slide button {
+  color: rgba(var(--color-secondary-button-text), 1);
+  border: 1px solid rgba(var(--color-secondary-button-border), 1);
+  background: rgba(var(--color-secondary-button), 1);
+}
+.card-wrapper .card--card .card__inner popup-slide button:hover {
+  color: rgba(var(--color-secondary-button-text-hover), 1);
+  border: 1px solid rgba(var(--color-secondary-button-border-hover), 1);
+  background: rgba(var(--color-secondary-button-hover), 1);
+}

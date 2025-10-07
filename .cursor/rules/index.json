@@ -1,0 +1,85 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
+    "sections": {
+      "featured_collection_abHTcV": {
+        "type": "featured-collection",
+        "name": "t:sections.featured-collection.presets.name",
+        "settings": {
+          "color_scheme": "scheme-1",
+          "title": "Featured collection.",
+          "description": "<p>sassa <a href=\"/policies/terms-of-service\" target=\"_blank\" title=\"Terms of Service\">as</a></p><h1>as</h1><h1><em><strong>sssss</strong></em></h1><h1><em><strong>a2</strong></em></h1><h1><em><strong>ss</strong></em></h1><h1>asasas</h1>",
+          "show_description": false,
+          "collection": "collection-one",
+          "products_to_show": 4,
+          "columns_desktop": 4,
+          "show_view_all": true,
+          "image_ratio": "adapt",
+          "image_shape": "default",
+          "show_secondary_image": true,
+          "show_vendor": true,
+          "quick_add": "none",
+          "columns_mobile": "2",
+          "padding_top": 100,
+          "padding_bottom": 100
+        }
+      },
+      "featured_collection_M6AcK9": {
+        "type": "featured-collection",
+        "name": "t:sections.featured-collection.presets.name",
+        "settings": {
+          "color_scheme": "scheme-2",
+          "title": "Featured collection.",
+          "description": "<p>sassa <a href=\"/policies/terms-of-service\" target=\"_blank\" title=\"Terms of Service\">as</a></p><h1>as</h1><h1><em><strong>sssss</strong></em></h1><h1><em><strong>a2</strong></em></h1><h1><em><strong>ss</strong></em></h1><h1>asasas</h1>",
+          "show_description": false,
+          "collection": "collection-two",
+          "products_to_show": 4,
+          "columns_desktop": 4,
+          "show_view_all": true,
+          "image_ratio": "adapt",
+          "image_shape": "default",
+          "show_secondary_image": true,
+          "show_vendor": true,
+          "quick_add": "none",
+          "columns_mobile": "2",
+          "padding_top": 100,
+          "padding_bottom": 100
+        }
+      },
+      "featured_collection_cpe7xU": {
+        "type": "featured-collection",
+        "name": "t:sections.featured-collection.presets.name",
+        "settings": {
+          "color_scheme": "scheme-2",
+          "title": "Featured collection.",
+          "description": "<p>sassa <a href=\"/policies/terms-of-service\" target=\"_blank\" title=\"Terms of Service\">as</a></p><h1>as</h1><h1><em><strong>sssss</strong></em></h1><h1><em><strong>a2</strong></em></h1><h1><em><strong>ss</strong></em></h1><h1>asasas</h1>",
+          "show_description": false,
+          "collection": "no-image-collection",
+          "products_to_show": 4,
+          "columns_desktop": 4,
+          "show_view_all": true,
+          "image_ratio": "adapt",
+          "image_shape": "default",
+          "show_secondary_image": true,
+          "show_vendor": true,
+          "quick_add": "none",
+          "columns_mobile": "2",
+          "padding_top": 100,
+          "padding_bottom": 100
+        }
+      }
+    },
+    "order": [
+      "featured_collection_abHTcV",
+      "featured_collection_M6AcK9",
+      "featured_collection_cpe7xU"
+    ]
+  }
+  

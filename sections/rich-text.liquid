@@ -13,15 +13,15 @@
     }
   }
 {%- endstyle -%}
-
-<div class="isolate{% unless section.settings.full_width %} page-width{% endunless %}">
-  <div class="rich-text content-container color-{{ section.settings.color_scheme }} {% if section.settings.full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
+{% assign full_width = true %}
+<div class="isolate{% unless full_width %} page-width{% endunless %}">
+  <div class="rich-text content-container color-{{ section.settings.color_scheme }} {% if full_width %} rich-text--full-width content-container--full-width{% endif %} section-{{ section.id }}-padding">
     {% if section.settings.hosted_video != null %}
       <div class="rich-text-vide-banner">
         {{ section.settings.hosted_video | video_tag: autoplay: true, loop: true, muted: true }}
       </div>
     {% endif %}
-    <div class="rich-text__wrapper text-align-{{ section.settings.content_alignment }}  rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if section.settings.full_width %} page-width{% endif %}">
+    <div class="rich-text__wrapper text-align-{{ section.settings.content_alignment }}  rich-text__wrapper--{{ section.settings.desktop_content_position }}{% if full_width %} page-width{% endif %}">
       <div class="rich-text__blocks {{ section.settings.content_alignment }}">
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -159,12 +159,6 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
-    },
-    {
-      "type": "checkbox",
-      "id": "full_width",
-      "default": true,
-      "label": "t:sections.rich-text.settings.full_width.label"
     },
     {
       "type": "header",

@@ -49,9 +49,10 @@
 
   <div class="card-wrapper product-card-wrapper underline-links-hover">
     <div
-      class="
-                card card--standard
+      class="color-{{ settings.card_color_scheme }}
+               card card--{{ settings.card_style }}
         card--media
+        
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
@@ -63,11 +64,11 @@
         value="{{ card_product.selected_or_first_available_variant.id }}"
       >
       <div
-        class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }} gradient{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+        class="card__inner ratio"
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if card_product.featured_media -%}
-          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+          <div class="card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} {% endif %}">
             <div class="media media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
@@ -122,13 +123,10 @@
           </div>
         {%- endif -%}
         <a class="product-card-url" href="{{ card_product.url }}"></a>
-        <div class="card__content a">
+        <div class="card__content">
           <div class="card__information">
             <h3
               class="card__heading"
-              {% if card_product.featured_media == null and settings.card_style == 'standard' %}
-                id="title-{{ section_id }}-{{ card_product.id }}"
-              {% endif %}
             >
               <a
                 href="{{ card_product.url }}"
@@ -140,32 +138,14 @@
               </a>
             </h3>
           </div>
-          {% comment %}
-            <div class="card__badge {{ settings.badge_position }}">
-              {%- if card_product.available == false -%}
-                <span
-                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}"
-                >
-                  {{- 'products.product.sold_out' | t -}}
-                </span>
-              {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-                <span
-                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                  class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
-                >
-                  {{- 'products.product.on_sale' | t -}}
-                </span>
-              {%- endif -%}
-            </div>
-          {% endcomment %}
+
           <div class="product-badge-wrapper card__badge flex wrap align-items-center">
             {% if card_product.tags.size > 0 and card_product.variants.first.available %}
-              <div class="badge tag-badge">{{ card_product.tags.first }}</div>
+              <div class="badge tag-badge color-{{ settings.sale_badge_color_scheme }}">{{ card_product.tags.first }}</div>
             {% endif %}
 
             {%- if card_product.available == false -%}
-              <button class="badge sale-badge">
+              <button class="badge sale-badge color-{{ settings.sold_out_badge_color_scheme }}">
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class=""
@@ -175,7 +155,7 @@
               </button>
             
             {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <button class="badge sale-badge">
+              <button class="badge sale-badge color-{{ settings.sale_badge_color_scheme }}">
                 <span
                   id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
                   class=""
@@ -223,16 +203,13 @@
           </div>
         </quick-add-modal>
       </div>
-      <div class="card__content show-variant">
+      <div class="card__content show-variant card__content_bottom">
         <div class="card__information">
           {%- if show_vendor -%}
             <p class="vendor-name">{{ card_product.vendor }}</p>
           {%- endif -%}
           <h5
-            class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
-            {% if card_product.featured_media or settings.card_style == 'card' %}
-              id="title-{{ section_id }}-{{ card_product.id }}"
-            {% endif %}
+            class="card__heading"
           >
             <a
               href="{{ card_product.url }}"
@@ -628,7 +605,7 @@
             </div>
           {% endif %}
         {% endif %}
-        <div class="card__badge {{ settings.badge_position }}">
+        <div class="card__badge ">
           {%- if card_product.available == false -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
@@ -668,15 +645,15 @@
         card card--{{ settings.card_style }}
         {% if extend_height %} card--extend-height{% endif %}
         {% if image_shape and image_shape != 'default' %} card--shape{% endif %}
-        {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
+        color-{{ settings.card_color_scheme }}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
       <div
-        class="card__inner{% if settings.card_style == 'standard' %} color-{{ settings.card_color_scheme }} gradient{% endif %} ratio"
+        class="card__inner ratio"
       >
         <div
-          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
+          class="card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }}{% endif %}"
         >
           <div
             class="media media--transparent"
@@ -689,18 +666,19 @@
           </div>
         </div>
       </div>
-      <div class="card__content c">
+      <div class="card__content card__content-placeholder">
         <div class="card__information">
-          <h3 class="card__heading card__heading--placeholder{% if settings.card_style == 'standard' %} h5{% endif %}">
+          {%- if show_vendor -%}
+            <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+            <p class="vendor-name">{{ 'products.product.vendor' | t }}</p>
+          {%- endif -%}
+          <h3 class="card__heading card__heading--placeholder">
             <a role="link" aria-disabled="true" class="full-unstyled-link">
               <span class="title">{{ 'onboarding.product_title' | t }}</span>
             </a>
           </h3>
-          <div class="card-information">
-            {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
-            {%- endif -%}
+          <div class="card__content  ">
+         
             {% render 'price', placeholder: placeholder, show_compare_at_price: true %}
           </div>
         </div>

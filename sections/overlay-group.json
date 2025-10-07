@@ -2,10 +2,7 @@
     "name": "Overlay group",
     "type": "custom.overlay",
     "sections": {
-      "search-drawer": {
-        "type": "search-drawer"
-      }
     },
-    "order": ["search-drawer"]
+    "order": []
   }
   

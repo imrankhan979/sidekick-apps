@@ -1,30 +1,109 @@
-<img 
-  src="{{ block.settings.image | image_url: width: 1500 }}" 
-  srcset="{{ block.settings.image | image_url: width: 165 }} 165w, 
-          {{ block.settings.image | image_url: width: 360 }} 360w, 
-          {{ block.settings.image | image_url: width: 535 }} 535w, 
-          {{ block.settings.image | image_url: width: 750 }} 750w, 
-          {{ block.settings.image | image_url: width: 1070 }} 1070w, 
-          {{ block.settings.image | image_url: width: 1500 }} 1500w" 
-        class="{{ block.settings.position_type }}" 
-        width="1500" 
-        height="556" 
-        loading="lazy" 
-        style="top: {{ block.settings.top_offset }}%;  left: {{ block.settings.left_offset }}%;">
-{% schema %}
-    {
-        "name": "t:blocks.image.name",
-        "settings": [
-            {
-                "type": "image_picker",
-                "id": "image",
-                "label": "t:blocks.image.settings.image.label"
-            }
-        ],
-        "presets": [
-            {
-                "name": "t:blocks.image.presets.name"
-            }
-        ]
+
+{%- if block.settings.ratio == 'auto' -%}
+    {%- assign aspect_ratio_auto = 1 | divided_by: block.settings.image.aspect_ratio | times: 100 %}
+  {%- elsif block.settings.ratio == '1' -%}
+    {%- assign aspect_ratio_auto = '100' -%}
+  {%- elsif block.settings.ratio == '2' -%}
+    {%- assign aspect_ratio_auto = '125' -%}
+  {%- else -%}
+    {%- assign aspect_ratio_auto = '100' -%}
+  {%- endif -%}
+  
+  
+  {% style %}
+  
+    .layout--row > #shopify-block-{{ block.id }} {
+      width: 100%;
     }
-{% endschema %}
+    @media screen and (min-width: 750px) {
+      #shopify-block-{{ block.id }} {
+        width: {{ block.settings.width }}%;
+      }
+      .layout--row > #shopify-block-{{ block.id }} {
+        width: calc({{ block.settings.width }}%);
+      }
+      #shopify-block-{{ block.id }} img {
+        width: 100%;
+      }
+    }
+  {% endstyle %}
+  
+  {%- if block.settings.link -%}
+    <a href="{{ block.settings.link }}">
+  {%- endif -%}
+  
+  {%- if block.settings.image -%}
+    <div class="the-img-block-inner " style="--ratio-img-img-block: {{ aspect_ratio_auto }}%;">
+      {{
+        block.settings.image
+        | image_url: width: 3840
+        | image_tag: width: section.settings.image.width, widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+      }}
+    </div>
+  {%- else -%}
+    <div
+      style="--ratio-img-img-block: {{ aspect_ratio_auto }}%;"
+      class="placeholder-image"
+    >
+      {{ 'detailed-apparel-1' | placeholder_svg_tag: 'image-placeholder-svg' }}
+    </div>
+  {%- endif -%}
+  
+  {%- if block.settings.link -%}
+    </a>
+  {%- endif -%}
+  
+  {% schema %}
+  {
+    "name": "t:blocks.image-block.name",
+    "class": "image-block",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:blocks.image-block.settings.select_image.label"
+      },
+      {
+        "type": "range",
+        "id": "width",
+        "label": "t:blocks.image-block.settings.img_width.label",
+        "min": 20,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "paragraph",
+        "content": "t:blocks.image-block.settings.text_content.content"
+      },
+      {
+        "type": "select",
+        "id": "ratio",
+        "label": "t:blocks.image-block.settings.select_ratio.label",
+        "options": [
+          {
+            "value": "auto",
+            "label": "t:blocks.image-block.settings.select_ratio.options_adapt.label"
+          },
+          {
+            "value": "1",
+            "label": "t:blocks.image-block.settings.select_ratio.options_square.label"
+          },
+          {
+            "value": "2",
+            "label": "t:blocks.image-block.settings.select_ratio.options_portrait.label"
+          }
+        ],
+        "default": "auto"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "t:blocks.image-block.settings.link_id.label"
+      }
+    ],
+    "presets": [{ "name": "t:blocks.image-block.presets.name" }]
+  }
+  {% endschema %}
+  

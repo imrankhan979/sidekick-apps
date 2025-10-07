@@ -24,35 +24,15 @@
       >
         {% for block in section.blocks %}
           <div class="section-{{ block.id }}-padding slider_item" {{ block.shopify_attributes }}>
-            {% comment %} {% if block.settings.image != blank %}  {% endcomment %}
-            <div class="slider-images" style="width: calc(100% - {{ block.settings.content_width }}%);">
-              {% if block.settings.image != blank %}
-                {% render 'the-img', image: block.settings.image %}
-              {% endif %}
-            </div>
-            {% comment %} {% endif %} {% endcomment %}
-
             <div
               class="slider_item_content"
-              {% if block.settings.image != blank %}
-                style="width: {{ block.settings.content_width }}%;"
-              {% endif %}
             >
               {% if block.settings.title != blank %}
                 <h1 class="slider_title">
                   {{ block.settings.title | newline_to_br }}
-                  {% if block.settings.cta_text != blank %}
-                    <a
-                      class="active-text"
-                      {% if block.settings.cta_link == blank %}
-                        role="link" aria-disabled="true"
-                      {% else %}
-                        href="{{ block.settings.cta_link }}"
-                      {% endif %}
-                    >
-                      {{- block.settings.cta_text -}}
-                    </a>
-                  {% endif %}
+                  <div class="active-text">
+                    {{- block.settings.cta_text -}}
+                  </div>
                 </h1>
               {% endif %}
               {% if block.settings.description != blank or block.settings.button_text != blank %}
@@ -168,26 +148,7 @@
         },
         {
           "type": "header",
-          "content": "t:sections.slideshow.blocks.slide.settings.image_header.content"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "t:sections.slideshow.blocks.slide.settings.slide_image.label"
-        },
-        {
-          "type": "header",
           "content": "t:sections.slideshow.blocks.slide.settings.text_header.content"
-        },
-        {
-          "type": "range",
-          "id": "content_width",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "unit": "%",
-          "label": "t:sections.slideshow.blocks.slide.settings.content_width.label",
-          "default": 40
         },
         {
           "type": "text",
@@ -199,13 +160,7 @@
           "type": "text",
           "id": "cta_text",
           "label": "t:sections.slideshow.blocks.slide.settings.cta_text.label",
-          "default": "t:sections.slideshow.blocks.slide.settings.cta_text.default",
-          "info": "t:sections.slideshow.blocks.slide.settings.cta_text.info"
-        },
-        {
-          "type": "url",
-          "id": "cta_link",
-          "label": "t:sections.slideshow.blocks.slide.settings.cta_link.label"
+          "default": "t:sections.slideshow.blocks.slide.settings.cta_text.default"
         },
         {
           "type": "textarea",
@@ -226,7 +181,7 @@
         },
         {
           "type": "header",
-          "content": "t:sections.all.padding.section_padding_heading"
+          "content": "Padding"
         },
         {
           "type": "range",
@@ -235,7 +190,7 @@
           "max": 200,
           "step": 4,
           "unit": "px",
-          "label": "t:sections.all.padding.padding_top",
+          "label": "Top",
           "default": 60
         },
         {
@@ -245,7 +200,7 @@
           "max": 200,
           "step": 4,
           "unit": "px",
-          "label": "t:sections.all.padding.padding_bottom",
+          "label": "Bottom",
           "default": 60
         }
       ]

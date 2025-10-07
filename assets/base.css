@@ -1365,13 +1365,11 @@ deferred-media {
 
 .button--secondary,
 .button--tertiary {
-  --color-button: var(--color-secondary-button);
-  --color-button-text: var(--color-secondary-button-text);
+
 }
 
 .button--tertiary {
-  --alpha-button-background: 0;
-  --alpha-button-border: 0.2;
+
 }
 
 .button,
@@ -3413,7 +3411,10 @@ details[open]>.header__icon--menu .icon-hamburger {
 .rte>*:last-child {
   margin-bottom: 0;
 }
-
+.rte code {
+  margin-top: 20px;
+  display: block;
+}
 .rte table {
   table-layout: fixed;
 }
@@ -4773,6 +4774,10 @@ accordion-item .accordion_content {
   background: rgba(var(--color-button-hover),1);
   color: rgba(var(--color-button-text-hover),1);
 }
+.collection__view-all {
+  margin-top: 80px;
+}
 
-
-
+.product-card-url {
+  display: none;
+}

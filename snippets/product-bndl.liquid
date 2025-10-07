@@ -11,24 +11,24 @@
     {% else %}
        {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
     {% endif %}
-      <div class="product-badge-wrapper flex wrap align-items-center">
+      <div class="product-badge-wrapper flex wrap align-items-center ">
         {% if product.tags.size > 0 and product.variants.first.available %}
-          <div class="badge tag-badge">{{ product.tags.first }}</div>
+          <div class="badge tag-badge color-{{ settings.sale_badge_color_scheme }} ">{{ product.tags.first }}</div>
         {% endif %}
         {% if product.variants.size > 1 and product.variants.first.available %}
-          <div class="badge sale-badge {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
+          <div class="badge sale-badge color-{{ settings.sale_badge_color_scheme }} {% unless product.variants.first.compare_at_price > product.variants.first.price %} d-none {% endunless %}" id="sale-badge-{{ product.id }}">
             {% assign discount_amount = product.variants.first.compare_at_price | minus: product.variants.first.price %}
             {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.variants.first.compare_at_price | round %}
             {{ discount_percentage }}% off
           </div>
           {% elsif product.variants.first.compare_at_price > product.variants.first.price %}
-            <div class="badge sale-badge">
+            <div class="badge sale-badge color-{{ settings.sale_badge_color_scheme }}">
               {% assign discount_amount = product.compare_at_price | minus: product.price %}
               {% assign discount_percentage = discount_amount | times: 100.0 | divided_by: product.compare_at_price | round %}
               {{ discount_percentage }}% off
             </div>
         {% endif %}
-            <div class="badge sold-out-badge {% if product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ product.id }}">
+            <div class="badge sold-out-badge color-{{ settings.sold_out_badge_color_scheme }} {% if product.variants.first.available %}d-none{% else %}d-block{% endif %} " id="sold-out-badge-{{ product.id }}">
               {% unless product.variants.first.available %}
                 {{ 'products.product.sold_out' | t }}
               {% endunless %}
