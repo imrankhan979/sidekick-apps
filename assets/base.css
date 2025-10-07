@@ -165,24 +165,33 @@ h6,
 }
 
 @media (max-width: 991px) {
+  h1, .h1 {
+    font-size: 30px;
+    line-height: 40px;
+  }
   h2, .h2 {
     font-size: 24px;
-    line-height: 1;
+    line-height: 24px;
   }
 
   h3, .h3 {
-    font-size: 20px;
-    line-height: 1;
+    font-size: 22px;
+    line-height: 32px;
   }
 
   h4, .h4 {
-    font-size: 22px;
-    line-height: 1;
+    font-size: 20px;
+    line-height: 30px;
   }
 
   h5, .h5 {
     font-size: 18px;
     line-height: 28px;
+    letter-spacing: initial;
+  }
+  h6, .h6 {
+    font-size: 16px;
+    line-height: 26px;
     letter-spacing: initial;
   }
 }
@@ -692,9 +701,10 @@ body:has(.section-header .drawer-menu) .announcement-bar-section .page-width {
 
 blockquote {
   font-style: italic;
-  color: rgba(var(--color-foreground), 0.75);
-  border-left: 0.2rem solid rgba(var(--color-foreground), 0.2);
-  padding-left: 1rem;
+  color: rgba(var(--color-foreground), 0.85);
+  border-left: 0.2rem solid rgba(var(--color-foreground), 0.7);
+  padding-left: 2rem;
+  margin: 20px auto;
 }
 
 @media screen and (min-width: 750px) {

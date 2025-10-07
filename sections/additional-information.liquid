@@ -58,11 +58,6 @@
                       {{ block.settings.page.content }}
                     </div>
                   {% endif %}
-                  {% if block.settings.custom_liquid != blank %}
-                    <div class="product-description-content rte-content-area">
-                      {{ block.settings.custom_liquid }}
-                    </div>
-                  {% endif %}
                 </div>
               </div>
             {% endfor %}
@@ -76,6 +71,9 @@
 {% schema %}
 {
   "name": "t:sections.additional_info.name",
+  "enabled_on": {
+    "templates": ["product"]
+  },
   "settings": [
     {
       "type": "color_scheme",
@@ -110,7 +108,7 @@
   ],
   "blocks": [
     {
-      "type": "Item",
+      "type": "tab_items",
       "name": "t:sections.additional_info.blocks.item.name",
       "settings": [
         {
@@ -120,22 +118,15 @@
           "default": "t:sections.additional_info.blocks.item.settings.tab_title.default"
         },
         {
-          "type": "richtext",
+          "type": "textarea",
           "id": "content_rich",
           "label": "t:sections.additional_info.blocks.item.settings.content_rich.label",
-          "info": "t:sections.additional_info.blocks.item.settings.content_rich.info"
+          "default": "Add a short description about the subheading"
         },
         {
           "type": "page",
           "id": "page",
           "label": "t:sections.additional_info.blocks.item.settings.page.label"
-        },
-        {
-          "type": "liquid",
-          "id": "custom_liquid",
-          "label": "t:sections.additional_info.blocks.item.settings.custom_liquid.label",
-          "info": "t:sections.additional_info.blocks.item.settings.custom_liquid.info",
-          "default": "{{ product.description }}"
         }
       ]
     }
@@ -145,23 +136,14 @@
       "name": "t:sections.additional_info.presets.name",
       "blocks": [
         {
-          "type": "Item",
-          "settings": {
-            "tab_title": "Description"
-          }
+          "type": "tab_items"
         },
         {
-          "type": "Item",
-          "settings": {
-            "tab_title": "Fabric"
-          }
+          "type": "tab_items"
         },
         {
-          "type": "Item",
-          "settings": {
-            "tab_title": "Shipping"
-          }
-        }
+          "type": "tab_items"
+        },
       ]
     }
   ]
