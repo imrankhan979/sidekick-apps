@@ -34,6 +34,13 @@ rgba(var(--color-secondary-button-border-hover), 1);
 rgba(var(--color-secondary-button-text), 1);
 rgba(var(--color-secondary-button-text-hover), 1);
 
+background: rgb(var(--color-button));
+color: rgb(var(--color-button-text));
+border: 1px solid rgb(var(--color-button-border));
+
+background: rgb(var(--color-button-hover));
+color: rgb(var(--color-button-text-hover));
+border: 1px solid rgb(var(--color-button-border-hover));
 
 
 

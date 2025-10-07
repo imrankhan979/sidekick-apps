@@ -1,7 +1,6 @@
 .product-details-tabs-section {
     padding-top: 120px;
     padding-bottom: 120px;
-    border-radius: 64px 64px 0 0;
   }
   
   .product_details_tabs .product_details_menu {
@@ -26,20 +25,20 @@
     text-transform: uppercase;
     font-weight: 700;
     font-size: 16px;
-    border: 1px solid #000000;
     border-radius: 100px;
-    background: transparent;
-    color: #000000;
     padding: 11px 16px;
     cursor: pointer;
     line-height: 1;
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    border: 1px solid rgb(var(--color-button-border));
   }
   
   .product_details_tabs .product_details_menu .tabs_menu li.active,
   .product_details_tabs .product_details_menu .tabs_menu li:hover {
-    color: #ffffff;
-    background-color: #000000;
-    border-color: #000000;
+    background: rgb(var(--color-button-hover));
+    color: rgb(var(--color-button-text-hover));
+    border: 1px solid rgb(var(--color-button-border-hover));
   }
   
   .product_details_tabs .product_details_menu .tabs_menu li .product_anim {

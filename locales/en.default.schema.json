@@ -167,7 +167,7 @@
           "label": "Headline"
         },
         "brand_description": {
-          "label": "Description"
+          "label": "Text"
         },
         "brand_image": {
           "label": "Image"
@@ -273,7 +273,7 @@
           "name": "Additional description",
           "settings": {
             "text": {
-              "label": "Description",
+              "label": "Text",
               "default": "Subscribe and receive exclusive information and offers!"
             }
           }
@@ -799,8 +799,8 @@
           "default": "CONTACT"
         },
         "section_description": {
-          "label": "Description",
-          "default": "<p>Our friendly team would love to hear from you.</p>"
+          "label": "Text",
+          "default": "Our friendly team would love to hear from you."
         }
       },
       "blocks": {
@@ -905,7 +905,7 @@
           "default": "Featured collection"
         },
         "description": {
-          "label": "Description"
+          "label": "Text"
         },
         "show_description": {
           "label": "Show collection description from the admin"
@@ -1162,7 +1162,7 @@
             },
             "client_review_text": {
               "label": "Text",
-              "default": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
+              "default": "Share what your customers are saying about your products, customer service or shipping rates."
             },
             "client_image": {
               "label": "Avatar"
@@ -1374,7 +1374,7 @@
             },
             "subtext": {
               "label": "Subtext",
-              "default": "<p>Share contact information, store details, and brand content with your customers.</p>"
+              "default": "Share contact information, store details, and brand content with your customers."
             }
           }
         },
@@ -1693,7 +1693,7 @@
           "name": "Text",
           "settings": {
             "text": {
-              "label": "Description",
+              "label": "Text",
               "default": "Give customers details about the banner image(s) or content on the template."
             },
             "text_style": {
@@ -1887,7 +1887,7 @@
           "default": "NEED HELP?"
         },
         "left_paragraph": {
-          "label": "Description",
+          "label": "Text",
           "default": "Questions about our client services? Don't worry about a thing! We've got you via email or text. Order before 4pm for same day delivery in Palo Alto. Find out more"
         },
         "padding_top": {
@@ -1927,7 +1927,7 @@
       }
     },
     "additional_info": {
-      "name": "Additional information",
+      "name": "Tabbed content",
       "blocks": {
         "item": {
           "name": "Item",
@@ -1951,7 +1951,7 @@
         }
       },
       "presets": {
-        "name": "Additional information",
+        "name": "Tabbed content",
         "tabs": {
           "description": "DESCRIPTION",
           "fabric": "FABRIC & CARE",
@@ -2089,7 +2089,7 @@
             },
             "text": {
               "label": "Text",
-              "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+              "default": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
             },
             "button_label": {
               "label": "Button label",
@@ -2633,7 +2633,7 @@
           "name": "Description",
           "settings": {
             "description": {
-              "label": "Description"
+              "label": "Text"
             }
           }
         },
@@ -2977,8 +2977,8 @@
               "default": "Column"
             },
             "text": {
-              "label": "Description",
-              "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+              "label": "Text",
+              "default": "Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review."
             },
             "link_label": {
               "label": "Link label"
@@ -3017,8 +3017,8 @@
           "name": "Subheading",
           "settings": {
             "paragraph": {
-              "label": "Description",
-              "default": "<p>Be the first to know about new collections and exclusive offers.</p>"
+              "label": "Text",
+              "default": "Be the first to know about new collections and exclusive offers."
             }
           }
         },
@@ -3143,8 +3143,8 @@
           "name": "Paragraph",
           "settings": {
             "paragraph": {
-              "label": "Description",
-              "default": "<p>Be the first to know when we launch.</p>"
+              "label": "Text",
+              "default": "Be the first to know when we launch."
             },
             "text_style": {
               "options__1": {
@@ -3366,8 +3366,8 @@
           "name": "Text",
           "settings": {
             "text": {
-              "label": "Description",
-              "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+              "label": "Text",
+              "default": "Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store."
             }
           }
         },
@@ -3552,7 +3552,7 @@
         },
         "section_description": {
           "label": "Content",
-          "default": "<p>Prefer to try things on? Visit us in store.</p>"
+          "default": "Prefer to try things on? Visit us in store."
         }
       },
       "blocks": {
@@ -3571,8 +3571,8 @@
               "default": "Example title"
             },
             "tab_description": {
-              "label": "Description",
-              "default": "<p>Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store..</p>"
+              "label": "Text",
+              "default": "Share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.."
             }
           }
         }
@@ -3594,7 +3594,7 @@
           "label": "Border bottom"
         },
         "section_title": {
-          "label": "Description",
+          "label": "Text",
           "default": "Short content about your store"
         },
         "columns_desktop": {
@@ -3643,7 +3643,7 @@
             },
             "location_description": {
               "label": "Location description",
-              "default": "<p>Address: 123 Suspendis matti, Visaosang Building VST District, North American</p>"
+              "default": "Address: 123 Suspendis matti, Visaosang Building VST District, North American"
             },
             "store_timing": {
               "label": "Store timing",
@@ -3785,7 +3785,7 @@
               "label": "CTA link"
             },
             "description": {
-              "label": "Description",
+              "label": "Text",
               "default": "Use this text to share information about your brand with your customers."
             },
             "button_text": {
@@ -4053,8 +4053,8 @@
       "name": "Description",
       "settings": {
         "Description": {
-          "label": "Description",
-          "default": "<p>We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion.</p>"
+          "label": "Text",
+          "default": "We are a collective of creators, curating a minimalist aesthetic with a bold edge. Our designs are for the modern individual who seeks quality, comfort, and a touch of rebellion."
         }
       },
       "presets": {
