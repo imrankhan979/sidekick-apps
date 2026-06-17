@@ -1,0 +1,790 @@
+{% doc %}
+  @prompt
+    Create a chronological vertical timeline section highlighting company milestones and history. Include a section title like "Our Journey". Add 6 timeline items, each with a year/date, milestone title (e.g., "Founded", "Opened First Store", "Hit 1M Customers"), a 1-2 sentence description of its significance, an optional icon or image, and an optional metric or number (e.g., revenue, customer count). Use a visually appealing vertical layout with alternating left-right content or a centered line with nodes. Add interactive hover states that reveal more detail on each milestone. Use visual progression (e.g., growing colors, size, or animation) to demonstrate growth and longevity over time. Make it fully customizable through theme editor settings.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-timeline-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-timeline-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-timeline-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.title_alignment }};
+    margin-bottom: 60px;
+  }
+
+  .ai-timeline-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0;
+    font-family: {{ block.settings.title_font.family }}, {{ block.settings.title_font.fallback_families }};
+    font-weight: {{ block.settings.title_font.weight }};
+  }
+
+  .ai-timeline-items-{{ ai_gen_id }} {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .ai-timeline-line-{{ ai_gen_id }} {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+      to bottom,
+      {{ block.settings.line_start_color }},
+      {{ block.settings.line_end_color }}
+    );
+    transform: translateX(-50%);
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }} {
+    position: relative;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-timeline-node-{{ ai_gen_id }} {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    width: var(--node-size);
+    height: var(--node-size);
+    background-color: {{ block.settings.node_color }};
+    border: 4px solid {{ block.settings.background_color }};
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:hover .ai-timeline-node-{{ ai_gen_id }} {
+    transform: translate(-50%, -50%) scale(1.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background-color: {{ block.settings.node_hover_color }};
+  }
+
+  .ai-timeline-content-{{ ai_gen_id }} {
+    width: calc(50% - 60px);
+    padding: 25px 30px;
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:nth-child(odd) .ai-timeline-content-{{ ai_gen_id }} {
+    margin-left: auto;
+    margin-right: 60px;
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:nth-child(even) .ai-timeline-content-{{ ai_gen_id }} {
+    margin-right: auto;
+    margin-left: 60px;
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:hover .ai-timeline-content-{{ ai_gen_id }} {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    background-color: {{ block.settings.card_hover_background }};
+  }
+
+  .ai-timeline-year-{{ ai_gen_id }} {
+    font-size: {{ block.settings.year_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.year_color }};
+    margin: 0 0 12px 0;
+    font-family: {{ block.settings.title_font.family }}, {{ block.settings.title_font.fallback_families }};
+  }
+
+  .ai-timeline-milestone-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.milestone_title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.milestone_title_color }};
+    margin: 0 0 12px 0;
+  }
+
+  .ai-timeline-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.6;
+    margin: 0 0 15px 0;
+  }
+
+  .ai-timeline-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-timeline-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:hover .ai-timeline-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-timeline-metric-{{ ai_gen_id }} {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: {{ block.settings.metric_background }};
+    color: {{ block.settings.metric_color }};
+    border-radius: 20px;
+    font-size: {{ block.settings.metric_size }}px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  .ai-timeline-detail-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+    font-size: 14px;
+    color: {{ block.settings.description_color }};
+    line-height: 1.6;
+  }
+
+  .ai-timeline-item-{{ ai_gen_id }}:hover .ai-timeline-detail-{{ ai_gen_id }} {
+    max-height: 200px;
+    margin-top: 12px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-timeline-line-{{ ai_gen_id }} {
+      left: 30px;
+    }
+
+    .ai-timeline-node-{{ ai_gen_id }} {
+      left: 30px;
+    }
+
+    .ai-timeline-content-{{ ai_gen_id }} {
+      width: calc(100% - 80px);
+      margin-left: 80px !important;
+      margin-right: 0 !important;
+    }
+
+    .ai-timeline-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.7 }}px;
+    }
+
+    .ai-timeline-year-{{ ai_gen_id }} {
+      font-size: {{ block.settings.year_size | times: 0.8 }}px;
+    }
+
+    .ai-timeline-milestone-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.milestone_title_size | times: 0.85 }}px;
+    }
+  }
+{% endstyle %}
+
+<timeline-component-{{ ai_gen_id }} class="ai-timeline-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-timeline-container-{{ ai_gen_id }}">
+    {% if block.settings.section_title != blank %}
+      <div class="ai-timeline-header-{{ ai_gen_id }}">
+        <h2 class="ai-timeline-title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+      </div>
+    {% endif %}
+
+    <ul class="ai-timeline-items-{{ ai_gen_id }}">
+      <div class="ai-timeline-line-{{ ai_gen_id }}"></div>
+
+      {% for i in (1..6) %}
+        {% liquid
+          assign year_key = 'milestone_' | append: i | append: '_year'
+          assign title_key = 'milestone_' | append: i | append: '_title'
+          assign description_key = 'milestone_' | append: i | append: '_description'
+          assign detail_key = 'milestone_' | append: i | append: '_detail'
+          assign image_key = 'milestone_' | append: i | append: '_image'
+          assign metric_key = 'milestone_' | append: i | append: '_metric'
+
+          assign year = block.settings[year_key]
+          assign title = block.settings[title_key]
+          assign description = block.settings[description_key]
+          assign detail = block.settings[detail_key]
+          assign image = block.settings[image_key]
+          assign metric = block.settings[metric_key]
+
+          assign node_base_size = 20
+          assign node_growth = i | times: 3
+          assign node_size = node_base_size | plus: node_growth
+        %}
+
+        {% if year != blank or title != blank %}
+          <li
+            class="ai-timeline-item-{{ ai_gen_id }}"
+            style="--node-size: {{ node_size }}px;"
+            data-index="{{ i }}"
+          >
+            <div class="ai-timeline-node-{{ ai_gen_id }}"></div>
+            <div class="ai-timeline-content-{{ ai_gen_id }}">
+              {% if year != blank %}
+                <div class="ai-timeline-year-{{ ai_gen_id }}">{{ year }}</div>
+              {% endif %}
+
+              {% if title != blank %}
+                <h3 class="ai-timeline-milestone-title-{{ ai_gen_id }}">{{ title }}</h3>
+              {% endif %}
+
+              {% if image != blank %}
+                <div class="ai-timeline-image-wrapper-{{ ai_gen_id }}">
+                  <img
+                    src="{{ image | image_url: width: 600 }}"
+                    alt="{{ image.alt | escape }}"
+                    class="ai-timeline-image-{{ ai_gen_id }}"
+                    loading="lazy"
+                    width="600"
+                    height="{{ 600 | divided_by: image.aspect_ratio | round }}"
+                  >
+                </div>
+              {% endif %}
+
+              {% if description != blank %}
+                <div class="ai-timeline-description-{{ ai_gen_id }}">{{ description }}</div>
+              {% endif %}
+
+              {% if metric != blank %}
+                <div class="ai-timeline-metric-{{ ai_gen_id }}">{{ metric }}</div>
+              {% endif %}
+
+              {% if detail != blank %}
+                <div class="ai-timeline-detail-{{ ai_gen_id }}">{{ detail }}</div>
+              {% endif %}
+            </div>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</timeline-component-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TimelineComponent{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.items = [];
+      }
+
+      connectedCallback() {
+        this.items = this.querySelectorAll('.ai-timeline-item-{{ ai_gen_id }}');
+        this.setupIntersectionObserver();
+      }
+
+      setupIntersectionObserver() {
+        const options = {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = entry.target.dataset.index;
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, index * 150);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, options);
+
+        this.items.forEach((item) => {
+          observer.observe(item);
+        });
+      }
+    }
+
+    customElements.define('timeline-component-{{ ai_gen_id }}', TimelineComponent{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Company timeline",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Our Journey"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "Title alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "line_start_color",
+      "label": "Timeline line start",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "line_end_color",
+      "label": "Timeline line end",
+      "default": "#0d6fb1"
+    },
+    {
+      "type": "color",
+      "id": "node_color",
+      "label": "Node",
+      "default": "#0d6fb1"
+    },
+    {
+      "type": "color",
+      "id": "node_hover_color",
+      "label": "Node hover",
+      "default": "#ffec3e"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#f6f6f6"
+    },
+    {
+      "type": "color",
+      "id": "card_hover_background",
+      "label": "Card hover background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "year_color",
+      "label": "Year",
+      "default": "#0d6fb1"
+    },
+    {
+      "type": "color",
+      "id": "milestone_title_color",
+      "label": "Milestone title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "metric_background",
+      "label": "Metric background",
+      "default": "#ffec3e"
+    },
+    {
+      "type": "color",
+      "id": "metric_color",
+      "label": "Metric text",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title font",
+      "default": "oswald_n4"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "year_size",
+      "label": "Year size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "milestone_title_size",
+      "label": "Milestone title size",
+      "min": 14,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "metric_size",
+      "label": "Metric size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "label": "Card border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Milestone 1"
+    },
+    {
+      "type": "text",
+      "id": "milestone_1_year",
+      "label": "Year",
+      "default": "2015"
+    },
+    {
+      "type": "text",
+      "id": "milestone_1_title",
+      "label": "Title",
+      "default": "Founded"
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_1_description",
+      "label": "Description",
+      "default": "Our journey began with a simple idea and a passion to make a difference in the industry."
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_1_detail",
+      "label": "Additional detail (shown on hover)"
+    },
+    {
+      "type": "image_picker",
+      "id": "milestone_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "milestone_1_metric",
+      "label": "Metric"
+    },
+    {
+      "type": "header",
+      "content": "Milestone 2"
+    },
+    {
+      "type": "text",
+      "id": "milestone_2_year",
+      "label": "Year",
+      "default": "2017"
+    },
+    {
+      "type": "text",
+      "id": "milestone_2_title",
+      "label": "Title",
+      "default": "Opened first store"
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_2_description",
+      "label": "Description",
+      "default": "We opened our first physical location, bringing our vision directly to customers."
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_2_detail",
+      "label": "Additional detail (shown on hover)"
+    },
+    {
+      "type": "image_picker",
+      "id": "milestone_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "milestone_2_metric",
+      "label": "Metric",
+      "default": "1 Store"
+    },
+    {
+      "type": "header",
+      "content": "Milestone 3"
+    },
+    {
+      "type": "text",
+      "id": "milestone_3_year",
+      "label": "Year",
+      "default": "2019"
+    },
+    {
+      "type": "text",
+      "id": "milestone_3_title",
+      "label": "Title",
+      "default": "Reached 10,000 customers"
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_3_description",
+      "label": "Description",
+      "default": "A major milestone as we welcomed our 10,000th customer and expanded our team."
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_3_detail",
+      "label": "Additional detail (shown on hover)"
+    },
+    {
+      "type": "image_picker",
+      "id": "milestone_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "milestone_3_metric",
+      "label": "Metric",
+      "default": "10K Customers"
+    },
+    {
+      "type": "header",
+      "content": "Milestone 4"
+    },
+    {
+      "type": "text",
+      "id": "milestone_4_year",
+      "label": "Year",
+      "default": "2021"
+    },
+    {
+      "type": "text",
+      "id": "milestone_4_title",
+      "label": "Title",
+      "default": "Launched online platform"
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_4_description",
+      "label": "Description",
+      "default": "We went digital, launching our e-commerce platform to serve customers worldwide."
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_4_detail",
+      "label": "Additional detail (shown on hover)"
+    },
+    {
+      "type": "image_picker",
+      "id": "milestone_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "milestone_4_metric",
+      "label": "Metric",
+      "default": "Global Reach"
+    },
+    {
+      "type": "header",
+      "content": "Milestone 5"
+    },
+    {
+      "type": "text",
+      "id": "milestone_5_year",
+      "label": "Year",
+      "default": "2023"
+    },
+    {
+      "type": "text",
+      "id": "milestone_5_title",
+      "label": "Title",
+      "default": "Hit 1M customers"
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_5_description",
+      "label": "Description",
+      "default": "We celebrated serving over one million happy customers across the globe."
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_5_detail",
+      "label": "Additional detail (shown on hover)"
+    },
+    {
+      "type": "image_picker",
+      "id": "milestone_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "milestone_5_metric",
+      "label": "Metric",
+      "default": "1M+ Customers"
+    },
+    {
+      "type": "header",
+      "content": "Milestone 6"
+    },
+    {
+      "type": "text",
+      "id": "milestone_6_year",
+      "label": "Year",
+      "default": "2025"
+    },
+    {
+      "type": "text",
+      "id": "milestone_6_title",
+      "label": "Title",
+      "default": "Sustainability initiative"
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_6_description",
+      "label": "Description",
+      "default": "Committed to carbon neutrality and launched our comprehensive sustainability program."
+    },
+    {
+      "type": "textarea",
+      "id": "milestone_6_detail",
+      "label": "Additional detail (shown on hover)"
+    },
+    {
+      "type": "image_picker",
+      "id": "milestone_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "milestone_6_metric",
+      "label": "Metric",
+      "default": "100% Carbon Neutral"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Company timeline"
+    }
+  ]
+}
+{% endschema %}

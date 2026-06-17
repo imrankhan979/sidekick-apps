@@ -1,0 +1,585 @@
+{% doc %}
+  @prompt
+    Create a side-by-side text comparison section with a centered section title at the top. Include two columns (left and right), each with: a subheading/label, 2-3 paragraphs of body text, optional bullet points, and an optional icon or small image. Use this layout for Before/After, Product vs Service, or Feature A vs Feature B comparisons. On mobile, the columns should stack vertically for a responsive layout. Style with clear visual separation between columns (e.g., a divider line or contrasting background). All text content should be editable in the theme editor.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-comparison-section-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-comparison-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-comparison-title-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 0 0 {{ block.settings.title_spacing }}px;
+    color: {{ block.settings.title_color }};
+    font-size: {{ block.settings.title_size }}px;
+  }
+
+  .ai-comparison-columns-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+  }
+
+  .ai-comparison-column-{{ ai_gen_id }} {
+    padding: {{ block.settings.column_padding }}px;
+    background-color: {{ block.settings.column_background }};
+    border-radius: {{ block.settings.border_radius }}px;
+    {% if block.settings.show_divider %}
+      position: relative;
+    {% endif %}
+  }
+
+  {% if block.settings.show_divider %}
+    .ai-comparison-column-{{ ai_gen_id }}:first-child::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: calc(-{{ block.settings.column_gap }}px / 2);
+      width: {{ block.settings.divider_width }}px;
+      height: 100%;
+      background-color: {{ block.settings.divider_color }};
+    }
+  {% endif %}
+
+  .ai-comparison-icon-wrapper-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.icon_spacing }}px;
+    text-align: {{ block.settings.content_alignment }};
+  }
+
+  .ai-comparison-icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    object-fit: contain;
+  }
+
+  .ai-comparison-icon-placeholder-{{ ai_gen_id }} {
+    display: inline-block;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+  }
+
+  .ai-comparison-icon-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+  }
+
+  .ai-comparison-subheading-{{ ai_gen_id }} {
+    margin: 0 0 {{ block.settings.subheading_spacing }}px;
+    color: {{ block.settings.subheading_color }};
+    font-size: {{ block.settings.subheading_size }}px;
+    text-align: {{ block.settings.content_alignment }};
+  }
+
+  .ai-comparison-body-{{ ai_gen_id }} {
+    color: {{ block.settings.body_color }};
+    font-size: {{ block.settings.body_size }}px;
+    line-height: 1.6;
+    text-align: {{ block.settings.content_alignment }};
+  }
+
+  .ai-comparison-body-{{ ai_gen_id }} p {
+    margin: 0 0 {{ block.settings.paragraph_spacing }}px;
+  }
+
+  .ai-comparison-body-{{ ai_gen_id }} p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-comparison-bullets-{{ ai_gen_id }} {
+    margin-top: {{ block.settings.bullets_spacing }}px;
+    padding-left: 20px;
+    color: {{ block.settings.body_color }};
+    font-size: {{ block.settings.body_size }}px;
+    line-height: 1.6;
+  }
+
+  .ai-comparison-bullets-{{ ai_gen_id }} li {
+    margin-bottom: 8px;
+  }
+
+  .ai-comparison-bullets-{{ ai_gen_id }} li:last-child {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-comparison-columns-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.mobile_column_gap }}px;
+    }
+
+    {% if block.settings.show_divider %}
+      .ai-comparison-column-{{ ai_gen_id }}:first-child::after {
+        display: none;
+      }
+
+      .ai-comparison-column-{{ ai_gen_id }}:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        bottom: calc(-{{ block.settings.mobile_column_gap }}px / 2);
+        left: 0;
+        width: 100%;
+        height: {{ block.settings.divider_width }}px;
+        background-color: {{ block.settings.divider_color }};
+      }
+    {% endif %}
+
+    .ai-comparison-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.8);
+    }
+
+    .ai-comparison-subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.9);
+    }
+  }
+{% endstyle %}
+
+<comparison-section-{{ ai_gen_id }}
+  class="ai-comparison-section-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-comparison-container-{{ ai_gen_id }}">
+    {% if block.settings.section_title != blank %}
+      <h2 class="ai-comparison-title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="ai-comparison-columns-{{ ai_gen_id }}">
+      <div class="ai-comparison-column-{{ ai_gen_id }}">
+        {% if block.settings.left_icon != blank or block.settings.show_icon_placeholder %}
+          <div class="ai-comparison-icon-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.left_icon != blank %}
+              <img
+                src="{{ block.settings.left_icon | image_url: width: 200 }}"
+                alt="{{ block.settings.left_icon.alt | escape }}"
+                class="ai-comparison-icon-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.icon_size }}"
+                height="{{ block.settings.icon_size }}"
+              >
+            {% elsif block.settings.show_icon_placeholder %}
+              <div class="ai-comparison-icon-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.left_subheading != blank %}
+          <h3 class="ai-comparison-subheading-{{ ai_gen_id }}">{{ block.settings.left_subheading }}</h3>
+        {% endif %}
+
+        {% if block.settings.left_body != blank %}
+          <div class="ai-comparison-body-{{ ai_gen_id }}">
+            {{ block.settings.left_body }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.left_bullets != blank %}
+          <ul class="ai-comparison-bullets-{{ ai_gen_id }}">
+            {% assign bullet_items = block.settings.left_bullets | split: '|' %}
+            {% for item in bullet_items %}
+              {% assign trimmed_item = item | strip %}
+              {% if trimmed_item != blank %}
+                <li>{{ trimmed_item }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="ai-comparison-column-{{ ai_gen_id }}">
+        {% if block.settings.right_icon != blank or block.settings.show_icon_placeholder %}
+          <div class="ai-comparison-icon-wrapper-{{ ai_gen_id }}">
+            {% if block.settings.right_icon != blank %}
+              <img
+                src="{{ block.settings.right_icon | image_url: width: 200 }}"
+                alt="{{ block.settings.right_icon.alt | escape }}"
+                class="ai-comparison-icon-{{ ai_gen_id }}"
+                loading="lazy"
+                width="{{ block.settings.icon_size }}"
+                height="{{ block.settings.icon_size }}"
+              >
+            {% elsif block.settings.show_icon_placeholder %}
+              <div class="ai-comparison-icon-placeholder-{{ ai_gen_id }}">
+                {{ 'image' | placeholder_svg_tag }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if block.settings.right_subheading != blank %}
+          <h3 class="ai-comparison-subheading-{{ ai_gen_id }}">{{ block.settings.right_subheading }}</h3>
+        {% endif %}
+
+        {% if block.settings.right_body != blank %}
+          <div class="ai-comparison-body-{{ ai_gen_id }}">
+            {{ block.settings.right_body }}
+          </div>
+        {% endif %}
+
+        {% if block.settings.right_bullets != blank %}
+          <ul class="ai-comparison-bullets-{{ ai_gen_id }}">
+            {% assign bullet_items = block.settings.right_bullets | split: '|' %}
+            {% for item in bullet_items %}
+              {% assign trimmed_item = item | strip %}
+              {% if trimmed_item != blank %}
+                <li>{{ trimmed_item }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</comparison-section-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class ComparisonSection{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('comparison-section-{{ ai_gen_id }}', ComparisonSection{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Side-by-side comparison",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section title"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_title",
+      "label": "Title",
+      "default": "Compare features"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_spacing",
+      "label": "Title spacing",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Left column"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_icon",
+      "label": "Icon or image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "left_subheading",
+      "label": "Subheading",
+      "default": "Before"
+    },
+    {
+      "type": "richtext",
+      "id": "left_body",
+      "label": "Body text",
+      "default": "<p>This is the first paragraph describing the left side of the comparison.</p><p>Add additional context and details here to help customers understand the differences.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "left_bullets",
+      "label": "Bullet points",
+      "info": "Separate each bullet point with a | character",
+      "default": "Feature one | Feature two | Feature three"
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_icon",
+      "label": "Icon or image"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "right_subheading",
+      "label": "Subheading",
+      "default": "After"
+    },
+    {
+      "type": "richtext",
+      "id": "right_body",
+      "label": "Body text",
+      "default": "<p>This is the first paragraph describing the right side of the comparison.</p><p>Highlight the improvements and benefits in this section.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "right_bullets",
+      "label": "Bullet points",
+      "info": "Separate each bullet point with a | character",
+      "default": "Improved feature one | Enhanced feature two | New feature three"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "mobile_column_gap",
+      "label": "Mobile column gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "column_padding",
+      "label": "Column padding",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Divider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Show divider",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "Divider width",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider color",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon_placeholder",
+      "label": "Show icon placeholder",
+      "default": false,
+      "info": "Display placeholder when no icon is selected"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon spacing",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 14,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "subheading_spacing",
+      "label": "Subheading spacing",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "paragraph_spacing",
+      "label": "Paragraph spacing",
+      "min": 5,
+      "max": 30,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "bullets_spacing",
+      "label": "Bullets spacing",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "column_background",
+      "label": "Column background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Side-by-side comparison"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}
