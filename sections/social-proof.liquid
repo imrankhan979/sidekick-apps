@@ -1,0 +1,918 @@
+{% doc %}
+  @prompt
+    Create a social proof section with the headline "Join Thousands of Happy Customers". Include a scrolling or static grid of recent customer activity items, each showing: customer first name and last initial (for privacy), action taken (e.g., "Purchased [Product]" or "Reviewed [Product]"), a relative timestamp (e.g., "2 hours ago", "Just now"), an optional product thumbnail image, and an optional location or note. Add a metrics/counter bar displaying stats like "50,000  happy customers" and "1,000  purchases this month". Include a gentle scroll or fade animation for the activity feed to create urgency and a community feeling. All content should be customizable via theme editor settings.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-social-proof-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+    overflow: hidden;
+  }
+
+  .ai-social-proof-container-{{ ai_gen_id }} {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .ai-social-proof-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.heading_alignment }};
+    margin-bottom: 40px;
+  }
+
+  .ai-social-proof-heading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.heading_color }};
+    margin: 0 0 12px;
+    font-weight: 700;
+  }
+
+  .ai-social-proof-subheading-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subheading_size }}px;
+    color: {{ block.settings.subheading_color }};
+    margin: 0;
+  }
+
+  .ai-social-proof-metrics-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background-color: {{ block.settings.metrics_bg_color }};
+    border-radius: {{ block.settings.metrics_border_radius }}px;
+  }
+
+  .ai-social-proof-metric-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-social-proof-metric-number-{{ ai_gen_id }} {
+    font-size: {{ block.settings.metric_number_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.metric_number_color }};
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  .ai-social-proof-metric-label-{{ ai_gen_id }} {
+    font-size: {{ block.settings.metric_label_size }}px;
+    color: {{ block.settings.metric_label_color }};
+    margin: 0;
+  }
+
+  .ai-social-proof-feed-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .ai-social-proof-feed-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: 16px;
+  }
+
+  .ai-social-proof-feed-{{ ai_gen_id }}.scrolling {
+    display: flex;
+    gap: 16px;
+    animation: ai-social-proof-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+  }
+
+  .ai-social-proof-feed-{{ ai_gen_id }}.scrolling .ai-social-proof-item-{{ ai_gen_id }} {
+    flex: 0 0 {{ block.settings.item_width }}px;
+  }
+
+  @keyframes ai-social-proof-scroll-{{ ai_gen_id }} {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-{{ block.settings.item_width }}px * {{ block.settings.activity_items_count }} - 16px * {{ block.settings.activity_items_count }}));
+    }
+  }
+
+  .ai-social-proof-item-{{ ai_gen_id }} {
+    background-color: {{ block.settings.item_bg_color }};
+    border: 1px solid {{ block.settings.item_border_color }};
+    border-radius: {{ block.settings.item_border_radius }}px;
+    padding: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    opacity: 0;
+    animation: ai-social-proof-fade-in-{{ ai_gen_id }} 0.5s ease-out forwards;
+  }
+
+  @keyframes ai-social-proof-fade-in-{{ ai_gen_id }} {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .ai-social-proof-item-{{ ai_gen_id }}:nth-child(1) { animation-delay: 0s; }
+  .ai-social-proof-item-{{ ai_gen_id }}:nth-child(2) { animation-delay: 0.1s; }
+  .ai-social-proof-item-{{ ai_gen_id }}:nth-child(3) { animation-delay: 0.2s; }
+  .ai-social-proof-item-{{ ai_gen_id }}:nth-child(4) { animation-delay: 0.3s; }
+  .ai-social-proof-item-{{ ai_gen_id }}:nth-child(5) { animation-delay: 0.4s; }
+  .ai-social-proof-item-{{ ai_gen_id }}:nth-child(6) { animation-delay: 0.5s; }
+
+  .ai-social-proof-item-image-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+  }
+
+  .ai-social-proof-item-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-social-proof-item-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-social-proof-item-image-placeholder-{{ ai_gen_id }} svg {
+    width: 24px;
+    height: 24px;
+    opacity: 0.3;
+  }
+
+  .ai-social-proof-item-content-{{ ai_gen_id }} {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .ai-social-proof-item-name-{{ ai_gen_id }} {
+    font-size: 14px;
+    font-weight: 600;
+    color: {{ block.settings.item_text_color }};
+    margin: 0 0 4px;
+  }
+
+  .ai-social-proof-item-action-{{ ai_gen_id }} {
+    font-size: 13px;
+    color: {{ block.settings.item_action_color }};
+    margin: 0 0 4px;
+    line-height: 1.4;
+  }
+
+  .ai-social-proof-item-meta-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .ai-social-proof-item-time-{{ ai_gen_id }},
+  .ai-social-proof-item-location-{{ ai_gen_id }} {
+    font-size: 12px;
+    color: {{ block.settings.item_meta_color }};
+  }
+
+  .ai-social-proof-item-time-{{ ai_gen_id }}::before {
+    content: "🕐 ";
+  }
+
+  .ai-social-proof-item-location-{{ ai_gen_id }}::before {
+    content: "📍 ";
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-social-proof-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.7);
+    }
+
+    .ai-social-proof-subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.9);
+    }
+
+    .ai-social-proof-metrics-{{ ai_gen_id }} {
+      gap: 24px;
+    }
+
+    .ai-social-proof-metric-number-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.metric_number_size }}px * 0.8);
+    }
+
+    .ai-social-proof-feed-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-social-proof-feed-{{ ai_gen_id }}.scrolling .ai-social-proof-item-{{ ai_gen_id }} {
+      flex: 0 0 280px;
+    }
+  }
+{% endstyle %}
+
+<social-proof-{{ ai_gen_id }} class="ai-social-proof-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-social-proof-container-{{ ai_gen_id }}">
+    <div class="ai-social-proof-header-{{ ai_gen_id }}">
+      {% if block.settings.heading != blank %}
+        <h2 class="ai-social-proof-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+      {% endif %}
+      {% if block.settings.subheading != blank %}
+        <p class="ai-social-proof-subheading-{{ ai_gen_id }}">{{ block.settings.subheading }}</p>
+      {% endif %}
+    </div>
+
+    {% if block.settings.show_metrics %}
+      <div class="ai-social-proof-metrics-{{ ai_gen_id }}">
+        {% if block.settings.metric_1_number != blank %}
+          <div class="ai-social-proof-metric-{{ ai_gen_id }}">
+            <div class="ai-social-proof-metric-number-{{ ai_gen_id }}">{{ block.settings.metric_1_number }}</div>
+            <div class="ai-social-proof-metric-label-{{ ai_gen_id }}">{{ block.settings.metric_1_label }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.metric_2_number != blank %}
+          <div class="ai-social-proof-metric-{{ ai_gen_id }}">
+            <div class="ai-social-proof-metric-number-{{ ai_gen_id }}">{{ block.settings.metric_2_number }}</div>
+            <div class="ai-social-proof-metric-label-{{ ai_gen_id }}">{{ block.settings.metric_2_label }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.metric_3_number != blank %}
+          <div class="ai-social-proof-metric-{{ ai_gen_id }}">
+            <div class="ai-social-proof-metric-number-{{ ai_gen_id }}">{{ block.settings.metric_3_number }}</div>
+            <div class="ai-social-proof-metric-label-{{ ai_gen_id }}">{{ block.settings.metric_3_label }}</div>
+          </div>
+        {% endif %}
+
+        {% if block.settings.metric_4_number != blank %}
+          <div class="ai-social-proof-metric-{{ ai_gen_id }}">
+            <div class="ai-social-proof-metric-number-{{ ai_gen_id }}">{{ block.settings.metric_4_number }}</div>
+            <div class="ai-social-proof-metric-label-{{ ai_gen_id }}">{{ block.settings.metric_4_label }}</div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-social-proof-feed-wrapper-{{ ai_gen_id }}">
+      <div
+        class="ai-social-proof-feed-{{ ai_gen_id }} {% if block.settings.enable_scrolling %}scrolling{% endif %}"
+        data-feed
+      >
+        {% for i in (1..6) %}
+          {% liquid
+            assign name_key = 'activity_' | append: i | append: '_name'
+            assign action_key = 'activity_' | append: i | append: '_action'
+            assign time_key = 'activity_' | append: i | append: '_time'
+            assign location_key = 'activity_' | append: i | append: '_location'
+            assign image_key = 'activity_' | append: i | append: '_image'
+
+            assign name = block.settings[name_key]
+            assign action = block.settings[action_key]
+            assign time = block.settings[time_key]
+            assign location = block.settings[location_key]
+            assign image = block.settings[image_key]
+          %}
+
+          {% if name != blank and action != blank %}
+            <div class="ai-social-proof-item-{{ ai_gen_id }}">
+              <div class="ai-social-proof-item-image-{{ ai_gen_id }}">
+                {% if image %}
+                  <img
+                    src="{{ image | image_url: width: 100 }}"
+                    alt="{{ name }}"
+                    width="50"
+                    height="50"
+                    loading="lazy"
+                  >
+                {% else %}
+                  <div class="ai-social-proof-item-image-placeholder-{{ ai_gen_id }}">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                  </div>
+                {% endif %}
+              </div>
+              <div class="ai-social-proof-item-content-{{ ai_gen_id }}">
+                <div class="ai-social-proof-item-name-{{ ai_gen_id }}">{{ name }}</div>
+                <div class="ai-social-proof-item-action-{{ ai_gen_id }}">{{ action }}</div>
+                <div class="ai-social-proof-item-meta-{{ ai_gen_id }}">
+                  {% if time != blank %}
+                    <span class="ai-social-proof-item-time-{{ ai_gen_id }}">{{ time }}</span>
+                  {% endif %}
+                  {% if location != blank %}
+                    <span class="ai-social-proof-item-location-{{ ai_gen_id }}">{{ location }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</social-proof-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SocialProof{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        const feed = this.querySelector('[data-feed]');
+
+        if (feed && feed.classList.contains('scrolling')) {
+          this.setupScrolling(feed);
+        }
+      }
+
+      setupScrolling(feed) {
+        const items = Array.from(feed.children);
+        const clonedItems = items.map(item => item.cloneNode(true));
+
+        clonedItems.forEach(clone => {
+          feed.appendChild(clone);
+        });
+
+        feed.addEventListener('mouseenter', () => {
+          feed.style.animationPlayState = 'paused';
+        });
+
+        feed.addEventListener('mouseleave', () => {
+          feed.style.animationPlayState = 'running';
+        });
+      }
+    }
+
+    customElements.define('social-proof-{{ ai_gen_id }}', SocialProof{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Social proof",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join Thousands of Happy Customers"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See what our community is saying"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Metrics"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_metrics",
+      "label": "Show metrics bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "metric_1_number",
+      "label": "Metric 1 number",
+      "default": "50,000+"
+    },
+    {
+      "type": "text",
+      "id": "metric_1_label",
+      "label": "Metric 1 label",
+      "default": "Happy customers"
+    },
+    {
+      "type": "text",
+      "id": "metric_2_number",
+      "label": "Metric 2 number",
+      "default": "1,000+"
+    },
+    {
+      "type": "text",
+      "id": "metric_2_label",
+      "label": "Metric 2 label",
+      "default": "Purchases this month"
+    },
+    {
+      "type": "text",
+      "id": "metric_3_number",
+      "label": "Metric 3 number",
+      "default": "4.9/5"
+    },
+    {
+      "type": "text",
+      "id": "metric_3_label",
+      "label": "Metric 3 label",
+      "default": "Average rating"
+    },
+    {
+      "type": "text",
+      "id": "metric_4_number",
+      "label": "Metric 4 number",
+      "default": "98%"
+    },
+    {
+      "type": "text",
+      "id": "metric_4_label",
+      "label": "Metric 4 label",
+      "default": "Customer satisfaction"
+    },
+    {
+      "type": "header",
+      "content": "Activity feed"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_scrolling",
+      "label": "Enable scrolling animation",
+      "default": false,
+      "info": "When enabled, items will scroll horizontally"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 30,
+      "info": "Only applies when scrolling is enabled"
+    },
+    {
+      "type": "range",
+      "id": "item_width",
+      "label": "Item width",
+      "min": 250,
+      "max": 400,
+      "step": 10,
+      "unit": "px",
+      "default": 320,
+      "info": "Only applies when scrolling is enabled"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3,
+      "info": "Only applies when scrolling is disabled"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1",
+      "info": "Only applies when scrolling is disabled"
+    },
+    {
+      "type": "header",
+      "content": "Activity 1"
+    },
+    {
+      "type": "text",
+      "id": "activity_1_name",
+      "label": "Customer name",
+      "default": "Sarah M."
+    },
+    {
+      "type": "text",
+      "id": "activity_1_action",
+      "label": "Action",
+      "default": "Purchased Classic Denim Jacket"
+    },
+    {
+      "type": "text",
+      "id": "activity_1_time",
+      "label": "Time",
+      "default": "2 hours ago"
+    },
+    {
+      "type": "text",
+      "id": "activity_1_location",
+      "label": "Location"
+    },
+    {
+      "type": "image_picker",
+      "id": "activity_1_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Activity 2"
+    },
+    {
+      "type": "text",
+      "id": "activity_2_name",
+      "label": "Customer name",
+      "default": "John D."
+    },
+    {
+      "type": "text",
+      "id": "activity_2_action",
+      "label": "Action",
+      "default": "Reviewed Premium Sneakers - 5 stars"
+    },
+    {
+      "type": "text",
+      "id": "activity_2_time",
+      "label": "Time",
+      "default": "5 hours ago"
+    },
+    {
+      "type": "text",
+      "id": "activity_2_location",
+      "label": "Location",
+      "default": "New York"
+    },
+    {
+      "type": "image_picker",
+      "id": "activity_2_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Activity 3"
+    },
+    {
+      "type": "text",
+      "id": "activity_3_name",
+      "label": "Customer name",
+      "default": "Emma L."
+    },
+    {
+      "type": "text",
+      "id": "activity_3_action",
+      "label": "Action",
+      "default": "Purchased Summer Dress Collection"
+    },
+    {
+      "type": "text",
+      "id": "activity_3_time",
+      "label": "Time",
+      "default": "Just now"
+    },
+    {
+      "type": "text",
+      "id": "activity_3_location",
+      "label": "Location",
+      "default": "Los Angeles"
+    },
+    {
+      "type": "image_picker",
+      "id": "activity_3_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Activity 4"
+    },
+    {
+      "type": "text",
+      "id": "activity_4_name",
+      "label": "Customer name",
+      "default": "Michael R."
+    },
+    {
+      "type": "text",
+      "id": "activity_4_action",
+      "label": "Action",
+      "default": "Purchased Leather Backpack"
+    },
+    {
+      "type": "text",
+      "id": "activity_4_time",
+      "label": "Time",
+      "default": "1 hour ago"
+    },
+    {
+      "type": "text",
+      "id": "activity_4_location",
+      "label": "Location",
+      "default": "Chicago"
+    },
+    {
+      "type": "image_picker",
+      "id": "activity_4_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Activity 5"
+    },
+    {
+      "type": "text",
+      "id": "activity_5_name",
+      "label": "Customer name",
+      "default": "Lisa K."
+    },
+    {
+      "type": "text",
+      "id": "activity_5_action",
+      "label": "Action",
+      "default": "Reviewed Organic Cotton T-Shirt - 5 stars"
+    },
+    {
+      "type": "text",
+      "id": "activity_5_time",
+      "label": "Time",
+      "default": "3 hours ago"
+    },
+    {
+      "type": "text",
+      "id": "activity_5_location",
+      "label": "Location",
+      "default": "Miami"
+    },
+    {
+      "type": "image_picker",
+      "id": "activity_5_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Activity 6"
+    },
+    {
+      "type": "text",
+      "id": "activity_6_name",
+      "label": "Customer name",
+      "default": "David P."
+    },
+    {
+      "type": "text",
+      "id": "activity_6_action",
+      "label": "Action",
+      "default": "Purchased Wireless Headphones"
+    },
+    {
+      "type": "text",
+      "id": "activity_6_time",
+      "label": "Time",
+      "default": "30 minutes ago"
+    },
+    {
+      "type": "text",
+      "id": "activity_6_location",
+      "label": "Location",
+      "default": "Seattle"
+    },
+    {
+      "type": "image_picker",
+      "id": "activity_6_image",
+      "label": "Product image"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Subheading",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "metrics_bg_color",
+      "label": "Metrics background",
+      "default": "#f6f6f6"
+    },
+    {
+      "type": "color",
+      "id": "metric_number_color",
+      "label": "Metric number",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "metric_label_color",
+      "label": "Metric label",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "item_bg_color",
+      "label": "Activity item background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "item_border_color",
+      "label": "Activity item border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "item_text_color",
+      "label": "Activity item name",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "item_action_color",
+      "label": "Activity item action",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "item_meta_color",
+      "label": "Activity item meta",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "metrics_border_radius",
+      "label": "Metrics border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "item_border_radius",
+      "label": "Activity item border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "metric_number_size",
+      "label": "Metric number size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "metric_label_size",
+      "label": "Metric label size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social proof"
+    }
+  ]
+}
+{% endschema %}

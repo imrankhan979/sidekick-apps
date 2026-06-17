@@ -1,0 +1,1432 @@
+{% doc %}
+  @prompt
+    Create a customer testimonials grid section with the following features:- Section title (editable, e.g. "What Our Customers Say")- Filter options: filter by star rating (5★, 4★ ), product, and date (newest first)- Grid layout showing 6-12 review cards, each containing:  - Customer name and avatar  - Star rating display  - Optional review title  - Review text (2-4 sentences)  - Verified purchase badge  - Optional helpful vote counter- Pagination or Load More button to show additional reviews- Sorting options: Newest, Most Helpful, Highest Rating- Clean, readable design that builds trust through transparent customer feedback
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-testimonials-grid-{{ ai_gen_id }} {
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.section_padding }}px 20px;
+    background-color: {{ block.settings.background_color }};
+    display: block;
+  }
+
+  .ai-testimonials-header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-testimonials-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 20px;
+  }
+
+  .ai-testimonials-filters-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .ai-testimonials-filter-group-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .ai-testimonials-filter-label-{{ ai_gen_id }} {
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  .ai-testimonials-filter-select-{{ ai_gen_id }} {
+    padding: 8px 12px;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    background-color: {{ block.settings.card_background }};
+    color: {{ block.settings.text_color }};
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .ai-testimonials-grid-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: {{ block.settings.grid_gap }}px;
+    margin-bottom: 40px;
+  }
+
+  .ai-testimonials-card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_background }};
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-testimonials-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .ai-testimonials-card-{{ ai_gen_id }}.hidden {
+    display: none;
+  }
+
+  .ai-testimonials-card-header-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ai-testimonials-avatar-{{ ai_gen_id }} {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: {{ block.settings.avatar_bg_color }};
+    color: {{ block.settings.avatar_text_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .ai-testimonials-customer-info-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-testimonials-customer-name-{{ ai_gen_id }} {
+    font-weight: 600;
+    font-size: 16px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 4px;
+  }
+
+  .ai-testimonials-stars-{{ ai_gen_id }} {
+    display: flex;
+    gap: 2px;
+  }
+
+  .ai-testimonials-star-{{ ai_gen_id }} {
+    color: {{ block.settings.star_color }};
+    font-size: 16px;
+  }
+
+  .ai-testimonials-star-{{ ai_gen_id }}.empty {
+    color: {{ block.settings.star_empty_color }};
+  }
+
+  .ai-testimonials-review-title-{{ ai_gen_id }} {
+    font-weight: 600;
+    font-size: 15px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-testimonials-review-text-{{ ai_gen_id }} {
+    font-size: 14px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  .ai-testimonials-card-footer-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-testimonials-verified-badge-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: {{ block.settings.verified_color }};
+    font-weight: 600;
+  }
+
+  .ai-testimonials-verified-icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ai-testimonials-helpful-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-testimonials-helpful-button-{{ ai_gen_id }} {
+    background: none;
+    border: 1px solid {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    color: {{ block.settings.text_color }};
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-testimonials-helpful-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.border_color }};
+  }
+
+  .ai-testimonials-load-more-{{ ai_gen_id }} {
+    text-align: center;
+  }
+
+  .ai-testimonials-load-more-button-{{ ai_gen_id }} {
+    padding: 12px 32px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.border_radius }}px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-testimonials-load-more-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+  }
+
+  .ai-testimonials-load-more-button-{{ ai_gen_id }}.hidden {
+    display: none;
+  }
+
+  .ai-testimonials-empty-state-{{ ai_gen_id }} {
+    text-align: center;
+    padding: 60px 20px;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-testimonials-empty-state-{{ ai_gen_id }}.hidden {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-testimonials-grid-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-testimonials-filters-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .ai-testimonials-filter-group-{{ ai_gen_id }} {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .ai-testimonials-filter-select-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<customer-testimonials-{{ ai_gen_id }} class="ai-testimonials-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-testimonials-header-{{ ai_gen_id }}">
+    {% if block.settings.section_title != blank %}
+      <h2 class="ai-testimonials-title-{{ ai_gen_id }}">{{ block.settings.section_title }}</h2>
+    {% endif %}
+
+    <div class="ai-testimonials-filters-{{ ai_gen_id }}">
+      <div class="ai-testimonials-filter-group-{{ ai_gen_id }}">
+        <label class="ai-testimonials-filter-label-{{ ai_gen_id }}" for="rating-filter-{{ ai_gen_id }}">Rating:</label>
+        <select
+          id="rating-filter-{{ ai_gen_id }}"
+          class="ai-testimonials-filter-select-{{ ai_gen_id }}"
+          data-filter="rating"
+        >
+          <option value="all">All ratings</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+        </select>
+      </div>
+
+      <div class="ai-testimonials-filter-group-{{ ai_gen_id }}">
+        <label class="ai-testimonials-filter-label-{{ ai_gen_id }}" for="sort-filter-{{ ai_gen_id }}">Sort by:</label>
+        <select
+          id="sort-filter-{{ ai_gen_id }}"
+          class="ai-testimonials-filter-select-{{ ai_gen_id }}"
+          data-filter="sort"
+        >
+          <option value="newest">Newest</option>
+          <option value="helpful">Most helpful</option>
+          <option value="highest">Highest rating</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-testimonials-grid-container-{{ ai_gen_id }}" data-reviews-container>
+    {% for i in (1..12) %}
+      {% liquid
+        assign review_enabled_key = 'review_' | append: i | append: '_enabled'
+        assign review_name_key = 'review_' | append: i | append: '_name'
+        assign review_rating_key = 'review_' | append: i | append: '_rating'
+        assign review_title_key = 'review_' | append: i | append: '_title'
+        assign review_text_key = 'review_' | append: i | append: '_text'
+        assign review_verified_key = 'review_' | append: i | append: '_verified'
+        assign review_helpful_key = 'review_' | append: i | append: '_helpful'
+        assign review_date_key = 'review_' | append: i | append: '_date'
+
+        assign review_enabled = block.settings[review_enabled_key]
+        assign review_name = block.settings[review_name_key]
+        assign review_rating = block.settings[review_rating_key]
+        assign review_title = block.settings[review_title_key]
+        assign review_text = block.settings[review_text_key]
+        assign review_verified = block.settings[review_verified_key]
+        assign review_helpful = block.settings[review_helpful_key]
+        assign review_date = block.settings[review_date_key]
+      %}
+
+      {% if review_enabled and review_name != blank %}
+        <div
+          class="ai-testimonials-card-{{ ai_gen_id }}"
+          data-rating="{{ review_rating }}"
+          data-helpful="{{ review_helpful }}"
+          data-date="{{ review_date }}"
+          data-index="{{ i }}"
+        >
+          <div class="ai-testimonials-card-header-{{ ai_gen_id }}">
+            <div class="ai-testimonials-avatar-{{ ai_gen_id }}">
+              {{ review_name | slice: 0 | upcase }}
+            </div>
+            <div class="ai-testimonials-customer-info-{{ ai_gen_id }}">
+              <h3 class="ai-testimonials-customer-name-{{ ai_gen_id }}">{{ review_name }}</h3>
+              <div class="ai-testimonials-stars-{{ ai_gen_id }}">
+                {% for star in (1..5) %}
+                  {% if star <= review_rating %}
+                    <span class="ai-testimonials-star-{{ ai_gen_id }}">★</span>
+                  {% else %}
+                    <span class="ai-testimonials-star-{{ ai_gen_id }} empty">★</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          {% if review_title != blank %}
+            <h4 class="ai-testimonials-review-title-{{ ai_gen_id }}">{{ review_title }}</h4>
+          {% endif %}
+
+          {% if review_text != blank %}
+            <p class="ai-testimonials-review-text-{{ ai_gen_id }}">{{ review_text }}</p>
+          {% endif %}
+
+          <div class="ai-testimonials-card-footer-{{ ai_gen_id }}">
+            {% if review_verified %}
+              <div class="ai-testimonials-verified-badge-{{ ai_gen_id }}">
+                <svg
+                  class="ai-testimonials-verified-icon-{{ ai_gen_id }}"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+                Verified Purchase
+              </div>
+            {% endif %}
+
+            {% if review_helpful > 0 %}
+              <div class="ai-testimonials-helpful-{{ ai_gen_id }}">
+                <button class="ai-testimonials-helpful-button-{{ ai_gen_id }}" aria-label="Mark as helpful">👍</button>
+                <span>{{ review_helpful }} found helpful</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <div class="ai-testimonials-empty-state-{{ ai_gen_id }} hidden">
+    <p>No reviews match your filters. Try adjusting your selection.</p>
+  </div>
+
+  {% if block.settings.show_load_more %}
+    <div class="ai-testimonials-load-more-{{ ai_gen_id }}">
+      <button class="ai-testimonials-load-more-button-{{ ai_gen_id }}" data-load-more>
+        {{ block.settings.load_more_text }}
+      </button>
+    </div>
+  {% endif %}
+</customer-testimonials-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CustomerTestimonials{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.reviewsPerPage = {{ block.settings.reviews_per_page }};
+        this.currentPage = 1;
+        this.allReviews = [];
+        this.filteredReviews = [];
+      }
+
+      connectedCallback() {
+        this.container = this.querySelector('[data-reviews-container]');
+        this.loadMoreBtn = this.querySelector('[data-load-more]');
+        this.emptyState = this.querySelector('.ai-testimonials-empty-state-{{ ai_gen_id }}');
+        this.ratingFilter = this.querySelector('[data-filter="rating"]');
+        this.sortFilter = this.querySelector('[data-filter="sort"]');
+
+        this.allReviews = Array.from(this.container.querySelectorAll('.ai-testimonials-card-{{ ai_gen_id }}'));
+        this.filteredReviews = [...this.allReviews];
+
+        this.setupEventListeners();
+        this.applyPagination();
+      }
+
+      setupEventListeners() {
+        if (this.loadMoreBtn) {
+          this.loadMoreBtn.addEventListener('click', () => this.loadMore());
+        }
+
+        if (this.ratingFilter) {
+          this.ratingFilter.addEventListener('change', () => this.applyFilters());
+        }
+
+        if (this.sortFilter) {
+          this.sortFilter.addEventListener('change', () => this.applySort());
+        }
+
+        const helpfulButtons = this.querySelectorAll('.ai-testimonials-helpful-button-{{ ai_gen_id }}');
+        helpfulButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const card = button.closest('.ai-testimonials-card-{{ ai_gen_id }}');
+            const helpfulCount = card.querySelector('.ai-testimonials-helpful-{{ ai_gen_id }} span');
+            if (helpfulCount) {
+              const currentCount = parseInt(helpfulCount.textContent);
+              helpfulCount.textContent = `${currentCount + 1} found helpful`;
+            }
+          });
+        });
+      }
+
+      applyFilters() {
+        const ratingValue = this.ratingFilter ? this.ratingFilter.value : 'all';
+
+        this.filteredReviews = this.allReviews.filter(review => {
+          const rating = parseInt(review.dataset.rating);
+
+          if (ratingValue !== 'all' && rating !== parseInt(ratingValue)) {
+            return false;
+          }
+
+          return true;
+        });
+
+        this.applySort();
+      }
+
+      applySort() {
+        const sortValue = this.sortFilter ? this.sortFilter.value : 'newest';
+
+        this.filteredReviews.sort((a, b) => {
+          if (sortValue === 'newest') {
+            return new Date(b.dataset.date) - new Date(a.dataset.date);
+          } else if (sortValue === 'helpful') {
+            return parseInt(b.dataset.helpful) - parseInt(a.dataset.helpful);
+          } else if (sortValue === 'highest') {
+            return parseInt(b.dataset.rating) - parseInt(a.dataset.rating);
+          }
+          return 0;
+        });
+
+        this.currentPage = 1;
+        this.renderReviews();
+      }
+
+      renderReviews() {
+        this.allReviews.forEach(review => review.classList.add('hidden'));
+
+        const visibleCount = this.currentPage * this.reviewsPerPage;
+        const reviewsToShow = this.filteredReviews.slice(0, visibleCount);
+
+        reviewsToShow.forEach(review => {
+          review.classList.remove('hidden');
+          this.container.appendChild(review);
+        });
+
+        if (this.emptyState) {
+          if (this.filteredReviews.length === 0) {
+            this.emptyState.classList.remove('hidden');
+          } else {
+            this.emptyState.classList.add('hidden');
+          }
+        }
+
+        if (this.loadMoreBtn) {
+          if (visibleCount >= this.filteredReviews.length) {
+            this.loadMoreBtn.classList.add('hidden');
+          } else {
+            this.loadMoreBtn.classList.remove('hidden');
+          }
+        }
+      }
+
+      applyPagination() {
+        this.renderReviews();
+      }
+
+      loadMore() {
+        this.currentPage++;
+        this.renderReviews();
+      }
+    }
+
+    customElements.define('customer-testimonials-{{ ai_gen_id }}', CustomerTestimonials{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Customer testimonials",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_title",
+      "label": "Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "label": "Grid gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "reviews_per_page",
+      "label": "Reviews per page",
+      "min": 6,
+      "max": 12,
+      "step": 2,
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "show_load_more",
+      "label": "Show load more button",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "load_more_text",
+      "label": "Load more button text",
+      "default": "Load More Reviews"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star filled",
+      "default": "#FFD700"
+    },
+    {
+      "type": "color",
+      "id": "star_empty_color",
+      "label": "Star empty",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "color",
+      "id": "verified_color",
+      "label": "Verified badge",
+      "default": "#008060"
+    },
+    {
+      "type": "color",
+      "id": "avatar_bg_color",
+      "label": "Avatar background",
+      "default": "#0d6fb1"
+    },
+    {
+      "type": "color",
+      "id": "avatar_text_color",
+      "label": "Avatar text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover",
+      "default": "#333333"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Review 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_1_enabled",
+      "label": "Enable review 1",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_1_name",
+      "label": "Customer name",
+      "default": "Sarah Johnson"
+    },
+    {
+      "type": "select",
+      "id": "review_1_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_1_title",
+      "label": "Review title",
+      "default": "Absolutely love it!"
+    },
+    {
+      "type": "textarea",
+      "id": "review_1_text",
+      "label": "Review text",
+      "default": "This product exceeded my expectations. The quality is outstanding and it arrived quickly. I've already recommended it to my friends and family. Will definitely purchase again!"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_1_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_1_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "review_1_date",
+      "label": "Date",
+      "default": "2026-06-15"
+    },
+    {
+      "type": "header",
+      "content": "Review 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_2_enabled",
+      "label": "Enable review 2",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_2_name",
+      "label": "Customer name",
+      "default": "Michael Chen"
+    },
+    {
+      "type": "select",
+      "id": "review_2_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_2_title",
+      "label": "Review title",
+      "default": "Great value for money"
+    },
+    {
+      "type": "textarea",
+      "id": "review_2_text",
+      "label": "Review text",
+      "default": "I was skeptical at first, but this product really delivers. The customer service was excellent and the shipping was fast. Highly recommend to anyone looking for quality."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_2_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_2_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 18
+    },
+    {
+      "type": "text",
+      "id": "review_2_date",
+      "label": "Date",
+      "default": "2026-06-14"
+    },
+    {
+      "type": "header",
+      "content": "Review 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_3_enabled",
+      "label": "Enable review 3",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_3_name",
+      "label": "Customer name",
+      "default": "Emily Rodriguez"
+    },
+    {
+      "type": "select",
+      "id": "review_3_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "text",
+      "id": "review_3_title",
+      "label": "Review title",
+      "default": "Very satisfied"
+    },
+    {
+      "type": "textarea",
+      "id": "review_3_text",
+      "label": "Review text",
+      "default": "The product is exactly as described. It works perfectly and looks great. Only minor issue was the packaging could be better, but overall very happy with my purchase."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_3_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_3_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "review_3_date",
+      "label": "Date",
+      "default": "2026-06-13"
+    },
+    {
+      "type": "header",
+      "content": "Review 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_4_enabled",
+      "label": "Enable review 4",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_4_name",
+      "label": "Customer name",
+      "default": "David Thompson"
+    },
+    {
+      "type": "select",
+      "id": "review_4_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_4_title",
+      "label": "Review title",
+      "default": "Exceeded expectations"
+    },
+    {
+      "type": "textarea",
+      "id": "review_4_text",
+      "label": "Review text",
+      "default": "I've been using this for a few weeks now and it's been fantastic. The build quality is solid and it performs exactly as advertised. Worth every penny!"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_4_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_4_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 32
+    },
+    {
+      "type": "text",
+      "id": "review_4_date",
+      "label": "Date",
+      "default": "2026-06-12"
+    },
+    {
+      "type": "header",
+      "content": "Review 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_5_enabled",
+      "label": "Enable review 5",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_5_name",
+      "label": "Customer name",
+      "default": "Jessica Martinez"
+    },
+    {
+      "type": "select",
+      "id": "review_5_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_5_title",
+      "label": "Review title",
+      "default": "Perfect purchase"
+    },
+    {
+      "type": "textarea",
+      "id": "review_5_text",
+      "label": "Review text",
+      "default": "This is my second purchase from this store and I'm never disappointed. The attention to detail is impressive and the customer support team is always helpful. Five stars!"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_5_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_5_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "text",
+      "id": "review_5_date",
+      "label": "Date",
+      "default": "2026-06-11"
+    },
+    {
+      "type": "header",
+      "content": "Review 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_6_enabled",
+      "label": "Enable review 6",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "review_6_name",
+      "label": "Customer name",
+      "default": "Robert Anderson"
+    },
+    {
+      "type": "select",
+      "id": "review_6_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "text",
+      "id": "review_6_title",
+      "label": "Review title",
+      "default": "Good quality product"
+    },
+    {
+      "type": "textarea",
+      "id": "review_6_text",
+      "label": "Review text",
+      "default": "Really happy with this purchase. The product is well-made and functions perfectly. Delivery was prompt and everything was packaged securely. Would buy again."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_6_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_6_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "review_6_date",
+      "label": "Date",
+      "default": "2026-06-10"
+    },
+    {
+      "type": "header",
+      "content": "Review 7"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_7_enabled",
+      "label": "Enable review 7",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_7_name",
+      "label": "Customer name",
+      "default": "Amanda Wilson"
+    },
+    {
+      "type": "select",
+      "id": "review_7_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_7_title",
+      "label": "Review title",
+      "default": "Highly recommend"
+    },
+    {
+      "type": "textarea",
+      "id": "review_7_text",
+      "label": "Review text",
+      "default": "Best purchase I've made in a while. The quality is exceptional and it's exactly what I needed. The whole shopping experience was smooth from start to finish."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_7_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_7_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "review_7_date",
+      "label": "Date",
+      "default": "2026-06-09"
+    },
+    {
+      "type": "header",
+      "content": "Review 8"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_8_enabled",
+      "label": "Enable review 8",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_8_name",
+      "label": "Customer name",
+      "default": "Christopher Lee"
+    },
+    {
+      "type": "select",
+      "id": "review_8_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "text",
+      "id": "review_8_title",
+      "label": "Review title",
+      "default": "Solid choice"
+    },
+    {
+      "type": "textarea",
+      "id": "review_8_text",
+      "label": "Review text",
+      "default": "Very pleased with this product. It does everything it promises and more. The price point is fair for the quality you get. Would definitely recommend to others."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_8_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_8_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 16
+    },
+    {
+      "type": "text",
+      "id": "review_8_date",
+      "label": "Date",
+      "default": "2026-06-08"
+    },
+    {
+      "type": "header",
+      "content": "Review 9"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_9_enabled",
+      "label": "Enable review 9",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_9_name",
+      "label": "Customer name",
+      "default": "Nicole Taylor"
+    },
+    {
+      "type": "select",
+      "id": "review_9_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_9_title",
+      "label": "Review title",
+      "default": "Amazing quality"
+    },
+    {
+      "type": "textarea",
+      "id": "review_9_text",
+      "label": "Review text",
+      "default": "I'm so impressed with this product! The craftsmanship is top-notch and it's clear that a lot of thought went into the design. Will be shopping here again soon."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_9_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_9_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 35
+    },
+    {
+      "type": "text",
+      "id": "review_9_date",
+      "label": "Date",
+      "default": "2026-06-07"
+    },
+    {
+      "type": "header",
+      "content": "Review 10"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_10_enabled",
+      "label": "Enable review 10",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_10_name",
+      "label": "Customer name",
+      "default": "James Brown"
+    },
+    {
+      "type": "select",
+      "id": "review_10_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_10_title",
+      "label": "Review title",
+      "default": "Fantastic product"
+    },
+    {
+      "type": "textarea",
+      "id": "review_10_text",
+      "label": "Review text",
+      "default": "This product has made my life so much easier. It's reliable, durable, and looks great. The company clearly cares about their customers. Couldn't be happier!"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_10_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_10_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 22
+    },
+    {
+      "type": "text",
+      "id": "review_10_date",
+      "label": "Date",
+      "default": "2026-06-06"
+    },
+    {
+      "type": "header",
+      "content": "Review 11"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_11_enabled",
+      "label": "Enable review 11",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_11_name",
+      "label": "Customer name",
+      "default": "Sophia Garcia"
+    },
+    {
+      "type": "select",
+      "id": "review_11_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "text",
+      "id": "review_11_title",
+      "label": "Review title",
+      "default": "Great experience"
+    },
+    {
+      "type": "textarea",
+      "id": "review_11_text",
+      "label": "Review text",
+      "default": "From ordering to delivery, everything was perfect. The product itself is excellent quality and exactly what I was looking for. Very satisfied with my purchase."
+    },
+    {
+      "type": "checkbox",
+      "id": "review_11_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_11_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "review_11_date",
+      "label": "Date",
+      "default": "2026-06-05"
+    },
+    {
+      "type": "header",
+      "content": "Review 12"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_12_enabled",
+      "label": "Enable review 12",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "review_12_name",
+      "label": "Customer name",
+      "default": "Daniel White"
+    },
+    {
+      "type": "select",
+      "id": "review_12_rating",
+      "label": "Rating",
+      "options": [
+        { "value": "5", "label": "5 stars" },
+        { "value": "4", "label": "4 stars" },
+        { "value": "3", "label": "3 stars" },
+        { "value": "2", "label": "2 stars" },
+        { "value": "1", "label": "1 star" }
+      ],
+      "default": "5"
+    },
+    {
+      "type": "text",
+      "id": "review_12_title",
+      "label": "Review title",
+      "default": "Outstanding value"
+    },
+    {
+      "type": "textarea",
+      "id": "review_12_text",
+      "label": "Review text",
+      "default": "I've tried similar products before but this one stands out. The quality is superior and the price is reasonable. Fast shipping and great customer service too!"
+    },
+    {
+      "type": "checkbox",
+      "id": "review_12_verified",
+      "label": "Verified purchase",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "review_12_helpful",
+      "label": "Helpful votes",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "text",
+      "id": "review_12_date",
+      "label": "Date",
+      "default": "2026-06-04"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer testimonials"
+    }
+  ]
+}
+{% endschema %}
