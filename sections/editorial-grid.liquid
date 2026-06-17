@@ -1,0 +1,698 @@
+{% doc %}
+  @prompt
+    Create an original editorial grid section with a compelling section headline (max 8 words). Include 3-6 grid items, each with a high-quality image, short headline (2-5 words), brief 1-2 sentence description, optional category tag/label, and an optional link. The grid should be fully responsive — adapting from a single column on mobile to 2 columns on tablet and 3 columns on desktop. Design with unique spacing, strong visual hierarchy, and a professional editorial feel. Use clean typography with clear heading/image/text relationships, balanced proportions, and crisp imagery. The overall tone should feel like a premium content curation layout — distinct, polished, and engaging.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-editorial-grid-{{ ai_gen_id }} {
+    width: 100%;
+    display: block;
+  }
+
+  .ai-editorial-grid__container-{{ ai_gen_id }} {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+
+  .ai-editorial-grid__header-{{ ai_gen_id }} {
+    margin-bottom: 48px;
+    text-align: {{ block.settings.heading_alignment }};
+  }
+
+  .ai-editorial-grid__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+    color: {{ block.settings.heading_color }};
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+  }
+
+  .ai-editorial-grid__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ block.settings.grid_gap_mobile }}px;
+  }
+
+  .ai-editorial-grid__item-{{ ai_gen_id }} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: {{ block.settings.card_background }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ai-editorial-grid__item-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .ai-editorial-grid__image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: {{ block.settings.image_aspect_ratio }}%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-editorial-grid__image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-editorial-grid__image-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+  }
+
+  .ai-editorial-grid__image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-editorial-grid__category-{{ ai_gen_id }} {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 6px 14px;
+    background-color: {{ block.settings.category_background }};
+    color: {{ block.settings.category_text_color }};
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 2px;
+    z-index: 2;
+  }
+
+  .ai-editorial-grid__content-{{ ai_gen_id }} {
+    padding: {{ block.settings.card_padding }}px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+  }
+
+  .ai-editorial-grid__item-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.item_title_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    color: {{ block.settings.item_title_color }};
+    letter-spacing: -0.01em;
+  }
+
+  .ai-editorial-grid__description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.description_color }};
+    margin: 0;
+  }
+
+  .ai-editorial-grid__link-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    text-indent: -9999px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-editorial-grid__container-{{ ai_gen_id }} {
+      padding: 80px 40px;
+    }
+
+    .ai-editorial-grid__header-{{ ai_gen_id }} {
+      margin-bottom: 64px;
+    }
+
+    .ai-editorial-grid__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+      gap: {{ block.settings.grid_gap_tablet }}px;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .ai-editorial-grid__container-{{ ai_gen_id }} {
+      padding: 100px 60px;
+    }
+
+    .ai-editorial-grid__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+      gap: {{ block.settings.grid_gap_desktop }}px;
+    }
+  }
+{% endstyle %}
+
+<editorial-grid-{{ ai_gen_id }} class="ai-editorial-grid-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-editorial-grid__container-{{ ai_gen_id }}">
+    {% if block.settings.section_heading != blank %}
+      <div class="ai-editorial-grid__header-{{ ai_gen_id }}">
+        <h2 class="ai-editorial-grid__title-{{ ai_gen_id }}">{{ block.settings.section_heading }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="ai-editorial-grid__grid-{{ ai_gen_id }}">
+      {% for i in (1..6) %}
+        {% liquid
+          assign item_enabled_key = 'item_' | append: i | append: '_enabled'
+          assign item_image_key = 'item_' | append: i | append: '_image'
+          assign item_category_key = 'item_' | append: i | append: '_category'
+          assign item_title_key = 'item_' | append: i | append: '_title'
+          assign item_description_key = 'item_' | append: i | append: '_description'
+          assign item_link_key = 'item_' | append: i | append: '_link'
+
+          assign item_enabled = block.settings[item_enabled_key]
+          assign item_image = block.settings[item_image_key]
+          assign item_category = block.settings[item_category_key]
+          assign item_title = block.settings[item_title_key]
+          assign item_description = block.settings[item_description_key]
+          assign item_link = block.settings[item_link_key]
+        %}
+
+        {% if item_enabled %}
+          <article class="ai-editorial-grid__item-{{ ai_gen_id }}">
+            <div class="ai-editorial-grid__image-wrapper-{{ ai_gen_id }}">
+              {% if item_image != blank %}
+                <img
+                  src="{{ item_image | image_url: width: 800 }}"
+                  alt="{{ item_image.alt | escape }}"
+                  loading="lazy"
+                  width="{{ item_image.width }}"
+                  height="{{ item_image.height }}"
+                  class="ai-editorial-grid__image-{{ ai_gen_id }}"
+                >
+              {% else %}
+                <div class="ai-editorial-grid__image-placeholder-{{ ai_gen_id }}">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+
+              {% if item_category != blank %}
+                <span class="ai-editorial-grid__category-{{ ai_gen_id }}">{{ item_category }}</span>
+              {% endif %}
+            </div>
+
+            <div class="ai-editorial-grid__content-{{ ai_gen_id }}">
+              {% if item_title != blank %}
+                <h3 class="ai-editorial-grid__item-title-{{ ai_gen_id }}">{{ item_title }}</h3>
+              {% endif %}
+
+              {% if item_description != blank %}
+                <p class="ai-editorial-grid__description-{{ ai_gen_id }}">{{ item_description }}</p>
+              {% endif %}
+            </div>
+
+            {% if item_link != blank %}
+              <a
+                href="{{ item_link }}"
+                class="ai-editorial-grid__link-{{ ai_gen_id }}"
+                aria-label="{{ item_title | escape }}"
+              >
+                {{- item_title -}}
+              </a>
+            {% endif %}
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</editorial-grid-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class EditorialGrid{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.style.display = 'block';
+      }
+    }
+
+    customElements.define('editorial-grid-{{ ai_gen_id }}', EditorialGrid{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Editorial grid",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "section_heading",
+      "label": "Heading",
+      "default": "Curated Stories Worth Your Time"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "oswald_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 48
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "select",
+      "id": "heading_alignment",
+      "label": "Heading alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Grid layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "label": "Columns on tablet",
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_desktop",
+      "min": 16,
+      "max": 64,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap on desktop",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_tablet",
+      "min": 12,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap on tablet",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "grid_gap_mobile",
+      "min": 12,
+      "max": 32,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap on mobile",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "image_aspect_ratio",
+      "min": 50,
+      "max": 150,
+      "step": 5,
+      "unit": "%",
+      "label": "Image aspect ratio",
+      "default": 75
+    },
+    {
+      "type": "header",
+      "content": "Category tag"
+    },
+    {
+      "type": "color",
+      "id": "category_background",
+      "label": "Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "category_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "item_title_size",
+      "min": 16,
+      "max": 36,
+      "step": 2,
+      "unit": "px",
+      "label": "Item title size",
+      "default": 24
+    },
+    {
+      "type": "color",
+      "id": "item_title_color",
+      "label": "Item title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 15
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_1_enabled",
+      "label": "Enable item 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_1_category",
+      "label": "Category tag"
+    },
+    {
+      "type": "text",
+      "id": "item_1_title",
+      "label": "Title",
+      "default": "Modern Design"
+    },
+    {
+      "type": "textarea",
+      "id": "item_1_description",
+      "label": "Description",
+      "default": "Explore the intersection of form and function in contemporary spaces. Discover how minimalism meets comfort."
+    },
+    {
+      "type": "url",
+      "id": "item_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_2_enabled",
+      "label": "Enable item 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_2_category",
+      "label": "Category tag"
+    },
+    {
+      "type": "text",
+      "id": "item_2_title",
+      "label": "Title",
+      "default": "Artisan Crafts"
+    },
+    {
+      "type": "textarea",
+      "id": "item_2_description",
+      "label": "Description",
+      "default": "Handcrafted pieces that tell a story. Each creation reflects the dedication and skill of master artisans."
+    },
+    {
+      "type": "url",
+      "id": "item_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_3_enabled",
+      "label": "Enable item 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_3_category",
+      "label": "Category tag"
+    },
+    {
+      "type": "text",
+      "id": "item_3_title",
+      "label": "Title",
+      "default": "Sustainable Living"
+    },
+    {
+      "type": "textarea",
+      "id": "item_3_description",
+      "label": "Description",
+      "default": "Embrace eco-conscious choices without compromising style. Learn how thoughtful design creates lasting impact."
+    },
+    {
+      "type": "url",
+      "id": "item_3_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_4_enabled",
+      "label": "Enable item 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_4_category",
+      "label": "Category tag"
+    },
+    {
+      "type": "text",
+      "id": "item_4_title",
+      "label": "Title",
+      "default": "Urban Spaces"
+    },
+    {
+      "type": "textarea",
+      "id": "item_4_description",
+      "label": "Description",
+      "default": "Transforming city living through innovative design solutions. Maximize every square foot with smart planning."
+    },
+    {
+      "type": "url",
+      "id": "item_4_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_5_enabled",
+      "label": "Enable item 5",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_5_category",
+      "label": "Category tag"
+    },
+    {
+      "type": "text",
+      "id": "item_5_title",
+      "label": "Title",
+      "default": "Timeless Classics"
+    },
+    {
+      "type": "textarea",
+      "id": "item_5_description",
+      "label": "Description",
+      "default": "Pieces that transcend trends and seasons. Invest in quality that endures through changing times."
+    },
+    {
+      "type": "url",
+      "id": "item_5_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Item 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "item_6_enabled",
+      "label": "Enable item 6",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "item_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "item_6_category",
+      "label": "Category tag"
+    },
+    {
+      "type": "text",
+      "id": "item_6_title",
+      "label": "Title",
+      "default": "Creative Process"
+    },
+    {
+      "type": "textarea",
+      "id": "item_6_description",
+      "label": "Description",
+      "default": "Behind the scenes of inspiration and execution. Witness the journey from concept to finished masterpiece."
+    },
+    {
+      "type": "url",
+      "id": "item_6_link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Editorial grid"
+    }
+  ]
+}
+{% endschema %}
