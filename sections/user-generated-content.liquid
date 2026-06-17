@@ -1,0 +1,1390 @@
+{% doc %}
+  @prompt
+    Create a "Customer Creations" social proof gallery section for a Shopify storefront. Include: a customizable section title (e.g., "In the Wild", "Customer Creations", "Tagged Photos"), a responsive content grid displaying 6-12 customer photo/post cards, each card showing a customer photo, customer name or social handle, like/engagement count, optional caption or hashtag, and a clickable link to the featured product. Add source attribution labels showing where content comes from (Instagram, hashtag, customer uploads). Include a CTA banner at the bottom with "Share your photos" text, instructions, and a hashtag. Add optional filtering buttons to filter the grid by product, date, or platform. Style it to feel authentic and community-driven for social proof and engagement.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-customer-creations-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 40px 20px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-customer-creations__container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+  }
+
+  .ai-customer-creations__header-{{ ai_gen_id }} {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .ai-customer-creations__title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    color: {{ block.settings.title_color }};
+    margin: 0 0 10px;
+  }
+
+  .ai-customer-creations__subtitle-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    margin: 0;
+  }
+
+  .ai-customer-creations__filters-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .ai-customer-creations__filter-btn-{{ ai_gen_id }} {
+    padding: 10px 20px;
+    background-color: {{ block.settings.filter_bg_color }};
+    color: {{ block.settings.filter_text_color }};
+    border: 1px solid {{ block.settings.filter_border_color }};
+    border-radius: {{ block.settings.filter_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-customer-creations__filter-btn-{{ ai_gen_id }}:hover,
+  .ai-customer-creations__filter-btn-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.filter_active_bg_color }};
+    color: {{ block.settings.filter_active_text_color }};
+    border-color: {{ block.settings.filter_active_bg_color }};
+  }
+
+  .ai-customer-creations__grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat({{ block.settings.columns_desktop }}, 1fr);
+    gap: {{ block.settings.grid_gap }}px;
+    margin-bottom: 40px;
+  }
+
+  .ai-customer-creations__card-{{ ai_gen_id }} {
+    background-color: {{ block.settings.card_bg_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-customer-creations__card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-customer-creations__card-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    background-color: #f4f4f4;
+  }
+
+  .ai-customer-creations__card-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-customer-creations__card-image-wrapper-{{ ai_gen_id }} svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-customer-creations__card-source-{{ ai_gen_id }} {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ai-customer-creations__card-content-{{ ai_gen_id }} {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ai-customer-creations__card-user-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .ai-customer-creations__card-user-icon-{{ ai_gen_id }} {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: {{ block.settings.user_icon_bg_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ block.settings.user_icon_color }};
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .ai-customer-creations__card-username-{{ ai_gen_id }} {
+    font-weight: 600;
+    color: {{ block.settings.card_text_color }};
+    font-size: 14px;
+  }
+
+  .ai-customer-creations__card-caption-{{ ai_gen_id }} {
+    color: {{ block.settings.card_text_color }};
+    font-size: 14px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .ai-customer-creations__card-footer-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .ai-customer-creations__card-likes-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: {{ block.settings.card_text_color }};
+    font-size: 14px;
+  }
+
+  .ai-customer-creations__card-link-{{ ai_gen_id }} {
+    color: {{ block.settings.link_color }};
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .ai-customer-creations__card-link-{{ ai_gen_id }}:hover {
+    text-decoration: underline;
+  }
+
+  .ai-customer-creations__cta-{{ ai_gen_id }} {
+    background-color: {{ block.settings.cta_bg_color }};
+    border-radius: {{ block.settings.cta_border_radius }}px;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .ai-customer-creations__cta-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.cta_title_size }}px;
+    color: {{ block.settings.cta_text_color }};
+    margin: 0 0 10px;
+  }
+
+  .ai-customer-creations__cta-text-{{ ai_gen_id }} {
+    color: {{ block.settings.cta_text_color }};
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .ai-customer-creations__cta-hashtag-{{ ai_gen_id }} {
+    font-size: 20px;
+    font-weight: 600;
+    color: {{ block.settings.cta_hashtag_color }};
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-customer-creations__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_tablet }}, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-customer-creations__grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat({{ block.settings.columns_mobile }}, 1fr);
+    }
+
+    .ai-customer-creations__title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.title_size }}px * 0.8);
+    }
+
+    .ai-customer-creations__cta-title-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.cta_title_size }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<customer-creations-{{ ai_gen_id }} class="ai-customer-creations-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-customer-creations__container-{{ ai_gen_id }}">
+    <div class="ai-customer-creations__header-{{ ai_gen_id }}">
+      {% if block.settings.title != blank %}
+        <h2 class="ai-customer-creations__title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+      {% endif %}
+      {% if block.settings.subtitle != blank %}
+        <p class="ai-customer-creations__subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    {% if block.settings.show_filters %}
+      <div class="ai-customer-creations__filters-{{ ai_gen_id }}">
+        <button class="ai-customer-creations__filter-btn-{{ ai_gen_id }} active" data-filter="all">All</button>
+        <button class="ai-customer-creations__filter-btn-{{ ai_gen_id }}" data-filter="instagram">Instagram</button>
+        <button class="ai-customer-creations__filter-btn-{{ ai_gen_id }}" data-filter="hashtag">Hashtag</button>
+        <button class="ai-customer-creations__filter-btn-{{ ai_gen_id }}" data-filter="uploads">
+          Customer Uploads
+        </button>
+      </div>
+    {% endif %}
+
+    <div class="ai-customer-creations__grid-{{ ai_gen_id }}">
+      {% for i in (1..12) %}
+        {% liquid
+          assign card_enabled_key = 'card_' | append: i | append: '_enabled'
+          assign card_image_key = 'card_' | append: i | append: '_image'
+          assign card_username_key = 'card_' | append: i | append: '_username'
+          assign card_caption_key = 'card_' | append: i | append: '_caption'
+          assign card_likes_key = 'card_' | append: i | append: '_likes'
+          assign card_source_key = 'card_' | append: i | append: '_source'
+          assign card_product_key = 'card_' | append: i | append: '_product'
+
+          assign card_enabled = block.settings[card_enabled_key]
+          assign card_image = block.settings[card_image_key]
+          assign card_username = block.settings[card_username_key]
+          assign card_caption = block.settings[card_caption_key]
+          assign card_likes = block.settings[card_likes_key]
+          assign card_source = block.settings[card_source_key]
+          assign card_product = block.settings[card_product_key]
+        %}
+
+        {% if card_enabled %}
+          <div class="ai-customer-creations__card-{{ ai_gen_id }}" data-source="{{ card_source }}">
+            <div class="ai-customer-creations__card-image-wrapper-{{ ai_gen_id }}">
+              {% if card_image %}
+                <img
+                  src="{{ card_image | image_url: width: 600 }}"
+                  alt="{{ card_username | escape }}"
+                  loading="lazy"
+                  class="ai-customer-creations__card-image-{{ ai_gen_id }}"
+                  width="600"
+                  height="600"
+                >
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {% endif %}
+
+              <div class="ai-customer-creations__card-source-{{ ai_gen_id }}">
+                {% if card_source == 'instagram' %}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                  Instagram
+                {% elsif card_source == 'hashtag' %}
+                  # Hashtag
+                {% else %}
+                  Upload
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="ai-customer-creations__card-content-{{ ai_gen_id }}">
+              <div class="ai-customer-creations__card-user-{{ ai_gen_id }}">
+                <div class="ai-customer-creations__card-user-icon-{{ ai_gen_id }}">
+                  {% if card_username != blank %}
+                    {{ card_username | slice: 0 | upcase }}
+                  {% else %}
+                    U
+                  {% endif %}
+                </div>
+                <div class="ai-customer-creations__card-username-{{ ai_gen_id }}">
+                  {% if card_username != blank %}
+                    {{ card_username }}
+                  {% else %}
+                    @username
+                  {% endif %}
+                </div>
+              </div>
+
+              {% if card_caption != blank %}
+                <div class="ai-customer-creations__card-caption-{{ ai_gen_id }}">
+                  {{ card_caption }}
+                </div>
+              {% endif %}
+
+              <div class="ai-customer-creations__card-footer-{{ ai_gen_id }}">
+                <div class="ai-customer-creations__card-likes-{{ ai_gen_id }}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                  {{ card_likes }}
+                </div>
+                {% if card_product != blank %}
+                  <a href="{{ card_product.url }}" class="ai-customer-creations__card-link-{{ ai_gen_id }}">
+                    View Product
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if block.settings.show_cta %}
+      <div class="ai-customer-creations__cta-{{ ai_gen_id }}">
+        {% if block.settings.cta_title != blank %}
+          <h3 class="ai-customer-creations__cta-title-{{ ai_gen_id }}">{{ block.settings.cta_title }}</h3>
+        {% endif %}
+        {% if block.settings.cta_text != blank %}
+          <div class="ai-customer-creations__cta-text-{{ ai_gen_id }}">
+            {{ block.settings.cta_text }}
+          </div>
+        {% endif %}
+        {% if block.settings.cta_hashtag != blank %}
+          <p class="ai-customer-creations__cta-hashtag-{{ ai_gen_id }}">{{ block.settings.cta_hashtag }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</customer-creations-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CustomerCreations{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.filterButtons = this.querySelectorAll('.ai-customer-creations__filter-btn-{{ ai_gen_id }}');
+        this.cards = this.querySelectorAll('.ai-customer-creations__card-{{ ai_gen_id }}');
+        this.setupFilters();
+      }
+
+      setupFilters() {
+        this.filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+
+            this.filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            this.cards.forEach(card => {
+              if (filter === 'all') {
+                card.style.display = 'flex';
+              } else {
+                const cardSource = card.getAttribute('data-source');
+                if (cardSource === filter) {
+                  card.style.display = 'flex';
+                } else {
+                  card.style.display = 'none';
+                }
+              }
+            });
+          });
+        });
+      }
+    }
+
+    customElements.define('customer-creations-{{ ai_gen_id }}', CustomerCreations{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Customer creations",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section header"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "Customer Creations"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#121212"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "See how our customers are styling their favorites"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 800,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "label": "Columns on desktop",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Columns on tablet",
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "label": "Grid gap",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Filters"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "label": "Show filter buttons",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "filter_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "filter_text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "filter_border_color",
+      "label": "Border",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "filter_active_bg_color",
+      "label": "Active background",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "filter_active_text_color",
+      "label": "Active text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "filter_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_bg_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "user_icon_bg_color",
+      "label": "User icon background",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "user_icon_color",
+      "label": "User icon color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Link color",
+      "default": "#334FB4"
+    },
+    {
+      "type": "header",
+      "content": "Card 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_1_enabled",
+      "label": "Enable card 1",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_1_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_1_username",
+      "label": "Username",
+      "default": "@customer1"
+    },
+    {
+      "type": "textarea",
+      "id": "card_1_caption",
+      "label": "Caption",
+      "default": "Love this product! #amazing"
+    },
+    {
+      "type": "text",
+      "id": "card_1_likes",
+      "label": "Likes",
+      "default": "245"
+    },
+    {
+      "type": "select",
+      "id": "card_1_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "instagram"
+    },
+    {
+      "type": "product",
+      "id": "card_1_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_2_enabled",
+      "label": "Enable card 2",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_2_username",
+      "label": "Username",
+      "default": "@customer2"
+    },
+    {
+      "type": "textarea",
+      "id": "card_2_caption",
+      "label": "Caption",
+      "default": "Perfect fit and quality!"
+    },
+    {
+      "type": "text",
+      "id": "card_2_likes",
+      "label": "Likes",
+      "default": "189"
+    },
+    {
+      "type": "select",
+      "id": "card_2_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "hashtag"
+    },
+    {
+      "type": "product",
+      "id": "card_2_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 3"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_3_enabled",
+      "label": "Enable card 3",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_3_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_3_username",
+      "label": "Username",
+      "default": "@customer3"
+    },
+    {
+      "type": "textarea",
+      "id": "card_3_caption",
+      "label": "Caption",
+      "default": "Highly recommend!"
+    },
+    {
+      "type": "text",
+      "id": "card_3_likes",
+      "label": "Likes",
+      "default": "312"
+    },
+    {
+      "type": "select",
+      "id": "card_3_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "uploads"
+    },
+    {
+      "type": "product",
+      "id": "card_3_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 4"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_4_enabled",
+      "label": "Enable card 4",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_4_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_4_username",
+      "label": "Username",
+      "default": "@customer4"
+    },
+    {
+      "type": "textarea",
+      "id": "card_4_caption",
+      "label": "Caption",
+      "default": "Best purchase ever!"
+    },
+    {
+      "type": "text",
+      "id": "card_4_likes",
+      "label": "Likes",
+      "default": "156"
+    },
+    {
+      "type": "select",
+      "id": "card_4_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "instagram"
+    },
+    {
+      "type": "product",
+      "id": "card_4_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 5"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_5_enabled",
+      "label": "Enable card 5",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_5_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_5_username",
+      "label": "Username",
+      "default": "@customer5"
+    },
+    {
+      "type": "textarea",
+      "id": "card_5_caption",
+      "label": "Caption",
+      "default": "Obsessed with this!"
+    },
+    {
+      "type": "text",
+      "id": "card_5_likes",
+      "label": "Likes",
+      "default": "278"
+    },
+    {
+      "type": "select",
+      "id": "card_5_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "hashtag"
+    },
+    {
+      "type": "product",
+      "id": "card_5_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 6"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_6_enabled",
+      "label": "Enable card 6",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "card_6_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_6_username",
+      "label": "Username",
+      "default": "@customer6"
+    },
+    {
+      "type": "textarea",
+      "id": "card_6_caption",
+      "label": "Caption",
+      "default": "Can't get enough!"
+    },
+    {
+      "type": "text",
+      "id": "card_6_likes",
+      "label": "Likes",
+      "default": "201"
+    },
+    {
+      "type": "select",
+      "id": "card_6_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "uploads"
+    },
+    {
+      "type": "product",
+      "id": "card_6_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 7"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_7_enabled",
+      "label": "Enable card 7",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_7_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_7_username",
+      "label": "Username",
+      "default": "@customer7"
+    },
+    {
+      "type": "textarea",
+      "id": "card_7_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "card_7_likes",
+      "label": "Likes",
+      "default": "150"
+    },
+    {
+      "type": "select",
+      "id": "card_7_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "instagram"
+    },
+    {
+      "type": "product",
+      "id": "card_7_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 8"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_8_enabled",
+      "label": "Enable card 8",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_8_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_8_username",
+      "label": "Username",
+      "default": "@customer8"
+    },
+    {
+      "type": "textarea",
+      "id": "card_8_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "card_8_likes",
+      "label": "Likes",
+      "default": "150"
+    },
+    {
+      "type": "select",
+      "id": "card_8_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "hashtag"
+    },
+    {
+      "type": "product",
+      "id": "card_8_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 9"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_9_enabled",
+      "label": "Enable card 9",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_9_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_9_username",
+      "label": "Username",
+      "default": "@customer9"
+    },
+    {
+      "type": "textarea",
+      "id": "card_9_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "card_9_likes",
+      "label": "Likes",
+      "default": "150"
+    },
+    {
+      "type": "select",
+      "id": "card_9_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "uploads"
+    },
+    {
+      "type": "product",
+      "id": "card_9_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 10"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_10_enabled",
+      "label": "Enable card 10",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_10_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_10_username",
+      "label": "Username",
+      "default": "@customer10"
+    },
+    {
+      "type": "textarea",
+      "id": "card_10_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "card_10_likes",
+      "label": "Likes",
+      "default": "150"
+    },
+    {
+      "type": "select",
+      "id": "card_10_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "instagram"
+    },
+    {
+      "type": "product",
+      "id": "card_10_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 11"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_11_enabled",
+      "label": "Enable card 11",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_11_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_11_username",
+      "label": "Username",
+      "default": "@customer11"
+    },
+    {
+      "type": "textarea",
+      "id": "card_11_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "card_11_likes",
+      "label": "Likes",
+      "default": "150"
+    },
+    {
+      "type": "select",
+      "id": "card_11_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "hashtag"
+    },
+    {
+      "type": "product",
+      "id": "card_11_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Card 12"
+    },
+    {
+      "type": "checkbox",
+      "id": "card_12_enabled",
+      "label": "Enable card 12",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "card_12_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "card_12_username",
+      "label": "Username",
+      "default": "@customer12"
+    },
+    {
+      "type": "textarea",
+      "id": "card_12_caption",
+      "label": "Caption"
+    },
+    {
+      "type": "text",
+      "id": "card_12_likes",
+      "label": "Likes",
+      "default": "150"
+    },
+    {
+      "type": "select",
+      "id": "card_12_source",
+      "label": "Source",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "hashtag",
+          "label": "Hashtag"
+        },
+        {
+          "value": "uploads",
+          "label": "Customer Uploads"
+        }
+      ],
+      "default": "uploads"
+    },
+    {
+      "type": "product",
+      "id": "card_12_product",
+      "label": "Featured product"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show CTA banner",
+      "default": true
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cta_title",
+      "label": "Title",
+      "default": "Share Your Photos"
+    },
+    {
+      "type": "range",
+      "id": "cta_title_size",
+      "min": 20,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 28
+    },
+    {
+      "type": "richtext",
+      "id": "cta_text",
+      "label": "Text",
+      "default": "<p>Tag us in your photos for a chance to be featured!</p>"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "cta_hashtag",
+      "label": "Hashtag",
+      "default": "#MyBrandStyle"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Background",
+      "default": "#f3f3f3"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Text",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "cta_hashtag_color",
+      "label": "Hashtag color",
+      "default": "#334FB4"
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer creations"
+    }
+  ]
+}
+{% endschema %}

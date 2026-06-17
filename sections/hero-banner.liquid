@@ -1,0 +1,435 @@
+{% doc %}
+  @prompt
+    Create a compelling hero banner section with the following elements: Headline: "Discover Style That Speaks for Itself" in bold large typography. Subheading: "Shop our curated collection of premium products — crafted for those who demand quality. Free shipping on orders over a set threshold." CTA Button: "Shop Now — Limited Offers" as a high-contrast button with urgency-driven text. Hero Image: Full-width background image area (1920x600px) with a subtle dark overlay for text readability. Include centered or left-aligned text layout, responsive design, smooth fade-in animation on load, customizable background color fallback, and an optional badge like "New Arrivals" above the headline.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-hero-banner-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: {{ block.settings.background_fallback }};
+  }
+
+  .ai-hero-banner-image-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  .ai-hero-banner-placeholder-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    z-index: 1;
+  }
+
+  .ai-hero-banner-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-hero-banner-overlay-{{ ai_gen_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, {{ block.settings.overlay_opacity }});
+    z-index: 2;
+  }
+
+  .ai-hero-banner-content-{{ ai_gen_id }} {
+    position: relative;
+    z-index: 3;
+    max-width: {{ block.settings.content_max_width }}px;
+    padding: 40px 20px;
+    text-align: {{ block.settings.text_alignment }};
+    width: 100%;
+  }
+
+  .ai-hero-banner-badge-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.badge_bg_color }};
+    color: {{ block.settings.badge_text_color }};
+    padding: 8px 16px;
+    border-radius: {{ block.settings.badge_border_radius }}px;
+    font-size: {{ block.settings.badge_font_size }}px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ai-hero-banner-headline-{{ ai_gen_id }} {
+    color: {{ block.settings.headline_color }};
+    font-size: {{ block.settings.headline_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 20px;
+  }
+
+  .ai-hero-banner-subheading-{{ ai_gen_id }} {
+    color: {{ block.settings.subheading_color }};
+    font-size: {{ block.settings.subheading_size }}px;
+    line-height: 1.6;
+    margin: 0 0 30px;
+  }
+
+  .ai-hero-banner-cta-{{ ai_gen_id }} {
+    display: inline-block;
+    background-color: {{ block.settings.cta_bg_color }};
+    color: {{ block.settings.cta_text_color }};
+    padding: 16px 40px;
+    border-radius: {{ block.settings.cta_border_radius }}px;
+    font-size: {{ block.settings.cta_font_size }}px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ai-hero-banner-cta-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.cta_hover_bg_color }};
+    color: {{ block.settings.cta_hover_text_color }};
+    transform: translateY(-2px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-hero-banner-{{ ai_gen_id }} {
+      min-height: 400px;
+    }
+
+    .ai-hero-banner-headline-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.headline_size }}px * 0.6);
+    }
+
+    .ai-hero-banner-subheading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.subheading_size }}px * 0.85);
+    }
+
+    .ai-hero-banner-badge-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.badge_font_size }}px * 0.85);
+    }
+
+    .ai-hero-banner-cta-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.cta_font_size }}px * 0.9);
+      padding: 14px 32px;
+    }
+  }
+{% endstyle %}
+
+<hero-banner-{{ ai_gen_id }} class="ai-hero-banner-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.hero_image %}
+    <img
+      src="{{ block.settings.hero_image | image_url: width: 1920 }}"
+      alt="{{ block.settings.hero_image.alt | escape }}"
+      class="ai-hero-banner-image-{{ ai_gen_id }}"
+      loading="lazy"
+      width="1920"
+      height="600"
+    >
+  {% else %}
+    <div class="ai-hero-banner-placeholder-{{ ai_gen_id }}">
+      {{ 'hero-apparel-1' | placeholder_svg_tag }}
+    </div>
+  {% endif %}
+
+  <div class="ai-hero-banner-overlay-{{ ai_gen_id }}"></div>
+
+  <div class="ai-hero-banner-content-{{ ai_gen_id }}">
+    {% if block.settings.show_badge and block.settings.badge_text != blank %}
+      <div class="ai-hero-banner-badge-{{ ai_gen_id }}">
+        {{ block.settings.badge_text }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.headline != blank %}
+      <h1 class="ai-hero-banner-headline-{{ ai_gen_id }}">
+        {{ block.settings.headline }}
+      </h1>
+    {% endif %}
+
+    {% if block.settings.subheading != blank %}
+      <div class="ai-hero-banner-subheading-{{ ai_gen_id }}">
+        {{ block.settings.subheading }}
+      </div>
+    {% endif %}
+
+    {% if block.settings.cta_text != blank %}
+      <a
+        href="{{ block.settings.cta_link }}"
+        class="ai-hero-banner-cta-{{ ai_gen_id }}"
+      >
+        {{ block.settings.cta_text }}
+      </a>
+    {% endif %}
+  </div>
+</hero-banner-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class HeroBanner{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.style.display = 'block';
+      }
+
+      connectedCallback() {
+        this.style.opacity = '0';
+        this.style.transition = 'opacity 1s ease-in-out';
+
+        setTimeout(() => {
+          this.style.opacity = '1';
+        }, 100);
+      }
+    }
+
+    customElements.define('hero-banner-{{ ai_gen_id }}', HeroBanner{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "color",
+      "id": "background_fallback",
+      "label": "Background fallback color",
+      "default": "#121212"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Overlay opacity",
+      "default": 0.4
+    },
+    {
+      "type": "header",
+      "content": "Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_badge",
+      "label": "Show badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "range",
+      "id": "badge_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "badge_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Background color",
+      "default": "#334FB4"
+    },
+    {
+      "type": "color",
+      "id": "badge_text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Headline"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Discover Style That Speaks for Itself"
+    },
+    {
+      "type": "range",
+      "id": "headline_size",
+      "min": 30,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Font size",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "headline_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Subheading"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Shop our curated collection of premium products — crafted for those who demand quality. Free shipping on orders over a set threshold."
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "min": 14,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "subheading_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Shop Now — Limited Offers"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "range",
+      "id": "cta_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "cta_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 4
+    },
+    {
+      "type": "color",
+      "id": "cta_bg_color",
+      "label": "Background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cta_text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_bg_color",
+      "label": "Hover background color",
+      "default": "#F3F3F3"
+    },
+    {
+      "type": "color",
+      "id": "cta_hover_text_color",
+      "label": "Hover text color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "content_max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Content max width",
+      "default": 800
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %}
